@@ -1,0 +1,142 @@
+\documentclass[DIV=9, headings=normal, pagesize=auto]{scrartcl}
+
+\usepackage{fixltx2e}
+\usepackage{etex}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{microtype}
+\usepackage[unicode=true]{hyperref}
+
+\newcommand*{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
+\newcommand*{\pkg}[1]{\textsf{#1}}
+\newcommand*{\cls}[1]{\textsf{#1}}
+\newcommand*{\cs}[1]{\texttt{\textbackslash#1}}
+\makeatletter
+\newcommand*{\cmd}[1]{\cs{\expandafter\@gobble\string#1}}
+\makeatother
+\newcommand*{\opt}[1]{\texttt{#1}}
+
+\addtokomafont{title}{\rmfamily}
+\addtokomafont{section}{\rmfamily}
+
+\title{The \cls{extsizes} classes}
+\author{James Kilfiger, \mail{james.kilfiger@gmail.com}\and Wolfgang May, \mail{may@informatik.uni-goettingen.de}}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+\noindent
+The standard \LaTeX\ classes (\cls{article}, \cls{report} etc) support ten, eleven and
+twelve point text. These are the commonest sizes used in publishing.
+However, for certain applications there may be a need for other sizes.
+The \cls{extsizes} classes (\cls{extarticle}, \cls{extreport}, \cls{extbook}, \cls{extletter}, and
+\cls{extproc}) provide support for sizes eight, nine, ten, eleven, twelve,
+fourteen, seventeen and twenty points.
+
+The \cls{extsizes} classes and class options were first written by Wolfgang
+May, by adapting the standard \LaTeX\ classes. James Kilfiger
+made some modifications and rewrote the size options. 
+
+
+\section{Should you be using \cls{extsizes}?}
+
+Don't use \cls{extsizes} just because you think its cool, or because you think
+the font looks too small on the screen.  You should have a clear reason
+why 10, 11 or 12\,pt text is not suitable for you.  Also the \pkg{extsizes}
+package is not suitable for creating oversize pages for scaling by a
+printer or photocopier, this can be done with the the \pkg{geometry} package
+and the \opt{mag} option (another of my hacks I'm afraid).  Good reasons for
+using the \pkg{extsizes} package might include conforming to requirements set
+by an examining institution, or making a large print copy for use by the
+partially sighted.
+
+
+\section{How to install \cls{extsizes}.}
+
+You should place all the files in `a place where \TeX\ can find them'.
+Examples of where \TeX\ looks for files include the \texttt{.../texmf/tex/latex}
+directory tree, a local \texttt{texmf} tree, anywhere specified in a \texttt{TEXINPUTS}
+environment variable or the same directory as your \LaTeX\ documents.  
+You should then refresh the file name database. This is done with a
+command `\texttt{texhash}' on te\TeX\ distributions and from the start menu with
+Mik\TeX\@.   For other distributions of \TeX\ read the manual to see if this
+step is required.
+
+
+\section{How to use \cls{extsizes}.}
+
+Your documentclass command should look like:
+%
+\begin{verbatim}
+\documentclass[14pt]{extreport}
+\end{verbatim}
+%
+or
+%
+\begin{verbatim}
+\documentclass[9pt]{extarticle}
+\end{verbatim}
+%
+The sizes available are \opt{8pt}, \opt{9pt}, \opt{10pt}, \opt{11pt}, \opt{12pt}, \opt{14pt}, \opt{17pt}, and \opt{20pt}.
+There should be no need to change any other part of your document.
+
+There is also a package, \pkg{extsizes.sty}, which can be used with
+nonstandard document classes.  But it cannot be guaranteed to work with
+any give class.  Don't use it at the same time as one of the \cls{extsizes}
+classes. It takes as package options \opt{8pt}\,--\,\opt{20pt}.  This comes from an idea
+of Hans Steffani.
+
+
+\section{Compatibility mode broken.}
+
+You cannot use these classes in `compatibility mode', nor can they be
+used with \LaTeX2.09.  Therefore \verb+\documentstyle[20pt]{extarticle}+ won't
+work.  Compatibility mode should not be used for new documents.
+
+
+\section{Bad line breaking.}
+
+If you are using 20\,pt text \TeX\ will probably have difficulty finding
+good line breaks, so you will get warnings about overfull hboxes.  
+If this is distracting you may put \cmd{\sloppy} in the preamble of your
+document, but it is better to try to help \TeX\ to find good line breaks
+by inserting \cmd{\-} or rewriting short sections.
+
+
+\section{Warnings about Font substitutions.}
+
+The large class options use some very large fonts. Up to about 50\,pt for
+the \opt{20pt} class options.  You may find this causes problems with with
+if these fonts are not declared to be available by a \cmd{\DeclareFontShape}
+command.  You should either use fonts like \pkg{Times} which are usually
+available in all sizes, or redeclare the fonts.  There is an example of
+this in the \cls{extsizes} classes for \texttt{cmr}.  You should also read \pkg{fntguide}.
+
+\bigskip
+
+\begin{flushleft}
+James\\
+\quad\mail{james.kilfiger@gmail.com}\\
+Wolfgang\\
+\quad\mail{may@informatik.uni-goettingen.de}\\
+(in case the addresses become invalid in the future, 
+look us up in the Web)
+\end{flushleft}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
