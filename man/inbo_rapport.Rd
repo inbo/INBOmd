@@ -33,6 +33,8 @@ inbo_rapport(subtitle, reportnr, ordernr, year, email, shortauthor,
 
 \item{cover_text}{A description of the cover image}
 
+\item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
+
 \item{lang}{The language of the document. Defaults to "dutch"}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}

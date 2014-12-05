@@ -11,6 +11,7 @@
 #' @param cover The filename of the cover image
 #' @param cover_offset An optional offset for the cover image
 #' @param cover_text A description of the cover image
+#' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @export
