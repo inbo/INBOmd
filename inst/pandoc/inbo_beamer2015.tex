@@ -77,4 +77,20 @@ $endif$
 
 $body$
 
+$if(natbibfile)$
+\begin{frame}
+$if(natbibtitle)$
+\frametitle{$natbibtitle$}
+$else$
+\frametitle{Referenties}
+$endif$
+$if(natbibstyle)$
+\bibliographystyle{$natbibstyle$}
+$else$
+\bibliographystyle{spbasic}
+$endif$
+  \bibliography{$natbibfile$}
+\end{frame}
+$endif$
+
 \end{document}

@@ -6,12 +6,15 @@
 #' @param cover_offset An optional offset for the cover image
 #' @param toc_name Name of the table of contents. Defaults to "Overzicht".
 #' @param fontsize The fontsite of the document. Defaults to 10pt.
+#' @param natbib The bibliography file for natbib
+#' @param natbib_title The title of the bibliography
+#' @param natbit_style The style of the bibliography
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
-inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, lang = "dutch", slide_level = 2, keep_tex = FALSE){
+inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE){
   template <- system.file("pandoc/inbo_beamer2015.tex", package = "INBOmd")
   args <- c(
     "--slide-level", as.character(slide_level),
@@ -21,6 +24,15 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
   )
   if(!missing(toc_name)){
     args <- c(args, pandoc_variable_arg("tocname", toc_name))
+  }
+  if(!missing(natbib)){
+    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
+  }
+  if(!missing(natbib_title)){
+    args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
+  }
+  if(!missing(natbib_style)){
+    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if(!missing(subtitle)){
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))

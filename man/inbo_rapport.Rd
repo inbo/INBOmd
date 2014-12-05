@@ -5,8 +5,9 @@
 \usage{
 inbo_rapport(subtitle, reportnr, ordernr, year, email, shortauthor,
   office = c("Anderlecht", "Geraardsbergen"), client, storagenr, cover,
-  cover_offset, cover_text, floatbarrier = c(NA, "section", "subsection",
-  "subsubsection"), lang = "dutch", keep_tex = FALSE)
+  cover_offset, cover_text, natbib, natbib_title, natbib_style,
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  lang = "dutch", keep_tex = FALSE)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -33,11 +34,17 @@ inbo_rapport(subtitle, reportnr, ordernr, year, email, shortauthor,
 
 \item{cover_text}{A description of the cover image}
 
+\item{natbib}{The bibliography file for natbib}
+
+\item{natbib_title}{The title of the bibliography}
+
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+
+\item{natbit_style}{The style of the bibliography}
 }
 \description{
 Create a report with the INBO theme
