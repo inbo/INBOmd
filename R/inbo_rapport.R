@@ -1,4 +1,4 @@
-#' Use slides with the INBO theme
+#' Create a report with the INBO theme
 #' @param subtitle An optional subtitle
 #' @param reportnr The report number
 #' @param ordernr The order number
