@@ -1,0 +1,613 @@
+---
+title: "Markdown, R en INBO huisstijlen"
+author: "Thierry Onkelinx"
+bibliography: "R.bib"
+output: 
+  INBOmd::inbo_slides:
+    location: "Anderlecht, 4 december 2014"
+    institute: "Biometrie \\& Kwaliteitszorg"
+    keep_tex: true
+  INBOmd::inbo_rapport:
+    cover: "useR-large.png"
+    subtitle: "Een introductie"
+    reportnr: "4 december 2014"
+    year: 2014
+    email: thierry.onkelinx@inbo.be
+    cover_offset: 50mm
+    cover_text: "Het R logo"
+    keep_tex: true
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Markdown, R en INBO huisstijlen}
+---
+
+# Introductie
+
+## Markup languages
+
+- broncode is platte tekst
+- inhoud is gemengd met code die de opmaak bepaalt
+- broncode wordt gecompileerd tot het eindresultaat
+
+Voorbeelden
+
+Taal | Compiler | Resultaat
+---- | ----- | -----
+HTML | browser | webpagina
+latex | pdflatex | pdf
+Markdown | pandoc + browser | webpagina
+Markdown | pandoc + pdflatex | pdf
+Markdown | pandoc + Word | docx
+Markdown | pandoc + e-bookreader | Ebook
+
+## R resultaten in documenten
+
+- grafieken, tabellen, ...
+- traditioneel
+    - R code uitvoeren
+    - resultaten knippen en plakken naar Word
+    - wijziging aan data of resultaten = alles opnieuw knippen en plakken
+- alternatief
+    - markup language gebruiken i.p.v. Word
+    - R broncode laten aanpassen
+    - voordelen
+        - R code en tekst zitten samen in hetzelfde document
+        - Document bevat steeds de recentste R resultaten
+
+## R resultaten in documenten: de mogelijkheden
+
+Taal | Package
+--- | ---
+latex | Sweave en knitr
+Markdown | knitr
+HTML | knitr (Sweave)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Puur Markdown
+
+## Puur Markdown
+
+- Kan geconverteerd worden naar alle formaten
+- Hierdoor enigzins beperkt in mogelijkheden
+- Formaat specifieke extras mogelijk (zie later)
+
+## Basis
+
+- Koppen: start de regels met het overeenkomst aantal `#`
+    - `#` = kop 1, `##` = kop 2, ...
+- _italics_: `_` voor en na het woord/zin (geen spatie!)
+- **bold**: `**` voor en na het woord/zin (geen spatie!)
+- `verbatim text`: ` (AltGr+µ) voor en na het woord/zin (geen spatie!)
+- Nieuw alinea: minstens één witregel tussen de alineas
+- Linebreak (nieuwe regel, geen nieuwe alinea): minstens twee spaties op het einde van de vorige zin
+- `&nbsp;` non-braking space. Spatie tussen twee woorden die op dezelfde regel moeten blijven
+    - `Koning Albert&nbsp;II` Koning Albert&nbsp;II
+
+## Ongeordende lijsten
+
+- Moeten op een nieuwe alinea starten
+* Begin elk item op een nieuwe regel en start de regel met `-` gevolg door een spatie 
+    - `+` of `*` zijn ook toegelaten
+- items van een lagere niveau beginnen met 4 extra spaties vooraan de regel
+    - 4 spaties per subniveau
+    - maximum 3 niveau's
+
+## Geordende lijsten
+
+1. Basisprincipes van een ongeordende lijst
+1. `1.` in plaats van `-`
+1. `2.`, `3.`, ... mag maar hoeft niet
+    7. De items worden automatisch opnieuw genummerd bij compilatie
+    7. Steeds `1.` is dus het makkelijkst
+    7. Indien je de lijst wil laten starten bij een hoger number, dan gebruik je dat number voor het eerste item
+
+## Lijst met definities
+
+Term 1
+  ~ Definition 1
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+
+## Links en referenties
+
+- Links
+    - URL `[text](http://www.inbo.be)` [text](http://www.inbo.be)
+    - `<http://www.inbo.be>` <http://www.inbo.be>
+    - `<thierry.onkelinx@inbo.be>` <thierry.onkelinx@inbo.be>
+- Referenties: '@' gevolgd door bibtex-key
+    - `[@R-3.0.1; @R-reshape]`: [@R-3.0.1; @R-reshape]
+    - `@R-3.0.1`: @R-3.0.1
+    - `[-@R-3.0.1]`: [-@R-3.0.1]
+    - BibTex file doorgeven via instelling document (zie later)
+        - Moet verwijzen naar de exacte locatie van het bestand
+        - Ofwel absoluut, ofwel relatief t.o.v. markdown bestand
+    - Referentielijst wordt achteraan het document geplaatst
+        - Je moet zelf een titel plaatsen
+    - Stijl van referentie zou aan te passen zijn (nog uit te zoeken)
+
+## Figuren
+
+- Afmetingen bepaald door eigenschappen in bestand (pixels en resolutie)
+- Figuur in afzonderlijke alinea = vrijstaande figuur met bijschrift
+    - Zo niet inline figuur zonder bijschrift
+- `![Mendeley logo](mendeley.jpg)` 
+
+![Mendeley logo](mendeley.jpg)
+
+## Tabellen
+
+- gewoon lijnen tekenen die de scheiding van de kolomen aangeven
+- Aanmaken vanuit een R dataframe is handiger bij grotere tabellen (zie later)
+
+```
+A   | B  
+--- | ------  
+1   | Test
+123 | D
+```
+
+A   | B  
+--- | ------  
+1   | Test
+123 | D
+
+## Formules
+
+- Zoals in basis latex
+    - Formules die extra packages nodig hebben werken niet in de niet-latex formaten
+- Inline tussen enkele `$`
+    - `$\bar{X} = \sum_{i = 1}^NX_i$`
+    - $\bar{X} = \sum_{i = 1}^NX_i$
+- Stand alone tussen dubbele `$$`
+    - `$$\bar{X} = \sum_{i = 1}^NX_i$$`
+
+$$\bar{X} = \sum_{i = 1}^NX_i$$
+
+## Slides
+
+- Zijn specifiek output formaat (beamer of HTML slides)
+- Slide titel = specifiek heading niveau
+    - default = laagste gebruikte niveau
+    - instelbaar via opties (zie later)
+- Hogere niveaus
+    - inhoudstafel
+    - slides met tussentitels
+- Lagere niveaus
+    - Titel van kadertekst
+- `{.allowframebreaks}` op het einde van titel splitst lange slide over meerdere slides
+
+## Accenten
+
+- Geen probleem. Zoals in Word.
+- **Voorwaarde**: _Default text encoding_ in RStudio instellen op UTF-8
+- $£€ âêîûô äëïöüÿ áéíóúý àèìòù ãñ çµ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Compilatie
+
+## Basis
+
+- `YAML` blok
+    - "YAML Ain't Markup Language"
+- staat tussen twee regels met enkel `---`
+- handigst aan het begin van het document
+- algemene instellingen: titel en auteur
+- eventueel bibtex file wanneer je referenties gebruikt
+    - moet naar exacte locatie van bestand verwijzen
+
+```
+title: "Markdown, R en INBO huisstijlen"
+author: "Thierry Onkelinx"
+bibliography: "c:/local_tex/bibtex/bib/local/R.bib"
+```
+
+## Output formaat: INBO rapport
+
+- toegevoegd aan YAML blok
+- inspringing is belangrijk
+  - tab of 2 spaties
+- `INBOmd::inbo_rapport:` is de template voor rapporten
+
+```
+output: 
+  INBOmd::inbo_rapport:
+    cover: "useR-large.png"
+    subtitle: "Een introductie"
+    reportnr: "4 december 2014"
+    year: 2014
+    email: thierry.onkelinx@inbo.be
+    cover_offset: 50mm
+    cover_text: "Het R logo"
+    keep_tex: true
+```
+
+## Variabelen voor INBO rapport{.allowframebreaks}
+
+- verplicht
+    - **year**: jaartal
+    - **email**: email van de hoofdauteur
+    - **shortauthor**: afgekorte lijst auteurs
+    - **office**: `Anderlecht` of `Geraardsbergen`. Zet het juiste adres op de cover
+- optioneel voor cover
+    - **cover**: een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = geen cover
+    - **cover_offset**: schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar benenden schuiven. Default = 0mm
+    - **cover_text**: beschrijving van de coverfoto
+    - **subtitle**: een optionele ondertitel
+    - **reportnr**: rapportnummer. Default = datum van compilatie
+    - **ordernr**: opdrachtnummer
+    - **client**: opdrachtgever
+    - **storagenr**: nummer van het wettelijk depot
+  - optioneel voor lay-out
+    - **floatbarrier**: floatbarrier voor elke nieuwe "section", "subsection" of "subsubsection". Weglaten is geen standaard floatbarriers.
+    - **lang**: taal voor het babel package. Default = "dutch"
+    - **keep_tex**: maak ook een tex bestand. Default = FALSE
+
+## Output formaat: INBO slides
+
+```
+output: 
+  INBOmd::inbo_slides:
+    location: "Anderlecht, 4 december 2014"
+    institute: "Biometrie \\& Kwaliteitszorg"
+    keep_tex: true
+```
+
+## Variabelen voor INBO slides
+
+- optioneel
+    - **fontsize**: gewenste fontsize. Ga niet kleiner dan 8pt. Default = 10pt.
+    - **location**: plaats en datum van de presentatie
+    - **institute**: affiliatie van de spreker(s)
+    - **cover**: een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = labofoto
+    - **cover_offset**: schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar beneden schuiven. Default = 0mm
+- optioneel voor lay-out
+    - **slide_level**: welk niveau kop wordt de slide titels. Default = 2
+    - **lang**: taal voor het babel package. Default = "dutch"
+    - **keep_tex**: maak ook een tex bestand. Default = FALSE
+    - **toc_name**: titel van het inhoudstafel. Default = "Overzicht"
+
+## Standaard output formaten
+
+- `html_document`
+- `pdf_document`
+- `word_document`
+- `beamer_presentation`
+- zie hun helpfile in het `rmarkdown` package voor de opties
+
+- andere output formaten zijn mogelijk
+    - ePUB, HTML slides, odf, ...
+    - momenteel enkel manueel: contacteer Thierry voor meer info
+
+## Gevolg definiëren output formaat
+
+- output formaat in YAML definiëert wat de 'Knit' knop doet
+- meerdere output formaten mogelijk
+    - zet ze onder elkaar in YAML blok (slechts een keer `output:`!)
+    - 'Knit' knop verwerkt enkel eerste output formaat!
+- Afgewerkte document wordt getoond na succesvolle compilatie
+    - bestandsnaam = combinatie van bronbestand + formaat
+- Simultane output naar meerdere formaten via scriptje
+    - `render()` uit het `rmarkdown` package
+
+## Voorbeeldscript {.allowframebreaks}
+
+```{r meerdere_outputs, eval = FALSE, echo = TRUE}
+library(rmarkdown)
+
+# slides met aangepaste naam
+render(
+  "markdown_intro.Rmd", 
+  output_format = "INBOmd::inbo_slides", 
+  output_file = "slides.pdf",
+  encoding = "UTF-8"
+)
+
+# hand-outs op basis van het rapport sjabloon
+render(
+  "markdown_intro.Rmd", 
+  output_format = "INBOmd::inbo_rapport", 
+  output_file = "handouts.pdf",
+  encoding = "UTF-8"
+)
+
+# output naar Word
+# formaat niet gedefinieerd in bestand
+# dus met standaard opties
+render(
+  "markdown_intro.Rmd", 
+  output_format = "word_document", 
+  output_file = "handouts.docx",
+  encoding = "UTF-8"
+)
+
+# extractie van R code
+knitr::purl("markdown_intro.Rmd", output = "script.R")
+```
+
+
+
+
+
+
+
+
+
+# Formaat specifieke uitbreidingen
+
+## Basisprincipe
+
+- Latex code die Markdown niet kent wordt
+    - zonder aanpassing overgenomen bij conversie naar latex en dus gebruikt voor de pdf
+    - **genegeerd** bij omzetting naar niet latex formaten
+- Bij HTML gebeurd iets analoogs
+    - zonder aanpassing overgenomen bij conversie naar HTML, epub en **Word**
+    - **genegeerd** bij omzetting naar latex
+- Voordeel
+    - Je kan complexere lay-out toepassen
+- Nadeel
+    - Inhoud kan verschillen naargelang het outputformaat
+- Ofwel Markdown gebruiken met enkel latex of HTML als doelformaat
+- Ofwel code in beide varianten toevoegen
+
+`![\label{fig:Mendeley}<A id="fig:Mendeley">Mendeley logo](mendeley.jpg)`
+
+## Voorbeeld figuur met label
+
+![\label{fig:Mendeley}<A id="fig:Mendeley">Mendeley logo](mendeley.jpg)
+
+## Interne verwijzigingen naar figuur
+
+- latex only
+    - `\autoref` geeft 'Tabel/Figuur nummer' in rapporten
+    - `\autorefp` geeft '&nbsp;(Tabel/Figuur nummer)' in rapporten
+- HTML only
+    - `<A HREF = "#fig:Mendeley">Deze tekst linkt naar een figuur</A>`
+
+`Het logo van <A HREF = "#fig:Mendeley" >Mendeley</A >\autorefp{fig:Mendeley}.`
+
+Het logo van <A HREF = "#fig:Mendeley">Mendeley</A>\autorefp{fig:Mendeley}.
+
+## natbib
+
+- Pandoc geeft de mogelijkheid om natbib te gebruiken voor bibliografie
+    - Geeft `\citep{bibtex-key}` en `\citet{bibtex-key}`
+- Nadelen
+    - Werkt enkel door Markdown naar latex te compileren en dan latex naar pdf
+    - Werkt enkel voor latex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# knitr en Markdown
+
+## code chunks
+
+- begint met \texttt{```\{r\}}
+- eindigt met \texttt{```}
+- binnen `{r}` geef je bijkomende opties
+- eerste argument = naam van de chunk `{r naam}`
+    - **geen spaties en punten**
+    - chunk naam is niet verplicht, wel ten zeerste aanbevolen
+    - wordt vermeldt tijdens voortgang compilatie en bij foutmeldingen
+    - wordt in bestandsnamen van figuren gebruikt
+    - gebruikt als automatisch label voor figuur in latex (niet in Markdown)
+    - overgenomen in geëxtraheerd R script
+
+## belangrijkste chunk options
+
+- `eval` TRUE of FALSE: moet de code uitgevoerd worden
+- `echo` TRUE of FALSE: moet de code getoond worden
+- `results`: type output
+    - "markup" zet de output om naar Markdown (.Rmd) of latex (.Rmw)
+    - "asis" neem de output letterlijk over. R output is al in de gewenste syntax.
+    - "hide" verberg alle output
+- `message` TRUE of FALSE: toon messages
+- `warning` TRUE of FALSE: toon warnings
+- `error` 
+    - TRUE: toon errors maar voer de rest van de code uit
+    - FALSE: stop compilatie bij een error
+- `cache`: moeten de resultaten van de chunk worden bewaard?
+    - chunk wordt enkel opnieuw uitgevoerd indien de **code** wijzigt
+- `purl` TRUE of FALSE. Moet de code van deze chunk naar een R script geëxtraheerd worden.
+- `tidy` TRUE of FALSE. Moet de R code opgekuist worden?
+
+## belangrijkste chunk options voor figuren
+
+- `dev`: device. 'png' is ideaal omdat het zowel in latex, HTML en Word werkt en betere kwaliteit dan 'jpg'.
+- `dev.args`: argumenten voor de device
+- `fig.width` en `fig.height`: afmetingen in inch
+- `dpi`: resolutie: minstens 300 dpi voor drukwerk, 72 dpi voor websites
+- `fig.cap`: het bijschrift
+
+## algemene tips
+
+- je kan "asis" output niet mengen met andere output (bijvoorbeeld figuren). In dat geval moet je de chunk opsplitsen
+- gewone output en figuren kunnen in een chunk met results="markup"
+- meerdere figuren per chunk zijn mogelijk
+    - echter af te raden omdat je slechts één caption kan definiëren.
+- standaard chunk opties kan je aan het begin van het document instellen
+
+## chunks opties voor document instellen
+
+- maak een chunk met onderstaande inhoud aan begin van document
+- opties van deze chunk: `results = "hide", eval = TRUE, echo = FALSE, cache = FALSE, purl = FALSE`
+
+```
+library(knitr)
+opts_chunk$set(
+  echo = TRUE, 
+  cache = FALSE, 
+  dpi = 300, 
+  fig.width = 4.5, 
+  fig.height = 2.9, 
+  dev.args = list(bg = 'transparent'),
+  message = FALSE, 
+  error = TRUE, 
+  warning = FALSE, 
+  tidy = FALSE
+)
+options(width = 80, digits = 5)
+```
+
+## "asis" output genereren
+
+- `pander` package heeft handige functies om R output naar Markdown syntax om te zetten
+- `pandoc.table` zet data.frame, matrix of table om naar Markdown
+- handige argumenten voor lay-out:
+    - `caption`: bijschrift
+    - `digits`, `round`: afronden
+    - `justify`: uitlijning
+    - `split.tables`, `split.cells`: lengte van celinhoud en rijen
+    - `emphasize.rows`, `emphasize.cols`: nadruk op rijen, kolommen of cellen (italics of vet)
+- veel instellingen globaal in te stellen via functie `panderOptions`
+
+## inline R code
+
+- voert een R commando uit en plaatst het resultaat in de huidige alinea
+    - chunks staan in hun eigen alinea
+- veronderstelt dat de output "asis" geformateerd is
+- syntax: \texttt{`}\texttt{r commando}\texttt{`}
+- **tip**: hou inline commando's zo kort mogelijk
+    - maak eerst een variabele met de gewenste inhoud in een chunk 
+    - toon de output inline met \texttt{`}\texttt{r variabelenaam}\texttt{`}
+
+## Meer geavanceerde opties
+
+- meer info bij Thierry
+- `knit_child`
+    - equivalent met subdocumenten
+- `knit_expand`
+    - handig om zelfde stukje code te hergebruiken in een loop
+    - voorbeeld: resultaten van een hele resem soorten
+        - resultaten hebben een zelfde stramien per soort
+    - oplossing:
+        - afzonderlijke Rmd met stramien voor één soort
+        - loop met `knit_expand` in hoofddocument
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Appendix
+
+## Noodzakelijke tools
+
+- publiek verkrijgbaar
+    - R met packages: `knitr`, `rmarkdown`, `ggplot2`, `pander`
+    - Rstudio
+    - MikTeX (Windows) of TexLive (Linux/Mac)
+- INBO specifiek
+    - R packages `INBOtheme` en `INBOmd`
+
+## Bibliografie
