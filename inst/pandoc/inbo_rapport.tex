@@ -204,12 +204,8 @@ $endif$
 $body$
 
 $if(natbibfile)$
-$if(natbibstyle)$
-\bibliographystyle{$natbibstyle$}
-$else$
 \bibliographystyle{spbasic}
-$endif$
-  \bibliography{$natbibfile$}
+\bibliography{$natbibfile$}
 $endif$
 
 \end{document}

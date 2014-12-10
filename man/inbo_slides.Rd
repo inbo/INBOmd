@@ -4,7 +4,8 @@
 \title{Use slides with the INBO theme}
 \usage{
 inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
-  fontsize, natbib, natbib_title, natbib_style, lang = "dutch",
+  fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small",
+  "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch",
   slide_level = 2, keep_tex = FALSE)
 }
 \arguments{
@@ -22,17 +23,19 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
 
 \item{fontsize}{The fontsite of the document. Defaults to 10pt.}
 
+\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
+
 \item{natbib}{The bibliography file for natbib}
 
 \item{natbib_title}{The title of the bibliography}
+
+\item{natbib_style}{The style of the bibliography}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 
 \item{slide_level}{Indicate which heading level is used for the frame titles}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
-
-\item{natbit_style}{The style of the bibliography}
 }
 \description{
 Use slides with the INBO theme

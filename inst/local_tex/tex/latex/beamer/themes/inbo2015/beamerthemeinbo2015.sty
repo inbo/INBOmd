@@ -66,10 +66,19 @@
 \RequirePackage{amsmath}
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
 
-\RequirePackage[no-math]{fontspec}
-\setmainfont{Calibri}
-\setmonofont{Courier New}
+\RequirePackage{ifxetex}
+
+\ifxetex
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont{Calibri}
+  \setmonofont{Courier New}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{lmodern}
+\fi
 \usefonttheme{serif}
+
 \frenchspacing
 
 

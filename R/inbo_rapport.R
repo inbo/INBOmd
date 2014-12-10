@@ -12,8 +12,6 @@
 #' @param cover_offset An optional offset for the cover image
 #' @param cover_text A description of the cover image
 #' @param natbib The bibliography file for natbib
-#' @param natbib_title The title of the bibliography
-#' @param natbit_style The style of the bibliography
 #' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
@@ -24,13 +22,16 @@ inbo_rapport <- function(
   email, shortauthor, office = c("Anderlecht", "Geraardsbergen"),
   client, storagenr,
   cover, cover_offset, cover_text, 
-  natbib, natbib_title, natbib_style,
+  natbib, 
   floatbarrier = c(NA, "section", "subsection", "subsubsection"), 
   lang = "dutch", keep_tex = FALSE
 ){
   floatbarrier <- match.arg(floatbarrier)
   office <- match.arg(office)
+  
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
+  #csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- "~/../owncloud/documents/INBOmd/inst/inbo.csl"
   args <- c(
     "--template", template,
     "--latex-engine", "pdflatex",
@@ -39,12 +40,8 @@ inbo_rapport <- function(
   )
   if(!missing(natbib)){
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  }
-  if(!missing(natbib_title)){
-    args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
-  if(!missing(natbib_style)){
-    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
+  } else {
+    args <- c(args, "--csl", pandoc_path_arg(csl))
   }
   if(!missing(shortauthor)){
     args <- c(args, pandoc_variable_arg("auteurkort", shortauthor))
@@ -101,7 +98,7 @@ inbo_rapport <- function(
     pandoc = pandoc_options(
       to = "latex",
       args = args,
-      keep_tex = keep_tex
+      keep_tex = keep_tex | !missing(natbib)
     ),
     clean_supporting = !keep_tex
   )

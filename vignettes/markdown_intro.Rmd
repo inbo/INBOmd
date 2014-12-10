@@ -1,7 +1,7 @@
 ---
 title: "Markdown, R en INBO huisstijlen"
 author: "Thierry Onkelinx"
-bibliography: "R.bib"
+bibliography: "INBOmd.bib"
 output: 
   INBOmd::inbo_slides:
     location: "Anderlecht, 4 december 2014"
@@ -19,6 +19,7 @@ output:
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Markdown, R en INBO huisstijlen}
+  %\SweaveUTF8
 ---
 
 # Introductie
@@ -125,6 +126,15 @@ HTML | knitr (Sweave)
 
 ## Lijst met definities
 
+```
+Term 1
+  ~ Definition 1
+
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
+```
+
 Term 1
   ~ Definition 1
 
@@ -147,7 +157,7 @@ Term 2
         - Ofwel absoluut, ofwel relatief t.o.v. markdown bestand
     - Referentielijst wordt achteraan het document geplaatst
         - Je moet zelf een titel plaatsen
-    - Stijl van referentie zou aan te passen zijn (nog uit te zoeken)
+        - Stijl in gebaseerd op Mendeley stijl voor INBO
 
 ## Figuren
 
@@ -290,23 +300,44 @@ output:
 ## Variabelen voor INBO rapport{.allowframebreaks}
 
 - verplicht
-    - **year**: jaartal
-    - **email**: email van de hoofdauteur
-    - **shortauthor**: afgekorte lijst auteurs
-    - **office**: `Anderlecht` of `Geraardsbergen`. Zet het juiste adres op de cover
+
+    year 
+      ~ jaartal
+    email
+      ~ email van de hoofdauteur
+    shortauthor
+      ~ afgekorte lijst auteurs
+    office
+      ~ `Anderlecht` of `Geraardsbergen`. Zet het juiste adres op de cover
 - optioneel voor cover
-    - **cover**: een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = geen cover
-    - **cover_offset**: schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar benenden schuiven. Default = 0mm
-    - **cover_text**: beschrijving van de coverfoto
-    - **subtitle**: een optionele ondertitel
-    - **reportnr**: rapportnummer. Default = datum van compilatie
-    - **ordernr**: opdrachtnummer
-    - **client**: opdrachtgever
-    - **storagenr**: nummer van het wettelijk depot
+
+    cover
+      ~ een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = geen cover
+    cover_offset
+      ~ schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar benenden schuiven. Default = 0mm
+    cover_text
+      ~ beschrijving van de coverfoto
+    subtitle
+      ~ een optionele ondertitel
+    reportnr
+      ~ rapportnummer. Default = datum van compilatie
+    ordernr
+      ~ opdrachtnummer
+    client
+      ~ opdrachtgever
+    storagenr
+      ~ nummer van het wettelijk depot
   - optioneel voor lay-out
-    - **floatbarrier**: floatbarrier voor elke nieuwe "section", "subsection" of "subsubsection". Weglaten is geen standaard floatbarriers.
-    - **lang**: taal voor het babel package. Default = "dutch"
-    - **keep_tex**: maak ook een tex bestand. Default = FALSE
+  
+    floatbarrier
+      ~ floatbarrier voor elke nieuwe "section", "subsection" of "subsubsection". Weglaten is geen standaard floatbarriers.
+    lang
+      ~ taal voor het babel package. Default = "dutch"
+    keep_tex
+      ~ maak ook een tex bestand. Default = FALSE
+    natbib
+      ~ Naam van bibtex file voor het aanmaken van referentie via natbib. Manuele compilatie van het TeX bestand is vereist.
+
 
 ## Output formaat: INBO slides
 
@@ -318,19 +349,38 @@ output:
     keep_tex: true
 ```
 
-## Variabelen voor INBO slides
+## Variabelen voor INBO slides {.allowframebreaks}
 
 - optioneel
-    - **fontsize**: gewenste fontsize. Ga niet kleiner dan 8pt. Default = 10pt.
-    - **location**: plaats en datum van de presentatie
-    - **institute**: affiliatie van de spreker(s)
-    - **cover**: een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = labofoto
-    - **cover_offset**: schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar beneden schuiven. Default = 0mm
+
+    fontsize
+      ~ gewenste fontsize. Ga niet kleiner dan 8pt. Default = 10pt.
+    codesize
+      ~ gewenste fontsize voor R code. Relatief t.o.v. van fontsize. Default = "footnotesize".
+    location
+      ~ plaats en datum van de presentatie
+    institute
+      ~ affiliatie van de spreker(s)
+    cover
+      ~ een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = labofoto
+    cover_offset
+      ~ schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar beneden schuiven. Default = 0mm
 - optioneel voor lay-out
-    - **slide_level**: welk niveau kop wordt de slide titels. Default = 2
-    - **lang**: taal voor het babel package. Default = "dutch"
-    - **keep_tex**: maak ook een tex bestand. Default = FALSE
-    - **toc_name**: titel van het inhoudstafel. Default = "Overzicht"
+    
+    slide_level
+      ~ welk niveau kop wordt de slide titels. Default = 2
+    lang
+      ~ taal voor het babel package. Default = "dutch"
+    keep_tex
+      ~ maak ook een tex bestand. Default = FALSE
+    toc_name
+      ~ titel van het inhoudstafel. Default = "Overzicht"
+    natbib
+      ~ Naam van bibtex file voor het aanmaken van referentie via natbib
+    natbib_style
+      ~ Gewenste stijl voor natbib referenties
+    natbib_title
+      ~ Titel van de referentielijst via natbib
 
 ## Standaard output formaten
 
@@ -358,15 +408,18 @@ output:
 ## Voorbeeldscript {.allowframebreaks}
 
 ```{r meerdere_outputs, eval = FALSE, echo = TRUE}
+# rmarkdown package bevat de render() functie
 library(rmarkdown)
 
-# slides met aangepaste naam
+
+# slides met aangepaste naam van output bestand
 render(
   "markdown_intro.Rmd", 
   output_format = "INBOmd::inbo_slides", 
   output_file = "slides.pdf",
   encoding = "UTF-8"
 )
+
 
 # hand-outs op basis van het rapport sjabloon
 render(
@@ -375,6 +428,7 @@ render(
   output_file = "handouts.pdf",
   encoding = "UTF-8"
 )
+
 
 # output naar Word
 # formaat niet gedefinieerd in bestand
@@ -386,9 +440,24 @@ render(
   encoding = "UTF-8"
 )
 
-# extractie van R code
+# extractie van R code in het Rmd bestand
 knitr::purl("markdown_intro.Rmd", output = "script.R")
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -433,18 +502,75 @@ knitr::purl("markdown_intro.Rmd", output = "script.R")
 
 Het logo van <A HREF = "#fig:Mendeley">Mendeley</A>\autorefp{fig:Mendeley}.
 
-## natbib
+## Kaders puur Markdown
 
-- Pandoc geeft de mogelijkheid om natbib te gebruiken voor bibliografie
-    - Geeft `\citep{bibtex-key}` en `\citet{bibtex-key}`
-- Nadelen
-    - Werkt enkel door Markdown naar latex te compileren en dan latex naar pdf
-    - Werkt enkel voor latex
+- kader titel: kop een niveau lager dan `slide_level`
+- kader tekst: alle tekst tot volgende kop van een zelfde of hoger niveau
+
+```
+### Kader titel
+
+Kader tekst
+
+### Tweede kader
+
+Kader tekst
+```
+
+### Kader titel
+
+Kader tekst
+
+### Tweede kader
+
+Kader tekst
+
+## Gewone tekst tussen twee kaders
+
+```
+\begin{block}{Kader 1}
+  Kader tekst
+\end{block}
+
+Tekst tussen kaders
+
+\begin{block}{Kader 2}
+  Kader tekst
+\end{block}
+```
+
+\begin{block}{Kader 1}
+  Kader tekst
+\end{block}
+
+Tekst tussen kaders
+
+\begin{block}{Kader 2}
+  Kader tekst
+\end{block}
 
 
+## Kaders met andere achtergrond
 
+```
+\begin{exampleblock}{Voorbeeld titel}
+  Voorbeeld tekst
+\end{exampleblock}
+```
 
+\begin{exampleblock}{Voorbeeld titel}
+  Voorbeeld tekst
+\end{exampleblock}
 
+```
+\begin{alertblock}{Waarschuwing titel}
+  Waarschuwing tekst
+\end{alertblock}
+```
+
+\begin{alertblock}{Waarschuwing titel}
+  Waarschuwing tekst
+\end{alertblock}
 
 
 
@@ -482,29 +608,44 @@ Het logo van <A HREF = "#fig:Mendeley">Mendeley</A>\autorefp{fig:Mendeley}.
 
 ## belangrijkste chunk options
 
-- `eval` TRUE of FALSE: moet de code uitgevoerd worden
-- `echo` TRUE of FALSE: moet de code getoond worden
-- `results`: type output
+eval
+  ~ TRUE of FALSE: moet de code uitgevoerd worden
+echo
+  ~ TRUE of FALSE: moet de code getoond worden
+results
+  ~ type output
     - "markup" zet de output om naar Markdown (.Rmd) of latex (.Rmw)
     - "asis" neem de output letterlijk over. R output is al in de gewenste syntax.
     - "hide" verberg alle output
-- `message` TRUE of FALSE: toon messages
-- `warning` TRUE of FALSE: toon warnings
-- `error` 
-    - TRUE: toon errors maar voer de rest van de code uit
-    - FALSE: stop compilatie bij een error
-- `cache`: moeten de resultaten van de chunk worden bewaard?
-    - chunk wordt enkel opnieuw uitgevoerd indien de **code** wijzigt
-- `purl` TRUE of FALSE. Moet de code van deze chunk naar een R script geëxtraheerd worden.
-- `tidy` TRUE of FALSE. Moet de R code opgekuist worden?
+message
+  ~ TRUE of FALSE: toon messages
+warning
+  ~ TRUE of FALSE: toon warnings
+error
+  ~ TRUE: toon errors maar voer de rest van de code uit
+  ~ FALSE: stop compilatie bij een error
+cache
+  ~ moeten de resultaten van de chunk worden bewaard?
+  ~ chunk wordt enkel opnieuw uitgevoerd indien de **code** wijzigt
+purl
+  ~ TRUE of FALSE. Moet de code van deze chunk naar een R script geëxtraheerd worden.
+tidy
+  ~ TRUE of FALSE. Moet de R code opgekuist worden?
 
 ## belangrijkste chunk options voor figuren
 
-- `dev`: device. 'png' is ideaal omdat het zowel in latex, HTML en Word werkt en betere kwaliteit dan 'jpg'.
-- `dev.args`: argumenten voor de device
-- `fig.width` en `fig.height`: afmetingen in inch
-- `dpi`: resolutie: minstens 300 dpi voor drukwerk, 72 dpi voor websites
-- `fig.cap`: het bijschrift
+dev
+  ~ device. 'png' is ideaal omdat het zowel in latex, HTML en Word werkt en betere kwaliteit dan 'jpg'.
+dev.args
+  ~ argumenten voor de device
+fig.width
+  ~ breedte in inch
+fig.height
+  ~ hoogte in inch
+dpi
+  ~ resolutie: minstens 300 dpi voor drukwerk, 72 dpi voor websites
+fig.cap
+  ~ het bijschrift
 
 ## algemene tips
 
@@ -541,11 +682,16 @@ options(width = 80, digits = 5)
 - `pander` package heeft handige functies om R output naar Markdown syntax om te zetten
 - `pandoc.table` zet data.frame, matrix of table om naar Markdown
 - handige argumenten voor lay-out:
-    - `caption`: bijschrift
-    - `digits`, `round`: afronden
-    - `justify`: uitlijning
-    - `split.tables`, `split.cells`: lengte van celinhoud en rijen
-    - `emphasize.rows`, `emphasize.cols`: nadruk op rijen, kolommen of cellen (italics of vet)
+    caption
+      ~ bijschrift
+    digits en round
+      ~ afronden
+    justify
+      ~ uitlijning
+    split.tables en split.cells
+      ~ lengte van celinhoud en rijen
+    emphasize.rows en emphasize.cols
+      ~ nadruk op rijen, kolommen of cellen (italics of vet)
 - veel instellingen globaal in te stellen via functie `panderOptions`
 
 ## inline R code
