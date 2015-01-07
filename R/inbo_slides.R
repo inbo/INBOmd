@@ -13,9 +13,11 @@
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
+#' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
-inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE){
+inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, ...){
+  extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
   template <- system.file("pandoc/inbo_beamer2015.tex", package = "INBOmd")
@@ -26,6 +28,14 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
     pandoc_variable_arg("lang", lang),
     pandoc_variable_arg("codesize", codesize)
   )
+  if("usepackage" %in%names(extra)){
+    tmp <- sapply(
+      extra$usepackage,
+      pandoc_variable_arg,
+      name = "usepackage"
+    )
+    args <- c(args, tmp)
+  }
   if(!missing(toc_name)){
     args <- c(args, pandoc_variable_arg("tocname", toc_name))
   }
@@ -59,7 +69,12 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
     args <- c(args, pandoc_variable_arg("coveroffset", cover_offset))
   }
   output_format(
-    knitr = knitr_options(opts_chunk = list(dev = 'pdf', concordance = TRUE)),
+    knitr = knitr_options(
+      opts_knit = list(width = 60, concordance = TRUE),
+      opts_chunk = list(
+        dev = 'pdf', dev.args = list(bg = 'transparent'), dpi = 300, fig.width = 4.5, fig.height = 2.9
+      )
+    ),
     pandoc = pandoc_options(
       to = "beamer",
       args = args,

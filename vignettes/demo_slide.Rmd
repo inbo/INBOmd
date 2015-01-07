@@ -1,0 +1,189 @@
+---
+title: "Demonstratie van layout"
+author: "De auteur"
+
+output: 
+  INBOmd::inbo_slides:
+    subtitle: "De optionele ondertitel"
+    location: "Plaats en datum"
+    institute: "Affiliatie van de auteur(s)"
+    keep_tex: true
+    usepackage: "lipsum"
+    slide_level: 3
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Demonstratie INBO huisstijl presentatie}
+  %\VignetteDepens{pander}
+  %\SweaveUTF8
+---
+# Teksten a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u
+
+## Lettertypes
+
+### Gewone tekst
+
+\lipsum[1] 
+
+```{r instellingen, echo=FALSE, results='hide'}
+library(pander)
+```
+
+### Monospace tekst
+  
+\texttt{\lipsum[2-3]}
+
+### Vette tekst
+  
+**\lipsum[4-6]**
+
+### Italics tekst
+
+_\lipsum[7-9]}_
+
+### Accenten en co
+  
+äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ 
+  
+ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Opsommingen a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9
+
+### Itemize met 3 niveaus met extra nonsens in een extra lange titel zodat de titel meer dan één lijn beslaat. Een lange titel resulteert in minder plaats op de rest van de slide.
+
+- eerste punt
+- tweede punt
+    - eerste punt
+        - eerste punt
+        - tweede punt
+        - derde punt
+        - vierde punt
+    - tweede punt
+    - derde punt
+    - vierde punt
+- derde punt
+- vierde punt
+
+### Genummerd en omschrijvingen
+
+1. eerste punt
+1. tweede punt
+    9. eerste punt
+    1. tweede punt
+    1. derde punt
+        1. eerste punt
+        1. tweede punt
+        1. derde punt
+        1. vierde punt
+    1. vierde punt
+1. derde punt
+1. vierde punt
+
+### Description
+
+Eerste
+  ~ Omschrijving van het eerste item
+  
+    Versie A
+      ~ Details van A
+    Versie B
+      ~ Details van B
+Tweede
+  ~ Omschrijving van het tweede item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Kaders
+
+### Block
+
+#### De titel van het blok
+
+\lipsum[10-12]
+
+### Exampleblock
+  
+\begin{exampleblock}{De titel van het voorbeeldblok}
+  \lipsum[13-14]
+\end{exampleblock}
+
+### Alertblock
+
+\begin{alertblock}{De titel van het waarschuwingsblok}
+\lipsum[15-16]
+\end{alertblock}
+
+# R Code
+
+## Voorbeeld data
+
+### Datasets
+
+```{r datasets}
+voorbeeld <- data.frame(
+  Day = c("Monday", "Tuesday", "Wednesday"),
+  'Min Temp' = c("11C", "9C", "10C"),
+  'Max Temp' = c("22C", "19C", "21C"),
+  Summary = c(
+    "A clear day with lots of sunshine. However, the strong breeze will bring down the temperatures.", 
+    "Cloudy with rain, across many northern regions. Clear spells across most of Scotland and Northern Ireland, but rain reaching the far northwest.", 
+    "Rain will still linger for the morning. Conditions will improve by early afternoon and continue throughout the evening.")
+)
+```
+
+# Tabellen en figuren
+
+## Tabellen
+
+### Multiline tabel
+
+```{r multiline_table, results='asis'}
+pandoc.table(voorbeeld)
+```
+
+### Grid tabel
+
+```{r grid_table, results='asis'}
+pandoc.table(voorbeeld, style = "grid")
+```

@@ -15,6 +15,7 @@
 #' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
+#' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
 inbo_rapport <- function(
@@ -24,14 +25,14 @@ inbo_rapport <- function(
   cover, cover_offset, cover_text, 
   natbib, 
   floatbarrier = c(NA, "section", "subsection", "subsubsection"), 
-  lang = "dutch", keep_tex = FALSE
+  lang = "dutch", keep_tex = FALSE, ...
 ){
   floatbarrier <- match.arg(floatbarrier)
   office <- match.arg(office)
+  extra <- list(...)
   
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
-  #csl <- system.file("inbo.csl", package = "INBOmd")
-  csl <- "~/../owncloud/documents/INBOmd/inst/inbo.csl"
+  csl <- system.file("inbo.csl", package = "INBOmd")
   args <- c(
     "--template", template,
     "--latex-engine", "pdflatex",
@@ -42,6 +43,14 @@ inbo_rapport <- function(
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
   } else {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  }
+  if("usepackage" %in%names(extra)){
+    tmp <- sapply(
+      extra$usepackage,
+      pandoc_variable_arg,
+      name = "usepackage"
+    )
+    args <- c(args, tmp)
   }
   if(!missing(shortauthor)){
     args <- c(args, pandoc_variable_arg("auteurkort", shortauthor))

@@ -10,6 +10,9 @@ $endif$
 \usepackage{inborapport_druk}
 \usepackage{upquote}
 \usepackage{booktabs}
+$if(usepackage)$
+\usepackage{$usepackage$}
+$endif$
 
 $if(floatbarriersection)$
 \makeatletter
