@@ -422,6 +422,8 @@ render(
 
 
 # hand-outs op basis van het rapport sjabloon
+# werkt echter niet omdat de slides beamer specifieke code bevat
+# meer bepaald \begin{block}, \begin{exampleblock} en \begin{alertblock}
 render(
   "markdown_intro.Rmd", 
   output_format = "INBOmd::inbo_rapport", 
