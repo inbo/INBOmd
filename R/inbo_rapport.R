@@ -25,7 +25,8 @@ inbo_rapport <- function(
   cover, cover_offset, cover_text, 
   natbib, 
   floatbarrier = c(NA, "section", "subsection", "subsubsection"), 
-  lang = "dutch", keep_tex = FALSE, ...
+  lang = "dutch", keep_tex = FALSE, 
+  ...
 ){
   floatbarrier <- match.arg(floatbarrier)
   office <- match.arg(office)
@@ -103,7 +104,18 @@ inbo_rapport <- function(
     args <- c(args, unlist(floating))
   }
   output_format(
-    knitr = knitr_options(opts_chunk = list(dev = 'pdf')),
+    knitr = knitr_options(
+      opts_knit = list(
+        width = 60, 
+        concordance = TRUE
+      ),
+      opts_chunk = list(
+        dev = 'pdf', 
+        dpi = 300, 
+        fig.width = 4.5, 
+        fig.height = 2.9
+      )
+    ),
     pandoc = pandoc_options(
       to = "latex",
       args = args,

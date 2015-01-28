@@ -70,9 +70,16 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
   }
   output_format(
     knitr = knitr_options(
-      opts_knit = list(width = 60, concordance = TRUE),
+      opts_knit = list(
+        width = 60, 
+        concordance = TRUE
+      ),
       opts_chunk = list(
-        dev = 'pdf', dev.args = list(bg = 'transparent'), dpi = 300, fig.width = 4.5, fig.height = 2.9
+        dev = 'pdf', 
+        dev.args = list(bg = 'transparent'), 
+        dpi = 300, 
+        fig.width = 4.5, 
+        fig.height = 2.9
       )
     ),
     pandoc = pandoc_options(
