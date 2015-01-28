@@ -10,6 +10,8 @@ License: CC0
 VignetteBuilder: knitr
 Suggests:
     knitr,
-    pander
+    pander,
+    ggplot2,
+    INBOtheme
 Imports:
     rmarkdown
