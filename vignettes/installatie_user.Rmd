@@ -160,7 +160,7 @@ Bij de geavanceerde configuratie moet je eerst alle instellingen van de basiscon
 1. Klik op _install_.
 1. Selecteer bij _Install from_ `Package archive file`
 1. Er opent nu een file browser. Ga naar `P:/Algemeen/Algemene info/BMK/R` en selecteer `INBOmd_x.y.tar.gz`
-1. Klik op _Install_ en waacht tot het package geïnstalleerd is.
+1. Klik op _Install_ en wacht tot het package geïnstalleerd is.
 1. Ga in het _Start_ menu naar _Alle programmas_ --> _MikTex 2.9_ --> _Maintenance_ --> _Settings_
 1. Ga naar het tabblad _Roots_. Ga na of `C:\R\library\INBOmd\local_tex` in de lijst voorkomt. Zo niet, klik je op de knop _Add_, selecteer je `C:\R\library\INBOmd\local_tex` en klik je op _OK_ en vervolgens op _Toepassen_.
 1. Indien  `C:\R\library\INBOmd\local_tex` niet bovenaan de lijst van _Roots_ staat, selecteer je `C:\R\library\INBOmd\local_tex` en klik op _Up_ tot dat het bovenaan de lijst staat.
