@@ -80,7 +80,7 @@ inbo_rapport <- function(
   if(!missing(reportnr)){
     args <- c(args, pandoc_variable_arg("rapportnummer", reportnr))
   }
-  if(!missing(reportnr)){
+  if(!missing(year)){
     args <- c(args, pandoc_variable_arg("jaar", year))
   }
   if(!missing(ordernr)){
