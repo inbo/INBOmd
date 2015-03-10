@@ -153,11 +153,17 @@ Bij de geavanceerde configuratie moet je eerst alle instellingen van de basiscon
 1. Klik op _Volgende_.
 1. Klik op _Volgende_.
 
+## Installatie en update van INBOtheme
+
+1. Start RStudio
+1. Voer volgend R commando uit:  
+`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbotheme.git", build_vignettes = TRUE)`
+
 ## Installatie en update van INBOmd
 
 1. Start RStudio
 1. Voer volgend R commando uit:  
-`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbomd.git")`
+`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbomd.git", build_vignettes = TRUE)`
 1. Ga in het _Start_ menu naar _Alle programmas_ --> _MikTex 2.9_ --> _Maintenance_ --> _Settings_
 1. Ga naar het tabblad _Roots_. Ga na of `C:\R\library\INBOmd\local_tex` in de lijst voorkomt. Zo niet, klik je op de knop _Add_, selecteer je `C:\R\library\INBOmd\local_tex` en klik je op _OK_ en vervolgens op _Toepassen_.
 1. Indien  `C:\R\library\INBOmd\local_tex` niet bovenaan de lijst van _Roots_ staat, selecteer je  
@@ -166,7 +172,6 @@ Bij de geavanceerde configuratie moet je eerst alle instellingen van de basiscon
 1. Klik op _Refresh FNDB_.
 1. Klik op _Update formats_.
 1. Klik op _OK_
-
 
 
 
