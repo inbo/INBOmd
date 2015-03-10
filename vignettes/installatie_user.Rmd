@@ -5,10 +5,10 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor eindgebruikers"
     cover: "useR-large.png"
-    reportnr: "5 december 2014"
-    year: 2014
+    reportnr: "10 maart 2015"
+    year: 2015
     email: thierry.onkelinx@inbo.be
-    cover_offset: 50mm
+    cover_offset: 150mm
     cover_text: "Het R logo"
     keep_tex: false
 vignette: >
@@ -29,7 +29,7 @@ De basisconfiguratie omvat `R` en `RStudio`. Deze configuratie wordt bij alle R 
 
 ## Geavanceerde configuratie
 
-De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTex, SlikSVN, Pandoc en Mendeley.
+De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTex en Mendeley.
 
 
 
@@ -156,14 +156,12 @@ Bij de geavanceerde configuratie moet je eerst alle instellingen van de basiscon
 ## Installatie en update van INBOmd
 
 1. Start RStudio
-1. Ga naar het tabblad _Packages_.
-1. Klik op _install_.
-1. Selecteer bij _Install from_ `Package archive file`
-1. Er opent nu een file browser. Ga naar `P:/Algemeen/Algemene info/BMK/R` en selecteer `INBOmd_x.y.tar.gz`
-1. Klik op _Install_ en wacht tot het package geïnstalleerd is.
+1. Voer volgend R commando uit:  
+`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbomd.git")`
 1. Ga in het _Start_ menu naar _Alle programmas_ --> _MikTex 2.9_ --> _Maintenance_ --> _Settings_
 1. Ga naar het tabblad _Roots_. Ga na of `C:\R\library\INBOmd\local_tex` in de lijst voorkomt. Zo niet, klik je op de knop _Add_, selecteer je `C:\R\library\INBOmd\local_tex` en klik je op _OK_ en vervolgens op _Toepassen_.
-1. Indien  `C:\R\library\INBOmd\local_tex` niet bovenaan de lijst van _Roots_ staat, selecteer je `C:\R\library\INBOmd\local_tex` en klik op _Up_ tot dat het bovenaan de lijst staat.
+1. Indien  `C:\R\library\INBOmd\local_tex` niet bovenaan de lijst van _Roots_ staat, selecteer je  
+`C:\R\library\INBOmd\local_tex` en klik op _Up_ tot dat het bovenaan de lijst staat.
 1. Ga naar het tabblad _General_. 
 1. Klik op _Refresh FNDB_.
 1. Klik op _Update formats_.
