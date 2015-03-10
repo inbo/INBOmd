@@ -1,9 +1,5 @@
 % de presentatie
-$if(fontsize)$
-\documentclass[$fontsize$, xetex]{beamer}
-$else$
-\documentclass[10pt, xetex]{beamer}
-$endif$
+\documentclass[$if(fontsize)$$fontsize$$else$10pt$endif$, $if(handout)$handout,$endif$ xetex]{beamer}
 
 \usepackage{upquote}
 

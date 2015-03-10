@@ -7,6 +7,10 @@ output:
     location: "Anderlecht, 4 december 2014"
     institute: "Biometrie \\& Kwaliteitszorg"
     keep_tex: true
+  INBOmd::inbo_handouts:
+    location: "Anderlecht, 4 december 2014"
+    institute: "Biometrie \\& Kwaliteitszorg"
+    keep_tex: true
   INBOmd::inbo_rapport:
     cover: "useR-large.png"
     subtitle: "Een introductie"
