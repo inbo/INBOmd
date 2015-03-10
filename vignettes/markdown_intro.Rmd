@@ -17,7 +17,7 @@ output:
     reportnr: "4 december 2014"
     year: 2014
     email: thierry.onkelinx@inbo.be
-    cover_offset: 50mm
+    cover_offset: 150mm
     cover_text: "Het R logo"
     keep_tex: true
 vignette: >
@@ -449,15 +449,19 @@ render(
   encoding = "UTF-8"
 )
 
+# handouts van slides met aangepaste naa
+render(
+  "markdown_intro.Rmd", 
+  output_format = "INBOmd::inbohandouts", 
+  output_file = "handouts.pdf",
+  encoding = "UTF-8"
+)
 
 # hand-outs op basis van het rapport sjabloon
-# werkt echter niet omdat de slides beamer specifieke code bevat
-# meer bepaald \begin{block}, \begin{exampleblock} en 
-# \begin{alertblock}
 render(
   "markdown_intro.Rmd", 
   output_format = "INBOmd::inbo_rapport", 
-  output_file = "handouts.pdf",
+  output_file = "rapport.pdf",
   encoding = "UTF-8"
 )
 
