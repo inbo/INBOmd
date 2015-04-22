@@ -5,7 +5,7 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor eindgebruikers"
     cover: "useR-large.png"
-    reportnr: "10 maart 2015"
+    reportnr: "22 april 2015"
     year: 2015
     email: thierry.onkelinx@inbo.be
     cover_offset: 150mm
@@ -84,6 +84,8 @@ Je kan dit later herhalen als de deee geïnstalleerde packages wenst te upgraden
 1. _Save workspace to.RData on exit:_ `Never`
 1. _Default text encoding:_ klik op _Change_, kies `UTF-8` en klik _OK_.
 1. Ga naar het tabblad _Packages_. _CRAN mirror:_ wijzigen naar `Global (CDN) - RStudio`
+1. Ga naar het tabblad _Code editing_ en vink `Soft-wrap R source files` aan
+1. Ga naar het tabblad _Appearance_ en stel in naar eigen smaak
 1. Klik op _OK_ en herstart `RStudio`
 
 

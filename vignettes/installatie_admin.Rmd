@@ -5,7 +5,7 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor personen met adminrechten"
     cover: "useR-large.png"
-    reportnr: "10 maart 2015"
+    reportnr: "22 april 2015"
     year: 2015
     email: thierry.onkelinx@inbo.be
     cover_offset: 150mm
@@ -81,6 +81,7 @@ Installatiebestand beschikbaar via http://cran.r-project.org/bin/windows/base/
 1. Aanvaard de licentievoorwaarden door op _Volgende_ te klikken.
 1. Kies als doelmap `C:\R\R-3.x.y` en klik op _Volgende_. Je **MOET** de standaardwaarde dus aanpassen!
 1. Selecteer de gewenste componenten en klik op _Volgende_. Je **MOET** deze standaardwaarden laten staan.
+1. Opstartinstelling aanpassen: Kies `Nee` en klik op _Volgende_.
 1. Geef de map voor het start menu en klik op _Volgende_. Je mag de standaardwaarde gebruiken.
 1. Vink alle extra snelkoppelingen _uit_, alle register entries _aan_ en klik op _Volgende_.
 1. R wordt nu geïnstalleerd. Klik op _Voltooien_ als de installatie afgelopen is.
@@ -89,7 +90,8 @@ Installatiebestand beschikbaar via http://cran.r-project.org/bin/windows/base/
 1. Wijzig _Beginnen in_ naar `C:\R\R-3.x.y`
 1. Voeg achteraan het veld _Doel_ de volgende tekst toe: `--no-save --no-restore`
 1. Herhaal de laatste drie stappen voor de snelkoppeling naar `R i386 3.x.y`
-1. Kopieer het bestand `Rprofile.site` van de P-schijf naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Kopieer het bestand `Rprofile.site` naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Zorg dat de gebruiker schrijfrechten heeft voor `C:\R\R-3.x.y\library`
 
 **R mag niet met admininstratorrechten gestart worden.** Anders worden een aantal packages met administrator rechten geïnstalleerd waardoor de gebruiker ze niet meer kan updaten.
 
@@ -113,7 +115,8 @@ Start `R` als een gewone gebruiker om de configuratie te testen.
 1. Wijzig _Beginnen in_ naar `C:\R\R-3.x.y`
 1. Voeg achteraan het veld _Doel_ de volgende tekst toe: `--no-save --no-restore`
 1. Herhaal de laatste drie stappen voor de snelkoppeling naar `R i386 3.x.y`
-1. Kopieer het bestand `Rprofile.site` van de P-schijf naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Kopieer het bestand `Rprofile.site` naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Zorg dat de gebruiker schrijfrechten heeft voor `C:\R\R-3.x.y\library`
 1. De nieuwe R versie is klaar voor gebruik. De gebruiker moet `RStudio` bijwerken.
 
 **R mag niet met admininstratorrechten gestart worden.** Anders worden een aantal packages met administrator rechten geïnstalleerd waardoor de gebruiker ze niet meer kan updaten.
@@ -214,7 +217,7 @@ Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 
 # Rtools
 
-## Nieuwe installatie van Rtools
+## Installatie en upgrade
 
 1. Kies `Nederlands` als taal voor de installatie en klik _volgende_.
 1. Klik _volgende_.
@@ -226,9 +229,6 @@ Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 1. Klik _installeren_.
 1. Klik _Voltooien_.
 
-## Upgrade
-
-Nog te schrijven
 
 
 
