@@ -1,4 +1,4 @@
-#' Use slides with the INBO theme
+#' Use the handout version of slides with the INBO theme
 #' @param subtitle The date and place of the event
 #' @param location The date and place of the event
 #' @param institute The aviliation of the authors
@@ -16,7 +16,7 @@
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
-inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, ...){
+inbo_handouts <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, ...){
   extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
@@ -26,7 +26,8 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
     "--template", template,
     "--latex-engine", "xelatex",
     pandoc_variable_arg("lang", lang),
-    pandoc_variable_arg("codesize", codesize)
+    pandoc_variable_arg("codesize", codesize),
+    pandoc_variable_arg("handout", 1)
   )
   if("usepackage" %in%names(extra)){
     tmp <- sapply(

@@ -2,8 +2,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{inborapport_druk}
 
-\pdfpageattr {/Group << /S /Transparency /I true /CS /DeviceRGB>>}
-
 \RequirePackage[english, french, dutch]{babel}
 \RequirePackage[a4paper, top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5 cm]{geometry}
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
@@ -15,10 +13,10 @@
 \RequirePackage[all]{hypcap}
 \RequirePackage[absolute, overlay]{textpos}
 \RequirePackage{pgf}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[nofligs]{verdana}
+\RequirePackage{fontspec}
+\defaultfontfeatures{Mapping=text-text}
+\setmainfont{Verdana}
+
 \RequirePackage{longtable}
 %\RequirePackage{parskip}
 \RequirePackage{pdflscape}
@@ -134,6 +132,7 @@
 \definecolor{INBOreddishbrown}{RGB}{182, 101, 70}
 \definecolor{INBOblue}{RGB}{86, 152, 200}
 \definecolor{INBOgreen}{RGB}{202, 204, 65}
+\definecolor{INBOred}{RGB}{204, 61, 61}
 
 \makeatletter
 \AtBeginDocument{
@@ -142,6 +141,38 @@
     pdfauthor = {\@author}
   }
 }
+
+\RequirePackage{mdframed}
+\newenvironment{alertblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=INBOred!50]
+  \textbf{#2}% 
+  
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
+\newenvironment{exampleblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=INBOgreen!50]
+  \textbf{#2}% 
+  
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
+\newenvironment{block}[2][]{%
+  \begin{mdframed}[backgroundcolor=INBOblue!50]
+  \textbf{#2}% 
+  
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
 
 
 \addtocounter{page}{-1}

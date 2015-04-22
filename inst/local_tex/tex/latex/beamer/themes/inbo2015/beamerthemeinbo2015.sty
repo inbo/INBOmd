@@ -70,7 +70,7 @@
 
 \ifxetex
   \RequirePackage[no-math]{fontspec}
-  \setmainfont{Calibri}
+  \setmainfont[Ligatures=TeX]{Calibri}
   \setmonofont{Courier New}
 \else
   \RequirePackage[T1]{fontenc}
@@ -82,11 +82,13 @@
 \frenchspacing
 
 
-%\definecolor{inbo.hoofd}{RGB}{192, 67, 132}
-\definecolor{inbo.hoofd}{RGB}{191, 43, 134}
+\definecolor{inbo.hoofd}{RGB}{192, 67, 132}
+%\definecolor{inbo.hoofd}{RGB}{191, 43, 134}
 \definecolor{inbo.steun.blauw}{RGB}{53, 97, 150}
 \definecolor{inbo.rood}{RGB}{190, 50, 84}
 \definecolor{inbo.steun.geelgroen}{RGB}{194, 196, 68}
+\definecolor{inbo.groen}{RGB}{149, 155, 56}
+\definecolor{inbo.oranje}{RGB}{232, 120, 55}
 
 \mode<presentation>
 
@@ -258,8 +260,8 @@
 
 
 \setbeamertemplate{sidebar left}{
-  \vspace{81.75mm}
-  \hspace{100mm}
+  \vspace{87mm}
+  \hspace{104mm}
   \vlaanderenlogo{\@lang}{halfvol}{9.9mm}{23.05mm}
 
   \begin{textblock}{3.5}(0, 0)
@@ -334,7 +336,6 @@
   \begin{textblock}{29.2}(96.5, 4.4)
     \begin{center}
       \vlaanderenlogo{\@lang}{vol}{11.3mm}{29.1mm}
-      %\includegraphics[height = 11.3mm, width = 29.1mm, keepaspectratio]{vlaanderen_nl_vol}
     \end{center}
   \end{textblock}
 
@@ -383,7 +384,7 @@
 
   \begin{textblock}{29.2}(7.5, 8.45)
     \textblockcolour{inbo.hoofd}
-    \vlaanderenlogo{\@lang}{vol}{11.3mm}{29.1mm}
+    \vlaanderenlogo{\@lang}{wit}{11.3mm}{29.1mm}
   \end{textblock}
 
   \begin{textblock}{29.2}(7.5, 22.3)
@@ -435,7 +436,7 @@
 
   \begin{textblock}{29.2}(7.5, 8.45)
     \textblockcolour{inbo.hoofd}
-    \vlaanderenlogo{\@lang}{vol}{11.3mm}{29.1mm}
+    \vlaanderenlogo{\@lang}{wit}{11.3mm}{29.1mm}
   \end{textblock}
 
   \begin{textblock}{29.2}(7.5, 22.3)

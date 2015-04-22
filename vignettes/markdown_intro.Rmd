@@ -7,13 +7,17 @@ output:
     location: "Anderlecht, 4 december 2014"
     institute: "Biometrie \\& Kwaliteitszorg"
     keep_tex: true
+  INBOmd::inbo_handouts:
+    location: "Anderlecht, 4 december 2014"
+    institute: "Biometrie \\& Kwaliteitszorg"
+    keep_tex: true
   INBOmd::inbo_rapport:
     cover: "useR-large.png"
     subtitle: "Een introductie"
     reportnr: "4 december 2014"
     year: 2014
     email: thierry.onkelinx@inbo.be
-    cover_offset: 50mm
+    cover_offset: 150mm
     cover_text: "Het R logo"
     keep_tex: true
 vignette: >
@@ -303,41 +307,54 @@ output:
 
     year 
       ~ jaartal
+      
     email
       ~ email van de hoofdauteur
+      
     shortauthor
       ~ afgekorte lijst auteurs
+      
     office
       ~ `Anderlecht` of `Geraardsbergen`. Zet het juiste adres op de cover
 - optioneel voor cover
 
     cover
       ~ een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = geen cover
+      
     cover_offset
-      ~ schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar benenden schuiven. Default = 0mm
+      ~ schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar beneden schuiven. Default = 0mm
+      
     cover_text
       ~ beschrijving van de coverfoto
+      
     subtitle
       ~ een optionele ondertitel
+      
     reportnr
       ~ rapportnummer. Default = datum van compilatie
+      
     ordernr
       ~ opdrachtnummer
+      
     client
       ~ opdrachtgever
+      
     storagenr
       ~ nummer van het wettelijk depot
+      
   - optioneel voor lay-out
   
     floatbarrier
       ~ floatbarrier voor elke nieuwe "section", "subsection" of "subsubsection". Weglaten is geen standaard floatbarriers.
+      
     lang
       ~ taal voor het babel package. Default = "dutch"
+      
     keep_tex
       ~ maak ook een tex bestand. Default = FALSE
+      
     natbib
       ~ Naam van bibtex file voor het aanmaken van referentie via natbib. Manuele compilatie van het TeX bestand is vereist.
-
 
 ## Output formaat: INBO slides
 
@@ -355,30 +372,42 @@ output:
 
     fontsize
       ~ gewenste fontsize. Ga niet kleiner dan 8pt. Default = 10pt.
+      
     codesize
       ~ gewenste fontsize voor R code. Relatief t.o.v. van fontsize. Default = "footnotesize".
+      
     location
       ~ plaats en datum van de presentatie
+      
     institute
       ~ affiliatie van de spreker(s)
+      
     cover
       ~ een foto voor de kaft. Wordt automatisch geschaald naar de volledige breedte. Default = labofoto
+      
     cover_offset
       ~ schuift de coverfoto naar boven. Zowel afstand als eenheid opgeven. Negatieve waarde (-10mm) = naar beneden schuiven. Default = 0mm
+      
 - optioneel voor lay-out
     
     slide_level
       ~ welk niveau kop wordt de slide titels. Default = 2
+      
     lang
       ~ taal voor het babel package. Default = "dutch"
+      
     keep_tex
       ~ maak ook een tex bestand. Default = FALSE
+      
     toc_name
       ~ titel van het inhoudstafel. Default = "Overzicht"
+      
     natbib
       ~ Naam van bibtex file voor het aanmaken van referentie via natbib
+      
     natbib_style
       ~ Gewenste stijl voor natbib referenties
+      
     natbib_title
       ~ Titel van de referentielijst via natbib
 
@@ -420,12 +449,19 @@ render(
   encoding = "UTF-8"
 )
 
+# handouts van slides met aangepaste naa
+render(
+  "markdown_intro.Rmd", 
+  output_format = "INBOmd::inbohandouts", 
+  output_file = "handouts.pdf",
+  encoding = "UTF-8"
+)
 
 # hand-outs op basis van het rapport sjabloon
 render(
   "markdown_intro.Rmd", 
   output_format = "INBOmd::inbo_rapport", 
-  output_file = "handouts.pdf",
+  output_file = "rapport.pdf",
   encoding = "UTF-8"
 )
 
@@ -610,25 +646,33 @@ Tekst tussen kaders
 
 eval
   ~ TRUE of FALSE: moet de code uitgevoerd worden
+  
 echo
   ~ TRUE of FALSE: moet de code getoond worden
+  
 results
   ~ type output
-    - "markup" zet de output om naar Markdown (.Rmd) of latex (.Rmw)
-    - "asis" neem de output letterlijk over. R output is al in de gewenste syntax.
-    - "hide" verberg alle output
+      - "markup" zet de output om naar Markdown (.Rmd) of latex (.Rmw)
+      - "asis" neem de output letterlijk over. R output is al in de gewenste syntax.
+      - "hide" verberg alle output
+      
 message
   ~ TRUE of FALSE: toon messages
+  
 warning
   ~ TRUE of FALSE: toon warnings
+  
 error
   ~ TRUE: toon errors maar voer de rest van de code uit
   ~ FALSE: stop compilatie bij een error
+  
 cache
   ~ moeten de resultaten van de chunk worden bewaard?
   ~ chunk wordt enkel opnieuw uitgevoerd indien de **code** wijzigt
+  
 purl
   ~ TRUE of FALSE. Moet de code van deze chunk naar een R script geëxtraheerd worden.
+  
 tidy
   ~ TRUE of FALSE. Moet de R code opgekuist worden?
 
@@ -636,14 +680,19 @@ tidy
 
 dev
   ~ device. 'png' is ideaal omdat het zowel in latex, HTML en Word werkt en betere kwaliteit dan 'jpg'.
+  
 dev.args
   ~ argumenten voor de device
+  
 fig.width
   ~ breedte in inch
+  
 fig.height
   ~ hoogte in inch
+  
 dpi
   ~ resolutie: minstens 300 dpi voor drukwerk, 72 dpi voor websites
+  
 fig.cap
   ~ het bijschrift
 
@@ -684,14 +733,19 @@ options(width = 80, digits = 5)
 - handige argumenten voor lay-out:
     caption
       ~ bijschrift
+      
     digits en round
       ~ afronden
+      
     justify
       ~ uitlijning
+      
     split.tables en split.cells
       ~ lengte van celinhoud en rijen
+      
     emphasize.rows en emphasize.cols
       ~ nadruk op rijen, kolommen of cellen (italics of vet)
+      
 - veel instellingen globaal in te stellen via functie `panderOptions`
 
 ## inline R code

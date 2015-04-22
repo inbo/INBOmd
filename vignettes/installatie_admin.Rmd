@@ -5,10 +5,10 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor personen met adminrechten"
     cover: "useR-large.png"
-    reportnr: "5 december 2014"
-    year: 2014
+    reportnr: "22 april 2015"
+    year: 2015
     email: thierry.onkelinx@inbo.be
-    cover_offset: 50mm
+    cover_offset: 150mm
     cover_text: "Het R logo"
     keep_tex: false
 vignette: >
@@ -21,7 +21,7 @@ vignette: >
 
 In deze handleiding vind je de nodige instructies om een aantal statistische tools te installeren. De installatie dient te gebeuren met (local) admin-rechten. De handleiding veronderstelt dat je als (local) admin ingelogd bent. Om de installatie volledig af te ronden moet de gebruiker een aantal stappen uitvoeren. Deze vind je in een ander document.
 
-Alle installatiebestanden bevinden zich op `P:\Algemeen\Algemene info\BMK\R`
+Alle installatiebestanden bevinden zich op `P:\Algemeen\Algemene info\BMK\R`. Je kan ze ook downloaden van de websites. De links worden bij de instructies van elk package vermeld.
 
 In de onderstaande tekst moet je in `R-3.x.y` zowel `x` als `y` vervangen door een cijfer om zo het huidige versienummer te krijgen. Dus voor versie `R-3.0.0` is `x` = 0 en `y` = 0.
 
@@ -32,11 +32,12 @@ De basisconfiguratie omvat `R` en `RStudio`. Deze configuratie wordt bij alle R 
 Installatievolgorde:
 
 1. R
+1. Git
 1. RStudio
 
 ## Geavanceerde configuratie
 
-De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTex, SlikSVN, Pandoc en Mendeley.
+De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTeX en Mendeley.
 
 Installatievolgorde:
 
@@ -69,6 +70,8 @@ Installatievolgorde:
 
 # R
 
+Installatiebestand beschikbaar via http://cran.r-project.org/bin/windows/base/
+
 ## Nieuwe installatie van R
 
 1. Maak de map `C:\R\library` aan. Zorg dat alle gebruikers volledige toegangsrechten hebben.
@@ -78,6 +81,7 @@ Installatievolgorde:
 1. Aanvaard de licentievoorwaarden door op _Volgende_ te klikken.
 1. Kies als doelmap `C:\R\R-3.x.y` en klik op _Volgende_. Je **MOET** de standaardwaarde dus aanpassen!
 1. Selecteer de gewenste componenten en klik op _Volgende_. Je **MOET** deze standaardwaarden laten staan.
+1. Opstartinstelling aanpassen: Kies `Nee` en klik op _Volgende_.
 1. Geef de map voor het start menu en klik op _Volgende_. Je mag de standaardwaarde gebruiken.
 1. Vink alle extra snelkoppelingen _uit_, alle register entries _aan_ en klik op _Volgende_.
 1. R wordt nu geïnstalleerd. Klik op _Voltooien_ als de installatie afgelopen is.
@@ -86,7 +90,8 @@ Installatievolgorde:
 1. Wijzig _Beginnen in_ naar `C:\R\R-3.x.y`
 1. Voeg achteraan het veld _Doel_ de volgende tekst toe: `--no-save --no-restore`
 1. Herhaal de laatste drie stappen voor de snelkoppeling naar `R i386 3.x.y`
-1. Kopieer het bestand `Rprofile.site` van de P-schijf naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Kopieer het bestand `Rprofile.site` naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Zorg dat de gebruiker schrijfrechten heeft voor `C:\R\R-3.x.y\library`
 
 **R mag niet met admininstratorrechten gestart worden.** Anders worden een aantal packages met administrator rechten geïnstalleerd waardoor de gebruiker ze niet meer kan updaten.
 
@@ -110,7 +115,8 @@ Start `R` als een gewone gebruiker om de configuratie te testen.
 1. Wijzig _Beginnen in_ naar `C:\R\R-3.x.y`
 1. Voeg achteraan het veld _Doel_ de volgende tekst toe: `--no-save --no-restore`
 1. Herhaal de laatste drie stappen voor de snelkoppeling naar `R i386 3.x.y`
-1. Kopieer het bestand `Rprofile.site` van de P-schijf naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Kopieer het bestand `Rprofile.site` naar `C:\R\R-3.x.y\etc` Hierbij moet je het bestaande bestand overschrijven.
+1. Zorg dat de gebruiker schrijfrechten heeft voor `C:\R\R-3.x.y\library`
 1. De nieuwe R versie is klaar voor gebruik. De gebruiker moet `RStudio` bijwerken.
 
 **R mag niet met admininstratorrechten gestart worden.** Anders worden een aantal packages met administrator rechten geïnstalleerd waardoor de gebruiker ze niet meer kan updaten.
@@ -137,7 +143,42 @@ Start `R` als een gewone gebruiker om de configuratie te testen.
 
 
 
+
+
+
+
+# Git
+
+De installatiebestanden zijn beschikbaar via http://git-scm.com/downloads
+
+1. Voer het installatiebestand uit
+1. Welkom bij de installatie: klik op _Next_
+1. Aanvaard de licentievoorwaarden door _Next_ te klikken
+1. Gebruik de standaard componenten door _Next_ te klikken
+1. Kies `use Git from the Windows Command Prompt` en klik _Next_
+1. Kies `Checkout Windows-style, commit Unix-style line endingd` en klik _Next_
+1. Klik op _Finish_
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # RStudio
+
+De installatiebestanden zijn beschikbaar via http://www.rstudio.com/products/rstudio/download/
 
 ## Nieuwe installatie en upgrade van RStudio
 
@@ -153,7 +194,7 @@ RStudio upgraden doe je door de nieuwe versie te installeren over de oude.
 
 **RStudio mag niet met admininstratorrechten gestart worden.** Anders worden een aantal R packages met administrator rechten geïnstalleerd waardoor de gebruiker ze niet meer kan updaten.
 
-Test de configuratie door RStudio te starten als een gewone gebruiker.
+Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 
 
 
@@ -176,7 +217,7 @@ Test de configuratie door RStudio te starten als een gewone gebruiker.
 
 # Rtools
 
-## Nieuwe installatie van Rtools
+## Installatie en upgrade
 
 1. Kies `Nederlands` als taal voor de installatie en klik _volgende_.
 1. Klik _volgende_.
@@ -188,9 +229,6 @@ Test de configuratie door RStudio te starten als een gewone gebruiker.
 1. Klik _installeren_.
 1. Klik _Voltooien_.
 
-## Upgrade
-
-Nog te schrijven
 
 
 

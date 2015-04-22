@@ -7,13 +7,14 @@ output:
     subtitle: "De optionele ondertitel"
     location: "Plaats en datum"
     institute: "Affiliatie van de auteur(s)"
-    keep_tex: true
     usepackage: "lipsum"
     slide_level: 3
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Demonstratie INBO huisstijl presentatie}
-  %\VignetteDepens{pander}
+  %\VignetteDepends{pander}
+  %\VignetteDepends{ggplot2}
+  %\VignetteDepends{INBOtheme}
   %\SweaveUTF8
 ---
 # Teksten a b c d e f g h i j k l m n o p q r s t u v w x y z 0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u
@@ -46,10 +47,11 @@ _\lipsum[7-9]}_
   
 ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
   
+voor "dubbele aanhalingstekens" na
 
+voor 'enkele aanhalingstekens' na
 
-
-
+hoofdletter i versus kleine letter L Il
 
 
 
@@ -156,7 +158,22 @@ Tweede
 
 # R Code
 
-## Voorbeeld data
+## Voorbeelden
+
+### Code
+
+```{r grafieken_voorbereiden}
+library(knitr)
+opts_chunk$set(
+  inline = TRUE,
+  strip.white = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(6))
+```
 
 ### Datasets
 
@@ -166,10 +183,15 @@ voorbeeld <- data.frame(
   'Min Temp' = c("11C", "9C", "10C"),
   'Max Temp' = c("22C", "19C", "21C"),
   Summary = c(
-    "A clear day with lots of sunshine. However, the strong breeze will bring down the temperatures.", 
-    "Cloudy with rain, across many northern regions. Clear spells across most of Scotland and Northern Ireland, but rain reaching the far northwest.", 
-    "Rain will still linger for the morning. Conditions will improve by early afternoon and continue throughout the evening.")
+    "A clear day with lots of sunshine. However, the strong breeze 
+    will bring down the temperatures.", 
+    "Cloudy with rain, across many northern regions. Clear spells 
+    across most of Scotland and Northern Ireland, but rain reaching the far northwest.", 
+    "Rain will still linger for the morning. Conditions will improve 
+    by early afternoon and continue throughout the evening."
+  )
 )
+str(voorbeeld)
 ```
 
 # Tabellen en figuren
@@ -186,4 +208,36 @@ pandoc.table(voorbeeld)
 
 ```{r grid_table, results='asis'}
 pandoc.table(voorbeeld, style = "grid")
+```
+
+## Figuren
+
+### Figuur met aanduiding rand
+
+```{r figrand, echo = FALSE}
+ggplot(movies, aes(x = rating)) + geom_histogram() + 
+  facet_wrap(~mpaa, scales = "free") + theme(plot.background = element_rect(colour = "black"))
+```
+
+### Figuren met standaard achtergrond {.allowframebreaks}
+
+```{r figstandaard, echo = FALSE}
+ggplot(movies, aes(x = rating)) + geom_histogram() + 
+  facet_wrap(~mpaa, scales = "free")
+ggplot(diamonds, aes(x = price, fill = cut)) + geom_histogram()
+ggplot(mtcars, 
+       aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))) +
+  geom_point() + geom_smooth(method = "lm")
+```
+
+### Figuren met transparante achtergrond {.allowframebreaks}
+
+```{r figtransparant, echo = FALSE}
+theme_set(theme_inbo2015(6, transparent = TRUE))
+ggplot(movies, aes(x = rating)) + geom_histogram() + 
+  facet_wrap(~mpaa, scales = "free")
+ggplot(diamonds, aes(x = price, fill = cut)) + geom_histogram()
+ggplot(mtcars, 
+       aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))) +
+  geom_point() + geom_smooth(method = "lm")
 ```
