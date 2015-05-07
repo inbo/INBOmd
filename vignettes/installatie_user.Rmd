@@ -5,7 +5,7 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor eindgebruikers"
     cover: "useR-large.png"
-    reportnr: "22 april 2015"
+    reportnr: "7 mei 2015"
     year: 2015
     email: thierry.onkelinx@inbo.be
     cover_offset: 150mm
@@ -29,7 +29,7 @@ De basisconfiguratie omvat `R` en `RStudio`. Deze configuratie wordt bij alle R 
 
 ## Geavanceerde configuratie
 
-De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTex en Mendeley.
+De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De meeste gebruikers hebben deze tools niet nodig en hoeven ze daarom niet te configureren.
 
 
 
@@ -121,6 +121,11 @@ Je kan dit later herhalen als de deee geïnstalleerde packages wenst te upgraden
 1. Klik op _OK_
 1. Herstart `RStudio`
 
+## Installatie en update van INBOtheme
+
+1. Start RStudio
+1. Voer volgend R commando uit:  
+`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbotheme.git", build_vignettes = TRUE)`
 
 
 
@@ -154,12 +159,6 @@ Bij de geavanceerde configuratie moet je eerst alle instellingen van de basiscon
 1. Selecteer _remote package repository_ en _nearest package repository_ en klik tenslotte op _Volgende_.
 1. Klik op _Volgende_.
 1. Klik op _Volgende_.
-
-## Installatie en update van INBOtheme
-
-1. Start RStudio
-1. Voer volgend R commando uit:  
-`devtools::install_git("https://git.milieuinfo.be/scm/~thierry_onkelinx/inbotheme.git", build_vignettes = TRUE)`
 
 ## Installatie en update van INBOmd
 

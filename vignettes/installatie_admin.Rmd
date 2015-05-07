@@ -5,7 +5,7 @@ output:
   INBOmd::inbo_rapport:
     subtitle: "Versie voor personen met adminrechten"
     cover: "useR-large.png"
-    reportnr: "22 april 2015"
+    reportnr: "7 mei 2015"
     year: 2015
     email: thierry.onkelinx@inbo.be
     cover_offset: 150mm
@@ -25,26 +25,13 @@ Alle installatiebestanden bevinden zich op `P:\Algemeen\Algemene info\BMK\R`. Je
 
 In de onderstaande tekst moet je in `R-3.x.y` zowel `x` als `y` vervangen door een cijfer om zo het huidige versienummer te krijgen. Dus voor versie `R-3.0.0` is `x` = 0 en `y` = 0.
 
-## Basisconfiguratie
-
-De basisconfiguratie omvat `R` en `RStudio`. Deze configuratie wordt bij alle R gebruikers geïnstalleerd.
-
 Installatievolgorde:
 
 1. R
 1. Git
 1. RStudio
-
-## Geavanceerde configuratie
-
-De geavanceerde configuratie is bevat een set extra tools bovenop de basisconfiguratie. De geavanceerde configuratie wordt standaard bij alle BMK medewerkers geïnstalleerd. De relevantie van deze configuratie voor de overige gebruikers wordt in overleg met BMK bepaald. De extra software van de geavanceerde configuratie omvat Rtools, MikTeX en Mendeley.
-
-Installatievolgorde:
-
-1. Basisconfiguratie
 1. RTools
 1. MikTex
-1. Mendeley
 
 
 
@@ -219,6 +206,8 @@ Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 
 ## Installatie en upgrade
 
+De installatiebestanden zijn beschikbaar via http://cran.r-project.org/bin/windows/Rtools/
+
 1. Kies `Nederlands` als taal voor de installatie en klik _volgende_.
 1. Klik _volgende_.
 1. Klik _volgende_.
@@ -256,6 +245,9 @@ Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 
 ## Nieuwe installatie
 
+De installatiebestanden zijn beschikbaar via http://miktex.org/download
+
+
 1. Gebruik indien mogelijk de 64-bit installer.
 1. Start de installer en klik op _Uitvoeren_.
 1. Aanvaard de voorwaarden en klik op _Volgende_
@@ -274,34 +266,3 @@ Test de configuratie door RStudio te starten als een **_gewone_** gebruiker.
 ## Upgrade
 
 Nog te schrijven
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Mendeley
-
-1. Start de installer en klik op _uitvoeren_.
-1. Klik op _next_.
-1. Klik op _I agree_.
-1. Wijzig de installatiemap in `C:\R\Mendeley Desktop` en klik op _next_.
-1. Klik _install_.
-1. Klik op _Finish_.
