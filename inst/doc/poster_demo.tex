@@ -1,0 +1,131 @@
+\documentclass[final]{beamer}
+\usetheme{inboposter2015}
+\usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
+\usepackage{lipsum}
+\lang{english}
+\title{De titel van de poster}
+\subtitle{De optionele ondertitel}
+\author{De auteurs}
+
+\begin{document}
+\begin{frame}{} 
+
+\begin{textblock}{213.2}(0, 0)
+\begin{block}{Gewone tekst}
+\lipsum[1]
+\end{block}
+
+
+
+\begin{block}{Monospace tekst}
+\texttt{\lipsum[2]}
+\end{block}
+
+
+
+\begin{exampleblock}{Example block}
+De inhoud\\
+Nog een regel\\
+Nog een bijkomende regel\\
+De laatste regel
+\end{exampleblock}
+
+\end{textblock}
+
+
+\begin{textblock}{213.2}(243.2, 0)
+
+\begin{block}{Equation}
+\begin{equation}
+\dfrac{N_x}{N_n} = h < h^* = \dfrac{C_s + C_a}{C_c + C_a} \label{eq:RelCost}
+\end{equation}
+\end{block}
+
+\begin{block}{Vette tekst}
+\textbf{\lipsum[3]}
+\end{block}
+
+\begin{block}{Italics}
+\textit{\lipsum[4]}
+\end{block}
+
+\begin{block}{Accenten en co}
+  
+äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ 
+  
+ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
+  
+voor ``dubbele aanhalingstekens" na
+
+voor `enkele aanhalingstekens' na
+
+hoofdletter i versus kleine letter L Il
+\end{block}
+
+\end{textblock}
+
+\begin{textblock}{213.2}(486.4, 0)
+
+\textbf{Tekst zonder block}
+
+\lipsum[5]
+
+\begin{block}{Itemize}
+\begin{itemize}
+  \item Eerste punt
+  \item Tweede punt
+    \begin{itemize}
+      \item Eerste punt
+        \begin{itemize}
+          \item Eerste punt
+          \item Tweede punt
+        \end{itemize}
+      \item Tweede punt
+    \end{itemize}
+  \item Derde punt
+\end{itemize}
+\end{block}
+
+\begin{block}{Enumerate}
+\begin{enumerate}
+  \item Eerste punt
+  \item Tweede punt
+    \begin{enumerate}
+      \item Eerste punt
+        \begin{enumerate}
+          \item Eerste punt
+          \item Tweede punt
+        \end{enumerate}
+      \item Tweede punt
+    \end{enumerate}
+  \item Derde punt
+\end{enumerate}
+\end{block}
+
+
+
+\begin{block}{Description}
+\begin{description}
+  \item [Eerste punt]: blabla
+  \item [Tweede punt]: blabla
+    \begin{description}
+      \item [Eerste punt]: blabla
+        \begin{description}
+          \item [Eerste punt]: blabla
+          \item [Tweede punt]: blabla
+        \end{description}
+      \item [Tweede punt]: blabla
+    \end{description}
+  \item [Derde punt]: blabla
+\end{description}
+\end{block}
+
+\begin{alertblock}{Alert block}
+De inhoud\\
+Tweede regel\\
+Derde regel
+\end{alertblock}
+\end{textblock}  
+  
+\end{frame}
+\end{document}
