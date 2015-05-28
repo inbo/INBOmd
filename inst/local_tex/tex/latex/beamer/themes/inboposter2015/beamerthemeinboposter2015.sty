@@ -107,7 +107,7 @@
 
 \setbeamerfont{block title}{series = \bfseries}
 \setbeamercolor{block title}{fg=white, bg=inbo.steun.blauw}
-\setbeamercolor{block body}{fg = black, bg = white!50}
+\setbeamercolor{block body}{fg = black, bg = white}
 
 \setbeamerfont{block title alerted}{series = \bfseries}
 \setbeamercolor{block title alerted}{fg = white, bg=inbo.rood}
@@ -124,20 +124,18 @@
 
 
 \setbeamertemplate{block begin}{
-  \vskip2mm
+  \vskip6mm
   \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title}%
     \usebeamerfont*{block title}\insertblocktitle
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[vmode, colsep = 1mm]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
   \setbeamertemplate{block end}{
   \end{beamercolorbox}
-  \vskip8mm
-  \pgfsetfillopacity{1}
+  \vskip4mm
 }
 
 
@@ -152,20 +150,18 @@
 
 
 \setbeamertemplate{block example begin}{
-  \vskip2mm
+  \vskip6mm
   \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title example}%
     \usebeamerfont*{block title example}\insertblocktitle
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body example}%
   \begin{beamercolorbox}[vmode, colsep = 1mm]{block body example}%
     \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
   \setbeamertemplate{block example end}{
   \end{beamercolorbox}
-  \vskip8mm
-  \pgfsetfillopacity{1}
+  \vskip4mm
 }
 
 
@@ -187,7 +183,7 @@
 
 
 \setbeamertemplate{block alerted begin}{
-  \vskip2mm
+  \vskip6mm
   \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title alerted}%
     \usebeamerfont*{block title alerted}\insertblocktitle
   \end{beamercolorbox}%
@@ -199,7 +195,7 @@
   }
   \setbeamertemplate{block alerted end}{
   \end{beamercolorbox}
-  \vskip8mm
+  \vskip4mm
   \pgfsetfillopacity{1}
 }
 

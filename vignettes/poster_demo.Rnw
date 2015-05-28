@@ -1,4 +1,8 @@
 \documentclass[final]{beamer}
+%\VignetteIndexEntry{Demonstratie INBO huisstijl poster}
+%\VignetteDepends{ggplot2}
+%\VignetteDepends{INBOtheme}
+%\SweaveUTF8
 \usetheme{inboposter2015}
 \usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
 \usepackage{lipsum}
@@ -17,17 +21,16 @@
 
 
 
-\begin{block}{Monospace tekst}
+\textbf{Monospace tekst zonder block}
 \texttt{\lipsum[2]}
-\end{block}
-
 
 
 \begin{exampleblock}{Example block}
-De inhoud\\
-Nog een regel\\
-Nog een bijkomende regel\\
-De laatste regel
+äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
+  
+voor ``dubbele aanhalingstekens" na, voor `enkele aanhalingstekens' na
+
+hoofdletter i versus kleine letter L Il
 \end{exampleblock}
 
 \end{textblock}
@@ -35,13 +38,13 @@ De laatste regel
 
 \begin{textblock}{213.2}(243.2, 0)
 
-\begin{block}{Equation}
+\begin{alertblock}{Equation in alertblock}
 \begin{equation}
 \dfrac{N_x}{N_n} = h < h^* = \dfrac{C_s + C_a}{C_c + C_a} \label{eq:RelCost}
 \end{equation}
-\end{block}
+\end{alertblock}
 
-\begin{block}{Vette tekst}
+\begin{block}{Vette tekst zonder blok}
 \textbf{\lipsum[3]}
 \end{block}
 
@@ -49,31 +52,13 @@ De laatste regel
 \textit{\lipsum[4]}
 \end{block}
 
-\begin{block}{Accenten en co}
-  
-äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ 
-  
-ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
-  
-voor ``dubbele aanhalingstekens" na
-
-voor `enkele aanhalingstekens' na
-
-hoofdletter i versus kleine letter L Il
-\end{block}
-
 \end{textblock}
 
 \begin{textblock}{213.2}(486.4, 0)
 
-\textbf{Tekst zonder block}
-
-\lipsum[5]
-
 \begin{block}{Itemize}
 \begin{itemize}
   \item Eerste punt
-  \item Tweede punt
     \begin{itemize}
       \item Eerste punt
         \begin{itemize}
@@ -82,14 +67,13 @@ hoofdletter i versus kleine letter L Il
         \end{itemize}
       \item Tweede punt
     \end{itemize}
-  \item Derde punt
+  \item Tweede punt
 \end{itemize}
 \end{block}
 
 \begin{block}{Enumerate}
 \begin{enumerate}
   \item Eerste punt
-  \item Tweede punt
     \begin{enumerate}
       \item Eerste punt
         \begin{enumerate}
@@ -98,7 +82,7 @@ hoofdletter i versus kleine letter L Il
         \end{enumerate}
       \item Tweede punt
     \end{enumerate}
-  \item Derde punt
+  \item Tweede punt
 \end{enumerate}
 \end{block}
 
@@ -107,7 +91,6 @@ hoofdletter i versus kleine letter L Il
 \begin{block}{Description}
 \begin{description}
   \item [Eerste punt]: blabla
-  \item [Tweede punt]: blabla
     \begin{description}
       \item [Eerste punt]: blabla
         \begin{description}
@@ -116,15 +99,20 @@ hoofdletter i versus kleine letter L Il
         \end{description}
       \item [Tweede punt]: blabla
     \end{description}
-  \item [Derde punt]: blabla
+  \item [Tweede punt]: blabla
 \end{description}
 \end{block}
 
-\begin{alertblock}{Alert block}
-De inhoud\\
-Tweede regel\\
-Derde regel
-\end{alertblock}
+\begin{block}{Figuur}
+<<echo = FALSE, fig.cap= "Dit is het bijschrift van de figuur", message=FALSE>>=
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(base_size = 20))
+test <- data.frame(Letters = LETTERS[1:9], Y = 1)
+ggplot(test, aes(x = Letters, y = Y, fill = Letters)) + geom_bar(stat = "identity")
+@
+\end{block}
+
 \end{textblock}  
   
 \end{frame}
