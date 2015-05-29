@@ -7,14 +7,14 @@
 \usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
 \usepackage{lipsum}
 \lang{english}
-\title{De titel van de poster}
+\title{De titel van de poster a b c d e f g h i j k l m n o p q r s t u v w x y z}
 \subtitle{De optionele ondertitel}
 \author{De auteurs}
 
 \begin{document}
 \begin{frame}{} 
 
-\begin{textblock}{213.2}(0, 0)
+\begin{textblock}{259.8}(0, 0)
 \begin{block}{Gewone tekst}
 \lipsum[1]
 \end{block}
@@ -36,7 +36,7 @@ hoofdletter i versus kleine letter L Il
 \end{textblock}
 
 
-\begin{textblock}{213.2}(243.2, 0)
+\begin{textblock}{259.8}(269.8, 0)
 
 \begin{alertblock}{Equation in alertblock}
 \begin{equation}
@@ -52,9 +52,17 @@ hoofdletter i versus kleine letter L Il
 \textit{\lipsum[4]}
 \end{block}
 
+<<demofiguur, echo = FALSE, fig.cap= "Figuur met transparante achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(base_size = 25, transparent = TRUE))
+test <- data.frame(Letters = LETTERS[1:9], Y = 1)
+ggplot(test, aes(x = Letters, y = Y, fill = Letters)) + geom_bar(stat = "identity")
+@
+
 \end{textblock}
 
-\begin{textblock}{213.2}(486.4, 0)
+\begin{textblock}{259.8}(539.7, 0)
 
 \begin{block}{Itemize}
 \begin{itemize}
@@ -103,13 +111,35 @@ hoofdletter i versus kleine letter L Il
 \end{description}
 \end{block}
 
+
+<<demofiguur2, echo = FALSE, fig.cap= "Figuur met transparante achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
+@
+
+<<demofiguur3, echo = FALSE, fig.cap= "Figuur met standaard achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+theme_set(theme_inbo2015(base_size = 25, transparent = FALSE))
+ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
+@
+
+\end{textblock}  
+
+
+\begin{textblock}{394.8}(0, 750)
+
 \begin{block}{Figuur}
-<<echo = FALSE, fig.cap= "Dit is het bijschrift van de figuur", message=FALSE>>=
-library(ggplot2)
-library(INBOtheme)
-theme_set(theme_inbo2015(base_size = 20))
-test <- data.frame(Letters = LETTERS[1:9], Y = 1)
-ggplot(test, aes(x = Letters, y = Y, fill = Letters)) + geom_bar(stat = "identity")
+<<demofiguur4, echo = FALSE, fig.cap= "Figuur met standaard achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
+@
+\end{block}
+
+\end{textblock}  
+
+\begin{textblock}{394.8}(404.8, 750)
+
+\begin{block}{Figuur}
+<<demofiguur5, echo = FALSE, fig.cap= "Figuur met transparante achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+theme_set(theme_inbo2015(base_size = 25, transparent = TRUE))
+ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
 @
 \end{block}
 

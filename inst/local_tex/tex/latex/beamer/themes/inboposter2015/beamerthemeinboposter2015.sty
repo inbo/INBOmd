@@ -12,7 +12,7 @@
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{\TPHorizModule}
-\textblockorigin{70mm}{243mm}
+\textblockorigin{20mm}{140mm}
 
 \newcommand{\autorefp}[1]{ (\autoref{#1})}
 \newcommand{\refp}[1]{ (\ref{#1})}
@@ -38,9 +38,9 @@
 \newcommand{\vlaanderenlogo}[1]{%
   \edef\lang{{#1}}%
   \expandafter\ifstrequal\lang{dutch}{
-    \includegraphics[width = 275mm, keepaspectratio]{vlaanderen_nl_vol}
+    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen_nl_vol}
   }{
-    \includegraphics[width = 275mm, keepaspectratio]{vlaanderen_en_vol}
+    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen_en_vol}
   }%
 }
 
@@ -221,51 +221,52 @@
 \setbeamertemplate{headline}{  
    \leavevmode
 
-  \begin{textblock}{1}(455, -138)
+  \begin{textblock}{1}(606.6, -110.2)
     \vlaanderenlogo{\@lang}
   \end{textblock}
 
-  \begin{textblock}{300}(0, 840)
+  \begin{textblock}{300}(0, 993)
     \inbologo{\@lang}
   \end{textblock}
  
-  \begin{textblock}{450}(0, -173)
-    \begin{minipage}[b][173mm][b]{450mm}
+  \begin{textblock}{1}(686, 1013)
+    {\usebeamerfont{footline}\usebeamercolor[fg]{footline}www.inbo.be}
+  \end{textblock}
+
+\begin{textblock}{450}(0, -120)
+    \begin{minipage}[b][100mm][b]{600mm}
       \noindent
-      \raggedright 
+      \begin{center}
       \vfill\vfill
       {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
-      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\\
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}
       \vfill
-      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}\\
+      {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}
       \vfill\vfill
+      \end{center}
     \end{minipage}
   \end{textblock}
 
-  \begin{textblock}{1}(585, 860)
-    {\usebeamerfont{footline}\usebeamercolor[fg]{footline}www.inbo.be}
-  \end{textblock}
 }
 
 \setbeamertemplate{background canvas}{  
   \begin{pgfpicture}{0cm}{0cm}{\paperwidth}{\paperheight}
     \color{inbo.hoofd}
-    \pgfrect[fill]{\pgfpoint{40mm}{40mm}}{\pgfpoint{759.6mm}{120mm}}
+    \pgfrect[fill]{\pgfpoint{10mm}{10mm}}{\pgfpoint{\paperwidth-10mm-10mm}{70mm}}
     \color{background}
-    \pgfrect[fill]{\pgfpoint{40mm}{160mm}}{\pgfpoint{759.6mm}{988.2mm}}
+    \pgfrect[fill]{\pgfpoint{10mm}{80mm}}{\pgfpoint{-10mm + \paperwidth - 10mm}{-10mm - 70mm + \paperheight- 10mm}}
 
-% rectangles to help alignment of style items
-% \color{blue}
-% \pgfrect[fill]{\pgfpoint{40mm}{40mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{769.6mm}{40mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{40mm}{1118.2mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{769.6mm}{1118.2mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{40mm}{160mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{769.6mm}{160mm}}{\pgfpoint{30mm}{30mm}}
-% \pgfrect[fill]{\pgfpoint{70mm}{190mm}}{\pgfpoint{699.6mm}{755.2mm}}
+% % rectangles to help alignment of style items
 % \color{magenta}
-% \pgfrect[fill]{\pgfpoint{70mm}{\paperheight - 70mm}}{\pgfpoint{450mm}{-173mm}}
-% \pgfrect[fill]{\pgfpoint{\paperwidth}{\paperheight}}{\pgfpoint{-40mm}{-106mm}}
+% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm}}{\pgfpoint{-20mm}{-20mm}}
+% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm -20mm - 80mm}}{\pgfpoint{-10mm}{-20mm}}
+% \color{blue}
+% \pgfrect[fill]{\pgfpoint{10mm}{10mm}}{\pgfpoint{10mm}{10mm}}
+% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{10mm}}{\pgfpoint{-10mm}{10mm}}
+% \pgfrect[fill]{\pgfpoint{10mm}{\paperheight-10mm}}{\pgfpoint{10mm}{-10mm}}
+% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm}}{\pgfpoint{-10mm}{-10mm}}
+% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm -20mm - 80mm - 20mm}}{\pgfpoint{-10mm}{-10mm}}
+% \pgfrect[fill]{\pgfpoint{10mm}{\paperheight - 10mm -20mm - 80mm - 20mm}}{\pgfpoint{10mm}{-10mm}}
 
   \end{pgfpicture}
 }
