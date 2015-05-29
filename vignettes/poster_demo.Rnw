@@ -7,9 +7,10 @@
 \usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
 \usepackage{lipsum}
 \lang{english}
-\title{De titel van de poster a b c d e f g h i j k l m n o p q r s t u v w x y z}
+\title{De titel van de poster}
 \subtitle{De optionele ondertitel}
 \author{De auteurs}
+\email{voornaam.naam@inbo.be}
 
 \begin{document}
 \begin{frame}{} 
@@ -45,6 +46,7 @@ hoofdletter i versus kleine letter L Il
 \end{alertblock}
 
 \begin{block}{Vette tekst zonder blok}
+
 \textbf{\lipsum[3]}
 \end{block}
 
