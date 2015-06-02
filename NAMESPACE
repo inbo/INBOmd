@@ -3,6 +3,8 @@
 export(inbo_handouts)
 export(inbo_rapport)
 export(inbo_slides)
+export(kolom_breedte)
+export(kolom_start)
 importFrom(rmarkdown,knitr_options)
 importFrom(rmarkdown,output_format)
 importFrom(rmarkdown,pandoc_options)
