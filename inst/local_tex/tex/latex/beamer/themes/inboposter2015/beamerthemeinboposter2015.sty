@@ -9,13 +9,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeinboposter2015}
 
+
+\newlength{\witrand}
+\setlength{\witrand}{10mm}
+\newlength{\marge}
+\setlength{\marge}{20mm}
+\newlength{\titelblok}
+\setlength{\titelblok}{100mm}
+\newlength{\onderblok}
+\setlength{\onderblok}{100mm}
+
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
 \setlength{\TPVertModule}{\TPHorizModule}
-\textblockorigin{20mm}{140mm}
+\textblockorigin{30mm}{150mm}
 
 \newcommand{\autorefp}[1]{ (\autoref{#1})}
 \newcommand{\refp}[1]{ (\ref{#1})}
+
+\RequirePackage{etoolbox}
 
 \def\lang#1{\def\@lang{#1}}
 \lang{english}
@@ -25,7 +37,6 @@
 
 \RequirePackage[gen]{eurosym}
 
-\RequirePackage{etoolbox}
 
 \newcommand{\inbologo}[1]{%
   \edef\lang{{#1}}%
@@ -217,15 +228,15 @@
 \setbeamertemplate{headline}{  
    \leavevmode
 
-  \begin{textblock}{1}(606.6, -110.2)
+  \begin{textblock}{1}(596.6, -120.2)
     \vlaanderenlogo{\@lang}
   \end{textblock}
 
-  \begin{textblock}{300}(0, 993)
+  \begin{textblock}{300}(0, 973)
     \inbologo{\@lang}
   \end{textblock}
  
-  \begin{textblock}{250}(550, 1000)
+  \begin{textblock}{250}(530, 980)
     {
     \begin{minipage}[b][30mm][b]{250mm}
       \begin{flushright}
@@ -237,7 +248,7 @@
   \end{textblock}
 
 \begin{textblock}{450}(0, -120)
-    \begin{minipage}[b][100mm][b]{580mm}
+    \begin{minipage}[b][\titelblok][b]{580mm}
       \noindent
       \begin{center}
       \vfill\vfill
@@ -255,24 +266,43 @@
 \setbeamertemplate{background canvas}{  
   \begin{pgfpicture}{0cm}{0cm}{\paperwidth}{\paperheight}
     \color{inbo.hoofd}
-    \pgfrect[fill]{\pgfpoint{10mm}{10mm}}{\pgfpoint{\paperwidth-10mm-10mm}{70mm}}
+    \pgfrect[fill]
+      {\pgfpoint{\witrand}{\witrand}}
+      {\pgfpoint{\paperwidth - \witrand - \witrand}{\onderblok}}
     \color{background}
-    \pgfrect[fill]{\pgfpoint{10mm}{80mm}}{\pgfpoint{-10mm + \paperwidth - 10mm}{-10mm - 70mm + \paperheight- 10mm}}
+    \pgfrect[fill]
+      {\pgfpoint{\witrand}{\witrand + \onderblok}}
+      {\pgfpoint{- \witrand + \paperwidth - \witrand}{-\witrand - \onderblok + \paperheight - \witrand}}
 
 % % rectangles to help alignment of style items
 % \color{magenta}
-% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm}}{\pgfpoint{-20mm}{-20mm}}
-% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm -20mm - 80mm}}{\pgfpoint{-10mm}{-20mm}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\paperwidth - \witrand}{\paperheight - \witrand}}
+%     {\pgfpoint{- \marge}{- \marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\paperwidth - \witrand}{\paperheight - \witrand - \titelblok}}
+%     {\pgfpoint{- \witrand}{- \marge}}
 % \color{blue}
-% \pgfrect[fill]{\pgfpoint{10mm}{10mm}}{\pgfpoint{10mm}{10mm}}
-% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{10mm}}{\pgfpoint{-10mm}{10mm}}
-% \pgfrect[fill]{\pgfpoint{10mm}{\paperheight-10mm}}{\pgfpoint{10mm}{-10mm}}
-% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm}}{\pgfpoint{-10mm}{-10mm}}
-% \pgfrect[fill]{\pgfpoint{\paperwidth-10mm}{\paperheight - 10mm -20mm - 80mm - 20mm}}{\pgfpoint{-10mm}{-10mm}}
-% \pgfrect[fill]{\pgfpoint{10mm}{\paperheight - 10mm -20mm - 80mm - 20mm}}{\pgfpoint{10mm}{-10mm}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\witrand}{\witrand}}
+%     {\pgfpoint{\marge}{\marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\paperwidth - \witrand}{\witrand}}
+%     {\pgfpoint{- \marge}{\marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\witrand}{\paperheight - \witrand}}
+%     {\pgfpoint{\marge}{- \marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\paperwidth - \witrand}{\paperheight - \witrand}}
+%     {\pgfpoint{- \marge}{- \marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\paperwidth - \witrand}{\paperheight - \witrand - \marge - \titelblok}}
+%     {\pgfpoint{- \marge}{- \marge}}
+%   \pgfrect[fill]
+%     {\pgfpoint{\witrand}{\paperheight - \witrand - \marge - \titelblok}}
+%     {\pgfpoint{\marge}{- \marge}}
 
   \end{pgfpicture}
 }
-
 
 \mode<all>
