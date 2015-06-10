@@ -5,7 +5,7 @@ Version: 0.3.2
 Date: 2015-04-22
 Author: Thierry Onkelinx
 Maintainer: Thierry Onkelinx <thierry.onkelinx@inbo.be>
-Description: More about what it does (maybe more than one line)
+Description: Several templates to generate reports, presentations and posters.
 License: GPL-3
 VignetteBuilder: knitr
 Suggests:
