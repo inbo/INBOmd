@@ -1,4 +1,5 @@
 \documentclass[final]{beamer}
+%\VignetteEngine{xelatex}
 %\VignetteIndexEntry{Demonstratie INBO huisstijl poster}
 %\VignetteDepends{ggplot2}
 %\VignetteDepends{INBOtheme}
@@ -24,6 +25,7 @@
 
 \texttt{\lipsum[2]}
 
+\vspace{1ex}
 
 \begin{exampleblock}{Example block}
 äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
@@ -125,20 +127,20 @@ ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6
 \end{textblock}  
 
 
-\begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 1)}, 715)
+\begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 1)}, 740)
 
 \begin{block}{Figuur}
-<<demofiguur4, echo = FALSE, fig.cap= "Figuur met standaard achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+<<demofiguur4, echo = FALSE, fig.cap= "Figuur met standaard achtergrond", message=FALSE, fig.width = 250 / 25.4, fig.height = 130 / 25.4>>=
 ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
 @
 \end{block}
 
 \end{textblock}  
 
-\begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 2)}, 715)
+\begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 2)}, 740)
 
 \begin{block}{Figuur}
-<<demofiguur5, echo = FALSE, fig.cap= "Figuur met transparante achtergrond", message=FALSE, fig.width = 230 / 25.4, fig.height = 150 / 25.4>>=
+<<demofiguur5, echo = FALSE, fig.cap= "Figuur met transparante achtergrond", message=FALSE, fig.width = 250 / 25.4, fig.height = 130 / 25.4>>=
 theme_set(theme_inbo2015(base_size = 25, transparent = TRUE))
 ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
 @

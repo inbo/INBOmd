@@ -126,25 +126,22 @@
 \setbeamercolor{block title example}{fg=white, bg=inbo.steun.geelgroen}
 \setbeamercolor{block body example}{fg = black, bg = inbo.steun.geelgroen!50}
 
-\setbeamersize{text margin left=9.5mm}
-\setbeamersize{text margin right=6mm}
-
-
-
 
 \setbeamertemplate{block begin}{
-  \vskip6mm
-  \begin{beamercolorbox}[leftskip = 10mm, sep = 2mm, colsep = 2mm]{block title}%
+  \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title}%
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
     \usebeamerfont*{block title}\insertblocktitle
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
-  \vskip-0.5mm
   \usebeamerfont{block body}%
-  \begin{beamercolorbox}[vmode, colsep = 2mm]{block body}%
+  \begin{beamercolorbox}[vmode, leftskip = 1ex, rightskip = 1ex plus 3ex minus 0.5ex, colsep = 0.2ex]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  }
-  \setbeamertemplate{block end}{
+    \vspace{0.5ex plus 0.25ex minus 0.25ex}
+}
+\setbeamertemplate{block end}{
+  \vspace{0.5ex plus 0.25ex minus 0.25ex}
   \end{beamercolorbox}
-  \vskip4mm
+  \vspace{2ex plus 1ex minus 1ex}
 }
 
 
@@ -159,18 +156,21 @@
 
 
 \setbeamertemplate{block example begin}{
-  \vskip6mm
-  \begin{beamercolorbox}[leftskip = 10mm, sep = 2mm, colsep = 2mm]{block title example}%
+  \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title example}%
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
     \usebeamerfont*{block title example}\insertblocktitle
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
   \vskip-0.5mm
   \usebeamerfont{block body example}%
-  \begin{beamercolorbox}[vmode, colsep = 2mm]{block body example}%
+  \begin{beamercolorbox}[vmode, leftskip = 1ex, rightskip = 1ex plus 2ex minus 0.25ex, colsep = 0.2ex]{block body example}%
     \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  }
-  \setbeamertemplate{block example end}{
+  \vspace{0.5ex plus 0.25ex minus 0.25ex}
+}
+\setbeamertemplate{block example end}{
+  \vspace{0.5ex plus 0.25ex minus 0.25ex}
   \end{beamercolorbox}
-  \vskip4mm
+  \vspace{2ex plus 1ex minus 1ex}
 }
 
 
@@ -192,20 +192,21 @@
 
 
 \setbeamertemplate{block alerted begin}{
-  \vskip6mm
-  \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title alerted}%
+  \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title alerted}%
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
     \usebeamerfont*{block title alerted}\insertblocktitle
+    \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body alerted}%
-  \begin{beamercolorbox}[vmode, colsep = 1mm]{block body alerted}%
+  \begin{beamercolorbox}[vmode, leftskip = 1ex, rightskip = 1ex plus 2ex minus 0.25ex, colsep = 0.2ex]{block body alerted}%
     \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
-  }
-  \setbeamertemplate{block alerted end}{
+  \vspace{0.5ex plus 0.25ex minus 0.25ex}
+}
+\setbeamertemplate{block alerted end}{
+  \vspace{0.5ex plus 0.25ex minus 0.25ex}
   \end{beamercolorbox}
-  \vskip4mm
-  \pgfsetfillopacity{1}
+  \vspace{2ex plus 1ex minus 1ex}
 }
 
 
