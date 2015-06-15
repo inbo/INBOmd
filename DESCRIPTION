@@ -2,7 +2,7 @@ Package: INBOmd
 Type: Package
 Title: Markdown templates for INBO
 Version: 0.3.2
-Date: 2015-04-22
+Date: 2015-06-15
 Author: Thierry Onkelinx
 Maintainer: Thierry Onkelinx <thierry.onkelinx@inbo.be>
 Description: Several templates to generate reports, presentations and posters.
