@@ -7,7 +7,7 @@
 inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
   fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small",
   "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch",
-  slide_level = 2, keep_tex = FALSE, ...)
+  slide_level = 2, keep_tex = FALSE, toc = TRUE, ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}
@@ -37,6 +37,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
 \item{slide_level}{Indicate which heading level is used for the frame titles}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+
+\item{toc}{display a table of content after the title slide}
 
 \item{...}{extra parameters}
 }
