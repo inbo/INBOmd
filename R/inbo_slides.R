@@ -13,10 +13,11 @@
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
+#' @param toc display a table of content after the title slide
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
-inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, ...){
+inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE, ...){
   extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
@@ -36,8 +37,11 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
     )
     args <- c(args, tmp)
   }
-  if(!missing(toc_name)){
-    args <- c(args, pandoc_variable_arg("tocname", toc_name))
+  if (toc) {
+    args <- c(args, pandoc_variable_arg("toc", "true"))
+    if(!missing(toc_name)){
+      args <- c(args, pandoc_variable_arg("tocname", toc_name))
+    }
   }
   if(!missing(natbib)){
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
@@ -71,14 +75,14 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60, 
+        width = 60,
         concordance = TRUE
       ),
       opts_chunk = list(
-        dev = 'pdf', 
-        dev.args = list(bg = 'transparent'), 
-        dpi = 300, 
-        fig.width = 4.5, 
+        dev = 'pdf',
+        dev.args = list(bg = 'transparent'),
+        dpi = 300,
+        fig.width = 4.5,
         fig.height = 2.9
       )
     ),
