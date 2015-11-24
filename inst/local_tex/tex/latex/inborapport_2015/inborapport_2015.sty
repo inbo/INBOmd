@@ -50,3 +50,16 @@
 {
   \end{mdframed}
 }
+
+% definition of fonts
+\RequirePackage{ifxetex}
+
+\ifxetex
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont[Ligatures=TeX]{Calibri}
+  \setmonofont{Courier New}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{lmodern}
+\fi
