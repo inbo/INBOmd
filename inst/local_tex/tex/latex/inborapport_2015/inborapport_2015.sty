@@ -2,6 +2,10 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{inborapport_2015}
 
+% definition of custom commands
+\def\lang#1{\def\@lang{#1}}
+\lang{dutch}
+
 % add hyperlinks to the document
 \RequirePackage[unicode=true]{hyperref}
 
@@ -66,3 +70,6 @@
 
 % required for the Euro symbol
 \RequirePackage[gen]{eurosym}
+
+% use babel for different languages
+\RequirePackage[\@lang]{babel}
