@@ -2,6 +2,21 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{inborapport_2015}
 
+\RequirePackage{kvoptions}
+\RequirePackage{kvsetkeys}
+\SetupKeyvalOptions{
+  family=inborapport_2015,
+  prefix=inborapport_2015@,
+  setkeys=\kvsetkeys,
+}
+
+% hyperref options:
+\define@key{inborapport_2015}{hyperref}{%
+  \PassOptionsToPackage{#1}{hyperref}%
+}
+
+\ProcessKeyvalOptions*
+
 % definition of custom commands
 \def\lang#1{\def\@lang{#1}}
 \lang{dutch}
@@ -73,3 +88,5 @@
 
 % use babel for different languages
 \RequirePackage[\@lang]{babel}
+
+\endinput
