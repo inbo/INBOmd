@@ -316,3 +316,13 @@
     \vfill
     }%
   \clearpage
+  }
+
+\RequirePackage{etoolbox}
+\preto{\chapter}{\def\leveltitle{\chaptertitle}}
+\pretocmd{\@chapter}
+  {\expandafter\gdef\leveltitle{#2}}
+  {}{}
+\pretocmd{\@schapter}
+  {\expandafter\gdef\leveltitle{#1}}
+  {}{}
