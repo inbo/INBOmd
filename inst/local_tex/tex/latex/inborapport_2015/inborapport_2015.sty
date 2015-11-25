@@ -14,12 +14,14 @@
 \define@key{inborapport_2015}{hyperref}{%
   \PassOptionsToPackage{#1}{hyperref}%
 }
+% babel options
+\define@key{inborapport_2015}{babel}{%
+  \PassOptionsToPackage{#1}{babel}%
+}
 
 \ProcessKeyvalOptions*
 
 % definition of custom commands
-\def\lang#1{\def\@lang{#1}}
-\lang{dutch}
 
 \def\reportnumber#1{\def\@reportnumber{#1}}
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
@@ -94,7 +96,7 @@
 \RequirePackage[gen]{eurosym}
 
 % use babel for different languages
-\RequirePackage[\@lang]{babel}
+\RequirePackage{babel}
 
 % define style for chapters
 \def\@makechapterhead#1{%
