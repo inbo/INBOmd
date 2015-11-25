@@ -205,4 +205,31 @@
    {\fontsize{9}{10.8} \selectfont \noindent \hfill \parbox[t]{132.2mm}{\raggedright #1} \par \nobreak}
   \vspace{6pt}
 }
+
+% define style for subparagraphs
+\renewcommand{\subparagraph}{\secdef\@subparagraph\@ssubparagraph}
+\def\@subparagraph[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subparagraph}%
+    \addcontentsline{toc}{subparagraph}%
+      {\protect\numberline{\thesubparagraph}#1}%
+  \else
+    \addcontentsline{toc}{subparagraph}#1%
+  \fi
+  \@makesubparagraphhead{#2}%
+}
+\def\@ssubparagraph#1{
+  \@makessubparagraphhead{#1}
+}
+\def\@makesubparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{9}{10.8} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{129.7mm}{\raggedright #1}\par \nobreak}
+  \vspace{6pt}
+}
+\def\@makessubparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{9}{10.8} \selectfont \noindent \hfill \parbox[t]{129.7mm}{\raggedright #1} \par \nobreak}
+  \vspace{6pt}
+}
+
 \endinput
