@@ -127,4 +127,30 @@
    {\fontsize{12}{14.4} \selectfont \bfseries \noindent \hfill \parbox[t]{139.8mm}{\raggedright #1} \par \nobreak}
   \vspace{6pt}
 }
+
+% define style for subsections
+\renewcommand{\subsection}{\secdef\@subsection\@ssubsection}
+\def\@subsection[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subsection}%
+    \addcontentsline{toc}{subsection}%
+      {\protect\numberline{\thesubsection}#1}%
+  \else
+    \addcontentsline{toc}{subsection}#1%
+  \fi
+  \@makesubsectionhead{#2}%
+}
+\def\@ssubsection#1{
+  \@makessubsectionhead{#1}
+}
+\def\@makesubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{10}{12} \selectfont \noindent \thesubsection \hfill \parbox[t]{137.3mm}{\raggedright #1}\par \nobreak}
+  \vspace{6pt}
+}
+\def\@makessubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{10}{12} \selectfont \noindent \hfill \parbox[t]{137.3mm}{\raggedright #1} \par \nobreak}
+  \vspace{6pt}
+}
 \endinput
