@@ -101,4 +101,30 @@
    {\fontsize{14}{16.8} \selectfont \noindent \bfseries \hfill \parbox[t]{142.4mm}{\raggedright #1}\par \nobreak}
   \vspace{16pt}
   }
+
+% define style for sections
+\renewcommand{\section}{\secdef\@section\@ssection}
+\def\@section[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{section}%
+    \addcontentsline{toc}{section}%
+      {\protect\numberline{\thesection}#1}%
+  \else
+    \addcontentsline{toc}{section}#1%
+  \fi
+  \@makesectionhead{#2}%
+}
+\def\@ssection#1{
+  \@makessectionhead{#1}
+}
+\def\@makesectionhead#1{%
+  \vspace{9pt}
+   {\fontsize{12}{14.4} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{139.8mm}{\raggedright #1}\par \nobreak}
+  \vspace{6pt}
+}
+\def\@makessectionhead#1{%
+  \vspace{9pt}
+   {\fontsize{12}{14.4} \selectfont \bfseries \noindent \hfill \parbox[t]{139.8mm}{\raggedright #1} \par \nobreak}
+  \vspace{6pt}
+}
 \endinput
