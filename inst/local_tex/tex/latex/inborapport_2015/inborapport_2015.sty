@@ -92,4 +92,13 @@
 % use babel for different languages
 \RequirePackage[\@lang]{babel}
 
+% define style for chapters
+\def\@makechapterhead#1{%
+   {\fontsize{14}{16.8} \selectfont \noindent \bfseries \thechapter \hfill \parbox[t]{142.4mm}{\raggedright #1}\par \nobreak}
+  \vspace{16pt}
+  }
+\def\@makeschapterhead#1{%
+   {\fontsize{14}{16.8} \selectfont \noindent \bfseries \hfill \parbox[t]{142.4mm}{\raggedright #1}\par \nobreak}
+  \vspace{16pt}
+  }
 \endinput
