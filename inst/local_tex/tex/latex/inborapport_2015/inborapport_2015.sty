@@ -179,4 +179,30 @@
    {\fontsize{10}{12} \selectfont \itshape \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \par \nobreak}
   \vspace{6pt}
 }
+
+% define style for paragraphs
+\renewcommand{\paragraph}{\secdef\@paragraph\@sparagraph}
+\def\@paragraph[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{paragraph}%
+    \addcontentsline{toc}{paragraph}%
+      {\protect\numberline{\theparagraph}#1}%
+  \else
+    \addcontentsline{toc}{paragraph}#1%
+  \fi
+  \@makeparagraphhead{#2}%
+}
+\def\@sparagraph#1{
+  \@makesparagraphhead{#1}
+}
+\def\@makeparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{9}{10.8} \selectfont \noindent \theparagraph \hfill \parbox[t]{132.2mm}{\raggedright #1}\par \nobreak}
+  \vspace{6pt}
+}
+\def\@makesparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{9}{10.8} \selectfont \noindent \hfill \parbox[t]{132.2mm}{\raggedright #1} \par \nobreak}
+  \vspace{6pt}
+}
 \endinput
