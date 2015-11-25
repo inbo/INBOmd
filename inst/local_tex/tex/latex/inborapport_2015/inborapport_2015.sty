@@ -22,10 +22,15 @@
 \ProcessKeyvalOptions*
 
 % definition of custom commands
+\def\subtitle#1{\def\@subtitle{#1}}
+\subtitle{}
 
 \def\reportnumber#1{\def\@reportnumber{#1}}
 \RequirePackage[yyyymmdd,hhmmss]{datetime}
 \reportnumber{\today\space\currenttime}
+
+\def\ordernumber#1{\def\@ordernumber{#1}}
+\ordernumber{}
 
 % define page geometry
 \RequirePackage[a4paper, top = 2cm, bottom = 2.5cm, left = 3cm, right = 3cm]{geometry}
@@ -277,4 +282,37 @@
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0.4pt}
 }
-\endinput
+
+\fancypagestyle{cover}{%
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyfoot[L]{{\hspace{4mm}\includegraphics[height = 10mm, keepaspectratio]{logo_nl_kleur}}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+
+% define title page
+\def\maketitle{%
+  \thispagestyle{cover}{%
+    \hfill \includegraphics[height = 30mm, keepaspectratio]{vlaanderen_nl_vol}
+
+    \vfill
+
+    \raggedright \fontsize{20}{24}\selectfont \textbf{\@title}
+    \vspace{6pt}
+
+    \fontsize{14}{16.8}\selectfont\@subtitle
+    \vspace{36pt}
+
+    \vspace{12pt}
+    \fontsize{12}{14.4}\selectfont \textbf{\@author}
+    \vspace{144pt}
+
+    \fontsize{9}{10.8}\selectfont\@reportnumber
+
+    \@ordernumber
+
+    \vfill
+    }%
+  \clearpage
