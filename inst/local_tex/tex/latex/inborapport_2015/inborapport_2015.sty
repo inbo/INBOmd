@@ -153,4 +153,30 @@
    {\fontsize{10}{12} \selectfont \noindent \hfill \parbox[t]{137.3mm}{\raggedright #1} \par \nobreak}
   \vspace{6pt}
 }
+
+% define style for subsubsections
+\renewcommand{\subsubsection}{\secdef\@subsubsection\@ssubsubsection}
+\def\@subsubsection[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subsubsection}%
+    \addcontentsline{toc}{subsubsection}%
+      {\protect\numberline{\thesubsubsection}#1}%
+  \else
+    \addcontentsline{toc}{subsubsection}#1%
+  \fi
+  \@makesubsubsectionhead{#2}%
+}
+\def\@ssubsubsection#1{
+  \@makessubsubsectionhead{#1}
+}
+\def\@makesubsubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{10}{12} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{134.8mm}{\raggedright #1}\par \nobreak}
+  \vspace{6pt}
+}
+\def\@makessubsubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{10}{12} \selectfont \itshape \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \par \nobreak}
+  \vspace{6pt}
+}
 \endinput
