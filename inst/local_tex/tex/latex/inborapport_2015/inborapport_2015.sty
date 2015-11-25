@@ -33,6 +33,14 @@
 % add hyperlinks to the document
 \RequirePackage[unicode=true]{hyperref}
 
+% add title and author to the pdf file properties
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle = {\@title},
+    pdfauthor = {\@author}
+  }
+}
+
 % needed for markdown tables
 \RequirePackage{longtable}
 
