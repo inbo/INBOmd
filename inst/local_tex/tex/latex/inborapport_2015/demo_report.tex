@@ -27,18 +27,32 @@
 %De stylesheet van het rapport.
 \usepackage[hyperref = hidelinks, babel = dutch]{inborapport_2015}
 
-\title{Demo report}
-%\ondertitel{Een introductie}
-%\rapportnummer{4 december 2014}
-\author{Thierry Onkelinx}
+\title{Demo report. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subtitle{The subtitle: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\author{Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen \& Paul Quataert}
+\reportnumber{INBO.R.2015.1234567890}
+\ordernumber{ANB.2014-01234569}
 
 \usepackage{lipsum}
 \begin{document}
 \maketitle
 \pagenumbering{Roman}
 
+\chapter*{Dankwoord/Voorwoord}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+\lipsum[23-35]
 
+\chapter*{Samenvatting}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+\lipsum[36-40]
 
+\chapter*{Aanbevelingen voor beheer en/of beleid}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+\lipsum[41-45]
+
+\chapter*{English abstract}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+\lipsum[46-50]
 
 \setcounter{tocdepth}{6}
 \tableofcontents

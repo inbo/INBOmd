@@ -2,6 +2,7 @@
 
 export(inbo_handouts)
 export(inbo_rapport)
+export(inbo_rapport_2015)
 export(inbo_slides)
 export(kolom_breedte)
 export(kolom_start)
