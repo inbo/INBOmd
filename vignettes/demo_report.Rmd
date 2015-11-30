@@ -300,10 +300,14 @@ ggplot(movies, aes(x = rating)) +
   facet_wrap(~mpaa, scales = "free")
 ```
 
+\FloatBarrier
+
 ```{r, fig.cap= "Histrogram of the price per diamond per cut"}
 ggplot(diamonds, aes(x = price, fill = cut)) + 
   geom_histogram()
 ```
+
+\FloatBarrier
 
 ```{r, fig.cap= "Relation between miles per gallon and weight for cars from 1974, split by number of cylinders."}
 ggplot(
