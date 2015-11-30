@@ -236,3 +236,36 @@ Item D
 \begin{alertblock}{The quick brown fox jumps over the lazy dog.}
 \lipsum[44-45]
 \end{alertblock}
+
+# R Code
+
+## Code
+```{r datasets, error=TRUE}
+c(TRUE, FALSE)
+c(0, 1)
+c(0.0, 1.0)
+c(1e-10, 1e10)
+c("Monday", "Tuesday", "Wednesday")
+factor(c("Monday", "Tuesday", "Wednesday"))
+example <- data.frame(
+  Day = c("Monday", "Tuesday", "Wednesday"),
+  'Min Temp' = c(11, 9, 10),
+  'Max Temp' = c(22.5, 19.9, 21.0),
+  Summary = c(
+    "A clear day with lots of sunshine. However, the strong breeze 
+    will bring down the temperatures.", 
+    "Cloudy with rain, across many northern regions. Clear spells 
+    across most of Scotland and Northern Ireland, but rain reaching the far northwest.", 
+    "Rain will still linger for the morning. Conditions will improve 
+    by early afternoon and continue throughout the evening."
+  )
+)
+str(example)
+my_fun <- function(x){
+  cat("my function is", x)
+}
+my_fun("cool")
+message("just a message")
+warning("this is a warning")
+stop("this is an error message")
+```
