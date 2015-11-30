@@ -1,0 +1,238 @@
+---
+title: "Demonstration of report lay-out. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+author: "Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen & Paul Quataert"
+
+output: 
+  INBOmd::inbo_rapport_2015:
+    subtitle: "The subtitle: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+    reportnr: "INBO.R.2015.1234567890"
+    ordernr: "ANB.2014-01234569"
+    usepackage: "lipsum"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Demonstration INBO corporate style for reports version 2015}
+  %\VignetteDepends{pander}
+  %\VignetteDepends{ggplot2}
+  %\SweaveUTF8
+---
+
+# Heading styles: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[1-2]
+
+## Level 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[3-4]
+
+### Level 3:The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[5-6]
+
+#### Level 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[7-8]
+
+##### Level 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[9-10]
+
+###### Level 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+
+\lipsum[11-12]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter*{Heading styles without numbering: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\section*{Level 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subsection*{Level 3: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subsubsection*{Level 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\paragraph*{Level 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subparagraph*{Level 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+
+
+
+
+
+
+
+# Font styles
+
+## Normal
+
+\lipsum[13-14]
+
+## Bold
+
+**\lipsum[15-16]**
+
+## Italics
+
+_\lipsum[17-18]_
+
+##Bold italics
+
+**_\lipsum[19]_**
+
+_**\lipsum[20]**_
+
+## Monospace
+
+`The quick brown fox jumps over the lazy dog.`
+
+**`The quick brown fox jumps over the lazy dog.`**
+
+_`The quick brown fox jumps over the lazy dog.`_
+
+**_`The quick brown fox jumps over the lazy dog.`_**
+
+`The quick` **`brown`** `fox` _`jumps`_ `over the` **_`lazy`_** `dog.`
+
+\texttt{\lipsum[21-22]}
+
+## Small L versus capital i
+
+normal:
+  ~ lI
+
+bold:
+  ~ **lI**
+  
+italics:
+  ~ _lI_
+
+bold italics:
+  ~ **_lI_**
+
+monospace:
+  ~ `lI` **`lI`** _`lI`_ **_`lI`_** 
+
+## Special characters
+  
+### Normal
+
+€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789
+
+### Bold
+**€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789**
+
+### Italics
+_€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789_
+
+### Bold italics
+**_€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789_**
+  
+### Monospace
+`€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789`
+
+## Quotes
+
+normal:
+  ~ "double quotes", 'single quotes'
+
+bold:
+  ~ **"double quotes", 'single quotes'**
+
+italics:
+  ~ _"double quotes", 'single quotes'_
+
+bold italics:
+  ~ **_"double quotes", 'single quotes'_**
+
+monospace:
+  ~ `"double quotes", 'single quotes',` **`"double quotes", 'single quotes',`** _`"double quotes", 'single quotes',`_ **_`"double quotes", 'single quotes'`_**
+
+
+# Listings
+
+## Itemize
+
+- \lipsum[36]
+- Item 2
+- Item 3
+    - Item a
+        - item I
+        - item II
+            - item A
+            - item B
+            - \lipsum[39]
+        - \lipsum[38]
+    - \lipsum[37]
+    - Item c
+- Item 4
+
+## Enumerate
+
+1. \lipsum[32]
+1. Item 2
+1. Item 3
+    1. Item a
+        1. item I
+        1. item II
+            1. \lipsum[35]
+            1. item B
+            1. item C
+        1. \lipsum[34]
+    1. \lipsum[33]
+    1. Item c
+1. Item 4
+
+## Description
+
+Item A
+  ~ \lipsum[23]
+  
+Longer item title B
+  ~ \lipsum[24]
+  
+    Item B1
+      ~ \lipsum[27]
+
+        Item B1a
+          ~ \lipsum[29]
+
+        Item B1b
+          ~ \lipsum[30]
+
+            Item B1b1
+              ~ \lipsum[31]
+              
+    Item B2
+      ~ \lipsum[28]
+
+Item C
+  ~ \lipsum[25]
+  
+Item D
+  ~ \lipsum[26]
+
+# Blocks
+
+## Block
+
+\begin{block}{The quick brown fox jumps over the lazy dog.}
+  \lipsum[40-41]
+\end{block}
+
+
+## Exampleblock
+  
+\begin{exampleblock}{The quick brown fox jumps over the lazy dog.}
+  \lipsum[42-43]
+\end{exampleblock}
+
+## Alertblock
+
+\begin{alertblock}{The quick brown fox jumps over the lazy dog.}
+\lipsum[44-45]
+\end{alertblock}
