@@ -247,6 +247,20 @@ Item D
 \lipsum[44-45]
 \end{alertblock}
 
+# References
+
+Links in the pdf document are clickable. The coloured box around the clickable text helps the reader to find these links. The colour differs depending on the target of the link.
+
+## External links
+
+Naked URLs must start with protocol. e.g. http://www.inbo.be. Relevant protocols are http:// and https:// for websites, ftp:// for ftp sites, mailto:// for email e.g. mailto:nobody@inbo.be. 
+
+We can display a link text instead of a naked URL. [INBO website](http://inbo.be). The http:// protocol can be omitted if the [URL starts with www](www.inbo.be). Send an [e-mail](mailto:nobody@inbo.be) for more information.
+
+## Internal links
+
+Internal links are links within the document. We can refer to a heading\autorefp{font-styles}, a table\autorefp{tbl:grid} or a figure\autorefp{fig:mtcars}.
+
 # R Code
 
 ## Code
@@ -288,13 +302,20 @@ stop("this is an error message")
 
 ```{r multiline_table, results='asis'}
 library(pander)
-pandoc.table(example)
+pandoc.table(
+  example, 
+  caption = "\\label{tbl:multiline}A style with the mutiline markdown style"
+)
 ```
 
 #### Grid table
 
 ```{r grid_table, results='asis'}
-pandoc.table(example, style = "grid")
+pandoc.table(
+  example, 
+  style = "grid", 
+  caption = "\\label{tbl:grid}A style with the grid markdown style"
+)
 ```
 
 ### Figures
@@ -334,4 +355,3 @@ ggplot(
   geom_point() + 
   geom_smooth(method = "lm")
 ```
-
