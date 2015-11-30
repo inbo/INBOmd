@@ -7,7 +7,13 @@ output:
     subtitle: "The subtitle: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
     reportnr: "INBO.R.2015.1234567890"
     ordernr: "ANB.2014-01234569"
+    dankwoord: "lipsum"
+    voorwoord: "lipsum"
+    samenvatting: "lipsum"
+    abstract: "lipsum"
+    appendix: "appendix"
     usepackage: "lipsum"
+    keep_tex: TRUE
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Demonstration INBO corporate style for reports version 2015}

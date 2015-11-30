@@ -50,7 +50,7 @@ inbo_rapport_2015 <- function(
       name = "usepackage"
     )
     args <- c(args, tmp)
-    extra <- extra[!"usepackage" %in% names(extra)]
+    extra <- extra[!names(extra) %in% "usepackage"]
   }
   if (!missing(reportnr)) {
     args <- c(args, pandoc_variable_arg("reportnr", reportnr))
@@ -61,15 +61,17 @@ inbo_rapport_2015 <- function(
   if (!missing(subtitle)) {
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
   }
-  args <- c(
-    args,
-    sapply(
-      names(extra),
-      function(x){
-        pandoc_variable_arg(x, extra[[x]])
-      }
+  if (length(extra) > 0) {
+    args <- c(
+      args,
+      sapply(
+        names(extra),
+        function(x){
+          pandoc_variable_arg(x, extra[[x]])
+        }
+      )
     )
-  )
+  }
   if (!is.na(floatbarrier)) {
     vars <- switch(
       floatbarrier,
