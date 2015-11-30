@@ -16,6 +16,10 @@ vignette: >
   %\SweaveUTF8
 ---
 
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
 # Heading styles: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[1-2]
@@ -240,7 +244,7 @@ Item D
 # R Code
 
 ## Code
-```{r datasets, error=TRUE}
+```{r datasets, error = TRUE, message = TRUE}
 c(TRUE, FALSE)
 c(0, 1)
 c(0.0, 1.0)
@@ -249,8 +253,8 @@ c("Monday", "Tuesday", "Wednesday")
 factor(c("Monday", "Tuesday", "Wednesday"))
 example <- data.frame(
   Day = c("Monday", "Tuesday", "Wednesday"),
-  'Min Temp' = c(11, 9, 10),
-  'Max Temp' = c(22.5, 19.9, 21.0),
+  'Min Temp' = c("11C", "9C", "10C"),
+  'Max Temp' = c("22C", "19C", "21C"),
   Summary = c(
     "A clear day with lots of sunshine. However, the strong breeze 
     will bring down the temperatures.", 
@@ -269,3 +273,44 @@ message("just a message")
 warning("this is a warning")
 stop("this is an error message")
 ```
+
+## Tables and figures
+
+### Tables
+
+#### Multiline table
+
+```{r multiline_table, results='asis'}
+library(pander)
+pandoc.table(example)
+```
+
+#### Grid table
+
+```{r grid_table, results='asis'}
+pandoc.table(example, style = "grid")
+```
+
+### Figures
+
+```{r, fig.cap= "Histogram of movie rating per MPAA rating"}
+library(ggplot2)
+ggplot(movies, aes(x = rating)) + 
+  geom_histogram() + 
+  facet_wrap(~mpaa, scales = "free")
+```
+
+```{r, fig.cap= "Histrogram of the price per diamond per cut"}
+ggplot(diamonds, aes(x = price, fill = cut)) + 
+  geom_histogram()
+```
+
+```{r, fig.cap= "Relation between miles per gallon and weight for cars from 1974, split by number of cylinders."}
+ggplot(
+  mtcars, 
+  aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
+) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
