@@ -61,26 +61,26 @@ $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 $if(dankwoord)$
 \chapter*{Dankwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
-\include{$dankwoord$}
+\input{$dankwoord$}
 $endif$
 
 $if(voorwoord)$
 \chapter*{Voorwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
-\include{$voorwoord$}
+\input{$voorwoord$}
 $endif$
 
 $if(samenvatting)$
 \chapter*{Samenvatting}
 \addcontentsline{toc}{chapter}{\chaptertitle}
-\include{$samenvatting$}
+\input{$samenvatting$}
 $endif$
 
 $if(abstract)$
 \begin{otherlanguage*}{english}
 \chapter*{English abstract}
 \addcontentsline{toc}{chapter}{\chaptertitle}
-\include{$abstract$}
+\input{$abstract$}
 \end{otherlanguage*}
 $endif$
 
@@ -98,6 +98,6 @@ $endif$
 
 $if(appendix)$
 \appendix
-\include{$appendix$}
+\input{$appendix$}
 $endif$
 \end{document}
