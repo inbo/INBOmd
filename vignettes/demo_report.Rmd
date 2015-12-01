@@ -324,7 +324,7 @@ pandoc.table(
 
 An inline figure is placed directly at the location where the code that defines the figure is placed.
 
-```{r, fig.cap= "\\label{fig:mtcars2}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders.", out.extra = ""}
+```{r mtcars2, fig.cap= "\\label{fig:mtcars2}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders.", out.extra = ""}
 library(ggplot2)
 ggplot(
   mtcars, 
@@ -336,18 +336,18 @@ ggplot(
 
 #### Floating figures
 
-```{r, fig.cap= "Histogram of movie rating per MPAA rating"}
+```{r movie, fig.cap= "Histogram of movie rating per MPAA rating"}
 ggplot(movies, aes(x = rating)) + 
   geom_histogram() + 
   facet_wrap(~mpaa, scales = "free")
 ```
 
-```{r, fig.cap= "Histrogram of the price per diamond per cut"}
+```{r diamond, fig.cap= "Histrogram of the price per diamond per cut"}
 ggplot(diamonds, aes(x = price, fill = cut)) + 
   geom_histogram()
 ```
 
-```{r, fig.cap= "\\label{fig:mtcars}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders."}
+```{r mtcars1, fig.cap= "\\label{fig:mtcars}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders."}
 ggplot(
   mtcars, 
   aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
