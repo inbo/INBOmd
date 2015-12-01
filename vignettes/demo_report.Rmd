@@ -24,7 +24,7 @@ vignette: >
 ---
 
 ```{r setup, echo = FALSE}
-knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 ```
 
 # Heading styles: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
@@ -323,9 +323,9 @@ pandoc.table(
 
 #### Inline figure
 
-An inline figure is placed directly at the location where the code that defines the figure is placed.
+An inline figure is placed directly at the location where the code that defines the figure is placed. Note that they can't have a caption.
 
-```{r mtcars2, fig.cap= "\\label{fig:mtcars2}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders.", out.extra = ""}
+```{r mtcars2, out.extra = ""}
 library(ggplot2)
 library(INBOtheme)
 theme_set(theme_inbo2015(base_size = 8))
@@ -338,6 +338,8 @@ ggplot(
 ```
 
 #### Floating figures
+
+Floating are placed approximately at the location of their code. They can 'float' to the top of bottom of the page or even to one of the following pages. Much will depend on the ratio between the amount of text and the size and number of the floats. More and larger floats increase the probability that some floats are place on the following pages.
 
 ```{r movie, fig.cap= "Histogram of movie rating per MPAA rating"}
 ggplot(movies, aes(x = rating)) + 
