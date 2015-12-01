@@ -19,6 +19,7 @@ vignette: >
   %\VignetteIndexEntry{Demonstration INBO corporate style for reports version 2015}
   %\VignetteDepends{pander}
   %\VignetteDepends{ggplot2}
+  %\VignetteDepends{INBOtheme}
   %\SweaveUTF8
 ---
 
@@ -326,6 +327,8 @@ An inline figure is placed directly at the location where the code that defines 
 
 ```{r mtcars2, fig.cap= "\\label{fig:mtcars2}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders.", out.extra = ""}
 library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(base_size = 8))
 ggplot(
   mtcars, 
   aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
