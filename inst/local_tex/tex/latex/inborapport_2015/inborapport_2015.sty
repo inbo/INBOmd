@@ -112,6 +112,20 @@
 % use babel for different languages
 \RequirePackage{babel}
 
+% update autoref labels for dutch
+\addto\extrasdutch{%
+  \def\chapterautorefname{Hoofdstuk}%
+}
+\addto\extrasdutch{%
+  \def\sectionautorefname{Sectie}%
+}
+\addto\extrasdutch{%
+  \def\figureautorefname{Figuur}%
+}
+\addto\extrasdutch{%
+  \def\tableautorefname{Tabel}%
+}
+
 % define style for chapters
 \def\@makechapterhead#1{%
    {\fontsize{14}{16.8} \selectfont \bfseries \thechapter \hfill \parbox[t]{142.4mm}{\raggedright #1}\par \nobreak}
