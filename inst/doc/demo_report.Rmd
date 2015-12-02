@@ -9,6 +9,7 @@ output:
     dankwoord: "lipsum"
     voorwoord: "lipsum"
     samenvatting: "lipsum"
+    aanbeveling: "lipsum"
     abstract: "lipsum"
     appendix: "appendix"
     usepackage: "lipsum"
