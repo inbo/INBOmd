@@ -1,9 +1,12 @@
+*.aux
 *.bbl
+*.blg
 *.gz
 *.lof
 *.log
 *.lot
 *.nav
+*.out
 *.pdf
 *.snm
 *.tex
