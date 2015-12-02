@@ -5,7 +5,7 @@
 \title{Render a Markdown file with natbib bibliography}
 \usage{
 render_natbib(file, path = ".", encoding = "UTF-8", engine = c("xelatex",
-  "pdflatex"))
+  "pdflatex"), display = TRUE)
 }
 \arguments{
 \item{file}{the name of the Rmd file}
@@ -13,6 +13,8 @@ render_natbib(file, path = ".", encoding = "UTF-8", engine = c("xelatex",
 \item{path}{the path of the Rmd file}
 
 \item{engine}{the LaTeX engine the compile the document. Defaults to "xelatex".}
+
+\item{display}{open the pdf in a reader. Defaults to TRUE}
 
 \item{enconding}{the encoding of the Rmd file. Default to 'UTF-8'}
 }
