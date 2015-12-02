@@ -275,17 +275,6 @@
   \vspace{6pt}
 }
 
-% changing style in table of contents
-\renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
-\renewcommand*\l@section{\normalfont\@dottedtocline{2}{0mm}{20mm}}
-\renewcommand*\l@subsection{\normalfont\@dottedtocline{3}{0mm}{20mm}}
-\renewcommand*\l@subsubsection{\normalfont\@dottedtocline{4}{0mm}{20mm}}
-\renewcommand*\l@paragraph{\normalfont\@dottedtocline{5}{0mm}{20mm}}
-\renewcommand*\l@subparagraph{\normalfont\@dottedtocline{6}{0mm}{20mm}}
-
-% set indent length
-\setlength{\parindent}{0mm}
-
 % define headers and footers
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
@@ -386,3 +375,23 @@
 \renewcommand{\baselinestretch}{1.1}
 \RequirePackage{parskip}
 \setlength{\parskip}{9pt plus4pt minus4pt}
+
+% add figure and table prefix to list of figures and list of tables
+\RequirePackage{tocloft}
+
+\setlength{\cftfigindent}{0mm}
+\setlength{\cfttabindent}{0mm}
+
+\setlength{\cftfignumwidth}{20mm}
+\setlength{\cfttabnumwidth}{20mm}
+\renewcommand{\cftfigpresnum}{\figurename\ }
+\renewcommand{\cfttabpresnum}{\tablename\ }
+
+% changing style in table of contents
+\renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
+\renewcommand*\l@section{\normalfont\@dottedtocline{2}{0mm}{20mm}}
+\renewcommand*\l@subsection{\normalfont\@dottedtocline{3}{0mm}{20mm}}
+\renewcommand*\l@subsubsection{\normalfont\@dottedtocline{4}{0mm}{20mm}}
+\renewcommand*\l@paragraph{\normalfont\@dottedtocline{5}{0mm}{20mm}}
+\renewcommand*\l@subparagraph{\normalfont\@dottedtocline{6}{0mm}{20mm}}
+
