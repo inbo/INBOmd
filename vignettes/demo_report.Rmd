@@ -1,7 +1,7 @@
 ---
 title: "Demonstratie van de rapport lay-out. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
 author: "Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen & Paul Quataert"
-
+bibliography: "INBOmd.bib"
 output: 
   INBOmd::inbo_rapport_2015:
     subtitle: "The subtitle: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
@@ -265,6 +265,37 @@ We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://
 
 Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}.
 
+## Referenties
+
+### Vereisten
+
+Bibliografische verwijzingen zijn geen probleem. De bibliografie moet in BibTex formaat beschikbaar zijn. Dit formaat kan automatisch aangemaakt worden door Mendeley. 
+
+### In lijn stijlen
+
+- @BlauwdrukVleermuizen
+- [@BlauwdrukVleermuizen]
+- [zie @BlauwdrukVleermuizen, hoofdstuk 1]
+- [@BlauwdrukVleermuizen; @Onkelinx2014a]
+
+boeken
+  ~ [@Agresti2002; @DiggleRibeiro2007; @ZuurEtal2009; @Bolker2008; @Kish_1965; @BanerjeeEtal2003]
+
+hoofdstukken
+  ~ [@Degraer2013a; @BlauwdrukVogels; @BlauwdrukVleermuizen]
+
+proceedings
+  ~ [@Onkelinx2014a; @Onkelinx2012]
+
+artikels
+  ~ [@Amano2012; @VanderMijnsbrugge2005; @R-reshape; @Yli-Viikari2007]
+
+thesis
+  ~ [@MaStatThesis]
+  
+software
+  ~ [@R-3.0.1]
+  
 # R Code
 
 ## Code
@@ -363,3 +394,5 @@ ggplot(
   geom_point() + 
   geom_smooth(method = "lm")
 ```
+
+# Referenties
