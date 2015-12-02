@@ -251,6 +251,43 @@ Item D
 \lipsum[44-45]
 \end{alertblock}
 
+# Wiskundige vergelijkingen
+
+## In-lijn vergelijkingen
+
+In-lijn vergelijkingen worden opgenomen binnen de tekst van de alinea. Bijvoorbeeld $P(y < Y|\theta) = \alpha$. Dit werkt het best met beknopte vergelijkingen. Vergelijkingen die een zekere hoogte nodig hebben zullen in de mate van het mogelijke aangepast worden om zo min mogelijk hoogte in te nemen. Een voorbeeld hier van is $\bar{X} = \sum_{i = 1}^NX_i$. Hierbij zijn $i = 1$ en $N$ naast $\sum$ geplaatst in plaats van er boven. Dat lukt uiteraard niet altijd. Breuken zijn daar een goed voorbeeld van $\frac{X}{Y}$. In dat geval wordt het lettertype verkleind. Hetgeen de leesbaarheid niet bevorderd. Bij complexe vegelijkingen als $\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}$ is het noodzakelijk om tevens de regelafstand te vergroten. In dergelijke gevallen is het beter om losstaande vergelijkingen te gebruiken.
+
+## Losstaande vergelijkingen
+
+Losstaande vergelijkingen worden elk in een afzonderlijke alinea opgenomen.
+
+$$P(y < Y|\theta) = \alpha$$
+
+$$\bar{X} = \sum_{i = 1}^NX_i$$
+
+$$\frac{X}{Y}$$
+
+$$\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}$$
+
+Het is tevens mogelijk om de losstaande vergelijkingen te nummeren. Het nummer bevat steeds het hoofdstuknummer als prefix.
+
+\begin{equation}
+P(y < Y|\theta) = \alpha
+\end{equation}
+
+\begin{equation}
+\label{eq:som}
+\bar{X} = \sum_{i = 1}^NX_i
+\end{equation}
+
+\begin{equation}
+\frac{X}{Y}
+\end{equation}
+
+\begin{equation}
+\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}
+\end{equation}
+
 # Verwijzingen
 
 De verwijzingen in het pdf document zijn klikbaar. De gekleurde tekst helpt de lezer om de klikbare links te vinden. De kleur verschilt naargelang het type verwijzing.
@@ -263,7 +300,7 @@ We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://
 
 ## Interne verwijzingen
 
-Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}.
+Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}. Voor de verwijzing naar genummerde losstaande vergelijkingen is er slechts een formaat: \eqref{eq:som}.
 
 ## Referenties
 
