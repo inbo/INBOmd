@@ -271,7 +271,7 @@ Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwij
 
 Bibliografische verwijzingen zijn geen probleem. De bibliografie moet in BibTex formaat beschikbaar zijn. Dit formaat kan automatisch aangemaakt worden door Mendeley. 
 
-### In lijn stijlen
+### In-lijn stijlen
 
 - @BlauwdrukVleermuizen
 - [@BlauwdrukVleermuizen]
@@ -381,7 +381,7 @@ ggplot(movies, aes(x = rating)) +
   facet_wrap(~mpaa, scales = "free")
 ```
 
-```{r diamond, fig.cap= "Histrogram van de diamantprijs i.f.v. van slijpwijze"}
+```{r diamond, fig.cap= "Histrogram van de diamantprijs i.f.v. van kwaliteit van het slijpwerk"}
 ggplot(diamonds, aes(x = price, fill = cut)) + 
   geom_histogram()
 ```
