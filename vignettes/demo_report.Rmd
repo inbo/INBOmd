@@ -263,7 +263,7 @@ We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://
 
 ## Interne verwijzingen
 
-Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}.
+Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}.
 
 # R Code
 
