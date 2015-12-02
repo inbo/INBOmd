@@ -35,6 +35,14 @@
 % define page geometry
 \RequirePackage[a4paper, top = 2cm, bottom = 2.5cm, left = 3cm, right = 3cm]{geometry}
 
+% definition of INBO colours
+\RequirePackage{xcolor}
+\definecolor{inbo.main}{RGB}{191, 43, 134}
+\definecolor{inbo.blue}{RGB}{53, 97, 150}
+\definecolor{inbo.red}{RGB}{190, 50, 84}
+\definecolor{inbo.green}{RGB}{149, 155, 56}
+\definecolor{inbo.orange}{RGB}{232, 120, 55}
+
 % add hyperlinks to the document
 \RequirePackage[unicode=true, colorlinks=true]{hyperref}
 
@@ -42,7 +50,10 @@
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
-    pdfauthor = {\@author}
+    pdfauthor = {\@author},
+    linkcolor = inbo.main,
+    urlcolor = inbo.blue,
+    citecolor = inbo.green
   }
 }
 
@@ -51,14 +62,6 @@
 
 % needed for figures
 \RequirePackage{graphicx}
-
-% definition of INBO colours
-\RequirePackage{xcolor}
-\definecolor{inbo.main}{RGB}{191, 43, 134}
-\definecolor{inbo.blue}{RGB}{53, 97, 150}
-\definecolor{inbo.red}{RGB}{190, 50, 84}
-\definecolor{inbo.green}{RGB}{149, 155, 56}
-\definecolor{inbo.orange}{RGB}{232, 120, 55}
 
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
