@@ -253,7 +253,7 @@ Item D
 
 # Verwijzingen
 
-De verwijzingen in het pdf document zijn klikbaar. De gekleurde kader rond de klikbare tekst helpt de lezer om de klikbare links te vinden. De kleur verschilt naargelang het type verwijzing. Merk op dat deze gekleurde kaders enkel zichtbaar zijn op het scherm. Ze worden **niet** afgedrukt.
+De verwijzingen in het pdf document zijn klikbaar. De gekleurde tekst helpt de lezer om de klikbare links te vinden. De kleur verschilt naargelang het type verwijzing.
 
 ## Externe verwijzingen
 
