@@ -125,6 +125,9 @@
 \addto\extrasdutch{%
   \def\tableautorefname{Tabel}%
 }
+\addto{\captionsdutch}{%
+  \renewcommand{\bibname}{Referenties}%
+}
 
 % define style for chapters
 \def\@makechapterhead#1{%
@@ -369,3 +372,6 @@
 % define references in between brackets
 \newcommand{\autorefp}[1]{ (\autoref{#1})}
 \newcommand{\refp}[1]{ (\ref{#1})}
+
+% allow natbib style references
+\RequirePackage[round, colon, authoryear, sort&compress]{natbib}
