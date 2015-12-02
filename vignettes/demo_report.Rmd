@@ -1,10 +1,10 @@
 ---
-title: "Demonstratie van de rapport lay-out. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+title: "Demonstratie van de rapport lay-out. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs."
 author: "Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen & Paul Quataert"
 bibliography: "INBOmd.bib"
 output: 
   INBOmd::inbo_rapport_2015:
-    subtitle: "The subtitle: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+    subtitle: "De ondertitel: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs."
     reportnr: "INBO.R.2015.1234567890"
     ordernr: "ANB.2014-01234569"
     dankwoord: "lipsum"
@@ -27,27 +27,27 @@ vignette: >
 knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 ```
 
-# Kopstijlen: niveau 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+# Kopstijlen: niveau 1: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[1-2]
 
-## Niveau 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+## Niveau 2: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[3-4]
 
-### Niveau 3:The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+### Niveau 3:Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[5-6]
 
-#### Niveau 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+#### Niveau 4: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[7-8]
 
-##### Niveau 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+##### Niveau 5: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[9-10]
 
-###### Niveau 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+###### Niveau 6: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[11-12]
 
@@ -64,15 +64,15 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 
 
-\chapter*{Kop stijlen zonder nummering: Niveau 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\chapter*{Kop stijlen zonder nummering: Niveau 1: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
 
 Dergelijke koppen worden in principe niet opgenomen in de inhoudstafel. Ze kunnen wel explicitiet worden toegevoegd.
 
-\section*{Niveau 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subsection*{Niveau 3: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subsubsection*{Niveau 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\paragraph*{Niveau 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subparagraph*{Niveau 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\section*{Niveau 2: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
+\subsection*{Niveau 3: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
+\subsubsection*{Niveau 4: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
+\paragraph*{Niveau 5: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
+\subparagraph*{Niveau 6: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
 
 
 
@@ -102,15 +102,15 @@ _**\lipsum[20]**_
 
 ## Met vaste tekenbreedte
 
-`The quick brown fox jumps over the lazy dog.`
+`Filmquiz bracht knappe ex-yogi van de wijs.`
 
-**`The quick brown fox jumps over the lazy dog.`**
+**`Filmquiz bracht knappe ex-yogi van de wijs.`**
 
-_`The quick brown fox jumps over the lazy dog.`_
+_`Filmquiz bracht knappe ex-yogi van de wijs.`_
 
-**_`The quick brown fox jumps over the lazy dog.`_**
+**_`Filmquiz bracht knappe ex-yogi van de wijs.`_**
 
-`The quick` **`brown`** `fox` _`jumps`_ `over the` **_`lazy`_** `dog.`
+`**Filmquiz** bracht _knappe_ ex-yogi van de **_wijs_**.`
 
 \texttt{\lipsum[21-22]}
 
@@ -234,20 +234,20 @@ Item D
 
 ## Standaard kader
 
-\begin{block}{The quick brown fox jumps over the lazy dog.}
+\begin{block}{Filmquiz bracht knappe ex-yogi van de wijs.}
   \lipsum[40-41]
 \end{block}
 
 
 ## Kader met voorbeeld
   
-\begin{exampleblock}{The quick brown fox jumps over the lazy dog.}
+\begin{exampleblock}{Filmquiz bracht knappe ex-yogi van de wijs.}
   \lipsum[42-43]
 \end{exampleblock}
 
 ## Kader met waarschuwing
 
-\begin{alertblock}{The quick brown fox jumps over the lazy dog.}
+\begin{alertblock}{Filmquiz bracht knappe ex-yogi van de wijs.}
 \lipsum[44-45]
 \end{alertblock}
 
