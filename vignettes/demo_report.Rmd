@@ -306,20 +306,6 @@ c(0.0, 1.0)
 c(1e-10, 1e10)
 c("maandag", "dinsdag", "woensdag")
 factor(c("maandag", "dinsdag", "woensdag"))
-example <- data.frame(
-  Day = c("Monday", "Tuesday", "Wednesday"),
-  'Min Temp' = c("11C", "9C", "10C"),
-  'Max Temp' = c("22C", "19C", "21C"),
-  Summary = c(
-    "A clear day with lots of sunshine. However, the strong breeze 
-    will bring down the temperatures.", 
-    "Cloudy with rain, across many northern regions. Clear spells 
-    across most of Scotland and Northern Ireland, but rain reaching the far northwest.", 
-    "Rain will still linger for the morning. Conditions will improve 
-    by early afternoon and continue throughout the evening."
-  )
-)
-str(example)
 my_fun <- function(x){
   cat("mijn functie is", x)
 }
@@ -338,7 +324,7 @@ stop("dit is een foutmelding")
 ```{r multiline_table, results='asis'}
 library(pander)
 pandoc.table(
-  example, 
+  head(CO2, 20),
   caption = "\\label{tbl:multiline}Een tabel in de markdown multiline stijl"
 )
 ```
@@ -347,7 +333,7 @@ pandoc.table(
 
 ```{r grid_table, results='asis'}
 pandoc.table(
-  example, 
+  head(CO2, 20),
   style = "grid", 
   caption = "\\label{tbl:grid}Een tabel in de markdown grid stijl"
 )
