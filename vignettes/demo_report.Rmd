@@ -1,5 +1,5 @@
 ---
-title: "Demonstration of report lay-out. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
+title: "Demonstratie van de rapport lay-out. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
 author: "Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen & Paul Quataert"
 
 output: 
@@ -16,7 +16,7 @@ output:
     keep_tex: TRUE
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Demonstration INBO corporate style for reports version 2015}
+  %\VignetteIndexEntry{Demonstratie van de INBO huisstijl voor rapporten versie 2015}
   %\VignetteDepends{pander}
   %\VignetteDepends{ggplot2}
   %\VignetteDepends{INBOtheme}
@@ -27,27 +27,27 @@ vignette: >
 knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 ```
 
-# Heading styles: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+# Kopstijlen: niveau 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[1-2]
 
-## Level 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+## Niveau 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[3-4]
 
-### Level 3:The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+### Niveau 3:The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[5-6]
 
-#### Level 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+#### Niveau 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[7-8]
 
-##### Level 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+##### Niveau 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[9-10]
 
-###### Level 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
+###### Niveau 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.
 
 \lipsum[11-12]
 
@@ -64,12 +64,15 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 
 
-\chapter*{Heading styles without numbering: level 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\section*{Level 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subsection*{Level 3: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subsubsection*{Level 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\paragraph*{Level 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
-\subparagraph*{Level 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\chapter*{Kop stijlen zonder nummering: Niveau 1: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+
+Dergelijke koppen worden in principe niet opgenomen in de inhoudstafel. Ze kunnen wel explicitiet worden toegevoegd.
+
+\section*{Niveau 2: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subsection*{Niveau 3: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subsubsection*{Niveau 4: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\paragraph*{Niveau 5: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
+\subparagraph*{Niveau 6: The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.}
 
 
 
@@ -77,27 +80,27 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 
 
-# Font styles
+# Lettertypes
 
-## Normal
+## Normaal
 
 \lipsum[13-14]
 
-## Bold
+## Vet
 
 **\lipsum[15-16]**
 
-## Italics
+## Schuin
 
 _\lipsum[17-18]_
 
-##Bold italics
+##Vet en schuin
 
 **_\lipsum[19]_**
 
 _**\lipsum[20]**_
 
-## Monospace
+## Met vaste tekenbreedte
 
 `The quick brown fox jumps over the lazy dog.`
 
@@ -111,62 +114,62 @@ _`The quick brown fox jumps over the lazy dog.`_
 
 \texttt{\lipsum[21-22]}
 
-## Small L versus capital i
+## Kleine letter L versus hoofdletter i
 
-normal:
+normaal:
   ~ lI
 
-bold:
+vet:
   ~ **lI**
   
-italics:
+schuin:
   ~ _lI_
 
-bold italics:
+vet en schuin:
   ~ **_lI_**
 
-monospace:
+met vaste tekenbreedte:
   ~ `lI` **`lI`** _`lI`_ **_`lI`_** 
 
-## Special characters
+## Speciale characters
   
-### Normal
+### Normaal
 
 €$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789
 
-### Bold
+### Vet
 **€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789**
 
-### Italics
+### Schuin
 _€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789_
 
-### Bold italics
+### Vet en schuin
 **_€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789_**
   
-### Monospace
+### Met vaste tekenbreedte
 `€$£ @&#§µ^ ()[]{}|²³<>/\*+- ,;:.?!~ äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ 0123456789`
 
-## Quotes
+## Aanhalingstekens
 
-normal:
-  ~ "double quotes", 'single quotes'
+normaal:
+  ~ "dubbele", 'enkele'
 
-bold:
-  ~ **"double quotes", 'single quotes'**
+vet:
+  ~ **"dubbele", 'enkele'**
 
-italics:
-  ~ _"double quotes", 'single quotes'_
+schuin:
+  ~ _"dubbele", 'enkele'_
 
-bold italics:
-  ~ **_"double quotes", 'single quotes'_**
+vet en schuin:
+  ~ **_"dubbele", 'enkele'_**
 
-monospace:
-  ~ `"double quotes", 'single quotes',` **`"double quotes", 'single quotes',`** _`"double quotes", 'single quotes',`_ **_`"double quotes", 'single quotes'`_**
+met vaste tekenbreedte:
+  ~ `"dubbele", 'enkele',` **`"dubbele", 'enkele',`** _`"dubbele", 'enkele',`_ **_`"dubbele", 'enkele'`_**
 
 
-# Listings
+# Opsommingen
 
-## Itemize
+## Ongeordende lijsten
 
 - \lipsum[36]
 - Item 2
@@ -182,7 +185,7 @@ monospace:
     - Item c
 - Item 4
 
-## Enumerate
+## Genummerde lijsten
 
 1. \lipsum[32]
 1. Item 2
@@ -198,7 +201,7 @@ monospace:
     1. Item c
 1. Item 4
 
-## Description
+## Lijsten met definities
 
 Item A
   ~ \lipsum[23]
@@ -227,40 +230,40 @@ Item C
 Item D
   ~ \lipsum[26]
 
-# Blocks
+# Kaders
 
-## Block
+## Standaard kader
 
 \begin{block}{The quick brown fox jumps over the lazy dog.}
   \lipsum[40-41]
 \end{block}
 
 
-## Exampleblock
+## Kader met voorbeeld
   
 \begin{exampleblock}{The quick brown fox jumps over the lazy dog.}
   \lipsum[42-43]
 \end{exampleblock}
 
-## Alertblock
+## Kader met waarschuwing
 
 \begin{alertblock}{The quick brown fox jumps over the lazy dog.}
 \lipsum[44-45]
 \end{alertblock}
 
-# References
+# Verwijzingen
 
-Links in the pdf document are clickable. The coloured box around the clickable text helps the reader to find these links. The colour differs depending on the target of the link.
+De verwijzingen in het pdf document zijn klikbaar. De gekleurde kader rond de klikbare tekst helpt de lezer om de klikbare links te vinden. De kleur verschilt naargelang het type verwijzing. Merk op dat deze gekleurde kaders enkel zichtbaar zijn op het scherm. Ze worden **niet** afgedrukt.
 
-## External links
+## Externe verwijzingen
 
-Naked URLs must start with protocol. e.g. http://www.inbo.be. Relevant protocols are http:// and https:// for websites, ftp:// for ftp sites, mailto:// for email e.g. mailto:nobody@inbo.be. 
+Naakte URLs moeten met het gebruikte protocol beginnen bv http://www.inbo.be. Relevante protocols zijn http:// en https:// voor websites, ftp:// voor ftp sites, mailto:// voor email e.g. mailto:nobody@inbo.be. 
 
-We can display a link text instead of a naked URL. [INBO website](http://inbo.be). The http:// protocol can be omitted if the [URL starts with www](www.inbo.be). Send an [e-mail](mailto:nobody@inbo.be) for more information.
+We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://inbo.be). We kunnen deze techniek evens gebruiken voor de andere protocols bv [e-mail](mailto:nobody@inbo.be). Wanneer de URL met `www` start is het niet nodig om het http:// protocol te specifiëren bv [URL begint met www](www.inbo.be).
 
-## Internal links
+## Interne verwijzingen
 
-Internal links are links within the document. We can refer to a heading\autorefp{font-styles}, a table\autorefp{tbl:grid} or a figure\autorefp{fig:mtcars}.
+Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}.
 
 # R Code
 
@@ -270,8 +273,8 @@ c(TRUE, FALSE)
 c(0, 1)
 c(0.0, 1.0)
 c(1e-10, 1e10)
-c("Monday", "Tuesday", "Wednesday")
-factor(c("Monday", "Tuesday", "Wednesday"))
+c("maandag", "dinsdag", "woensdag")
+factor(c("maandag", "dinsdag", "woensdag"))
 example <- data.frame(
   Day = c("Monday", "Tuesday", "Wednesday"),
   'Min Temp' = c("11C", "9C", "10C"),
@@ -287,43 +290,43 @@ example <- data.frame(
 )
 str(example)
 my_fun <- function(x){
-  cat("my function is", x)
+  cat("mijn functie is", x)
 }
 my_fun("cool")
-message("just a message")
-warning("this is a warning")
-stop("this is an error message")
+message("dit is een boodschap")
+warning("dit is een waarschuwing")
+stop("dit is een foutmelding")
 ```
 
-## Tables and figures
+## Tabellen en figuren
 
-### Tables
+### Tabellen
 
-#### Multiline table
+#### Multiline tabel
 
 ```{r multiline_table, results='asis'}
 library(pander)
 pandoc.table(
   example, 
-  caption = "\\label{tbl:multiline}A style with the mutiline markdown style"
+  caption = "\\label{tbl:multiline}Een tabel in de markdown multiline stijl"
 )
 ```
 
-#### Grid table
+#### Grid tabel
 
 ```{r grid_table, results='asis'}
 pandoc.table(
   example, 
   style = "grid", 
-  caption = "\\label{tbl:grid}A style with the grid markdown style"
+  caption = "\\label{tbl:grid}Een tabel in de markdown grid stijl"
 )
 ```
 
-### Figures
+### Figuren
 
-#### Inline figure
+#### Inlijn figuren
 
-An inline figure is placed directly at the location where the code that defines the figure is placed. Note that they can't have a caption.
+Een inlijn figuren worden steeds geplaatst waar de bijhorende code staat. Ze kunnen bijgevolg ook in een alinea geplaatst worden. Merk op dat inlijn figuren om die reden geen bijschrift kunnen hebben.
 
 ```{r mtcars2, out.extra = ""}
 library(ggplot2)
@@ -337,22 +340,22 @@ ggplot(
   geom_smooth(method = "lm")
 ```
 
-#### Floating figures
+#### Zwevende figuren
 
-Floating are placed approximately at the location of their code. They can 'float' to the top of bottom of the page or even to one of the following pages. Much will depend on the ratio between the amount of text and the size and number of the floats. More and larger floats increase the probability that some floats are place on the following pages.
+Zwevende figuren worden in de buurt van de code geplaatst. Ze worden in de mate van de mogelijk op de plaats van de code geplaatst, bovenaan de pagina of onderaan de pagina. Indien veel figuren onmiddellijk na elkaar geplaatst worden zullen sommige figuren naar een volgende pagina verplaatst worden.
 
-```{r movie, fig.cap= "Histogram of movie rating per MPAA rating"}
+```{r movie, fig.cap= "Histogram van filmwaardering i.f.v. MPAA categorie"}
 ggplot(movies, aes(x = rating)) + 
   geom_histogram() + 
   facet_wrap(~mpaa, scales = "free")
 ```
 
-```{r diamond, fig.cap= "Histrogram of the price per diamond per cut"}
+```{r diamond, fig.cap= "Histrogram van de diamantprijs i.f.v. van slijpwijze"}
 ggplot(diamonds, aes(x = price, fill = cut)) + 
   geom_histogram()
 ```
 
-```{r mtcars1, fig.cap= "\\label{fig:mtcars}Relation between miles per gallon and weight for cars from 1974, split by number of cylinders."}
+```{r mtcars1, fig.cap= "\\label{fig:mtcars}Verbruik van wagens uit 1974 in miles per gallon in functie van hun gewicht in 1000 pond, opgesplitst volgens aantal cyclinders."}
 ggplot(
   mtcars, 
   aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
