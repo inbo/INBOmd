@@ -76,6 +76,12 @@ $if(samenvatting)$
 \input{$samenvatting$}
 $endif$
 
+$if(aanbeveling)$
+\chapter*{Aanbevelingen voor beheer en/of beleid}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+\input{$aanbeveling$}
+$endif$
+
 $if(abstract)$
 \begin{otherlanguage*}{english}
 \chapter*{English abstract}
