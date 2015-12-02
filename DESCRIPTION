@@ -15,3 +15,4 @@ Suggests:
     INBOtheme (>= 0.4.1)
 Imports:
     rmarkdown
+RoxygenNote: 5.0.1
