@@ -110,7 +110,7 @@ _`Filmquiz bracht knappe ex-yogi van de wijs.`_
 
 **_`Filmquiz bracht knappe ex-yogi van de wijs.`_**
 
-`**Filmquiz** bracht _knappe_ ex-yogi van de **_wijs_**.`
+**`Filmquiz`** `bracht` _`knappe`_ `ex-yogi van de` **_`wijs`_**.
 
 \texttt{\lipsum[21-22]}
 
