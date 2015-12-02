@@ -36,7 +36,7 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 \lipsum[3-4]
 
-### Niveau 3:Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
+### Niveau 3: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
 \lipsum[5-6]
 
@@ -252,15 +252,15 @@ Item D
 \lipsum[44-45]
 \end{alertblock}
 
-# Wiskundige vergelijkingen
+# Wiskundige formules
 
-## In-lijn vergelijkingen
+## In-lijn formules
 
-In-lijn vergelijkingen worden opgenomen binnen de tekst van de alinea. Bijvoorbeeld $P(y < Y|\theta) = \alpha$. Dit werkt het best met beknopte vergelijkingen. Vergelijkingen die een zekere hoogte nodig hebben zullen in de mate van het mogelijke aangepast worden om zo min mogelijk hoogte in te nemen. Een voorbeeld hier van is $\bar{X} = \sum_{i = 1}^NX_i$. Hierbij zijn $i = 1$ en $N$ naast $\sum$ geplaatst in plaats van er boven. Dat lukt uiteraard niet altijd. Breuken zijn daar een goed voorbeeld van $\frac{X}{Y}$. In dat geval wordt het lettertype verkleind. Hetgeen de leesbaarheid niet bevorderd. Bij complexe vegelijkingen als $\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}$ is het noodzakelijk om tevens de regelafstand te vergroten. In dergelijke gevallen is het beter om losstaande vergelijkingen te gebruiken.
+In-lijn formules worden opgenomen binnen de tekst van de alinea. Bijvoorbeeld $P(y < Y|\theta) = \alpha$. Dit werkt het best met beknopte formules. Formules die een zekere hoogte nodig hebben zullen in de mate van het mogelijke aangepast worden om zo min mogelijk hoogte in te nemen. Een voorbeeld hier van is $\bar{X} = \sum_{i = 1}^NX_i$. Hierbij zijn $i = 1$ en $N$ naast $\sum$ geplaatst in plaats van er boven. Dat lukt uiteraard niet altijd. Breuken zijn daar een goed voorbeeld van $\frac{X}{Y}$. In dat geval wordt het lettertype verkleind. Hetgeen de leesbaarheid niet bevordert. Bij complexe formule als $\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_j}{N}}$ is het noodzakelijk om tevens de regelafstand te vergroten. In dergelijke gevallen is het beter om losstaande formules te gebruiken.
 
-## Losstaande vergelijkingen
+## Losstaande formules
 
-Losstaande vergelijkingen worden elk in een afzonderlijke alinea opgenomen.
+Losstaande formules worden elk in een afzonderlijke alinea opgenomen.
 
 $$P(y < Y|\theta) = \alpha$$
 
@@ -270,7 +270,7 @@ $$\frac{X}{Y}$$
 
 $$\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}$$
 
-Het is tevens mogelijk om de losstaande vergelijkingen te nummeren. Het nummer bevat steeds het hoofdstuknummer als prefix.
+Het is tevens mogelijk om de losstaande formules te nummeren. Het nummer bevat steeds het hoofdstuknummer als prefix.
 
 \begin{equation}
 P(y < Y|\theta) = \alpha
@@ -286,7 +286,7 @@ P(y < Y|\theta) = \alpha
 \end{equation}
 
 \begin{equation}
-\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}
+\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_j}{N}}
 \end{equation}
 
 # Verwijzingen
@@ -297,11 +297,11 @@ De verwijzingen in het pdf document zijn klikbaar. De gekleurde tekst helpt de l
 
 Naakte URLs moeten met het gebruikte protocol beginnen bv http://www.inbo.be. Relevante protocols zijn http:// en https:// voor websites, ftp:// voor ftp sites, mailto:// voor email e.g. mailto:nobody@inbo.be. 
 
-We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://inbo.be). We kunnen deze techniek evens gebruiken voor de andere protocols bv [e-mail](mailto:nobody@inbo.be). Wanneer de URL met `www` start is het niet nodig om het http:// protocol te specifiëren bv [URL begint met www](www.inbo.be).
+We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://inbo.be). We kunnen deze techniek eveneens gebruiken voor de andere protocols bv [e-mail](mailto:nobody@inbo.be). Wanneer de URL met `www` start is het niet nodig om het http:// protocol te specifiëren bv [URL begint met www](www.inbo.be).
 
 ## Interne verwijzingen
 
-Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}. Voor de verwijzing naar genummerde losstaande vergelijkingen is er slechts een formaat: \eqref{eq:som}.
+Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}. Voor de verwijzing naar genummerde losstaande formules is er slechts één formaat: \eqref{eq:som}.
 
 ## Referenties
 
@@ -410,7 +410,7 @@ ggplot(diamonds, aes(x = price, fill = cut)) +
   geom_histogram()
 ```
 
-```{r mtcars1, fig.cap= "\\label{fig:mtcars}Verbruik van wagens uit 1974 in miles per gallon in functie van hun gewicht in 1000 pond, opgesplitst volgens aantal cyclinders."}
+```{r mtcars1, fig.cap= "\\label{fig:mtcars}Verbruik van wagens uit 1974 in miles per gallon in functie van hun gewicht in 1000 pond, opgesplitst volgens aantal cylinders."}
 ggplot(
   mtcars, 
   aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
