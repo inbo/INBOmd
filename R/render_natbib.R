@@ -7,14 +7,17 @@
 #' @param enconding the encoding of the Rmd file. Default to 'UTF-8'
 #' @param engine the LaTeX engine the compile the document. Defaults to "xelatex".
 #' @param display open the pdf in a reader. Defaults to TRUE
+#' @param keep keep intermediate files after succesful compilation. Defaults to "none"
 render_natbib <- function(
   file,
   path = ".",
   encoding = "UTF-8",
   engine = c("xelatex", "pdflatex"),
-  display = TRUE
+  display = TRUE,
+  clean = c("none", "all", "tex")
 ){
   engine <- match.arg(engine)
+  clean <- match.arg(clean)
   assert_that(is.string(file))
   assert_that(is.string(path))
   assert_that(is.string(encoding))
@@ -32,12 +35,31 @@ render_natbib <- function(
     output_file = paste0(output, ".tex"),
     encoding = encoding
   )
-  system(paste(engine, output))
-  system(paste("bibtex", output))
-  system(paste(engine, output))
-  system(paste(engine, output))
+  log <- system(paste(engine, output))
+  if (log == 1) {
+    setwd(current)
+    stop()
+  }
+  log <- system(paste("bibtex", output))
+  if (log == 1) {
+    setwd(current)
+    stop()
+  }
+  log <- system(paste(engine, output))
+  if (log == 1) {
+    setwd(current)
+    stop()
+  }
+  log <- system(paste(engine, output))
+  if (log == 1) {
+    setwd(current)
+    stop()
+  }
   if (display) {
     file.show(paste0(output, ".pdf"))
+  }
+  if (keep != "all") {
+    file.remove(paste0(output, c(".aux", ".bbl", ".blg", ".toc", ".lof", ".log", ".out")))
   }
   setwd(current)
 }
