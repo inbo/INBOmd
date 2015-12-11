@@ -333,7 +333,109 @@ thesis
   
 software
   ~ [@R-3.0.1]
-  
+
+# Tabellen
+
+## Pandoc tabellen
+
+### Simple
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+
+### Multiline
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+Table: Here's the caption. It, too, may span
+multiple lines.
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+Table: Here's the caption. It, too, may span
+multiple lines.
+
+### Gridline
+
+: Sample grid table.
+
++---------------+---------------+--------------------+
+| Fruit         | Price         | Advantages         |
++===============+===============+====================+
+| Bananas       | $1.34         | - built-in wrapper |
+|               |               | - bright color     |
++---------------+---------------+--------------------+
+| Oranges       | $2.10         | - cures scurvy     |
+|               |               | - tasty            |
++---------------+---------------+--------------------+
+
+
+: Sample grid table.
+
++---------------+---------------+--------------------+
+| Fruit         | Price         | Advantages         |
++===============+===============+====================+
+| Bananas       | $1.34         | - built-in wrapper |
+|               |               | - bright color     |
++---------------+---------------+--------------------+
+| Oranges       | $2.10         | - cures scurvy     |
+|               |               | - tasty            |
++---------------+---------------+--------------------+
+
+### Pipe
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+  : Demonstration of pipe table syntax.
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+
+  : Demonstration of pipe table syntax.
+
+
 # R Code
 
 ## Code
@@ -347,6 +449,11 @@ factor(c("maandag", "dinsdag", "woensdag"))
 my_fun <- function(x){
   cat("mijn functie is", x)
 }
+state <- data.frame(
+  region = state.region,
+  Division = state.division,
+  state.x77
+)
 my_fun("cool")
 message("dit is een boodschap")
 warning("dit is een waarschuwing")
@@ -362,7 +469,7 @@ stop("dit is een foutmelding")
 ```{r multiline_table, results='asis'}
 library(pander)
 pandoc.table(
-  head(CO2, 20),
+  state,
   caption = "\\label{tbl:multiline}Een tabel in de markdown multiline stijl"
 )
 ```
@@ -371,7 +478,7 @@ pandoc.table(
 
 ```{r grid_table, results='asis'}
 pandoc.table(
-  head(CO2, 20),
+  state,
   style = "grid", 
   caption = "\\label{tbl:grid}Een tabel in de markdown grid stijl"
 )
@@ -383,7 +490,7 @@ pandoc.table(
 
 Een in-lijn figuren worden steeds geplaatst waar de bijhorende code staat. Ze kunnen bijgevolg ook in een alinea geplaatst worden. Merk op dat in-lijn figuren om die reden geen bijschrift kunnen hebben.
 
-```{r mtcars2, out.extra = ""}
+```{r mtcars2}
 library(ggplot2)
 library(INBOtheme)
 theme_set(theme_inbo2015(base_size = 8))
