@@ -90,14 +90,17 @@ $if(abstract)$
 \end{otherlanguage*}
 $endif$
 
+\phantomsection
 \tableofcontents
-\addcontentsline{toc}{chapter}{\chaptertitle}
+\addcontentsline{toc}{chapter}{\contentsname}
 
 \clearpage
 
+\phantomsection
 \listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
 
+\phantomsection
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
 
@@ -109,7 +112,7 @@ $body$
 $if(natbibfile)$
 \bibliographystyle{spbasic}
 \bibliography{$natbibfile$}
-\addcontentsline{toc}{chapter}{\chaptertitle}
+\addcontentsline{toc}{chapter}{\bibname}
 $endif$
 
 $if(appendix)$
