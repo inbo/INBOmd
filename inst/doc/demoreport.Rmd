@@ -231,7 +231,31 @@ Item C
 Item D
   ~ \lipsum[26]
 
+## Lijsten mengen
+
+- Item 1
+- Item 2
+- Item 3
+    1. Item a
+    
+        item I
+          ~ Uitleg I
+          
+        item II
+          ~ Uitleg II
+          
+    1. Item b
+        - Item b I
+        - Item b II
+    1. Item c
+        1. Item c I
+        1. Item c II
+- Item 4
+
+
 # Kaders
+
+Opgelet: kader werken enkel bij export naar pdf. Ze zijn onzichtbaar bij export naar andere formaten (HTML, Word, epub, ...)
 
 ## Standaard kader
 
@@ -270,7 +294,7 @@ $$\frac{X}{Y}$$
 
 $$\frac{\sum_{i = 1}^NX_i}{\frac{\sum_{j = 1}^NY_i}{N}}$$
 
-Het is tevens mogelijk om de losstaande formules te nummeren. Het nummer bevat steeds het hoofdstuknummer als prefix.
+Het is tevens mogelijk om de losstaande formules te nummeren. Het nummer bevat steeds het hoofdstuknummer als prefix. Nadeel is dat dit enkel werkt bij export naar pdf.
 
 \begin{equation}
 P(y < Y|\theta) = \alpha
@@ -297,17 +321,21 @@ De verwijzingen in het pdf document zijn klikbaar. De gekleurde tekst helpt de l
 
 Naakte URLs moeten met het gebruikte protocol beginnen bv http://www.inbo.be. Relevante protocols zijn http:// en https:// voor websites, ftp:// voor ftp sites, mailto:// voor email e.g. mailto:nobody@inbo.be. 
 
-We kunnen de URL tevens achter een link tekst plaatsen bv [INBO website](http://inbo.be). We kunnen deze techniek eveneens gebruiken voor de andere protocols bv [e-mail](mailto:nobody@inbo.be). Wanneer de URL met `www` start is het niet nodig om het http:// protocol te specifiëren bv [URL begint met www](www.inbo.be).
+We kunnen de URL tevens achter een link tekst plaatsen bv [Google](http://google.be). We kunnen deze techniek eveneens gebruiken voor de andere protocols bv [e-mail](mailto:nobody@inbo.be).
 
 ## Interne verwijzingen
 
-Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:grid} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:grid}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:grid}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:grid}, \ref{fig:mtcars}. Voor de verwijzing naar genummerde losstaande formules is er slechts één formaat: \eqref{eq:som}.
+Interne verwijzigingen zijn verwijzigingen binnen het document. We kunnen verwijzen naar een kop\autorefp{lettertypes}, een tabel\autorefp{tbl:pandoc} of een figuur\autorefp{fig:mtcars}. Het is eveneens mogelijk om enkel het nummer te gebruiken\refp{lettertypes}\refp{tbl:pandoc}\refp{fig:mtcars}. De verwijzigingen zijn eveneens beschikbaar in een versie zonder haakjes \autoref{lettertypes}, \autoref{tbl:pandoc}, \autoref{fig:mtcars}, \ref{lettertypes}, \ref{tbl:pandoc}, \ref{fig:mtcars}. Voor de verwijzing naar genummerde losstaande formules is er slechts één formaat: \eqref{eq:som}.
+
+Opgelet: de interne verwijzigingen zijn enkel zichtbaar bij export naar pdf. Ze verdwijnen bij export naar andere formaten (HTML, Word, e-pub, ...) 
 
 ## Referenties
 
 ### Vereisten
 
-Bibliografische verwijzingen zijn geen probleem. De bibliografie moet in BibTex formaat beschikbaar zijn. Dit formaat kan automatisch aangemaakt worden door Mendeley. 
+Bibliografische verwijzingen zijn geen probleem. De bibliografie moet in BibTex formaat beschikbaar zijn. Dit formaat kan automatisch aangemaakt worden door Mendeley.
+
+De referenties zijn enkel aanklikbaar in pdf formaat. In de andere formaten zijn ze als gewone tekst zichtbaar.
 
 ### In-lijn stijlen
 
@@ -336,18 +364,28 @@ software
 
 # Tabellen
 
+Hier geven we een overzicht van een aantal opties op tabellen te maken. Merk op dat het in de praktijk vaak handiger zal zijn om de syntax voor de tabellen met `R` te genereren in plaats van ze handmatig te maken.
+
 ## Pandoc tabellen
+
+Voordelen
+  ~ vrij eenvoudige syntax
+  ~ output ook naar andere formaten (HTML, Word, epub, odt, ...)
+  
+Nadelen
+  ~ beperkte impact op lay-out
+  ~ tabellen worden automatisch over meerdere pagina's gesplitst indien de tabel bij de onderkant van de pagina start (ook bij korte tabellen)
 
 ### Simple
 
-  Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
-
-Table:  Demonstration of simple table syntax.
-
+Voordelen
+  ~ eenvoudig syntax
+  ~ links, rechts of gecentreerde uitlijning mogelijk
+  
+Nadelen
+  ~ kolommen moeten met spaties uitgelijnd worden
+  ~ de inhoud van een cel kan slechts op één rij staan
+  ~ cel kan geen geneste Markdown syntax bevatten (bv. meerdere paragrafen, code, lijsten)
 
   Right     Left     Center     Default
 -------     ------ ----------   -------
@@ -360,20 +398,16 @@ Table:  Demonstration of simple table syntax.
 
 ### Multiline
 
--------------------------------------------------------------
- Centered   Default           Right Left
-  Header    Aligned         Aligned Aligned
------------ ------- --------------- -------------------------
-   First    row                12.0 Example of a row that
-                                    spans multiple lines.
+Voordelen
+  ~ links, rechts of gecentreerde uitlijning mogelijk
+  ~ inhoud van een cel kan over meerdere rijen staan
+  ~ relatieve breedte van de kolommen is gebaseerd op relatieve breedte van de kolommen in de code
 
-  Second    row                 5.0 Here's another one. Note
-                                    the blank line between
-                                    rows.
--------------------------------------------------------------
-
-Table: Here's the caption. It, too, may span
-multiple lines.
+Nadelen
+  ~ kolommen moeten met spaties uitgelijnd worden
+  ~ terugloop in cellen in statisch
+  ~ horizontale uitlijning m.b.v. witruimte
+  ~ cel kan geen geneste Markdown syntax bevatten (bv. meerdere paragrafen, code, lijsten)
 
 -------------------------------------------------------------
  Centered   Default           Right Left
@@ -392,18 +426,12 @@ multiple lines.
 
 ### Gridline
 
-: Sample grid table.
+Voordelen
+  ~ cellen gescheiden door scheidingsteken i.p.v. witruimte
+  ~ cel kan geneste Markdown syntax bevatten (bv. meerdere paragrafen, code, lijsten)
 
-+---------------+---------------+--------------------+
-| Fruit         | Price         | Advantages         |
-+===============+===============+====================+
-| Bananas       | $1.34         | - built-in wrapper |
-|               |               | - bright color     |
-+---------------+---------------+--------------------+
-| Oranges       | $2.10         | - cures scurvy     |
-|               |               | - tasty            |
-+---------------+---------------+--------------------+
-
+Nadelen
+  ~ cellen steeds links uitgelijnd
 
 : Sample grid table.
 
@@ -419,6 +447,14 @@ multiple lines.
 
 ### Pipe
 
+Voordelen
+  ~ kolommen door scheidingsteken gescheiden
+  ~ links, rechts of gecentreerde uitlijning mogelijk
+  
+Nadelen
+  ~ cel kan geen geneste Markdown syntax bevatten (bv. meerdere paragrafen, code, lijsten)
+  ~ de inhoud van een cel kan slechts op één rij staan
+
 | Right | Left | Default | Center |
 |------:|:-----|---------|:------:|
 |   12  |  12  |    12   |    12  |
@@ -427,14 +463,160 @@ multiple lines.
 
   : Demonstration of pipe table syntax.
 
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
+\FloatBarrier
 
-  : Demonstration of pipe table syntax.
+## LaTeX tabellen
 
+Voordelen
+  ~ veel meer controle over lay-out
+  ~ zwevende tabellen mogelijk (tabel wordt in zijn geheel verschoven naar een optimale locatie)
+
+Nadelen
+  ~ code complexer
+  ~ enkel zichtbaar bij export naar pdf
+
+### Standaard tabellen
+
+Kunnen zowel zwevend als niet zwevend.
+
+\begin{table}
+\caption{Eenvoudig tabel}
+\begin{tabular}{ l c r }
+  1 & 2 & 3 \\
+  4 & 5 & 6 \\
+  7 & 8 & 9 \\
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Eenvoudig tabel met vertikale lijnen}
+\begin{tabular}{ l | c || r | }
+  1 & 2 & 3 \\
+  4 & 5 & 6 \\
+  7 & 8 & 9 \\
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Eenvoudig tabel met horizontale en vertikale lijnen}
+\begin{tabular}{ l | c || r | }
+  \hline			
+  1 & 2 & 3 \\
+  4 & 5 & 6 \\
+  7 & 8 & 9 \\
+  \hline  
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Gecentreerde tabel}
+\begin{center}
+  \begin{tabular}{ l | c || r | }
+    \hline
+    1 & 2 & 3 \\ \hline
+    4 & 5 & 6 \\ \hline
+    7 & 8 & 9 \\
+    \hline
+  \end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}
+\caption{Tabel met lijnen die niet de volledige rij beslaan}
+\begin{tabular}{|r|l|}
+  \hline
+  7C0 & hexadecimal \\
+  3700 & octal \\ \cline{2-2}
+  11111000000 & binary \\
+  \hline \hline
+  1984 & decimal \\
+  \hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Tabel met gespecifieerde kolombreedte. Zorgt voor automatische terugloop indien inhoud te lang is.}
+\begin{center}
+    \begin{tabular}{ | l | l | l | p{5cm} |}
+    \hline
+    Day & Min Temp & Max Temp & Summary \\ \hline
+    Monday & 11C & 22C & A clear day with lots of sunshine.  
+    However, the strong breeze will bring down the temperatures. \\ \hline
+    Tuesday & 9C & 19C & Cloudy with rain, across many northern regions. Clear spells 
+    across most of Scotland and Northern Ireland, 
+    but rain reaching the far northwest. \\ \hline
+    Wednesday & 10C & 21C & Rain will still linger for the morning. 
+    Conditions will improve by early afternoon and continue 
+    throughout the evening. \\
+    \hline
+    \end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}
+\caption{Tabel met uitlijnen van decimaal teken}
+\begin{tabular}{|r@{.}l|r}
+  3   & 14159 &1\\
+  16  & 2     &2\\
+  123 & 456   &3\\
+\end{tabular}
+\end{table}
+
+\begin{table}[ht]
+\caption{Cellen over meerdere rijen en kolommen}
+\begin{center}
+\begin{tabular}{ccc}
+    \hline
+    \multicolumn{2}{c}{\multirow{2}{*}{Multi-col-row}}&X\\
+    \multicolumn{2}{c}{}&X\\
+    \hline
+    X&X&X\\
+    \hline
+\end{tabular}
+\end{center}
+\label{tab:multicol}
+\end{table}
+
+\FloatBarrier 
+
+### Onderbreekbare tabellen
+
+- Nooit zwevend
+- Breken automatisch af bij het einde van de pagina
+
+\begin{longtable}{|c|c|c|c|}
+\caption{Een eenvoudig voorbeeld van een longtable}\\
+\hline
+\textbf{Kolom A} & \textbf{Kolom B} & \textbf{Kolom C} & \textbf{Kolom D} \\
+\hline
+\endfirsthead
+\multicolumn{4}{c}%
+{\tablename\ \thetable\ -- \textit{Vervolg van vorige pagina}} \\
+\hline
+\textbf{Kolom A} & \textbf{Kolom B} & \textbf{Kolom C} & \textbf{Kolom D} \\
+\hline
+\endhead
+\hline \multicolumn{4}{r}{\textit{Vervolg op volgende pagina}} \\
+\endfoot
+\hline
+\endlastfoot
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\ 1 & 2 & 3 & 4 \\
+\end{longtable}
 
 # R Code
 
@@ -464,25 +646,44 @@ stop("dit is een foutmelding")
 
 ### Tabellen
 
-#### Multiline tabel
+#### Pandoc
 
-```{r multiline_table, results='asis'}
+```{r pandoc_table, results='asis'}
 library(pander)
 pandoc.table(
   state,
-  caption = "\\label{tbl:multiline}Een tabel in de markdown multiline stijl"
+  caption = "\\label{tbl:pandoc}Een tabel in de markdown multiline stijl"
 )
 ```
 
-#### Grid tabel
+#### LaTeX
 
-```{r grid_table, results='asis'}
-pandoc.table(
-  state,
-  style = "grid", 
-  caption = "\\label{tbl:grid}Een tabel in de markdown grid stijl"
+Merk op dat te brede tabellen niet volledig getoond worden. Oplossingen: kolombreedtes instellen, minder kolommen tonen of tabel opsplitsen.
+
+```{r latex_table, results='asis'}
+library(xtable)
+print(
+    xtable(
+    state,
+    caption = "Een zwevende LaTeX tabel",
+    label = "tbl:xtable"
+  ),
+  comment = FALSE
+)
+print(
+  xtable(
+    state[, -1:-2],
+    caption = "Een longtable LaTeX tabel",
+    label = "tbl:xtablelong",
+    digits = c(0, 0, 0, 2, 2, 2, 2, 0, 0)
+  ),
+  floating = FALSE,
+  tabular.environment = "longtable",
+  comment = FALSE
 )
 ```
+
+\FloatBarrier
 
 ### Figuren
 
