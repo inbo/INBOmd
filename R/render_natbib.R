@@ -8,16 +8,18 @@
 #' @param engine the LaTeX engine the compile the document. Defaults to "xelatex".
 #' @param display open the pdf in a reader. Defaults to TRUE
 #' @param keep keep intermediate files after succesful compilation. Defaults to "none"
+#' @param TRUE to clean intermediate files created during rendering of the R markdown into tex
 render_natbib <- function(
   file,
   path = ".",
   encoding = "UTF-8",
   engine = c("xelatex", "pdflatex"),
   display = TRUE,
-  clean = c("none", "all", "tex")
+  keep = c("none", "all", "tex"),
+  clean = TRUE
 ){
   engine <- match.arg(engine)
-  clean <- match.arg(clean)
+  keep <- match.arg(keep)
   assert_that(is.string(file))
   assert_that(is.string(path))
   assert_that(is.string(encoding))
@@ -26,6 +28,8 @@ render_natbib <- function(
   assert_that(grepl("\\.[Rr]md$", file))
   assert_that(is.flag(display))
   assert_that(noNA(display))
+  assert_that(is.flag(clean))
+  assert_that(noNA(clean))
 
   current <- getwd()
   setwd(path)
@@ -33,7 +37,8 @@ render_natbib <- function(
   render(
     file,
     output_file = paste0(output, ".tex"),
-    encoding = encoding
+    encoding = encoding,
+    clean = clean
   )
   log <- system(paste(engine, output))
   if (log == 1) {
@@ -59,7 +64,16 @@ render_natbib <- function(
     file.show(paste0(output, ".pdf"))
   }
   if (keep != "all") {
-    file.remove(paste0(output, c(".aux", ".bbl", ".blg", ".toc", ".lof", ".log", ".out")))
+    file.remove(
+      paste0(
+        output,
+        c(".aux", ".bbl", ".blg", ".toc", ".lof", ".log", ".lot", ".out")
+      )
+    )
+    if (keep == "none") {
+      file.remove(paste0(output, ".tex"))
+      unlink(paste0(output, "_files"), recursive = TRUE)
+    }
   }
   setwd(current)
 }
