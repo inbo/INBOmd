@@ -8,3 +8,4 @@ figure
 *.toc
 *.lof
 *.lot
+*.R
