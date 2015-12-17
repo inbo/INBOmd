@@ -1,12 +1,12 @@
 ---
 title: "De titel van het rapport"
 author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
-subtitle : "Optionele ondertitel"
-reportnr: "Het INBO nummer van het rapport. Datum van compilatie indien ontbrekend"
-ordernr: "Optioneel: Het referentienummer van de opdrachtgever"
-keep_tex: true
 output: 
   INBOmd::inbo_rapport_2015:
+    subtitle : "Optionele ondertitel"
+    reportnr: "Het INBO nummer van het rapport. Datum van compilatie indien ontbrekend"
+    ordernr: "Optioneel: Het referentienummer van de opdrachtgever"
+    keep_tex: true
 ---
 ```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
 library(pander)
