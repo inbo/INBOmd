@@ -14,5 +14,6 @@ Suggests:
     ggplot2,
     INBOtheme (>= 0.4.1)
 Imports:
+    assertthat,
     rmarkdown
 RoxygenNote: 5.0.1
