@@ -1,20 +1,12 @@
 ---
-title: "De titel van de rapport"
+title: "De titel van het rapport"
 author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
-shortauthor: "Achternaam1, V1.; Achternaam2, V2. \\& Achternaam3, V3."
-year: "Het jaartal van de publicatie"
-cover: "deze_foto_op_de_cover.jpg"
-email: "voornaam.achternaam@inbo.be"
-cover_offset: "100mm"
-cover_text: "Deze tekst beschrijft de foto. \\copyright Voornaam Achternaam fotograaf"
-reportnr: "Het INBO nummer van het rapport"
-lang: "dutch"
-office: "Anderlecht"
-client: "De naam van de opdrachtgever"
-ordernr: "Het referentienummer van de opdrachtgever"
+subtitle : "Optionele ondertitel"
+reportnr: "Het INBO nummer van het rapport. Datum van compilatie indien ontbrekend"
+ordernr: "Optioneel: Het referentienummer van de opdrachtgever"
 keep_tex: true
 output: 
-  INBOmd::inbo_rapport:
+  INBOmd::inbo_rapport_2015:
 ---
 ```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
 library(pander)
@@ -38,3 +30,5 @@ opts_chunk$set(
 ```
 
 # Inleiding
+
+Zie `?INBOmd::inbo_rapport_2015` voor meer opties.
