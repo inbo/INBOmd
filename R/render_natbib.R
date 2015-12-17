@@ -4,11 +4,11 @@
 #' @importFrom assertthat assert_that is.string is.flag noNA
 #' @param file the name of the Rmd file
 #' @param path the path of the Rmd file
-#' @param enconding the encoding of the Rmd file. Default to 'UTF-8'
+#' @param encoding the encoding of the Rmd file. Default to 'UTF-8'
 #' @param engine the LaTeX engine the compile the document. Defaults to "xelatex".
 #' @param display open the pdf in a reader. Defaults to TRUE
 #' @param keep keep intermediate files after succesful compilation. Defaults to "none"
-#' @param TRUE to clean intermediate files created during rendering of the R markdown into tex
+#' @param clean TRUE to clean intermediate files created during rendering of the R markdown into tex
 render_natbib <- function(
   file,
   path = ".",
