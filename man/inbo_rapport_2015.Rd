@@ -23,17 +23,20 @@ inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
-\item{...}{extra parameters: see details
-
-Available extra parameters:
-- hyphenation: the correct hyphenation for certain words
-- dankwoord: path to LaTeX file with dankwoord
-- voorwoord: path to LaTeX file with voorwoord
-- samenvatting: path to LaTeX file with samenvatting
-- abstract: path to LaTeX file with english abstract
-- appendix: path to LaTeX file with appendices}
+\item{...}{extra parameters: see details}
 }
 \description{
 Create a report with the INBO theme version 2015
+}
+\details{
+Available extra parameters:
+\itemize{
+  \item hyphenation: the correct hyphenation for certain words
+  \item dankwoord: path to LaTeX file with dankwoord
+  \item voorwoord: path to LaTeX file with voorwoord
+  \item samenvatting: path to LaTeX file with samenvatting
+  \item abstract: path to LaTeX file with english abstract
+  \item appendix: path to LaTeX file with appendices
+}
 }
 

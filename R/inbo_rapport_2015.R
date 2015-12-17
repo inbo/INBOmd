@@ -8,13 +8,16 @@
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param ... extra parameters: see details
 #'
+#' @details
 #' Available extra parameters:
-#' - hyphenation: the correct hyphenation for certain words
-#' - dankwoord: path to LaTeX file with dankwoord
-#' - voorwoord: path to LaTeX file with voorwoord
-#' - samenvatting: path to LaTeX file with samenvatting
-#' - abstract: path to LaTeX file with english abstract
-#' - appendix: path to LaTeX file with appendices
+#' \itemize{
+#'   \item hyphenation: the correct hyphenation for certain words
+#'   \item dankwoord: path to LaTeX file with dankwoord
+#'   \item voorwoord: path to LaTeX file with voorwoord
+#'   \item samenvatting: path to LaTeX file with samenvatting
+#'   \item abstract: path to LaTeX file with english abstract
+#'   \item appendix: path to LaTeX file with appendices
+#' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
 inbo_rapport_2015 <- function(
