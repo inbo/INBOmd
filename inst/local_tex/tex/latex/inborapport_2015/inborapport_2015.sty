@@ -398,3 +398,19 @@
 \renewcommand*\l@paragraph{\normalfont\@dottedtocline{5}{0mm}{20mm}}
 \renewcommand*\l@subparagraph{\normalfont\@dottedtocline{6}{0mm}{20mm}}
 
+% Some stuff to force sensible page breaks (no widows etc) and to ensure
+% that each page which consists solely of diagrams is at least 75% full.
+% We also get LaTeX to shut up when vboxes and hboxes are too wide.
+
+\hbadness=10000         % badness above which bad hboxes are shown.
+\vbadness=10000         % badness above which bad vboxes are shown.
+\tolerance=200	       	% badness tolerance after hyphenation.
+\hyphenpenalty=1000 	% penalty for line break after discresionary hyphen.
+\pretolerance=200 	% badness tolerance before hyphenation.
+\clubpenalties=3 10000  10000 5000	% penalty for creating a club line at end of line.
+\widowpenalties=3 10000	10000 5000% penalty for creating a widow line at top of page.
+\displaywidowpenalty=1000% penalty for creating a widow line before a display.
+\predisplaypenalty=20	% penalty for a page break just before a display
+\postdisplaypenalty=20	% penalty for a page break just after a display.
+\floatingpenalty=8000	% penalty for insertions that are split.
+\interlinepenalty=25 	% additional penalty for page break between lines.
