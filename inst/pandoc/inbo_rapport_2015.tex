@@ -96,15 +96,21 @@ $endif$
 \tableofcontents
 \addcontentsline{toc}{chapter}{\contentsname}
 
+$if(loft)$
 \clearpage
+$endif$
 
+$if(lof)$
 \phantomsection
 \listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
+$endif$
 
+$if(lot)$
 \phantomsection
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
+$endif$
 
 \newpage
 \pagenumbering{arabic}

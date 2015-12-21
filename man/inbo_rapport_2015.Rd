@@ -31,6 +31,8 @@ Create a report with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
+  \item lof: display a list of figures. Defaults tot TRUE
+  \item lot: display a list of tables. Defaults tot TRUE
   \item hyphenation: the correct hyphenation for certain words
   \item dankwoord: path to LaTeX file with dankwoord
   \item voorwoord: path to LaTeX file with voorwoord

@@ -11,6 +11,8 @@
 #' @details
 #' Available extra parameters:
 #' \itemize{
+#'   \item lof: display a list of figures. Defaults tot TRUE
+#'   \item lot: display a list of tables. Defaults tot TRUE
 #'   \item hyphenation: the correct hyphenation for certain words
 #'   \item dankwoord: path to LaTeX file with dankwoord
 #'   \item voorwoord: path to LaTeX file with voorwoord
@@ -64,6 +66,22 @@ inbo_rapport_2015 <- function(
   if (!missing(subtitle)) {
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
   }
+  if (!"lof" %in% names(extra)) {
+    extra$lof <- TRUE
+  }
+  if (!"lot" %in% names(extra)) {
+    extra$lot <- TRUE
+  }
+  if (extra$lof) {
+    args <- c(args, pandoc_variable_arg("lof", TRUE))
+  }
+  if (extra$lot) {
+    args <- c(args, pandoc_variable_arg("lot", TRUE))
+  }
+  if (extra$lof || extra$lot) {
+    args <- c(args, pandoc_variable_arg("loft", TRUE))
+  }
+  extra <- extra[!names(extra) %in% c("lof", "lot")]
   if (length(extra) > 0) {
     args <- c(
       args,
