@@ -67,7 +67,7 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 \chapter*{Kop stijlen zonder nummering: Niveau 1: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
 
-Dergelijke koppen worden in principe niet opgenomen in de inhoudstafel. Ze kunnen wel explicitiet worden toegevoegd.
+Dergelijke koppen worden in principe niet opgenomen in de inhoudstafel. Ze kunnen wel expliciet worden toegevoegd.
 
 \section*{Niveau 2: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
 \subsection*{Niveau 3: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.}
