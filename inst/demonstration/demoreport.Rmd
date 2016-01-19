@@ -715,24 +715,27 @@ ggplot(
 
 Zwevende figuren worden in de buurt van de code geplaatst. Ze worden in de mate van de mogelijk op de plaats van de code geplaatst, bovenaan de pagina of onderaan de pagina. Indien veel figuren onmiddellijk na elkaar geplaatst worden zullen sommige figuren naar een volgende pagina verplaatst worden.
 
-```{r movie, fig.cap= "Histogram van filmwaardering i.f.v. MPAA categorie"}
+```{r movie, fig.cap= "Histogram van filmwaardering i.f.v. MPAA categorie. Font size = 9"}
 ggplot(movies, aes(x = rating)) + 
   geom_histogram() + 
-  facet_wrap(~mpaa, scales = "free")
+  facet_wrap(~mpaa, scales = "free") + 
+  theme_inbo2015(base_size = 9)
 ```
 
-```{r diamond, fig.cap= "Histrogram van de diamantprijs i.f.v. van kwaliteit van het slijpwerk"}
+```{r diamond, fig.cap= "Histrogram van de diamantprijs i.f.v. van kwaliteit van het slijpwerk. Fontsize = 10"}
 ggplot(diamonds, aes(x = price, fill = cut)) + 
-  geom_histogram()
+  geom_histogram() + 
+  theme_inbo2015(base_size = 10)
 ```
 
-```{r mtcars1, fig.cap= "\\label{fig:mtcars}Verbruik van wagens uit 1974 in miles per gallon in functie van hun gewicht in 1000 pond, opgesplitst volgens aantal cylinders."}
+```{r mtcars1, fig.cap= "\\label{fig:mtcars}Verbruik van wagens uit 1974 in miles per gallon in functie van hun gewicht in 1000 pond, opgesplitst volgens aantal cylinders. Fontsize = 11"}
 ggplot(
   mtcars, 
   aes(x = wt, y = mpg, colour = factor(cyl), fill = factor(cyl))
 ) +
   geom_point() + 
-  geom_smooth(method = "lm")
+  geom_smooth(method = "lm") +
+  theme_inbo2015(base_size = 11)
 ```
 
 # Referenties
