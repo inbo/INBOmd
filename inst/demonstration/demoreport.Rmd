@@ -715,10 +715,10 @@ ggplot(
 
 Zwevende figuren worden in de buurt van de code geplaatst. Ze worden in de mate van de mogelijk op de plaats van de code geplaatst, bovenaan de pagina of onderaan de pagina. Indien veel figuren onmiddellijk na elkaar geplaatst worden zullen sommige figuren naar een volgende pagina verplaatst worden.
 
-```{r movie, fig.cap= "Histogram van filmwaardering i.f.v. MPAA categorie. Font size = 9"}
-ggplot(movies, aes(x = rating)) + 
+```{r movie, fig.cap= "Verdeling aandeel slokdarmkander in Ille-et-Villaine, Frankrijk i.f.v. de leeftijdsgroep. Font size = 9"}
+ggplot(esoph, aes(x = ncases / (ncases + ncontrols))) + 
   geom_histogram() + 
-  facet_wrap(~mpaa, scales = "free") + 
+  facet_wrap(~agegp, scales = "free") + 
   theme_inbo2015(base_size = 9)
 ```
 
