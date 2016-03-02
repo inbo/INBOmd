@@ -6,3 +6,6 @@ figure
 *.snm
 *.gz
 *.toc
+*.lof
+*.lot
+*.R
