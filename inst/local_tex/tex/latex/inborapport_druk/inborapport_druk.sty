@@ -2,7 +2,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{inborapport_druk}
 
-\RequirePackage[english, french, dutch]{babel}
+\RequirePackage[english, dutch]{babel}
 \RequirePackage[a4paper, top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5 cm]{geometry}
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
 \RequirePackage{amsmath}
@@ -34,7 +34,7 @@
 
 
 %regelafstand 1.1
-\setstretch{1.1} 
+\setstretch{1.1}
 %afstand tussen paragrafen
 %\setlength{\parskip}{9pt plus4pt minus4pt}
 
@@ -45,38 +45,38 @@
   {\parindent \z@ \raggedright \normalfont
     \interlinepenalty\@M
     \fontsize{14}{16.8} \selectfont \bfseries \thechapter \hspace{7mm} #1\par\nobreak
-    \vspace{16pt} 
+    \vspace{16pt}
   }}
 
 \def\@makeschapterhead#1{%
   {\parindent \z@ \raggedright
     \normalfont
     \interlinepenalty\@M
-    \fontsize{14}{16.8} \selectfont  \bfseries #1\par\nobreak 
+    \fontsize{14}{16.8} \selectfont  \bfseries #1\par\nobreak
     \vspace{16pt}
   }}
 
-\def\@makesectionhead#1{ 
+\def\@makesectionhead#1{
   \vspace{9pt }
-  { \parindent 
+  { \parindent
     \fontsize{12}{14.4} \selectfont \bfseries \thesection \hspace {7mm} #1\par \nobreak
     \vspace{6pt}
-  } 
+  }
 }
 
-\def\@makesubsectionhead#1{ 
-  \vskip 6pt 
-  { \parindent 
+\def\@makesubsectionhead#1{
+  \vskip 6pt
+  { \parindent
     \fontsize{12}{14.4} \selectfont  \thesubsection \hspace {7mm} #1\par \nobreak
     \vskip 6pt
-  } 
+  }
 }
-\def\@makesubsubsectionhead#1{ 
-  \vskip 6pt 
-  { \parindent 
+\def\@makesubsubsectionhead#1{
+  \vskip 6pt
+  { \parindent
     \fontsize{10}{12} \selectfont  \itshape \thesubsubsection \hspace {7mm} #1\par \nobreak
     \vskip 6pt
-  } 
+  }
 }
 
 %\def\section{\@afterindentfalse \secdef\@section\@ssection}
@@ -92,9 +92,9 @@
   \fi
   \@makesectionhead{#2}}
 % \def\@ssection#1{
-%   \if@twocolumn 
+%   \if@twocolumn
 %     \@topnewpage[\@makessectionhead{#1}]
-%   \else 
+%   \else
 %     \@makessectionhead{#1}\@afterheading
 %   \fi
 % }
@@ -145,8 +145,8 @@
 \RequirePackage{mdframed}
 \newenvironment{alertblock}[2][]{%
   \begin{mdframed}[backgroundcolor=INBOred!50]
-  \textbf{#2}% 
-  
+  \textbf{#2}%
+
   \noindent%
 }
 {
@@ -155,8 +155,8 @@
 
 \newenvironment{exampleblock}[2][]{%
   \begin{mdframed}[backgroundcolor=INBOgreen!50]
-  \textbf{#2}% 
-  
+  \textbf{#2}%
+
   \noindent%
 }
 {
@@ -165,8 +165,8 @@
 
 \newenvironment{block}[2][]{%
   \begin{mdframed}[backgroundcolor=INBOblue!50]
-  \textbf{#2}% 
-  
+  \textbf{#2}%
+
   \noindent%
 }
 {
@@ -207,7 +207,7 @@
 \frenchspacing
 
 %gebruik een sans-serif lettertype
-%\renewcommand{\familydefault}{\sfdefault} 
+%\renewcommand{\familydefault}{\sfdefault}
 
 % Some stuff to force sensible page breaks (no widows etc) and to ensure
 % that each page which consists solely of diagrams is at least 75% full.
@@ -268,7 +268,7 @@
 % het \maketitle commando aanpassen
 \def\maketitle{%
   \thispagestyle{empty}\vbox to \vsize{%
-  
+
     \ifthenelse{
       \not \equal{\@cover}{}
     }
@@ -307,7 +307,7 @@
   \begin{textblock}{50}(4.6, 26.7)
       \includegraphics[height = 47.4mm]{wetenschappelijke_instelling_wit.pdf}
     \end{textblock}
-    
+
     \begin{textblock}{220}(-1, 0)
       \begin{pgfpicture}{0mm}{0mm}{215mm}{29.5mm}
         \pgfmoveto{\pgfpoint{211mm}{0mm}}
@@ -326,8 +326,8 @@
       \color{white}
       \hfill \@rapportnummer
     \end{textblock}
-    
-    
+
+
     \begin{textblock}{220}(-1, 15)
       \begin{pgfpicture}{0mm}{0mm}{215mm}{14.5mm}
         \pgfmoveto{\pgfpoint{0mm}{6mm}}
@@ -356,7 +356,7 @@
 
 
     \begin{textblock}{135}(73, 239)
-      
+
       \noindent \raggedright{\huge
         {\color{INBObrown}
           \textbf{\@title}
@@ -372,7 +372,7 @@
       }
       {
       }
-      
+
       \vfill
       %\vspace{4mm}
       \noindent \raggedright {\color{INBObrown}{\large
@@ -385,7 +385,7 @@
 
   }%
   \clearpage
-  
+
   \thispagestyle{empty}\vbox to \vsize{%
     \vfill
     \small{
@@ -393,12 +393,12 @@
     \@author \\
     Instituut voor Natuur- en Bosonderzoek
     \vspace{7mm}
-    
-    \noindent Het Instituut voor Natuur- en Bosonderzoek (INBO) is het Vlaams 
-    onderzoeks- en kenniscentrum voor natuur en het duurzame beheer en 
-    gebruik ervan. Het INBO verricht onderzoek en levert kennis aan al 
+
+    \noindent Het Instituut voor Natuur- en Bosonderzoek (INBO) is het Vlaams
+    onderzoeks- en kenniscentrum voor natuur en het duurzame beheer en
+    gebruik ervan. Het INBO verricht onderzoek en levert kennis aan al
     wie het beleid voorbereidt, uitvoert of erin ge\"interesseerd is.
-    
+
     \vspace{7mm}
     \noindent \textbf{Vestiging:}\\
     INBO \ifthenelse{\equal{\@vestiging}{Anderlecht}}
@@ -406,27 +406,27 @@
     {Geraardsbergen \\ Gaverstraat 4, 9500 Geraardsbergen}
     \\ \url{www.inbo.be}
     \vspace{7mm}
-    
+
     \noindent \textbf{e-mail:}\\
     \@email
     \vspace{7mm}
-    
+
     \noindent \textbf{Wijze van citeren:}\\
     \@auteurkort~(\@jaar). \@title\ifthenelse{\not \equal{\@ondertitel}{}}{: \@ondertitel}{}. Rapporten van het Instituut voor Natuur- en Bosonderzoek \@jaar\ifthenelse{\not \equal{\@rapportnummer}{}}{ (\@rapportnummer)}{}. Instituut voor     Natuur- en Bosonderzoek, Brussel.
     \vspace{7mm}
-    
+
     \noindent \textbf{\@depotnr}
-    
+
     \noindent \textbf{\@rapportnummer}
-    
+
     \noindent \textbf{ISSN: 1782-9054}
     \vspace{7mm}
-    
+
     \noindent \textbf{Verantwoordelijke uitgever:}\\\@vu
     \vspace{7mm}
-    
+
     \noindent \textbf{Druk:}\\Managementondersteunende Diensten van de Vlaamse overheid
-    
+
     \ifthenelse{\not \equal{\@cover}{}}
     {
       \ifthenelse{\not \equal{\@covertekst}{}}
@@ -436,31 +436,31 @@
       }
       {}
     }
-    
+
     \ifthenelse{\equal{\@opdrachtgever}{}}
     {}
     {
       \vspace{7mm}
       \ifthenelse{\equal{\@opdrachtgeverLogo}{}}
       {
-      
+
       Deze studie werd uitgevoerd in opdracht van \@opdrachtgever}
       {
-      
-      
+
+
         \noindent \begin{tabular}{cp{6cm}}
           \vtop{%
            \vskip-1ex
            \hbox{%
-           \includegraphics[height = 30mm, width = 30mm, 
+           \includegraphics[height = 30mm, width = 30mm,
               keepaspectratio = TRUE]{\@opdrachtgeverLogo}%
            }%
-        } & 
-        Deze studie werd uitgevoerd in opdracht van \@opdrachtgever \\ 
+        } &
+        Deze studie werd uitgevoerd in opdracht van \@opdrachtgever \\
         \end{tabular}
       }
     }
-    
+
     \vspace{14mm}
     \noindent \copyright\@jaar, Instituut voor Natuur- en Bosonderzoek
     }
