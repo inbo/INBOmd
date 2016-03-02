@@ -2,7 +2,7 @@
 title: "Installatierichtlijnen BMK software"
 author: "Thierry Onkelinx"
 output: 
-  INBOmd::inbo_rapport:
+  INBOmd::inbo_rapport_2015:
     subtitle: "Versie voor personen met adminrechten"
     cover: "useR-large.png"
     reportnr: "7 mei 2015"
