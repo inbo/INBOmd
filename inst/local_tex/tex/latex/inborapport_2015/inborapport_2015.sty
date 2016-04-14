@@ -176,11 +176,11 @@
 
 % define style for chapters
 \def\@makechapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{142.4mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{142.4mm}{\raggedright #1}\nopagebreak}
   \vspace{16pt}
   }
 \def\@makeschapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \raggedright #1\par \nobreak}
+   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \raggedright #1\nopagebreak}
   \vspace{16pt}
   }
 
@@ -201,12 +201,12 @@
 }
 \def\@makesectionhead#1{%
   \vspace{9pt}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{139.8mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{139.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessectionhead#1{%
   \vspace{9pt}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{139.8mm}{\raggedright #1} \par \nobreak}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{139.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -227,12 +227,12 @@
 }
 \def\@makesubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{137.3mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{137.3mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{137.3mm}{\raggedright #1} \par \nobreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{137.3mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -253,12 +253,12 @@
 }
 \def\@makesubsubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{134.8mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubsubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \par \nobreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -279,12 +279,12 @@
 }
 \def\@makeparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{132.2mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{132.2mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makesparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.2mm}{\raggedright #1} \par \nobreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.2mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -305,12 +305,12 @@
 }
 \def\@makesubparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{129.7mm}{\raggedright #1}\par \nobreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{129.7mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{129.7mm}{\raggedright #1} \par \nobreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{129.7mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -429,11 +429,11 @@
 \renewcommand{\cfttabpresnum}{\tablename\ }
 
 \renewcommand{\cfttoctitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftaftertoctitle}{\par \nobreak}
+\renewcommand{\cftaftertoctitle}{\nopagebreak}
 \renewcommand{\cftloftitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterloftitle}{\par \nobreak}
+\renewcommand{\cftafterloftitle}{\nopagebreak}
 \renewcommand{\cftlottitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterlottitle}{\par \nobreak}
+\renewcommand{\cftafterlottitle}{\nopagebreak}
 
 % changing style in table of contents
 \renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
