@@ -91,6 +91,7 @@ $endif$
 \end{frame}
 
 \setbeamertemplate{firstpage}{no}
+$if(toc)$
 \begin{frame}
 $if(overzicht)$
   \frametitle{$overzicht$}
@@ -99,6 +100,7 @@ $else$
 $endif$
 	\tableofcontents
 \end{frame}
+$endif$
 
 $body$
 
