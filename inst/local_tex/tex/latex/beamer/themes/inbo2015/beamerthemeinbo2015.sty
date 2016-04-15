@@ -308,7 +308,7 @@
       \pgfuseimage{afbeelding}
     \end{pgftranslate}
   \end{textblock}
-  
+
   \begin{textblock}{3.5}(0, 0)
     \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
       \color{inbo.hoofd}
@@ -319,15 +319,15 @@
   \begin{textblock}{84}(18.1, 6)
     \begin{minipage}[b][50mm][b]{78mm}
       \noindent
-      \raggedright 
+      \raggedright
       {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
       {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}
     \end{minipage}
   \end{textblock}
 
   \begin{textblock}{104}(18.1, 58.1)
-     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}~\\ 
-     \vspace{5mm}  
+     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}~\\
+     \vspace{5mm}
      \raggedright {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}
 
      {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute}
@@ -339,7 +339,7 @@
     \end{center}
   \end{textblock}
 
-  
+
   \begin{textblock}{29.2}(96.5, 20.8)
     \textblockcolour{white}
     \vspace{0.75mm}
@@ -507,9 +507,13 @@
 
 \setbeamertemplate{frametitle}{
   \vspace{3mm}\raggedright {\usebeamerfont{frame title}\usebeamercolor[fg]{frame title}\insertframetitle}
-  
+
   {\small \insertframesubtitle}
-  
+
 }
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 \mode
 <all>
