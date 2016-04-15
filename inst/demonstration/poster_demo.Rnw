@@ -1,9 +1,4 @@
 \documentclass[final]{beamer}
-%\VignetteEngine{xelatex}
-%\VignetteIndexEntry{Demonstratie INBO huisstijl poster}
-%\VignetteDepends{ggplot2}
-%\VignetteDepends{INBOtheme}
-%\SweaveUTF8
 \usetheme{inboposter2015}
 \usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
 \usepackage{lipsum}
@@ -14,7 +9,7 @@
 \email{voornaam.naam@inbo.be}
 
 \begin{document}
-\begin{frame}{} 
+\begin{frame}{}
 
 \begin{textblock}{\Sexpr{INBOmd::kolom_breedte(3)}}(\Sexpr{INBOmd::kolom_start(3, 1)}, 0)
 \begin{block}{Gewone tekst}
@@ -29,7 +24,7 @@
 
 \begin{exampleblock}{Example block}
 äàáâã ëèéê ïìíî öòóô üùúû ÿ ç ñ ÄÀÁÂ ËÈÉÊ ÏÌÍÎ ÖÒÓÔ ÜÙÚÛ Ñ
-  
+
 voor ``dubbele aanhalingstekens" na, voor `enkele aanhalingstekens' na
 
 hoofdletter i versus kleine letter L Il
@@ -124,7 +119,7 @@ theme_set(theme_inbo2015(base_size = 25, transparent = FALSE))
 ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6)
 @
 
-\end{textblock}  
+\end{textblock}
 
 
 \begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 1)}, 740)
@@ -135,7 +130,7 @@ ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6
 @
 \end{block}
 
-\end{textblock}  
+\end{textblock}
 
 \begin{textblock}{\Sexpr{INBOmd::kolom_breedte(2)}}(\Sexpr{INBOmd::kolom_start(2, 2)}, 740)
 
@@ -146,7 +141,7 @@ ggplot(mtcars, aes(x = hp, y = mpg, colour = factor(cyl))) + geom_point(size = 6
 @
 \end{block}
 
-\end{textblock}  
-  
+\end{textblock}
+
 \end{frame}
 \end{document}

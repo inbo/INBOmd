@@ -3,7 +3,7 @@ title: "Voorbeeld bibliografie"
 author: "Thierry Onkelinx"
 bibliography: "INBOmd.bib"
 output: 
-  INBOmd::inbo_rapport:
+  INBOmd::inbo_rapport_2015:
     reportnr: "8 december 2014"
     year: 2014
     email: thierry.onkelinx@inbo.be
@@ -11,6 +11,7 @@ output:
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Voorbeeld bibliografie}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # De tekst

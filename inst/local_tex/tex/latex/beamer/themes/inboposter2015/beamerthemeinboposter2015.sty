@@ -9,6 +9,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeinboposter2015}
 
+\RequirePackage{inboimage_2015}
+
 \RequirePackage{fancyvrb}
 
 
@@ -228,7 +230,7 @@
 
 
 
-\setbeamertemplate{headline}{  
+\setbeamertemplate{headline}{
    \leavevmode
 
   \begin{textblock}{1}(596.6, -120.2)
@@ -238,7 +240,7 @@
   \begin{textblock}{300}(0, 973)
     \inbologo{\@lang}
   \end{textblock}
- 
+
   \begin{textblock}{250}(530, 980)
     {
     \begin{minipage}[b][30mm][b]{250mm}
@@ -266,7 +268,7 @@
 
 }
 
-\setbeamertemplate{background canvas}{  
+\setbeamertemplate{background canvas}{
   \begin{pgfpicture}{0cm}{0cm}{\paperwidth}{\paperheight}
     \color{inbo.hoofd}
     \pgfrect[fill]
@@ -307,5 +309,8 @@
 
   \end{pgfpicture}
 }
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \mode<all>

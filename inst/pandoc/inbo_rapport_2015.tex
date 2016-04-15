@@ -1,0 +1,135 @@
+\documentclass[11pt, twoside]{extreport}
+
+\usepackage[$if(abstract)$babel = english,$endif$ babel = $lang$]{inborapport_2015}
+\usepackage{upquote}
+\usepackage{booktabs}
+$if(usepackage)$
+\usepackage{$usepackage$}
+$endif$
+
+$if(floatbarriersection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\section\expandafter
+     {\expandafter\@fb@secFB\section}%
+   \newcommand\@fb@secFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+$if(floatbarriersubsection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\subsection\expandafter
+     {\expandafter\@fb@subsecFB\subsection}%
+   \newcommand\@fb@subsecFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+$if(floatbarriersubsubsection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\subsubsection\expandafter
+     {\expandafter\@fb@subsubsecFB\subsubsection}%
+   \newcommand\@fb@subsubsecFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+\title{$title$}
+$if(subtitle)$\subtitle{$subtitle$}$endif$
+\author{$author$}
+$if(ordernr)$\ordernumber{$ordernr$}$endif$
+$if(reportnr)$\reportnumber{$reportnr$}$endif$
+
+$if(hyphentation)$\hyphenation{$hyphentation$}$endif$
+
+\begin{document}
+\maketitle
+\pagenumbering{Roman}
+
+$if(dankwoord)$
+\chapter*{Dankwoord}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$dankwoord$}
+$endif$
+
+$if(voorwoord)$
+\chapter*{Voorwoord}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$voorwoord$}
+$endif$
+
+$if(samenvatting)$
+\chapter*{Samenvatting}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$samenvatting$}
+$endif$
+
+$if(aanbeveling)$
+\chapter*{Aanbevelingen voor beheer en/of beleid}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$aanbeveling$}
+$endif$
+
+$if(abstract)$
+\begin{otherlanguage*}{english}
+\chapter*{English abstract}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$abstract$}
+\end{otherlanguage*}
+$endif$
+
+\clearpage
+
+\phantomsection
+\tableofcontents
+\addcontentsline{toc}{chapter}{\contentsname}
+
+$if(loft)$
+\clearpage
+$endif$
+
+$if(lof)$
+\phantomsection
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+$endif$
+
+$if(lot)$
+\phantomsection
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+$endif$
+
+\newpage
+\pagenumbering{arabic}
+
+$body$
+
+$if(natbibfile)$
+\bibliographystyle{spbasic}
+\bibliography{$natbibfile$}
+\addcontentsline{toc}{chapter}{\bibname}
+$endif$
+
+$if(appendix)$
+\appendix
+\input{$appendix$}
+$endif$
+\end{document}
