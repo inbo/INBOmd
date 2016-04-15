@@ -61,24 +61,28 @@ $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 $if(dankwoord)$
 \chapter*{Dankwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$dankwoord$}
 $endif$
 
 $if(voorwoord)$
 \chapter*{Voorwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$voorwoord$}
 $endif$
 
 $if(samenvatting)$
 \chapter*{Samenvatting}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$samenvatting$}
 $endif$
 
 $if(aanbeveling)$
 \chapter*{Aanbevelingen voor beheer en/of beleid}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$aanbeveling$}
 $endif$
 
@@ -86,6 +90,7 @@ $if(abstract)$
 \begin{otherlanguage*}{english}
 \chapter*{English abstract}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$abstract$}
 \end{otherlanguage*}
 $endif$
