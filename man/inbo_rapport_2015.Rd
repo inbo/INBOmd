@@ -6,7 +6,7 @@
 \usage{
 inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
   "subsection", "subsubsection"), natbib, lang = "dutch", keep_tex = FALSE,
-  ...)
+  fig_crop = TRUE, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -22,6 +22,9 @@ inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 \item{lang}{The language of the document. Defaults to "dutch"}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+
+\item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
+(if available) to pdf figures}
 
 \item{...}{extra parameters: see details}
 }

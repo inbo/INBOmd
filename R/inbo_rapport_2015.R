@@ -6,6 +6,8 @@
 #' @param natbib The bibliography file for natbib
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
+#' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
+#'   (if available) to pdf figures
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -30,6 +32,7 @@ inbo_rapport_2015 <- function(
   natbib,
   lang = "dutch",
   keep_tex = FALSE,
+  fig_crop = TRUE,
   ...
 ){
   floatbarrier <- match.arg(floatbarrier)
@@ -107,18 +110,29 @@ inbo_rapport_2015 <- function(
     )
     args <- c(args, unlist(floating))
   }
+  opts_chunk <- list(
+    dev = 'pdf',
+    dpi = 300,
+    fig.width = 4.5,
+    fig.height = 2.9
+  )
+  crop <- fig_crop &&
+    !identical(.Platform$OS.type, "windows") &&
+    nzchar(Sys.which("pdfcrop"))
+  if (crop) {
+    knit_hooks = list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop = TRUE
+  } else {
+    knit_hooks <- NULL
+  }
   output_format(
     knitr = knitr_options(
       opts_knit = list(
         width = 60,
         concordance = TRUE
       ),
-      opts_chunk = list(
-        dev = 'pdf',
-        dpi = 300,
-        fig.width = 4.5,
-        fig.height = 2.9
-      )
+      opts_chunk = opts_chunk,
+      knit_hooks = knit_hooks
     ),
     pandoc = pandoc_options(
       to = "latex",
