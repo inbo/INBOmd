@@ -11,6 +11,7 @@ output:
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Voorbeeld bibliografie}
+  %\VignetteEncoding{UTF-8}
 ---
 
 # De tekst
