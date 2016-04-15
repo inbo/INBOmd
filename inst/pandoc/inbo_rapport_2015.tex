@@ -1,8 +1,5 @@
 \documentclass[11pt, twoside]{extreport}
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
 \usepackage[$if(abstract)$babel = english,$endif$ babel = $lang$]{inborapport_2015}
 \usepackage{upquote}
 \usepackage{booktabs}
@@ -64,24 +61,28 @@ $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 $if(dankwoord)$
 \chapter*{Dankwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$dankwoord$}
 $endif$
 
 $if(voorwoord)$
 \chapter*{Voorwoord}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$voorwoord$}
 $endif$
 
 $if(samenvatting)$
 \chapter*{Samenvatting}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$samenvatting$}
 $endif$
 
 $if(aanbeveling)$
 \chapter*{Aanbevelingen voor beheer en/of beleid}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$aanbeveling$}
 $endif$
 
@@ -89,6 +90,7 @@ $if(abstract)$
 \begin{otherlanguage*}{english}
 \chapter*{English abstract}
 \addcontentsline{toc}{chapter}{\chaptertitle}
+
 \input{$abstract$}
 \end{otherlanguage*}
 $endif$

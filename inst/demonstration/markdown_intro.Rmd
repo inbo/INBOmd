@@ -23,7 +23,7 @@ output:
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Markdown, R en INBO huisstijlen}
-  %\SweaveUTF8
+  %\VignetteEncoding{UTF-8}
 ---
 
 # Introductie
