@@ -4,10 +4,11 @@
 \alias{inbo_slides}
 \title{Use slides with the INBO theme}
 \usage{
-inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
-  fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small",
-  "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch",
-  slide_level = 2, keep_tex = FALSE, toc = TRUE, ...)
+inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
+  cover_horizontal = TRUE, toc_name, fontsize, codesize = c("footnotesize",
+  "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title,
+  natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE,
+  toc = TRUE, ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}
@@ -18,7 +19,11 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, toc_name,
 
 \item{cover}{The filename of the cover image}
 
-\item{cover_offset}{An optional offset for the cover image}
+\item{cover_offset}{An optional vertical offset for the cover image}
+
+\item{cover_hoffset}{An optional horizontal offset for the cover image}
+
+\item{cover_horizontal}{Scale the cover horizontal (TRUE) or vertical (FALSE)}
 
 \item{toc_name}{Name of the table of contents. Defaults to "Overzicht".}
 
