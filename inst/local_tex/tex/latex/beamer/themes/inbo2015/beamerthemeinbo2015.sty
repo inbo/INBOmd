@@ -29,9 +29,14 @@
 \def\cover#1{\def\@cover{#1}}
 \cover{labo.jpg}
 
+\def\coverhorizontal#1{\def\@coverhorizontal{#1}}
+\coverhorizontal{TRUE}
+
 \def\coveroffset#1{\def\@coveroffset{#1}}
 \coveroffset{0mm}
 
+\def\coverhoffset#1{\def\@coverhoffset{#1}}
+\coverhoffset{0mm}
 
 \institute{}
 
@@ -300,13 +305,21 @@
 
 
 
+\newcommand{\readcover}[2]{%
+  \edef\coverhorizontal{{#1}}%
+  \expandafter\ifstrequal\coverhorizontal{TRUE}{
+    \pgfdeclareimage[width = 124.5mm, interpolate = true]{afbeelding}{#2}
+  }{
+    \pgfdeclareimage[height = 96mm, interpolate = true]{afbeelding}{#2}
+  }%
+}
 
 
 
 \setbeamertemplate{title page}{
   \begin{textblock}{124.5}(3.5, 0)
-    \pgfdeclareimage[width = 124.5mm, interpolate = true]{afbeelding}{\@cover}
-    \begin{pgftranslate}{\pgfpoint{0mm}{\@coveroffset}}
+    \readcover{\@coverhorizontal}{\@cover}
+    \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
       \pgfuseimage{afbeelding}
     \end{pgftranslate}
   \end{textblock}
