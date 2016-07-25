@@ -2,6 +2,7 @@
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom assertthat assert_that is.string is.flag noNA
+#' @importFrom utils file_test
 #' @param file the name of the Rmd file
 #' @param path the path of the Rmd file
 #' @param encoding the encoding of the Rmd file. Default to 'UTF-8'
