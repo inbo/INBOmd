@@ -19,6 +19,7 @@
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
+#' @importFrom assertthat assert_that is.string is.flag noNA
 inbo_slides <- function(
   subtitle,
   location,
@@ -39,6 +40,9 @@ inbo_slides <- function(
   toc = TRUE,
   ...
 ){
+  assert_that(is.flag(toc))
+  assert_that(noNA(toc))
+
   extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
@@ -65,37 +69,49 @@ inbo_slides <- function(
     }
   }
   if (!missing(natbib)) {
+    assert_that(is.string(natbib))
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
   } else {
     args <- c(args, "--csl", pandoc_path_arg(csl))
   }
   if (!missing(natbib_title)) {
+    assert_that(is.string(natbib_title))
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
   }
   if (!missing(natbib_style)) {
+    assert_that(is.string(natbib_style))
     args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if (!missing(subtitle)) {
+    assert_that(is.string(subtitle))
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
   }
   if (!missing(location)) {
+    assert_that(is.string(location))
     args <- c(args, pandoc_variable_arg("location", location))
   }
   if (!missing(fontsize)) {
+    assert_that(is.string(fontsize))
     args <- c(args, pandoc_variable_arg("fontsize", fontsize))
   }
   if (!missing(institute)) {
+    assert_that(is.string(institute))
     args <- c(args, pandoc_variable_arg("institute", institute))
   }
   if (!missing(cover)) {
+    assert_that(is.string(cover))
     args <- c(args, pandoc_variable_arg("cover", cover))
     if (!missing(cover_offset)) {
+      assert_that(is.string(cover_offset))
       args <- c(args, pandoc_variable_arg("coveroffset", cover_offset))
     }
     if (!missing(cover_hoffset)) {
+      assert_that(is.string(cover_hoffset))
       args <- c(args, pandoc_variable_arg("coverhoffset", cover_hoffset))
     }
     if (!missing(cover_horizontal)) {
+      assert_that(is.flag(cover_horizontal))
+      assert_that(noNA(cover_horizontal))
       args <- c(args, pandoc_variable_arg("coverhorizontal", cover_horizontal))
     }
   }
