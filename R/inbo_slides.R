@@ -3,7 +3,9 @@
 #' @param location The date and place of the event
 #' @param institute The aviliation of the authors
 #' @param cover The filename of the cover image
-#' @param cover_offset An optional offset for the cover image
+#' @param cover_offset An optional vertical offset for the cover image
+#' @param cover_hoffset An optional horizontal offset for the cover image
+#' @param cover_horizontal Scale the cover horizontal (TRUE) or vertical (FALSE)
 #' @param toc_name Name of the table of contents. Defaults to "Overzicht".
 #' @param fontsize The fontsite of the document. Defaults to 10pt.
 #' @param codesize The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".
@@ -17,7 +19,30 @@
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
-inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_name, fontsize, codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title, natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE, ...){
+#' @importFrom assertthat assert_that is.string is.flag noNA
+inbo_slides <- function(
+  subtitle,
+  location,
+  institute,
+  cover,
+  cover_offset,
+  cover_hoffset,
+  cover_horizontal = TRUE,
+  toc_name,
+  fontsize,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  natbib,
+  natbib_title,
+  natbib_style,
+  lang = "dutch",
+  slide_level = 2,
+  keep_tex = FALSE,
+  toc = TRUE,
+  ...
+){
+  assert_that(is.flag(toc))
+  assert_that(noNA(toc))
+
   extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
@@ -29,7 +54,7 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
     pandoc_variable_arg("lang", lang),
     pandoc_variable_arg("codesize", codesize)
   )
-  if("usepackage" %in%names(extra)){
+  if ( "usepackage" %in% names(extra)) {
     tmp <- sapply(
       extra$usepackage,
       pandoc_variable_arg,
@@ -39,38 +64,56 @@ inbo_slides <- function(subtitle, location, institute, cover, cover_offset, toc_
   }
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
-    if(!missing(toc_name)){
+    if (!missing(toc_name)) {
       args <- c(args, pandoc_variable_arg("tocname", toc_name))
     }
   }
-  if(!missing(natbib)){
+  if (!missing(natbib)) {
+    assert_that(is.string(natbib))
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
   } else {
     args <- c(args, "--csl", pandoc_path_arg(csl))
   }
-  if(!missing(natbib_title)){
+  if (!missing(natbib_title)) {
+    assert_that(is.string(natbib_title))
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
   }
-  if(!missing(natbib_style)){
+  if (!missing(natbib_style)) {
+    assert_that(is.string(natbib_style))
     args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
-  if(!missing(subtitle)){
+  if (!missing(subtitle)) {
+    assert_that(is.string(subtitle))
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
   }
-  if(!missing(location)){
+  if (!missing(location)) {
+    assert_that(is.string(location))
     args <- c(args, pandoc_variable_arg("location", location))
   }
-  if(!missing(fontsize)){
+  if (!missing(fontsize)) {
+    assert_that(is.string(fontsize))
     args <- c(args, pandoc_variable_arg("fontsize", fontsize))
   }
-  if(!missing(institute)){
+  if (!missing(institute)) {
+    assert_that(is.string(institute))
     args <- c(args, pandoc_variable_arg("institute", institute))
   }
-  if(!missing(cover)){
+  if (!missing(cover)) {
+    assert_that(is.string(cover))
     args <- c(args, pandoc_variable_arg("cover", cover))
-  }
-  if(!missing(cover_offset)){
-    args <- c(args, pandoc_variable_arg("coveroffset", cover_offset))
+    if (!missing(cover_offset)) {
+      assert_that(is.string(cover_offset))
+      args <- c(args, pandoc_variable_arg("coveroffset", cover_offset))
+    }
+    if (!missing(cover_hoffset)) {
+      assert_that(is.string(cover_hoffset))
+      args <- c(args, pandoc_variable_arg("coverhoffset", cover_hoffset))
+    }
+    if (!missing(cover_horizontal)) {
+      assert_that(is.flag(cover_horizontal))
+      assert_that(noNA(cover_horizontal))
+      args <- c(args, pandoc_variable_arg("coverhorizontal", cover_horizontal))
+    }
   }
   output_format(
     knitr = knitr_options(
