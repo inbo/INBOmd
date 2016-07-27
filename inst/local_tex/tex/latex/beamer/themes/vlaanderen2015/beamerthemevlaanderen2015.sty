@@ -144,6 +144,8 @@
 \setbeamercolor{block body example}{bg = example.colour.body}
 \setbeamerfont{block title example}{series = \bfseries}
 
+\setbeamercolor{title in head/foot}{fg=frametitle.colour}
+
 % define title page
 \setbeamertemplate{title page}{
   \begin{textblock}{124.5}(3.5, 0)
@@ -327,3 +329,6 @@
   \end{beamercolorbox}
   \pgfsetfillopacity{1}
 }
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
