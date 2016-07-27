@@ -9,7 +9,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemevlaanderen2015}
 
-\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{titelslide.pdf}}
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{slide.pdf}}
 
 \def\lang#1{\def\@lang{#1}}
 \lang{english}
@@ -26,7 +26,11 @@
 \def\coverhoffset#1{\def\@coverhoffset{#1}}
 \coverhoffset{0mm}
 
+\def\website#1{\def\@website{#1}}
+\website{}
+
 \definecolor{main.colour}{RGB}{255, 235, 0}
+\definecolor{frametitle.colour}{RGB}{60, 61, 60}
 
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
@@ -48,19 +52,68 @@
 
 \RequirePackage{inboimage_2015}
 
+% define font sizes
+\newcommand{\titlefontsize}{\fontsize{28pt}{33.6pt}\selectfont}
+\newcommand{\subtitlefontsize}{\fontsize{21pt}{25.2pt}\selectfont}
+\newcommand{\authorfontsize}{\fontsize{10pt}{12pt}\selectfont}
+\newcommand{\datefontsize}{\fontsize{8pt}{9.6pt}\selectfont}
+\newcommand{\institutefontsize}{\fontsize{8pt}{9.6pt}\selectfont}
+\newcommand{\websitefontsize}{\fontsize{7pt}{8pt}\selectfont}
+
+% defines fonts
+\RequirePackage{ifxetex}
+
+\ifxetex
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont[Ligatures=TeX]{Calibri}
+  \setmonofont{Courier New}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{lmodern}
+\fi
+\usefonttheme{serif}
+
+\frenchspacing
+
+% set fonts for different elements
+
+\setbeamercolor{title}{fg=white}
+\setbeamerfont{title}{size = \titlefontsize, series = \bfseries}
+
+\setbeamercolor{subtitle}{fg=white}
+\setbeamerfont{subtitle}{size = \subtitlefontsize, series = \bfseries}
+
+\setbeamercolor{author}{fg=white}
+\setbeamerfont{author}{size = \authorfontsize}
+
+\setbeamercolor{date}{fg=white}
+\setbeamerfont{date}{size = \datefontsize}
+
+\setbeamercolor{institute}{fg=white}
+\setbeamerfont{institute}{size = \institutefontsize}
+
+\setbeamerfont{sidebar}{size = \websitefontsize, series = \bfseries}
+\setbeamercolor{sidebar}{fg = frametitle.colour, bg = white}
+
+% define title page
 \setbeamertemplate{title page}{
   \begin{textblock}{124.5}(3.5, 0)
     \readcover{\@coverhorizontal}{\@cover}
     \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
-%      \pgfuseimage{afbeelding}
+      \pgfuseimage{afbeelding}
     \end{pgftranslate}
   \end{textblock}
 
   \begin{textblock}{3.5}(0, 0)
     \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
-      \color{main.colour}
+      \color{white}
       \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{3.5mm}{96mm}}
     \end{pgfpicture}
+  \end{textblock}
+
+  \begin{textblock}{2.9}(1.2, 78)
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
   \end{textblock}
 
   \begin{textblock}{84}(18.1, 6)
