@@ -1,0 +1,88 @@
+% Copyright 2014 by Thierry Onkelinx
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemevlaanderen2015}
+
+\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{titelslide.pdf}}
+
+\def\lang#1{\def\@lang{#1}}
+\lang{english}
+
+\def\coverhorizontal#1{\def\@coverhorizontal{#1}}
+\coverhorizontal{TRUE}
+
+\def\cover#1{\def\@cover{#1}}
+\cover{fietskader.jpg}
+
+\def\coveroffset#1{\def\@coveroffset{#1}}
+\coveroffset{0mm}
+
+\def\coverhoffset#1{\def\@coverhoffset{#1}}
+\coverhoffset{0mm}
+
+\definecolor{main.colour}{RGB}{255, 235, 0}
+
+\RequirePackage[absolute, overlay]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{0mm}{0mm}
+
+\RequirePackage{pgf}
+
+\RequirePackage{etoolbox}
+
+\newcommand{\readcover}[2]{%
+  \edef\coverhorizontal{{#1}}%
+  \expandafter\ifstrequal\coverhorizontal{TRUE}{
+    \pgfdeclareimage[width = 124.5mm, interpolate = true]{afbeelding}{#2}
+  }{
+    \pgfdeclareimage[height = 96mm, interpolate = true]{afbeelding}{#2}
+  }%
+}
+
+\RequirePackage{inboimage_2015}
+
+\setbeamertemplate{title page}{
+  \begin{textblock}{124.5}(3.5, 0)
+    \readcover{\@coverhorizontal}{\@cover}
+    \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
+%      \pgfuseimage{afbeelding}
+    \end{pgftranslate}
+  \end{textblock}
+
+  \begin{textblock}{3.5}(0, 0)
+    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
+      \color{main.colour}
+      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{3.5mm}{96mm}}
+    \end{pgfpicture}
+  \end{textblock}
+
+  \begin{textblock}{84}(18.1, 6)
+    \begin{minipage}[b][50mm][b]{78mm}
+      \noindent
+      \raggedright
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}
+    \end{minipage}
+  \end{textblock}
+
+  \begin{textblock}{104}(18.1, 58.1)
+     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}~\\
+     \vspace{5mm}
+     \raggedright {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}
+
+     {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute}
+  \end{textblock}
+
+  \begin{textblock}{14}(109.9, -.2)
+    \begin{center}
+      \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal.eps}
+    \end{center}
+  \end{textblock}
+}
