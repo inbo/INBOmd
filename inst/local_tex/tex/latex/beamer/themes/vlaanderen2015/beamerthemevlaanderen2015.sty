@@ -84,6 +84,9 @@
 \setbeamercolor{subtitle}{fg=white}
 \setbeamerfont{subtitle}{size = \subtitlefontsize, series = \bfseries}
 
+\setbeamerfont{frametitle}{series = \bfseries, size = \large}
+\setbeamercolor{frametitle}{bg=,fg=frametitle.colour}
+
 \setbeamercolor{author}{fg=white}
 \setbeamerfont{author}{size = \authorfontsize}
 
@@ -138,4 +141,11 @@
       \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal.eps}
     \end{center}
   \end{textblock}
+}
+
+\setbeamertemplate{frametitle}{
+  \vspace{3mm}\raggedright {\usebeamerfont{frame title}\usebeamercolor[fg]{frame title}\insertframetitle}
+
+  {\small \insertframesubtitle}
+
 }
