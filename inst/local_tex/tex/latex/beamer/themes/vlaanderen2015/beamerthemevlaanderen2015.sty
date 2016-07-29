@@ -340,6 +340,8 @@
 }
 
 \setbeamertemplate{navigation symbols}{}
+
+\patchcmd{\beamer@calculateheadfoot}{\advance\footheight by 4pt}{\advance\footheight by 22pt}{}{}
 \setbeamertemplate{footline}[frame number]
 
 \setbeamersize{text margin left=9.5mm}
