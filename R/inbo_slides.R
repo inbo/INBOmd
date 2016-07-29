@@ -16,6 +16,7 @@
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param toc display a table of content after the title slide
+#' @param website An optional URL to display on the left sidebar. Defaults to www.INBO.be.
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
@@ -38,10 +39,12 @@ inbo_slides <- function(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
+  website = "www.INBO.be",
   ...
 ){
   assert_that(is.flag(toc))
   assert_that(noNA(toc))
+  assert_that(is.string(website))
 
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -68,6 +71,7 @@ inbo_slides <- function(
       args <- c(args, pandoc_variable_arg("tocname", toc_name))
     }
   }
+  args <- c(args, pandoc_variable_arg("website", website))
   if (!missing(natbib)) {
     assert_that(is.string(natbib))
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
@@ -126,7 +130,7 @@ inbo_slides <- function(
         dev.args = list(bg = 'transparent'),
         dpi = 300,
         fig.width = 4.5,
-        fig.height = 2.9
+        fig.height = 2.8
       )
     ),
     pandoc = pandoc_options(

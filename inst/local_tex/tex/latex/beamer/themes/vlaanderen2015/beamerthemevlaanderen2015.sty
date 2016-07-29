@@ -15,7 +15,7 @@
 \lang{english}
 
 \def\coverhorizontal#1{\def\@coverhorizontal{#1}}
-\coverhorizontal{TRUE}
+\coverhorizontal{FALSE}
 
 \def\cover#1{\def\@cover{#1}}
 \cover{fietskader.jpg}
@@ -43,6 +43,8 @@
 \definecolor{example.colour.title}{RGB}{255, 255, 255}
 \definecolor{example.colour.body}{RGB}{163, 204, 0}
 \definecolor{example.colour}{RGB}{111, 139, 0}
+\definecolor{warning.colour}{RGB}{145, 78, 29}
+\definecolor{highlight.colour}{RGB}{152, 152, 152}
 
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
@@ -79,7 +81,14 @@
 
 \ifxetex
   \RequirePackage[no-math]{fontspec}
-  \setmainfont[Ligatures=TeX]{Calibri}
+  \setmainfont[
+    Ligatures=TeX,
+    ItalicFont = FlandersArtSans-Light,
+    ItalicFeatures = {FakeSlant=0.15},
+    BoldFont = FlandersArtSans-Medium,
+    BoldItalicFont = FlandersArtSans-Medium,
+    BoldItalicFeatures = {FakeSlant=0.15}
+  ]{FlandersArtSans-Regular}
   \setmonofont{Courier New}
 \else
   \RequirePackage[T1]{fontenc}
