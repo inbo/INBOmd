@@ -8,7 +8,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
   cover_horizontal = TRUE, toc_name, fontsize, codesize = c("footnotesize",
   "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title,
   natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE,
-  toc = TRUE, website = "www.INBO.be", ...)
+  toc = TRUE, website = "www.INBO.be", theme = c("inbo", "vlaanderen"),
+  ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}
@@ -46,6 +47,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 \item{toc}{display a table of content after the title slide}
 
 \item{website}{An optional URL to display on the left sidebar. Defaults to www.INBO.be.}
+
+\item{theme}{The theme to use. Available options are "inbo" and "vlaanderen"}
 
 \item{...}{extra parameters}
 }

@@ -283,6 +283,6 @@ ggplot(testgrid, aes(x = x, y = y, fill = z, label = z)) +
 ### Onderlinge vergelijking van kleuren uit palet
 
 ```{r}
-demo_palette(vlaanderen.2015.colours(11))
+demo_palette(vlaanderen.2015.colours(10))
 ```
 

@@ -7,7 +7,7 @@
 %
 % See the file doc/licenses/LICENSE for more details.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemelayout2015}
+\ProvidesPackage{beamerthemevlaanderenlayout}
 
 % set fonts for different elements
 \usetheme{Pittsburgh}
@@ -32,13 +32,13 @@
 \setbeamerfont{institute}{size = \institutefontsize}
 
 \setbeamerfont{sidebar}{size = \websitefontsize, series = \bfseries}
-\setbeamercolor{sidebar}{fg = frametitle.colour, bg = white}
+\setbeamercolor{sidebar}{fg = sectiontitle.colour, bg = main.colour}
 
 \setbeamerfont{section title}{size = \sectionfontsize, series = \bfseries}
-\setbeamercolor{section title}{fg = frametitle.colour, bg = main.colour}
+\setbeamercolor{section title}{fg = sectiontitle.colour, bg =}
 
 \setbeamerfont{subsection title}{size = \subsectionfontsize, series = \bfseries}
-\setbeamercolor{subsection title}{fg = frametitle.colour, bg = main.colour}
+\setbeamercolor{subsection title}{fg = sectiontitle.colour, bg = }
 
 \setbeamerfont{section in toc}{size = \normalsize, series = \normalfont}
 \setbeamercolor{section in toc}{fg = frametitle.colour}
@@ -102,23 +102,19 @@
      {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute}
   \end{textblock}
 
-  \begin{textblock}{14}(109.9, -.2)
-    \begin{center}
-      \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal.eps}
-    \end{center}
-  \end{textblock}
+  \titlelogo
 }
 
+% define frames
+
 \setbeamertemplate{frametitle}{
-  \vspace{3mm}\raggedright {\usebeamerfont{frame title}\usebeamercolor[fg]{frame title}\insertframetitle}
+  \vspace{3mm}\raggedright {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}
 
   {\small \insertframesubtitle}
 }
 
 \setbeamertemplate{sidebar left}{
-  \vspace{81.9mm}
-  \hspace{9.2mm}
-  \includegraphics[width = 24.5mm]{vlaanderen_en_naakt}
+  \sidebarlogo
 
   \begin{textblock}{4}(0, 0)
     \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
@@ -128,6 +124,7 @@
   \end{textblock}
 
   \begin{textblock}{2.9}(1.2, 78)
+    \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
   \end{textblock}
 
@@ -150,11 +147,10 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{29.2}(7.5, 7.5)
-    \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal.eps}
-  \end{textblock}
+  \sectionlogo
 
   \begin{textblock}{66}(36, 32)
+    \textblockcolour{}
     \begin{minipage}[b][29mm][b]{65mm}
       \noindent
       \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
@@ -162,7 +158,8 @@
   \end{textblock}
 
   \begin{textblock}{2.9}(1.2, 78)
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+    \textblockcolour{}
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
   \end{textblock}
 }
 
@@ -183,11 +180,10 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{29.2}(7.5, 7.5)
-    \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal.eps}
-  \end{textblock}
+  \sectionlogo
 
   \begin{textblock}{66}(36, 32)
+    \textblockcolour{}
     \begin{minipage}[b][29mm][b]{65mm}
       \noindent
       \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
@@ -195,11 +191,13 @@
   \end{textblock}
 
   \begin{textblock}{78}(36, 63)
+    \textblockcolour{}
     {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
   \end{textblock}
 
   \begin{textblock}{2.9}(1.2, 78)
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+    \textblockcolour{}
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
   \end{textblock}
 }
 

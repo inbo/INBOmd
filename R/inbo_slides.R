@@ -17,6 +17,7 @@
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param toc display a table of content after the title slide
 #' @param website An optional URL to display on the left sidebar. Defaults to www.INBO.be.
+#' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
@@ -40,11 +41,13 @@ inbo_slides <- function(
   keep_tex = FALSE,
   toc = TRUE,
   website = "www.INBO.be",
+  theme = c("inbo", "vlaanderen"),
   ...
 ){
   assert_that(is.flag(toc))
   assert_that(noNA(toc))
   assert_that(is.string(website))
+  theme <- match.arg(theme)
 
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -55,7 +58,9 @@ inbo_slides <- function(
     "--template", template,
     "--latex-engine", "xelatex",
     pandoc_variable_arg("lang", lang),
-    pandoc_variable_arg("codesize", codesize)
+    pandoc_variable_arg("codesize", codesize),
+    pandoc_variable_arg("website", website),
+    pandoc_variable_arg("theme", theme)
   )
   if ( "usepackage" %in% names(extra)) {
     tmp <- sapply(
@@ -71,7 +76,6 @@ inbo_slides <- function(
       args <- c(args, pandoc_variable_arg("tocname", toc_name))
     }
   }
-  args <- c(args, pandoc_variable_arg("website", website))
   if (!missing(natbib)) {
     assert_that(is.string(natbib))
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
