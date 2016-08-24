@@ -18,6 +18,7 @@
 #' @param toc display a table of content after the title slide
 #' @param website An optional URL to display on the left sidebar. Defaults to www.INBO.be.
 #' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
+#' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.
 #' @param ... extra parameters
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
@@ -42,12 +43,15 @@ inbo_slides <- function(
   toc = TRUE,
   website = "www.INBO.be",
   theme = c("inbo", "vlaanderen"),
+  flandersfont = FALSE,
   ...
 ){
   assert_that(is.flag(toc))
   assert_that(noNA(toc))
   assert_that(is.string(website))
   theme <- match.arg(theme)
+  assert_that(is.flag(flandersfont))
+  assert_that(noNA(flandersfont))
 
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -60,6 +64,7 @@ inbo_slides <- function(
     pandoc_variable_arg("lang", lang),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("website", website),
+    pandoc_variable_arg("flandersfont", flandersfont),
     pandoc_variable_arg("theme", theme)
   )
   if ( "usepackage" %in% names(extra)) {

@@ -9,7 +9,7 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
   "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title,
   natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE,
   toc = TRUE, website = "www.INBO.be", theme = c("inbo", "vlaanderen"),
-  ...)
+  flandersfont = FALSE, ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}
@@ -49,6 +49,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 \item{website}{An optional URL to display on the left sidebar. Defaults to www.INBO.be.}
 
 \item{theme}{The theme to use. Available options are "inbo" and "vlaanderen"}
+
+\item{flandersfont}{If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.}
 
 \item{...}{extra parameters}
 }

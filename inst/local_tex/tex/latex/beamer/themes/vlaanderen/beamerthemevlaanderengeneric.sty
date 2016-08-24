@@ -7,7 +7,7 @@
 %
 % See the file doc/licenses/LICENSE for more details.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemegeneric2015}
+\ProvidesPackage{beamerthemevlaanderengeneric}
 
 \def\lang#1{\def\@lang{#1}}
 \def\coverhorizontal#1{\def\@coverhorizontal{#1}}
@@ -15,6 +15,8 @@
 \def\coveroffset#1{\def\@coveroffset{#1}}
 \def\coverhoffset#1{\def\@coverhoffset{#1}}
 \def\website#1{\def\@website{#1}}
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
 
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
@@ -45,26 +47,3 @@
 \newcommand{\websitefontsize}{\fontsize{5pt}{5.7pt}\selectfont}
 \newcommand{\sectionfontsize}{\fontsize{28pt}{33.6pt}\selectfont}
 \newcommand{\subsectionfontsize}{\fontsize{10pt}{12pt}\selectfont}
-
-% defines fonts
-\RequirePackage{ifxetex}
-
-\ifxetex
-  \RequirePackage[no-math]{fontspec}
-  \setmainfont[
-    Ligatures=TeX,
-    ItalicFont = FlandersArtSans-Light,
-    ItalicFeatures = {FakeSlant=0.15},
-    BoldFont = FlandersArtSans-Medium,
-    BoldItalicFont = FlandersArtSans-Medium,
-    BoldItalicFeatures = {FakeSlant=0.15}
-  ]{FlandersArtSans-Regular}
-  \setmonofont{Courier New}
-\else
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage{lmodern}
-\fi
-\usefonttheme{serif}
-
-\frenchspacing
