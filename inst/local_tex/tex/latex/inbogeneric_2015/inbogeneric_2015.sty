@@ -36,3 +36,25 @@
 \newcommand{\AlertTok}[1]{\textcolor{alert.colour}{\textbf{{#1}}}}
 \newcommand{\ErrorTok}[1]{\textcolor{alert.colour}{\textbf{{#1}}}}
 \newcommand{\NormalTok}[1]{{#1}}
+
+% update autoref labels for dutch
+\addto\extrasdutch{%
+  \def\chapterautorefname{Hoofdstuk}%
+}
+\addto\extrasdutch{%
+  \def\sectionautorefname{Sectie}%
+}
+\addto\extrasdutch{%
+  \def\figureautorefname{Figuur}%
+}
+\addto\extrasdutch{%
+  \def\tableautorefname{Tabel}%
+}
+\addto{\captionsdutch}{%
+  \renewcommand{\bibname}{Referenties}%
+}
+
+% define references in between brackets
+\newcommand{\autorefp}[1]{ (\autoref{#1})}
+\newcommand{\refp}[1]{ (\ref{#1})}
+

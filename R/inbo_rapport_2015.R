@@ -38,7 +38,7 @@ inbo_rapport_2015 <- function(
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
 
-  template <- system.file("pandoc/inbo_rapport_2015.tex", package = "INBOmd")
+  template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
   csl <- system.file("inbo.csl", package = "INBOmd")
   args <- c(
     "--template", template,
