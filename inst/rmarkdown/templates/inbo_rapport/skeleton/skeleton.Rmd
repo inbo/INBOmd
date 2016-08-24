@@ -1,0 +1,56 @@
+---
+title: "De titel van het rapport"
+author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
+output: 
+  INBOmd::inbo_rapport_2015:
+    subtitle : "Optionele ondertitel"
+    reportnr: "Het INBO nummer van het rapport. Datum van compilatie indien ontbrekend"
+    ordernr: "Optioneel: Het referentienummer van de opdrachtgever"
+  word_document:
+    toc: TRUE
+---
+```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  results = 'markup',
+  eval = TRUE,
+  echo = TRUE,
+  cache = FALSE,
+  dev = "pdf",
+  dpi = 300,
+  fig.width = 150 / 25.4,
+  fig.height = 100 / 25.4,
+  warning = TRUE,
+  error = TRUE,
+  message = TRUE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015())
+library(pander)
+panderOptions("table.split.table", Inf)
+panderOptions("decimal.mark", ",")
+```
+
+# INBO rapport met RMarkdown
+
+This is een R Markdown document. Markdown is een eenvoudige syntax om teksten te formateren. Markdown documenten kunnen omgezet worden naar meerdere formaten als PDF, HTML, ePUB, Word, ... Meer information over R Markdown vind je op <http://rmarkdown.rstudio.com>.
+
+De stijl `inbo_rapport_2015` zal het document omzetten naar een PDF in de INBO huisstijl. Wie een Word versie van het document verkiest, kan de stijl `word_document` gebruiken. Het resultaat zal een Word document zijn, echter NIET in de INBO huisstijl.
+
+Als je op de **Knit** knop klikt, zal een document aangemaakt worden dat zowel de tekst als de output van eventuele R code chunks bevat. Je kan een R code chunk toevoegen als volgt:
+
+```{r cars}
+summary(cars)
+```
+
+## Grafieken toevoegen
+
+Grafieken toevoegen kan eveneens:
+
+```{r pressure, echo = FALSE, fig.cap = "Het bijschrift"}
+ggplot(pressure, aes(x = temperature, y = pressure)) + 
+  geom_point()
+```
+
+Merk op dat het `echo = FALSE` argument werd toegevoegd aan de chunk opties. Dat verbergt dat de R code om de grafiek te genereren. Het `fig.cap` argument laat toe om een bijschrift toe te voegen.
