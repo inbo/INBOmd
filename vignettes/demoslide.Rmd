@@ -9,6 +9,7 @@ output:
     institute: "Affiliatie van de auteur(s)"
     usepackage: "lipsum"
     slide_level: 3
+    theme: vlaanderen
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Demonstratie INBO huisstijl presentatie}
@@ -283,6 +284,6 @@ ggplot(testgrid, aes(x = x, y = y, fill = z, label = z)) +
 ### Onderlinge vergelijking van kleuren uit palet
 
 ```{r}
-demo_palette(vlaanderen.2015.colours(10))
+demo_palette(vlaanderen.2015.colours())
 ```
 
