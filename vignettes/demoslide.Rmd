@@ -175,7 +175,7 @@ knitr::opts_chunk$set(
 )
 library(ggplot2)
 library(INBOtheme)
-theme_set(theme_vlaanderen2015(6, transparent = TRUE))
+theme_set(theme_vlaanderen2015(6, transparent = "plot"))
 switchColour(vl.darkyellow)
 ```
 
@@ -212,28 +212,20 @@ pandoc.table(voorbeeld)
 
 ## Figuren
 
-### Figuur met standaard achtergrond
-
-```{r figstandaard, echo = FALSE}
-ggplot(esoph, aes(x = ncases / (ncases + ncontrols))) + geom_histogram() + 
-  facet_wrap(~agegp, scales = "free") + 
-  theme_vlaanderen2015(6)
-```
-
-### Figuur met transparante achtergrond
+### Figuur met standaard kleur
 
 ```{r figtransparant, echo = FALSE}
 ggplot(esoph, aes(x = ncases / (ncases + ncontrols))) + geom_histogram() + 
   facet_wrap(~agegp, scales = "free")
 ```
 
-### Figuur met discrete categorieën
+### Figuur met kleur per discrete categorie
 
 ```{r echo = FALSE}
 ggplot(diamonds, aes(x = price, fill = cut)) + geom_histogram()
 ```
 
-### Figuur met discrete categorieën
+### Figuur met kleur per discrete categorie
 
 ```{r echo = FALSE}
 ggplot(mtcars, 
@@ -286,4 +278,3 @@ ggplot(testgrid, aes(x = x, y = y, fill = z, label = z)) +
 ```{r}
 demo_palette(vlaanderen.2015.colours())
 ```
-
