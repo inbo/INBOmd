@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="en-US">
   <info>
-    <title>Instituut voor Natuur- en Bosonderzoek. Versie 2015</title>
-    <title-short>INBO2015</title-short>
-    <id>http://csl.mendeley.com/styles/26645231/INBO2015</id>
+    <title>Instituut voor Natuur- en Bosonderzoek</title>
+    <title-short>INBO</title-short>
+    <id>http://www.inbo.be</id>
     <author>
       <name>Maarten Stevens</name>
       <email/>
@@ -11,13 +11,19 @@
     <contributor>
       <name>Maarten Stevens</name>
       <uri>http://www.mendeley.com/profiles/maarten-stevens/</uri>
+    </contributor>
+    <contributor>
       <name>Thierry Onkelinx</name>
       <uri>http://www.mendeley.com/profiles/thierry-onkelinx/</uri>
+    </contributor>
+    <contributor>
+      <name>Floris Vanderhaeghe</name>
+      <email>floris.vanderhaeghe@inbo.be</email>
     </contributor>
     <category citation-format="author-date"/>
     <category field="biology"/>
     <category field="generic-base"/>
-    <updated>2014-09-25T08:31:04+00:00</updated>
+    <updated>2016-09-08T00:00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/"/>
   </info>
 
