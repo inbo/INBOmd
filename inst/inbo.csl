@@ -280,9 +280,9 @@
           <text macro="locators"/>
         </group>
       </group>
-      <text macro="access" prefix=" "/>
-      <text macro="url" prefix=" "/>
-      <text macro="doi" prefix=" "/>
+      <text macro="access" prefix=" " suffix="."/>
+      <text macro="url" prefix=" " suffix="."/>
+      <text macro="doi" prefix=" " suffix="."/>
     </layout>
   </bibliography>
 </style>
