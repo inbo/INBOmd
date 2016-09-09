@@ -242,7 +242,7 @@
   <macro name="doi">
     <choose>
       <if match="any" variable="DOI">
-        <text value="doi:" suffix=" "/>
+        <text value="DOI:" suffix=" "/>
         <text variable="DOI"/>
       </if>
     </choose>
