@@ -251,7 +251,7 @@
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-givenname="false" disambiguate-add-year-suffix="true" collapse="year" cite-group-delimiter=", ">
     <sort>
       <key macro="author"/>
-      <key macro="issued" sort="descending"/>
+      <key macro="issued"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
