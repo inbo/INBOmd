@@ -27,6 +27,18 @@
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/"/>
   </info>
 
+<locale xml:lang="en">
+    <terms>
+      <term name="in">In</term>
+    </terms>
+  </locale>
+
+<locale xml:lang="nl">
+    <terms>
+      <term name="in">In</term>
+    </terms>
+  </locale>
+
   <macro name="container">
     <choose>
       <if type="chapter paper-conference" match="any">
