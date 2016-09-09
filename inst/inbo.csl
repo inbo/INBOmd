@@ -143,9 +143,9 @@
   </macro>
 
   <macro name="publisher">
-    <group delimiter=" ">
-      <text variable="publisher" suffix=":"/>
-      <text variable="publisher-place" suffix="."/>
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
     </group>
   </macro>
 
