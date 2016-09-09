@@ -69,7 +69,7 @@
 
   <macro name="author">
     <names variable="author">
-      <name and="symbol" delimiter-precedes-last="always" et-al-min="10" et-al-use-first="10" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
+      <name and="symbol" delimiter-precedes-last="never" et-al-min="10" et-al-use-first="10" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
       <substitute>
         <names variable="editor"/>
