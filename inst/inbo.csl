@@ -271,7 +271,7 @@
       <key macro="issued" sort="ascending"/>
     </sort>
     <layout>
-      <group>
+      <group suffix=".">
         <text macro="author"/>
         <text macro="issued" prefix=" (" suffix="). "/>
         <group>
