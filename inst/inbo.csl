@@ -204,7 +204,7 @@
         <group prefix=". ">
           <text macro="event"/>
           <text macro="publisher"/>
-          <text variable="page" prefix=" " suffix=" p"/>
+          <text variable="number-of-pages" prefix=" " suffix=" p"/>
         </group>
       </else-if>
       <else-if type="chapter paper-conference" match="any">
