@@ -193,7 +193,7 @@
             <text variable="volume"/>
             <choose>
               <if match="any" variable="issue">
-                <number prefix="(" suffix=")" variable="issue"/>
+                <number prefix=" (" suffix=")" variable="issue"/>
               </if>
             </choose>
           </group>
