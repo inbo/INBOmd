@@ -1,29 +1,25 @@
 ---
 title: "Markdown, R en INBO huisstijlen"
 author: "Thierry Onkelinx"
-bibliography: "INBOmd.bib"
-output: 
-  INBOmd::inbo_slides:
-    location: "Anderlecht, 4 december 2014"
-    institute: "Biometrie \\& Kwaliteitszorg"
-    keep_tex: true
+output:
   INBOmd::inbo_handouts:
-    location: "Anderlecht, 4 december 2014"
-    institute: "Biometrie \\& Kwaliteitszorg"
-    keep_tex: true
-  INBOmd::inbo_rapport:
-    cover: "useR-large.png"
-    subtitle: "Een introductie"
-    reportnr: "4 december 2014"
-    year: 2014
-    email: thierry.onkelinx@inbo.be
+    institute: Biometrie \& Kwaliteitszorg
+    keep_tex: yes
+    location: Anderlecht, 4 december 2014
+  INBOmd::inbo_rapport_2015:
+    cover: useR-large.png
     cover_offset: 150mm
-    cover_text: "Het R logo"
-    keep_tex: true
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Markdown, R en INBO huisstijlen}
-  %\VignetteEncoding{UTF-8}
+    cover_text: Het R logo
+    email: thierry.onkelinx@inbo.be
+    keep_tex: yes
+    reportnr: 4 december 2014
+    subtitle: Een introductie
+    year: 2014
+  INBOmd::inbo_slides:
+    institute: Biometrie \& Kwaliteitszorg
+    keep_tex: yes
+    location: Anderlecht, 4 december 2014
+bibliography: INBOmd.bib
 ---
 
 # Introductie

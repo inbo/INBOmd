@@ -1,19 +1,19 @@
 % de presentatie
 \documentclass[$if(fontsize)$$fontsize$$else$10pt$endif$, $if(handout)$handout,$endif$ xetex]{beamer}
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-\usepackage{upquote}
-
-\usetheme{inbo2015}
-\usepackage{booktabs}
-\usepackage{longtable}
 $for(usepackage)$
 \usepackage{$usepackage$}
 $endfor$
+\usetheme{$theme$}
+\usepackage{inbogeneric_2015}
+$if(codesize)$
+\codesize{\$codesize$}
+$endif$
+\website{$website$}
+\flandersfont{$flandersfont$}
+\usetheme{vlaanderenfont}
 
-%kies de taal de presentatie. Wordt doorgeven aan het babel package. dutch geeft nederlandstalige logo's. Andere talen krijgen een engelstalig logo
 $if(lang)$
 \lang{$lang$}
 $endif$
@@ -62,28 +62,6 @@ $endif$
   \end{frame}
 }
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\$codesize$}
-\newenvironment{Shaded}{}{}
-\newcommand{\KeywordTok}[1]{\textcolor{inbo.hoofd}{\textbf{{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor{inbo.hoofd}{{#1}}}
-\newcommand{\FunctionTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\DecValTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\BaseNTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\FloatTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\CharTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\StringTok}[1]{\textcolor{inbo.groen}{{#1}}}
-\newcommand{\CommentTok}[1]{\textcolor{inbo.steun.blauw}{\textit{{#1}}}}
-\newcommand{\DataTypeTok}[1]{\textcolor{inbo.oranje}{{#1}}}
-\newcommand{\RegionMarkerTok}[1]{{#1}}
-\newcommand{\AlertTok}[1]{\textcolor{inbo.rood}{\textbf{{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor{inbo.rood}{\textbf{{#1}}}}
-\newcommand{\NormalTok}[1]{{#1}}
-
-
 
 \makeatletter
 \renewcommand{\verbatim@font}{\ttfamily\$codesize$}
@@ -92,7 +70,7 @@ $endif$
 \begin{document}
 
 \setbeamertemplate{firstpage}{}
-\begin{frame}[plain]
+\begin{frame}[plain, label=intro, noframenumbering]
   \titlepage
 \end{frame}
 
