@@ -1,13 +1,6 @@
 \documentclass[11pt, twoside]{extreport}
 
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-
-%enkel nodig indien je de TeX file aanmaakt met Sweave
-%\usepackage{//inbogerfiles/gerdata/bmk/sjablonen/Sweave}
-%De stylesheet van het rapport.
-\usepackage{inborapport_druk}
+\usepackage[$if(abstract)$babel = english,$endif$ babel = $lang$]{inborapport_2015}
 \usepackage{upquote}
 \usepackage{booktabs}
 $if(usepackage)$
@@ -53,153 +46,76 @@ $if(floatbarriersubsubsection)$
 \makeatother
 $endif$
 
-$if(lang)$
-\renewcommand{\tableautorefname}{Tabel}
-\renewcommand{\figureautorefname}{Figuur}
-$endif$
-\newcommand{\autorefp}[1]{ (\autoref{#1})}
-\newcommand{\refp}[1]{ (\ref{#1})}
-\newcommand{\alert}[1]{\textcolor{red}{#1}}
-
-%de titel. Komt op de kaft, in de colofon, in de wijze van citeren en
-%onderaan elke pagina
 \title{$title$}
-
-%Facultatief: de ondertitel
-%komt enkel op de kaft
-$if(ondertitel)$
-  \ondertitel{$ondertitel$}
-$endif$
-
-%de korte titel die onderaan elke pagina geplaatst wordt.
-$if(kortetitel)$
-  \kortetitel{$kortetitel$}
-$endif$
-
-%de auteurs. Komt op de kaft en in de colofon.
-%formaat: Voornaam Achternaam, Voornaam Achternaam \&
-%         Voornaam Achternaam
+$if(subtitle)$\subtitle{$subtitle$}$endif$
 \author{$author$}
+$if(ordernr)$\ordernumber{$ordernr$}$endif$
+$if(reportnr)$\reportnumber{$reportnr$}$endif$
 
-%de titel en de auteurs. Wordt aan de documenteigenschappen van de
-%pdf toegevoegd
-\hypersetup{
-  pdftitle = {$title$ $if(ondertitel)$$ondertitel$$endif$},
-  pdfauthor = {$author$}
-}
-
-%het opdrachtnummer. Standaard: blanco
-%komt op de kaft
-$if(opdrachtnummer)$
-  \opdrachtnummer{$opdrachtnummer$}
-$endif$
-
-%INBO rapportnummer. Aan te vragen via bib-helpdesk
-%Standaard: de datum waarop het document gecompileerd werd.
-%komt op de kaft, in de colofon en de wijze van citeren
-$if(rapportnummer)$
-\rapportnummer{$rapportnummer$}
-$endif$
-
-%Het jaartal waarin het rapport gepubliceerd werd.
-%Komt in de copyright en de wijze van citeren
-\jaar{$jaar$}
-
-%De verkorte auteursnamen
-%formaat: Achternaam Initiaal, Achternaam Initiaal \& Achternaam Initiaal
-%Gebruikt in de wijze van citeren
-$if(auteurkort)$
-  \auteurkort{$auteurkort$}
-$else$
-  \auteurkort{$author$}
-$endif$
-
-%de e-mailadressen van de auteurs
-%formaat: \href{mailto:Voornaam.Achternaam@inbo.be}{Voornaam.Achternaam@inbo.be}
-%plaats telkens een dubbele backslash ('\\') tussen twee adressen.
-%komt enkel in de colofon
-$if(email)$
-  \email{$email$}
-$endif$
-%De vestiging waarvan het adres moet verschijnen
-%Standaard: Anderlecht. Indien een andere waarde wordt ingegeven: Geraarbergen
-%komt enkel in de colofon
-$if(vestiging)$
-  \vestiging{$vestiging$}
-$endif$
-%de verantwoordelijke uitgever
-%standaard: Jurgen Tack
-\vu{Jurgen Tack}
-
-
-%nummber van het wettelijke depot (aan te vragen via bib-helpdesk)
-%standaard: blanco
-%komt enkel in de colofon
-$if(depotnr)$
-  \depotnr{$depotnr$}
-$endif$
-%facultatief: de opdrachgever. De naam volstaat.
-%standaard: blanco
-%komt enkel in de colofon
-$if(opdrachtgever)$
-  \opdrachtgever{$opdrachtgever$}
-$endif$
-
-%facultatief: het logo van de opdrachtgever
-%standaard: blanco
-%Opgelet: verschijnt enkel indien \opdrachtgever{} ingevuld is!
-%Wordt automatisch herschaald naar max 1.5 cm breed of hoog
-%komt in de colofon links van \opdrachtgever{}
-
-%de afbeelding die op de cover komt. Deze wordt automatisch naar de breedte van de cover geschaald.
-\cover{$cover$}
-%de offset laat toe om de coverafbeelding naar boven of onder te schuiven.
-$if(coveroffset)$
-  \coveroffset{$coveroffset$}
-$endif$
-%facultatief: een tekst die de coverfoto of -tekening beschrijft.
-%komt enkel in de colofon
-$if(covertekst)$
-  \covertekst{$covertekst$}
-$endif$
-%splits hier woorden die door de automatische woordafbreking verkeerd
-%worden gesplitst.
-$if(hyphentation)$
-  \hyphenation{$hyphentation$}
-$endif$
+$if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
 \begin{document}
 \maketitle
 \pagenumbering{Roman}
 
 $if(dankwoord)$
-  \chapter*{Dankwoord}
-  \addcontentsline{toc}{chapter}{Dankwoord}
-  \include{$dankwoord$}
+\chapter*{Dankwoord}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$dankwoord$}
 $endif$
 
 $if(voorwoord)$
-  \chapter*{Voorwoord}
-  \addcontentsline{toc}{chapter}{Voorwoord}
-  \include{$voorwoord$}
+\chapter*{Voorwoord}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$voorwoord$}
 $endif$
 
 $if(samenvatting)$
-  \chapter*{Samenvatting}
-  \addcontentsline{toc}{chapter}{Samenvatting}
-  \include{$samenvatting$}
+\chapter*{Samenvatting}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$samenvatting$}
+$endif$
+
+$if(aanbeveling)$
+\chapter*{Aanbevelingen voor beheer en/of beleid}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$aanbeveling$}
 $endif$
 
 $if(abstract)$
-  \begin{otherlanguage*}{english}
-  \chapter*{English abstract}
-  \addcontentsline{toc}{chapter}{English abstract}
-  \include{$abstract$}
-  \end{otherlanguage*}
+\begin{otherlanguage*}{english}
+\chapter*{English abstract}
+\addcontentsline{toc}{chapter}{\chaptertitle}
+
+\input{$abstract$}
+\end{otherlanguage*}
 $endif$
 
+\clearpage
+
+\phantomsection
 \tableofcontents
-\addcontentsline{toc}{chapter}{Inhoudsopgave}
+\addcontentsline{toc}{chapter}{\contentsname}
+
+$if(loft)$
+\clearpage
+$endif$
+
+$if(lof)$
+\phantomsection
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+$endif$
+
+$if(lot)$
+\phantomsection
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+$endif$
 
 \newpage
 \pagenumbering{arabic}
@@ -209,6 +125,11 @@ $body$
 $if(natbibfile)$
 \bibliographystyle{spbasic}
 \bibliography{$natbibfile$}
+\addcontentsline{toc}{chapter}{\bibname}
 $endif$
 
+$if(appendix)$
+\appendix
+\input{$appendix$}
+$endif$
 \end{document}

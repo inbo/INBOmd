@@ -1,0 +1,260 @@
+% Copyright 2014 by Thierry Onkelinx
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemevlaanderenlayout}
+
+% set fonts for different elements
+\usetheme{Pittsburgh}
+\usecolortheme[named=support.colour]{structure}
+
+\setbeamercolor{title}{fg=white}
+\setbeamerfont{title}{size = \titlefontsize, series = \bfseries}
+
+\setbeamercolor{subtitle}{fg=white}
+\setbeamerfont{subtitle}{size = \subtitlefontsize, series = \bfseries}
+
+\setbeamerfont{frametitle}{series = \bfseries, size = \large}
+\setbeamercolor{frametitle}{bg=,fg=frametitle.colour}
+
+\setbeamercolor{author}{fg=white}
+\setbeamerfont{author}{size = \authorfontsize}
+
+\setbeamercolor{date}{fg=white}
+\setbeamerfont{date}{size = \datefontsize}
+
+\setbeamercolor{institute}{fg=white}
+\setbeamerfont{institute}{size = \institutefontsize}
+
+\setbeamerfont{sidebar}{size = \websitefontsize, series = \bfseries}
+\setbeamercolor{sidebar}{fg = sectiontitle.colour, bg = main.colour}
+
+\setbeamerfont{section title}{size = \sectionfontsize, series = \bfseries}
+\setbeamercolor{section title}{fg = sectiontitle.colour, bg =}
+
+\setbeamerfont{subsection title}{size = \subsectionfontsize, series = \bfseries}
+\setbeamercolor{subsection title}{fg = sectiontitle.colour, bg = }
+
+\setbeamerfont{section in toc}{size = \normalsize, series = \normalfont}
+\setbeamercolor{section in toc}{fg = frametitle.colour}
+\setbeamertemplate{section in toc}[square]
+
+\setbeamerfont{subsection in toc}{size = \small, series = \normalfont}
+\setbeamercolor{subsection in toc}{fg = frametitle.colour}
+\setbeamertemplate{subsection in toc}[square]
+
+\setbeamertemplate{itemize items}[triangle]
+\setbeamertemplate{enumerate items}[square]
+
+\setbeamercolor{block title}{fg=box.colour.title, bg=box.colour}
+\setbeamercolor{block body}{bg = box.colour}
+\setbeamerfont{block title}{series = \bfseries}
+
+\setbeamercolor{block title alerted}{fg=alert.colour.title, bg=alert.colour}
+\setbeamercolor{block body alerted}{bg = alert.colour.body}
+\setbeamerfont{block title alerted}{series = \bfseries}
+
+\setbeamercolor{block title example}{fg=example.colour.title, bg=example.colour}
+\setbeamercolor{block body example}{bg = example.colour.body}
+\setbeamerfont{block title example}{series = \bfseries}
+
+\setbeamercolor{title in head/foot}{fg=frametitle.colour}
+
+% define title page
+\setbeamertemplate{title page}{
+  \begin{textblock}{124.5}(3.5, 0)
+    \readcover{\@coverhorizontal}{\@cover}
+    \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
+      \pgfuseimage{afbeelding}
+    \end{pgftranslate}
+  \end{textblock}
+
+  \begin{textblock}{3.5}(0, 0)
+    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
+      \color{main.colour}
+      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{3.5mm}{96mm}}
+    \end{pgfpicture}
+  \end{textblock}
+
+  \begin{textblock}{2.9}(1.2, 78)
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+  \end{textblock}
+
+  \begin{textblock}{84}(18.1, 6)
+    \begin{minipage}[b][50mm][b]{78mm}
+      \noindent
+      \raggedright
+      {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}\\
+      {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}
+    \end{minipage}
+  \end{textblock}
+
+  \begin{textblock}{104}(18.1, 58.1)
+     {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate}~\\
+     \vspace{5mm}
+     \raggedright {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}
+
+     {\usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute}
+  \end{textblock}
+
+  \titlelogo
+}
+
+% define frames
+
+\setbeamertemplate{frametitle}{
+  \vspace{3mm}\raggedright {\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}\insertframetitle}
+
+  {\small \insertframesubtitle}
+}
+
+\setbeamertemplate{sidebar left}{
+  \sidebarlogo
+
+  \begin{textblock}{4}(0, 0)
+    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
+      \color{main.colour}
+      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{4.1mm}{96mm}}
+    \end{pgfpicture}
+  \end{textblock}
+
+  \begin{textblock}{2.9}(1.2, 78)
+    \textblockcolour{}
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+  \end{textblock}
+
+}
+
+% define section
+
+\setbeamertemplate{section page}{
+  \begin{textblock}{150}(4, 1.6)
+    \begin{pgfpicture}{0cm}{0cm}{120mm}{90mm}
+      \pgfmoveto{\pgfpoint{0mm}{0mm}}
+      \pgflineto{\pgfpoint{0mm}{87.5mm}}
+      \pgflineto{\pgfpoint{94.8mm}{87.5mm}}
+      \pgflineto{\pgfpoint{119.7mm}{0mm}}
+      \pgfclip
+      \color{main.colour}
+      % \color{magenta}
+     \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
+      % \pgfgrid[stepx = 1mm, stepy = 1mm]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
+    \end{pgfpicture}
+  \end{textblock}
+
+  \sectionlogo
+
+  \begin{textblock}{66}(36, 32)
+    \textblockcolour{}
+    \begin{minipage}[b][29mm][b]{65mm}
+      \noindent
+      \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
+    \end{minipage}
+  \end{textblock}
+
+  \begin{textblock}{2.9}(1.2, 78)
+    \textblockcolour{}
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+  \end{textblock}
+}
+
+% define subsection
+
+\setbeamertemplate{subsection page}{
+  \begin{textblock}{150}(4, 1.6)
+    \begin{pgfpicture}{0cm}{0cm}{120mm}{90mm}
+      \pgfmoveto{\pgfpoint{0mm}{0mm}}
+      \pgflineto{\pgfpoint{0mm}{87.5mm}}
+      \pgflineto{\pgfpoint{94.8mm}{87.5mm}}
+      \pgflineto{\pgfpoint{119.7mm}{0mm}}
+      \pgfclip
+      \color{main.colour}
+      % \color{magenta}
+     \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
+      % \pgfgrid[stepx = 1mm, stepy = 1mm]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
+    \end{pgfpicture}
+  \end{textblock}
+
+  \sectionlogo
+
+  \begin{textblock}{66}(36, 32)
+    \textblockcolour{}
+    \begin{minipage}[b][29mm][b]{65mm}
+      \noindent
+      \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
+    \end{minipage}
+  \end{textblock}
+
+  \begin{textblock}{78}(36, 63)
+    \textblockcolour{}
+    {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
+  \end{textblock}
+
+  \begin{textblock}{2.9}(1.2, 78)
+    \textblockcolour{}
+    {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+  \end{textblock}
+}
+
+\setbeamertemplate{block begin}{
+  \vskip2mm
+  \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title}%
+    \usebeamerfont*{block title}\insertblocktitle
+  \end{beamercolorbox}%
+  \vskip-0.5mm
+  \pgfsetfillopacity{0.5}
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[vmode, colsep = 1mm]{block body}%
+    \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block end}{
+  \end{beamercolorbox}
+  \pgfsetfillopacity{1}
+}
+
+\setbeamertemplate{block example begin}{
+  \vskip2mm
+  \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title example}%
+    \usebeamerfont*{block title example}\insertblocktitle
+  \end{beamercolorbox}%
+  \vskip-0.5mm
+  \pgfsetfillopacity{0.5}
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[vmode, colsep = 1mm]{block body example}%
+    \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block example end}{
+  \end{beamercolorbox}
+  \pgfsetfillopacity{1}
+}
+
+\setbeamertemplate{block alerted begin}{
+  \vskip2mm
+  \begin{beamercolorbox}[leftskip = 10mm, colsep = 1mm]{block title alerted}%
+    \usebeamerfont*{block title alerted}\insertblocktitle
+  \end{beamercolorbox}%
+  \vskip-0.5mm
+  \pgfsetfillopacity{0.5}
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[vmode, colsep = 1mm]{block body alerted}%
+    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+  }
+  \setbeamertemplate{block alerted end}{
+  \end{beamercolorbox}
+  \pgfsetfillopacity{1}
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\patchcmd{\beamer@calculateheadfoot}{\advance\footheight by 4pt}{\advance\footheight by 22pt}{}{}
+\setbeamertemplate{footline}[frame number]
+
+\setbeamersize{text margin left=9.5mm}
+\setbeamersize{text margin right=6mm}
+
+\setbeamercolor{alerted text}{fg=alert.colour.body}

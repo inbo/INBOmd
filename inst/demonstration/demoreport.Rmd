@@ -1,6 +1,7 @@
 ---
 title: "Demonstratie van de rapport lay-out. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs."
 author: "Thierry Onkelinx, Ivy Jansen, Pieter Verschelde, Hans Van Calster, Toon Westra, Toon Van Daele, Floris Vanderhaeghe, Els Lommelen & Paul Quataert"
+bibliography: INBOmd.bib
 output: 
   INBOmd::inbo_rapport_2015:
     subtitle: "De ondertitel: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs."
@@ -13,15 +14,7 @@ output:
     abstract: "lipsum"
     appendix: "appendix"
     usepackage: "lipsum"
-    natbib: "INBOmd"
     keep_tex: TRUE
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Demonstratie van de INBO huisstijl voor rapporten versie 2015}
-  %\VignetteDepends{pander}
-  %\VignetteDepends{ggplot2}
-  %\VignetteDepends{INBOtheme}
-  %\SweaveUTF8
 ---
 
 ```{r setup, echo = FALSE}
