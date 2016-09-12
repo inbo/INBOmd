@@ -8,6 +8,7 @@
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
+#' @param pandoc_args Additional command line options to pass to pandoc
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -33,6 +34,7 @@ inbo_rapport_2015 <- function(
   lang = "dutch",
   keep_tex = FALSE,
   fig_crop = TRUE,
+  pandoc_args = NULL,
   ...
 ){
   floatbarrier <- match.arg(floatbarrier)
@@ -46,6 +48,7 @@ inbo_rapport_2015 <- function(
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("lang", lang)
   )
+  args <- c(args, pandoc_args)
   if (!missing(natbib)) {
     args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
   } else {
