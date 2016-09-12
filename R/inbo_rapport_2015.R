@@ -8,6 +8,7 @@
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
+#' @param pandoc_args Additional command line options to pass to pandoc
 #' @param ... extra parameters: see details
 #'
 #' @details

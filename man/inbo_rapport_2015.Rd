@@ -6,7 +6,7 @@
 \usage{
 inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
   "subsection", "subsubsection"), natbib, lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, ...)
+  fig_crop = TRUE, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -25,6 +25,8 @@ inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures}
+
+\item{pandoc_args}{Additional command line options to pass to pandoc}
 
 \item{...}{extra parameters: see details}
 }
