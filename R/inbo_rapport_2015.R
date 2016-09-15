@@ -44,6 +44,7 @@ inbo_rapport_2015 <- function(
   csl <- system.file("inbo.csl", package = "INBOmd")
   args <- c(
     "--template", template,
+    "--latex-engine", "xelatex",
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("lang", lang)
   )
