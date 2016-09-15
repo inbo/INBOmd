@@ -40,7 +40,6 @@ inbo_handouts <- function(
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,
-    "--latex-engine", "xelatex",
     pandoc_variable_arg("lang", lang),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("website", website),
@@ -104,6 +103,7 @@ inbo_handouts <- function(
     ),
     pandoc = pandoc_options(
       to = "beamer",
+      latex_engine = "xelatex",
       args = args,
       keep_tex = keep_tex | !missing(natbib)
     ),
