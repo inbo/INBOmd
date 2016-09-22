@@ -139,6 +139,7 @@ inbo_rapport_2015 <- function(
     ),
     pandoc = pandoc_options(
       to = "latex",
+      latex_engine = "xelatex",
       args = args,
       keep_tex = keep_tex | !missing(natbib)
     ),
