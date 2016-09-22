@@ -104,6 +104,7 @@ inbo_handouts <- function(
     ),
     pandoc = pandoc_options(
       to = "beamer",
+      latex_engine = "xelatex",
       args = args,
       keep_tex = keep_tex | !missing(natbib)
     ),
