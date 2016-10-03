@@ -1,11 +1,13 @@
 ---
-title: "De titel van het rapport"
-author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
+title: "The main title of the report"
+author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
 output: 
   INBOmd::inbo_rapport_2015:
-    subtitle : "Optionele ondertitel"
-    reportnr: "Het INBO nummer van het rapport. Datum van compilatie indien ontbrekend"
-    ordernr: "Optioneel: Het referentienummer van de opdrachtgever"
+    subtitle : "The optional subtitle"
+    reportnr: "The report number. Will be replaced by the date of compliation when missing."
+    ordernr: "Optinal: a reference to the order from the client"
+    lof: TRUE
+    lot: TRUE
   word_document:
     toc: TRUE
 ---
@@ -32,25 +34,37 @@ panderOptions("table.split.table", Inf)
 panderOptions("decimal.mark", ",")
 ```
 
-# INBO rapport met RMarkdown
+# INBO report with RMarkdown
 
-This is een R Markdown document. Markdown is een eenvoudige syntax om teksten te formateren. Markdown documenten kunnen omgezet worden naar meerdere formaten als PDF, HTML, ePUB, Word, ... Meer information over R Markdown vind je op <http://rmarkdown.rstudio.com>.
+This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>.
 
-De stijl `inbo_rapport_2015` zal het document omzetten naar een PDF in de INBO huisstijl. Wie een Word versie van het document verkiest, kan de stijl `word_document` gebruiken. Het resultaat zal een Word document zijn, echter NIET in de INBO huisstijl.
+The output style `inbo_rapport_2015` renders the document as a PDF with the INBO corpate identity. An MS-Word version can be rendered by using the output style `word_document`. Note that this will be a simple MS Word document, not rendered into the INBO corpate identity.
 
-Als je op de **Knit** knop klikt, zal een document aangemaakt worden dat zowel de tekst als de output van eventuele R code chunks bevat. Je kan een R code chunk toevoegen als volgt:
+When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
 
 ```{r cars}
 summary(cars)
 ```
 
-## Grafieken toevoegen
+## Adding figures
 
-Grafieken toevoegen kan eveneens:
+Adding R figures is easy:
 
-```{r pressure, echo = FALSE, fig.cap = "Het bijschrift"}
+```{r pressure, echo = FALSE, fig.cap = "The caption"}
 ggplot(pressure, aes(x = temperature, y = pressure)) + 
   geom_point()
 ```
 
-Merk op dat het `echo = FALSE` argument werd toegevoegd aan de chunk opties. Dat verbergt dat de R code om de grafiek te genereren. Het `fig.cap` argument laat toe om een bijschrift toe te voegen.
+Note that the `echo = FALSE` argument was added to the chunk options. This hides the R code that generates the figure. The `fig.cap` argument adds a caption to the figure.
+
+## Adding tables
+
+`pandoc.table()` is a handy function to display dataframes as a table. Note that we need the argument `results='asis'`.
+
+```{r, results='asis'}
+pandoc.table(
+  pressure,
+  caption = "The caption of a table"
+)
+```
+
