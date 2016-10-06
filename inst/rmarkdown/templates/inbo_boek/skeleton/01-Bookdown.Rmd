@@ -1,0 +1,30 @@
+# How things are done differently in Bookdown
+
+## Multiple files
+
+The easiest way to combine the different Rmd files in the correct order is as follows: call the first file `index.Rmd`. All other Rmd files will be appended based on the alphabetical order of their filename. Therefore it is handy to add the desired order number as a prefix to the filenames. See https://bookdown.org/yihui/bookdown/usage.html for an example.
+
+## Cross references {#S:crossref}
+
+To create a cross reference to a location you need to add a label. Add `{#your_label}` at the end of a chapter or section title to create this label. Then you can reference this label by using `\@ref{your_label}`. The correct number will be inserted automatically during rendering. e.g. section \@ref(S:crossref). How to add labels for figures and tables is discussed at section \@ref(S:figures) and \@ref{S:tables}.
+
+The cross references act as hyperlinks. When you click them you go to the location of the corresponding label. Therefore labels must be unique within the book. You will get an error message when they aren't unique.
+
+## Citations
+
+The recommended way to use citations in a Bookdown document is to define the references in a BibTeX database. We recommend to use the desktop version of Mendeley to generate these files. This software is freely available from http://www.mendeley.com.
+
+Each reference in the database has a unique key. Use this key with the `@key` or `[@key]` notation. In case of multiple references between a single pair of brackets use `[@key1; @key2]`. Some examples:
+
+`@R-base`
+  ~ @R-base
+  
+`[@R-base]`
+  ~ [@R-base]
+  
+`[@R-base; @R-lme4]`
+  ~ [@R-base; @R-lme4]
+  
+## Output formats
+
+The bookdown style is chiefly intended with HTML, PDF and e-Book as output formats. 

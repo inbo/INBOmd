@@ -1,0 +1,55 @@
+---
+title: "The main title of the report"
+author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
+bibliography: references.bib
+site: bookdown::bookdown_site
+output: 
+  bookdown::pdf_book:
+    base_format: INBOmd::inbo_rapport_2015
+    subtitle : "The optional subtitle"
+    reportnr: "The report number. Will be replaced by the date of compliation when missing."
+    ordernr: "Optional: a reference to the order from the client"
+    lof: TRUE
+    lot: TRUE
+    lang: english
+    keep_tex: TRUE
+  bookdown::gitbook: 
+    default
+  bookdown::epub_book: 
+    default
+  bookdown::word_document2:
+    default
+---
+```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, 
+  results = 'markup',
+  eval = TRUE,
+  echo = TRUE,
+  cache = FALSE,
+  dpi = 300,
+  fig.width = 150 / 25.4,
+  fig.height = 100 / 25.4,
+  warning = TRUE,
+  error = TRUE,
+  message = TRUE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015())
+```
+
+# INBO report with RMarkdown, bookdown style
+
+## Markdown
+
+This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html
+
+The output style `inbo_rapport_2015` renders the document as a PDF with the INBO corpate identity. An MS-Word version can be rendered by using the output style `word_document`. Note that this will be a simple MS Word document, not rendered into the INBO corpate identity.
+
+When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. 
+
+## Bookdown style
+
+The most important difference between plain Rmarkdown and Bookdown is that Bookdown allows to split the book over multiple Rmd files. You can e.g. make a separate Rmd file for each chapter. This makes the Rmd files smaller and easier to maintain. The complete book on Bookdown is available at https://bookdown.org/yihui/bookdown.

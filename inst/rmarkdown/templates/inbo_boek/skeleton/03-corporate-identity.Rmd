@@ -1,0 +1,31 @@
+# INBO corporate identity
+
+## Lists of tables and figures
+
+A list of tables and a list of figures will be added automatically. Use `lof: FALSE` is the YAML at the top of the document to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
+
+## Floatbarriers
+
+Figures are free to 'float' to a suitable position. This works very well when you have a descent amount of text. If you have a lot of figures with a limited number of text then it is likely that figures float into the next section or subsection. They will never float into the next chapter. If you want to prevent floating into the next section add `floatbarrier: section` to the YAML. Note that this still allows figures to float to the next subsection of the current section. Other options are `floatbarrier: subsection` and `floatbarrier: subsubsection`.
+
+## Language
+
+The default language is Dutch. In that case you don't need to specify the language in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
+
+## Special blocks
+
+The INBO corporate style has some special blocks available. This will only work when rendering to pdf!
+
+```{block, type = "block", latex.options = "{Title of a block}"}
+This is an block
+```
+
+```{block, type = "exampleblock", latex.options = "{Title of an example block}"}
+This is an example block.
+
+You **can** add _Markdown_ formatting.
+```
+
+```{block, type = "alertblock", latex.options = "{Title of an alert block}"}
+This is an alert block
+```
