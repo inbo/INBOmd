@@ -5,9 +5,10 @@ output:
   INBOmd::inbo_rapport_2015:
     subtitle : "The optional subtitle"
     reportnr: "The report number. Will be replaced by the date of compliation when missing."
-    ordernr: "Optinal: a reference to the order from the client"
+    ordernr: "Optional: a reference to the order from the client"
     lof: TRUE
     lot: TRUE
+    lang: english
   word_document:
     toc: TRUE
 ---
@@ -18,7 +19,6 @@ knitr::opts_chunk$set(
   eval = TRUE,
   echo = TRUE,
   cache = FALSE,
-  dev = "pdf",
   dpi = 300,
   fig.width = 150 / 25.4,
   fig.height = 100 / 25.4,
@@ -36,35 +36,77 @@ panderOptions("decimal.mark", ",")
 
 # INBO report with RMarkdown
 
-This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>.
+This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html
 
 The output style `inbo_rapport_2015` renders the document as a PDF with the INBO corpate identity. An MS-Word version can be rendered by using the output style `word_document`. Note that this will be a simple MS Word document, not rendered into the INBO corpate identity.
 
 When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
 
-```{r cars}
-summary(cars)
+```{r linear_model}
+model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
+summary(model)
 ```
+
+## Cross references
+\label{S:crossref}
+
+To create a cross reference you need to mark the target with a `\label{your_label}`. Place `\autoref{your_label}` or `\autorefp{yourlabel}` at the position where you need the cross reference. This will insert the correct description and number which will be automatically determined when rendering the pdf, e.g. the `\autoref{}` result: \autoref{S:crossref}; the `\autorefp{}` result:\autorefp{S:crossref}. Note that this will be invisible when rendering to MS Word.
+
+Cross references can be used with headings, figures, tables, ... Place the `\label{your_label}` just after the heading or in the captions. We recommend to add prefixes to the labels. `S:` for headings, `fig:` for figures, `tab:` for tables.
+
+The cross references act as hyperlinks. When you click then you go to the local of the corresponding label. Therefore labels must be unique within the document. You will get an error message when they aren't unique.
 
 ## Adding figures
 
-Adding R figures is easy:
+Adding R figures is easy\autorefp{fig:RFigure}. The `echo = FALSE` argument was added to the chunk options. This hides the R code that generates the figure. The `fig.cap` argument adds a caption to the figure. The label in the caption has a double `\`. This is required when useing `\` in R strings.
 
-```{r pressure, echo = FALSE, fig.cap = "The caption"}
+```{r pressure, echo = FALSE, fig.cap = "\\label{fig:RFigure}The caption"}
 ggplot(pressure, aes(x = temperature, y = pressure)) + 
-  geom_point()
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2)) +
+  geom_point() +
+  scale_x_continuous("Temperature (deg C)") +
+  scale_y_log10("Pressure (mm of Hg)") +
+  ggtitle("pressure data: Vapor Pressure of Mercury")
 ```
-
-Note that the `echo = FALSE` argument was added to the chunk options. This hides the R code that generates the figure. The `fig.cap` argument adds a caption to the figure.
 
 ## Adding tables
 
-`pandoc.table()` is a handy function to display dataframes as a table. Note that we need the argument `results='asis'`.
+`pandoc.table()` is a handy function to display dataframes as a table\autorefp{tab:PandocTable}. Note that we need the argument `results='asis'`.
 
-```{r, results='asis'}
+```{r pandoc, results='asis'}
 pandoc.table(
   pressure,
-  caption = "The caption of a table"
+  caption = "\\label{tab:PandocTable}The caption of a Markdown table"
 )
 ```
 
+`xtable` allows prettier tables\autorefp{tab:XtableTable}. The downside it that the tables will not be visible in the Word document.
+
+```{r xtable, results='asis'}
+library(xtable)
+print(
+  xtable(
+    pressure,
+    digits = c(0, 0, 2),
+    caption = "\\label{tab:XtableTable}The caption of an xtable table"
+  ),
+  comment = FALSE,
+  include.rownames = FALSE,
+  sanitize.text = function(x){x}
+)
+```
+## Citations
+
+See http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
+
+## Lists of tables and figures
+
+A list of tables and a list of figures will be added automatically. Use `lof: FALSE` is the YAML at the top of the document to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
+
+## Floatbarriers
+
+Figures are free to 'float' to a suitable position. This works very well when you have a descent amount of text. If you have a lot of figures with a limited number of text then it is likely that figures float into the next section or subsection. They will never float into the next chapter. If you want to prevent floating into the next section add `floatbarrier: section` to the YAML. Note that this still allows figures to float to the next subsection of the current section. Other options are `floatbarrier: subsection` and `floatbarrier: subsubsection`.
+
+## Language
+
+The default language is Dutch. In that case you don't need to specify the language in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
