@@ -95,6 +95,10 @@ flandersfont
 
 ## Linear model
 
+@R-base 
+
+[@R-lme4]
+
 ```{r linear_model, echo = TRUE}
 model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
 summary(model)
@@ -111,7 +115,6 @@ ggplot(pressure, aes(x = temperature, y = pressure)) +
   ggtitle("pressure data: Vapor Pressure of Mercury")
 ```
 
-
 ## Table {.allowframebreaks}
 
 ```{r kabletable, results='asis'}
@@ -120,3 +123,5 @@ kable(
   longtable = TRUE
 )
 ```
+
+## References
