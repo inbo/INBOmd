@@ -28,7 +28,7 @@ After installing XeLaTeX, you can install INBOmd from github with:
 
 ```R
 # install.packages("devtools")
-devtools::install_github("INBOmd/inbo")
+devtools::install_github("inbo/INBOmd")
 ```
 
 To active the corporate identity in XeLaTeX you need to perform a few more steps.
