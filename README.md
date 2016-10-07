@@ -33,7 +33,7 @@ devtools::install_github("INBOmd/inbo")
 
 To active the corporate identity in XeLaTeX you need to perform a few more steps.
 
-#### Windows:
+#### Windows
 
 1. Push the _Start_ button and then _All programs_ --> _MikTex 2.9_ --> _Maintenance_ --> _Settings_
 1. Go to the _Roots_ tab. The R command `system.file("local_tex", package = "INBOmd")` show a folder which must be in listed in the roots. If not, click _Add_, select the folder and click _OK_ and then _Apply_.
