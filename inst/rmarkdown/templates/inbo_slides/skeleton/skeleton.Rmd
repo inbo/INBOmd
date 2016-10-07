@@ -7,7 +7,23 @@ output:
     subtitle: "Optional: a subtitle"
     location: "The location and date"
     institute: "Affilitation of the author(s)"
+    toc_name: "Summary"
 ---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(
+  out.extra = "",
+  strip.white = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  echo = FALSE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(6, transparent = "plot"))
+```
+
 
 # Important options to set in the YAML header
 
@@ -60,3 +76,47 @@ toc_name
   
 lang
   ~ the language of the presentation. Defaults to `dutch`.
+
+## Fonts
+
+fontsize
+  ~ base fontsize of the text. Defaults to `fontsize: 10pt`
+
+codesize
+  ~ the relative size of code compared to `fontsize`
+  ~ from large to small: normalsize, small, footnotesize, scriptsize, tiny
+  ~ defaults to `codesize: footnotesize`
+
+flandersfont
+  ~ Use Flanders Art if TRUE. Requires that the Flanders Art font is installed.
+  ~ Use Calibri is FALSE (default)
+
+# R code chunks
+
+## Linear model
+
+```{r linear_model, echo = TRUE}
+model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
+summary(model)
+```
+
+## Figure
+
+```{r pressure}
+ggplot(pressure, aes(x = temperature, y = pressure)) + 
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2)) +
+  geom_point() +
+  scale_x_continuous("Temperature (deg C)") +
+  scale_y_log10("Pressure (mm of Hg)") +
+  ggtitle("pressure data: Vapor Pressure of Mercury")
+```
+
+
+## Table {.allowframebreaks}
+
+```{r kabletable, results='asis'}
+kable(
+  pressure,
+  longtable = TRUE
+)
+```
