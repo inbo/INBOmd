@@ -12,7 +12,7 @@ Suggests:
     knitr,
     pander,
     ggplot2,
-    INBOtheme (>= 0.4.1)
+    INBOtheme (>= 0.5.4)
 Imports:
     assertthat,
     rmarkdown
