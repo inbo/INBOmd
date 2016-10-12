@@ -3,12 +3,11 @@
 #' @param reportnr The report number
 #' @param ordernr The order number
 #' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
-#' @param natbib The bibliography file for natbib
 #' @param lang The language of the document. Defaults to "dutch"
-#' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
+#' @inheritParams inbo_slides
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -31,6 +30,7 @@ inbo_rapport_2015 <- function(
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   natbib,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
   keep_tex = FALSE,
   fig_crop = TRUE,
@@ -39,6 +39,7 @@ inbo_rapport_2015 <- function(
 ){
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
+  codesize <- match.arg(codesize)
 
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
   csl <- system.file("inbo.csl", package = "INBOmd")
@@ -46,6 +47,7 @@ inbo_rapport_2015 <- function(
     "--template", template,
     "--latex-engine", "xelatex",
     pandoc_variable_arg("documentclass", "report"),
+    pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("lang", lang)
   )
   args <- c(args, pandoc_args)

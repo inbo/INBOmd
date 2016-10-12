@@ -12,6 +12,23 @@ Figures are free to 'float' to a suitable position. This works very well when yo
 
 The default language is Dutch. In that case you don't need to specify the language in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
 
+## Codesize
+
+The relative size of code. Available value from large to small are: normalsize, small, footnotesize, scriptsize and tiny. Normalsize is equivalent to the size of the plain text. Defaults to `codesize: footnotesize`.
+
+```{r results = "asis"}
+sizes <- data.frame(
+  codesize = c("normalsize", "small", "footnotesize", "scriptsize", "tiny"),
+  text = c(65, 72, 80, 90, 120),
+  maximum = c(77, 85, 96, 106, 142)
+)
+kable(
+  sizes, 
+  booktab = TRUE,
+  caption = "Number of characters per line that can be displayed in R code chunks for the different codesizes."
+)
+```
+
 ## Special blocks
 
 The INBO corporate style has some special blocks available. This will only work when rendering to pdf!

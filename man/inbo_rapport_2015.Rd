@@ -5,8 +5,9 @@
 \title{Create a report with the INBO theme version 2015}
 \usage{
 inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), natbib, lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, pandoc_args = NULL, ...)
+  "subsection", "subsubsection"), natbib, codesize = c("footnotesize",
+  "scriptsize", "tiny", "small", "normalsize"), lang = "dutch",
+  keep_tex = FALSE, fig_crop = TRUE, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -18,6 +19,8 @@ inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
 
 \item{natbib}{The bibliography file for natbib}
+
+\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 
@@ -36,8 +39,8 @@ Create a report with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
-  \item lof: display a list of figures. Defaults tot TRUE
-  \item lot: display a list of tables. Defaults tot TRUE
+  \item lof: display a list of figures. Defaults to TRUE
+  \item lot: display a list of tables. Defaults to TRUE
   \item hyphenation: the correct hyphenation for certain words
   \item dankwoord: path to LaTeX file with dankwoord
   \item voorwoord: path to LaTeX file with voorwoord
