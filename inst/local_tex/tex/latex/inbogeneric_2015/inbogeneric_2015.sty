@@ -41,6 +41,11 @@
 \newcommand{\ErrorTok}[1]{\textcolor{alert.colour}{\textbf{{#1}}}}
 \newcommand{\NormalTok}[1]{{#1}}
 
+\patchcmd{\@verbatim}
+  {\verbatim@font}
+  {\verbatim@font\@codesize}
+  {}{}
+
 % update autoref labels for dutch
 \addto\extrasdutch{%
   \def\chapterautorefname{Hoofdstuk}%
