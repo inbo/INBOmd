@@ -19,8 +19,8 @@ The relative size of code. Available value from large to small are: normalsize, 
 ```{r results = "asis"}
 sizes <- data.frame(
   codesize = c("normalsize", "small", "footnotesize", "scriptsize", "tiny"),
-  text = c(65, 72, 80, 90, 120),
-  maximum = c(77, 85, 96, 106, 142)
+  text = c(78, 86, 95, 107, 143),
+  maximum = c(93, 102, 113, 137, 170)
 )
 kable(
   sizes, 
