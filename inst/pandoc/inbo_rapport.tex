@@ -1,10 +1,11 @@
 \documentclass[11pt, twoside]{extreport}
 
-\usepackage[$if(abstract)$babel = english,$endif$ babel = $lang$]{inborapport_2015}
-\usepackage{upquote}
-\usepackage{booktabs}
+\usepackage[$if(abstract)$babel = english, $endif$babel = $lang$]{inborapport_2015}
 $if(usepackage)$
 \usepackage{$usepackage$}
+$endif$
+$if(codesize)$
+\codesize{\$codesize$}
 $endif$
 
 $if(floatbarriersection)$

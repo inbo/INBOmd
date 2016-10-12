@@ -5,12 +5,16 @@
 \def\codesize#1{\def\@codesize{#1}}
 \codesize{\normalsize}
 
+% required for the Euro symbol
 \RequirePackage[gen]{eurosym}
+% allows more complex formula's and \eqref
 \RequirePackage{amsmath}
+% allow natbib style references
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
+% needed for markdown
 \RequirePackage{booktabs}
-\RequirePackage{longtable}
 \RequirePackage{upquote}
+\RequirePackage{longtable}
 
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
@@ -57,4 +61,3 @@
 % define references in between brackets
 \newcommand{\autorefp}[1]{ (\autoref{#1})}
 \newcommand{\refp}[1]{ (\ref{#1})}
-
