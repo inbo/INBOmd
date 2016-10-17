@@ -4,6 +4,8 @@
 
 The easiest way to combine the different Rmd files in the correct order is as follows: call the first file `index.Rmd`. All other Rmd files will be appended based on the alphabetical order of their filename. Therefore it is handy to add the desired order number as a prefix to the filenames. See https://bookdown.org/yihui/bookdown/usage.html for an example.
 
+Bookdown uses by default the merge-and-knit strategy. All Rmd files of the book are combined into one big temporary Rmd file which is then knit to md. Another options is the knit-and-merge strategy. First knit each individual Rmd file to md and then combine the md files into one big temporary md file. See https://bookdown.org/yihui/bookdown/new-session.html for more information on the pros and cons of both strategies. If you want the knit-and-merge strategy, set `new_session: TRUE` in the `_bookdown.yml` file of your Bookdown project.
+
 ## A dedicated project
 
 Bookdown works best when you add everything in a dedicated RStudio project. A _Build_ tab will appear when the `index.Rmd` file is at the root of the RStudio project. This _Build_ tab contains two buttons: _Build book_ and _More_. The _Build book_ builds the book in the default format. You can choose the format from its dropdown menu. The _More_ button has two options: _Clean all_ removes all existing output; _Configure build tools_ allows you to set some defaults for rendering the book.
