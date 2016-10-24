@@ -1,0 +1,65 @@
+\documentclass[11pt, twoside]{extarticle}
+
+\usepackage[babel = $lang$]{inbozending_2015}
+$if(usepackage)$
+\usepackage{$usepackage$}
+$endif$
+
+% use babel for different languages
+\usepackage[$lang$]{babel}
+
+$if(floatbarriersection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\section\expandafter
+     {\expandafter\@fb@secFB\section}%
+   \newcommand\@fb@secFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+$if(floatbarriersubsection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\subsection\expandafter
+     {\expandafter\@fb@subsecFB\subsection}%
+   \newcommand\@fb@subsecFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+$if(floatbarriersubsubsection)$
+\makeatletter
+\AtBeginDocument{%
+   \expandafter\renewcommand\expandafter\subsubsection\expandafter
+     {\expandafter\@fb@subsubsecFB\subsubsection}%
+   \newcommand\@fb@subsubsecFB{\FloatBarrier
+   \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}
+   \g@addto@macro\@afterheading{\@fb@afterHHook}
+   \gdef\@fb@afterHHook{}
+}
+\makeatother
+$endif$
+
+\author{$author$}
+\title{$conference$}
+\reportdate{$reportdate$}
+\conferencedate{$conferencedate$}
+\conferenceplace{$conferenceplace$}
+\website{$website$}
+\colleagues{$colleagues$}
+
+$if(hyphentation)$\hyphenation{$hyphentation$}$endif$
+
+\begin{document}
+\maketitle
+
+$body$
+
+\end{document}
