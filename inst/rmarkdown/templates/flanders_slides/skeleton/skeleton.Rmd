@@ -8,6 +8,7 @@ output:
     location: "The location and date"
     institute: "Affilitation of the author(s)"
     theme: "vlaanderen"
+    flandersfont: TRUE
     toc_name: "Summary"
 ---
 
@@ -94,8 +95,8 @@ codesize
   ~ defaults to `codesize: footnotesize`
 
 flandersfont
-  ~ Use Flanders Art if TRUE. Requires that the Flanders Art font is installed.
-  ~ Use Calibri is FALSE (default)
+  ~ Use Flanders Art if TRUE (set as TRUE in this template). Requires that the Flanders Art font is installed.
+  ~ Use Calibri if FALSE (= default if flandersfont parameter is not provided)
 
 # R code chunks
 
