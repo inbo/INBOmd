@@ -14,6 +14,7 @@ output:
     lot: TRUE
     lang: english
     keep_tex: TRUE
+    floatbarrier: subsection
   bookdown::gitbook: 
     default
   bookdown::epub_book: 
