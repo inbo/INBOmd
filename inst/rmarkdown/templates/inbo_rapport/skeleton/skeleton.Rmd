@@ -60,7 +60,7 @@ The cross references act as hyperlinks. When you click then you go to the local 
 
 See http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 
-# R code
+# Inserting and executing R code
 
 When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
 
@@ -93,7 +93,7 @@ kable(
 )
 ```
 
-# INBO corporate identity
+# Applying the INBO corporate identity
 
 ## Lists of tables and figures
 

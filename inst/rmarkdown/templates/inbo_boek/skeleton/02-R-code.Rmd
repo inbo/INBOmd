@@ -1,4 +1,4 @@
-# R code
+# Inserting and executing R code with RMarkdown
 
 You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
 

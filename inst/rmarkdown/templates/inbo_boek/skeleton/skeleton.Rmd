@@ -54,9 +54,8 @@ library(INBOtheme)
 theme_set(theme_inbo2015())
 ```
 
-# INBO report with RMarkdown, bookdown style
+# INBO report with RMarkdown: Bookdown style
 
-## Markdown
 
 This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html
 
@@ -64,6 +63,5 @@ The output style `inbo_rapport_2015` renders the document as a PDF with the INBO
 
 When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. 
 
-## Bookdown style
 
 The most important difference between plain Rmarkdown and Bookdown is that Bookdown allows to split the book over multiple Rmd files. You can e.g. make a separate Rmd file for each chapter. This makes the Rmd files smaller and easier to maintain. The complete book on Bookdown is available at https://bookdown.org/yihui/bookdown.
