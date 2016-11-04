@@ -64,5 +64,10 @@ Other output formats are provided that will not apply the INBO corporate identit
 
 An MS Word version can be rendered by using the output format `word_document`, but the result is rather poor and needs further tinkering in MS Word, such as applying numbered styles. Also, it does not support cross-referencing, figure numbering, blocks, etc. We therefore don't recommend this output format.
 
+The most important difference between plain RMarkdown and Bookdown is that Bookdown allows to split the book over multiple Rmd files. You can e.g. make a separate Rmd file for each chapter. This makes the Rmd files smaller and easier to maintain.
+Bookdown extends on plain RMarkdown, and also provides:
 
-The most important difference between plain Rmarkdown and Bookdown is that Bookdown allows to split the book over multiple Rmd files. You can e.g. make a separate Rmd file for each chapter. This makes the Rmd files smaller and easier to maintain. The complete book on Bookdown is available at https://bookdown.org/yihui/bookdown.
+- consistency between different output formats, in numbering and cross-referencing of figures, tables, sections and equations;
+- the possibility to insert parts and appendices.
+
+The complete book on Bookdown is available at https://bookdown.org/yihui/bookdown.
