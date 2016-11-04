@@ -9,7 +9,7 @@ output:
     ordernr: "Optional: a reference to the order from the client"
     lof: TRUE
     lot: TRUE
-    lang: english
+    lang: english  # remove (or comment out) this parameter if you want Dutch
     floatbarrier: subsection
   html_document:
     fig_caption: yes
@@ -105,7 +105,9 @@ Figures are free to 'float' to a suitable position. This works very well when yo
 
 ## Language
 
-The default language is Dutch. In that case you don't need to specify the language in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
+The default language is Dutch, in case no `lang` parameter is given in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
+
+Switch the language by specifying `lang: english` or `lang: french`, etc. in the YAML header.
 
 ## Codesize
 

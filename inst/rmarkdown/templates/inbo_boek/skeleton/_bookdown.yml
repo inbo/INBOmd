@@ -1,2 +1,13 @@
 book_filename: "INBO-boek.Rmd"
 new_session: FALSE
+language: 
+  label:  # comment out the below parameters if you wish English in output formats, other than bookdown::pdf_book
+    fig: 'Figuur '
+    tab: 'Tabel '
+    eq: 'Vergelijking '
+    thm: 'Stelling '
+    def: 'Definitie '
+    cor: 'Gevolg '
+    ex: 'Example '
+    proof: 'Bewijs '
+    remark: 'Noot '

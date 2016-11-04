@@ -12,7 +12,7 @@ output:
     ordernr: "Optional: a reference to the order from the client"
     lof: TRUE
     lot: TRUE
-    lang: english
+    lang: english  # remove (or comment out) this parameter if you want Dutch
     keep_tex: TRUE
     floatbarrier: subsection
   bookdown::html_document2:

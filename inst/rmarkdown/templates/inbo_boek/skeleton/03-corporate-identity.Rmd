@@ -10,7 +10,11 @@ Figures are free to 'float' to a suitable position. This works very well when yo
 
 ## Language
 
-The default language is Dutch. In that case you don't need to specify the language in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
+The default language is Dutch, in case no `lang` parameter is given in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
+
+Switch the language by specifying `lang: english` or `lang: french`, etc. in the YAML header.
+
+To change the language of other output formats (where the default is Dutch), you can change the `language` YAML parameters in the `_bookdown.yml` file of your Bookdown project. For English, you can also uncomment or remove these parameters and accept the defaults of the `bookdown` package.
 
 ## Codesize
 
