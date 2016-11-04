@@ -2,6 +2,7 @@
 title: "The main title of the report"
 subtitle : "The optional subtitle"
 author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
+link-citations: TRUE
 output: 
   INBOmd::inbo_rapport_2015:
     reportnr: "The report number. Will be replaced by the date of compliation when missing."
