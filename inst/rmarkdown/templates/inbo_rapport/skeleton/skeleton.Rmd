@@ -5,7 +5,7 @@ author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
 link-citations: TRUE
 output: 
   INBOmd::inbo_rapport_2015:
-    reportnr: "The report number. Will be replaced by the date of compliation when missing."
+    reportnr: "The report number. Will be replaced by the date of compilation when missing."
     ordernr: "Optional: a reference to the order from the client"
     lof: TRUE
     lot: TRUE

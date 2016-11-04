@@ -1,5 +1,5 @@
 ---
-title: "The main title of the presenation"
+title: "The main title of the presentation"
 author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
 bibliography: references.bib
 output: 
@@ -8,7 +8,7 @@ output:
     location: "The location and date"
     institute: "Affilitation of the author(s)"
     theme: "vlaanderen"
-    toc_name: "Summmary"
+    toc_name: "Summary"
 ---
 
 ```{r setup, include=FALSE}
