@@ -49,5 +49,23 @@ To active the corporate identity in XeLaTeX you need to perform a few more steps
 
 #### Linux
 
-1. Add a symbolic link from `/texmf` to the folder indicated by the R command `system.file("local_tex", package = "INBOmd")`.
-1. Update the filename database by running `sudo texhash`
+1. Either add a symbolic link from `~/texmf` to the folder indicated by the R command `system.file("local_tex", package = "INBOmd")`, or follow the more generic approach of extending  the `TEXMFHOME` variable:
+    - this can be done interactively when TeXLive is installed from CTAN: change the TEXMFHOME variable into `{/home/<username>/texmf,/home/<username>/lib/R/library/INBOmd/local_tex}` (change `<username>` into your username).
+    - or you can do the same, in all cases and anytime, by entering `TEXMFHOME={/home/<username>/texmf,/home/<username>/lib/R/library/INBOmd/local_tex}` into a new file `/etc/texmf/texmf.d/10mytexmf.cnf` (change `<username>` into your username). Then issue `sudo update-texmf`.
+1. Make the CTAN `inconsolata` font package available to the system, so that XeLaTeX can use it. Make a new file `/etc/fonts/conf.d/09-inconsolata.conf` with these contents (change directories as necessary):
+
+    ```
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <dir>/usr/local/texlive/2016/texmf-dist/fonts/opentype/public/inconsolata</dir>
+    </fontconfig>
+    ```
+and run `sudo fc-cache -fv`.
+1. If you need other specific fonts which are not present on the system, e.g. Calibri or Flanders Art, you can install them:
+    - either system-wide, by copying them under an appropriate subfolder of `/usr/local/share/fonts/truetype/`,
+    - or for the current user, by copying them under `~/.fonts`,
+
+    and issuing `sudo fc-cache -fv`.
+1. Update the filename database by running `sudo mktexlsr`.
+1. Check your settings with `tlmgr conf`.
