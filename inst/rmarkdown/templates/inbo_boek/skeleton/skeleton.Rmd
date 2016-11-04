@@ -1,12 +1,12 @@
 ---
 title: "The main title of the report"
+subtitle : "The optional subtitle"
 author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
 bibliography: references.bib
 site: bookdown::bookdown_site
 output: 
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport_2015
-    subtitle : "The optional subtitle"
     reportnr: "The report number. Will be replaced by the date of compliation when missing."
     ordernr: "Optional: a reference to the order from the client"
     lof: TRUE
