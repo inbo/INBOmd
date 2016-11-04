@@ -15,12 +15,24 @@ output:
     lang: english
     keep_tex: TRUE
     floatbarrier: subsection
+  bookdown::html_document2:
+    code_folding: show
+    keep_md: TRUE
+    toc: TRUE
+    toc_float:
+      collapsed: FALSE
+      smooth_scroll: FALSE
   bookdown::gitbook: 
-    default
+    keep_md: TRUE
   bookdown::epub_book: 
-    default
+    toc: TRUE
+  bookdown::html_book:
+    code_folding: show
+    keep_md: TRUE
+    split_by: "chapter+number"
   bookdown::word_document2:
-    default
+    toc: TRUE
+    keep_md: TRUE
 ---
 ```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
 library(knitr)

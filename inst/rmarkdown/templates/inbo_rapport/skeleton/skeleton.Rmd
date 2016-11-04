@@ -11,6 +11,14 @@ output:
     lot: TRUE
     lang: english
     floatbarrier: subsection
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    code_folding: show
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
   word_document:
     toc: TRUE
 ---
