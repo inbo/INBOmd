@@ -114,6 +114,8 @@ A list of tables and a list of figures will be added automatically. Use `lof: FA
 
 Figures are free to 'float' to a suitable position. This works very well when you have a descent amount of text. If you have a lot of figures with a limited number of text then it is likely that figures float into the next section or subsection. They will never float into the next chapter. If you want to prevent floating into the next section add `floatbarrier: section` to the YAML. Note that this still allows figures to float to the next subsection of the current section. Other options are `floatbarrier: subsection` and `floatbarrier: subsubsection`.
 
+Sometimes you want to prevent floating (and possible switching) of figures or tables _within a specific_ section, subsection or subsubsection. For that purpose you can insert the TeX command `\FloatBarrier` as a separate line, to mark a border across which no floating is allowed.
+
 ## Language
 
 The default language is Dutch, in case no `lang` parameter is given in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...

@@ -38,6 +38,8 @@ kable(
 )
 ```
 
+\FloatBarrier
+
 When you want tables to break across multiple pages, add `longtable = TRUE` to the `kable()` function (table \@ref(tab:longtable)).
 Note that the `booktabs` and `longtable` arguments only affect PDF output formats.
 
