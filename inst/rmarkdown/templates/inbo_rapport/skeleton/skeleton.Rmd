@@ -45,7 +45,10 @@ theme_set(theme_inbo2015())
 
 This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html
 
-The output style `inbo_rapport_2015` renders the document as a PDF with the INBO corpate identity. An MS-Word version can be rendered by using the output style `word_document`. Note that this will be a simple MS Word document, not rendered into the INBO corpate identity.
+The output format `inbo_rapport_2015` renders the document as a PDF with the INBO corporate identity.
+Other output formats are provided that will not apply the INBO corporate identity. The output format `html_document` is handy when drafting the report, as it compiles quicker than the PDF document.
+
+An MS-Word version can be rendered by using the output format `word_document`, but the result is rather poor and needs further tinkering in MS Word, such as applying numbered styles.
 
 ## Cross references
 \label{S:crossref}
@@ -94,6 +97,8 @@ kable(
 ```
 
 # Applying the INBO corporate identity
+
+Note that the INBO corporate identity is _only_ applied by the output format `inbo_rapport_2015`.
 
 ## Lists of tables and figures
 
