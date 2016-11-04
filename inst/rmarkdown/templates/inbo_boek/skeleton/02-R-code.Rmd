@@ -1,6 +1,6 @@
 # Inserting and executing R code with RMarkdown
 
-You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
+You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl+Alt+I`.
 
 ```{r linear_model}
 model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
@@ -9,7 +9,7 @@ summary(model)
 
 ## Adding figures {#S:figures}
 
-Adding R figures is easy (figure \@ref(fig:pressure)). The `echo = FALSE` argument was added to the chunk options. This hides the R code that generates the figure. The `fig.cap` argument adds a caption to the figure. The default label is a `fig:` prefix followed by the name of the chunk.
+Adding R figures is easy (figure \@ref(fig:pressure)). The `echo = FALSE` argument was added to the chunk options. This hides the R code that generates the figure. The `fig.cap` option adds a caption to the figure. The default label is a `fig:` prefix followed by the name of the chunk.
 
 ```{r pressure, echo = FALSE, fig.cap = "The caption"}
 ggplot(pressure, aes(x = temperature, y = pressure)) + 

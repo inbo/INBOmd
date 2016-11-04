@@ -43,7 +43,7 @@ theme_set(theme_inbo2015())
 
 # INBO report with RMarkdown
 
-This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html
+This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html.
 
 The output format `inbo_rapport_2015` renders the document as a PDF with the INBO corporate identity.
 Other output formats are provided that will not apply the INBO corporate identity. The output format `html_document` is handy when drafting the report, as it compiles quicker than the PDF document.
@@ -55,9 +55,13 @@ An MS-Word version can be rendered by using the output format `word_document`, b
 
 To create a cross reference you need to mark the target with a `\label{your_label}`. Place `\autoref{your_label}` or `\autorefp{yourlabel}` at the position where you need the cross reference. This will insert the correct description and number which will be automatically determined when rendering the pdf, e.g. the `\autoref{}` result: \autoref{S:crossref}; the `\autorefp{}` result:\autorefp{S:crossref}. Note that this will be invisible when rendering to MS Word.
 
-Cross references can be used with headings, figures, tables, ... Place the `\label{your_label}` just after the heading or in the captions. We recommend to add prefixes to the labels. `S:` for headings, `fig:` for figures, `tab:` for tables.
+Cross references can be used with headings, figures, tables, ... Place the `\label{your_label}` just after the heading or in the captions. We recommend to add prefixes to the labels:
 
-The cross references act as hyperlinks. When you click then you go to the local of the corresponding label. Therefore labels must be unique within the document. You will get an error message when they aren't unique.
+- `S:` for headings,
+- `fig:` for figures,
+- `tab:` for tables.
+
+The cross references act as hyperlinks. When you click then you go to the location of the corresponding label. Therefore labels must be unique within the document. You will get an error message when they aren't unique.
 
 ## Citations
 
@@ -65,7 +69,7 @@ See http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html
 
 # Inserting and executing R code
 
-When you push the **Knit** button in RStudio, all R code in the document will be executed and it's output will be inserted into the document. Then the complete document is rendered using the selected output style. You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl + Alt + I`.
+When you push the **Knit** button in RStudio, all R code in the document will be executed and its output will be inserted into the document. Then the complete document is rendered using the selected output style. You can find an R code chunk below this paragraph. Adding a new code chunk is easy in RStudio by pressing `Ctrl+Alt+I`.
 
 ```{r linear_model}
 model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
@@ -108,7 +112,7 @@ Note that the INBO corporate identity is _only_ applied by the output format `in
 
 ## Lists of tables and figures
 
-A list of tables and a list of figures will be added automatically. Use `lof: FALSE` is the YAML at the top of the document to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
+A list of tables and a list of figures will be added automatically. Use `lof: FALSE` in the YAML to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
 
 ## Floatbarriers
 

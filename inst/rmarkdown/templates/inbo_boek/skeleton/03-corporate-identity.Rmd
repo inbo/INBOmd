@@ -4,7 +4,7 @@ The INBO corporate identity is _only_ applied by the output format `pdf_book`, f
 
 ## Lists of tables and figures
 
-A list of tables and a list of figures will be added automatically. Use `lof: FALSE` is the YAML at the top of the document to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
+A list of tables and a list of figures will be added automatically. Use `lof: FALSE` in the YAML to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
 
 ## Floatbarriers
 
@@ -43,7 +43,7 @@ The INBO corporate style has some special blocks available. This will only work 
 To do similar things in HTML-based output formats, using CSS, see https://bookdown.org/yihui/bookdown/custom-blocks.html.
 
 ```{block, type = "block", latex.options = "{Title of a block}"}
-This is an block
+This is a block.
 ```
 
 ```{block, type = "exampleblock", latex.options = "{Title of an example block}"}
@@ -53,5 +53,5 @@ You **can** add _Markdown_ formatting.
 ```
 
 ```{block, type = "alertblock", latex.options = "{Title of an alert block}"}
-This is an alert block
+This is an alert block.
 ```
