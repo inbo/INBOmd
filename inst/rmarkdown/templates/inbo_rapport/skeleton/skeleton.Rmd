@@ -85,6 +85,12 @@ ggplot(pressure, aes(x = temperature, y = pressure)) +
   ggtitle("pressure data: Vapor Pressure of Mercury")
 ```
 
+_External_ figures can be inserted from within an R code chunk, using the `include_graphics()` function (figure \@ref(fig:externalfig)). The same chunk options apply as before, including `fig.cap`.
+
+```{r externalfig, fig.cap = "Including an external figure with a caption is easy.", out.width = "100%"}
+include_graphics("WinningDesktop.jpg")
+```
+
 ## Adding tables
 
 `kable()` is a handy function to display dataframes as a table\autorefp{tab:kabletable}. The table will get a default label which is the prefix `tab:` plus the chunk name. Hence you can display only one table per chunk. Note that we need the argument `results='asis'`.
