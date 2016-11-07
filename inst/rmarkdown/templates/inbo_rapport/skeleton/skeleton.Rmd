@@ -91,8 +91,9 @@ ggplot(pressure, aes(x = temperature, y = pressure)) +
 
 _External_ figures can be inserted from within an R code chunk, using the `include_graphics()` function (figure \@ref(fig:externalfig)). The same chunk options apply as before, including `fig.cap`.
 
-```{r externalfig, fig.cap = "Including an external figure with a caption is easy.", out.width = "100%"}
-include_graphics("WinningDesktop.jpg")
+```{r externalfig, fig.cap = "Including an external figure with a caption is easy.", out.width = "70%", fig.align = "center"}
+path_to_figure <- system.file("local_tex/tex/latex/inboimage_2015","labo.jpg", package = "INBOmd")
+include_graphics(path_to_figure)
 ```
 
 ## Adding tables
