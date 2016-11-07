@@ -13,6 +13,6 @@ language:
     thm: 'Stelling '
     def: 'Definitie '
     cor: 'Gevolg '
-    ex: 'Example '
+    ex: 'Voorbeeld '
     proof: 'Bewijs '
     remark: 'Noot '
