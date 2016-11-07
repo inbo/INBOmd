@@ -2,6 +2,7 @@
 title: "The main title of the report"
 subtitle : "The optional subtitle"
 author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
+date: "`r Sys.Date()`"
 bibliography: references.bib
 link-citations: TRUE
 site: bookdown::bookdown_site
