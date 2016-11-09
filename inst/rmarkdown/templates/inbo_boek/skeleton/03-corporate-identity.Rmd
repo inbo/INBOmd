@@ -12,6 +12,10 @@ Figures are free to 'float' to a suitable position. This works very well when yo
 
 Sometimes you want to prevent floating (and possible switching) of figures or tables _within a specific_ section, subsection or subsubsection. For that purpose you can insert the TeX command `\FloatBarrier` as a separate line, to mark a border across which no floating is allowed. This has been applied in section \@ref(S:tables).
 
+## Page orientation
+
+Page orientation is portrait by default. You can **b**egin landscape-oriented pages at a given position in your document by inserting the command `\blandscape` as a separate line. Further in the text, you insert `\elandscape` as a separate line, to mark the position where landscape orientation **e**nds.
+
 ## Language
 
 The default language is Dutch, in case no `lang` parameter is given in the YAML header. Switching the language affects several things: hyphenation, names of sections, figure, tables, ...
