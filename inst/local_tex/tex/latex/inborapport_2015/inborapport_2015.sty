@@ -61,6 +61,11 @@
 % needed for figures
 \RequirePackage{graphicx}
 
+% allow landscape pages and define commands that work with pandoc
+\RequirePackage{lscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
