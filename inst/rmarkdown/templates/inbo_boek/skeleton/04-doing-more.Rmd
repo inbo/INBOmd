@@ -106,6 +106,52 @@ The consequence of handling appendices separately, is that they will be numbered
 
 
 
+## Corporate style blocks in both HTML and PDF {#S:htmlblocks}
+
+Corporate style special blocks can be accomodated in both HTML and PDF, as below, by combining them in the RMarkdown file. By making use of the `echo` (TRUE or FALSE) chunk option of the block2 engine, you can suppress blocks that should not be displayed for a certain output format^[The automated way in which it is used below, will only work from within RStudio.]. Also, note that unique labels have been inserted in order to cross-reference a block. For example: the [example block](#unique_exampleblock_label).
+
+
+```{block2, type = "block", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_block_label"></A>**Title of block**
+
+This is the _content_ of the **HTML block**.
+
+```
+
+```{block2, type = "exampleblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_exampleblock_label"></A>**Title of example block**
+
+This is the _content_ of the **HTML example block**.
+
+```
+
+```{block2, type = "alertblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_alertblock_label"></A>**Title of alert block**
+
+This is the _content_ of the **HTML alert block**.
+
+```
+
+
+
+
+```{block2, type = "block", latex.options = "{\\hypertarget{unique_block_label}{Title of block}}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+
+This is the _content_ of the **PDF block**.
+
+```
+
+```{block2, type = "exampleblock", latex.options = "{\\hypertarget{unique_exampleblock_label}{Title of example block}}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+
+This is the _content_ of the **PDF example block**.
+
+```
+
+```{block2, type = "alertblock", latex.options = "{\\hypertarget{unique_alertblock_label}{Title of alert block}}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+
+This is the _content_ of the **PDF alert block**.
+
+```
 
 
 
