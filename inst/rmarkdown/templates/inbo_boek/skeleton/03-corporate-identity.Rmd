@@ -45,23 +45,55 @@ kable(
 )
 ```
 
-## Special blocks
+## Special blocks for PDF and HTML output
 
-The INBO corporate style has some special blocks available. This will only work when rendering to `bookdown::pdf_book`, with `base_format: inborapport_2015`!
-To do similar things in HTML-based output formats, using CSS, see section \@ref(S:htmlblocks).
-Note that the `echo` chunk option, used below, is not needed when you only wish to make PDF output (here, it hides the blocks when rendering this template to HTML).
+The INBO corporate style has some special blocks available. This will work when rendering either to `bookdown::pdf_book` with `base_format: inborapport_2015`, or to HTML-based output formats (like `html_document2` and `gitbook`).
+The special blocks can be accomodated in both HTML and PDF at the same time, as below, by combining them in the RMarkdown file.
+
+By making use of the `echo` (TRUE or FALSE) chunk option of the `block2` engine, you can hide blocks that should not be displayed, e.g. dependent on the output format^[The automated way in which it is used below, will only work from within RStudio.].
+Note that this is not needed if you only wish to make either PDF or HTML output.
+
+Also, note that unique labels have been inserted in order to cross-reference a block. For example: the [example block](#unique_exampleblock_label).
 
 
-```{block2, type = "block", latex.options = "{Title of a block}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
-This is a block.
+```{block2, type = "block", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_block_label"></A>**Title of block**
+
+This is the _content_ of the **HTML block**.
+
 ```
 
-```{block2, type = "exampleblock", latex.options = "{Title of an example block}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
-This is an example block.
+```{block2, type = "exampleblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_exampleblock_label"></A>**Title of example block**
 
-You **can** add _Markdown_ formatting.
+This is the _content_ of the **HTML example block**.
+
 ```
 
-```{block2, type = "alertblock", latex.options = "{Title of an alert block}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
-This is an alert block.
+```{block2, type = "alertblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
+<A id="unique_alertblock_label"></A>**Title of alert block**
+
+This is the _content_ of the **HTML alert block**.
+
+```
+
+
+
+
+```{block2, type = "block", latex.options = "{\\hypertarget{unique_block_label}{Title of block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
+
+This is the _content_ of the **PDF block**.
+
+```
+
+```{block2, type = "exampleblock", latex.options = "{\\hypertarget{unique_exampleblock_label}{Title of example block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
+
+This is the _content_ of the **PDF example block**.
+
+```
+
+```{block2, type = "alertblock", latex.options = "{\\hypertarget{unique_alertblock_label}{Title of alert block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
+
+This is the _content_ of the **PDF alert block**.
+
 ```
