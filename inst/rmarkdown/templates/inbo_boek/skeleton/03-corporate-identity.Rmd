@@ -22,7 +22,7 @@ The default language is Dutch, in case no `lang` parameter is given in the YAML 
 
 Switch the language by specifying `lang: english` or `lang: french`, etc. in the YAML header.
 
-To change the language of other output formats (where the default is Dutch), you can change the `language` YAML parameters in the `_bookdown.yml` file of your Bookdown project. For English, you can also uncomment or remove these parameters and accept the defaults of the `bookdown` package.
+To change the language of other output formats (where the default is Dutch), you can change the `language` YAML parameters in the `_bookdown.yml` file of your Bookdown project. For English, you can also uncomment or remove these parameters and accept the defaults of the bookdown package.
 
 ## Codesize
 

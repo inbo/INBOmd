@@ -6,7 +6,7 @@ rmd_files:   # specifies the order of Rmd files; NOT needed when you use index.R
 #    - 3rdFileOfBook.Rmd
 #    - <and so on>
 language: 
-  label:  # comment out the below parameters if you wish English in output formats, other than bookdown::pdf_book
+  label:  # comment out the below parameters if you wish English in other output formats than bookdown::pdf_book
     fig: 'Figuur '
     tab: 'Tabel '
     eq: 'Vergelijking '
