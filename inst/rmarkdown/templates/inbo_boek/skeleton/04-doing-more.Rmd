@@ -88,6 +88,24 @@ Sometimes you have many chapters and you want to group them into parts. Bookdown
 
 
 
+## Adding appendices
+
+The user can handle appendices identically to chapters; see section \@ref(S:crossref). Because they always appear after the regular chapters, and no regular chapters occur after them, it suffices to insert an unnumbered `(APPENDIX)` "chapter" _before the title of the first appendix_:
+
+    # (APPENDIX) Appendices {-}
+    
+    # Title of first appendix
+    
+    Contents of first appendix
+    
+    # Title of second appendix
+    
+    Contents of first appendix
+
+The consequence of handling appendices separately, is that they will be numbered as A, B, C and so on.
+
+
+
 
 
 
