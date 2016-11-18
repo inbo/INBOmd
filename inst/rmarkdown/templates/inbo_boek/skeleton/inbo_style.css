@@ -1,0 +1,23 @@
+.block {
+    background:#E5E5E5;
+    padding:10px;
+    border:1px solid black;
+}
+
+.exampleblock {
+    background:#BBBD3C;
+    padding:10px;
+    border:1px solid black;
+}
+
+.alertblock {
+    background:#C04384;
+    color:white;
+    padding:10px;
+    border:1px solid black;
+}
+
+blockquote {
+    font-size: 14px;
+    border-left: 4px solid #989898;
+}

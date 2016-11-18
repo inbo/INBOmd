@@ -23,14 +23,20 @@ output:
     toc_float:
       collapsed: FALSE
       smooth_scroll: FALSE
+    includes:
+      in_header: inbo_header.html
   bookdown::gitbook: 
     keep_md: TRUE
+    includes:
+      in_header: inbo_header.html
   bookdown::epub_book: 
     toc: TRUE
   bookdown::html_book:
     code_folding: show
     keep_md: TRUE
     split_by: "chapter+number"
+    includes:
+      in_header: inbo_header.html
   bookdown::word_document2:
     toc: TRUE
     keep_md: TRUE
