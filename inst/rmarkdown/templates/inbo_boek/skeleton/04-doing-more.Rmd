@@ -41,6 +41,18 @@ Table: (\#tab:damselflies)Scientific and vernacular names of some members of the
 
 
 
+## Cross-referencing a specific position in the text
+
+Cross-referencing a specific position implies the need for a label at that position, which can be linked to from another place in the text. At the moment, an output format specific way of inserting labels is needed for both HTML and PDF based output formats (including epub format). Both ways can be combined in your Rmd-files however, because the pandoc converter -- which interprets the *.md file and converts it -- will recognize 'which is which':
+
+- label for PDF output formats: insert `\hypertarget{your_unique_label}{}`
+- label (anchor) for HTML output formats: insert `<A id="your_unique_label"></A>`
+- combination: insert `\hypertarget{your_unique_label}{}<A id="your_unique_label"></A>`
+
+Referencing the label can be done in an output format agnostic way, using the markdown approach for hyperlinks: `[linkable words that are visible](#your_unique_label)`. For example, click [here](#example) to jump to the bullet on how to cross-reference a part.
+
+
+
 
 
 
