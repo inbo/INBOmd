@@ -29,12 +29,12 @@ An example is provided by table \@ref(tab:damselflies).
 
 Scientific name | Dutch name | English name | French name
 ----------------|------------|--------------|-------------
-Chalcolestes viridis | houtpantserjuffer | Western Willow Spreadwing | Leste vert
-Lestes barbarus | zwervende pantserjuffer | Migrant Spreadwing | Leste sauvage
-Lestes dryas | tangpantserjuffer | Robust Spreadwing | Leste dryade
-Lestes sponsa | gewone pantserjuffer | Common Spreadwing | Leste fiancé 
-Lestes virens | tengere pantserjuffer | Small Spreadwing | Leste verdoyant
-Sympecma fusca | bruine winterjuffer | Common Winter Damsel | Leste brun
+*Chalcolestes viridis* | houtpantserjuffer | Western Willow Spreadwing | Leste vert
+*Lestes barbarus* | zwervende pantserjuffer | Migrant Spreadwing | Leste sauvage
+*Lestes dryas* | tangpantserjuffer | Robust Spreadwing | Leste dryade
+*Lestes sponsa* | gewone pantserjuffer | Common Spreadwing | Leste fiancé 
+*Lestes virens* | tengere pantserjuffer | Small Spreadwing | Leste verdoyant
+*Sympecma fusca* | bruine winterjuffer | Common Winter Damsel | Leste brun
 
 Table: (\#tab:damselflies)Scientific and vernacular names of some members of the *Lestidae* family.
 
@@ -100,7 +100,7 @@ The user can handle appendices identically to chapters; see section \@ref(S:cros
     
     # Title of second appendix
     
-    Contents of first appendix
+    Contents of second appendix
 
 The consequence of handling appendices separately, is that they will be numbered as A, B, C and so on.
 

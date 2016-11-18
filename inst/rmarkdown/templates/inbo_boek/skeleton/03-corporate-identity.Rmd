@@ -1,6 +1,6 @@
 # Applying the INBO corporate identity
 
-The INBO corporate identity is _only_ applied by the output format `pdf_book`, for which the YAML parameter `base_format: INBOmd::inbo_rapport_2015` is specified in this template. Hence, the below YAML parameters should be specified under the output format `pdf_book`, unless stated otherwise.
+The INBO corporate identity is _only_ applied by the output format `pdf_book`, for which the YAML parameter `base_format: INBOmd::inbo_rapport_2015` is specified in this template, unless stated otherwise. Hence, the below YAML parameters should be specified under the output format `pdf_book`, unless stated otherwise.
 
 ## Lists of tables and figures
 
