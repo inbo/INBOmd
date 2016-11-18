@@ -34,6 +34,15 @@ Each reference in the database has a unique key. Use this key with the `@key` or
 `[@R-base; @R-lme4]`
   ~ [@R-base; @R-lme4]
   
+## Bibliography
+
+Bibliography is automatically generated and appended at the end of the document. Therefore, you should foresee a chapter heading, e.g.:
+
+    # References {-}
+    
+Note the "`{-}`": this turns the title into an _unnumbered_ chapter.
+
+  
 ## Output formats
 
 The Bookdown style is chiefly intended with HTML, PDF and e-Book as output formats. 
