@@ -6,6 +6,17 @@ The INBO corporate identity is _only_ applied by the output format `pdf_book`, f
 
 A list of tables and a list of figures will be added automatically. Use `lof: FALSE` in the YAML to suppress the list of figures. Likewise use `lot: FALSE` to suppress the list of tables.
 
+## Citations and bibliography
+
+Citations and bibliography follow the INBO citation and bibliography style. See chapter \@ref(bookdown) for dealing with citations and bibliography.
+
+The corporate style can be accomodated in alternative output formats (except for MS Word) by providing the following YAML parameters in `index.Rmd`, under the corresponding output format:
+
+    pandoc_args:
+        - --csl
+        - <path to the inbo.csl file, e.g.: C:/R/library/INBOmd/inbo.csl>
+
+
 ## Floatbarriers
 
 Figures are free to 'float' to a suitable position. This works very well when you have a descent amount of text. If you have a lot of figures with a limited number of text then it is likely that figures float into the next section or subsection. They will never float into the next chapter. If you want to prevent floating into the next section add `floatbarrier: section` to the YAML. Note that this still allows figures to float to the next subsection of the current section. Other options are `floatbarrier: subsection` and `floatbarrier: subsubsection`.
@@ -97,3 +108,4 @@ This is the _content_ of the **PDF example block**.
 This is the _content_ of the **PDF alert block**.
 
 ```
+

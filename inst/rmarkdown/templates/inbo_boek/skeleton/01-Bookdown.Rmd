@@ -1,4 +1,4 @@
-# How things are done differently in Bookdown
+# How things are done differently in Bookdown {#bookdown}
 
 ## Multiple files
 
