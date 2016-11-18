@@ -57,7 +57,13 @@ theme_set(theme_inbo2015())
 
 # INBO report with RMarkdown: Bookdown style
 
-This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ... More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html.
+This is an R Markdown document. Markdown is a simple syntax to format text. Markdown documents^[
+Actually, it is an extended version of Markdown that is used already: [Pandoc's Markdown](http://pandoc.org/MANUAL.html#pandocs-markdown). Pandoc's Markdown extends the application of pure Markdown to many output formats (using the [pandoc](http://pandoc.org/) converter) and it adds many features that are useful in documents, other than webpages.]
+can be rendered to different output formats: e.g. PDF, HTML, ePUB, Word, ...
+Markdown documents have the *.md extension.
+
+R Markdown adds the possibility of including and executing R code from within the Markdown file. The files use the *.Rmd extension.
+More information on R Markdown is available at <http://rmarkdown.rstudio.com>. A tutorial is available at http://rmarkdown.rstudio.com/lesson-1.html.
 
 When you push the **Knit** button in RStudio, all R code in the document will be executed and its output will be inserted into the document. Then the complete document is rendered using the selected output format.
 
