@@ -14,7 +14,8 @@ Bookdown works best when you add everything in a dedicated RStudio project. A _B
 
 ## Cross references {#S:crossref}
 
-To create a cross reference to a location you need to add a label. Add `{#your_label}` at the end of a chapter or section title to create this label. Then you can reference this label by using `\@ref(your_label)`. The correct number will be inserted automatically during rendering, for example: section \@ref(S:crossref). How to add labels for figures and tables is discussed in sections \@ref(S:figures) and \@ref(S:tables).
+To create a cross reference to a location you need to add a label. Add `{#your_label}` at the end of a chapter or section title to create this label. Then you can reference this label by using `\@ref(your_label)`. The correct number will be inserted automatically during rendering, for example: section \@ref(S:crossref). How to add labels for figures and tables is discussed in sections \@ref(S:figures) and \@ref(S:tables)
+(when they are generated from R chunks) -- for figures and tables that are directly inserted in the Rmd files, see chapter \@ref(S:more-stuff).
 
 The cross references act as hyperlinks. When you click them you go to the location of the corresponding label. Therefore labels must be unique within the book. You will get an error message when they aren't unique.
 
