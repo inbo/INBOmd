@@ -44,18 +44,20 @@ kable(
 ## Special blocks
 
 The INBO corporate style has some special blocks available. This will only work when rendering to `bookdown::pdf_book`!
-To do similar things in HTML-based output formats, using CSS, see https://bookdown.org/yihui/bookdown/custom-blocks.html.
+To do similar things in HTML-based output formats, using CSS, see section \@ref(S:htmlblocks).
+Note that the `echo` chunk option, used below, is not needed when you only wish to make PDF output (here, it hides the blocks when rendering this template to HTML).
 
-```{block2, type = "block", latex.options = "{Title of a block}"}
+
+```{block2, type = "block", latex.options = "{Title of a block}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 This is a block.
 ```
 
-```{block2, type = "exampleblock", latex.options = "{Title of an example block}"}
+```{block2, type = "exampleblock", latex.options = "{Title of an example block}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 This is an example block.
 
 You **can** add _Markdown_ formatting.
 ```
 
-```{block2, type = "alertblock", latex.options = "{Title of an alert block}"}
+```{block2, type = "alertblock", latex.options = "{Title of an alert block}", echo = !(knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 This is an alert block.
 ```
