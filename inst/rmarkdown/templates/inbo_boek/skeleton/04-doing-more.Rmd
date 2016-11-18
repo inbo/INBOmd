@@ -65,6 +65,29 @@ You can insert a quote block using `>` before each line:
 
 
 
+## Grouping chapters as parts
+
+Sometimes you have many chapters and you want to group them into parts. Bookdown offers a unified approach for PDF and HTML output formats:
+
+- just insert a chapter, with a prefix `(PART)` and a suffix `{-}` -- indicating that it is a part and that it must not be numbered as a chapter, respectively. For example:
+
+    ```
+    # (PART) The title of my first part {-}
+    
+    # The title of the first chapter in the part
+    
+    Text, sections, subsections etc.
+    ```
+    
+    A label for the part will be automatically generated^[
+    The automatic labelling actually occurs for all headers, and is accomplished by pandoc markdown's [autoidentifier](http://pandoc.org/MANUAL.html#header-identifiers) feature!],
+    during processing of the file. For the example above, it will be: `part-the-title-of-my-first-part`.
+    
+- \hypertarget{example}{}<A id="example"></A>you can therefore cross-reference the part in the ordinary bookdown way: `see part \@ref(part-the-title-of-my-first-part)`.
+
+
+
+
 
 
 
