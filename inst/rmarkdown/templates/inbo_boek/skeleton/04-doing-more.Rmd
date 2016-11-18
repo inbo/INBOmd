@@ -53,6 +53,18 @@ Referencing the label can be done in an output format agnostic way, using the ma
 
 
 
+## Inserting quotes
+
+You can insert a quote block using `>` before each line:
+
+> Linus Torvalds said:
+>
+> In real open source, you have the right to control your own destiny.
+>
+> _(Source: <https://www.brainyquote.com/quotes/quotes/l/linustorva587384.html>)_
+
+
+
 
 
 
