@@ -14,7 +14,7 @@ Sometimes you want to prevent floating (and possible switching) of figures or ta
 
 ## Page orientation
 
-Page orientation is portrait by default. You can begin landscape-oriented pages at a given position in your document by inserting the command `\begin{landscape}`. To improve readability, we recommend placing it on a separate line. Further in the text, you insert `\end{landscape}`, to mark the position where landscape orientation ends. Again, it is recommended to place it on a separate line.
+Page orientation is portrait by default. You can **b**egin landscape-oriented pages at a given position in your document by inserting the command `\blandscape` as a separate line. Further in the text, you insert `\elandscape` as a separate line, to mark the position where landscape orientation **e**nds.
 
 ## Language
 
