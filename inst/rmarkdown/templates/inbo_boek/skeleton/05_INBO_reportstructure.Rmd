@@ -1,0 +1,36 @@
+# (PART) Report structure INBO {-}
+
+<!-- Remove or add titles below as necessary, and preferably split as Rmd files -->
+
+
+# Dankwoord {-}
+
+
+# Voorwoord {-}
+
+
+# Samenvatting {-}
+
+
+# Abstract {-}
+
+
+
+
+
+# "First chapter"
+
+
+
+# "Second chapter"
+
+
+
+# "Third chapter"
+
+
+
+
+
+
+# Referenties {-}
