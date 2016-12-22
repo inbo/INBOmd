@@ -70,21 +70,21 @@ Also, note that unique labels have been inserted in order to cross-reference a b
 ```{block2, type = "block", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 <A id="unique_block_label"></A>**Title of block**
 
-This is the _content_ of the **HTML block**.
+This is the _content_ of the **HTML block**. We can refer to section \@ref(S:figures).
 
 ```
 
 ```{block2, type = "exampleblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 <A id="unique_exampleblock_label"></A>**Title of example block**
 
-This is the _content_ of the **HTML example block**.
+This is the _content_ of the **HTML example block**. We can refer to section \@ref(S:figures).
 
 ```
 
 ```{block2, type = "alertblock", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") == "html")}
 <A id="unique_alertblock_label"></A>**Title of alert block**
 
-This is the _content_ of the **HTML alert block**.
+This is the _content_ of the **HTML alert block**. We can refer to section \@ref(S:figures).
 
 ```
 
@@ -93,19 +93,19 @@ This is the _content_ of the **HTML alert block**.
 
 ```{block2, type = "block", latex.options = "{\\hypertarget{unique_block_label}{Title of block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
 
-This is the _content_ of the **PDF block**.
+This is the _content_ of the **PDF block**. We can refer to section \@ref(S:figures).
 
 ```
 
 ```{block2, type = "exampleblock", latex.options = "{\\hypertarget{unique_exampleblock_label}{Title of example block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
 
-This is the _content_ of the **PDF example block**.
+This is the _content_ of the **PDF example block**. We can refer to section \@ref(S:figures).
 
 ```
 
 ```{block2, type = "alertblock", latex.options = "{\\hypertarget{unique_alertblock_label}{Title of alert block}}", echo = (knitr::opts_knit$get("rmarkdown.pandoc.to") != "html")}
 
-This is the _content_ of the **PDF alert block**.
+This is the _content_ of the **PDF alert block**. We can refer to section \@ref(S:figures).
 
 ```
 
