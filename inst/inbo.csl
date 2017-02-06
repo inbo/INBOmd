@@ -36,6 +36,7 @@
 <locale xml:lang="nl">
     <terms>
       <term name="in">In</term>
+      <term name="et-al">et al.</term>
     </terms>
   </locale>
 
