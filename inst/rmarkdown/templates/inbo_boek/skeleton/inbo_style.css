@@ -17,6 +17,10 @@
     border:1px solid black;
 }
 
+.alertblock a:link, .alertblock a:hover, .alertblock a:active, .alertblock a:visited {
+    color:#BBBD3C;
+}
+
 a:link, a:hover, a:active, a:visited {
     color:#C04384;
 }

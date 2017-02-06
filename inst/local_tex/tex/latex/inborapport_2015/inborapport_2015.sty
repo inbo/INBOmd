@@ -76,8 +76,11 @@
   \end{mdframed}
 }
 
-  \begin{mdframed}[backgroundcolor=alert.colour,fontcolor=white]
 \newenvironment{alertblock}{%
+  \begin{mdframed}[backgroundcolor=alert.colour,fontcolor=white]%
+  \hypersetup{linkcolor = alert.colour.hyperlink,
+    urlcolor = alert.colour.hyperlink,
+    citecolor = alert.colour.hyperlink}
 }
 {
   \end{mdframed}
