@@ -36,6 +36,7 @@
 <locale xml:lang="nl">
     <terms>
       <term name="in">In</term>
+      <term name="et-al">et al.</term>
     </terms>
   </locale>
 
@@ -48,8 +49,8 @@
           <label text-case="lowercase" prefix=" (" suffix=")"/>
         </names>
         <group delimiter=", ">
-          <text variable="container-title" text-case="title"/>
-          <text variable="collection-title" text-case="title"/>
+          <text variable="container-title"/>
+          <text variable="collection-title"/>
         </group>
       </if>
       <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
