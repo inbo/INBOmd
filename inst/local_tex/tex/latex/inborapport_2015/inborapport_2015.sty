@@ -69,28 +69,22 @@
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
-\newenvironment{block}[2][]{%
+\newenvironment{block}{%
   \begin{mdframed}[backgroundcolor=box.colour]
-  \textbf{#2}%
-
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{alertblock}[2][]{%
   \begin{mdframed}[backgroundcolor=alert.colour,fontcolor=white]
-  \textbf{#2}%
-
+\newenvironment{alertblock}{%
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{exampleblock}[2][]{%
+\newenvironment{exampleblock}{%
   \begin{mdframed}[backgroundcolor=example.colour]
-  \textbf{#2}%
-
 }
 {
   \end{mdframed}
