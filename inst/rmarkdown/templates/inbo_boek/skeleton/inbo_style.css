@@ -17,6 +17,10 @@
     border:1px solid black;
 }
 
+a:link, a:hover, a:active, a:visited {
+    color:#C04384;
+}
+
 blockquote {
     font-size: 14px;
     border-left: 4px solid #989898;
