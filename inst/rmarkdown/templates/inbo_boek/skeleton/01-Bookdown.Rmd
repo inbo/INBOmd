@@ -1,4 +1,6 @@
-# How things are done differently in Bookdown
+# (PART) Using the template {-}
+
+# How things are done differently in Bookdown {#bookdown}
 
 ## Multiple files
 
@@ -6,13 +8,16 @@ The easiest way to combine the different Rmd files in the correct order is as fo
 
 Bookdown uses by default the merge-and-knit strategy. All Rmd files of the book are combined into one big temporary Rmd file which is then knit to md. Another options is the knit-and-merge strategy. First knit each individual Rmd file to md and then combine the md files into one big temporary md file. See https://bookdown.org/yihui/bookdown/new-session.html for more information on the pros and cons of both strategies. If you want the knit-and-merge strategy, set `new_session: TRUE` in the `_bookdown.yml` file of your Bookdown project.
 
+The name of the output file is set by the parameter `book_filename` in `_bookdown.yml`.
+
 ## A dedicated project
 
 Bookdown works best when you add everything in a dedicated RStudio project. A _Build_ tab will appear when the `index.Rmd` file is at the root of the RStudio project. This _Build_ tab contains two buttons: _Build book_ and _More_. The _Build book_ builds the book in the default format. You can choose the format from its dropdown menu. The _More_ button has two options: _Clean all_ removes all existing output; _Configure build tools_ allows you to set some defaults for rendering the book.
 
 ## Cross references {#S:crossref}
 
-To create a cross reference to a location you need to add a label. Add `{#your_label}` at the end of a chapter or section title to create this label. Then you can reference this label by using `\@ref{your_label}`. The correct number will be inserted automatically during rendering. e.g. section \@ref(S:crossref). How to add labels for figures and tables is discussed at section \@ref(S:figures) and \@ref{S:tables}.
+To create a cross reference to a location you need to add a label. Add `{#your_label}` at the end of a chapter or section title to create this label. Then you can reference this label by using `\@ref(your_label)`. The correct number will be inserted automatically during rendering, for example: section \@ref(S:crossref). How to add labels for figures and tables is discussed in sections \@ref(S:figures) and \@ref(S:tables)
+(when they are generated from R chunks) -- for figures and tables that are directly inserted in the Rmd files, see chapter \@ref(S:more-stuff).
 
 The cross references act as hyperlinks. When you click them you go to the location of the corresponding label. Therefore labels must be unique within the book. You will get an error message when they aren't unique.
 
@@ -31,6 +36,15 @@ Each reference in the database has a unique key. Use this key with the `@key` or
 `[@R-base; @R-lme4]`
   ~ [@R-base; @R-lme4]
   
+## Bibliography
+
+Bibliography is automatically generated and appended at the end of the document. Therefore, you should foresee a chapter heading, e.g.:
+
+    # References {-}
+    
+Note the "`{-}`": this turns the title into an _unnumbered_ chapter.
+
+  
 ## Output formats
 
-The bookdown style is chiefly intended with HTML, PDF and e-Book as output formats. 
+The Bookdown style is chiefly intended with HTML, PDF and e-Book as output formats. 

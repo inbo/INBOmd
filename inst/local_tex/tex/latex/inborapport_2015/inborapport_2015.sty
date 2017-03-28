@@ -50,8 +50,8 @@
     pdftitle = {\@title},
     pdfauthor = {\@author},
     linkcolor = main.colour,
-    urlcolor = link.colour,
-    citecolor = cite.colour
+    urlcolor = main.colour,
+    citecolor = main.colour
   }
 }
 
@@ -61,34 +61,33 @@
 % needed for figures
 \RequirePackage{graphicx}
 
+% allow landscape pages and define commands that work with pandoc
+\RequirePackage{lscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
-\newenvironment{block}[2][]{%
+\newenvironment{block}{%
   \begin{mdframed}[backgroundcolor=box.colour]
-  \textbf{#2}%
-
-  \noindent%
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{alertblock}[2][]{%
-  \begin{mdframed}[backgroundcolor=alert.colour]
-  \textbf{#2}%
-
-  \noindent%
+\newenvironment{alertblock}{%
+  \begin{mdframed}[backgroundcolor=alert.colour,fontcolor=white]%
+  \hypersetup{linkcolor = alert.colour.hyperlink,
+    urlcolor = alert.colour.hyperlink,
+    citecolor = alert.colour.hyperlink}
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{exampleblock}[2][]{%
+\newenvironment{exampleblock}{%
   \begin{mdframed}[backgroundcolor=example.colour]
-  \textbf{#2}%
-
-  \noindent%
 }
 {
   \end{mdframed}
@@ -100,11 +99,11 @@
 \ifxetex
   \RequirePackage[no-math]{fontspec}
   \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont{Courier New}
+  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{lmodern}
+  \RequirePackage{inconsolata}
 \fi
 
 % Set scaling of fonts

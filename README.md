@@ -22,7 +22,14 @@ INBOmd contains templates to generate several types of documents with the corpor
 
 ## Installation
 
-INBOmd requires a working installation of XeLaTeX. We suggest to install MikTeX on Windows (http://miktex.org/download). On Linux you can use TeXLive (`sudo apt-get install texlive`).
+INBOmd requires a working installation of XeLaTeX.
+
+- On Windows, we suggest to install MikTeX (http://miktex.org/download).
+- On Linux you can use TeXLive: `sudo apt-get install texlive markdown pandoc pandoc-data perl-tk texlive-xetex xzdec && sudo tlmgr init-usertree`
+
+    - _Note for Linux: Installing from Ubuntu repositories is typically not compatible with updating TeX packages from [CTAN](https://www.ctan.org). Also, Ubuntu LTS versions typically don't keep TeXLive at its latest version from CTAN. However, first having installed `texlive` using `apt-get` is most convenient, as `apt-get` takes care of package dependencies on your system._
+        _You can therefore take a two-step [process](https://askubuntu.com/questions/486170/upgrade-from-tex-live-from-2013-to-2014-on-ubuntu-14-04): first install `texlive` from the Ubuntu repositories, and then install TeXLive from CTAN. By extending the PATH variable of your Linux OS, both for yourself and for root, and also in [Rprofile.site](https://stackoverflow.com/questions/17480157/how-to-teach-r-find-the-texlive-directory-when-using-rstudio), you make sure that you always use the most recent binaries (typically under `/usr/local/texlive/<2016>/bin/x86_64-linux`). You enjoy CTAN updates by regularly issuing `sudo tlmgr update --self && sudo tlmgr update --all`._
+.
 
 After installing XeLaTeX, you can install INBOmd from github with:
 
@@ -31,7 +38,7 @@ After installing XeLaTeX, you can install INBOmd from github with:
 devtools::install_github("inbo/INBOmd")
 ```
 
-To active the corporate identity in XeLaTeX you need to perform a few more steps.
+To activate the corporate identity in XeLaTeX you need to perform a few more steps.
 
 #### Windows
 
@@ -45,5 +52,25 @@ To active the corporate identity in XeLaTeX you need to perform a few more steps
 
 #### Linux
 
-1. Add a symbolic link from `/texmf` to the folder indicated by the R command `system.file("local_tex", package = "INBOmd")`.
-1. Update the filename database by running `sudo texhash`
+1. Either add a symbolic link from `~/texmf` to the folder indicated by the R command `system.file("local_tex", package = "INBOmd")`, or follow the more generic approach of extending  the `TEXMFHOME` variable:
+    - this can be done interactively when TeXLive is installed from CTAN: change the TEXMFHOME variable into `{/home/<username>/texmf,/home/<username>/lib/R/library/INBOmd/local_tex}` (change `<username>` into your username).
+    The second directory must be the folder indicated by the R command `system.file("local_tex", package = "INBOmd")` -- it may be different in your case.
+    - or you can do the same, in all cases and anytime, by entering `TEXMFHOME={/home/<username>/texmf,/home/<username>/lib/R/library/INBOmd/local_tex}` into a new file `/etc/texmf/texmf.d/10mytexmf.cnf` (change `<username>` into your username). Then issue `sudo update-texmf`.
+    The second directory must be the folder indicated by the R command `system.file("local_tex", package = "INBOmd")` -- it may be different in your case.
+1. Make the CTAN `inconsolata` font package available to the system, so that XeLaTeX can use it. Make a new file `/etc/fonts/conf.d/09-inconsolata.conf` with these contents (change directories as necessary):
+
+    ```
+    <?xml version="1.0"?>
+    <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+    <fontconfig>
+      <dir>/usr/local/texlive/2016/texmf-dist/fonts/opentype/public/inconsolata</dir>
+    </fontconfig>
+    ```
+and run `sudo fc-cache -fv`.
+1. If you need other specific fonts which are not present on the system, e.g. Calibri or Flanders Art, you can install them:
+    - either system-wide, by copying them under an appropriate subfolder of `/usr/local/share/fonts/truetype/`,
+    - or for the current user, by copying them under `~/.fonts`,
+
+    and issuing `sudo fc-cache -fv`.
+1. Update the filename database by running `sudo mktexlsr`.
+1. Check your settings with `tlmgr conf`.
