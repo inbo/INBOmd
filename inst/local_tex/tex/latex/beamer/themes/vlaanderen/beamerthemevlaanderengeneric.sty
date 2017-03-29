@@ -48,8 +48,8 @@
 \newcommand{\sectionfontsize}{\fontsize{28pt}{33.6pt}\selectfont}
 \newcommand{\subsectionfontsize}{\fontsize{10pt}{12pt}\selectfont}
 
-%allow the use of two columns
+%allow the use of columns
 \def\begincols{\begin{columns}}
 \def\endcols{\end{columns}}
-\def\begincol{\begin{column}{0.5\textwidth}}
+\def\begincol#1{\begin{column}{#1\textwidth}}
 \def\endcol{\end{column}}
