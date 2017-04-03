@@ -66,7 +66,7 @@ To activate the corporate identity in XeLaTeX you need to perform a few more ste
       <dir>/usr/local/texlive/2016/texmf-dist/fonts/opentype/public/inconsolata</dir>
     </fontconfig>
     ```
-and run `sudo fc-cache -fv`.
+    and run `sudo fc-cache -fv`.
 1. If you need other specific fonts which are not present on the system, e.g. Calibri or Flanders Art, you can install them:
     - either system-wide, by copying them under an appropriate subfolder of `/usr/local/share/fonts/truetype/`,
     - or for the current user, by copying them under `~/.fonts`,
