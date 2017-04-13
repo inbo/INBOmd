@@ -49,6 +49,10 @@ To activate the corporate identity in XeLaTeX you need to perform a few more ste
 1. Click _Update formats_.
 1. Click _OK_
 
+#### Mac
+
+No further action required.
+
 #### Linux
 
 1. Either add a symbolic link from `~/texmf` to the folder indicated by the R command `system.file("local_tex", package = "INBOmd")`, or follow the more generic approach of extending  the `TEXMFHOME` variable:
