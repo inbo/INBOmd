@@ -25,13 +25,12 @@ INBOmd contains templates to generate several types of documents with the corpor
 INBOmd requires a working installation of XeLaTeX.
 
 - On Windows, we suggest to install MikTeX (http://miktex.org/download).
+- On Mac, we suggest to install MacTeX (https://www.tug.org/mactex).
 - On Linux you can use TeXLive: `sudo apt-get install texlive markdown pandoc pandoc-data perl-tk texlive-xetex xzdec lmodern texlive-fonts-extra && sudo tlmgr init-usertree`
 
-    - _Note for Linux: Installing from Ubuntu repositories is typically not compatible with updating TeX packages from [CTAN](https://www.ctan.org). Also, Ubuntu LTS versions typically don't keep TeXLive at its latest version from CTAN. However, first having installed `texlive` using `apt-get` is most convenient, as `apt-get` takes care of package dependencies on your system._
-        _You can therefore take a two-step [process](https://askubuntu.com/questions/486170/upgrade-from-tex-live-from-2013-to-2014-on-ubuntu-14-04): first install `texlive` from the Ubuntu repositories, and then install TeXLive from CTAN. By extending the PATH variable of your Linux OS, both for yourself and for root, and also in [Rprofile.site](https://stackoverflow.com/questions/17480157/how-to-teach-r-find-the-texlive-directory-when-using-rstudio), you make sure that you always use the most recent binaries (typically under `/usr/local/texlive/<2016>/bin/x86_64-linux`). You enjoy CTAN updates by regularly issuing `sudo tlmgr update --self && sudo tlmgr update --all`._
-.
+  _Note for Linux: Installing from Ubuntu repositories is typically not compatible with updating TeX packages from [CTAN](https://www.ctan.org). Also, Ubuntu LTS versions typically don't keep TeXLive at its latest version from CTAN. However, first having installed `texlive` using `apt-get` is most convenient, as `apt-get` takes care of package dependencies on your system. You can therefore take a two-step [process](https://askubuntu.com/questions/486170/upgrade-from-tex-live-from-2013-to-2014-on-ubuntu-14-04): first install `texlive` from the Ubuntu repositories, and then install TeXLive from CTAN. By extending the PATH variable of your Linux OS, both for yourself and for root, and also in [Rprofile.site](https://stackoverflow.com/questions/17480157/how-to-teach-r-find-the-texlive-directory-when-using-rstudio), you make sure that you always use the most recent binaries (typically under `/usr/local/texlive/<2016>/bin/x86_64-linux`). You enjoy CTAN updates by regularly issuing `sudo tlmgr update --self && sudo tlmgr update --all`._
 
-After installing XeLaTeX, you can install INBOmd from github with:
+After installing XeLaTeX, you can install INBOmd from GitHub with:
 
 ```R
 # install.packages("devtools")
@@ -49,6 +48,10 @@ To activate the corporate identity in XeLaTeX you need to perform a few more ste
 1. Click _Refresh FNDB_.
 1. Click _Update formats_.
 1. Click _OK_
+
+#### Mac
+
+No further action required.
 
 #### Linux
 
