@@ -1,0 +1,112 @@
+---
+title: "Illustration of maximal size of figures"
+output: 
+  INBOmd::inbo_slides:
+    lang: english
+    keep_tex: TRUE
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(
+  out.extra = "",
+  strip.white = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  echo = FALSE,
+  dev = "png"
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(
+  theme_inbo(6, transparent = TRUE) + 
+    theme(plot.background = element_rect(colour = inbo.hoofd, size = 2))
+)
+display_dimensions <- function(){
+  title <- sprintf(
+    "fig.width = %.2fin (%.1fmm)\nfig.height = %.2fin (%.1fmm)", 
+    opts_current$get("fig.width"), 
+    opts_current$get("fig.width") * 25.4, 
+    opts_current$get("fig.height"),
+    opts_current$get("fig.height") * 25.4
+  )
+  ggtitle(title)
+}
+```
+
+# R figures with caption = floating figures
+
+## Default figure size
+
+```{r floating_default, fig.cap = "Here is a large caption. In the case of a large figure and a long caption, some part of the caption might not be visible."}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Smaller figure
+
+```{r floating_small, fig.cap = "Here is a large caption. In the case of a large figure and a long caption, some part of the caption might not be visible.", fig.width = 2, fig.height = 1}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure above footer with short caption
+
+```{r floating_footer_short, fig.cap = "Here is a caption.", fig.height = 2.58}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure above footer with single line caption
+
+```{r floating_footer, fig.cap = "Here is a caption that takes up a single line with some extra words to fill the line.", fig.height = 2.33}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure above footer with double line caption
+
+```{r floating_footer2, fig.cap = "Here is a large caption. In the case of a large figure and a long caption, some part of the caption might not be visible when the figure is large.", fig.height = 2.18}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure that fits
+
+```{r floating_large, fig.cap = "Here is a large caption. In the case of a large figure and a long caption, some part of the caption might not be visible.", fig.width = 4.64, fig.height = 3.16}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Huge figure that doesn't fit
+
+```{r floating_huge, fig.cap = "Here is a large caption. In the case of a large figure and a long caption, some part of the caption might not be visible.", fig.width = 6, fig.height = 5}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+# R figures without caption = inline figures
+
+## Default figure size
+
+```{r inline_default}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Smaller figure
+
+```{r inline_small, fig.width = 2, fig.height = 1}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure above footer
+
+```{r inline_footer, fig.height = 2.7}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Largest figure that fits
+
+```{r inline_large, fig.width = 4.61, fig.height = 3.4}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
+## Huge figure that doesn't fit
+
+```{r inline_huge, fig.width = 6, fig.height = 5}
+ggplot(mtcars, aes(x = mpg, y = disp)) + geom_point() + display_dimensions()
+```
+
