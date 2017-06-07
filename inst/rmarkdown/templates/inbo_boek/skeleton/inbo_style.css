@@ -28,4 +28,8 @@ a:link, a:hover, a:active, a:visited {
 blockquote {
     font-size: 14px;
     border-left: 4px solid #989898;
+}}
+
+th, td {
+    font-size: 11px;
 }
