@@ -28,8 +28,15 @@ a:link, a:hover, a:active, a:visited {
 blockquote {
     font-size: 14px;
     border-left: 4px solid #989898;
-}}
+}
 
 th, td {
     font-size: 11px;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+z-index: 2;
+color: #fff;
+background-color: #C04384;
+border-color: #C04384;
 }
