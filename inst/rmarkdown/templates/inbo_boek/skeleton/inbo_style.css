@@ -1,24 +1,20 @@
 .block {
-    background:#E5E5E5;
+    background:#FFFFFF;
     padding:10px;
     border:1px solid black;
 }
 
 .exampleblock {
-    background:#BBBD3C;
+    background:#E5E5E5;
     padding:10px;
     border:1px solid black;
 }
 
 .alertblock {
-    background:#843860;
-    color:white;
+    background:#E5E5E5;
+    color:black;
     padding:10px;
     border:1px solid black;
-}
-
-.alertblock a:link, .alertblock a:hover, .alertblock a:active, .alertblock a:visited {
-    color:#BBBD3C;
 }
 
 a:link, a:hover, a:active, a:visited {
