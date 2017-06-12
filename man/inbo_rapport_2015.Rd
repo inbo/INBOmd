@@ -49,4 +49,3 @@ Available extra parameters:
   \item appendix: path to LaTeX file with appendices
 }
 }
-

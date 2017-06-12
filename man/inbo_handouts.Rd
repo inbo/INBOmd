@@ -57,4 +57,3 @@ inbo_handouts(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 \description{
 Use the handout version of slides with the INBO theme
 }
-

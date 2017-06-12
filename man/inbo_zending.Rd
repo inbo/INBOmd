@@ -49,4 +49,3 @@ Available extra parameters:
   \item hyphenation: the correct hyphenation for certain words
 }
 }
-

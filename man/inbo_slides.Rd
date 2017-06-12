@@ -57,4 +57,3 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 \description{
 Use slides with the INBO theme
 }
-
