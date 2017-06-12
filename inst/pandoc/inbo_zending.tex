@@ -57,9 +57,22 @@ $endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
+$for(header-includes)$
+$header-includes$
+$endfor$
+
 \begin{document}
 \maketitle
 
+$for(include-before)$
+$include-before$
+
+$endfor$
+
 $body$
 
+$for(include-after)$
+$include-after$
+
+$endfor$
 \end{document}

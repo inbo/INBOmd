@@ -67,6 +67,10 @@ $endif$
 \renewcommand{\verbatim@font}{\ttfamily\$codesize$}
 \makeatother
 
+$for(header-includes)$
+$header-includes$
+$endfor$
+
 \begin{document}
 
 \setbeamertemplate{firstpage}{}
@@ -75,6 +79,11 @@ $endif$
 \end{frame}
 
 \setbeamertemplate{firstpage}{no}
+$for(include-before)$
+$include-before$
+
+$endfor$
+
 $if(toc)$
 \begin{frame}
 $if(toc_name)$
@@ -104,4 +113,8 @@ $endif$
 \end{frame}
 $endif$
 
+$for(include-after)$
+$include-after$
+
+$endfor$
 \end{document}

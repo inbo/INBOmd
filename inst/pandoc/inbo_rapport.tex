@@ -55,6 +55,10 @@ $if(reportnr)$\reportnumber{$reportnr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
+$for(header-includes)$
+$header-includes$
+$endfor$
+
 \begin{document}
 \maketitle
 \pagenumbering{Roman}
@@ -96,6 +100,11 @@ $if(abstract)$
 \end{otherlanguage*}
 $endif$
 
+$for(include-before)$
+$include-before$
+
+$endfor$
+
 \clearpage
 
 \phantomsection
@@ -133,4 +142,9 @@ $if(appendix)$
 \appendix
 \input{$appendix$}
 $endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
 \end{document}
