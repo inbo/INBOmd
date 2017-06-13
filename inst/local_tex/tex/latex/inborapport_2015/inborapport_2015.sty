@@ -76,11 +76,10 @@
   \end{mdframed}
 }
 
+\RequirePackage{marginnote}
 \newenvironment{alertblock}{%
-  \begin{mdframed}[backgroundcolor=alert.colour,fontcolor=white]%
-  \hypersetup{linkcolor = alert.colour.hyperlink,
-    urlcolor = alert.colour.hyperlink,
-    citecolor = alert.colour.hyperlink}
+  \marginnote{\includegraphics{alert.png}}
+  \begin{mdframed}%
 }
 {
   \end{mdframed}
@@ -408,4 +407,4 @@
 \raggedbottom
 
 \setlength{\skip\footins}{1cm}
-\usepackage[bottom]{footmisc}
+\RequirePackage[bottom]{footmisc}
