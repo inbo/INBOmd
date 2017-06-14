@@ -117,6 +117,7 @@ inbo_rapport_2015 <- function(
   }
   opts_chunk <- list(
     dev = 'pdf',
+    fig.align = "center",
     dpi = 300,
     fig.width = 4.5,
     fig.height = 2.9
