@@ -163,6 +163,8 @@
   \vspace{16pt}
   }
 
+\RequirePackage{needspace}
+
 % define style for sections
 \renewcommand{\section}{\secdef\@section\@ssection}
 \def\@section[#1]#2{
@@ -180,11 +182,13 @@
 }
 \def\@makesectionhead#1{%
   \vspace{9pt}
+  \Needspace*{5\baselineskip}
    {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessectionhead#1{%
   \vspace{9pt}
+  \Needspace*{5\baselineskip}
    {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
