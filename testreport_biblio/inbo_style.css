@@ -1,0 +1,38 @@
+.block {
+    background:#FFFFFF;
+    padding:10px;
+    border:1px solid black;
+}
+
+.exampleblock {
+    background:#E5E5E5;
+    padding:10px;
+    border:1px solid black;
+}
+
+.alertblock {
+    background:#E5E5E5;
+    color:black;
+    padding:10px;
+    border:1px solid black;
+}
+
+a:link, a:hover, a:active, a:visited {
+    color:#C04384;
+}
+
+blockquote {
+    font-size: 14px;
+    border-left: 4px solid #989898;
+}
+
+th, td {
+    font-size: 11px;
+}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+z-index: 2;
+color: #fff;
+background-color: #C04384;
+border-color: #C04384;
+}
