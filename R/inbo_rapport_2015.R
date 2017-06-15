@@ -163,7 +163,7 @@ inbo_rapport_2015 <- function(
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 96,
         concordance = TRUE
       ),
       opts_chunk = opts_chunk,
