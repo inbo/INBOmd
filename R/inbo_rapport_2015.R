@@ -23,17 +23,18 @@
 #'   \item appendix: path to LaTeX file with appendices
 #' }
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
 inbo_rapport_2015 <- function(
   subtitle,
   reportnr,
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  natbib,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
   keep_tex = FALSE,
   fig_crop = TRUE,
+  citation_package = c("natbib", "none"),
+  includes = NULL,
   pandoc_args = NULL,
   ...
 ){
@@ -51,20 +52,17 @@ inbo_rapport_2015 <- function(
     pandoc_variable_arg("lang", lang)
   )
   args <- c(args, pandoc_args)
-  if (!missing(natbib)) {
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
-  if ("usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-    extra <- extra[!names(extra) %in% "usepackage"]
-  }
+  # content includes
+  args <- c(args, includes_to_pandoc_args(includes))
+
   if (!missing(reportnr)) {
     args <- c(args, pandoc_variable_arg("reportnr", reportnr))
   }
@@ -144,7 +142,7 @@ inbo_rapport_2015 <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )

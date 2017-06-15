@@ -5,9 +5,10 @@
 \title{Create a report with the INBO theme version 2015}
 \usage{
 inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), natbib, codesize = c("footnotesize",
-  "scriptsize", "tiny", "small", "normalsize"), lang = "dutch",
-  keep_tex = FALSE, fig_crop = TRUE, pandoc_args = NULL, ...)
+  "subsection", "subsubsection"), codesize = c("footnotesize", "scriptsize",
+  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
+  fig_crop = TRUE, citation_package = c("natbib", "none"),
+  includes = NULL, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -17,8 +18,6 @@ inbo_rapport_2015(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 \item{ordernr}{The order number}
 
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
-
-\item{natbib}{The bibliography file for natbib}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 

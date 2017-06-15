@@ -1,9 +1,6 @@
 \documentclass[11pt, twoside]{extreport}
 
 \usepackage[$if(abstract)$babel = english, $endif$babel = $lang$]{inborapport_2015}
-$if(usepackage)$
-\usepackage{$usepackage$}
-$endif$
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
@@ -132,9 +129,9 @@ $endif$
 
 $body$
 
-$if(natbibfile)$
+$if(natbib)$
 \bibliographystyle{spbasic}
-\bibliography{$natbibfile$}
+\bibliography{$bibliography$}
 \addcontentsline{toc}{chapter}{\bibname}
 $endif$
 
