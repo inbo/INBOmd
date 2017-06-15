@@ -126,11 +126,10 @@ inbo_rapport_2015 <- function(
   }
 
   post_processor <- function(metadata, input, output, clean, verbose) {
-    message(output)
     text <- readLines(output, warn = FALSE)
 
     # move frontmatter before toc
-    mainmatter <- grep("\\mainmatter", text)
+    mainmatter <- grep("\\\\mainmatter", text)
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
@@ -142,6 +141,21 @@ inbo_rapport_2015 <- function(
       )
       text <- text[new.order]
     }
+
+    # move appendix after bibliography
+    appendix <- grep("\\\\appendix", text)
+    startbib <- grep("%startbib", text)
+    endbib <- grep("%endbib", text)
+    if (length(appendix) & length(startbib)) {
+      new.order <- c(
+        1:(appendix - 1),              # mainmatter
+        (startbib + 1):(endbib - 1),   # bibliography
+        (appendix):(startbib - 1),     # appendix
+        (endbib + 1):length(text)      # backmatter
+      )
+      text <- text[new.order]
+    }
+
     writeLines(enc2utf8(text), output, useBytes = TRUE)
     output
   }

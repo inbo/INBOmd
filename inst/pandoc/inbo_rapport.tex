@@ -97,14 +97,11 @@ $endif$
 $body$
 
 $if(natbib)$
+%startbib
 \bibliographystyle{spbasic}
 \bibliography{$bibliography$}
 \addcontentsline{toc}{chapter}{\bibname}
-$endif$
-
-$if(appendix)$
-\appendix
-\input{$appendix$}
+%endbib
 $endif$
 
 $for(include-after)$
