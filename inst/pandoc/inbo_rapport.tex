@@ -1,6 +1,6 @@
 \documentclass[11pt, twoside]{extreport}
 
-\usepackage[$if(abstract)$babel = english, $endif$babel = $lang$]{inborapport_2015}
+\usepackage{inborapport_2015}
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
@@ -60,47 +60,12 @@ $endfor$
 \maketitle
 \pagenumbering{Roman}
 
-$if(dankwoord)$
-\chapter*{Dankwoord}
-\addcontentsline{toc}{chapter}{\chaptertitle}
-
-\input{$dankwoord$}
-$endif$
-
-$if(voorwoord)$
-\chapter*{Voorwoord}
-\addcontentsline{toc}{chapter}{\chaptertitle}
-
-\input{$voorwoord$}
-$endif$
-
-$if(samenvatting)$
-\chapter*{Samenvatting}
-\addcontentsline{toc}{chapter}{\chaptertitle}
-
-\input{$samenvatting$}
-$endif$
-
-$if(aanbeveling)$
-\chapter*{Aanbevelingen voor beheer en/of beleid}
-\addcontentsline{toc}{chapter}{\chaptertitle}
-
-\input{$aanbeveling$}
-$endif$
-
-$if(abstract)$
-\begin{otherlanguage*}{english}
-\chapter*{English abstract}
-\addcontentsline{toc}{chapter}{\chaptertitle}
-
-\input{$abstract$}
-\end{otherlanguage*}
-$endif$
-
 $for(include-before)$
 $include-before$
 
 $endfor$
+
+%starttoc
 
 \clearpage
 
@@ -126,6 +91,8 @@ $endif$
 
 \newpage
 \pagenumbering{arabic}
+
+%endtoc
 
 $body$
 

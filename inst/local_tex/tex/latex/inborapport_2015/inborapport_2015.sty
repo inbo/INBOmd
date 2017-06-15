@@ -16,10 +16,6 @@
 \define@key{inborapport_2015}{hyperref}{%
   \PassOptionsToPackage{#1}{hyperref}%
 }
-% babel options
-\define@key{inborapport_2015}{babel}{%
-  \PassOptionsToPackage{#1}{babel}%
-}
 
 \ProcessKeyvalOptions*
 
@@ -149,7 +145,9 @@
 \setlength{\fontsizeordernr}{\scaleratio * \real{9}}
 
 % use babel for different languages
-\RequirePackage{babel}
+\RequirePackage[english, dutch]{babel}
+\newcommand{\benglish}{\begin{otherlanguage*}{english}}
+\newcommand{\eenglish}{\end{otherlanguage*}}
 
 \RequirePackage{inbogeneric_2015}
 
@@ -419,3 +417,4 @@
 \RequirePackage[bottom]{footmisc}
 
 \RequirePackage[sort&compress]{natbib}
+

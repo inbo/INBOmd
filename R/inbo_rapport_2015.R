@@ -16,11 +16,6 @@
 #'   \item lof: display a list of figures. Defaults to TRUE
 #'   \item lot: display a list of tables. Defaults to TRUE
 #'   \item hyphenation: the correct hyphenation for certain words
-#'   \item dankwoord: path to LaTeX file with dankwoord
-#'   \item voorwoord: path to LaTeX file with voorwoord
-#'   \item samenvatting: path to LaTeX file with samenvatting
-#'   \item abstract: path to LaTeX file with english abstract
-#'   \item appendix: path to LaTeX file with appendices
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
@@ -129,6 +124,28 @@ inbo_rapport_2015 <- function(
   } else {
     knit_hooks <- NULL
   }
+
+  post_processor <- function(metadata, input, output, clean, verbose) {
+    message(output)
+    text <- readLines(output, warn = FALSE)
+
+    # move frontmatter before toc
+    mainmatter <- grep("\\mainmatter", text)
+    if (length(mainmatter)) {
+      starttoc <- grep("%starttoc", text)
+      endtoc <- grep("%endtoc", text)
+      new.order <- c(
+        1:(starttoc - 1),              # preamble
+        (endtoc + 1):(mainmatter - 1), # frontmatter
+        (starttoc + 1):(endtoc - 1),   # toc
+        (mainmatter + 1):length(text)  # mainmatter
+      )
+      text <- text[new.order]
+    }
+    writeLines(enc2utf8(text), output, useBytes = TRUE)
+    output
+  }
+
   output_format(
     knitr = knitr_options(
       opts_knit = list(
@@ -144,6 +161,7 @@ inbo_rapport_2015 <- function(
       args = args,
       keep_tex = keep_tex
     ),
+    post_processor = post_processor,
     clean_supporting = !keep_tex
   )
 }

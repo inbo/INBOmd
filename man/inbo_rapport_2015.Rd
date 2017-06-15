@@ -41,10 +41,5 @@ Available extra parameters:
   \item lof: display a list of figures. Defaults to TRUE
   \item lot: display a list of tables. Defaults to TRUE
   \item hyphenation: the correct hyphenation for certain words
-  \item dankwoord: path to LaTeX file with dankwoord
-  \item voorwoord: path to LaTeX file with voorwoord
-  \item samenvatting: path to LaTeX file with samenvatting
-  \item abstract: path to LaTeX file with english abstract
-  \item appendix: path to LaTeX file with appendices
 }
 }
