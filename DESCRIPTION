@@ -12,8 +12,11 @@ Suggests:
     knitr,
     pander,
     ggplot2,
+    bookdown,
+    webshot,
     INBOtheme (>= 0.5.4)
 Imports:
     assertthat,
+    utils,
     rmarkdown
 RoxygenNote: 6.0.1
