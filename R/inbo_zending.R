@@ -32,6 +32,7 @@ inbo_zending <- function(
   pandoc_args = NULL,
   ...
 ){
+  check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
   codesize <- match.arg(codesize)

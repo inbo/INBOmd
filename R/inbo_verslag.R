@@ -26,6 +26,7 @@ inbo_verslag <- function(
   pandoc_args = NULL,
   ...
 ){
+  check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
   codesize <- match.arg(codesize)

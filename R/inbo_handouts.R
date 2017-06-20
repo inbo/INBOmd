@@ -26,6 +26,7 @@ inbo_handouts <- function(
   flandersfont = FALSE,
   ...
 ){
+  check_dependencies()
   assert_that(is.flag(toc))
   assert_that(noNA(toc))
   assert_that(is.string(website))
