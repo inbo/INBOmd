@@ -2,12 +2,12 @@
 title: "Demonstratie van layout"
 author: "De auteur"
 
+header-includes: \usepackage{lipsum}
 output: 
   INBOmd::inbo_slides:
     subtitle: "De optionele ondertitel"
     location: "Plaats en datum"
     institute: "Affiliatie van de auteur(s)"
-    usepackage: "lipsum"
     slide_level: 3
     theme: vlaanderen
 vignette: >

@@ -68,14 +68,6 @@ inbo_slides <- function(
     pandoc_variable_arg("flandersfont", flandersfont),
     pandoc_variable_arg("theme", theme)
   )
-  if ( "usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-  }
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
     if (!missing(toc_name)) {
