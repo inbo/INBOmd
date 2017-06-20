@@ -1,0 +1,40 @@
+---
+author: "Voornaam Achternaam"
+output: 
+  INBOmd::inbo_zending:
+    conference: "De titel van de conferentie of workshop"
+    conferencedate: "01/01/2016"
+    conferenceplace: "Anderlecht, België"
+    reportdate: "01/01/2016"
+    colleagues: "Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
+---
+```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
+library(knitr)
+opts_chunk$set(
+  results = 'markup',
+  eval = TRUE,
+  echo = TRUE,
+  cache = FALSE,
+  dpi = 300,
+  fig.width = 150 / 25.4,
+  fig.height = 100 / 25.4,
+  warning = TRUE,
+  error = TRUE,
+  message = TRUE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015())
+```
+
+# Inleiding
+
+# Doelstellingen van de zending
+
+# Bijdrage van het INBO
+
+# Bijdrage van de zending tot de opdracht van het INBO
+
+# Programma
+
+# Besluit

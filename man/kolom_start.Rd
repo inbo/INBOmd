@@ -18,4 +18,3 @@ kolom_start(aantal = 3, start = 1, marge = 20, witrand = 10)
 \description{
 Bereken de startpositie van een A0 kolom
 }
-

@@ -26,4 +26,3 @@ render_natbib(file, path = ".", encoding = "UTF-8", engine = c("xelatex",
 \description{
 Render a Markdown file with natbib bibliography
 }
-

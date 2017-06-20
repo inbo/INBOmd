@@ -67,6 +67,10 @@ $endif$
 \renewcommand{\verbatim@font}{\ttfamily\$codesize$}
 \makeatother
 
+$for(header-includes)$
+$header-includes$
+$endfor$
+
 \begin{document}
 
 \setbeamertemplate{firstpage}{}
@@ -75,10 +79,15 @@ $endif$
 \end{frame}
 
 \setbeamertemplate{firstpage}{no}
+$for(include-before)$
+$include-before$
+
+$endfor$
+
 $if(toc)$
 \begin{frame}
-$if(overzicht)$
-  \frametitle{$overzicht$}
+$if(toc_name)$
+  \frametitle{$toc_name$}
 $else$
   \frametitle{Overzicht}
 $endif$
@@ -104,4 +113,8 @@ $endif$
 \end{frame}
 $endif$
 
+$for(include-after)$
+$include-after$
+
+$endfor$
 \end{document}

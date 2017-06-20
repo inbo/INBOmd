@@ -27,23 +27,23 @@ knitr::opts_chunk$set(message = FALSE, fig.height = 3, fig.width = 5)
 
 ## Niveau 2: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
-\lipsum[3-4]
+\lipsum[3-6]
 
 ### Niveau 3: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
-\lipsum[5-6]
+\lipsum[7-8]
 
 #### Niveau 4: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
-\lipsum[7-8]
+\lipsum[9-11]
 
 ##### Niveau 5: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
-\lipsum[9-10]
+\lipsum[13-14]
 
 ###### Niveau 6: Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs. Filmquiz bracht knappe ex-yogi van de wijs.
 
-\lipsum[11-12]
+\lipsum[15-16]
 
 
 

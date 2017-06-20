@@ -78,7 +78,7 @@ inbo_slides <- function(
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
     if (!missing(toc_name)) {
-      args <- c(args, pandoc_variable_arg("tocname", toc_name))
+      args <- c(args, pandoc_variable_arg("toc_name", toc_name))
     }
   }
   if (!missing(natbib)) {

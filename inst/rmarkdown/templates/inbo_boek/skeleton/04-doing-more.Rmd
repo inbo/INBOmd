@@ -1,0 +1,108 @@
+# Doing more with Markdown and Bookdown {#S:more-stuff}
+
+The below methods are valid for at least the PDF and HTML output formats. Among HTML output formats also belongs the gitbook format (e.g. this book about bookdown is a gitbook: https://bookdown.org/yihui/bookdown/).
+
+
+
+## Inserting and cross-referencing external figures {#S:external-figures}
+
+_External_ figures can be inserted from within an R code chunk, using the `include_graphics()` function (figure \@ref(fig:externalfig)). The same chunk options apply as in section \@ref(S:figures), including `fig.cap`.
+
+```{r externalfig, fig.cap = "Including an external figure with a caption is easy from an R chunk.", out.width = "70%", fig.align = "center"}
+path_to_figure <- system.file("local_tex/tex/latex/inboimage_2015","labo.jpg", package = "INBOmd")
+include_graphics(path_to_figure)
+```
+
+But external figures can also be inserted and referenced outside R chunks, using pandoc's markdown with a bookdown-styled label: use `![(\#fig:your_unique_figurename)Your caption.](path-to-figure)` to insert a figure with its caption -- see figure \@ref(fig:externalfig2).
+
+![(\#fig:externalfig2)This figure was inserted outside of an R chunk.](`r system.file("local_tex/tex/latex/inboimage_2015","labo.jpg", package = "INBOmd")`){ width=70% }
+
+
+
+## Adding tables in Markdown
+
+If you want to write (simple) tables directly as markdown and not from an R code chunk, there are several possible table notations. See http://pandoc.org/MANUAL.html#tables for more information. In this case, add the caption as a _separate paragraph_ above or below the table, using the following syntax:
+
+    Table: (\#tab:your_unique_tablename)Your table-caption comes here.
+
+An example is provided by table \@ref(tab:damselflies).
+
+Scientific name | Dutch name | English name | French name
+----------------|------------|--------------|-------------
+*Chalcolestes viridis* | houtpantserjuffer | Western Willow Spreadwing | Leste vert
+*Lestes barbarus* | zwervende pantserjuffer | Migrant Spreadwing | Leste sauvage
+*Lestes dryas* | tangpantserjuffer | Robust Spreadwing | Leste dryade
+*Lestes sponsa* | gewone pantserjuffer | Common Spreadwing | Leste fiancé 
+*Lestes virens* | tengere pantserjuffer | Small Spreadwing | Leste verdoyant
+*Sympecma fusca* | bruine winterjuffer | Common Winter Damsel | Leste brun
+
+Table: (\#tab:damselflies)Scientific and vernacular names of some members of the *Lestidae* family.
+
+
+
+
+## Cross-referencing a specific position in the text
+
+Cross-referencing a specific position implies the need for a label at that position, which can be linked to from another place in the text. At the moment, an output format specific way of inserting labels is needed for both HTML and PDF based output formats (including epub format). Both ways can be combined in your Rmd-files however, because the pandoc converter -- which interprets the *.md file and converts it -- will recognize 'which is which':
+
+- label for PDF output formats: insert `\hypertarget{your_unique_label}{}`
+- label (anchor) for HTML output formats: insert `<A id="your_unique_label"></A>`
+- combination: insert `\hypertarget{your_unique_label}{}<A id="your_unique_label"></A>`
+
+Referencing the label can be done in an output format agnostic way, using the markdown approach for hyperlinks: `[linkable words that are visible](#your_unique_label)`. For example, click [here](#example) to jump to the bullet on how to cross-reference a part.
+
+
+
+## Inserting quotes
+
+You can insert a quote block using `>` before each line:
+
+> Linus Torvalds said:
+>
+> In real open source, you have the right to control your own destiny.
+>
+> _(Source: <https://www.brainyquote.com/quotes/quotes/l/linustorva587384.html>)_
+
+
+
+## Grouping chapters as parts
+
+Sometimes you have many chapters and you want to group them into parts. Bookdown offers a unified approach for PDF and HTML output formats:
+
+- just insert a chapter, with a prefix `(PART)` and a suffix `{-}` -- indicating that it is a part and that it must not be numbered as a chapter, respectively. For example:
+
+    ```
+    # (PART) The title of my first part {-}
+    
+    # The title of the first chapter in the part
+    
+    Text, sections, subsections etc.
+    ```
+    
+    A label for the part will be automatically generated^[
+    The automatic labelling actually occurs for all headers, and is accomplished by pandoc markdown's [autoidentifier](http://pandoc.org/MANUAL.html#header-identifiers) feature!],
+    during processing of the file. For the example above, it will be: `part-the-title-of-my-first-part`.
+    
+- \hypertarget{example}{}<A id="example"></A>you can therefore cross-reference the part in the ordinary bookdown way: `see part \@ref(part-the-title-of-my-first-part)`.
+
+
+
+
+## Adding appendices
+
+The user can handle appendices identically to chapters; see section \@ref(S:crossref). Because they always appear after the regular chapters, and no regular chapters occur after them, it suffices to insert an unnumbered `(APPENDIX)` "chapter" _before the title of the first appendix_:
+
+    # (APPENDIX) Appendices {-}
+    
+    # Title of first appendix
+    
+    Contents of first appendix
+    
+    # Title of second appendix
+    
+    Contents of second appendix
+
+The consequence of handling appendices separately, is that they will be numbered as A, B, C and so on.
+
+
+

@@ -1,9 +1,12 @@
-\documentclass[11pt, twoside]{extreport}
+\documentclass[11pt, twoside]{extarticle}
 
-\usepackage{inborapport_2015}
-$if(codesize)$
-\codesize{\$codesize$}
+\usepackage[babel = $lang$]{inboverslag_2015}
+$if(usepackage)$
+\usepackage{$usepackage$}
 $endif$
+
+% use babel for different languages
+\usepackage[$lang$]{babel}
 
 $if(floatbarriersection)$
 \makeatletter
@@ -44,11 +47,12 @@ $if(floatbarriersubsubsection)$
 \makeatother
 $endif$
 
-\title{$title$}
-$if(subtitle)$\subtitle{$subtitle$}$endif$
 \author{$author$}
-$if(ordernr)$\ordernumber{$ordernr$}$endif$
-$if(reportnr)$\reportnumber{$reportnr$}$endif$
+\title{$title$}
+\date{$date$}
+\present{$present$}
+\absent{$absent$}
+\chair{$chair$}
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
@@ -58,51 +62,13 @@ $endfor$
 
 \begin{document}
 \maketitle
-\pagenumbering{Roman}
 
 $for(include-before)$
 $include-before$
 
 $endfor$
 
-%starttoc
-
-\cleardoublepage
-
-\phantomsection
-\tableofcontents
-\addcontentsline{toc}{chapter}{\contentsname}
-
-$if(loft)$
-\clearpage
-$endif$
-
-$if(lof)$
-\phantomsection
-\listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename}
-$endif$
-
-$if(lot)$
-\phantomsection
-\listoftables
-\addcontentsline{toc}{chapter}{\listtablename}
-$endif$
-
-\pagenumbering{arabic}
-
-%endtoc
-
 $body$
-
-$if(natbib)$
-%startbib
-\cleardoublepage
-\bibliographystyle{spbasic}
-\bibliography{$bibliography$}
-\addcontentsline{toc}{chapter}{\bibname}
-%endbib
-$endif$
 
 $for(include-after)$
 $include-after$

@@ -12,8 +12,8 @@ Suggests:
     knitr,
     pander,
     ggplot2,
-    INBOtheme (>= 0.4.1)
+    INBOtheme (>= 0.5.4)
 Imports:
     assertthat,
     rmarkdown
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

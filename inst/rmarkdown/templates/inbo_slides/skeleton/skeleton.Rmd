@@ -1,0 +1,127 @@
+---
+title: "The main title of the presentation"
+author: "Firstname1 Lastname1, Firstname2 Lastname2 & Firstname3 Lastname3"
+bibliography: references.bib
+output: 
+  INBOmd::inbo_slides:
+    subtitle: "Optional: a subtitle"
+    location: "The location and date"
+    institute: "Affilitation of the author(s)"
+    toc_name: "Summary"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(
+  out.extra = "",
+  strip.white = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  echo = FALSE
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo2015(6, transparent = "plot"))
+```
+
+
+# Important options to set in the YAML header
+
+## Slide level 
+
+slide_level
+  ~ determines the heading level is which used as slide titles
+  ~ higher levels are used for divider slides
+  ~ lower levels are display as blocks
+  
+    - header levels more than 1 lower than `slide_level` are not recommended
+  ~ defaults to `slide_level: 2`
+  
+### A block title
+
+And it's content
+
+### Another block title
+
+#### Lower level
+
+And it's content
+
+## Cover image
+
+cover
+  ~ an image file to be used on the cover
+
+cover_horizontal
+  ~ if TRUE (default): scale the cover image horizontally
+  ~ if FALSE: scale the cover image vertically
+  ~ use `cover_horizontal: FALSE` when the image doesn't cover the title slide from top to bottom
+
+cover_offset
+  ~ the vertical offset of the image. This shifts the image up or down.
+  ~ e.g. `cover_offset: -10mm`
+
+cover_hoffset
+  ~ the horizontal offset of the image. This shifts the image left or right.
+  ~ e.g. `cover_hoffset: -10mm`
+
+## Table of content and language
+
+toc
+  ~ if TRUE (default): display a table of content
+  ~ if FALSE: omit a table of content
+
+toc_name
+  ~ the title of the table of content. Defaults to `Overzicht`.
+  
+lang
+  ~ the language of the presentation. Defaults to `dutch`.
+
+## Fonts
+
+fontsize
+  ~ base fontsize of the text. Defaults to `fontsize: 10pt`
+
+codesize
+  ~ the relative size of code compared to `fontsize`
+  ~ from large to small: normalsize, small, footnotesize, scriptsize, tiny
+  ~ defaults to `codesize: footnotesize`
+
+flandersfont
+  ~ Use Flanders Art if TRUE. Requires that the Flanders Art font is installed.
+  ~ Use Calibri is FALSE (default)
+
+# R code chunks
+
+## Linear model
+
+@R-base 
+
+[@R-lme4]
+
+```{r linear_model, echo = TRUE}
+model <- lm(log(pressure) ~ poly(temperature, 2), data = pressure)
+summary(model)
+```
+
+## Figure
+
+```{r pressure}
+ggplot(pressure, aes(x = temperature, y = pressure)) + 
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2)) +
+  geom_point() +
+  scale_x_continuous("Temperature (deg C)") +
+  scale_y_log10("Pressure (mm of Hg)") +
+  ggtitle("pressure data: Vapor Pressure of Mercury")
+```
+
+## Table {.allowframebreaks}
+
+```{r kabletable, results='asis'}
+kable(
+  pressure,
+  longtable = TRUE
+)
+```
+
+## References

@@ -1,8 +1,6 @@
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{inborapport_2015}
-
-\RequirePackage{inboimage_2015}
+\ProvidesPackage{inbozending_2015}
 
 \RequirePackage{kvoptions}
 \RequirePackage{kvsetkeys}
@@ -16,28 +14,40 @@
 \define@key{inborapport_2015}{hyperref}{%
   \PassOptionsToPackage{#1}{hyperref}%
 }
+% babel options
+\define@key{inborapport_2015}{babel}{%
+  \PassOptionsToPackage{#1}{babel}%
+}
 
 \ProcessKeyvalOptions*
 
+\RequirePackage{inboimage_2015}
+
+
 % definition of custom commands
-\def\subtitle#1{\def\@subtitle{#1}}
-\subtitle{}
 
-\def\reportnumber#1{\def\@reportnumber{#1}}
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-\reportnumber{\today\space\currenttime}
+\def\reportdate#1{\def\@reportdate{#1}}
+\reportdate{}
 
-\def\ordernumber#1{\def\@ordernumber{#1}}
-\ordernumber{}
+\def\conferencedate#1{\def\@conferencedate{#1}}
+\conferencedate{}
+
+\def\conferenceplace#1{\def\@conferenceplace{#1}}
+\conferenceplace{}
+
+\def\website#1{\def\@website{#1}}
+\website{}
+
+\def\colleagues#1{\def\@colleagues{#1}}
+\colleagues{}
 
 % define page geometry
-\RequirePackage[a4paper, top = 20mm, bottom = 30mm, left = 30mm, right = 30mm, footskip=10mm]{geometry}
+\RequirePackage[a4paper, top = 2cm, bottom = 2.5cm, left = 3cm, right = 3cm]{geometry}
 
 % definition of INBO colours
 \RequirePackage{inbocolours_2015}
 
 % add hyperlinks to the document
-\RequirePackage[hyphens]{url}
 \RequirePackage[unicode=true, colorlinks=true, linktoc=page]{hyperref}
 \urlstyle{same}
 
@@ -47,8 +57,8 @@
     pdftitle = {\@title},
     pdfauthor = {\@author},
     linkcolor = main.colour,
-    urlcolor = main.colour,
-    citecolor = main.colour
+    urlcolor = link.colour,
+    citecolor = cite.colour
   }
 }
 
@@ -57,39 +67,35 @@
 
 % needed for figures
 \RequirePackage{graphicx}
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-
-% allow landscape pages and define commands that work with pandoc
-\RequirePackage{lscape}
-\newcommand{\blandscape}{\begin{landscape}}
-\newcommand{\elandscape}{\end{landscape}}
 
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
-\newenvironment{block}{%
+\newenvironment{block}[2][]{%
   \begin{mdframed}[backgroundcolor=box.colour]
+  \textbf{#2}%
+
+  \noindent%
 }
 {
   \end{mdframed}
 }
 
-\RequirePackage{marginnote}
-\newenvironment{alertblock}{%
-  \marginnote{\includegraphics{alert.png}}
-  \begin{mdframed}%
+\newenvironment{alertblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=alert.colour]
+  \textbf{#2}%
+
+  \noindent%
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{exampleblock}{%
+\newenvironment{exampleblock}[2][]{%
   \begin{mdframed}[backgroundcolor=example.colour]
+  \textbf{#2}%
+
+  \noindent%
 }
 {
   \end{mdframed}
@@ -101,11 +107,11 @@
 \ifxetex
   \RequirePackage[no-math]{fontspec}
   \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
+  \setmonofont{Courier New}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{inconsolata}
+  \RequirePackage{lmodern}
 \fi
 
 % Set scaling of fonts
@@ -145,23 +151,9 @@
 \setlength{\fontsizeordernr}{\scaleratio * \real{9}}
 
 % use babel for different languages
-\RequirePackage[english, dutch]{babel}
-\newcommand{\benglish}{\begin{otherlanguage*}{english}}
-\newcommand{\eenglish}{\end{otherlanguage*}}
+\RequirePackage{babel}
 
 \RequirePackage{inbogeneric_2015}
-
-% define style for chapters
-\def\@makechapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
-  \vspace{16pt}
-  }
-\def\@makeschapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
-  \vspace{16pt}
-  }
-
-\RequirePackage{needspace}
 
 % define style for sections
 \renewcommand{\section}{\secdef\@section\@ssection}
@@ -180,13 +172,11 @@
 }
 \def\@makesectionhead#1{%
   \vspace{9pt}
-  \Needspace*{5\baselineskip}
    {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessectionhead#1{%
   \vspace{9pt}
-  \Needspace*{5\baselineskip}
    {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
@@ -297,70 +287,56 @@
 
 % define headers and footers
 \RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-\fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-\fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+\fancyfoot[R]{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}} \selectfont pagina \thepage\ van \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.4pt}
-
-\fancypagestyle{plain}{%
-  \fancyhead{}
-  \fancyfoot{}
-  \fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-  \fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-  \fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
-  \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
-}
+\renewcommand{\footrulewidth}{0pt}
 
 \fancypagestyle{cover}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyfoot[L]{{\hspace{4mm}\includegraphics[height = 10mm, keepaspectratio]{logo_nl_kleur}}}
+  \fancyfoot[L]{\includegraphics[width = 40mm, keepaspectratio]{vlaanderen_nl_naakt}}
+  \fancyfoot[R]{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}} \selectfont pagina \thepage\ van \pageref{LastPage}}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
-  \setlength{\footskip}{30pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \setlength{\footskip}{49pt}
 }
-
-\RequirePackage{emptypage}
+% set whitespace between text and footer
+\setlength{\footskip}{22pt}
 
 % define title page
 \def\maketitle{%
   \thispagestyle{cover}{%
-    \hfill \includegraphics[height = 30mm, keepaspectratio]{vlaanderen_nl_vol}
+    \includegraphics[width = 100mm, keepaspectratio]{logo_nl_zwart}
 
-    \vfill
+\textbf{Vlaamse overheid}\\
+Kliniekstraat 25\\
+1070 BRUSSEL\\
+\textbf{T} 02 525 02 00\\
+\textbf{F} 02 525 03 00\\
+info@inbo.be
 
-    \raggedright \fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont \textbf{\@title}
-    \vspace{6pt}
+\fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont
+\textbf{ZENDINGSVERSLAG}
 
-    \fontsize{\fontsizesubtitle}{\fontsizesubtitle * \real{1.2}}\selectfont\@subtitle
-    \vspace{36pt}
+\fontsize{\fontsizebase}{\fontsizebase * \real{1.2}}\selectfont
 
-    \vspace{12pt}
-    \fontsize{\fontsizeauthor}{\fontsizeauthor * \real{1.2}}\selectfont \textbf{\@author}
-    \vspace{144pt}
+/\xleaders\hbox{/}\hfill/
 
-    \fontsize{\fontsizeordernr}{\fontsizeordernr * \real{1.2}}\selectfont\@reportnumber
+\textbf{Auteur:} \@author \\
+\textbf{Datum van het verslag:} \@reportdate \\
+\textbf{Conferentie/workshop:} \@title \\
+\textbf{Website/URL:} \@website \\
+\textbf{Andere deelnemers van het INBO aan de conferentie:} \@colleagues \\
+\textbf{Datum:} \@conferencedate \\
+\textbf{Plaats:} \@conferenceplace
 
-    \@ordernumber
-
-    \vfill
+/\xleaders\hbox{/}\hfill/
     }%
-  \cleardoublepage
   }
-
-\RequirePackage{etoolbox}
-\preto{\chapter}{\def\leveltitle{\chaptertitle}}
-\pretocmd{\@chapter}
-  {\expandafter\gdef\leveltitle{#2}}
-  {}{}
-\pretocmd{\@schapter}
-  {\expandafter\gdef\leveltitle{#1}}
-  {}{}
 
 % allow FloatBarriers
 \RequirePackage{placeins}
@@ -370,49 +346,20 @@
 \RequirePackage{parskip}
 \setlength{\parskip}{9pt plus4pt minus4pt}
 
-% add figure and table prefix to list of figures and list of tables
-\RequirePackage{tocloft}
-
-\setlength{\cftfigindent}{0mm}
-\setlength{\cfttabindent}{0mm}
-
-\setlength{\cftfignumwidth}{20mm}
-\setlength{\cfttabnumwidth}{20mm}
-\renewcommand{\cftfigpresnum}{\figurename\ }
-\renewcommand{\cfttabpresnum}{\tablename\ }
-
-\renewcommand{\cfttoctitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftaftertoctitle}{\nopagebreak}
-\renewcommand{\cftloftitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterloftitle}{\nopagebreak}
-\renewcommand{\cftlottitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterlottitle}{\nopagebreak}
-
-% changing style in table of contents
-\renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
-\renewcommand*\l@section{\normalfont\@dottedtocline{2}{0mm}{20mm}}
-\renewcommand*\l@subsection{\normalfont\@dottedtocline{3}{0mm}{20mm}}
-\renewcommand*\l@subsubsection{\normalfont\@dottedtocline{4}{0mm}{20mm}}
-\renewcommand*\l@paragraph{\normalfont\@dottedtocline{5}{0mm}{20mm}}
-\renewcommand*\l@subparagraph{\normalfont\@dottedtocline{6}{0mm}{20mm}}
-
 % Some stuff to force sensible page breaks (no widows etc) and to ensure
 % that each page which consists solely of diagrams is at least 75% full.
 % We also get LaTeX to shut up when vboxes and hboxes are too wide.
 
-\hbadness=10000                     % badness above which bad hboxes are shown.
-\vbadness=10000                     % badness above which bad vboxes are shown.
-\tolerance=200                      % badness tolerance after hyphenation.
-\hyphenpenalty=1000                 % penalty for line break after discresionary hyphen.
-\pretolerance=200                   % badness tolerance before hyphenation.
-\clubpenalties=3 10000  5000 2000   % penalty for creating a club line at end of line.
-\widowpenalties=3 10000  5000  2000 % penalty for creating a widow line at top of page.
-\displaywidowpenalty=1000           % penalty for creating a widow line before a display.
-\predisplaypenalty=20               % penalty for a page break just before a display
-\postdisplaypenalty=20              % penalty for a page break just after a display.
-\floatingpenalty=8000               % penalty for insertions that are split.
-\interlinepenalty=25                % additional penalty for page break between lines.
+\hbadness=10000         % badness above which bad hboxes are shown.
+\vbadness=10000         % badness above which bad vboxes are shown.
+\tolerance=200	       	% badness tolerance after hyphenation.
+\hyphenpenalty=1000 	% penalty for line break after discresionary hyphen.
+\pretolerance=200 	% badness tolerance before hyphenation.
+\clubpenalties=3 10000  10000 5000	% penalty for creating a club line at end of line.
+\widowpenalties=3 10000	10000 5000% penalty for creating a widow line at top of page.
+\displaywidowpenalty=1000% penalty for creating a widow line before a display.
+\predisplaypenalty=20	% penalty for a page break just before a display
+\postdisplaypenalty=20	% penalty for a page break just after a display.
+\floatingpenalty=8000	% penalty for insertions that are split.
+\interlinepenalty=25 	% additional penalty for page break between lines.
 \raggedbottom
-
-\setlength{\skip\footins}{1cm}
-\RequirePackage[bottom]{footmisc}
