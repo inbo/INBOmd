@@ -73,7 +73,7 @@
 \RequirePackage{mdframed}
 
 \newenvironment{block}{%
-  \begin{mdframed}[backgroundcolor=box.colour]
+  \begin{mdframed}[backgroundcolor=box.colour, linewidth=1pt]
 }
 {
   \end{mdframed}
@@ -81,15 +81,15 @@
 
 \RequirePackage{marginnote}
 \newenvironment{alertblock}{%
-  \begin{mdframed}%
   \marginnote{\includegraphics[width=10mm]{alert.png}}[1.5mm]
+  \begin{mdframed}[linewidth=1pt]%
 }
 {
   \end{mdframed}
 }
 
 \newenvironment{exampleblock}{%
-  \begin{mdframed}[backgroundcolor=example.colour]
+  \begin{mdframed}[backgroundcolor=example.colour, linewidth=1pt]
 }
 {
   \end{mdframed}
