@@ -82,14 +82,14 @@
 \RequirePackage{marginnote}
 \newenvironment{alertblock}{%
   \marginnote{\includegraphics[width=10mm]{alert.png}}[1.5mm]
-  \begin{mdframed}[linewidth=1pt]%
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]%
 }
 {
   \end{mdframed}
 }
 
 \newenvironment{exampleblock}{%
-  \begin{mdframed}[backgroundcolor=example.colour, linewidth=1pt]
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]
 }
 {
   \end{mdframed}
