@@ -118,7 +118,7 @@ inbo_slides <- function(
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 80,
         concordance = TRUE
       ),
       opts_chunk = list(
