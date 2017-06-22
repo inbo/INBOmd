@@ -110,6 +110,7 @@ inbo_rapport_2015 <- function(
     args <- c(args, unlist(floating))
   }
   opts_chunk <- list(
+    latex.options = "{}",
     dev = 'pdf',
     fig.align = "center",
     dpi = 300,
