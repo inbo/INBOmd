@@ -7,7 +7,7 @@ check_dependencies <- function(){
   available <- installed.packages()
   to_install <- dependencies[!dependencies %in% available[, "Package"]]
   if (length(to_install) > 0) {
-    install.packages(to_install)
+    install.packages(to_install, repos = getOption("repos"))
     available <- installed.packages()
     problem <- to_install[!to_install %in% available[, "Package"]]
     if (length(problem) > 0) {
