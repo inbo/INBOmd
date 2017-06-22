@@ -2,7 +2,8 @@
 % Please edit documentation in R/inbo_handouts.R
 \name{inbo_handouts}
 \alias{inbo_handouts}
-\title{Use the handout version of slides with the INBO theme}
+\title{Use the handout version of slides with the INBO theme
+The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.}
 \usage{
 inbo_handouts(subtitle, location, institute, cover, cover_offset, cover_hoffset,
   cover_horizontal = TRUE, toc_name, fontsize, codesize = c("footnotesize",
@@ -52,4 +53,5 @@ inbo_handouts(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 }
 \description{
 Use the handout version of slides with the INBO theme
+The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.
 }
