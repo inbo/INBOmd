@@ -14,9 +14,8 @@ inbo_handouts <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  natbib,
+  citation_package = c("natbib", "none"),
   natbib_title,
-  natbib_style,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -60,16 +59,15 @@ inbo_handouts <- function(
   if (!missing(toc_name)) {
     args <- c(args, pandoc_variable_arg("tocname", toc_name))
   }
-  if (!missing(natbib)) {
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
   if (!missing(natbib_title)) {
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
-  if (!missing(natbib_style)) {
-    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if (!missing(subtitle)) {
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
@@ -92,7 +90,7 @@ inbo_handouts <- function(
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 80,
         concordance = TRUE
       ),
       opts_chunk = list(

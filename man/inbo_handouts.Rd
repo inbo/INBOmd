@@ -6,10 +6,10 @@
 \usage{
 inbo_handouts(subtitle, location, institute, cover, cover_offset, cover_hoffset,
   cover_horizontal = TRUE, toc_name, fontsize, codesize = c("footnotesize",
-  "scriptsize", "tiny", "small", "normalsize"), natbib, natbib_title,
-  natbib_style, lang = "dutch", slide_level = 2, keep_tex = FALSE,
-  toc = TRUE, website = "www.INBO.be", theme = c("inbo", "vlaanderen"),
-  flandersfont = FALSE, ...)
+  "scriptsize", "tiny", "small", "normalsize"), citation_package = c("natbib",
+  "none"), natbib_title, lang = "dutch", slide_level = 2,
+  keep_tex = FALSE, toc = TRUE, website = "www.INBO.be",
+  theme = c("inbo", "vlaanderen"), flandersfont = FALSE, ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}
