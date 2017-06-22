@@ -25,8 +25,6 @@ inbo_zending(conference, conferencedate, conferenceplace, website = "",
 
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
 
-\item{natbib}{The bibliography file for natbib}
-
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
 \item{lang}{The language of the document. Defaults to "dutch"}

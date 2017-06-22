@@ -32,11 +32,7 @@ inbo_handouts(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
-\item{natbib}{The bibliography file for natbib}
-
 \item{natbib_title}{The title of the bibliography}
-
-\item{natbib_style}{The style of the bibliography}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 

@@ -9,9 +9,7 @@
 #' @param toc_name Name of the table of contents. Defaults to "Overzicht".
 #' @param fontsize The fontsite of the document. Defaults to 10pt.
 #' @param codesize The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".
-#' @param natbib The bibliography file for natbib
 #' @param natbib_title The title of the bibliography
-#' @param natbib_style The style of the bibliography
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
@@ -34,9 +32,8 @@ inbo_slides <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  natbib,
+  citation_package = c("natbib", "none"),
   natbib_title,
-  natbib_style,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -74,19 +71,16 @@ inbo_slides <- function(
       args <- c(args, pandoc_variable_arg("toc_name", toc_name))
     }
   }
-  if (!missing(natbib)) {
-    assert_that(is.string(natbib))
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
   if (!missing(natbib_title)) {
     assert_that(is.string(natbib_title))
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
-  if (!missing(natbib_style)) {
-    assert_that(is.string(natbib_style))
-    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if (!missing(subtitle)) {
     assert_that(is.string(subtitle))
@@ -139,7 +133,7 @@ inbo_slides <- function(
       to = "beamer",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )
