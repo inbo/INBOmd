@@ -106,7 +106,7 @@ inbo_handouts <- function(
       to = "beamer",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )
