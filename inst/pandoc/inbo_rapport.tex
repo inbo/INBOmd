@@ -1,4 +1,4 @@
-\documentclass[11pt, twoside]{extreport}
+\documentclass[11pt, oneside]{extreport}
 
 \usepackage{inborapport_2015}
 $if(codesize)$
@@ -81,6 +81,7 @@ $if(lof)$
 \phantomsection
 \listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
+\vspace{34pt}
 $endif$
 
 $if(lot)$
@@ -88,6 +89,8 @@ $if(lot)$
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
 $endif$
+
+\cleardoublepage
 
 \pagenumbering{arabic}
 
