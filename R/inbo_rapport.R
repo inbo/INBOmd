@@ -19,7 +19,7 @@
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
-inbo_rapport_2015 <- function(
+inbo_rapport <- function(
   subtitle,
   reportnr,
   ordernr,

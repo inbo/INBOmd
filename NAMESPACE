@@ -2,7 +2,7 @@
 
 export(check_dependencies)
 export(inbo_handouts)
-export(inbo_rapport_2015)
+export(inbo_rapport)
 export(inbo_slides)
 export(inbo_verslag)
 export(inbo_zending)

@@ -6,7 +6,7 @@
 #' @param reportdate the date of this report
 #' @param colleagues name of other colleagues attending the same conference
 #' @inheritParams inbo_slides
-#' @inheritParams inbo_rapport_2015
+#' @inheritParams inbo_rapport
 #' @param ... extra parameters: see details
 #'
 #' @details

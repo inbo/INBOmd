@@ -3,7 +3,7 @@
 #' @param absent names of all persons who couldn't make it
 #' @param chair chair of the meeting
 #' @inheritParams inbo_slides
-#' @inheritParams inbo_rapport_2015
+#' @inheritParams inbo_rapport
 #' @param ... extra parameters: see details
 #'
 #' @details
