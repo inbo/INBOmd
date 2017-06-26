@@ -20,7 +20,7 @@ check_dependencies <- function(){
       )
     }
   }
-  if (Sys.which("phantomjs") == "") {
+  if (is.null(webshot:::find_phantom())) {
     webshot::install_phantomjs()
   }
   return(TRUE)
