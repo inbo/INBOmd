@@ -29,11 +29,11 @@ inbo_handouts <- function(
 ){
   check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc))
+  assert_that(noNA(toc)) #nolint
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont))
+  assert_that(noNA(flandersfont)) #nolint
 
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -96,8 +96,8 @@ inbo_handouts <- function(
         concordance = TRUE
       ),
       opts_chunk = list(
-        dev = 'pdf',
-        dev.args = list(bg = 'transparent'),
+        dev = "pdf",
+        dev.args = list(bg = "transparent"),
         dpi = 300,
         fig.width = 4.5,
         fig.height = 2.9

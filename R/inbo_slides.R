@@ -46,13 +46,12 @@ inbo_slides <- function(
 ){
   check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc))
+  assert_that(noNA(toc)) #nolint
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont))
+  assert_that(noNA(flandersfont)) #nolint
 
-  extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
   template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
@@ -112,7 +111,7 @@ inbo_slides <- function(
     }
     if (!missing(cover_horizontal)) {
       assert_that(is.flag(cover_horizontal))
-      assert_that(noNA(cover_horizontal))
+      assert_that(noNA(cover_horizontal)) #nolint
       args <- c(args, pandoc_variable_arg("coverhorizontal", cover_horizontal))
     }
   }
@@ -123,8 +122,8 @@ inbo_slides <- function(
         concordance = TRUE
       ),
       opts_chunk = list(
-        dev = 'pdf',
-        dev.args = list(bg = 'transparent'),
+        dev = "pdf",
+        dev.args = list(bg = "transparent"),
         dpi = 300,
         fig.width = 4.5,
         fig.height = 2.8

@@ -1,6 +1,6 @@
 # taken from https://github.com/wch/webshot because webshot:::find_phantom() is not exported
 
-# Find PhantomJS from PATH, APPDATA, system.file('webshot'), ~/bin, etc
+# Find PhantomJS from PATH, APPDATA, system.file("webshot"), ~/bin, etc
 find_phantom <- function() {
   path <- Sys.which( "phantomjs" )
   if (path != "") return(path)
@@ -18,9 +18,9 @@ find_phantom <- function() {
     # packages which use webshot in their R CMD check (in examples or vignettes)
     # will get an ERROR. We'll issue a message and return NULL; other
     message(
-      "PhantomJS not found. You can install it with webshot::install_phantomjs(). ",
-      "If it is installed, please make sure the phantomjs executable ",
-      "can be found via the PATH variable."
+"PhantomJS not found. You can install it with webshot::install_phantomjs(). ",
+"If it is installed, please make sure the phantomjs executable ",
+"can be found via the PATH variable."
     )
     return(NULL)
   }
@@ -30,19 +30,19 @@ find_phantom <- function() {
 # Possible locations of the PhantomJS executable
 phantom_paths <- function() {
   if (is_windows()) {
-    path <- Sys.getenv('APPDATA', '')
-    path <- if (dir_exists(path)) file.path(path, 'PhantomJS')
+    path <- Sys.getenv("APPDATA", "")
+    path <- if (dir_exists(path)) file.path(path, "PhantomJS")
   } else if (is_osx()) {
-    path <- '~/Library/Application Support'
-    path <- if (dir_exists(path)) file.path(path, 'PhantomJS')
+    path <- "~/Library/Application Support" #nolint
+    path <- if (dir_exists(path)) file.path(path, "PhantomJS")
   } else {
-    path <- '~/bin'
+    path <- "~/bin" #nolint
   }
-  path <- c(path, system.file('PhantomJS', package = 'webshot'))
+  path <- c(path, system.file("PhantomJS", package = "webshot"))
   path
 }
 
-dir_exists <- function(path) utils::file_test('-d', path)
+dir_exists <- function(path) utils::file_test("-d", path)
 
 is_windows <- function() .Platform$OS.type == "windows"
-is_osx     <- function() Sys.info()[['sysname']] == 'Darwin'
+is_osx     <- function() Sys.info()[["sysname"]] == "Darwin"

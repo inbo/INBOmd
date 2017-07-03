@@ -28,9 +28,9 @@ render_natbib <- function(
   assert_that(file_test("-f", paste(path, file, sep = "/")))
   assert_that(grepl("\\.[Rr]md$", file))
   assert_that(is.flag(display))
-  assert_that(noNA(display))
+  assert_that(noNA(display)) #nolint
   assert_that(is.flag(clean))
-  assert_that(noNA(clean))
+  assert_that(noNA(clean)) #nolint
 
   current <- getwd()
   setwd(path)

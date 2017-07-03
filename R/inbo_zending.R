@@ -90,7 +90,7 @@ inbo_zending <- function(
     args <- c(args, unlist(floating))
   }
   opts_chunk <- list(
-    dev = 'pdf',
+    dev = "pdf",
     dpi = 300,
     fig.width = 4.5,
     fig.height = 2.9
@@ -99,8 +99,8 @@ inbo_zending <- function(
     !identical(.Platform$OS.type, "windows") &&
     nzchar(Sys.which("pdfcrop"))
   if (crop) {
-    knit_hooks = list(crop = knitr::hook_pdfcrop)
-    opts_chunk$crop = TRUE
+    knit_hooks <- list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop <- TRUE
   } else {
     knit_hooks <- NULL
   }

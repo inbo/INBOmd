@@ -112,7 +112,7 @@ inbo_rapport <- function(
   }
   opts_chunk <- list(
     latex.options = "{}",
-    dev = 'pdf',
+    dev = "pdf",
     fig.align = "center",
     dpi = 300,
     fig.width = 4.5,
@@ -122,8 +122,8 @@ inbo_rapport <- function(
     !identical(.Platform$OS.type, "windows") &&
     nzchar(Sys.which("pdfcrop"))
   if (crop) {
-    knit_hooks = list(crop = knitr::hook_pdfcrop)
-    opts_chunk$crop = TRUE
+    knit_hooks <- list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop <- TRUE
   } else {
     knit_hooks <- NULL
   }
@@ -132,7 +132,7 @@ inbo_rapport <- function(
     text <- readLines(output, warn = FALSE)
 
     # move frontmatter before toc
-    mainmatter <- grep("\\\\mainmatter", text)
+    mainmatter <- grep("\\\\mainmatter", text) #nolint
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
@@ -146,7 +146,7 @@ inbo_rapport <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text)
+    appendix <- grep("\\\\appendix", text) #nolint
     startbib <- grep("%startbib", text)
     endbib <- grep("%endbib", text)
     if (length(appendix) & length(startbib)) {
