@@ -20,7 +20,10 @@ check_dependencies <- function(){
       )
     }
   }
-  if (is.null(webshot:::find_phantom())) {
+  if (is.null(find_phantom())) {
+    if (!requireNamespace("webshot", quietly = TRUE)) {
+      stop("webshot is not available.")
+    }
     webshot::install_phantomjs()
   }
   return(TRUE)
