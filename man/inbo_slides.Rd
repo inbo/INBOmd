@@ -32,6 +32,9 @@ inbo_slides(subtitle, location, institute, cover, cover_offset, cover_hoffset,
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
 \item{natbib_title}{The title of the bibliography}
 
 \item{lang}{The language of the document. Defaults to "dutch"}

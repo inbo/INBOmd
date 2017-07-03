@@ -7,6 +7,7 @@
 #' @param colleagues name of other colleagues attending the same conference
 #' @inheritParams inbo_slides
 #' @inheritParams inbo_rapport
+#' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -24,7 +25,8 @@ inbo_zending <- function(
   reportdate,
   colleagues = "",
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  natbib,
+  citation_package = c("natbib", "none"),
+  includes = NULL,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
   keep_tex = FALSE,
@@ -52,20 +54,16 @@ inbo_zending <- function(
     pandoc_variable_arg("lang", lang)
   )
   args <- c(args, pandoc_args)
-  if (!missing(natbib)) {
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
-  if ("usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-    extra <- extra[!names(extra) %in% "usepackage"]
-  }
+  # content includes
+  args <- c(args, includes_to_pandoc_args(includes))
+
   if (length(extra) > 0) {
     args <- c(
       args,
@@ -119,7 +117,7 @@ inbo_zending <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )

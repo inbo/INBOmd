@@ -18,6 +18,7 @@
 #' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
 #' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.
 #' @param ... extra parameters
+#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
 #' @importFrom assertthat assert_that is.string is.flag noNA

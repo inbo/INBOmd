@@ -8,6 +8,7 @@
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @inheritParams inbo_slides
+#' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details

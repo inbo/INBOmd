@@ -1,6 +1,7 @@
 #' Use the handout version of slides with the INBO theme
 #' The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.
 #' @inheritParams inbo_slides
+#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
 #' @importFrom assertthat assert_that is.string is.flag noNA

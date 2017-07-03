@@ -28,6 +28,12 @@ inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures}
 
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{includes}{Named list of additional content to include within the
+document (typically created using the \code{\link{includes}} function).}
+
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
 \item{...}{extra parameters: see details}
