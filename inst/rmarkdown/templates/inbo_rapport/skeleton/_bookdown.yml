@@ -1,18 +1,15 @@
-book_filename: "INBO-boek.Rmd"
-new_session: FALSE
-rmd_files:   # specifies the order of Rmd files; NOT needed when you use index.Rmd and an alphabetical order for other Rmd files
-#    - 1stFileOfBook.Rmd (if you use a file 'index.Rmd', it should be here)
-#    - 2ndFileOfBook.Rmd
-#    - 3rdFileOfBook.Rmd
-#    - <and so on>
+book_filename: "mijn-rapport.Rmd"
+output_dir: "."
 language:
-  label:  # comment out the below parameters if you wish English in other output formats than bookdown::pdf_book
-    fig: 'Figuur '
-    tab: 'Tabel '
-    eq: 'Vergelijking '
-    thm: 'Stelling '
-    def: 'Definitie '
-    cor: 'Gevolg '
-    ex: 'Voorbeeld '
-    proof: 'Bewijs '
-    remark: 'Noot '
+  label:
+    fig:    'Figuur '
+    tab:    'Tabel '
+    eq:     'Vergelijking '
+    thm:    'Theorema '
+    lem:    'Lemma '
+    def:    'Definitie '
+    cor:    'Gevolgtrekking '
+    prp:    'Bewering '
+    ex:     'Voorbeeld '
+    proof:  'Bewijs. '
+    remark: 'Opmerking. '
