@@ -19,7 +19,6 @@ build:
     - script:
         name: build inbomd_examples
         code: |
-          Rscript -e 'devtools::install(upgrade = FALSE)'
           git clone https://github.com/inbo/inbomd_examples.git
           cd inbomd_examples
           Rscript source/render_all.R
