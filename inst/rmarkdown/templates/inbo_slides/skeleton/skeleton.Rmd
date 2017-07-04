@@ -1,0 +1,29 @@
+--- 
+title: "Voorbeeldslides met INBOmd"
+author: "Thierry Onkelinx"
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    base_format: INBOmd::inbo_slides
+    subtitle: "Hier komt de optionele ondertitel"
+    location: "Hier komt optioneel de plaats"
+    institute: "Hier komt optioneel de affiliatie"
+    toc: FALSE
+    slide_level: 1
+---
+
+```{r include = FALSE}
+library(knitr)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo(6, transparent = "plot"))
+```
+
+# Slides met RMarkdown en Bookdown extensie
+
+- uitgebreider voorbeeld beschikbaar
+- broncode
+    - https://github.com/inbo/inbomd_examples
+    - in map source/inbo_slides
+- afgewerkte pdf
+    - https://inbomd-examples.netlify.com/

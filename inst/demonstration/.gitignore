@@ -7,3 +7,6 @@
 *.pdf
 *.tex
 *.toc
+*.nav
+*.snm
+*.gz

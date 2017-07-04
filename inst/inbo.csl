@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="never" default-locale="en-US">
   <info>
-    <title>Instituut voor Natuur- en Bosonderzoek. Versie 2015</title>
-    <title-short>INBO2015</title-short>
-    <id>http://csl.mendeley.com/styles/26645231/INBO2015</id>
+    <title>Instituut voor Natuur- en Bosonderzoek</title>
+    <title-short>INBO</title-short>
+    <id>http://www.inbo.be</id>
     <author>
       <name>Maarten Stevens</name>
       <email/>
@@ -11,15 +11,34 @@
     <contributor>
       <name>Maarten Stevens</name>
       <uri>http://www.mendeley.com/profiles/maarten-stevens/</uri>
+    </contributor>
+    <contributor>
       <name>Thierry Onkelinx</name>
       <uri>http://www.mendeley.com/profiles/thierry-onkelinx/</uri>
+    </contributor>
+    <contributor>
+      <name>Floris Vanderhaeghe</name>
+      <email>floris.vanderhaeghe@inbo.be</email>
     </contributor>
     <category citation-format="author-date"/>
     <category field="biology"/>
     <category field="generic-base"/>
-    <updated>2014-09-25T08:31:04+00:00</updated>
+    <updated>2016-09-08T00:00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/"/>
   </info>
+
+<locale xml:lang="en">
+    <terms>
+      <term name="in">In</term>
+    </terms>
+  </locale>
+
+<locale xml:lang="nl">
+    <terms>
+      <term name="in">In</term>
+      <term name="et-al">et al.</term>
+    </terms>
+  </locale>
 
   <macro name="container">
     <choose>
@@ -30,12 +49,12 @@
           <label text-case="lowercase" prefix=" (" suffix=")"/>
         </names>
         <group delimiter=", ">
-          <text variable="container-title" text-case="title"/>
-          <text variable="collection-title" text-case="title"/>
+          <text variable="container-title"/>
+          <text variable="collection-title"/>
         </group>
       </if>
       <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-        <group prefix=", " delimiter=", ">
+        <group prefix=". " delimiter=", ">
           <text variable="container-title"/>
           <text variable="collection-title"/>
         </group>
@@ -51,7 +70,7 @@
 
   <macro name="author">
     <names variable="author">
-      <name and="symbol" delimiter-precedes-last="always" et-al-min="10" et-al-use-first="10" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
+      <name and="symbol" delimiter-precedes-last="never" et-al-min="10" et-al-use-first="10" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
       <substitute>
         <names variable="editor"/>
@@ -125,9 +144,9 @@
   </macro>
 
   <macro name="publisher">
-    <group delimiter=" ">
-      <text variable="publisher" suffix=":"/>
-      <text variable="publisher-place" suffix="."/>
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
     </group>
   </macro>
 
@@ -175,7 +194,7 @@
             <text variable="volume"/>
             <choose>
               <if match="any" variable="issue">
-                <number prefix="(" suffix=")" variable="issue"/>
+                <number prefix=" (" suffix=")" variable="issue"/>
               </if>
             </choose>
           </group>
@@ -183,14 +202,14 @@
         </group>
       </if>
       <else-if type="bill book graphic legal_case legislation motion_picture report song thesis" match="any">
-        <group prefix=". ">
+        <group delimiter=", " prefix=". ">
           <text macro="event"/>
           <text macro="publisher"/>
-          <text variable="page" prefix=" " suffix=" p"/>
+          <text variable="number-of-pages" prefix=" " suffix=" p"/>
         </group>
       </else-if>
       <else-if type="chapter paper-conference" match="any">
-        <group delimiter=". " prefix=". ">
+        <group delimiter=", " prefix=". ">
           <text macro="event"/>
           <text macro="publisher"/>
           <text variable="page" prefix="p. "/>
@@ -224,7 +243,7 @@
   <macro name="doi">
     <choose>
       <if match="any" variable="DOI">
-        <text value="doi:" suffix=" "/>
+        <text value="DOI:" suffix=" "/>
         <text variable="DOI"/>
       </if>
     </choose>
@@ -233,7 +252,7 @@
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-givenname="false" disambiguate-add-year-suffix="true" collapse="year" cite-group-delimiter=", ">
     <sort>
       <key macro="author"/>
-      <key macro="issued" sort="descending"/>
+      <key macro="issued"/>
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
@@ -253,7 +272,7 @@
       <key macro="issued" sort="ascending"/>
     </sort>
     <layout>
-      <group>
+      <group suffix=".">
         <text macro="author"/>
         <text macro="issued" prefix=" (" suffix="). "/>
         <group>
@@ -262,9 +281,9 @@
           <text macro="locators"/>
         </group>
       </group>
-      <text macro="access" prefix=" "/>
-      <text macro="url" prefix=" "/>
-      <text macro="doi" prefix=" "/>
+      <text macro="access" prefix=" " suffix="."/>
+      <text macro="url" prefix=" " suffix="."/>
+      <text macro="doi" prefix=" " suffix="."/>
     </layout>
   </bibliography>
 </style>

@@ -2,6 +2,7 @@
 #' @export
 #' @importFrom rmarkdown render
 #' @importFrom assertthat assert_that is.string is.flag noNA
+#' @importFrom utils file_test
 #' @param file the name of the Rmd file
 #' @param path the path of the Rmd file
 #' @param encoding the encoding of the Rmd file. Default to 'UTF-8'
@@ -27,9 +28,9 @@ render_natbib <- function(
   assert_that(file_test("-f", paste(path, file, sep = "/")))
   assert_that(grepl("\\.[Rr]md$", file))
   assert_that(is.flag(display))
-  assert_that(noNA(display))
+  assert_that(noNA(display)) #nolint
   assert_that(is.flag(clean))
-  assert_that(noNA(clean))
+  assert_that(noNA(clean)) #nolint
 
   current <- getwd()
   setwd(path)

@@ -1,0 +1,32 @@
+-- 
+title: "Example presentation using INBOmd"
+author: "Thierry Onkelinx"
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    base_format: INBOmd::inbo_slides
+    theme: vlaanderen
+    lang: english
+    subtitle: "Here comes the optional subtitle"
+    location: "Here comes the optional location"
+    institute: "Here comes the optional affilitation"
+    toc: FALSE
+    slide_level: 1
+    font_flanders: FALSE
+---
+
+```{r include = FALSE}
+library(knitr)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_vlaanderen2015(6, transparent = "plot"))
+```
+
+# Slides in RMarkdown with Bookdown extension
+
+- elaborate example available
+- source code
+    - https://github.com/inbo/inbomd_examples
+    - in folder source/flanders_slides
+- rendered pdf
+    - https://inbomd-examples.netlify.com/

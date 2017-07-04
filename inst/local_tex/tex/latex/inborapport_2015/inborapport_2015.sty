@@ -16,10 +16,6 @@
 \define@key{inborapport_2015}{hyperref}{%
   \PassOptionsToPackage{#1}{hyperref}%
 }
-% babel options
-\define@key{inborapport_2015}{babel}{%
-  \PassOptionsToPackage{#1}{babel}%
-}
 
 \ProcessKeyvalOptions*
 
@@ -35,70 +31,97 @@
 \ordernumber{}
 
 % define page geometry
-\RequirePackage[a4paper, top = 2cm, bottom = 2.5cm, left = 3cm, right = 3cm]{geometry}
-
-% allows more complex formula's and \eqref
-\RequirePackage{amsmath}
+\RequirePackage[a4paper, top = 20mm, bottom = 30mm, left = 30mm, right = 30mm, footskip=10mm]{geometry}
 
 % definition of INBO colours
-\RequirePackage{xcolor}
-\definecolor{inbo.main}{RGB}{191, 43, 134}
-\definecolor{inbo.blue}{RGB}{53, 97, 150}
-\definecolor{inbo.red}{RGB}{190, 50, 84}
-\definecolor{inbo.green}{RGB}{149, 155, 56}
-\definecolor{inbo.orange}{RGB}{232, 120, 55}
+\RequirePackage{inbocolours_2015}
 
 % add hyperlinks to the document
+\RequirePackage[hyphens]{url}
 \RequirePackage[unicode=true, colorlinks=true, linktoc=page]{hyperref}
+\urlstyle{same}
 
 % add title and author to the pdf file properties
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
     pdfauthor = {\@author},
-    linkcolor = inbo.main,
-    urlcolor = inbo.blue,
-    citecolor = inbo.green
+    linkcolor = main.colour,
+    urlcolor = main.colour,
+    citecolor = main.colour
   }
 }
-
-% needed for markdown tables
-\RequirePackage{longtable}
 
 % needed for multicol and multirow
 \RequirePackage{multirow}
 
 % needed for figures
 \RequirePackage{graphicx}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+% allow landscape pages and define commands that work with pandoc
+\RequirePackage{lscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
 
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
+\def\getStringLength#1#2{%
+  \begingroup\@tempcnta\z@
+  \let\x\g@tStringLength
+  \ifx\g@tStringLength#1\g@tStringLength
+    \def\x##1\g@tStringLength{\endgroup\def#2{0}}%
+  \fi
+  \x#2#1\g@tStringLength
+}
+\def\g@tStringLength#1#2#3{%
+  \advance\@tempcnta\@ne
+  \ifx\g@tStringLength#3%
+    \edef#1{\endgroup\def\noexpand#1{\the\@tempcnta}}#1%
+  \else
+    \expandafter\g@tStringLength\expandafter#1\expandafter#3%
+  \fi
+}
+
 \newenvironment{block}[2][]{%
-  \begin{mdframed}[backgroundcolor=inbo.blue!50]
+  \begin{mdframed}[linewidth=1pt]
+  \getStringLength{#2}\length
+  \ifnum\length>0
   \textbf{#2}%
 
-  \noindent%
+  \fi
 }
 {
   \end{mdframed}
 }
 
+\RequirePackage{marginnote}
 \newenvironment{alertblock}[2][]{%
-  \begin{mdframed}[backgroundcolor=inbo.red!50]
+  \marginnote{\includegraphics[width=10mm]{alert.png}}[1.5mm]
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]%
+  \getStringLength{#2}\length
+  \ifnum\length>0
   \textbf{#2}%
 
-  \noindent%
+  \fi
 }
 {
   \end{mdframed}
 }
 
 \newenvironment{exampleblock}[2][]{%
-  \begin{mdframed}[backgroundcolor=inbo.green!50]
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]
+  \getStringLength{#2}\length
+  \ifnum\length>0
   \textbf{#2}%
 
-  \noindent%
+  \fi
 }
 {
   \end{mdframed}
@@ -110,11 +133,11 @@
 \ifxetex
   \RequirePackage[no-math]{fontspec}
   \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont{Courier New}[Scale = 0.67]
+  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{lmodern}
+  \RequirePackage{inconsolata}
 \fi
 
 % Set scaling of fonts
@@ -153,38 +176,24 @@
 \setlength{\fontsizeauthor}{\scaleratio * \real{12}}
 \setlength{\fontsizeordernr}{\scaleratio * \real{9}}
 
-% required for the Euro symbol
-\RequirePackage[gen]{eurosym}
-
 % use babel for different languages
-\RequirePackage{babel}
+\RequirePackage[english, dutch]{babel}
+\newcommand{\benglish}{\begin{otherlanguage*}{english}}
+\newcommand{\eenglish}{\end{otherlanguage*}}
 
-% update autoref labels for dutch
-\addto\extrasdutch{%
-  \def\chapterautorefname{Hoofdstuk}%
-}
-\addto\extrasdutch{%
-  \def\sectionautorefname{Sectie}%
-}
-\addto\extrasdutch{%
-  \def\figureautorefname{Figuur}%
-}
-\addto\extrasdutch{%
-  \def\tableautorefname{Tabel}%
-}
-\addto{\captionsdutch}{%
-  \renewcommand{\bibname}{Referenties}%
-}
+\RequirePackage{inbogeneric_2015}
 
 % define style for chapters
 \def\@makechapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{142.4mm}{\raggedright #1}\nopagebreak}
+   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
   \vspace{16pt}
   }
 \def\@makeschapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \raggedright #1\nopagebreak}
+   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
   \vspace{16pt}
   }
+
+\RequirePackage{needspace}
 
 % define style for sections
 \renewcommand{\section}{\secdef\@section\@ssection}
@@ -203,12 +212,14 @@
 }
 \def\@makesectionhead#1{%
   \vspace{9pt}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{139.8mm}{\raggedright #1}\nopagebreak}
+  \Needspace*{5\baselineskip}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessectionhead#1{%
   \vspace{9pt}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{139.8mm}{\raggedright #1} \nopagebreak}
+  \Needspace*{5\baselineskip}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -229,12 +240,12 @@
 }
 \def\@makesubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{137.3mm}{\raggedright #1}\nopagebreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{132.3mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{137.3mm}{\raggedright #1} \nopagebreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.3mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -255,12 +266,12 @@
 }
 \def\@makesubsubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{129.8mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubsubsectionhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{129.8mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -281,12 +292,12 @@
 }
 \def\@makeparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{132.2mm}{\raggedright #1}\nopagebreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{127.2mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makesparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.2mm}{\raggedright #1} \nopagebreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{127.2mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -307,12 +318,12 @@
 }
 \def\@makesubparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{129.7mm}{\raggedright #1}\nopagebreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{124.7mm}{\raggedright #1}\nopagebreak}
   \vspace{6pt}
 }
 \def\@makessubparagraphhead#1{%
   \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{129.7mm}{\raggedright #1} \nopagebreak}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{124.7mm}{\raggedright #1} \nopagebreak}
   \vspace{6pt}
 }
 
@@ -345,9 +356,8 @@
   \renewcommand{\footrulewidth}{0.4pt}
   \setlength{\footskip}{30pt}
 }
-% set whitespace between text and footer
-\setlength{\footskip}{22pt}
 
+\RequirePackage{emptypage}
 
 % define title page
 \def\maketitle{%
@@ -372,7 +382,7 @@
 
     \vfill
     }%
-  \clearpage
+  \cleardoublepage
   }
 
 \RequirePackage{etoolbox}
@@ -384,36 +394,8 @@
   {\expandafter\gdef\leveltitle{#1}}
   {}{}
 
-% syntax highlighting for R code
-\RequirePackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-\newenvironment{Shaded}{}{}
-\newcommand{\KeywordTok}[1]{\textcolor{inbo.main}{\textbf{{#1}}}}
-\newcommand{\OtherTok}[1]{\textcolor{inbo.main}{{#1}}}
-\newcommand{\FunctionTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\DecValTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\BaseNTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\FloatTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\CharTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\StringTok}[1]{\textcolor{inbo.green}{{#1}}}
-\newcommand{\CommentTok}[1]{\textcolor{inbo.blue}{\textit{{#1}}}}
-\newcommand{\DataTypeTok}[1]{\textcolor{inbo.orange}{{#1}}}
-\newcommand{\RegionMarkerTok}[1]{{#1}}
-\newcommand{\AlertTok}[1]{\textcolor{inbo.red}{\textbf{{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor{inbo.red}{\textbf{{#1}}}}
-\newcommand{\NormalTok}[1]{{#1}}
-
 % allow FloatBarriers
 \RequirePackage{placeins}
-
-% define references in between brackets
-\newcommand{\autorefp}[1]{ (\autoref{#1})}
-\newcommand{\refp}[1]{ (\ref{#1})}
-
-% allow natbib style references
-\RequirePackage[round, colon, authoryear, sort&compress]{natbib}
 
 % change spacing between paragraphs
 \renewcommand{\baselinestretch}{1.1}
@@ -450,19 +432,23 @@
 % that each page which consists solely of diagrams is at least 75% full.
 % We also get LaTeX to shut up when vboxes and hboxes are too wide.
 
-\hbadness=10000         % badness above which bad hboxes are shown.
-\vbadness=10000         % badness above which bad vboxes are shown.
-\tolerance=200	       	% badness tolerance after hyphenation.
-\hyphenpenalty=1000 	% penalty for line break after discresionary hyphen.
-\pretolerance=200 	% badness tolerance before hyphenation.
-\clubpenalties=3 10000  10000 5000	% penalty for creating a club line at end of line.
-\widowpenalties=3 10000	10000 5000% penalty for creating a widow line at top of page.
-\displaywidowpenalty=1000% penalty for creating a widow line before a display.
-\predisplaypenalty=20	% penalty for a page break just before a display
-\postdisplaypenalty=20	% penalty for a page break just after a display.
-\floatingpenalty=8000	% penalty for insertions that are split.
-\interlinepenalty=25 	% additional penalty for page break between lines.
+\hbadness=10000                     % badness above which bad hboxes are shown.
+\vbadness=10000                     % badness above which bad vboxes are shown.
+\tolerance=200                      % badness tolerance after hyphenation.
+\hyphenpenalty=1000                 % penalty for line break after discresionary hyphen.
+\pretolerance=200                   % badness tolerance before hyphenation.
+\clubpenalties=3 10000  5000 2000   % penalty for creating a club line at end of line.
+\widowpenalties=3 10000  5000  2000 % penalty for creating a widow line at top of page.
+\displaywidowpenalty=1000           % penalty for creating a widow line before a display.
+\predisplaypenalty=20               % penalty for a page break just before a display
+\postdisplaypenalty=20              % penalty for a page break just after a display.
+\floatingpenalty=8000               % penalty for insertions that are split.
+\interlinepenalty=25                % additional penalty for page break between lines.
 \raggedbottom
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\skip\footins}{1cm}
+\RequirePackage[bottom]{footmisc}
+
+\setlength{\cftbeforetoctitleskip}{-14pt}
+\setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
+\setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}

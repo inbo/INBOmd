@@ -1,0 +1,34 @@
+box: inbobmk/rstable
+build:
+  steps:
+    - script:
+        name: install dependencies not available in inbobmk/rstable
+        code: |
+          export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
+          mkdir ~/.fonts
+          apt-get update
+          apt-get install -y --no-install-recommends cabextract fonts-inconsolata
+          wget -qO- http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer | bash
+          rm PowerPointViewer.exe
+          wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf
+          wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
+          update-texmf
+          Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
+    - inbobmk/r-check
+    - inbobmk/r-lint
+    - script:
+        name: build inbomd_examples
+        code: |
+          git clone https://github.com/inbo/inbomd_examples.git
+          cd inbomd_examples
+          Rscript source/render_all.R
+
+deploy:
+  steps:
+    - script:
+        code: |
+          zip -r website.zip inbomd_examples/docs
+          curl -H "Content-Type: application/zip" \
+               -H "Authorization: Bearer $NETLIFY_KEY" \
+               --data-binary "@website.zip" \
+               https://api.netlify.com/api/v1/sites/$NETLIFY_SITEID/deploys

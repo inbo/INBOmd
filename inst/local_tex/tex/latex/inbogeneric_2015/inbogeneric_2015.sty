@@ -1,0 +1,67 @@
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{inbogeneric_2015}
+
+\def\codesize#1{\def\@codesize{#1}}
+\codesize{\normalsize}
+
+% required for the Euro symbol
+\RequirePackage[gen]{eurosym}
+% allows more complex formula's and \eqref
+\RequirePackage{amsmath}
+% allow natbib style references
+\RequirePackage[round, colon, authoryear, sort&compress]{natbib}
+% needed for markdown
+\RequirePackage{booktabs}
+\RequirePackage{upquote}
+\RequirePackage{longtable}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\RequirePackage{color}
+\RequirePackage{fancyvrb}
+\RequirePackage{framed}
+
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\@codesize}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor{highlight.colour}{\textbf{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor{highlight.colour}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor{example.colour}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor{number.colour}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor{number.colour}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor{number.colour}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor{number.colour}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor{number.colour}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor{warning.colour}{{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor{warning.colour}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor{comment.colour}{\textit{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor{warning.colour}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\AlertTok}[1]{\textcolor{alert.colour}{\textbf{{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor{alert.colour}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+
+\patchcmd{\@verbatim}
+  {\verbatim@font}
+  {\verbatim@font\@codesize}
+  {}{}
+
+% update autoref labels for dutch
+\addto\extrasdutch{%
+  \def\chapterautorefname{Hoofdstuk}%
+}
+\addto\extrasdutch{%
+  \def\sectionautorefname{Sectie}%
+}
+\addto\extrasdutch{%
+  \def\figureautorefname{Figuur}%
+}
+\addto\extrasdutch{%
+  \def\tableautorefname{Tabel}%
+}
+\addto{\captionsdutch}{%
+  \renewcommand{\bibname}{Referenties}%
+}

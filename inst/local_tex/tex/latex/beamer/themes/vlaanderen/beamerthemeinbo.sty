@@ -1,0 +1,76 @@
+% Copyright 2014 by Thierry Onkelinx
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeinbo}
+
+\RequirePackage{beamerthemevlaanderengeneric}
+%\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{tussenslide.pdf}}
+
+\lang{dutch}
+
+\cover{labo.jpg}
+\coverhorizontal{TRUE}
+\coveroffset{0mm}
+\coverhoffset{0mm}
+\website{www.INBO.be}
+
+\RequirePackage{inboimage_2015}
+
+% source rgb colours: level 2, palet 5
+\RequirePackage{inbocolours_2015}
+
+\RequirePackage[\@lang]{babel}
+
+
+\RequirePackage{beamerthemevlaanderenlayout}
+
+\newcommand{\inbologo}[3]{%
+  \edef\lang{{#1}}%
+  \expandafter\ifstrequal\lang{dutch}{
+
+  }{
+    \hspace{#3}\includegraphics[height = 4.75mm, width = 27.55mm, keepaspectratio]{logo_en_#2}
+  }%
+}
+
+\newcommand{\titlelogo}{
+  \begin{textblock}{29.2}(96.5, 4.4)
+    \begin{center}
+      \includegraphics[width = 29.55mm]{vlaanderen_nl_vol}
+    \end{center}
+  \end{textblock}
+
+
+  \begin{textblock}{29.2}(96.5, 20.8)
+    \textblockcolour{white}
+    \vspace{0.75mm}
+    \hspace{1mm}\includegraphics[width = 27.55mm]{logo_nl_kleur}
+    \vspace{0.75mm}
+  \end{textblock}
+}
+
+\newcommand{\sectionlogo}{
+  \begin{textblock}{29.2}(7.5, 8.45)
+    \textblockcolour{main.colour}
+    \includegraphics[width = 25mm]{vlaanderen_nl_vol2}
+  \end{textblock}
+
+  \begin{textblock}{29.2}(7.5, 22.3)
+    \textblockcolour{main.colour}
+    \includegraphics[width = 25mm]{logo_nl_wit}
+  \end{textblock}
+}
+
+\newcommand{\sidebarlogo}{
+  \vspace{81.9mm}
+  \hspace{9.2mm}
+  \includegraphics[height = 9.9mm]{vlaanderen_nl_naakt}
+}
+
+\RequirePackage{beamerthemevlaanderenlayout}

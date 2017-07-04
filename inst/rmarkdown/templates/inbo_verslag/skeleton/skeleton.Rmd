@@ -1,0 +1,27 @@
+---
+author: "Voornaam Achternaam"
+title: "Onderwerp van de vergadering"
+date: "01/01/2016"
+output: 
+  INBOmd::inbo_verslag:
+    present: "Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
+    absent: "Voornaam3 Achternaam4 \\& Voornaam5 Achternaam5"
+    chair: "Voornaam Achternaam"
+---
+
+# Agenda
+
+1. Goedkeuring vorige verslag
+1. Varia
+
+# Varia
+
+- Variapunt
+- Variapunt
+
+# Takenlijst
+
+| Wie                 | Wat                                          | Wanneer |
+| ------------------- | -------------------------------------------- | ------- |
+| Jan | Een taak | ASAP |
+| Piet | Iets anders | 01/01/2017 |

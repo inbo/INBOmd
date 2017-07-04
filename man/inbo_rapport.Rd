@@ -2,12 +2,13 @@
 % Please edit documentation in R/inbo_rapport.R
 \name{inbo_rapport}
 \alias{inbo_rapport}
-\title{Create a report with the INBO theme}
+\title{Create a report with the INBO theme version 2015}
 \usage{
-inbo_rapport(subtitle, reportnr, ordernr, year, email, shortauthor,
-  office = c("Anderlecht", "Geraardsbergen"), client, storagenr, cover,
-  cover_offset, cover_text, natbib, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), lang = "dutch", keep_tex = FALSE, ...)
+inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
+  "subsection", "subsubsection"), codesize = c("footnotesize", "scriptsize",
+  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
+  fig_crop = TRUE, citation_package = c("natbib", "none"),
+  includes = NULL, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -16,35 +17,35 @@ inbo_rapport(subtitle, reportnr, ordernr, year, email, shortauthor,
 
 \item{ordernr}{The order number}
 
-\item{year}{The year of publication}
-
-\item{email}{The email of the corresponding author}
-
-\item{shortauthor}{The abbreviation of the authors}
-
-\item{office}{The office of the main author. Defaults to "Anderlecht"}
-
-\item{client}{The name of the client}
-
-\item{storagenr}{The storage number of the report}
-
-\item{cover}{The filename of the cover image}
-
-\item{cover_offset}{An optional offset for the cover image}
-
-\item{cover_text}{A description of the cover image}
-
-\item{natbib}{The bibliography file for natbib}
-
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
+
+\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
-\item{...}{extra parameters}
+\item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
+(if available) to pdf figures}
+
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{includes}{Named list of additional content to include within the
+document (typically created using the \code{\link{includes}} function).}
+
+\item{pandoc_args}{Additional command line options to pass to pandoc}
+
+\item{...}{extra parameters: see details}
 }
 \description{
-Create a report with the INBO theme
+Create a report with the INBO theme version 2015
 }
-
+\details{
+Available extra parameters:
+\itemize{
+  \item lof: display a list of figures. Defaults to TRUE
+  \item lot: display a list of tables. Defaults to TRUE
+  \item hyphenation: the correct hyphenation for certain words
+}
+}

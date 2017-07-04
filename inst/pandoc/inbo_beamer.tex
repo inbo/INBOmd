@@ -1,0 +1,113 @@
+% de presentatie
+\documentclass[$if(fontsize)$$fontsize$$else$10pt$endif$, $if(handout)$handout,$endif$ xetex, noamsthm]{beamer}
+
+\usetheme{$theme$}
+\usepackage{inbogeneric_2015}
+$if(codesize)$
+\codesize{\$codesize$}
+$endif$
+\website{$website$}
+\flandersfont{$flandersfont$}
+\usetheme{vlaanderenfont}
+
+$if(lang)$
+\lang{$lang$}
+$endif$
+$if(cover)$
+\cover{$cover$}
+$endif$
+$if(coveroffset)$
+\coveroffset{$coveroffset$}
+$endif$
+$if(coverhoffset)$
+\coverhoffset{$coverhoffset$}
+$endif$
+$if(coverhorizontal)$
+\coverhorizontal{$coverhorizontal$}
+$endif$
+%title verschijnt op de eerste slide. subject verschijnt enkel in de
+% eigenschappen van de pdf
+\title{$title$}
+
+$if(subtitle)$
+\subtitle{$subtitle$}
+$endif$
+
+\author{$author$}
+
+$if(institute)$
+\institute{$institute$}
+$endif$
+
+$if(location)$
+\date{$location$}
+$else$
+\date{}
+$endif$
+
+\AtBeginSection[]
+{
+  \begin{frame}[plain]
+    \sectionpage
+  \end{frame}
+}
+\AtBeginSubsection[]
+{
+  \begin{frame}[plain]
+    \subsectionpage
+  \end{frame}
+}
+
+
+\makeatletter
+\renewcommand{\verbatim@font}{\ttfamily\$codesize$}
+\makeatother
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+\begin{document}
+
+\setbeamertemplate{firstpage}{}
+\begin{frame}[plain, label=intro, noframenumbering]
+  \titlepage
+\end{frame}
+
+\setbeamertemplate{firstpage}{no}
+$for(include-before)$
+$include-before$
+
+$endfor$
+
+$if(toc)$
+\begin{frame}
+$if(toc_name)$
+  \frametitle{$toc_name$}
+$else$
+  \frametitle{Overzicht}
+$endif$
+	\tableofcontents
+\end{frame}
+$endif$
+
+$body$
+
+
+$if(natbib)$
+\begin{frame}[allowframebreaks]
+$if(natbibtitle)$
+\frametitle{$natbibtitle$}
+$else$
+\frametitle{Referenties}
+$endif$
+\bibliographystyle{inbo}
+\bibliography{$bibliography$}
+\end{frame}
+$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

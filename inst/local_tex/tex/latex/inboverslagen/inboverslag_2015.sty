@@ -1,0 +1,359 @@
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{inboverslag_2015}
+
+\RequirePackage{kvoptions}
+\RequirePackage{kvsetkeys}
+\SetupKeyvalOptions{
+  family=inborapport_2015,
+  prefix=inborapport_2015@,
+  setkeys=\kvsetkeys,
+}
+
+% hyperref options:
+\define@key{inborapport_2015}{hyperref}{%
+  \PassOptionsToPackage{#1}{hyperref}%
+}
+% babel options
+\define@key{inborapport_2015}{babel}{%
+  \PassOptionsToPackage{#1}{babel}%
+}
+
+\ProcessKeyvalOptions*
+
+\RequirePackage{inboimage_2015}
+
+
+% definition of custom commands
+
+\def\present#1{\def\@present{#1}}
+\present{}
+
+\def\absent#1{\def\@absent{#1}}
+\absent{}
+
+\def\chair#1{\def\@chair{#1}}
+\chair{}
+
+% define page geometry
+\RequirePackage[a4paper, top = 2cm, bottom = 2.5cm, left = 3cm, right = 3cm]{geometry}
+
+% definition of INBO colours
+\RequirePackage{inbocolours_2015}
+
+% add hyperlinks to the document
+\RequirePackage[unicode=true, colorlinks=true, linktoc=page]{hyperref}
+\urlstyle{same}
+
+% add title and author to the pdf file properties
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle = {\@title},
+    pdfauthor = {\@author},
+    linkcolor = main.colour,
+    urlcolor = link.colour,
+    citecolor = cite.colour
+  }
+}
+
+% needed for multicol and multirow
+\RequirePackage{multirow}
+
+% needed for figures
+\RequirePackage{graphicx}
+
+% definition of block, alertblock and exampleblock
+\RequirePackage{mdframed}
+
+\newenvironment{block}[2][]{%
+  \begin{mdframed}[backgroundcolor=box.colour]
+  \textbf{#2}%
+
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
+\newenvironment{alertblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=alert.colour]
+  \textbf{#2}%
+
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
+\newenvironment{exampleblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=example.colour]
+  \textbf{#2}%
+
+  \noindent%
+}
+{
+  \end{mdframed}
+}
+
+% definition of fonts
+\RequirePackage{ifxetex}
+
+\ifxetex
+  \RequirePackage[no-math]{fontspec}
+  \setmainfont[Ligatures=TeX]{Calibri}
+  \setmonofont{Courier New}
+\else
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[utf8]{inputenc}
+  \RequirePackage{lmodern}
+\fi
+
+% Set scaling of fonts
+\RequirePackage{calc}
+
+\newlength{\fontsizebase}
+\setlength{\fontsizebase}{11pt}
+
+\newlength{\scaleratio}
+\setlength{\scaleratio}{\fontsizebase / \real{9}}
+
+\newlength{\fontsizechapter}
+\newlength{\fontsizesection}
+\newlength{\fontsizesubsection}
+\newlength{\fontsizeparagraph}
+
+\newlength{\fontsizefooter}
+
+\newlength{\fontsizetitle}
+\newlength{\fontsizesubtitle}
+\newlength{\fontsizeauthor}
+\newlength{\fontsizeordernr}
+
+% fontsize for headings
+\setlength{\fontsizechapter}{\scaleratio * \real{14}}
+\setlength{\fontsizesection}{\scaleratio * \real{12}}
+\setlength{\fontsizesubsection}{\scaleratio * \real{10}}
+\setlength{\fontsizeparagraph}{\scaleratio * \real{9}}
+
+% fontsize for header and footer
+\setlength{\fontsizefooter}{\scaleratio * \real{7}}
+
+% fontsize for title page
+\setlength{\fontsizetitle}{\scaleratio * \real{20}}
+\setlength{\fontsizesubtitle}{\scaleratio * \real{20}}
+\setlength{\fontsizeauthor}{\scaleratio * \real{12}}
+\setlength{\fontsizeordernr}{\scaleratio * \real{9}}
+
+% use babel for different languages
+\RequirePackage{babel}
+
+\RequirePackage{inbogeneric_2015}
+
+% define style for sections
+\renewcommand{\section}{\secdef\@section\@ssection}
+\def\@section[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{section}%
+    \addcontentsline{toc}{section}%
+      {\protect\numberline{\thesection}#1}%
+  \else
+    \addcontentsline{toc}{section}#1%
+  \fi
+  \@makesectionhead{#2}%
+}
+\def\@ssection#1{
+  \@makessectionhead{#1}
+}
+\def\@makesectionhead#1{%
+  \vspace{9pt}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
+  \vspace{6pt}
+}
+\def\@makessectionhead#1{%
+  \vspace{9pt}
+   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
+  \vspace{6pt}
+}
+
+% define style for subsections
+\renewcommand{\subsection}{\secdef\@subsection\@ssubsection}
+\def\@subsection[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subsection}%
+    \addcontentsline{toc}{subsection}%
+      {\protect\numberline{\thesubsection}#1}%
+  \else
+    \addcontentsline{toc}{subsection}#1%
+  \fi
+  \@makesubsectionhead{#2}%
+}
+\def\@ssubsection#1{
+  \@makessubsectionhead{#1}
+}
+\def\@makesubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{132.3mm}{\raggedright #1}\nopagebreak}
+  \vspace{6pt}
+}
+\def\@makessubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.3mm}{\raggedright #1} \nopagebreak}
+  \vspace{6pt}
+}
+
+% define style for subsubsections
+\renewcommand{\subsubsection}{\secdef\@subsubsection\@ssubsubsection}
+\def\@subsubsection[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subsubsection}%
+    \addcontentsline{toc}{subsubsection}%
+      {\protect\numberline{\thesubsubsection}#1}%
+  \else
+    \addcontentsline{toc}{subsubsection}#1%
+  \fi
+  \@makesubsubsectionhead{#2}%
+}
+\def\@ssubsubsection#1{
+  \@makessubsubsectionhead{#1}
+}
+\def\@makesubsubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{129.8mm}{\raggedright #1}\nopagebreak}
+  \vspace{6pt}
+}
+\def\@makessubsubsectionhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{129.8mm}{\raggedright #1} \nopagebreak}
+  \vspace{6pt}
+}
+
+% define style for paragraphs
+\renewcommand{\paragraph}{\secdef\@paragraph\@sparagraph}
+\def\@paragraph[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{paragraph}%
+    \addcontentsline{toc}{paragraph}%
+      {\protect\numberline{\theparagraph}#1}%
+  \else
+    \addcontentsline{toc}{paragraph}#1%
+  \fi
+  \@makeparagraphhead{#2}%
+}
+\def\@sparagraph#1{
+  \@makesparagraphhead{#1}
+}
+\def\@makeparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{127.2mm}{\raggedright #1}\nopagebreak}
+  \vspace{6pt}
+}
+\def\@makesparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{127.2mm}{\raggedright #1} \nopagebreak}
+  \vspace{6pt}
+}
+
+% define style for subparagraphs
+\renewcommand{\subparagraph}{\secdef\@subparagraph\@ssubparagraph}
+\def\@subparagraph[#1]#2{
+  \ifnum \c@secnumdepth >\m@ne
+    \refstepcounter{subparagraph}%
+    \addcontentsline{toc}{subparagraph}%
+      {\protect\numberline{\thesubparagraph}#1}%
+  \else
+    \addcontentsline{toc}{subparagraph}#1%
+  \fi
+  \@makesubparagraphhead{#2}%
+}
+\def\@ssubparagraph#1{
+  \@makessubparagraphhead{#1}
+}
+\def\@makesubparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{124.7mm}{\raggedright #1}\nopagebreak}
+  \vspace{6pt}
+}
+\def\@makessubparagraphhead#1{%
+  \vspace{6pt}
+   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{124.7mm}{\raggedright #1} \nopagebreak}
+  \vspace{6pt}
+}
+
+% define headers and footers
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[R]{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}} \selectfont pagina \thepage\ van \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{cover}{%
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyfoot[L]{\includegraphics[width = 40mm, keepaspectratio]{vlaanderen_nl_naakt}}
+  \fancyfoot[R]{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}} \selectfont pagina \thepage\ van \pageref{LastPage}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \setlength{\footskip}{49pt}
+}
+% set whitespace between text and footer
+\setlength{\footskip}{22pt}
+
+% define title page
+\def\maketitle{%
+  \thispagestyle{cover}{%
+    \includegraphics[width = 100mm, keepaspectratio]{logo_nl_zwart}
+
+\textbf{Vlaamse overheid}\\
+Kliniekstraat 25\\
+1070 BRUSSEL\\
+\textbf{T} 02 525 02 00\\
+\textbf{F} 02 525 03 00\\
+info@inbo.be
+
+\fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont
+\textbf{VERSLAG}
+
+\fontsize{\fontsizebase}{\fontsizebase * \real{1.2}}\selectfont
+
+/\xleaders\hbox{/}\hfill/
+
+\textbf{Datum:} \@date
+
+\textbf{Aanwezig:} \@present \\
+\textbf{Afwezig met kennisgeving:} \@absent \\
+\textbf{Voorzitter:} \@chair \\
+\textbf{Verslaggever:} \@author \\
+\textbf{Onderwerp:} \@title
+
+/\xleaders\hbox{/}\hfill/
+    }%
+  }
+
+% allow FloatBarriers
+\RequirePackage{placeins}
+
+% change spacing between paragraphs
+\renewcommand{\baselinestretch}{1.1}
+\RequirePackage{parskip}
+\setlength{\parskip}{9pt plus4pt minus4pt}
+
+% Some stuff to force sensible page breaks (no widows etc) and to ensure
+% that each page which consists solely of diagrams is at least 75% full.
+% We also get LaTeX to shut up when vboxes and hboxes are too wide.
+
+\hbadness=10000         % badness above which bad hboxes are shown.
+\vbadness=10000         % badness above which bad vboxes are shown.
+\tolerance=200	       	% badness tolerance after hyphenation.
+\hyphenpenalty=1000 	% penalty for line break after discresionary hyphen.
+\pretolerance=200 	% badness tolerance before hyphenation.
+\clubpenalties=3 10000  10000 5000	% penalty for creating a club line at end of line.
+\widowpenalties=3 10000	10000 5000% penalty for creating a widow line at top of page.
+\displaywidowpenalty=1000% penalty for creating a widow line before a display.
+\predisplaypenalty=20	% penalty for a page break just before a display
+\postdisplaypenalty=20	% penalty for a page break just after a display.
+\floatingpenalty=8000	% penalty for insertions that are split.
+\interlinepenalty=25 	% additional penalty for page break between lines.
+\raggedbottom

@@ -1,8 +1,8 @@
 Package: INBOmd
 Type: Package
 Title: Markdown Templates for INBO
-Version: 0.3.5
-Date: 2016-04-15
+Version: 0.4.0
+Date: 2017-07-04
 Author: Thierry Onkelinx
 Maintainer: Thierry Onkelinx <thierry.onkelinx@inbo.be>
 Description: Several templates to generate reports, presentations and posters.
@@ -12,8 +12,11 @@ Suggests:
     knitr,
     pander,
     ggplot2,
-    INBOtheme (>= 0.4.1)
+    bookdown,
+    webshot,
+    INBOtheme (>= 0.5.4)
 Imports:
     assertthat,
+    utils,
     rmarkdown
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

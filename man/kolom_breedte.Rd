@@ -16,4 +16,3 @@ kolom_breedte(aantal = 3, marge = 20, witrand = 10)
 \description{
 Bereken de breedte van een A0 kolom
 }
-

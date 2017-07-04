@@ -1,0 +1,55 @@
+% Copyright 2014 by Thierry Onkelinx
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+%
+% See the file doc/licenses/LICENSE for more details.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemevlaanderengeneric}
+
+\def\lang#1{\def\@lang{#1}}
+\def\coverhorizontal#1{\def\@coverhorizontal{#1}}
+\def\cover#1{\def\@cover{#1}}
+\def\coveroffset#1{\def\@coveroffset{#1}}
+\def\coverhoffset#1{\def\@coverhoffset{#1}}
+\def\website#1{\def\@website{#1}}
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
+
+\RequirePackage[absolute, overlay]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{0mm}{0mm}
+
+\RequirePackage{pgf}
+
+\RequirePackage{etoolbox}
+
+\newcommand{\readcover}[2]{%
+  \edef\coverhorizontal{{#1}}%
+  \expandafter\ifstrequal\coverhorizontal{TRUE}{
+    \pgfdeclareimage[width = 124.5mm, interpolate = true]{afbeelding}{#2}
+  }{
+    \pgfdeclareimage[height = 96mm, interpolate = true]{afbeelding}{#2}
+  }%
+}
+
+\RequirePackage{inboimage_2015}
+
+% define font sizes
+\newcommand{\titlefontsize}{\fontsize{28pt}{33.6pt}\selectfont}
+\newcommand{\subtitlefontsize}{\fontsize{21pt}{25.2pt}\selectfont}
+\newcommand{\authorfontsize}{\fontsize{10pt}{12pt}\selectfont}
+\newcommand{\datefontsize}{\fontsize{8pt}{9.6pt}\selectfont}
+\newcommand{\institutefontsize}{\fontsize{8pt}{9.6pt}\selectfont}
+\newcommand{\websitefontsize}{\fontsize{5pt}{5.7pt}\selectfont}
+\newcommand{\sectionfontsize}{\fontsize{28pt}{33.6pt}\selectfont}
+\newcommand{\subsectionfontsize}{\fontsize{10pt}{12pt}\selectfont}
+
+%allow the use of columns
+\def\begincols{\begin{columns}}
+\def\endcols{\end{columns}}
+\def\begincol#1{\begin{column}{#1\textwidth}}
+\def\endcol{\end{column}}
