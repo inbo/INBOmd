@@ -6,7 +6,8 @@
 #' @param reportdate the date of this report
 #' @param colleagues name of other colleagues attending the same conference
 #' @inheritParams inbo_slides
-#' @inheritParams inbo_rapport_2015
+#' @inheritParams inbo_rapport
+#' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -24,7 +25,8 @@ inbo_zending <- function(
   reportdate,
   colleagues = "",
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  natbib,
+  citation_package = c("natbib", "none"),
+  includes = NULL,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
   keep_tex = FALSE,
@@ -32,6 +34,7 @@ inbo_zending <- function(
   pandoc_args = NULL,
   ...
 ){
+  check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -51,20 +54,16 @@ inbo_zending <- function(
     pandoc_variable_arg("lang", lang)
   )
   args <- c(args, pandoc_args)
-  if (!missing(natbib)) {
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
-  if ("usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-    extra <- extra[!names(extra) %in% "usepackage"]
-  }
+  # content includes
+  args <- c(args, includes_to_pandoc_args(includes))
+
   if (length(extra) > 0) {
     args <- c(
       args,
@@ -91,7 +90,7 @@ inbo_zending <- function(
     args <- c(args, unlist(floating))
   }
   opts_chunk <- list(
-    dev = 'pdf',
+    dev = "pdf",
     dpi = 300,
     fig.width = 4.5,
     fig.height = 2.9
@@ -100,8 +99,8 @@ inbo_zending <- function(
     !identical(.Platform$OS.type, "windows") &&
     nzchar(Sys.which("pdfcrop"))
   if (crop) {
-    knit_hooks = list(crop = knitr::hook_pdfcrop)
-    opts_chunk$crop = TRUE
+    knit_hooks <- list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop <- TRUE
   } else {
     knit_hooks <- NULL
   }
@@ -118,7 +117,7 @@ inbo_zending <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )

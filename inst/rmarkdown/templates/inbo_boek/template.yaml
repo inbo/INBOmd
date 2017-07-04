@@ -1,4 +1,0 @@
-name: INBO report (elaborate)
-create_dir: TRUE
-description: >
-  Template for an INBO report based on a multiple Rmd files

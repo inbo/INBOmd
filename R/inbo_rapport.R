@@ -8,6 +8,7 @@
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @inheritParams inbo_slides
+#' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
@@ -19,7 +20,7 @@
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
-inbo_rapport_2015 <- function(
+inbo_rapport <- function(
   subtitle,
   reportnr,
   ordernr,
@@ -33,6 +34,7 @@ inbo_rapport_2015 <- function(
   pandoc_args = NULL,
   ...
 ){
+  check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -109,7 +111,8 @@ inbo_rapport_2015 <- function(
     args <- c(args, unlist(floating))
   }
   opts_chunk <- list(
-    dev = 'pdf',
+    latex.options = "{}",
+    dev = "pdf",
     fig.align = "center",
     dpi = 300,
     fig.width = 4.5,
@@ -119,8 +122,8 @@ inbo_rapport_2015 <- function(
     !identical(.Platform$OS.type, "windows") &&
     nzchar(Sys.which("pdfcrop"))
   if (crop) {
-    knit_hooks = list(crop = knitr::hook_pdfcrop)
-    opts_chunk$crop = TRUE
+    knit_hooks <- list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop <- TRUE
   } else {
     knit_hooks <- NULL
   }
@@ -129,7 +132,7 @@ inbo_rapport_2015 <- function(
     text <- readLines(output, warn = FALSE)
 
     # move frontmatter before toc
-    mainmatter <- grep("\\\\mainmatter", text)
+    mainmatter <- grep("\\\\mainmatter", text) #nolint
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
@@ -143,7 +146,7 @@ inbo_rapport_2015 <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text)
+    appendix <- grep("\\\\appendix", text) #nolint
     startbib <- grep("%startbib", text)
     endbib <- grep("%endbib", text)
     if (length(appendix) & length(startbib)) {

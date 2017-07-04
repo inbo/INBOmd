@@ -6,9 +6,10 @@
 \usage{
 inbo_zending(conference, conferencedate, conferenceplace, website = "",
   reportdate, colleagues = "", floatbarrier = c(NA, "section", "subsection",
-  "subsubsection"), natbib, codesize = c("footnotesize", "scriptsize", "tiny",
-  "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, pandoc_args = NULL, ...)
+  "subsubsection"), citation_package = c("natbib", "none"), includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "dutch", keep_tex = FALSE, fig_crop = TRUE, pandoc_args = NULL,
+  ...)
 }
 \arguments{
 \item{conference}{the name of the conference or workshop}
@@ -25,7 +26,11 @@ inbo_zending(conference, conferencedate, conferenceplace, website = "",
 
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
 
-\item{natbib}{The bibliography file for natbib}
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{includes}{Named list of additional content to include within the
+document (typically created using the \code{\link{includes}} function).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 

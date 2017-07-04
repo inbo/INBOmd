@@ -72,24 +72,56 @@
 % definition of block, alertblock and exampleblock
 \RequirePackage{mdframed}
 
-\newenvironment{block}{%
-  \begin{mdframed}[backgroundcolor=box.colour]
+\def\getStringLength#1#2{%
+  \begingroup\@tempcnta\z@
+  \let\x\g@tStringLength
+  \ifx\g@tStringLength#1\g@tStringLength
+    \def\x##1\g@tStringLength{\endgroup\def#2{0}}%
+  \fi
+  \x#2#1\g@tStringLength
+}
+\def\g@tStringLength#1#2#3{%
+  \advance\@tempcnta\@ne
+  \ifx\g@tStringLength#3%
+    \edef#1{\endgroup\def\noexpand#1{\the\@tempcnta}}#1%
+  \else
+    \expandafter\g@tStringLength\expandafter#1\expandafter#3%
+  \fi
+}
+
+\newenvironment{block}[2][]{%
+  \begin{mdframed}[linewidth=1pt]
+  \getStringLength{#2}\length
+  \ifnum\length>0
+  \textbf{#2}%
+
+  \fi
 }
 {
   \end{mdframed}
 }
 
 \RequirePackage{marginnote}
-\newenvironment{alertblock}{%
-  \marginnote{\includegraphics{alert.png}}
-  \begin{mdframed}%
+\newenvironment{alertblock}[2][]{%
+  \marginnote{\includegraphics[width=10mm]{alert.png}}[1.5mm]
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]%
+  \getStringLength{#2}\length
+  \ifnum\length>0
+  \textbf{#2}%
+
+  \fi
 }
 {
   \end{mdframed}
 }
 
-\newenvironment{exampleblock}{%
-  \begin{mdframed}[backgroundcolor=example.colour]
+\newenvironment{exampleblock}[2][]{%
+  \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]
+  \getStringLength{#2}\length
+  \ifnum\length>0
+  \textbf{#2}%
+
+  \fi
 }
 {
   \end{mdframed}
@@ -416,3 +448,7 @@
 
 \setlength{\skip\footins}{1cm}
 \RequirePackage[bottom]{footmisc}
+
+\setlength{\cftbeforetoctitleskip}{-14pt}
+\setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
+\setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}

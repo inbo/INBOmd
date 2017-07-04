@@ -52,15 +52,15 @@
 \setbeamertemplate{enumerate items}[square]
 
 \setbeamercolor{block title}{fg=box.colour.title, bg=box.colour}
-\setbeamercolor{block body}{bg = box.colour}
+\setbeamercolor{block body}{bg = box.colour.body, fg = box.colour.fg}
 \setbeamerfont{block title}{series = \bfseries}
 
 \setbeamercolor{block title alerted}{fg=alert.colour.title, bg=alert.colour}
-\setbeamercolor{block body alerted}{bg = alert.colour.body}
+\setbeamercolor{block body alerted}{bg = alert.colour.body, fg = alert.colour.fg}
 \setbeamerfont{block title alerted}{series = \bfseries}
 
 \setbeamercolor{block title example}{fg=example.colour.title, bg=example.colour}
-\setbeamercolor{block body example}{bg = example.colour.body}
+\setbeamercolor{block body example}{bg = example.colour.body, fg = example.colour.fg}
 \setbeamerfont{block title example}{series = \bfseries}
 
 \setbeamercolor{title in head/foot}{fg=frametitle.colour}
@@ -207,14 +207,12 @@
     \usebeamerfont*{block title}\insertblocktitle
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body}%
   \begin{beamercolorbox}[vmode, colsep = 1mm]{block body}%
     \ifbeamercolorempty[bg]{block body}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
   \setbeamertemplate{block end}{
   \end{beamercolorbox}
-  \pgfsetfillopacity{1}
 }
 
 \setbeamertemplate{block example begin}{
@@ -223,14 +221,12 @@
     \usebeamerfont*{block title example}\insertblocktitle
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body example}%
   \begin{beamercolorbox}[vmode, colsep = 1mm]{block body example}%
     \ifbeamercolorempty[bg]{block body example}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
   \setbeamertemplate{block example end}{
   \end{beamercolorbox}
-  \pgfsetfillopacity{1}
 }
 
 \setbeamertemplate{block alerted begin}{
@@ -239,14 +235,12 @@
     \usebeamerfont*{block title alerted}\insertblocktitle
   \end{beamercolorbox}%
   \vskip-0.5mm
-  \pgfsetfillopacity{0.5}
   \usebeamerfont{block body alerted}%
   \begin{beamercolorbox}[vmode, colsep = 1mm]{block body alerted}%
     \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
   }
   \setbeamertemplate{block alerted end}{
   \end{beamercolorbox}
-  \pgfsetfillopacity{1}
 }
 
 \setbeamertemplate{navigation symbols}{}

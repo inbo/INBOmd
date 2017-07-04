@@ -5,10 +5,10 @@
 \title{Create a meeting report with the INBO corporate identity}
 \usage{
 inbo_verslag(present = "", absent = "", chair = "", floatbarrier = c(NA,
-  "section", "subsection", "subsubsection"), natbib,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch", keep_tex = FALSE, fig_crop = TRUE, pandoc_args = NULL,
-  ...)
+  "section", "subsection", "subsubsection"), citation_package = c("natbib",
+  "none"), includes = NULL, codesize = c("footnotesize", "scriptsize",
+  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
+  fig_crop = TRUE, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{present}{names of all persons who attended the meeting}
@@ -19,7 +19,11 @@ inbo_verslag(present = "", absent = "", chair = "", floatbarrier = c(NA,
 
 \item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
 
-\item{natbib}{The bibliography file for natbib}
+\item{citation_package}{The LaTeX package to process citations, \code{natbib}
+or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{includes}{Named list of additional content to include within the
+document (typically created using the \code{\link{includes}} function).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 

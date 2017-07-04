@@ -9,9 +9,7 @@
 #' @param toc_name Name of the table of contents. Defaults to "Overzicht".
 #' @param fontsize The fontsite of the document. Defaults to 10pt.
 #' @param codesize The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".
-#' @param natbib The bibliography file for natbib
 #' @param natbib_title The title of the bibliography
-#' @param natbib_style The style of the bibliography
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
@@ -20,6 +18,7 @@
 #' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
 #' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.
 #' @param ... extra parameters
+#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
 #' @importFrom assertthat assert_that is.string is.flag noNA
@@ -34,9 +33,8 @@ inbo_slides <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  natbib,
+  citation_package = c("natbib", "none"),
   natbib_title,
-  natbib_style,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -46,14 +44,14 @@ inbo_slides <- function(
   flandersfont = FALSE,
   ...
 ){
+  check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc))
+  assert_that(noNA(toc)) #nolint
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont))
+  assert_that(noNA(flandersfont)) #nolint
 
-  extra <- list(...)
   codesize <- match.arg(codesize)
   csl <- system.file("inbo.csl", package = "INBOmd")
   template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
@@ -67,33 +65,22 @@ inbo_slides <- function(
     pandoc_variable_arg("flandersfont", flandersfont),
     pandoc_variable_arg("theme", theme)
   )
-  if ( "usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-  }
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
     if (!missing(toc_name)) {
       args <- c(args, pandoc_variable_arg("toc_name", toc_name))
     }
   }
-  if (!missing(natbib)) {
-    assert_that(is.string(natbib))
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
   if (!missing(natbib_title)) {
     assert_that(is.string(natbib_title))
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
-  if (!missing(natbib_style)) {
-    assert_that(is.string(natbib_style))
-    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if (!missing(subtitle)) {
     assert_that(is.string(subtitle))
@@ -124,19 +111,19 @@ inbo_slides <- function(
     }
     if (!missing(cover_horizontal)) {
       assert_that(is.flag(cover_horizontal))
-      assert_that(noNA(cover_horizontal))
+      assert_that(noNA(cover_horizontal)) #nolint
       args <- c(args, pandoc_variable_arg("coverhorizontal", cover_horizontal))
     }
   }
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 80,
         concordance = TRUE
       ),
       opts_chunk = list(
-        dev = 'pdf',
-        dev.args = list(bg = 'transparent'),
+        dev = "pdf",
+        dev.args = list(bg = "transparent"),
         dpi = 300,
         fig.width = 4.5,
         fig.height = 2.8
@@ -146,7 +133,7 @@ inbo_slides <- function(
       to = "beamer",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )

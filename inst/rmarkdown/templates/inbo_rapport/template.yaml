@@ -1,3 +1,4 @@
-name: INBO report (simple)
+name: INBO rapport
+create_dir: TRUE
 description: >
-  Template for an INBO report based on a single Rmd file
+  Template for an INBO report based on bookdown. A full example is available at https://github.com/inbo/inbomd_examples/tree/master/source/inbo_rapport

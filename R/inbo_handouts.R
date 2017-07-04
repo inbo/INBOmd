@@ -1,5 +1,7 @@
 #' Use the handout version of slides with the INBO theme
+#' The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.
 #' @inheritParams inbo_slides
+#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
 #' @importFrom assertthat assert_that is.string is.flag noNA
@@ -14,9 +16,8 @@ inbo_handouts <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  natbib,
+  citation_package = c("natbib", "none"),
   natbib_title,
-  natbib_style,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -26,12 +27,13 @@ inbo_handouts <- function(
   flandersfont = FALSE,
   ...
 ){
+  check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc))
+  assert_that(noNA(toc)) #nolint
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont))
+  assert_that(noNA(flandersfont)) #nolint
 
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -59,16 +61,15 @@ inbo_handouts <- function(
   if (!missing(toc_name)) {
     args <- c(args, pandoc_variable_arg("tocname", toc_name))
   }
-  if (!missing(natbib)) {
-    args <- c(args, "--natbib", pandoc_variable_arg("natbibfile", natbib))
-  } else {
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "none") {
     args <- c(args, "--csl", pandoc_path_arg(csl))
+  } else {
+    args <- c(args, paste0("--", citation_package))
   }
   if (!missing(natbib_title)) {
     args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
-  if (!missing(natbib_style)) {
-    args <- c(args, pandoc_variable_arg("natbibstyle", natbib_style))
   }
   if (!missing(subtitle)) {
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))
@@ -91,12 +92,12 @@ inbo_handouts <- function(
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 80,
         concordance = TRUE
       ),
       opts_chunk = list(
-        dev = 'pdf',
-        dev.args = list(bg = 'transparent'),
+        dev = "pdf",
+        dev.args = list(bg = "transparent"),
         dpi = 300,
         fig.width = 4.5,
         fig.height = 2.9
@@ -106,7 +107,7 @@ inbo_handouts <- function(
       to = "beamer",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex | !missing(natbib)
+      keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
   )
