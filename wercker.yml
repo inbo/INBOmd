@@ -22,3 +22,13 @@ build:
           git clone https://github.com/inbo/inbomd_examples.git
           cd inbomd_examples
           Rscript source/render_all.R
+
+deploy:
+  steps:
+    - script:
+        code: |
+          zip -r website.zip inbomd_examples/docs
+          curl -H "Content-Type: application/zip" \
+               -H "Authorization: Bearer $NETLIFY_KEY" \
+               --data-binary "@website.zip" \
+               https://api.netlify.com/api/v1/sites/$NETLIFY_SITEID/deploys
