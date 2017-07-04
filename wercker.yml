@@ -1,11 +1,9 @@
 box: inbobmk/rstable
 build:
   steps:
-    - inbobmk/r-check
-    - inbobmk/r-lint
     - script:
+        name: install dependencies not available in inbobmk/rstable
         code: |
-          Rscript -e 'devtools::install(upgrade = FALSE)'
           export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
           mkdir ~/.fonts
           apt-get update
@@ -16,6 +14,12 @@ build:
           wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
           update-texmf
           Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
+    - inbobmk/r-check
+    - inbobmk/r-lint
+    - script:
+        name: build inbomd_examples
+        code: |
+          Rscript -e 'devtools::install(upgrade = FALSE)'
           git clone https://github.com/inbo/inbomd_examples.git
           cd inbomd_examples
           Rscript source/render_all.R
