@@ -88,17 +88,12 @@ first_page_text: |
   
   Line 19
   
+## Remove this if not required
+ethics: |
+  Please provide details on the ethics.
   
-
-
-# For footer text
-lead_author_surname: Anonymous
-
-## Remove this if not required    
-equal_authors:
-  - code: 1
-    text: "A.O.(Author One) and A.T. (Author Two) contributed equally to this work (remove if not applicable)."
-
+data_accessibility: |
+  Please provide details on the data availability.
 
 author_contributions: |
   Please provide details of author contributions here.
@@ -107,9 +102,15 @@ author_contributions: |
 conflict_of_interest: |
   Please declare any conflict of interest here.
 
-significance: |
-  Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.
+## Remove this if not required
+funding: |
+  Please provide details on funding
 
+## Remove this if not required
+permissions: |
+  Please provide details on permissions
+
+## Remove this if not required
 acknowledgements: |
   Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
 
