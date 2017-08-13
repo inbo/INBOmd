@@ -111,6 +111,11 @@ $if(acknowledgements)$
 \textbf{Acknowledgements} $acknowledgements$
 $endif$
 
+$if(natbib)$
+\bibliographystyle{RS.bst}
+\bibliography{$bibliography$}
+$endif$
+
 $for(include-after)$
 $include-after$
 $endfor$

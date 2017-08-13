@@ -16,10 +16,11 @@
 #' }
 #'
 #' @export
-rsos_article <- function(..., keep_tex = TRUE) {
+rsos_article <- function(..., keep_tex = TRUE, citation_package = "natbib") {
   inherit_pdf_document(
     ...,
     keep_tex = keep_tex,
+    citation_package = citation_package,
     template = find_resource("rsos_article", "template.tex")
   )
 }

@@ -1,24 +1,23 @@
 ---
 title: Template for preparing your research report submission to Royal Society Open Science using RMarkdown
-keep_tex: TRUE
 author:
   - name: Alice Anonymous
-    affiliation: 1,2
+    affiliation: "1,2"
   - name: Bob Security
-    affiliation: 2
+    affiliation: "2"
 address:
-  - code: 1
+  - code: "1"
     address: Some Institute of Technology, Department, Street, City, State, Zip
-  - code: 2
+  - code: "2"
     address: Another University Department, Street, City, State, Zip
 
 corresp_author_name:  "B. Security"
 corresp_author_email: "bob@email.com"
 
 subject:
-  - subject 1
-  - subject 2
-  - subject 3
+  - "subject 1"
+  - "subject 2"
+  - "subject 3"
 
 keywords:
   - one
@@ -138,9 +137,11 @@ output: INBOmd::rsos_article
     + broccoli
     + chard
 
-## Headling level 2
+## Citations
 
-Subsection text here.
+Blabla \cite{Lannes} blabla. Blabla \cite{HJ2} blabla. Blabla \cite{BF, Lannes} blabla. Blabla \cite{Benjamin1967, HJ2, HJ3, HP2} blabla.
+
+
 
 ### Headling level 3
 
