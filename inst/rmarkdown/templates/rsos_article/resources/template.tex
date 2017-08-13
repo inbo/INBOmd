@@ -23,28 +23,34 @@
 
 \author{
 $for(author)$
-$author.name$ $$^{$author.affiliation$}$$
+$author.name$$$^{$author.affiliation$}$$$sep$,
 $endfor$
 }
 
 \address{
 $for(address)$
-  $$^{$address.code$}$$$address.address$ \\
+  $$^{$address.code$}$$$address.address$$sep$\\
 $endfor$
 }
 %%%% Subject entries to be placed here %%%%
-\subject{xxxxx, xxxxx, xxxx}
+\subject{
+$for(subject)$
+$subject$$sep$,
+$endfor$
+}
 
 %%%% Keyword entries to be placed here %%%%
-\keywords{xxxx, xxxx, xxxx}
+\keywords{
+$for(keywords)$
+$keywords$$sep$,
+$endfor$
+}
 
 %%%% Insert corresponding author and its email address}
-$for(corresponding_author)$
 \corres{
-  $corresponding_author.name$\\
-  $corresponding_author.email$
+  $corresp_author_name$\\
+  e-mail: $corresp_author_email$
 }
-$endfor$
 
 %%%% Abstract text to be placed here %%%%%%%%%%%%
 \begin{abstract}
@@ -55,11 +61,13 @@ $abstract$
 %%%%%%%%%% Insert the texts which can accomdate on firstpage in the tag "fmtext" %%%%%
 
 \begin{fmtext}
-fmtext
+$first_page_text$
 \end{fmtext}
 
 %%%%%%%%%%%%%%% End of first page %%%%%%%%%%%%%%%%%%%%%
 
 \maketitle
+
+$body$
 
 \end{document}
