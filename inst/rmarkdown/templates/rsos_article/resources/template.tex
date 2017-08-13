@@ -1,0 +1,65 @@
+%% Author_tex.tex
+%% V1.0
+%% 2012/13/12
+%% developed by Techset
+%%
+%% This file describes the coding for rsproca.cls
+
+\documentclass[]{rsos}%%%%where rsos is the template name
+
+%%%% *** Do not adjust lengths that control margins, column widths, etc. ***
+
+%%%%%%%%%%% Defining Enunciations  %%%%%%%%%%%
+\newtheorem{theorem}{\bf Theorem}[section]
+\newtheorem{condition}{\bf Condition}[section]
+\newtheorem{corollary}{\bf Corollary}[section]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%%%% Article title to be placed here
+\title{$title$}
+
+\author{
+$for(author)$
+$author.name$ $$^{$author.affiliation$}$$
+$endfor$
+}
+
+\address{
+$for(address)$
+  $$^{$address.code$}$$$address.address$ \\
+$endfor$
+}
+%%%% Subject entries to be placed here %%%%
+\subject{xxxxx, xxxxx, xxxx}
+
+%%%% Keyword entries to be placed here %%%%
+\keywords{xxxx, xxxx, xxxx}
+
+%%%% Insert corresponding author and its email address}
+$for(corresponding_author)$
+\corres{
+  $corresponding_author.name$\\
+  $corresponding_author.email$
+}
+$endfor$
+
+%%%% Abstract text to be placed here %%%%%%%%%%%%
+\begin{abstract}
+$abstract$
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%% Insert the texts which can accomdate on firstpage in the tag "fmtext" %%%%%
+
+\begin{fmtext}
+fmtext
+\end{fmtext}
+
+%%%%%%%%%%%%%%% End of first page %%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+\end{document}

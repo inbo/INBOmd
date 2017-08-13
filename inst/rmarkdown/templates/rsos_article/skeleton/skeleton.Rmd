@@ -1,0 +1,99 @@
+---
+title: Template for preparing your research report submission to Royal Society Open Science using RMarkdown
+keep_tex: TRUE
+author:
+  - name: Alice Anonymous
+    affiliation: 1,2
+  - name: Bob Security
+    affiliation: 2
+address:
+  - code: 1
+    address: Some Institute of Technology, Department, Street, City, State, Zip
+  - code: 2
+    address: Another University Department, Street, City, State, Zip
+
+corresponding_author:
+  - name: "B. Security"
+    email: "bob@email.com"
+
+# For footer text
+lead_author_surname: Anonymous
+
+## Remove this if not required    
+equal_authors:
+  - code: 1
+    text: "A.O.(Author One) and A.T. (Author Two) contributed equally to this work (remove if not applicable)."
+
+
+author_contributions: |
+  Please provide details of author contributions here.
+
+## Remove this if not required
+conflict_of_interest: |
+  Please declare any conflict of interest here.
+
+abstract: |
+  Please provide an abstract of no more than 250 words in a single paragraph. Abstracts should explain to the general reader the major contributions of the article. References in the abstract must be cited in full within the abstract itself and cited in the text.
+
+
+significance: |
+  Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.
+
+acknowledgements: |
+  Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
+
+keywords:
+  - one
+  - two
+  - optional
+  - optional
+  - optional
+
+bibliography: sample.bib
+
+## change to true to add optional line numbering
+lineno: false
+
+output: INBOmd::rsos_article
+---
+
+# Insert A head here
+
+This demo file is intended to serve as a "starter file""
+for rsproca journal papers produced under \LaTeX using
+rsproca.cls v1.5e.
+
+## Insert B head here
+
+Subsection text here.
+
+### Insert C head here
+
+Subsubsection text here.
+
+# Equations
+
+Sample equations. \cite{1}\cite{1,2} \cite{1,2,3}
+
+\begin{align}\label{1.1}
+\begin{split}
+\frac{\partial u(t,x)}{\partial t} &= Au(t,x) \left(1-\frac{u(t,x)}{K}\right)-B\frac{u(t-\tau,x) w(t,x)}{1+Eu(t-\tau,x)},\\
+\frac{\partial w(t,x)}{\partial t} &=\delta \frac{\partial^2w(t,x)}{\partial x^2}-Cw(t,x)+D\frac{u(t-\tau,x)w(t,x)}{1+Eu(t-\tau,x)},
+\end{split}
+\end{align}
+
+\begin{align}\label{1.2}
+\begin{split}
+\frac{dU}{dt} &=\alpha U(t)(\gamma -U(t))-\frac{U(t-\tau)W(t)}{1+U(t-\tau)},\\
+\frac{dW}{dt} &=-W(t)+\beta\frac{U(t-\tau)W(t)}{1+U(t-\tau)}.
+\end{split}
+\end{align}
+
+\begin{eqnarray}
+\frac{\partial(F_1,F_2)}{\partial(c,\omega)}_{(c_0,\omega_0)} = \left|
+\begin{array}{ll}
+\frac{\partial F_1}{\partial c} &\frac{\partial F_1}{\partial \omega} \\\noalign{\vskip3pt}
+\frac{\partial F_2}{\partial c}&\frac{\partial F_2}{\partial \omega}
+\end{array}\right|_{(c_0,\omega_0)}\notag\\
+=-4c_0q\omega_0 -4c_0\omega_0p^2 =-4c_0\omega_0(q+p^2)>0.
+\end{eqnarray}
