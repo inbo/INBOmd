@@ -1,12 +1,12 @@
 Package: INBOmd
 Type: Package
-Title: Markdown Templates for INBO
+Title: RMarkdown Templates for INBO
 Version: 0.4.2
 Date: 2017-08-13
 Authors@R: c(person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre")), person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb")), person(family = "Instituut voor Natuur- en Bosonderzoek", email = "info@inbo.be", role = c("cph")))
 Description: Several templates to generate reports, presentations and posters.
 License: GPL-3 | file LICENSE
-URL: https://github.com/inbo/inbomd
+URL: https://doi.org/10.5281/zenodo.842223
 BugReports: https://github.com/inbo/inbomd/issues
 VignetteBuilder: knitr
 Suggests:
