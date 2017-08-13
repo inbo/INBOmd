@@ -7,6 +7,11 @@
 
 \documentclass[]{rsos}%%%%where rsos is the template name
 
+$if(lineno)$
+\usepackage{lineno}
+\linenumbers
+$endif$
+
 %%%% *** Do not adjust lengths that control margins, column widths, etc. ***
 
 %%%%%%%%%%% Defining Enunciations  %%%%%%%%%%%
@@ -14,7 +19,6 @@
 \newtheorem{condition}{\bf Condition}[section]
 \newtheorem{corollary}{\bf Corollary}[section]
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \begin{document}
 
@@ -58,6 +62,7 @@ $abstract$
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%% Some pieces required from the pandoc template
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
