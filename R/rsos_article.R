@@ -77,7 +77,7 @@ rsos_article <- function(
     # set correct text in fmtext environment
     end_first_page <- grep("\\\\EndFirstPage", text) #nolint
     if (length(end_first_page) == 1) {
-      maketitle <- grep("\\\\maketitle", text)
+      maketitle <- grep("\\\\maketitle", text) #nolint
       text <- c(
         text[1:(maketitle - 1)],
         "\\begin{fmtext}",
