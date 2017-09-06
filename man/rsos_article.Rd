@@ -4,7 +4,8 @@
 \alias{rsos_article}
 \title{Royal Society Open Science journal format.}
 \usage{
-rsos_article(..., keep_tex = TRUE, citation_package = "natbib")
+rsos_article(..., keep_tex = TRUE, citation_package = "natbib",
+  pandoc_args = NULL, includes = NULL, fig_crop = TRUE)
 }
 \arguments{
 \item{...}{Additional arguments to \code{rmarkdown::pdf_document}}
@@ -13,6 +14,14 @@ rsos_article(..., keep_tex = TRUE, citation_package = "natbib")
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
+
+\item{pandoc_args}{Additional command line options to pass to pandoc}
+
+\item{includes}{Named list of additional content to include within the
+document (typically created using the \code{\link{includes}} function).}
+
+\item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
+(if available) to pdf figures}
 }
 \value{
 R Markdown output format to pass to

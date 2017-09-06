@@ -16,35 +16,97 @@
 #' }
 #'
 #' @export
-rsos_article <- function(..., keep_tex = TRUE, citation_package = "natbib") {
-  inherit_pdf_document(
-    ...,
-    keep_tex = keep_tex,
-    citation_package = citation_package,
-    template = find_resource("rsos_article", "template.tex")
-  )
-}
-
-find_file <- function(template, file) {
+rsos_article <- function(
+  ...,
+  keep_tex = TRUE,
+  citation_package = "natbib",
+  pandoc_args = NULL,
+  includes = NULL,
+  fig_crop = TRUE
+) {
   template <- system.file(
-    "rmarkdown", "templates", template, file,
+    "rmarkdown/templates/rsos_article/resources/template.tex",
     package = "INBOmd"
   )
-  if (template == "") {
-    stop("Couldn't find template file ", template, "/", file, call. = FALSE)
+
+  args <- c("--template", template, pandoc_args)
+
+  # citations
+  citation_package <- match.arg(citation_package)
+  if (citation_package == "natbib") {
+    args <- c(args, paste0("--", citation_package))
+  }
+  # content includes
+  args <- c(args, includes_to_pandoc_args(includes))
+
+  extra <- list(...)
+  if (length(extra) > 0) {
+    args <- c(
+      args,
+      sapply(
+        names(extra),
+        function(x){
+          pandoc_variable_arg(x, extra[[x]])
+        }
+      )
+    )
+  }
+  opts_chunk <- list(
+    latex.options = "{}",
+    dev = "pdf",
+    fig.align = "center",
+    dpi = 300,
+    fig.width = 4.5,
+    fig.height = 2.9
+  )
+  crop <- fig_crop &&
+    !identical(.Platform$OS.type, "windows") &&
+    nzchar(Sys.which("pdfcrop"))
+  if (crop) {
+    knit_hooks <- list(crop = knitr::hook_pdfcrop)
+    opts_chunk$crop <- TRUE
+  } else {
+    knit_hooks <- NULL
   }
 
-  template
-}
+  post_processor <- function(
+    metadata, input_file, output_file, clean, verbose
+  ) {
+    text <- readLines(output_file, warn = FALSE)
 
-find_resource <- function(template, file) {
-  find_file(template, file.path("resources", file))
-}
+    # set correct text in fmtext environment
+    end_first_page <- grep("\\\\EndFirstPage", text) #nolint
+    if (length(end_first_page) == 1) {
+      maketitle <- grep("\\\\maketitle", text)
+      text <- c(
+        text[1:(maketitle - 1)],
+        "\\begin{fmtext}",
+        text[(maketitle + 1):(end_first_page - 1)],
+        "\\end{fmtext}",
+        "\\maketitle",
+        text[(end_first_page + 1):length(text)]
+      )
+      writeLines(enc2utf8(text), output_file, useBytes = TRUE)
+    }
+    output_file
+  }
 
-#'@importFrom rmarkdown pdf_document
-# Call rmarkdown::pdf_documet and mark the return value as inheriting pdf_document
-inherit_pdf_document <- function(...) {
-  fmt <- rmarkdown::pdf_document(...)
-  fmt$inherits <- "pdf_document"
-  fmt
+  output_format(
+    knitr = knitr_options(
+      opts_knit = list(
+        width = 60,
+        concordance = TRUE
+      ),
+      opts_chunk = opts_chunk,
+      knit_hooks = knit_hooks
+    ),
+    pandoc = pandoc_options(
+      to = "latex",
+      latex_engine = "xelatex",
+      args = args,
+      keep_tex = keep_tex
+    ),
+    post_processor = post_processor,
+    clean_supporting = !keep_tex
+  )
 }
