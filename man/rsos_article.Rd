@@ -4,13 +4,11 @@
 \alias{rsos_article}
 \title{Royal Society Open Science journal format.}
 \usage{
-rsos_article(..., keep_tex = TRUE, citation_package = "natbib",
-  pandoc_args = NULL, includes = NULL, fig_crop = TRUE)
+rsos_article(..., citation_package = "natbib", pandoc_args = NULL,
+  includes = NULL, fig_crop = TRUE)
 }
 \arguments{
 \item{...}{Additional arguments to \code{rmarkdown::pdf_document}}
-
-\item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}

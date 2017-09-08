@@ -18,7 +18,6 @@
 #' @export
 rsos_article <- function(
   ...,
-  keep_tex = TRUE,
   citation_package = "natbib",
   pandoc_args = NULL,
   includes = NULL,
@@ -104,9 +103,9 @@ rsos_article <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex
+      keep_tex = TRUE
     ),
     post_processor = post_processor,
-    clean_supporting = !keep_tex
+    clean_supporting = FALSE
   )
 }
