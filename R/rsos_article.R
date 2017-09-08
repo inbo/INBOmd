@@ -75,8 +75,8 @@ rsos_article <- function(
     text <- readLines(output_file, warn = FALSE)
 
     # set correct text in fmtext environment
-    end_first_page <- grep("\\\\EndFirstPage", text) #nolint
-    if (length(end_first_page) == 1) {
+    end_first_page <- grep("^\\\\EndFirstPage", text) #nolint
+    if (length(end_first_page)) {
       maketitle <- grep("\\\\maketitle", text) #nolint
       text <- c(
         text[1:(maketitle - 1)],
@@ -86,8 +86,8 @@ rsos_article <- function(
         "\\maketitle",
         text[(end_first_page + 1):length(text)]
       )
-      writeLines(enc2utf8(text), output_file, useBytes = TRUE)
     }
+    writeLines(enc2utf8(text), output_file, useBytes = TRUE)
     output_file
   }
 
