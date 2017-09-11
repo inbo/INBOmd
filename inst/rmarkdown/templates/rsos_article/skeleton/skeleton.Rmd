@@ -29,64 +29,6 @@ keywords:
 abstract: |
   The abstract text goes here. The abstract text goes here. The abstract text goes here. The abstract text goes here. The abstract text goes here. The abstract text goes here. The abstract text goes here. The abstract text goes here.
 
-
-first_page_text: |
-  # Insert A head here
-  
-  This demo file is intended to serve as a "starter file"" for articles 
-  submitted to the Royal Society Open Science journal using `RMarkdown`.
-  
-  The RMarkdown argument `first_page_text` should hold all plain text to be 
-  displayed on the first page of the page. Warning: excess text will be hidden 
-  behind the copyright box. The example below contains line 1 to 19 in the code.
-  Line 14 to 17 are hidden.
-  
-  ## Insert B head here
-  
-  Subsection text here.
-  
-  ### Insert C head here
-  
-  Subsubsection text here.
-  
-  Line 1
-  
-  Line 2
-  
-  Line 3
-  
-  Line 4
-  
-  Line 5
-  
-  Line 6
-  
-  Line 7
-  
-  Line 8
-  
-  Line 9
-  
-  Line 10
-  
-  Line 11
-  
-  Line 12
-  
-  Line 13
-  
-  Line 14
-  
-  Line 15
-  
-  Line 16
-  
-  Line 17
-  
-  Line 18
-  
-  Line 19
-  
 ## Remove this if not required
 ethics: |
   Please provide details on the ethics.
@@ -118,8 +60,68 @@ bibliography: sample.bib
 ## change to true to add optional line numbering
 lineno: false
 
-output: INBOmd::rsos_article
+output: 
+  bookdown::pdf_book:
+    base_format: INBOmd::rsos_article
 ---
+
+# Insert A head here
+
+This demo file is intended to serve as a "starter file"" for articles 
+submitted to the Royal Society Open Science journal using `RMarkdown`.
+
+The RMarkdown argument `first_page_text` should hold all plain text to be 
+displayed on the first page of the page. Warning: excess text will be hidden 
+behind the copyright box. The example below contains line 1 to 19 in the code.
+Line 14 to 17 are hidden.
+
+## Insert B head here
+
+Subsection text here.
+
+### Insert C head here
+
+Subsubsection text here.
+
+Line 1
+
+Line 2
+
+Line 3
+
+Line 4
+
+Line 5
+
+Line 6
+
+Line 7
+
+Line 8
+
+Line 9
+
+Line 10
+
+Line 11
+
+Line 12
+
+Line 13
+
+Line 14
+
+Line 15
+
+Line 16
+
+Line 17
+
+Line 18
+
+Line 19
+
+\EndFirstPage
 
 # Lists
 
