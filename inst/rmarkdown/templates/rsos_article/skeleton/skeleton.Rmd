@@ -60,7 +60,9 @@ bibliography: sample.bib
 ## change to true to add optional line numbering
 lineno: false
 
-output: INBOmd::rsos_article
+output: 
+  bookdown::pdf_book:
+    base_format: INBOmd::rsos_article
 ---
 
 # Insert A head here

@@ -16,29 +16,30 @@
 #' }
 #'
 #' @export
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
 rsos_article <- function(
   ...,
-  citation_package = "natbib",
+  keep_tex = TRUE,
   pandoc_args = NULL,
   includes = NULL,
   fig_crop = TRUE
 ) {
+
+  extra <- list(...)
+
   template <- system.file(
     "rmarkdown/templates/rsos_article/resources/template.tex",
     package = "INBOmd"
   )
+  args <- c(
+    "--template", template,
+    "--latex-engine", "xelatex",
+    pandoc_variable_arg("documentclass", "article"),
+    pandoc_args,
+    "--natbib",
+    includes_to_pandoc_args(includes)
+  )
 
-  args <- c("--template", template, pandoc_args)
-
-  # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "natbib") {
-    args <- c(args, paste0("--", citation_package))
-  }
-  # content includes
-  args <- c(args, includes_to_pandoc_args(includes))
-
-  extra <- list(...)
   if (length(extra) > 0) {
     args <- c(
       args,
@@ -50,6 +51,7 @@ rsos_article <- function(
       )
     )
   }
+
   opts_chunk <- list(
     latex.options = "{}",
     dev = "pdf",
@@ -93,7 +95,7 @@ rsos_article <- function(
   output_format(
     knitr = knitr_options(
       opts_knit = list(
-        width = 60,
+        width = 96,
         concordance = TRUE
       ),
       opts_chunk = opts_chunk,
@@ -103,9 +105,9 @@ rsos_article <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = TRUE
+      keep_tex = keep_tex
     ),
     post_processor = post_processor,
-    clean_supporting = FALSE
+    clean_supporting = !keep_tex
   )
 }
