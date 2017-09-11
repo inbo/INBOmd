@@ -7,12 +7,13 @@
 
 INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The table below indicates what is currently available.
 
-| Document type   | Template | Rmd | Rnw | Tex |
-| --------------- | -------- | --- | --- | --- |
-| INBO report     |     X    |  X  |  X  |  X  |
-| INBO slides     |     X    |  X  |  X  |  X  |
-| INBO poster     |          |     |  X  |  X  |
-| Flanders slides |     X    |  X  |  X  |  X  |
+| Document type              | Template | Rmd | Rnw | Tex |
+| -------------------------- | -------- | --- | --- | --- |
+| INBO report                |     X    |  X  |  X  |  X  |
+| INBO slides                |     X    |  X  |  X  |  X  |
+| INBO poster                |          |     |  X  |  X  |
+| Flanders slides            |     X    |  X  |  X  |  X  |
+| Royal Society Open Science |     X    |  X  |     |     |
 
 - Template
     - R Markdown template. 
