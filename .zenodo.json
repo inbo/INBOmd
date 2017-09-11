@@ -1,0 +1,21 @@
+{
+ "creators": [
+      {
+        "name": "Thierry Onkelinx",
+        "affiliation": "Research Instute for Nature and Forest"
+      },
+      {
+        "name": "Floris Vanderhaeghe",
+        "affiliation": "Research Instute for Nature and Forest"
+      }
+    ],
+  "description": "INBOmd provides several templates to be used with RMarkdown",
+  "keywords": [
+    "R",
+    "LaTeX",
+    "reproducibility",
+    "Markdown"
+  ],
+  "license": "GPL-3",
+  "title": "INBOmd: RMarkdown Templates for INBO"
+}
