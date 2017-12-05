@@ -59,7 +59,7 @@ inbo_slides <- function(
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,
-    pandoc_variable_arg("lang", lang),
+    pandoc_variable_arg("mylanguage", lang),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("website", website),
     pandoc_variable_arg("flandersfont", flandersfont),

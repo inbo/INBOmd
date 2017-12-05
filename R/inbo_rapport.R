@@ -47,7 +47,7 @@ inbo_rapport <- function(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("lang", lang)
+    pandoc_variable_arg("mylanguage", lang)
   )
   if (compareVersion(as.character(pandoc_version()), "2") < 0) {
     args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov

@@ -51,7 +51,7 @@ inbo_zending <- function(
     pandoc_variable_arg("website", website),
     pandoc_variable_arg("colleagues", colleagues),
     pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("lang", lang)
+    pandoc_variable_arg("mylanguage", lang)
   )
   if (compareVersion(as.character(pandoc_version()), "2") < 0) {
     args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
