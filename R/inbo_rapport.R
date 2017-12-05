@@ -159,7 +159,7 @@ inbo_rapport <- function(
       text <- text[new.order]
     }
 
-    writeLines(enc2utf8(text), output, useBytes = TRUE)
+    writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
 
