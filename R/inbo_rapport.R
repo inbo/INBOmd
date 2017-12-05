@@ -19,7 +19,8 @@
 #'   \item hyphenation: the correct hyphenation for certain words
 #' }
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
+#' @importFrom utils compareVersion
 inbo_rapport <- function(
   subtitle,
   reportnr,
@@ -41,14 +42,18 @@ inbo_rapport <- function(
 
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
   csl <- system.file("inbo.csl", package = "INBOmd")
+
   args <- c(
     "--template", template,
-    "--latex-engine", "xelatex",
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("lang", lang)
   )
-  args <- c(args, pandoc_args)
+  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
+    args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
+  } else {
+    args <- c(args, "--pdf-engine", "xelatex", pandoc_args)
+  }
 
   # citations
   citation_package <- match.arg(citation_package)

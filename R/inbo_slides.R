@@ -20,7 +20,8 @@
 #' @param ... extra parameters
 #' @inheritParams rmarkdown::pdf_document
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg pandoc_version
+#' @importFrom utils compareVersion
 #' @importFrom assertthat assert_that is.string is.flag noNA
 inbo_slides <- function(
   subtitle,
@@ -58,13 +59,17 @@ inbo_slides <- function(
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,
-    "--latex-engine", "xelatex",
     pandoc_variable_arg("lang", lang),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("website", website),
     pandoc_variable_arg("flandersfont", flandersfont),
     pandoc_variable_arg("theme", theme)
   )
+  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
+    args <- c(args, "--latex-engine", "xelatex") #nocov
+  } else {
+    args <- c(args, "--pdf-engine", "xelatex")
+  }
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
     if (!missing(toc_name)) {

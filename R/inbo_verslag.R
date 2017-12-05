@@ -13,7 +13,8 @@
 #'   \item hyphenation: the correct hyphenation for certain words
 #' }
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_version
+#' @importFrom utils compareVersion
 inbo_verslag <- function(
   present = "",
   absent = "",
@@ -37,14 +38,17 @@ inbo_verslag <- function(
   csl <- system.file("inbo.csl", package = "INBOmd")
   args <- c(
     "--template", template,
-    "--latex-engine", "xelatex",
     pandoc_variable_arg("present", present),
     pandoc_variable_arg("absent", absent),
     pandoc_variable_arg("chair", chair),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("lang", lang)
   )
-  args <- c(args, pandoc_args)
+  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
+    args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
+  } else {
+    args <- c(args, "--pdf-engine", "xelatex", pandoc_args)
+  }
   # citations
   citation_package <- match.arg(citation_package)
   if (citation_package == "none") {
