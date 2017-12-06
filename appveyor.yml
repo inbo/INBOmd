@@ -43,3 +43,15 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+before_deploy:
+  cmd: |
+    CURRENT_VERSION=$(grep 'Version: .*' DESCRIPTION | awk '{print $2}')
+    CURRENT_PACKAGE=$(grep 'Package: .*' DESCRIPTION | awk '{print $2}')
+    export PKG_TARBALL=$CURRENT_PACKAGE'_'$CURRENT_VERSION'.tar.gz'
+    Rscript -e 'install.packages("drat")'
+    git clone --depth 1 https://$GH_TOKEN@github.com/inbo/drat.git ../drat -b gh-pages
+    Rscript -e "drat::insertPackage('$PKG_TARBALL', '../drat')"
+    cd ../drat
+    git commit --all -m "INBOmd from appveyor"
+    git push 2>err.txt
