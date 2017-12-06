@@ -20,5 +20,7 @@ Imports:
     assertthat,
     utils,
     rmarkdown
+Remotes:
+    inbo/INBOtheme
 RoxygenNote: 6.0.1
 LazyData: true
