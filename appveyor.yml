@@ -44,14 +44,28 @@ artifacts:
   - path: '\*_*.zip'
     name: Bits
 
+environment:
+  access_token:
+    secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
+
+deploy:
+  - provider: GitHub
+    artifact: '.*\.(tar\.gz|zip)'
+    force_update: true
+    auth_token:
+      secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
+
 before_deploy:
-  cmd: |
-    CURRENT_VERSION=$(grep 'Version: .*' DESCRIPTION | awk '{print $2}')
-    CURRENT_PACKAGE=$(grep 'Package: .*' DESCRIPTION | awk '{print $2}')
-    export PKG_TARBALL=$CURRENT_PACKAGE'_'$CURRENT_VERSION'.tar.gz'
-    Rscript -e 'install.packages("drat")'
-    git clone --depth 1 https://$GH_TOKEN@github.com/inbo/drat.git ../drat -b gh-pages
-    Rscript -e "drat::insertPackage('$PKG_TARBALL', '../drat')"
-    cd ../drat
-    git commit --all -m "INBOmd from appveyor"
-    git push 2>err.txt
+  - Rscript -e "install.packages('drat', repos = 'https://cloud.r-project.org')"
+  - git config --global credential.helper store
+  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+  - git config --global user.email "bmk@inbo.be"
+  - git config --global user.name "INBO CI"
+  - git clone --depth 1 https://github.com/inbo/drat.git drat --branch=gh-pages
+  - Rscript -e "drat::insertPackage(list.files(pattern = 'tar.gz'), 'drat')"
+  - Rscript -e "drat::insertPackage(list.files(pattern = 'zip'), 'drat')"
+  - cd drat
+  - git add --all
+  - git commit -m "INBOmd from appveyor"
+  - git push origin
+  - cd ..
