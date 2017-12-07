@@ -44,11 +44,20 @@ artifacts:
   - path: '\*_*.zip'
     name: Bits
 
+- provider: Environment
+  name: production
+  on:
+    appveyor_repo_tag: true
+
 environment:
   access_token:
     secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
 
 deploy:
+  - provider: Environment
+    name: production
+    on:
+      appveyor_repo_tag: true
   - provider: GitHub
     artifact: '.*\.(tar\.gz|zip)'
     force_update: true
