@@ -68,4 +68,3 @@ before_deploy:
   - git add --all
   - git commit -m "INBOmd from appveyor"
   - git push origin
-  - cd ..
