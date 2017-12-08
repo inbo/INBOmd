@@ -16,7 +16,8 @@
 #'   \item hyphenation: the correct hyphenation for certain words
 #' }
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg
+#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_version
+#' @importFrom utils compareVersion
 inbo_zending <- function(
   conference,
   conferencedate,
@@ -43,7 +44,6 @@ inbo_zending <- function(
   csl <- system.file("inbo.csl", package = "INBOmd")
   args <- c(
     "--template", template,
-    "--latex-engine", "xelatex",
     pandoc_variable_arg("conference", conference),
     pandoc_variable_arg("conferencedate", conferencedate),
     pandoc_variable_arg("conferenceplace", conferenceplace),
@@ -51,9 +51,13 @@ inbo_zending <- function(
     pandoc_variable_arg("website", website),
     pandoc_variable_arg("colleagues", colleagues),
     pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("lang", lang)
+    pandoc_variable_arg("mylanguage", lang)
   )
-  args <- c(args, pandoc_args)
+  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
+    args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
+  } else {
+    args <- c(args, "--pdf-engine", "xelatex", pandoc_args)
+  }
   # citations
   citation_package <- match.arg(citation_package)
   if (citation_package == "none") {
