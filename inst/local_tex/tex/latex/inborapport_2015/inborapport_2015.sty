@@ -146,9 +146,6 @@
 \newlength{\fontsizebase}
 \setlength{\fontsizebase}{11pt}
 
-\newlength{\scaleratio}
-\setlength{\scaleratio}{\fontsizebase / \real{9}}
-
 \newlength{\fontsizechapter}
 \newlength{\fontsizesection}
 \newlength{\fontsizesubsection}
@@ -162,19 +159,19 @@
 \newlength{\fontsizeordernr}
 
 % fontsize for headings
-\setlength{\fontsizechapter}{\scaleratio * \real{14}}
-\setlength{\fontsizesection}{\scaleratio * \real{12}}
-\setlength{\fontsizesubsection}{\scaleratio * \real{10}}
-\setlength{\fontsizeparagraph}{\scaleratio * \real{9}}
+\setlength{\fontsizechapter}{18pt}
+\setlength{\fontsizesection}{16pt}
+\setlength{\fontsizesubsection}{14pt}
+\setlength{\fontsizeparagraph}{12pt}
 
 % fontsize for header and footer
-\setlength{\fontsizefooter}{\scaleratio * \real{7}}
+\setlength{\fontsizefooter}{8pt}
 
 % fontsize for title page
-\setlength{\fontsizetitle}{\scaleratio * \real{20}}
-\setlength{\fontsizesubtitle}{\scaleratio * \real{20}}
-\setlength{\fontsizeauthor}{\scaleratio * \real{12}}
-\setlength{\fontsizeordernr}{\scaleratio * \real{9}}
+\setlength{\fontsizetitle}{18pt}
+\setlength{\fontsizesubtitle}{18pt}
+\setlength{\fontsizeauthor}{12pt}
+\setlength{\fontsizeordernr}{11pt}
 
 % use babel for different languages
 \RequirePackage[english, dutch]{babel}
