@@ -31,8 +31,7 @@
 \ordernumber{}
 
 % define page geometry
-\RequirePackage[a4paper, top = 20mm, bottom = 25mm, left = 30mm, right = 30mm, footskip=10mm]{geometry}
-
+\RequirePackage[a4paper, top = 20mm, bottom = 25mm, outer = 30mm, inner = 30mm, footskip=10mm]{geometry}
 % definition of INBO colours
 \RequirePackage{inbocolours_2015}
 
@@ -185,7 +184,7 @@
 % define style for chapters (heading 1)
 \RequirePackage{tabularx}
 \def\@makechapterhead#1{%
-   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \begin{tabularx}{\textwidth}{@{}lX@{}}\thechapter & \textsc{#1} \\ \rule{15mm}{0pt} & \\ \end{tabularx}} \nopagebreak
+   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \begin{tabularx}{\textwidth}{@{}lX@{}}\thechapter & \textsc{#1} \\ \rule{7.6mm}{0pt} & \\ \end{tabularx}} \nopagebreak
   \vspace{6pt}
   }
 \def\@makeschapterhead#1{%
@@ -306,20 +305,22 @@
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-\fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-\fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+\fancyfoot[LO, RE]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
+\fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
+\fancyfoot[LE, RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+\renewcommand{\footrule}{\vbox to 0pt{\hbox
+to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont\leaders\hbox{/}\hfill}\vss}}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \fancypagestyle{plain}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-  \fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-  \fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+  \fancyfoot[LO,RE]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
+  \fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
+  \fancyfoot[LE,RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
 \fancypagestyle{cover}{%
