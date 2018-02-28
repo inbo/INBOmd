@@ -326,38 +326,39 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \re
 \fancypagestyle{cover}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyfoot[L]{{\hspace{4mm}\includegraphics[height = 10mm, keepaspectratio]{logo_nl_kleur}}}
+  \fancyfoot[L]{\includegraphics[height = 10mm, keepaspectratio]{vlaanderen_nl_naakt}}
+  \fancyfoot[R]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\footrule}{\vbox to 0pt{\hbox
+  to\headwidth{\hbox{}\hfill}\vss}}
   \setlength{\footskip}{30pt}
 }
 
 \RequirePackage{emptypage}
-
 % define title page
 \def\maketitle{%
   \thispagestyle{cover}{%
-    \hfill \includegraphics[height = 30mm, keepaspectratio]{vlaanderen_nl_vol}
+    \includegraphics[height = 17mm, keepaspectratio]{logo_nl_verticaal_kleur}
 
     \vfill
 
-    \raggedright \fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont \textbf{\@title}
-    \vspace{6pt}
+    {\color{main.colour}
+    \raggedright \fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont \textbf{\expandafter\MakeUppercase\expandafter{\@title}}
+    \vspace{60pt}
 
-    \fontsize{\fontsizesubtitle}{\fontsizesubtitle * \real{1.2}}\selectfont\@subtitle
-    \vspace{36pt}
+    \fontsize{\fontsizesubtitle}{\fontsizesubtitle * \real{1.2}}\selectfont \textbf{\@subtitle}
+    \vspace{30pt}
 
-    \vspace{12pt}
-    \fontsize{\fontsizeauthor}{\fontsizeauthor * \real{1.2}}\selectfont \textbf{\@author}
+    \fontsize{\fontsizeauthor}{\fontsizeauthor * \real{1.2}}\selectfont \@author
     \vspace{144pt}
 
-    \fontsize{\fontsizeordernr}{\fontsizeordernr * \real{1.2}}\selectfont\@reportnumber
-
-    \@ordernumber
+    \fontsize{\fontsizeordernr}{\fontsizeordernr * \real{1.2}}\selectfont\@reportnumber \\
+    \@ordernumber}
 
     \vfill
     }%
-  \cleardoublepage
+  \clearpage
   }
 
 \RequirePackage{etoolbox}
