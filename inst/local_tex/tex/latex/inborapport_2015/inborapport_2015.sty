@@ -220,10 +220,6 @@
 \def\@subsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{subsection}%
-    \addcontentsline{toc}{subsection}%
-      {\protect\numberline{\thesubsection}#1}%
-  \else
-    \addcontentsline{toc}{subsection}#1%
   \fi
   \@makesubsectionhead{#2}%
 }
@@ -245,10 +241,6 @@
 \def\@subsubsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{subsubsection}%
-    \addcontentsline{toc}{subsubsection}%
-      {\protect\numberline{\thesubsubsection}#1}%
-  \else
-    \addcontentsline{toc}{subsubsection}#1%
   \fi
   \@makesubsubsectionhead{#2}%
 }
@@ -270,10 +262,6 @@
 \def\@paragraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{paragraph}%
-    \addcontentsline{toc}{paragraph}%
-      {\protect\numberline{\theparagraph}#1}%
-  \else
-    \addcontentsline{toc}{paragraph}#1%
   \fi
   \@makeparagraphhead{#2}%
 }
@@ -282,11 +270,11 @@
 }
 \def\@makeparagraphhead#1{%
   \vspace{10pt}
-   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}lX@{}}\theparagraph & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL} \nopagebreak
 }
 \def\@makesparagraphhead#1{%
   \vspace{10pt}
-   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL} \nopagebreak
 }
 
 
@@ -295,10 +283,6 @@
 \def\@subparagraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{subparagraph}%
-    \addcontentsline{toc}{subparagraph}%
-      {\protect\numberline{\thesubparagraph}#1}%
-  \else
-    \addcontentsline{toc}{subparagraph}#1%
   \fi
   \@makesubparagraphhead{#2}%
 }
@@ -307,11 +291,11 @@
 }
 \def\@makesubparagraphhead#1{%
   \vspace{10pt}
-   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}lX@{}}\thesubparagraph & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL} \nopagebreak
 }
 \def\@makessubparagraphhead#1{%
   \vspace{10pt}
-   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL} \nopagebreak
 }
 
 
