@@ -180,19 +180,18 @@
 
 \RequirePackage{inbogeneric_2015}
 
-% define style for chapters
+% define style for chapters (heading 1)
+\RequirePackage{tabularx}
 \def\@makechapterhead#1{%
-   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{123mm}{\raggedright \textsc{#1}}\nopagebreak}
-  \vspace{16pt}
+   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \begin{tabularx}{\textwidth}{@{}lX@{}}\thechapter & \textsc{#1} \\ \rule{15mm}{0pt} & \\ \end{tabularx}} \nopagebreak
+  \vspace{6pt}
   }
 \def\@makeschapterhead#1{%
-   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \hfill \parbox[t]{135mm}{\raggedright \uppercase{#1}}\nopagebreak}
-  \vspace{16pt}
+   {\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \begin{tabularx}{\textwidth}{@{}X@{}}\textsc{#1} \\ \\ \end{tabularx}} \nopagebreak
+  \vspace{6pt}
   }
 
-\RequirePackage{needspace}
-
-% define style for sections
+% define style for sections (heading 2)
 \renewcommand{\section}{\secdef\@section\@ssection}
 \def\@section[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -208,19 +207,15 @@
   \@makessectionhead{#1}
 }
 \def\@makesectionhead#1{%
-  \vspace{9pt}
-  \Needspace*{5\baselineskip}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{123mm}{\raggedright \textsc{#1}}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lX@{}}\thesection & \textsc{#1} \\ \rule{15mm}{0pt} & \\ \end{tabularx}} \nopagebreak
 }
 \def\@makessectionhead#1{%
-  \vspace{9pt}
-  \Needspace*{5\baselineskip}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{123mm}{\raggedright \uppercase{#1}} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}X@{}} \textsc{#1} \\  \\ \end{tabularx}} \nopagebreak
 }
 
-% define style for subsections
+% define style for subsections (heading 3)
 \renewcommand{\subsection}{\secdef\@subsection\@ssubsection}
 \def\@subsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -236,17 +231,16 @@
   \@makessubsectionhead{#1}
 }
 \def\@makesubsectionhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{123mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lX@{}}\thesubsection & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}}\nopagebreak
 }
 \def\@makessubsectionhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{123mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}}\nopagebreak
 }
 
-% define style for subsubsections
+
+% define style for subsubsections (heading 4)
 \renewcommand{\subsubsection}{\secdef\@subsubsection\@ssubsubsection}
 \def\@subsubsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -262,17 +256,16 @@
   \@makessubsubsectionhead{#1}
 }
 \def\@makesubsubsectionhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{123mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \begin{tabularx}{\textwidth}{@{}lX@{}}\thesubsubsection & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}} \nopagebreak
 }
 \def\@makessubsubsectionhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{129.8mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}} \nopagebreak
 }
 
-% define style for paragraphs
+
+% define style for paragraph (heading 5)
 \renewcommand{\paragraph}{\secdef\@paragraph\@sparagraph}
 \def\@paragraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -288,17 +281,16 @@
   \@makesparagraphhead{#1}
 }
 \def\@makeparagraphhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{127.2mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}lX@{}}\theparagraph & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
 }
 \def\@makesparagraphhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{127.2mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
 }
 
-% define style for subparagraphs
+
+% define style for subparagraph (heading 6)
 \renewcommand{\subparagraph}{\secdef\@subparagraph\@ssubparagraph}
 \def\@subparagraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -314,15 +306,14 @@
   \@makessubparagraphhead{#1}
 }
 \def\@makesubparagraphhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{124.7mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}lX@{}}\thesubparagraph & #1 \\ \rule{15mm}{0pt} & \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
 }
 \def\@makessubparagraphhead#1{%
-  \vspace{6pt}
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{124.7mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{red}\Huge \noindent DO NOT USE THIS HEADING LEVEL \\ \begin{tabularx}{\textwidth}{@{}X@{}} #1 \\  \\ \end{tabularx}\\ DO NOT USE THIS LEVEL} \nopagebreak
 }
+
 
 % define headers and footers
 \RequirePackage{fancyhdr}
