@@ -145,6 +145,7 @@
 \newlength{\fontsizebase}
 \setlength{\fontsizebase}{11pt}
 
+\newlength{\fontsizepart}
 \newlength{\fontsizechapter}
 \newlength{\fontsizesection}
 \newlength{\fontsizesubsection}
@@ -158,6 +159,7 @@
 \newlength{\fontsizeordernr}
 
 % fontsize for headings
+\setlength{\fontsizepart}{28pt}
 \setlength{\fontsizechapter}{18pt}
 \setlength{\fontsizesection}{16pt}
 \setlength{\fontsizesubsection}{14pt}
@@ -180,6 +182,24 @@
 \newcommand{\efrench}{\end{otherlanguage*}}
 
 \RequirePackage{inbogeneric_2015}
+
+% define style for parts (heading 0)
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+  \else
+    \addcontentsline{toc}{part}{#1}%
+  \fi
+  \vfill
+  {\color{main.colour}
+    \fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \partname \hspace{2pt} \thepart
+
+    \fontsize{\fontsizepart}{\fontsizepart * \real{1.2}} \selectfont \raggedleft \bfseries \textsc{#1}
+  }
+  \vfill
+  \clearpage
+}
 
 % define style for chapters (heading 1)
 \RequirePackage{tabularx}
@@ -374,7 +394,7 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \re
 \RequirePackage{placeins}
 
 % change spacing between paragraphs
-\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\baselinestretch}{1.15}
 \RequirePackage{parskip}
 \setlength{\parskip}{9pt plus4pt minus4pt}
 
@@ -389,14 +409,18 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \re
 \renewcommand{\cftfigpresnum}{\figurename\ }
 \renewcommand{\cfttabpresnum}{\tablename\ }
 
-\renewcommand{\cfttoctitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
+\setlength{\cftbeforetoctitleskip}{-14pt}
+\setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
+\setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}
+\renewcommand{\cfttoctitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
+\renewcommand{\cftloftitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
+\renewcommand{\cftlottitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
 \renewcommand{\cftaftertoctitle}{\nopagebreak}
-\renewcommand{\cftloftitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
 \renewcommand{\cftafterloftitle}{\nopagebreak}
-\renewcommand{\cftlottitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
 \renewcommand{\cftafterlottitle}{\nopagebreak}
 
 % changing style in table of contents
+\renewcommand*\l@part{\vspace{12pt}\bfseries\@dottedtocline{0}{0mm}{10mm}}
 \renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
 \renewcommand*\l@section{\normalfont\@dottedtocline{2}{0mm}{20mm}}
 \renewcommand*\l@subsection{\normalfont\@dottedtocline{3}{0mm}{20mm}}
@@ -424,10 +448,3 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooter * \re
 
 \setlength{\skip\footins}{1cm}
 \RequirePackage[bottom]{footmisc}
-
-\setlength{\cftbeforetoctitleskip}{-14pt}
-\setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
-\setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}
-\renewcommand{\cfttoctitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
-\renewcommand{\cftloftitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
-\renewcommand{\cftlottitlefont}{\color{main.colour}\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \textsc}
