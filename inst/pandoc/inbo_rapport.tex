@@ -58,7 +58,7 @@ $endfor$
 
 \begin{document}
 \maketitle
-\pagenumbering{Roman}
+\pagenumbering{arabic}
 
 $for(include-before)$
 $include-before$
@@ -67,9 +67,10 @@ $endfor$
 
 %starttoc
 
-\cleardoublepage
+\clearpage
 
 \phantomsection
+\setcounter{tocdepth}{3}
 \tableofcontents
 \addcontentsline{toc}{chapter}{\contentsname}
 
@@ -90,9 +91,7 @@ $if(lot)$
 \addcontentsline{toc}{chapter}{\listtablename}
 $endif$
 
-\cleardoublepage
-
-\pagenumbering{arabic}
+\clearpage
 
 %endtoc
 
