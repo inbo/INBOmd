@@ -30,6 +30,9 @@
 \def\ordernumber#1{\def\@ordernumber{#1}}
 \ordernumber{}
 
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
+
 % define page geometry
 \RequirePackage[a4paper, top = 20mm, bottom = 25mm, outer = 30mm, inner = 30mm, footskip=10mm]{geometry}
 % definition of INBO colours
@@ -433,6 +436,22 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}
   \setlength{\footskip}{30pt}
 }
 
+
+\newcommand{\choosefont}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{TRUE}{
+    \fontspec{FlandersArtSans-Regular}[
+      Ligatures = TeX,
+      ItalicFont = FlandersArtSans-Light,
+      ItalicFeatures = {FakeSlant = 0.15},
+      BoldFont = FlandersArtSans-Medium,
+      BoldItalicFont = FlandersArtSans-Medium,
+      BoldItalicFeatures = {FakeSlant = 0.15}
+    ]
+  }{
+  }
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
@@ -441,24 +460,29 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}
 
     \vfill
 
+    \color{main.colour}
     \hspace{10mm}\parbox[t]{140mm}{
-      \color{main.colour}
       \addfontfeature{LetterSpace=0.014}
+      \choosefont{\@flandersfont}
       \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \bfseries \expandafter\MakeUppercase\expandafter{\uline{\@title}}
       \addfontfeature{LetterSpace=0.0}
+    }
 
       \vspace{26pt}
 
+    \hspace{10mm}\parbox[t]{140mm}{
       \fontsize{\fontsizesubtitle}{\fontsizesubtitleinter}\selectfont \raggedright \bfseries \@subtitle
+    }
 
       \vspace{30pt}
 
+    \hspace{10mm}\parbox[t]{140mm}{
       \fontsize{\fontsizeauthor}{\fontsizeauthorinter}\selectfont \raggedright \@author
-
+    }
       \vspace{144pt}
 
+    \hspace{10mm}\parbox[t]{140mm}{
       \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@reportnumber \\ \@ordernumber
-
   }
 
   \vfill

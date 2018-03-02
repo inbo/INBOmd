@@ -6,6 +6,7 @@
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
+#' @param flandersfont Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
@@ -80,6 +81,9 @@ inbo_rapport <- function(
   if (!"lot" %in% names(extra)) {
     extra$lot <- TRUE
   }
+  if (!"flandersfont" %in% names(extra)) {
+    extra$flandersfont <- FALSE
+  }
   if (extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -89,7 +93,10 @@ inbo_rapport <- function(
   if (extra$lof || extra$lot) {
     args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
-  extra <- extra[!names(extra) %in% c("lof", "lot")]
+  if (extra$flandersfont) {
+    args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
+  }
+  extra <- extra[!names(extra) %in% c("lof", "lot", "flandersfont")]
   if (length(extra) > 0) {
     args <- c(
       args,
