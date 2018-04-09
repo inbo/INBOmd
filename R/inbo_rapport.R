@@ -6,7 +6,6 @@
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
-#' @param flandersfont Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
@@ -18,6 +17,7 @@
 #'   \item lof: display a list of figures. Defaults to TRUE
 #'   \item lot: display a list of tables. Defaults to TRUE
 #'   \item hyphenation: the correct hyphenation for certain words
+#'   \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version

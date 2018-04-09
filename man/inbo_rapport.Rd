@@ -37,8 +37,6 @@ document (typically created using the \code{\link{includes}} function).}
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
 \item{...}{extra parameters: see details}
-
-\item{flandersfont}{Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.}
 }
 \description{
 Create a report with the INBO theme version 2015
@@ -49,5 +47,6 @@ Available extra parameters:
   \item lof: display a list of figures. Defaults to TRUE
   \item lot: display a list of tables. Defaults to TRUE
   \item hyphenation: the correct hyphenation for certain words
+  \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 }
 }
