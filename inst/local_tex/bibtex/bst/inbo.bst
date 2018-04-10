@@ -7,7 +7,7 @@
 %% merlin.mbs  (with options: `ay,nat,pres,nm-rvv,keyxyr,yr-com,note-yr,jttl-rm,trtit-b,vnum-sp,volp-sp,num-xser,btit-rm,bt-rm,pg-bk,pre-pub,isbn,issn,doi,edparxc,in-col,pp,xedn,amper,and-xcom,etal-xc,etal-it,url,url-blk,nfss,')
 %% ----------------------------------------
 %% *** Citation style of reports of the Research Institute for Nature and Forest (www.inbo.be) ***
-%% 
+%%
 %% Copyright 1994-2011 Patrick W Daly
  % ===============================================================
  % IMPORTANT NOTICE:
@@ -194,7 +194,7 @@ FUNCTION {tie.or.space.prefix}
 }
 
 FUNCTION {capitalize}
-{ "\capitalize" swap$ * }
+{ "u" change.case$ "t" change.case$ }
 
 FUNCTION {space.word}
 { " " swap$ * " " * }
@@ -1566,8 +1566,6 @@ FUNCTION {begin.bib}
   write$ newline$
   "  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup \urlstyle{rm}\Url}\fi"
   write$ newline$
-  "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$
-  "\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}" write$ newline$
 }
 EXECUTE {begin.bib}
 EXECUTE {init.state.consts}
