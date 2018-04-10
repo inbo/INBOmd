@@ -7,12 +7,11 @@ build:
           export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
           mkdir ~/.fonts
           apt-get update
-          apt-get install -y --no-install-recommends cabextract fonts-inconsolata
+          apt-get install -y --no-install-recommends cabextract
           wget -qO- http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer | bash
           rm PowerPointViewer.exe
           wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf
           wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
-          update-texmf
           Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
     - inbobmk/r-check
     - inbobmk/r-lint
