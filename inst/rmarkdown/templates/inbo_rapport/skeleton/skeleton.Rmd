@@ -1,6 +1,12 @@
 ---
 title: "Titel van het rapport"
-author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 & Voornaam3 Achternaam3"
+author: 
+  - 
+    name: "Voornaam1 Achternaam1"
+    email: "voornaam1.achternaam1@inbo.be"
+  - 
+    name: "Voornaam2 Achternaam2"
+    email: "voornaam2.achternaam2@inbo.be"
 subtitle: "Hier komt de optionele ondertitel"
 reportnr: "Hier komt het rapportnummer"
 ordernr: "Het optionele nummer van de opdrachtgever"
