@@ -46,7 +46,7 @@ $endif$
 
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
-\author{$author$}
+\author{$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$sep$, $endfor$}
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 $if(reportnr)$\reportnumber{$reportnr$}$endif$
 
