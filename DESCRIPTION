@@ -21,7 +21,6 @@ Imports:
     utils,
     rmarkdown
 Remotes:
-    rstudio/bookdown,
     inbo/INBOtheme
 RoxygenNote: 6.0.1
 LazyData: true

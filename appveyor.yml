@@ -17,8 +17,8 @@ cache:
 
 build_script:
   - travis-tool.sh install_deps
-  - Rscript -e "devtools::install_github('rstudio/bookdown')"
-  - Rscript -e "devtools::install_github('inbo/INBOtheme')"
+  - Rscript -e "remotes::install_github('rstudio/bookdown')"
+  - Rscript -e "remotes::install_github('inbo/INBOtheme')"
 
 test_script:
   - travis-tool.sh run_tests
