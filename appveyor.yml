@@ -16,9 +16,9 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - travis-tool.sh install_deps
+  - Rscript -e "install.packages(c('colorspace', 'lazyeval', 'plyr', 'Rcpp', 'scales', 'tidyr'), repos = 'https://cloud.r-project.org/')"
   - Rscript -e "remotes::install_github('rstudio/bookdown')"
-  - Rscript -e "remotes::install_github('inbo/INBOtheme')"
+  - travis-tool.sh install_deps
 
 test_script:
   - travis-tool.sh run_tests
