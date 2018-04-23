@@ -16,7 +16,7 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - Rscript -e "install.packages(c('backports', 'colorspace', 'digest', 'htmltools', 'lazyeval', 'plyr', 'Rcpp', 'rlang', 'scales', 'tibble'), repos = 'https://cloud.r-project.org/')"
+  - Rscript -e "install.packages(c('backports', 'colorspace', 'digest', 'htmltools', 'lazyeval', 'plyr', 'Rcpp', 'rlang', 'scales', 'stringi', 'tibble'), repos = 'https://cloud.r-project.org/')"
   - Rscript -e "remotes::install_github('rstudio/bookdown')"
   - travis-tool.sh install_deps
 
