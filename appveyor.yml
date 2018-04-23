@@ -47,6 +47,7 @@ artifacts:
 environment:
   access_token:
     secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
+  PKGTYPE: source
 
 deploy:
   - provider: GitHub
