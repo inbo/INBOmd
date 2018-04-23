@@ -16,7 +16,7 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - Rscript -e "install.packages('colorspace')"
+  - Rscript -e "install.packages('colorspace', repos = 'https://cloud.r-project.org/')"
   - Rscript -e 'devtools::install_github("rstudio/bookdown", upgrade = FALSE)'
   - travis-tool.sh install_deps
 
