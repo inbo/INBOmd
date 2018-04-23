@@ -30,9 +30,11 @@
 \def\ordernumber#1{\def\@ordernumber{#1}}
 \ordernumber{}
 
-% define page geometry
-\RequirePackage[a4paper, top = 20mm, bottom = 30mm, left = 30mm, right = 30mm, footskip=10mm]{geometry}
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
 
+% define page geometry
+\RequirePackage[a4paper, top = 20mm, bottom = 25mm, outer = 30mm, inner = 30mm, footskip=10mm]{geometry}
 % definition of INBO colours
 \RequirePackage{inbocolours_2015}
 
@@ -46,9 +48,9 @@
   \hypersetup{
     pdftitle = {\@title},
     pdfauthor = {\@author},
-    linkcolor = main.colour,
-    urlcolor = main.colour,
-    citecolor = main.colour
+    linkcolor = link.colour,
+    urlcolor = link.colour,
+    citecolor = link.colour
   }
 }
 
@@ -144,58 +146,146 @@
 \RequirePackage{calc}
 
 \newlength{\fontsizebase}
-\setlength{\fontsizebase}{11pt}
-
-\newlength{\scaleratio}
-\setlength{\scaleratio}{\fontsizebase / \real{9}}
-
+\newlength{\fontsizepart}
+\newlength{\fontsizeintro}
 \newlength{\fontsizechapter}
 \newlength{\fontsizesection}
 \newlength{\fontsizesubsection}
+\newlength{\fontsizesubsubsection}
 \newlength{\fontsizeparagraph}
-
+\newlength{\fontsizesubparagraph}
 \newlength{\fontsizefooter}
-
 \newlength{\fontsizetitle}
 \newlength{\fontsizesubtitle}
 \newlength{\fontsizeauthor}
 \newlength{\fontsizeordernr}
+\newlength{\fontsizetoc}
+
+\newlength{\fontsizebaseinter}
+\newlength{\fontsizepartinter}
+\newlength{\fontsizeintrointer}
+\newlength{\fontsizechapterinter}
+\newlength{\fontsizesectioninter}
+\newlength{\fontsizesubsectioninter}
+\newlength{\fontsizesubsubsectioninter}
+\newlength{\fontsizeparagraphinter}
+\newlength{\fontsizesubparagraphinter}
+\newlength{\fontsizefooterinter}
+\newlength{\fontsizetitleinter}
+\newlength{\fontsizesubtitleinter}
+\newlength{\fontsizeauthorinter}
+\newlength{\fontsizeordernrinter}
+\newlength{\fontsizetocinter}
+
+% base font
+\setlength{\fontsizebase}{9pt}
+\setlength{\fontsizebaseinter}{10.35pt}
 
 % fontsize for headings
-\setlength{\fontsizechapter}{\scaleratio * \real{14}}
-\setlength{\fontsizesection}{\scaleratio * \real{12}}
-\setlength{\fontsizesubsection}{\scaleratio * \real{10}}
-\setlength{\fontsizeparagraph}{\scaleratio * \real{9}}
+\setlength{\fontsizepart}{28pt}
+\setlength{\fontsizepartinter}{32.2pt}
+
+\setlength{\fontsizechapter}{18pt}
+\setlength{\fontsizechapterinter}{21.6pt}
+
+\setlength{\fontsizeintro}{14pt}
+\setlength{\fontsizeintrointer}{30pt}
+
+\setlength{\fontsizesection}{16pt}
+\setlength{\fontsizesectioninter}{20pt}
+
+\setlength{\fontsizesubsection}{14pt}
+\setlength{\fontsizesubsectioninter}{16.1pt}
+
+\setlength{\fontsizesubsubsection}{\fontsizebase}
+\setlength{\fontsizesubsubsectioninter}{\fontsizebaseinter}
+
+\setlength{\fontsizeparagraph}{\fontsizebase}
+\setlength{\fontsizeparagraphinter}{\fontsizebaseinter}
+
+\setlength{\fontsizesubparagraph}{\fontsizebase}
+\setlength{\fontsizesubparagraphinter}{\fontsizebaseinter}
 
 % fontsize for header and footer
-\setlength{\fontsizefooter}{\scaleratio * \real{7}}
+\setlength{\fontsizefooter}{8pt}
+\setlength{\fontsizefooterinter}{9.2pt}
 
 % fontsize for title page
-\setlength{\fontsizetitle}{\scaleratio * \real{20}}
-\setlength{\fontsizesubtitle}{\scaleratio * \real{20}}
-\setlength{\fontsizeauthor}{\scaleratio * \real{12}}
-\setlength{\fontsizeordernr}{\scaleratio * \real{9}}
+\setlength{\fontsizetitle}{18pt}
+\setlength{\fontsizetitleinter}{60pt}
+
+\setlength{\fontsizesubtitle}{18pt}
+\setlength{\fontsizesubtitleinter}{30pt}
+
+\setlength{\fontsizeauthor}{12pt}
+\setlength{\fontsizeauthorinter}{13.8pt}
+
+\setlength{\fontsizeordernr}{11pt}
+\setlength{\fontsizeordernrinter}{12.65pt}
+
+\setlength{\fontsizetoc}{11pt}
+\setlength{\fontsizetocinter}{12.65pt}
 
 % use babel for different languages
-\RequirePackage[english, dutch]{babel}
+\RequirePackage[english, french, dutch]{babel}
 \newcommand{\benglish}{\begin{otherlanguage*}{english}}
 \newcommand{\eenglish}{\end{otherlanguage*}}
+\newcommand{\bfrench}{\begin{otherlanguage*}{french}}
+\newcommand{\efrench}{\end{otherlanguage*}}
 
 \RequirePackage{inbogeneric_2015}
 
-% define style for chapters
+\RequirePackage[bottom]{footmisc}
+\RequirePackage{ragged2e}
+
+% define style for parts (heading 0)
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+  \else
+    \addcontentsline{toc}{part}{#1}%
+  \fi
+  \vfill
+  {\color{main.colour}
+    \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont \bfseries \partname \hspace{2pt} \thepart
+
+    \fontsize{\fontsizepart}{\fontsizepartinter} \selectfont \raggedright \bfseries \textsc{#1}
+
+  }
+  \vfill
+  \clearpage
+}
+
+% define style for chapters (heading 1)
+\RequirePackage{tabularx}
+\newcolumntype{L}{>{\RaggedRight} X}
 \def\@makechapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \thechapter \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
-  \vspace{16pt}
+   {
+    \color{main.colour} \bfseries \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont
+    \begin{tabularx}{\textwidth}{@{}lL@{}}
+      \thechapter &  \expandafter\MakeUppercase\expandafter{#1} \\
+      \rule{7.6mm}{0pt} & \\[-\fontsizechapter]
+   \end{tabularx}
+
+   }
+
+   \nopagebreak
+  \vspace{24pt}
   }
 \def\@makeschapterhead#1{%
-   {\fontsize{\fontsizechapter}{\fontsizechapter * \real{1.2}} \selectfont \bfseries \hfill \parbox[t]{137.4mm}{\raggedright #1}\nopagebreak}
-  \vspace{16pt}
+   {%
+    \color{main.colour}
+    \fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries \raggedright #1 %
+
+    }
+    \vspace{14pt}
+    \nopagebreak
   }
 
-\RequirePackage{needspace}
+\RequirePackage[normalem]{ulem}
 
-% define style for sections
+% define style for sections (heading 2)
 \renewcommand{\section}{\secdef\@section\@ssection}
 \def\@section[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -211,19 +301,18 @@
   \@makessectionhead{#1}
 }
 \def\@makesectionhead#1{%
-  \vspace{9pt}
-  \Needspace*{5\baselineskip}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \thesection \hfill \parbox[t]{134.8mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection] \end{tabularx}}   \vspace{12pt}
+\nopagebreak
 }
 \def\@makessectionhead#1{%
-  \vspace{9pt}
-  \Needspace*{5\baselineskip}
-   {\fontsize{\fontsizesection}{\fontsizesection * \real{1.2}} \selectfont \bfseries \noindent \hfill \parbox[t]{134.8mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \uppercase{\dotuline{#1}}
+
+   }\vspace{12pt}\nopagebreak
 }
 
-% define style for subsections
+% define style for subsections (heading 3)
 \renewcommand{\subsection}{\secdef\@subsection\@ssubsection}
 \def\@subsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
@@ -239,25 +328,20 @@
   \@makessubsectionhead{#1}
 }
 \def\@makesubsectionhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \thesubsection \hfill \parbox[t]{132.3mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubsection & #1 \\ \rule{15mm}{0pt} & \\\\[-\fontsizesubsection] \end{tabularx}}\nopagebreak
 }
 \def\@makessubsectionhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{132.3mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont \bfseries \noindent \raggedright #1 }\nopagebreak
 }
 
-% define style for subsubsections
+
+% define style for subsubsections (heading 4)
 \renewcommand{\subsubsection}{\secdef\@subsubsection\@ssubsubsection}
 \def\@subsubsection[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{subsubsection}%
-    \addcontentsline{toc}{subsubsection}%
-      {\protect\numberline{\thesubsubsection}#1}%
-  \else
-    \addcontentsline{toc}{subsubsection}#1%
   \fi
   \@makesubsubsectionhead{#2}%
 }
@@ -265,25 +349,20 @@
   \@makessubsubsectionhead{#1}
 }
 \def\@makesubsubsectionhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \thesubsubsection \hfill \parbox[t]{129.8mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubsubsection & \uline{#1} \\ \rule{15mm}{0pt} & \\[-\fontsizesubsubsection] \end{tabularx}} \nopagebreak
 }
 \def\@makessubsubsectionhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizesubsection}{\fontsizesubsection * \real{1.2}} \selectfont \itshape \noindent \hfill \parbox[t]{129.8mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont \bfseries \noindent \raggedright \uline{#1}} \nopagebreak
 }
 
-% define style for paragraphs
+
+% define style for paragraph (heading 5)
 \renewcommand{\paragraph}{\secdef\@paragraph\@sparagraph}
 \def\@paragraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{paragraph}%
-    \addcontentsline{toc}{paragraph}%
-      {\protect\numberline{\theparagraph}#1}%
-  \else
-    \addcontentsline{toc}{paragraph}#1%
   \fi
   \@makeparagraphhead{#2}%
 }
@@ -291,25 +370,20 @@
   \@makesparagraphhead{#1}
 }
 \def\@makeparagraphhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \theparagraph \hfill \parbox[t]{127.2mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\theparagraph & #1 \\ \rule{17.8mm}{0pt} & \\[-\fontsizeparagraph] \end{tabularx}} \nopagebreak
+  \vspace{9pt}
 }
 \def\@makesparagraphhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{127.2mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
+   \vspace{9pt}
 }
 
-% define style for subparagraphs
+% define style for subparagraph (heading 6)
 \renewcommand{\subparagraph}{\secdef\@subparagraph\@ssubparagraph}
 \def\@subparagraph[#1]#2{
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{subparagraph}%
-    \addcontentsline{toc}{subparagraph}%
-      {\protect\numberline{\thesubparagraph}#1}%
-  \else
-    \addcontentsline{toc}{subparagraph}#1%
   \fi
   \@makesubparagraphhead{#2}%
 }
@@ -317,73 +391,105 @@
   \@makessubparagraphhead{#1}
 }
 \def\@makesubparagraphhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \thesubparagraph \hfill \parbox[t]{124.7mm}{\raggedright #1}\nopagebreak}
-  \vspace{6pt}
+   {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubparagraph & #1 \\ \rule{20.3mm}{0pt} & \\[-\fontsizesubparagraph] \end{tabularx}} \nopagebreak
+  \vspace{9pt}
 }
 \def\@makessubparagraphhead#1{%
-  \vspace{6pt}
-   {\fontsize{\fontsizeparagraph}{\fontsizeparagraph * \real{1.2}} \selectfont \noindent \hfill \parbox[t]{124.7mm}{\raggedright #1} \nopagebreak}
-  \vspace{6pt}
+  \vspace{10pt}
+   {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
+   \vspace{9pt}
 }
 
 % define headers and footers
+\RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
-\fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-\fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-\fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+\fancyfoot[LO, RE]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont www.inbo.be}}
+\fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont \@reportnumber}}
+\fancyfoot[LE, RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont pagina \textbf{\thepage} van \textbf{\pageref*{LastPage}}}}
+\renewcommand{\footrule}{\vbox to 0pt{\hbox
+to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont\leaders\hbox{/}\hfill}\vss}}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
 
 \fancypagestyle{plain}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyfoot[LO,RE]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont www.inbo.be}}
-  \fancyfoot[CE, CO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \@reportnumber}}
-  \fancyfoot[LE,RO]{{\fontsize{\fontsizefooter}{\fontsizefooter * \real{1.2}}\selectfont \thepage}}
+  \fancyfoot[LO, RE]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont www.inbo.be}}
+  \fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont \@reportnumber}}
+  \fancyfoot[LE, RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont pagina \textbf{\thepage} van \textbf{\pageref*{LastPage}}}}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
 }
 
 \fancypagestyle{cover}{%
   \fancyhead{}
   \fancyfoot{}
-  \fancyfoot[L]{{\hspace{4mm}\includegraphics[height = 10mm, keepaspectratio]{logo_nl_kleur}}}
+  \fancyfoot[L]{\includegraphics[height = 10mm, keepaspectratio]{vlaanderen_nl_naakt}}
+  \fancyfoot[R]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont www.inbo.be}}
   \renewcommand{\headrulewidth}{0pt}
-  \renewcommand{\footrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\footrule}{\vbox to 0pt{\hbox
+  to\headwidth{\hbox{}\hfill}\vss}}
   \setlength{\footskip}{30pt}
 }
 
-\RequirePackage{emptypage}
 
+\newcommand{\choosefont}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{TRUE}{
+    \fontspec{FlandersArtSans-Regular}[
+      Ligatures = TeX,
+      ItalicFont = FlandersArtSans-Light,
+      ItalicFeatures = {FakeSlant = 0.15},
+      BoldFont = FlandersArtSans-Medium,
+      BoldItalicFont = FlandersArtSans-Medium,
+      BoldItalicFeatures = {FakeSlant = 0.15}
+    ]
+  }{
+  }
+}
+
+\RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
   \thispagestyle{cover}{%
-    \hfill \includegraphics[height = 30mm, keepaspectratio]{vlaanderen_nl_vol}
+    \includegraphics[height = 17mm, keepaspectratio]{logo_nl_verticaal_kleur}
 
     \vfill
 
-    \raggedright \fontsize{\fontsizetitle}{\fontsizetitle * \real{1.2}}\selectfont \textbf{\@title}
-    \vspace{6pt}
+    \color{main.colour}
+    \hspace{10mm}\parbox[t]{140mm}{
+      \addfontfeature{LetterSpace=0.014}
+      \choosefont{\@flandersfont}
+      \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \bfseries \expandafter\MakeUppercase\expandafter{\uline{\@title}}
+      \addfontfeature{LetterSpace=0.0}
+    }
 
-    \fontsize{\fontsizesubtitle}{\fontsizesubtitle * \real{1.2}}\selectfont\@subtitle
-    \vspace{36pt}
+      \vspace{26pt}
 
-    \vspace{12pt}
-    \fontsize{\fontsizeauthor}{\fontsizeauthor * \real{1.2}}\selectfont \textbf{\@author}
-    \vspace{144pt}
+    \hspace{10mm}\parbox[t]{140mm}{
+      \fontsize{\fontsizesubtitle}{\fontsizesubtitleinter}\selectfont \raggedright \bfseries \@subtitle
+    }
 
-    \fontsize{\fontsizeordernr}{\fontsizeordernr * \real{1.2}}\selectfont\@reportnumber
+      \vspace{30pt}
 
-    \@ordernumber
+    \hspace{10mm}\parbox[t]{140mm}{
+      \fontsize{\fontsizeauthor}{\fontsizeauthorinter}\selectfont \raggedright \@author
+    }
+      \vspace{144pt}
 
-    \vfill
-    }%
-  \cleardoublepage
+    \hspace{10mm}\parbox[t]{140mm}{
+      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@reportnumber \\ \@ordernumber
   }
+
+  \vfill
+
+  \clearpage
+  }
+}
 
 \RequirePackage{etoolbox}
 \preto{\chapter}{\def\leveltitle{\chaptertitle}}
@@ -398,7 +504,7 @@
 \RequirePackage{placeins}
 
 % change spacing between paragraphs
-\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\baselinestretch}{1.15}
 \RequirePackage{parskip}
 \setlength{\parskip}{9pt plus4pt minus4pt}
 
@@ -413,20 +519,22 @@
 \renewcommand{\cftfigpresnum}{\figurename\ }
 \renewcommand{\cfttabpresnum}{\tablename\ }
 
-\renewcommand{\cfttoctitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftaftertoctitle}{\nopagebreak}
-\renewcommand{\cftloftitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterloftitle}{\nopagebreak}
-\renewcommand{\cftlottitlefont}{\fontsize{17.1}{20.5} \selectfont \bfseries \raggedright}
-\renewcommand{\cftafterlottitle}{\nopagebreak}
+% \setlength{\cftbeforetoctitleskip}{-14pt}
+% \setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
+% \setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}
+\renewcommand{\cfttoctitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftloftitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftlottitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftaftertoctitle}{\vspace{14pt}\nopagebreak}
+\renewcommand{\cftafterloftitle}{\vspace{14pt}\nopagebreak}
+\renewcommand{\cftafterlottitle}{\vspace{14pt}\nopagebreak}
 
 % changing style in table of contents
-\renewcommand*\l@chapter{\vspace{6pt}\bfseries\@dottedtocline{1}{0mm}{20mm}}
-\renewcommand*\l@section{\normalfont\@dottedtocline{2}{0mm}{20mm}}
-\renewcommand*\l@subsection{\normalfont\@dottedtocline{3}{0mm}{20mm}}
-\renewcommand*\l@subsubsection{\normalfont\@dottedtocline{4}{0mm}{20mm}}
-\renewcommand*\l@paragraph{\normalfont\@dottedtocline{5}{0mm}{20mm}}
-\renewcommand*\l@subparagraph{\normalfont\@dottedtocline{6}{0mm}{20mm}}
+\renewcommand*\l@part{\vspace{6pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\bfseries\@dottedtocline{0}{0mm}{0mm}}
+\renewcommand*\l@chapter{\vspace{3pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\normalfont\@dottedtocline{1}{0mm}{15mm}}
+\renewcommand*\l@section{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{2}{0mm}{15mm}}
+\renewcommand*\l@subsection{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{3}{0mm}{15mm}}
+
 
 % Some stuff to force sensible page breaks (no widows etc) and to ensure
 % that each page which consists solely of diagrams is at least 75% full.
@@ -446,9 +554,8 @@
 \interlinepenalty=25                % additional penalty for page break between lines.
 \raggedbottom
 
-\setlength{\skip\footins}{1cm}
-\RequirePackage[bottom]{footmisc}
+% alter default float placement
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
 
-\setlength{\cftbeforetoctitleskip}{-14pt}
-\setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
-\setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}
+\setlength{\skip\footins}{1cm}

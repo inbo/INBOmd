@@ -47,5 +47,6 @@ Available extra parameters:
   \item lof: display a list of figures. Defaults to TRUE
   \item lot: display a list of tables. Defaults to TRUE
   \item hyphenation: the correct hyphenation for certain words
+  \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 }
 }

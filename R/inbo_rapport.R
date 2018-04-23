@@ -17,6 +17,7 @@
 #'   \item lof: display a list of figures. Defaults to TRUE
 #'   \item lot: display a list of tables. Defaults to TRUE
 #'   \item hyphenation: the correct hyphenation for certain words
+#'   \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
@@ -80,6 +81,9 @@ inbo_rapport <- function(
   if (!"lot" %in% names(extra)) {
     extra$lot <- TRUE
   }
+  if (!"flandersfont" %in% names(extra)) {
+    extra$flandersfont <- FALSE
+  }
   if (extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -89,7 +93,10 @@ inbo_rapport <- function(
   if (extra$lof || extra$lot) {
     args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
-  extra <- extra[!names(extra) %in% c("lof", "lot")]
+  if (extra$flandersfont) {
+    args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
+  }
+  extra <- extra[!names(extra) %in% c("lof", "lot", "flandersfont")]
   if (length(extra) > 0) {
     args <- c(
       args,

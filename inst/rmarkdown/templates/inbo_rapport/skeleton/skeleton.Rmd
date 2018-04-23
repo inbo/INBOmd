@@ -1,18 +1,28 @@
 ---
 title: "Titel van het rapport"
-author: "Voornaam1 Achternaam1, Voornaam2 Achternaam2 & Voornaam3 Achternaam3"
+author: 
+  - 
+    name: "Voornaam1 Achternaam1"
+    email: "voornaam1.achternaam1@inbo.be"
+  - 
+    name: "Voornaam2 Achternaam2"
+    email: "voornaam2.achternaam2@inbo.be"
+subtitle: "Hier komt de optionele ondertitel"
+reportnr: "Hier komt het rapportnummer"
+ordernr: "Het optionele nummer van de opdrachtgever"
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
-    subtitle: "Hier komt de optionele ondertitel"
-    reportnr: "Hier komt het rapportnummer"
-    ordernr: "Het optionele nummer van de opdrachtgever"
-  bookdown::epub_book:
-    stylesheet: "inbo_rapport.css"
   bookdown::gitbook:
     split_by: "chapter+number"
     css: "inbo_rapport.css"
+    template: "gitbook.html"
+  bookdown::epub_book:
+    stylesheet: 
+      - "inbo_rapport.css"
+      - "epub.css"
+    template: "inbo.epub3"
 ---
 
 
