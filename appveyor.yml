@@ -16,7 +16,7 @@ cache:
 # Adapt as necessary starting from here
 
 build_script:
-  - Rscript -e "install.packages(c('colorspace', 'scales', 'Rcpp'), repos = 'https://cloud.r-project.org/')"
+  - Rscript -e "install.packages(c('colorspace', 'scales', 'Rcpp', 'plyr'), repos = 'https://cloud.r-project.org/')"
   - travis-tool.sh install_deps
 
 test_script:
