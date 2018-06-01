@@ -172,43 +172,14 @@ $endfor$
             </section>
 
           </div>
-        </div>
-      </div>
-<!--bookdown:link_prev-->
-<!--bookdown:link_next-->
-    </div>
-  </div>
-<!--bookdown:config-->
-
-$if(math)$
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "$if(mathjax)$$mathjax$$endif$";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-$endif$
-
-<style>
-@import url("https://www.inbo.be/sites/all/modules/contrib/feedback_simple/feedback_simple.css?p6yqmd");
-@import url("https://www.inbo.be/sites/all/themes/bootstrap_inbo/bootstrap/css/bootstrap.min.css?p6yqmd");
-@import url("https://www.inbo.be/sites/all/themes/bootstrap_inbo/css/style.css?p6yqmd");
-.footerbg {background: #3c3c3c; border: 0px;}
-</style>
 <div class="footer" id="footer">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
         <div class="row clearfix">
           <div class="col-sm-12 doormat-logo">
-            <a href="/" title="Home"><img src="https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/footerlogo.png"
+            <a href="https://www.inbo.be/" title="Home">
+              <img src="https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/footerlogo.png"
                                           id="logo-footer" alt="logo" width="300" height="95"></a>
           </div>
           <div class="col-sm-12 doormat-footer">
@@ -344,6 +315,29 @@ $endif$
         width='35' />
   </a>
 </div>
+        </div>
+      </div>
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+    </div>
+  </div>
+<!--bookdown:config-->
+
+$if(math)$
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "$if(mathjax)$$mathjax$$endif$";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+$endif$
 
 </body>
 

@@ -10,6 +10,7 @@ author:
 subtitle: "Hier komt de optionele ondertitel"
 reportnr: "Hier komt het rapportnummer"
 ordernr: "Het optionele nummer van de opdrachtgever"
+link-citations: TRUE
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
@@ -21,7 +22,6 @@ output:
   bookdown::epub_book:
     stylesheet: 
       - "inbo_rapport.css"
-      - "epub.css"
     template: "inbo.epub3"
 ---
 
