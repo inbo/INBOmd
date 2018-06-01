@@ -269,9 +269,9 @@
    \end{tabularx}
 
    }
-
-   \nopagebreak
+  \nopagebreak
   \vspace{24pt}
+  \nopagebreak
   }
 \def\@makeschapterhead#1{%
    {%
@@ -279,6 +279,7 @@
     \fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries \raggedright #1 %
 
     }
+    \nopagebreak
     \vspace{14pt}
     \nopagebreak
   }
@@ -302,14 +303,14 @@
 }
 \def\@makesectionhead#1{%
   \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection] \end{tabularx}}   \vspace{12pt}
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection] \end{tabularx}}   \nopagebreak
+\vspace{12pt}
 \nopagebreak
 }
 \def\@makessectionhead#1{%
   \vspace{10pt}
    {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \uppercase{\dotuline{#1}}
-
-   }\vspace{12pt}\nopagebreak
+   }\nopagebreak\vspace{12pt}\nopagebreak
 }
 
 % define style for subsections (heading 3)
@@ -371,12 +372,12 @@
 }
 \def\@makeparagraphhead#1{%
    {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\theparagraph & #1 \\ \rule{17.8mm}{0pt} & \\[-\fontsizeparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}
+  \vspace{9pt}\nopagebreak
 }
 \def\@makesparagraphhead#1{%
   \vspace{10pt}
    {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}
+   \vspace{9pt}\nopagebreak
 }
 
 % define style for subparagraph (heading 6)
@@ -392,12 +393,12 @@
 }
 \def\@makesubparagraphhead#1{%
    {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubparagraph & #1 \\ \rule{20.3mm}{0pt} & \\[-\fontsizesubparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}
+  \vspace{9pt}\nopagebreak
 }
 \def\@makessubparagraphhead#1{%
   \vspace{10pt}
    {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}
+   \vspace{9pt}\nopagebreak
 }
 
 % define headers and footers
