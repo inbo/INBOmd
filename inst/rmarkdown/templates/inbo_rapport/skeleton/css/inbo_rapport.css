@@ -483,7 +483,7 @@ blockquote small{
     color:#999
 }
 blockquote small:before{
-    content:'\2014 \00A0'
+    content:"\2014 \00A0"
 }
 blockquote.pull-right{
     padding-right:15px;
@@ -495,10 +495,10 @@ blockquote.pull-right p,blockquote.pull-right small{
     text-align:right
 }
 blockquote.pull-right small:before{
-    content:''
+    content:""
 }
 blockquote.pull-right small:after{
-    content:'\00A0 \2014'
+    content:"\00A0 \2014"
 }
 q:before,q:after,blockquote:before,blockquote:after{
     content:""
@@ -1676,15 +1676,15 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
     transition:height .35s ease
 }
 @font-face{
-    font-family:'Glyphicons Halflings';
-    src:url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/glyphicons-halflings-regular.eot');
-    src:url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/glyphicons-halflings-regular.woff') format('woff'),url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/glyphicons-halflings-regular.ttf') format('truetype'),url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg')
+    font-family:"Glyphicons Halflings";
+    src:url("https://www.inbo.be/sites/all/themes/bootstrap_inbo/bootstrap/fonts/glyphicons-halflings-regular.eot");
+    src:url("fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),url("fonts/glyphicons-halflings-regular.woff") format("woff"),url("bootstrap/fonts/glyphicons-halflings-regular.ttf") format("truetype"),url("fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg")
 }
 .glyphicon{
     position:relative;
     top:1px;
     display:inline-block;
-    font-family:'Glyphicons Halflings';
+    font-family:"Glyphicons Halflings";
     -webkit-font-smoothing:antialiased;
     font-style:normal;
     font-weight:normal;
@@ -4501,7 +4501,7 @@ body.modal-open,.modal-open .navbar-fixed-top,.modal-open .navbar-fixed-bottom{
     background-image:-moz-linear-gradient(left,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.0001) 100%);
     background-image:linear-gradient(to right,rgba(0,0,0,0.5) 0,rgba(0,0,0,0.0001) 100%);
     background-repeat:repeat-x;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000',endColorstr='#00000000',GradientType=1)
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#80000000",endColorstr="#00000000",GradientType=1)
 }
 .carousel-control.right{
     right:0;
@@ -4511,7 +4511,7 @@ body.modal-open,.modal-open .navbar-fixed-top,.modal-open .navbar-fixed-bottom{
     background-image:-moz-linear-gradient(left,rgba(0,0,0,0.0001) 0,rgba(0,0,0,0.5) 100%);
     background-image:linear-gradient(to right,rgba(0,0,0,0.0001) 0,rgba(0,0,0,0.5) 100%);
     background-repeat:repeat-x;
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000',endColorstr='#80000000',GradientType=1)
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#00000000",endColorstr="#80000000",GradientType=1)
 }
 .carousel-control:hover,.carousel-control:focus{
     color:#fff;
@@ -4534,10 +4534,10 @@ body.modal-open,.modal-open .navbar-fixed-top,.modal-open .navbar-fixed-bottom{
     font-family:serif
 }
 .carousel-control .icon-prev:before{
-    content:'\2039'
+    content:"\2039"
 }
 .carousel-control .icon-next:before{
-    content:'\203a'
+    content:"\203a"
 }
 .carousel-indicators{
     position:absolute;
@@ -5687,7 +5687,7 @@ body {
 body {
   font-family: FlandersArtSans-Regular, Verdana, Arial, sans-serif;
   background-color: #efefef;
-  background-image: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/background-pattern.png');
+  background-image: url("img/background-pattern.png");
   color: #5e5e5e;
   font-size: 14px;
   line-height: 20px;
@@ -5695,7 +5695,7 @@ body {
 }
 /* Typography */
 h1 {
-  font-family: FlandersArtSans-Medium, 'Trebuchet MS', FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+  font-family: FlandersArtSans-Medium, "Trebuchet MS", FlandersArtSans-Regular, Verdana, Arial, sans-serif;
   font-size: 26px;
   line-height: 28px;
   font-weight: 400;
@@ -5708,7 +5708,7 @@ h1 {
   }
 }
 h2 {
-  font-family: FlandersArtSans-Medium, 'Trebuchet MS', FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+  font-family: FlandersArtSans-Medium, "Trebuchet MS", FlandersArtSans-Regular, Verdana, Arial, sans-serif;
   font-size: 20px;
   line-height: 22px;
   color: #333333;
@@ -5770,7 +5770,7 @@ table {
 }
 @media all and (min-width: 768px) {
   table td {
-    /* min-width for smaller screensizes so content isn't squished together */
+    /* min-width for smaller screensizes so content isn"t squished together */
     min-width: 125px;
   }
 }
@@ -6419,7 +6419,7 @@ a.lexicon-term {
   border-color: #C04384;
 }
 body.page-search-node h3 a {
-  font-family: FlandersArtSans-Bold, 'Trebuchet MS', FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+  font-family: FlandersArtSans-Bold, "Trebuchet MS", FlandersArtSans-Regular, Verdana, Arial, sans-serif;
   color: #5e5e5e !important;
 }
 body.page-search-node p {
@@ -6458,7 +6458,7 @@ body.page-search .node-research-project footer {
 /* Press release */
 .node-type-pressrelease .field-name-field-plaats {
   font-size: 15px;
-  font-family: FlandersArtSans-Bold, 'Trebuchet MS', FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+  font-family: FlandersArtSans-Bold, "Trebuchet MS", FlandersArtSans-Regular, Verdana, Arial, sans-serif;
 }
 .node-type-pressrelease .field-name-field-afbeelding {
   float: right;
@@ -6709,11 +6709,11 @@ div#func_nav ul.menu li a {
 }
 .sidebar_menu li a {
   padding: 15px;
-  background: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/arrow-gray.png') no-repeat 95% center;
+  background: url("img/arrow-gray.png") no-repeat 95% center;
   display: block;
 }
 .sidebar_menu li a:hover {
-  background: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/arrow-gray.png') no-repeat 95% center #f9f9f9;
+  background: url("img/arrow-gray.png") no-repeat 95% center #f9f9f9;
 }
 .sidebar_menu.margin_bottom {
   margin-bottom: 30px;
@@ -6728,29 +6728,29 @@ div#func_nav ul.menu li a {
  */
 @font-face {
   font-family: FlandersArtSans-Light;
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.eot');
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.eot?#iefix') format('embedded-opentype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.woff') format('woff'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.ttf') format('truetype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.svg#FlandersArtSans-Light') format('svg');
+  src: url("fonts/FlandersArtSans-Light.eot?#iefix");
+  src: url("fonts/FlandersArtSans-Light.eot") format("embedded-opentype"), url("fonts/FlandersArtSans-Light.woff") format("woff"), url("fonts/FlandersArtSans-Light.ttf") format("truetype"), url("fonts/FlandersArtSans-Light.svg#FlandersArtSans-Light") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Regular;
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.eot');
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.eot?#iefix') format('embedded-opentype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.woff') format('woff'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.ttf') format('truetype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.svg#FlandersArtSans-Regular') format('svg');
+  src: url("fonts/FlandersArtSans-Regular.eot");
+  src: url("fonts/FlandersArtSans-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Regular.woff") format("woff"), url("fonts/FlandersArtSans-Regular.ttf") format("truetype"), url("fonts/FlandersArtSans-Regular.svg#FlandersArtSans-Regular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Medium;
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.eot');
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.eot?#iefix') format('embedded-opentype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.woff') format('woff'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.ttf') format('truetype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.svg#FlandersArtSans-Medium') format('svg');
+  src: url("fonts/FlandersArtSans-Medium.eot");
+  src: url("fonts/FlandersArtSans-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Medium.woff") format("woff"), url("fonts/FlandersArtSans-Medium.ttf") format("truetype"), url("fonts/FlandersArtSans-Medium.svg#FlandersArtSans-Medium") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Bold;
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.eot');
-  src: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.eot?#iefix') format('embedded-opentype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.woff') format('woff'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.ttf') format('truetype'), url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.svg#FlandersArtSans-Bold') format('svg');
+  src: url("fonts/FlandersArtSans-Bold.eot");
+  src: url("fonts/FlandersArtSans-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Bold.woff") format("woff"), url("fonts/FlandersArtSans-Bold.ttf") format("truetype"), url("fonts/FlandersArtSans-Bold.svg#FlandersArtSans-Bold") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -6982,7 +6982,7 @@ div#func_nav ul.menu li a {
   margin: 0;
 }
 .default-overview-list.publications-per-type .views-field-field-human-title a {
-  font-family: FlandersArtSans-Bold, 'Trebuchet MS', FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+  font-family: FlandersArtSans-Bold, "Trebuchet MS", FlandersArtSans-Regular, Verdana, Arial, sans-serif;
 }
 .default-overview-list.publications-per-type .views-field-field-autheurs .field-content {
   font-size: 11px;
@@ -7051,7 +7051,7 @@ div#func_nav ul.menu li a {
 .footer .doormat-about li a,
 .footer .doormat-intouch li a {
   padding: 5px 0 5px 15px;
-  background: url('https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/arrow-light.png') no-repeat left center;
+  background: url("img/arrow-light.png") no-repeat left center;
 }
 .footer .doormat-nature li a:hover,
 .footer .doormat-about li a:hover,
@@ -7156,7 +7156,6 @@ ul.tabs--primary li a:hover {
     display: none;
   }
 }
-.footerbg {background: #3c3c3c; border: 0px;}
 /* end style www.inbo.be*/
 
 /* INBOmd specific */

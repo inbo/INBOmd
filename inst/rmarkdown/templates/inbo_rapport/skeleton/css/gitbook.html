@@ -78,6 +78,8 @@ $highlighting-css$
 </style>
 $endif$
 
+<link rel="stylesheet" href="css/inbo_rapport.css" type="text/css"/>
+
 $for(css)$
 <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
 $endfor$
@@ -173,13 +175,14 @@ $endfor$
 
           </div>
 <div class="footer" id="footer">
+  <style type="text/css">.footerbg {background: #3c3c3c; border: 0px;}</style>
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
         <div class="row clearfix">
           <div class="col-sm-12 doormat-logo">
             <a href="https://www.inbo.be/" title="Home">
-              <img src="https://www.inbo.be/sites/all/themes/bootstrap_inbo/img/inbo/footerlogo.png"
+              <img src="css/img/footerlogo.png"
                                           id="logo-footer" alt="logo" width="300" height="95"></a>
           </div>
           <div class="col-sm-12 doormat-footer">
@@ -217,7 +220,7 @@ $endfor$
 
         <h2 class="block-title">Blijf op de hoogte:</h2>
 
-  <ul class="menu nav"><li class="first leaf"><a href="/nl/nieuwsbrief" title="">Nieuwsbrieven</a></li>
+  <ul class="menu nav"><li class="first leaf"><a href="https:www.inbo.be/nl/nieuwsbrief" title="">Nieuwsbrieven</a></li>
 <li class="leaf"><a href="https://www.linkedin.com/company/728304" title="Bekijk de INBO pagina op LinkedIn. U verlaat de site.">Linkedin</a></li>
 <li class="leaf"><a href="https://twitter.com/inbovlaanderen" title="Bekijk de INBO twitterberichten. U verlaat de site.">Twitter</a></li>
 <li class="last leaf"><a href="https://vimeo.com/inbo" title="Bekijk video&#039;s van het INBO op Vimeo. U verlaat de site.">Vimeo</a></li>
@@ -267,11 +270,6 @@ $endfor$
   </div>
   <div class="col-xs-12 container">
     <div class="disclaimer">
-      <!-- Disclaimer -->
-<!--      <div class="vlaanderen">-->
-<!--        <img src="--><!--/img/inbo/footer-logo.png" id="logo" alt="logo" width="150"-->
-<!--             height="63">-->
-<!--      </div>-->
         <div class="region region-disclaimer">
     <div id="block-block-2" class="block block-block clearfix footerbg">
 
@@ -294,25 +292,17 @@ $endfor$
     </div>
   </div>
 </div>
-<div class="footer-vlaanderen">
-    <div class="region region-global-footer-vlaanderen">
-    <div id="block-block-26" class="block block-block clearfix">
-
-
-   <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/11230d75e9ad47438400bf6adf48ded6?mtime=1415009863"></script>
-</div>
-  </div>
-</div><div id='feedback_simple'>
+<div id="feedback_simple">
   <a
-    href='https://www.inbo.be/nl/feedback'
-    target='_self'
-    class='feedback_simple-right feedback_simple'
-    style='top: 75%; height: 100px; width: 35px;'>
+    href="https://www.inbo.be/nl/feedback"
+    target="_self"
+    class="feedback_simple-right feedback_simple"
+    style="top: 75%; height: 100px; width: 35px;">
       <img
-        alt='Feedback'
-        src='https://www.inbo.be/sites/all/modules/contrib/feedback_simple/feedback_simple.gif'
-        height='100'
-        width='35' />
+        alt="Feedback"
+        src="css/img/feedback_simple.gif"
+        height="100"
+        width="35" />
   </a>
 </div>
         </div>
@@ -332,7 +322,7 @@ $if(math)$
     var src = "$if(mathjax)$$mathjax$$endif$";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+      src = src.replace(/^https?:/, "");
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
