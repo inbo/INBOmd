@@ -3,7 +3,7 @@
 #' @param reportnr The report number
 #' @param ordernr The order number
 #' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
-#' @param lang The language of the document. Defaults to "dutch"
+#' @param lang The language of the document. Defaults to "english, french, dutch". The last language is the main language.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
@@ -28,7 +28,7 @@ inbo_rapport <- function(
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch",
+  lang = "english, french, dutch",
   keep_tex = FALSE,
   fig_crop = TRUE,
   citation_package = c("natbib", "none"),

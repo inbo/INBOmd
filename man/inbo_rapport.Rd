@@ -6,9 +6,9 @@
 \usage{
 inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
   "subsection", "subsubsection"), codesize = c("footnotesize", "scriptsize",
-  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, citation_package = c("natbib", "none"),
-  includes = NULL, pandoc_args = NULL, ...)
+  "tiny", "small", "normalsize"), lang = "english, french, dutch",
+  keep_tex = FALSE, fig_crop = TRUE, citation_package = c("natbib",
+  "none"), includes = NULL, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -21,7 +21,7 @@ inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
-\item{lang}{The language of the document. Defaults to "dutch"}
+\item{lang}{The language of the document. Defaults to "english, french, dutch". The last language is the main language.}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
