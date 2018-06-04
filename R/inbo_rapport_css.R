@@ -3,7 +3,7 @@
 #' @export
 inbo_rapport_css <- function(format = "html") {
   source_dir <- system.file(
-    "rmarkdown", "templates", "inbo_rapport", "skeleton", "css",
+    "css",
     package = "INBOmd"
   )
   file.copy(source_dir, getwd(), recursive = TRUE, overwrite = TRUE)

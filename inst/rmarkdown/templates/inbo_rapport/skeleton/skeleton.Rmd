@@ -17,11 +17,10 @@ output:
     base_format: INBOmd::inbo_rapport
   bookdown::gitbook:
     split_by: "chapter+number"
-    css: "css/inbo_rapport.css"
-    template: "css/gitbook.html"
+    template: !expr INBOmd::inbo_rapport_css("html")
   bookdown::epub_book:
     stylesheet: "css/inbo_rapport.css"
-    template: "css/inbo.epub3"
+    template: !expr INBOmd::inbo_rapport_css("epub")
 ---
 
 
