@@ -101,9 +101,6 @@ sub{
 img{
     border:0
 }
-svg:not(:root){
-    overflow:hidden
-}
 figure{
     margin:0
 }
@@ -1677,8 +1674,7 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
 }
 @font-face{
     font-family:"Glyphicons Halflings";
-    src:url("https://www.inbo.be/sites/all/themes/bootstrap_inbo/bootstrap/fonts/glyphicons-halflings-regular.eot");
-    src:url("fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"),url("fonts/glyphicons-halflings-regular.woff") format("woff"),url("bootstrap/fonts/glyphicons-halflings-regular.ttf") format("truetype"),url("fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular") format("svg")
+    src:url("fonts/glyphicons-halflings-regular.ttf")
 }
 .glyphicon{
     position:relative;
@@ -6728,29 +6724,25 @@ div#func_nav ul.menu li a {
  */
 @font-face {
   font-family: FlandersArtSans-Light;
-  src: url("fonts/FlandersArtSans-Light.eot?#iefix");
-  src: url("fonts/FlandersArtSans-Light.eot") format("embedded-opentype"), url("fonts/FlandersArtSans-Light.woff") format("woff"), url("fonts/FlandersArtSans-Light.ttf") format("truetype"), url("fonts/FlandersArtSans-Light.svg#FlandersArtSans-Light") format("svg");
+  src: url("fonts/FlandersArtSans-Light.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Regular;
-  src: url("fonts/FlandersArtSans-Regular.eot");
-  src: url("fonts/FlandersArtSans-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Regular.woff") format("woff"), url("fonts/FlandersArtSans-Regular.ttf") format("truetype"), url("fonts/FlandersArtSans-Regular.svg#FlandersArtSans-Regular") format("svg");
+  src: url("fonts/FlandersArtSans-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Medium;
-  src: url("fonts/FlandersArtSans-Medium.eot");
-  src: url("fonts/FlandersArtSans-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Medium.woff") format("woff"), url("fonts/FlandersArtSans-Medium.ttf") format("truetype"), url("fonts/FlandersArtSans-Medium.svg#FlandersArtSans-Medium") format("svg");
+  src: url("fonts/FlandersArtSans-Medium.ttf");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: FlandersArtSans-Bold;
-  src: url("fonts/FlandersArtSans-Bold.eot");
-  src: url("fonts/FlandersArtSans-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/FlandersArtSans-Bold.woff") format("woff"), url("fonts/FlandersArtSans-Bold.ttf") format("truetype"), url("fonts/FlandersArtSans-Bold.svg#FlandersArtSans-Bold") format("svg");
+  src: url("fonts/FlandersArtSans-Bold.ttf");
   font-weight: normal;
   font-style: normal;
 }
