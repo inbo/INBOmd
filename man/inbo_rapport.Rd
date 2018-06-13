@@ -44,7 +44,9 @@ Create a report with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
-\item lof: display a list of figures. Defaults to `TRUE``
-\item lot: display a list of tables. Defaults to \code{TRUE`` hyphenation: the correct hyphenation for certain words flandersfont: Use the Flanders Art Sans font on title page? Defaults to}FALSE`. Note that this requires the font to be present on the system.
+\item lof: display a list of figures. Defaults to TRUE
+\item lot: display a list of tables. Defaults to TRUE
+\item hyphenation: the correct hyphenation for certain words
+\item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 }
 }

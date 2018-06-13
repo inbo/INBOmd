@@ -13,10 +13,13 @@
 #' Available extra parameters:
 #'    - hyphenation: the correct hyphenation for certain words
 #'    - flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
-#'    - ORCID: a vector of ORCID ID's. These will be displayed at the bottom of the poster. See https://orcid.org
+#'    - ORCID: a list of authors. For each author there must a `name` and an `ID`. The `ID` is the author's ORCID ID , ee https://orcid.org. This information will be displayed with QR code at the bottom of the poster
+#'    - DOI: a list of documents. For each documentr there must a `name` and an `ID`. The `ID` is the documents's DOI, see https://doi.org. This information will be displayed with QR code at the bottom of the poster
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
+#' @importFrom grDevices pdf dev.off
+#' @importFrom graphics par image
 inbo_poster <- function(
   subtitle,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
@@ -69,35 +72,64 @@ inbo_poster <- function(
     args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
   }
   extra <- extra[!names(extra) %in% c("flandersfont")]
-  if ("ORCID" %in% names(extra)) {
-    require("qrcode")
-    qr <- sapply(
-      extra$ORCID,
-      function(this_orcid) {
-        url <- paste0("https://orcid.org/", this_orcid$ID)
-        qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
-        qr_file <- sprintf("%s-qr.pdf", gsub(" ", "-", this_orcid$name))
-        pdf(qr_file, width = 1.4, height = 1.4)
-        par(mai = rep(0, 4), mar = rep(0, 4))
-        image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
-        dev.off()
-        c(
-          this_orcid$name,
-          sprintf("\\includegraphics[height=12pt]{orcid.png} \\url{%s}", url),
-          sprintf("\\includegraphics{%s}", qr_file)
-        )
-      }
-    )
+  if (any(c("ORCID", "DOI") %in% names(extra))) {
+    if (!require("qrcode", quietly = TRUE)) {
+      stop("need to install the 'qrcode' package")
+    }
+    if (!"ORCID" %in% names(extra)) {
+      orcidqr <- matrix(character(0), nrow = 3)
+    } else {
+      orcidqr <- sapply(
+        extra$ORCID,
+        function(this_orcid) {
+          url <- paste0("https://orcid.org/", this_orcid$ID)
+          qr <- qrcode::qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr_file <- sprintf("orcid-qr-%s.pdf", gsub(" ", "-", this_orcid$name))
+          pdf(qr_file, width = 1.4, height = 1.4)
+          par(mai = rep(0, 4), mar = rep(0, 4))
+          image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
+          dev.off()
+          c(
+            this_orcid$name,
+            sprintf("\\includegraphics[height=12pt]{orcid.png} %s", url),
+            sprintf("\\includegraphics{%s}", qr_file)
+          )
+        }
+      )
+    }
+    if (!"DOI" %in% names(extra)) {
+      doiqr <- matrix(character(0), nrow = 3)
+    } else {
+      doiqr <- sapply(
+        extra$DOI,
+        function(this_doi) {
+          url <- paste0("https://doi.org/", this_doi$ID)
+          qr <- qrcode::qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr_file <- sprintf("doi-qr-%s.pdf", gsub(" ", "-", this_doi$name))
+          pdf(qr_file, width = 1.4, height = 1.4)
+          par(mai = rep(0, 4), mar = rep(0, 4))
+          image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
+          dev.off()
+          c(
+            this_doi$name,
+            sprintf("%s", url),
+            sprintf("\\includegraphics{%s}", qr_file)
+          )
+        }
+      )
+    }
+    qr <- cbind(doiqr, orcidqr)
+    cols <- ncol(qr)
     qr <- apply(qr, 1, paste, collapse = " & ")
     qr <- paste(paste(qr, "\\\\"), collapse = "\n")
     qr <- sprintf(
       "\\begin{tabular}{%s}\n%s\n\\end{tabular}",
-      paste(rep("l", length(extra$ORCID)), collapse = ""),
+      paste(rep("l", cols), collapse = ""),
       qr
     )
     args <- c(args, pandoc_variable_arg("qr", qr))
   }
-  extra <- extra[!names(extra) %in% c("ORCID")]
+  extra <- extra[!names(extra) %in% c("ORCID", "DOI")]
   if (length(extra) > 0) {
     args <- c(
       args,

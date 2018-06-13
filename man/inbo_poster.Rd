@@ -41,6 +41,7 @@ Available extra parameters:
 \itemize{
 \item hyphenation: the correct hyphenation for certain words
 \item flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
-\item ORCID: a vector of ORCID ID's. These will be displayed at the bottom of the poster. See https://orcid.org
+\item ORCID: a list of authors. For each author there must a \code{name} and an \code{ID}. The \code{ID} is the author's ORCID ID , ee https://orcid.org. This information will be displayed with QR code at the bottom of the poster
+\item DOI: a list of documents. For each documentr there must a \code{name} and an \code{ID}. The \code{ID} is the documents's DOI, see https://doi.org. This information will be displayed with QR code at the bottom of the poster
 }
 }
