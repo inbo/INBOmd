@@ -39,6 +39,10 @@
 \def\email#1{\def\@email{#1}}
 \email{info@inbo.be}
 
+\def\qr#1{\def\@qr{#1}}
+\qr{}
+
+
 \RequirePackage[gen]{eurosym}
 
 
@@ -116,6 +120,7 @@
 \setbeamercolor{footline}{fg = white, bg = inbo.hoofd}
 \setbeamerfont{footline}{size* = {60pt}{72pt}, series = \mdseries}
 \setbeamerfont{email}{size* = {40pt}{48pt}, series = \mdseries}
+\setbeamerfont{qrtable}{size* = {12pt}{14.4pt}, series = \mdseries}
 
 \setbeamercolor{title}{fg=black}
 \setbeamerfont{title}{size* = {90pt}{108pt}, series = \bfseries}
@@ -259,8 +264,17 @@
     \vlaanderenlogo{\@lang}
   \end{textblock}
 
-  \begin{textblock}{300}(0, 973)
+  \begin{textblock}{200}(0, 973)
     \inbologo{\@lang}
+  \end{textblock}
+
+  \begin{textblock}{330}(200, 973)
+    \begin{minipage}[b][30mm][c]{330mm}
+    \usebeamerfont{qrtable}\usebeamercolor[fg]{footline}
+      \begin{center}
+        \@qr
+      \end{center}
+    \end{minipage}
   \end{textblock}
 
   \begin{textblock}{250}(530, 980)

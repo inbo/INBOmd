@@ -15,6 +15,7 @@ Suggests:
     INBOtheme (>= 0.5.4),
     knitr,
     pander,
+    qrcode,
     rstudioapi,
     webshot
 Imports:

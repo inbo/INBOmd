@@ -11,10 +11,9 @@
 #'
 #' @details
 #' Available extra parameters:
-#' \itemize{
-#'   \item hyphenation: the correct hyphenation for certain words
-#'   \item flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
-#' }
+#'    - hyphenation: the correct hyphenation for certain words
+#'    - flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
+#'    - ORCID: a vector of ORCID ID's. These will be displayed at the bottom of the poster. See https://orcid.org
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -70,6 +69,35 @@ inbo_poster <- function(
     args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
   }
   extra <- extra[!names(extra) %in% c("flandersfont")]
+  if ("ORCID" %in% names(extra)) {
+    require("qrcode")
+    qr <- sapply(
+      extra$ORCID,
+      function(this_orcid) {
+        url <- paste0("https://orcid.org/", this_orcid$ID)
+        qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+        qr_file <- sprintf("%s-qr.pdf", gsub(" ", "-", this_orcid$name))
+        pdf(qr_file, width = 1.4, height = 1.4)
+        par(mai = rep(0, 4), mar = rep(0, 4))
+        image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
+        dev.off()
+        c(
+          this_orcid$name,
+          sprintf("\\includegraphics[height=12pt]{orcid.png} \\url{%s}", url),
+          sprintf("\\includegraphics{%s}", qr_file)
+        )
+      }
+    )
+    qr <- apply(qr, 1, paste, collapse = " & ")
+    qr <- paste(paste(qr, "\\\\"), collapse = "\n")
+    qr <- sprintf(
+      "\\begin{tabular}{%s}\n%s\n\\end{tabular}",
+      paste(rep("l", length(extra$ORCID)), collapse = ""),
+      qr
+    )
+    args <- c(args, pandoc_variable_arg("qr", qr))
+  }
+  extra <- extra[!names(extra) %in% c("ORCID")]
   if (length(extra) > 0) {
     args <- c(
       args,
