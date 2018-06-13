@@ -66,16 +66,38 @@
 \RequirePackage{amsmath}
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
 
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
+
+\newcommand{\choosefont}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{TRUE}{
+    \setmainfont[
+      Ligatures = TeX,
+      ItalicFont = FlandersArtSans-Light,
+      ItalicFeatures = {FakeSlant = 0.15},
+      BoldFont = FlandersArtSans-Medium,
+      BoldItalicFont = FlandersArtSans-Medium,
+      BoldItalicFeatures = {FakeSlant = 0.15}
+    ]{FlandersArtSans-Regular}
+  }{
+    \setmainfont[
+      Ligatures = TeX
+    ]{Calibri}
+  }
+}
+
+% defines fonts
 \RequirePackage{ifxetex}
 
 \ifxetex
   \RequirePackage[no-math]{fontspec}
-  \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont{Courier New}
+  \choosefont{\@flandersfont}
+  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{lmodern}
+  \RequirePackage{inconsolata}
 \fi
 \usefonttheme{serif}
 
