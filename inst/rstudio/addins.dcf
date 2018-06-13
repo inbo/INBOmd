@@ -1,0 +1,14 @@
+Name: Insert "block"
+Description: A "block" is a markdown set which will be displayed as a frame with a title
+Binding: insert_block
+Interactive: false
+
+Name: Insert "exampleblock"
+Description: An "exampleblock" is a markdown set which will be displayed as a frame with a title
+Binding: insert_exampleblock
+Interactive: false
+
+Name: Insert "alertblock"
+Description: An "alertblock" is a markdown set which will be displayed as a frame with a title
+Binding: insert_alertblock
+Interactive: false
