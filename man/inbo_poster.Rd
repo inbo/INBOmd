@@ -39,7 +39,8 @@ Create a poster with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
-  \item hyphenation: the correct hyphenation for certain words
-  \item flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
+\item hyphenation: the correct hyphenation for certain words
+\item flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
+\item ORCID: a vector of ORCID ID's. These will be displayed at the bottom of the poster. See https://orcid.org
 }
 }

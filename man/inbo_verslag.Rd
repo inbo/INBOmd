@@ -44,6 +44,6 @@ Create a meeting report with the INBO corporate identity
 \details{
 Available extra parameters:
 \itemize{
-  \item hyphenation: the correct hyphenation for certain words
+\item hyphenation: the correct hyphenation for certain words
 }
 }
