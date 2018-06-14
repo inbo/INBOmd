@@ -6,10 +6,8 @@ build:
         code: |
           export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
           mkdir ~/.fonts
-          apt-get update
-          apt-get install -y --no-install-recommends cabextract
-          wget -qO- http://plasmasturm.org/code/vistafonts-installer/vistafonts-installer | bash
-          rm PowerPointViewer.exe
+          wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip
+          unzip calibri.zip -d ~/.fonts
           wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf
           wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
           Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
