@@ -162,8 +162,10 @@ inbo_poster <- function(
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
 
+    #nolint start
     text <- gsub("\\\\b(.*)block", "\\\\begin{\\1block}", text)
     text <- gsub("\\\\e(.*)block", "\\\\end{\\1block}", text)
+    #nolint end
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output

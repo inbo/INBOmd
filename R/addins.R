@@ -4,12 +4,14 @@
 #' @rdname blocks
 insert_block <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
+#nolint start
   rstudioapi::insertText('
 ```{block2 chunk-name, type="block", latex.options="{title}", echo = TRUE}
 Enter your Markdown here. Last line should be blank.
 
 ```
 ')
+#nolint end
 }
 
 #' @export
@@ -28,10 +30,12 @@ Enter your Markdown here. Last line should be blank.
 #' @rdname blocks
 insert_alertblock <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
+#nolint start
   rstudioapi::insertText('
 ```{block2 chunk-name, type="alertblock", latex.options="{title}", echo = TRUE}
 Enter your Markdown here. Last line should be blank.
 
 ```
 ')
+#nolint end
 }
