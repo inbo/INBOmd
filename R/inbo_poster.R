@@ -165,6 +165,8 @@ inbo_poster <- function(
     #nolint start
     text <- gsub("\\\\b(.*)block", "\\\\begin{\\1block}", text)
     text <- gsub("\\\\e(.*)block", "\\\\end{\\1block}", text)
+    text <- gsub("\\\\bmulticols", "\\\\begin{multicols}", text)
+    text <- gsub("\\\\emulticols", "\\\\end{multicols}", text)
     #nolint end
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
