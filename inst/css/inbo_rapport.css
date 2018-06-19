@@ -7142,8 +7142,14 @@ ul.tabs--primary li a:hover {
 
 .alertblock {
     background:#E5E5E5;
+    background-image: url("img/alert.png");
+    background-size: 40px;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
     color:black;
+    background-origin: border-box;
     padding:10px;
+    padding-left: 60px;
     border:1px solid black;
 }
 
