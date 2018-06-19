@@ -7163,3 +7163,7 @@ blockquote {
   background-image: url("img/background-pattern.png");
   color: #5e5e5e;
 }
+
+.book.font-family-1 {
+  font-family: FlandersArtSans-Regular, Verdana, Arial, sans-serif;
+}
