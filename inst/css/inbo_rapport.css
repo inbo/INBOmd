@@ -7151,3 +7151,9 @@ blockquote {
     font-size: 14px;
     border-left: 4px solid #989898;
 }
+
+.book .book-body, .book-inner, .page-wrapper, .page-inner {
+  background-color: #efefef;
+  background-image: url("img/background-pattern.png");
+  color: #5e5e5e;
+}
