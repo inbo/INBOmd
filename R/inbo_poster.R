@@ -20,6 +20,7 @@
 #' @importFrom utils compareVersion
 #' @importFrom grDevices pdf dev.off
 #' @importFrom graphics par image
+#' @importFrom qrcode qrcode_gen
 inbo_poster <- function(
   subtitle,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
@@ -73,9 +74,6 @@ inbo_poster <- function(
   }
   extra <- extra[!names(extra) %in% c("flandersfont")]
   if (any(c("ORCID", "DOI") %in% names(extra))) {
-    if (!require("qrcode", quietly = TRUE)) {
-      stop("need to install the 'qrcode' package")
-    }
     if (!"ORCID" %in% names(extra)) {
       orcidqr <- matrix(character(0), nrow = 3)
     } else {
@@ -83,7 +81,7 @@ inbo_poster <- function(
         extra$ORCID,
         function(this_orcid) {
           url <- paste0("https://orcid.org/", this_orcid$ID)
-          qr <- qrcode::qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
           qr_file <- sprintf("orcid-qr-%s.pdf", gsub(" ", "-", this_orcid$name))
           pdf(qr_file, width = 1.4, height = 1.4)
           par(mai = rep(0, 4), mar = rep(0, 4))
@@ -104,7 +102,7 @@ inbo_poster <- function(
         extra$DOI,
         function(this_doi) {
           url <- paste0("https://doi.org/", this_doi$ID)
-          qr <- qrcode::qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
           qr_file <- sprintf("doi-qr-%s.pdf", gsub(" ", "-", this_doi$name))
           pdf(qr_file, width = 1.4, height = 1.4)
           par(mai = rep(0, 4), mar = rep(0, 4))
