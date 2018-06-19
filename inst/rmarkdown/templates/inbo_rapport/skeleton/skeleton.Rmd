@@ -8,7 +8,7 @@ author:
     name: "Voornaam2 Achternaam2"
     email: "voornaam2.achternaam2@inbo.be"
 subtitle: "Hier komt de optionele ondertitel"
-reportnr: "Hier komt het rapportnummer"
+reportnr: "Hier komt de DOI van het rapport"
 ordernr: "Het optionele nummer van de opdrachtgever"
 link-citations: TRUE
 site: bookdown::bookdown_site
@@ -43,5 +43,20 @@ opts_chunk$set(
 )
 library(ggplot2)
 library(INBOtheme)
-theme_set(theme_inbo())
+if (opts_knit$get("rmarkdown.pandoc.to") == "html") {
+  theme_set(
+    theme_inbo(
+      base_family = "Calibri", # "Flanders Art Sans",
+      base_size = 12
+    )
+  )
+} else {
+  opts_chunk$set(dev = "cairo_pdf")
+  theme_set(
+    theme_inbo(
+      base_family = "Calibri", # "Flanders Art Sans",
+      base_size = 8
+    )
+  )
+}
 ```

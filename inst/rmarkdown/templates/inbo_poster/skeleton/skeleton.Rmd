@@ -30,11 +30,18 @@ output:
 library(knitr)
 opts_chunk$set(
   echo = FALSE,
+  dev = "cairo_pdf",
   fig.width = INBOmd::kolom_breedte(3) / 25.4,
   fig.height = 6
 )
 library(ggplot2)
 library(INBOtheme)
+theme_set(
+  theme_inbo(
+    base_family = "Calibri", # "Flanders Art Sans",
+    base_size = 24
+  )
+)
 ```
 
 ```{r ggplot-theme, include = FALSE}

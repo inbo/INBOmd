@@ -17,9 +17,18 @@ output:
 
 ```{r include = FALSE}
 library(knitr)
+opts_chunk$set(
+  dev = "cairo_pdf"
+)
 library(ggplot2)
 library(INBOtheme)
-theme_set(theme_vlaanderen2015(6, transparent = "plot"))
+theme_set(
+  theme_vlaanderen2015(
+    base_family = "Calibri", # "Flanders Art Sans",
+    base_size = 6, 
+    transparent = "plot"
+  )
+)
 ```
 
 # Slides in RMarkdown with Bookdown extension
