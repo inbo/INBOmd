@@ -5,25 +5,14 @@
 
 # INBOmd
 
-INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The table below indicates what is currently available.
+INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The current package as following Rmarkdown templates:
 
-| Document type   | Template | Rmd | Rnw | Tex |
-| --------------- | -------- | --- | --- | --- |
-| INBO report     |     X    |  X  |  X  |  X  |
-| INBO slides     |     X    |  X  |  X  |  X  |
-| INBO poster     |          |     |  X  |  X  |
-| Flanders slides |     X    |  X  |  X  |  X  |
+- INBO report: reports rendered to pdf, html (gitbook style) and epub
+- INBO slides: presentations rendered to pdf
+- INBO poster: poster rendered to a A0 pdf
+- Flanders slides: presentations using the Flemish corporate identity, rendered to pdf
 
-- Template
-    - R Markdown template. 
-    - Available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
-    - Available in R using `rmarkdown::draft(package = "INBOmd")`
-
-- Rmd
-    - Render function available for R Markdown documents
-
-- Rnw and Tex
-    - LaTeX package available. Currently only required for INBO poster. We recommend to use the templates with R Markdown where available.
+The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
 ## Installation
 
