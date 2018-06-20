@@ -40,6 +40,7 @@ Once TinyTeX you need to restart RStudio. Then you can proceed with the installa
 install.packages("webshot")
 # install.packages("devtools")
 devtools::install_github("rstudio/bookdown")
+devtools::install_github("thierryo/qrcode")
 devtools::install_github("inbo/INBOtheme")
 devtools::install_github("inbo/INBOmd")
 tinytex::tlmgr_install(c(
