@@ -3,7 +3,10 @@ Type: Package
 Title: Markdown Templates for INBO
 Version: 0.4.3
 Date: 2018-06-20
-Authors@R: c(person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre")), person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb")), person(family = "Instituut voor Natuur- en Bosonderzoek", email = "info@inbo.be", role = c("cph")))
+Authors@R: c(
+  person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8804-4216")), 
+  person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb"), comment = c(ORCID = "0000-0002-6378-6229")), 
+  person(family = "Instituut voor Natuur- en Bosonderzoek", email = "info@inbo.be", role = c("cph")))
 Description: Several templates to generate reports, presentations and posters.
 License: GPL-3 | file LICENSE
 URL: https://doi.org/10.5281/zenodo.842223, https://github.com/inbo/inbomd
