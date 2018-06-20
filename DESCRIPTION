@@ -13,7 +13,7 @@ URL: https://doi.org/10.5281/zenodo.842223, https://github.com/inbo/inbomd
 BugReports: https://github.com/inbo/inbomd/issues
 VignetteBuilder: knitr
 Suggests:
-    bookdown (>= 0.7.7),
+    bookdown (>= 0.7.13),
     ggplot2,
     INBOtheme (>= 0.5.4),
     knitr,
@@ -22,7 +22,7 @@ Suggests:
     webshot
 Imports:
     assertthat,
-    qrcode,
+    qrcode (>= 0.1.2),
     rmarkdown,
     utils
 Remotes:
