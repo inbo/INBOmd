@@ -4,11 +4,12 @@
 \alias{inbo_verslag}
 \title{Create a meeting report with the INBO corporate identity}
 \usage{
-inbo_verslag(present = "", absent = "", chair = "", floatbarrier = c(NA,
-  "section", "subsection", "subsubsection"), citation_package = c("natbib",
-  "none"), includes = NULL, codesize = c("footnotesize", "scriptsize",
-  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, pandoc_args = NULL, ...)
+inbo_verslag(present = "", absent = "", chair = "",
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  citation_package = c("natbib", "none"), includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small",
+  "normalsize"), lang = "dutch", keep_tex = FALSE, fig_crop = TRUE,
+  pandoc_args = NULL, ...)
 }
 \arguments{
 \item{present}{names of all persons who attended the meeting}

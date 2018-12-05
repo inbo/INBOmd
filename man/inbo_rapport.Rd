@@ -5,10 +5,11 @@
 \title{Create a report with the INBO theme version 2015}
 \usage{
 inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), codesize = c("footnotesize", "scriptsize",
-  "tiny", "small", "normalsize"), lang = "english, french, dutch",
-  keep_tex = FALSE, fig_crop = TRUE, citation_package = c("natbib",
-  "none"), includes = NULL, pandoc_args = NULL, ...)
+  "subsection", "subsubsection"), codesize = c("footnotesize",
+  "scriptsize", "tiny", "small", "normalsize"),
+  lang = "english, french, dutch", keep_tex = FALSE, fig_crop = TRUE,
+  citation_package = c("natbib", "none"), includes = NULL,
+  pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}

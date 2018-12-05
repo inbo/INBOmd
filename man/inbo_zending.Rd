@@ -5,11 +5,11 @@
 \title{Create a mission report with the INBO corporate identity}
 \usage{
 inbo_zending(conference, conferencedate, conferenceplace, website = "",
-  reportdate, colleagues = "", floatbarrier = c(NA, "section", "subsection",
-  "subsubsection"), citation_package = c("natbib", "none"), includes = NULL,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch", keep_tex = FALSE, fig_crop = TRUE, pandoc_args = NULL,
-  ...)
+  reportdate, colleagues = "", floatbarrier = c(NA, "section",
+  "subsection", "subsubsection"), citation_package = c("natbib", "none"),
+  includes = NULL, codesize = c("footnotesize", "scriptsize", "tiny",
+  "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
+  fig_crop = TRUE, pandoc_args = NULL, ...)
 }
 \arguments{
 \item{conference}{the name of the conference or workshop}
