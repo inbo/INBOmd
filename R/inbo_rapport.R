@@ -148,13 +148,14 @@ inbo_rapport <- function(
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
-      new_order <- c(
-        1:(starttoc - 1),              # preamble
-        (endtoc + 1):(mainmatter - 1), # frontmatter
-        (starttoc + 1):(endtoc - 1),   # toc
-        (mainmatter + 1):length(text)  # mainmatter
-      )
-      text <- text[new_order]
+      text <- text[
+        c(
+          1:(starttoc - 1),              # preamble
+          (endtoc + 1):(mainmatter - 1), # frontmatter
+          (starttoc + 1):(endtoc - 1),   # toc
+          (mainmatter + 1):length(text)  # mainmatter
+        )
+      ]
     }
 
     # move appendix after bibliography
@@ -162,13 +163,14 @@ inbo_rapport <- function(
     startbib <- grep("%startbib", text)
     endbib <- grep("%endbib", text)
     if (length(appendix) & length(startbib)) {
-      new.order <- c(
-        1:(appendix - 1),              # mainmatter
-        (startbib + 1):(endbib - 1),   # bibliography
-        (appendix):(startbib - 1),     # appendix
-        (endbib + 1):length(text)      # backmatter
-      )
-      text <- text[new.order]
+      text <- text[
+        c(
+          1:(appendix - 1),              # mainmatter
+          (startbib + 1):(endbib - 1),   # bibliography
+          (appendix):(startbib - 1),     # appendix
+          (endbib + 1):length(text)      # backmatter
+        )
+      ]
     }
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
