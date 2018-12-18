@@ -10,6 +10,7 @@ build:
           unzip calibri.zip -d ~/.fonts
           wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf
           wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
+          Rscript -e 'devtools::install_github("tidyverse/ggplot2", upgrade = FALSE)'
           Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
           Rscript -e 'devtools::install_github("rstudio/bookdown", upgrade = FALSE)'
           Rscript -e 'devtools::install_github("thierryo/qrcode", upgrade = FALSE)'
