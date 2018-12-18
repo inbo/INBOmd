@@ -148,13 +148,13 @@ inbo_rapport <- function(
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
-      new.order <- c(
+      new_order <- c(
         1:(starttoc - 1),              # preamble
         (endtoc + 1):(mainmatter - 1), # frontmatter
         (starttoc + 1):(endtoc - 1),   # toc
         (mainmatter + 1):length(text)  # mainmatter
       )
-      text <- text[new.order]
+      text <- text[new_order]
     }
 
     # move appendix after bibliography
