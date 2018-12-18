@@ -12,7 +12,7 @@ build:
           wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
           Rscript -e 'devtools::install_github("inbo/INBOtheme", upgrade = FALSE)'
           Rscript -e 'devtools::install_github("rstudio/bookdown", upgrade = FALSE)'
-          Rscript -e 'install.packages("qrcode")'
+          Rscript -e 'devtools::install_github("thierryo/qrcode", upgrade = FALSE)'
     - inbobmk/r-check
     - inbobmk/r-lint
     - script:
