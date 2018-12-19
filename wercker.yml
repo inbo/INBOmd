@@ -20,6 +20,9 @@ build:
     - script:
         name: build inbomd_examples
         code: |
+          apt-get update
+          apt-get install bzip2
+          Rscript -e 'install.packages("DT")'
           git clone https://github.com/inbo/inbomd_examples.git
           cd inbomd_examples
           Rscript source/render_all.R
