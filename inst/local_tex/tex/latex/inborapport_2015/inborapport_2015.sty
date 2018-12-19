@@ -135,7 +135,7 @@
 \ifxetex
   \RequirePackage[no-math]{fontspec}
   \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
+  \setmonofont[Mapping=tex-ansi]{inconsolata}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
@@ -227,11 +227,13 @@
 \setlength{\fontsizetocinter}{12.65pt}
 
 % use babel for different languages
-\RequirePackage[english, french, dutch]{babel}
+\RequirePackage{babel}
 \newcommand{\benglish}{\begin{otherlanguage*}{english}}
 \newcommand{\eenglish}{\end{otherlanguage*}}
 \newcommand{\bfrench}{\begin{otherlanguage*}{french}}
 \newcommand{\efrench}{\end{otherlanguage*}}
+\newcommand{\bdutch}{\begin{otherlanguage*}{dutch}}
+\newcommand{\edutch}{\end{otherlanguage*}}
 
 \RequirePackage{inbogeneric_2015}
 
@@ -266,20 +268,18 @@
     \begin{tabularx}{\textwidth}{@{}lL@{}}
       \thechapter &  \expandafter\MakeUppercase\expandafter{#1} \\
       \rule{7.6mm}{0pt} & \\[-\fontsizechapter]
+      \vspace{24pt}
    \end{tabularx}
 
    }
-
-   \nopagebreak
-  \vspace{24pt}
+  \nopagebreak
   }
 \def\@makeschapterhead#1{%
    {%
     \color{main.colour}
     \fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries \raggedright #1 %
-
-    }
     \vspace{14pt}
+    }
     \nopagebreak
   }
 
@@ -302,14 +302,12 @@
 }
 \def\@makesectionhead#1{%
   \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection] \end{tabularx}}   \vspace{12pt}
-\nopagebreak
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection]  \vspace{12pt} \end{tabularx}}   \nopagebreak
 }
 \def\@makessectionhead#1{%
   \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \uppercase{\dotuline{#1}}
-
-   }\vspace{12pt}\nopagebreak
+   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \uppercase{\dotuline{#1} \vspace{12pt}}
+   }\nopagebreak
 }
 
 % define style for subsections (heading 3)
@@ -371,12 +369,12 @@
 }
 \def\@makeparagraphhead#1{%
    {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\theparagraph & #1 \\ \rule{17.8mm}{0pt} & \\[-\fontsizeparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}
+  \vspace{9pt}\nopagebreak
 }
 \def\@makesparagraphhead#1{%
   \vspace{10pt}
    {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}
+   \vspace{9pt}\nopagebreak
 }
 
 % define style for subparagraph (heading 6)
@@ -392,12 +390,12 @@
 }
 \def\@makesubparagraphhead#1{%
    {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubparagraph & #1 \\ \rule{20.3mm}{0pt} & \\[-\fontsizesubparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}
+  \vspace{9pt}\nopagebreak
 }
 \def\@makessubparagraphhead#1{%
   \vspace{10pt}
    {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}
+   \vspace{9pt}\nopagebreak
 }
 
 % define headers and footers
@@ -545,8 +543,8 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}
 \tolerance=200                      % badness tolerance after hyphenation.
 \hyphenpenalty=1000                 % penalty for line break after discresionary hyphen.
 \pretolerance=200                   % badness tolerance before hyphenation.
-\clubpenalties=3 10000  5000 2000   % penalty for creating a club line at end of line.
-\widowpenalties=3 10000  5000  2000 % penalty for creating a widow line at top of page.
+\clubpenalties=4 10000  5000 2000 0   % penalty for creating a club line at end of line.
+\widowpenalties=4 10000  5000  2000 0 % penalty for creating a widow line at top of page.
 \displaywidowpenalty=1000           % penalty for creating a widow line before a display.
 \predisplaypenalty=20               % penalty for a page break just before a display
 \postdisplaypenalty=20              % penalty for a page break just after a display.

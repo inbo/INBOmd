@@ -1,0 +1,78 @@
+---
+title: "Introduction to INBOmd"
+author: "Thierry Onkelinx"
+date: "2018-06-20"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to INBOmd}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Goal
+
+The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files. The styles are based on the corporate identity of the Research Instutite for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](https://www.inbo.be)). The styles itself are not intended for use by parties external to INBO. We still provide them as an inspiration and example for other on how to create there own corporate identity styles for `rmarkdown` files. 
+
+All templates are based on [`bookdown`](https://bookdown.org/home/about.html), which is an extension of `rmarkdown`. It is taylored towards writing books and technical documentation.
+
+## Benefits of writing with `bookdown`
+
+1. It is based on `rmarkdown` a combination of [`R`](https://www.r-project.org/) code with text in [`markdown`](https://en.wikipedia.org/wiki/Markdown) plain text formatting syntax.
+    - `R` is freeware open source statistical software.
+    - `markdown` is a lightweight markup language. The formatting doesn't hinder when reading the plain text. It is short and easy to remember, so you can edit it in any plain text editor.
+1. No need to run `R` in a script and copy the output into another document.
+    - `rmarkdown` will first execute the `R` code in the document and paste its output in a plain `markdown` file. This is then rendered into the requested output format.
+    - This saves a lot of work and avoid copy/paste errors.
+1. Storing the `R` code within the report makes it easy to rerun the report when the data is updated. 
+1. The plain text source code is lightweight. The source code of a report is seldom larger than a few hunderd kilobyte. Yes, kilobyte.
+1. Plain text files work great in combination with [version control systems](https://en.wikipedia.org/wiki/Version_control) like [Git](https://en.wikipedia.org/wiki/Git).
+1. `bookdown` is a useful tool for conducting [open research](https://en.wikipedia.org/wiki/Open_research) and [open science](https://en.wikipedia.org/wiki/Open_science).
+1. You can get multiple output formats from the same source. The report template can yield a pdf, an e-book and a website.
+1. The author doesn't have to worry about the lay-out. The software takes care of that when rendering the documents. This frees up time which the author can invest in more important things. And it guarantees a consistent lay-out both with the document as across documents. 
+
+# Available templates in `INBOmd`
+
+- The most important template is `inbo_rapport`, a template for creating technical reports. The available output formats are pdf, epub and html.
+- `inbo_slides` is a template for presentations. It has three different pdf output formats
+    1. "presentation": each time point of the presentation is one page in a pdf. Incremental slides will result in several pages, one for each increment.
+    1. "handout": a single page for each slide. In case of incremental slides, only the last slide will be shown. Useful when handouts are required in combination with incremental slides.
+    1. "report": mostly relevant when the slides are used for teaching code. The output may not fit on a single single slide, resulting is a substantial number of slides. Using a "report" like style makes handouts more compact and readable.
+- `flanders_slides` is a similar template as `inbo_slides`. It uses the corporate identity of [Flanders](http://www.ditisvlaanderen.be/). Only the presenation and handout versions are available.
+- `inbo_poster` is a template for A0 posters in pdf format.
+
+# Installation
+
+INBOmd requires a working installation of XeLaTeX. We highly recommend to use the TinyTeX. Close all open R sessions and start a fresh R session. Execute the commands below. This will install TinyTeX on your machine. No admin rights are required. Although TinyTeX is a lightweight installation, it still is several 100 MB large.
+
+```R
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+Once TinyTeX you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
+
+```R
+install.packages("webshot")
+# install.packages("devtools")
+devtools::install_github("rstudio/bookdown")
+devtools::install_github("thierryo/qrcode")
+devtools::install_github("inbo/INBOtheme")
+devtools::install_github("inbo/INBOmd")
+tinytex::tlmgr_install(c(
+  'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
+))
+tinytex::tlmgr_conf(
+  c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
+)
+```
+
+# Examples of `INBOmd`
+
+We maintain a separate collection of examples based on `INBOmd`. The rendered versions are available through http://inbomd-examples.netlify.com/. Visit https://github.com/inbo/inbomd_examples if you are looking for the source code of these examples. Please note that the main intention of these examples is to show what is available with `INBOmd` and how to code it. We will add links to real documents based on `INBOmd` as well.

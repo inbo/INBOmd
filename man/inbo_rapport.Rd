@@ -5,10 +5,11 @@
 \title{Create a report with the INBO theme version 2015}
 \usage{
 inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), codesize = c("footnotesize", "scriptsize",
-  "tiny", "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, citation_package = c("natbib", "none"),
-  includes = NULL, pandoc_args = NULL, ...)
+  "subsection", "subsubsection"), codesize = c("footnotesize",
+  "scriptsize", "tiny", "small", "normalsize"),
+  lang = "english, french, dutch", keep_tex = FALSE, fig_crop = TRUE,
+  citation_package = c("natbib", "none"), includes = NULL,
+  pandoc_args = NULL, ...)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -21,7 +22,7 @@ inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
-\item{lang}{The language of the document. Defaults to "dutch"}
+\item{lang}{The language of the document. Defaults to "english, french, dutch". The last language is the main language.}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
@@ -44,9 +45,9 @@ Create a report with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
-  \item lof: display a list of figures. Defaults to TRUE
-  \item lot: display a list of tables. Defaults to TRUE
-  \item hyphenation: the correct hyphenation for certain words
-  \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
+\item lof: display a list of figures. Defaults to TRUE
+\item lot: display a list of tables. Defaults to TRUE
+\item hyphenation: the correct hyphenation for certain words
+\item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 }
 }

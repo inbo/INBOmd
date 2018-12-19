@@ -4,9 +4,9 @@
 \alias{render_natbib}
 \title{Render a Markdown file with natbib bibliography}
 \usage{
-render_natbib(file, path = ".", encoding = "UTF-8", engine = c("xelatex",
-  "pdflatex"), display = TRUE, keep = c("none", "all", "tex"),
-  clean = TRUE)
+render_natbib(file, path = ".", encoding = "UTF-8",
+  engine = c("xelatex", "pdflatex"), display = TRUE, keep = c("none",
+  "all", "tex"), clean = TRUE)
 }
 \arguments{
 \item{file}{the name of the Rmd file}

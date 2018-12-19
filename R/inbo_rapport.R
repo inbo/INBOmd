@@ -3,7 +3,7 @@
 #' @param reportnr The report number
 #' @param ordernr The order number
 #' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
-#' @param lang The language of the document. Defaults to "dutch"
+#' @param lang The language of the document. Defaults to "english, french, dutch". The last language is the main language.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
@@ -28,7 +28,7 @@ inbo_rapport <- function(
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch",
+  lang = "english, french, dutch",
   keep_tex = FALSE,
   fig_crop = TRUE,
   citation_package = c("natbib", "none"),
@@ -148,13 +148,14 @@ inbo_rapport <- function(
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
-      new.order <- c(
-        1:(starttoc - 1),              # preamble
-        (endtoc + 1):(mainmatter - 1), # frontmatter
-        (starttoc + 1):(endtoc - 1),   # toc
-        (mainmatter + 1):length(text)  # mainmatter
-      )
-      text <- text[new.order]
+      text <- text[
+        c(
+          1:(starttoc - 1),              # preamble
+          (endtoc + 1):(mainmatter - 1), # frontmatter
+          (starttoc + 1):(endtoc - 1),   # toc
+          (mainmatter + 1):length(text)  # mainmatter
+        )
+      ]
     }
 
     # move appendix after bibliography
@@ -162,13 +163,14 @@ inbo_rapport <- function(
     startbib <- grep("%startbib", text)
     endbib <- grep("%endbib", text)
     if (length(appendix) & length(startbib)) {
-      new.order <- c(
-        1:(appendix - 1),              # mainmatter
-        (startbib + 1):(endbib - 1),   # bibliography
-        (appendix):(startbib - 1),     # appendix
-        (endbib + 1):length(text)      # backmatter
-      )
-      text <- text[new.order]
+      text <- text[
+        c(
+          1:(appendix - 1),              # mainmatter
+          (startbib + 1):(endbib - 1),   # bibliography
+          (appendix):(startbib - 1),     # appendix
+          (endbib + 1):length(text)      # backmatter
+        )
+      ]
     }
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)

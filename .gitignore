@@ -5,3 +5,4 @@
 *.log
 *.toc
 *.synctex.gz
+inst/doc

@@ -2,7 +2,7 @@
 
 # Find PhantomJS from PATH, APPDATA, system.file("webshot"), ~/bin, etc
 find_phantom <- function() {
-  path <- Sys.which( "phantomjs" )
+  path <- Sys.which("phantomjs")
   if (path != "") return(path)
 
   for (d in phantom_paths()) {

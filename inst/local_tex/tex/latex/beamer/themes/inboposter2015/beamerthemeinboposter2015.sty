@@ -39,6 +39,10 @@
 \def\email#1{\def\@email{#1}}
 \email{info@inbo.be}
 
+\def\qr#1{\def\@qr{#1}}
+\qr{}
+
+
 \RequirePackage[gen]{eurosym}
 
 
@@ -66,21 +70,44 @@
 \RequirePackage{amsmath}
 \RequirePackage[round, colon, authoryear, sort&compress]{natbib}
 
+\def\flandersfont#1{\def\@flandersfont{#1}}
+\flandersfont{FALSE}
+
+\newcommand{\choosefont}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{TRUE}{
+    \setmainfont[
+      Ligatures = TeX,
+      ItalicFont = FlandersArtSans-Light,
+      ItalicFeatures = {FakeSlant = 0.15},
+      BoldFont = FlandersArtSans-Medium,
+      BoldItalicFont = FlandersArtSans-Medium,
+      BoldItalicFeatures = {FakeSlant = 0.15}
+    ]{FlandersArtSans-Regular}
+  }{
+    \setmainfont[
+      Ligatures = TeX
+    ]{Calibri}
+  }
+}
+
+% defines fonts
 \RequirePackage{ifxetex}
 
 \ifxetex
   \RequirePackage[no-math]{fontspec}
-  \setmainfont[Ligatures=TeX]{Calibri}
-  \setmonofont{Courier New}
+  \choosefont{\@flandersfont}
+  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
-  \RequirePackage{lmodern}
+  \RequirePackage{inconsolata}
 \fi
 \usefonttheme{serif}
 
 \frenchspacing
 
+\RequirePackage{multicol}
 
 \mode<presentation>
 
@@ -94,6 +121,7 @@
 \setbeamercolor{footline}{fg = white, bg = inbo.hoofd}
 \setbeamerfont{footline}{size* = {60pt}{72pt}, series = \mdseries}
 \setbeamerfont{email}{size* = {40pt}{48pt}, series = \mdseries}
+\setbeamerfont{qrtable}{size* = {12pt}{14.4pt}, series = \mdseries}
 
 \setbeamercolor{title}{fg=black}
 \setbeamerfont{title}{size* = {90pt}{108pt}, series = \bfseries}
@@ -132,7 +160,7 @@
 \setbeamertemplate{block begin}{
   \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title}%
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
-    \usebeamerfont*{block title}\insertblocktitle
+    \usebeamerfont*{block title}\insertblocktitle\vphantom{pl}
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
   \usebeamerfont{block body}%
@@ -160,7 +188,7 @@
 \setbeamertemplate{block example begin}{
   \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title example}%
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
-    \usebeamerfont*{block title example}\insertblocktitle
+    \usebeamerfont*{block title example}\insertblocktitle\vphantom{pl}
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
   \vskip-0.5mm
@@ -196,7 +224,7 @@
 \setbeamertemplate{block alerted begin}{
   \begin{beamercolorbox}[leftskip = 2ex, sep = 0.2ex, colsep = 0.2ex]{block title alerted}%
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
-    \usebeamerfont*{block title alerted}\insertblocktitle
+    \usebeamerfont*{block title alerted}\insertblocktitle\vphantom{pl}
     \vspace{0.1ex plus 0.05ex minus 0.05ex}
   \end{beamercolorbox}%
   \vskip-0.5mm
@@ -237,8 +265,17 @@
     \vlaanderenlogo{\@lang}
   \end{textblock}
 
-  \begin{textblock}{300}(0, 973)
+  \begin{textblock}{200}(0, 973)
     \inbologo{\@lang}
+  \end{textblock}
+
+  \begin{textblock}{330}(200, 973)
+    \begin{minipage}[b][30mm][c]{330mm}
+    \usebeamerfont{qrtable}\usebeamercolor[fg]{footline}
+      \begin{center}
+        \@qr
+      \end{center}
+    \end{minipage}
   \end{textblock}
 
   \begin{textblock}{250}(530, 980)
@@ -256,12 +293,12 @@
     \begin{minipage}[b][\titelblok][b]{580mm}
       \noindent
       \begin{center}
-      \vfill\vfill
+      \vfill
       \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\
       \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
-      \vfill
+      \vspace{0.1 \baselineskip}\vfill
       \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor
-      \vfill\vfill
+      \vfill
       \end{center}
     \end{minipage}
   \end{textblock}

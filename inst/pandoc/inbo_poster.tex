@@ -1,0 +1,18 @@
+\documentclass[final]{beamer}
+\usetheme{inboposter2015}
+\usepackage[orientation=portrait, size=a0, scale=1.4]{beamerposter}
+\title{$title$}
+$if(subtitle)$\subtitle{$subtitle$}$endif$
+\author{$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$sep$, $endfor$}
+$if(lang)$\lang{$lang$}$endif$
+$if(email)$\email{$email$}$endif$
+$if(flandersfont)$\flandersfont{$flandersfont$}$endif$
+$if(qr)$\qr{$qr$}$endif$
+
+\begin{document}
+\begin{frame}{}
+
+$body$
+
+\end{frame}
+\end{document}
