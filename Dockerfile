@@ -47,6 +47,37 @@ RUN mkdir ~/.fonts \
 
 ## Install dependencies for INBOmd examples
 RUN  apt-get update \
-  && apt-get install bzip2 \
+  && apt-get install -y --no-install-recommends bzip2 \
   && Rscript -e 'install.packages(c("DT", "leaflet", "webshot"))' \
   && Rscript -e 'webshot::install_phantomjs()'
+
+
+## Install LaTeX packages
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends gpg \
+  && tlmgr install \
+      beamer \
+      carlisle \
+      datetime \
+      babel-english \
+      babel-french \
+      babel-dutch \
+      emptypage \
+      eurosym \
+      extsizes \
+      fancyhdr \
+      fmtcount \
+      footmisc \
+      lastpage \
+      lipsum \
+      marginnote \
+      mdframed \
+      ms \
+      multirow \
+      placeins \
+      needspace \
+      textpos \
+      tocloft \
+      translator \
+      ulem \
+      xcolor
