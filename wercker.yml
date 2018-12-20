@@ -8,6 +8,10 @@ build:
     - inbobmk/r-check
     - inbobmk/r-lint
     - script:
+        name: generate pkgdown
+        code: |
+          Rscript -e 'pkgdown::build_site()'
+    - script:
         name: build inbomd_examples
         code: |
           git clone --branch master --depth=1 https://github.com/inbo/inbomd_examples.git
