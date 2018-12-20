@@ -14,28 +14,4 @@ INBOmd contains templates to generate several types of documents with the corpor
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-## Installation
-
-INBOmd requires a working installation of XeLaTeX. We highly recommend to use the TinyTeX. Close all open R sessions and start a fresh R session. Execute the commands below. This will install TinyTeX on your machine. No admin rights are required. Although TinyTeX is a lightweight installation, it still is several 100 MB large.
-
-```R
-install.packages("tinytex")
-tinytex::install_tinytex()
-```
-
-Once TinyTeX you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
-
-```R
-install.packages("webshot")
-# install.packages("devtools")
-devtools::install_github("rstudio/bookdown")
-devtools::install_github("thierryo/qrcode")
-devtools::install_github("inbo/INBOtheme")
-devtools::install_github("inbo/INBOmd")
-tinytex::tlmgr_install(c(
-  'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
-))
-tinytex::tlmgr_conf(
-  c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
-)
-```
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.com/articles/introduction.html)

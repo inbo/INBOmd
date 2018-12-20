@@ -45,3 +45,9 @@ Available extra parameters:
 \item DOI: a list of documents. For each documentr there must a \code{name} and an \code{ID}. The \code{ID} is the documents's DOI, see https://doi.org. This information will be displayed with QR code at the bottom of the poster
 }
 }
+\seealso{
+Other output: \code{\link{inbo_handouts}},
+  \code{\link{inbo_rapport}}, \code{\link{inbo_slides}},
+  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+}
+\concept{output}

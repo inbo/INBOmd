@@ -59,3 +59,9 @@ or \code{biblatex}. Use \code{none} if neither package is to be used.}
 Use the handout version of slides with the INBO theme
 The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.
 }
+\seealso{
+Other output: \code{\link{inbo_poster}},
+  \code{\link{inbo_rapport}}, \code{\link{inbo_slides}},
+  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+}
+\concept{output}

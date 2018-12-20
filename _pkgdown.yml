@@ -1,0 +1,36 @@
+navbar:
+  title: ~
+  type: default
+  left:
+  - text: Tutorials
+    href: articles/index.html
+    menu:
+    - text: Introduction
+      href: articles/introduction.html
+  - text: Functions
+    href: reference/index.html
+  - text: Contributing
+    href: CONTRIBUTING.html
+  right:
+  - icon: fa-twitter fa-lg
+    href: https://twitter.com/INBOVlaanderen
+  - icon: fa-github fa-lg
+    href: https://github.com/inbo/inbomd
+
+reference:
+- title: Output formats
+  contents:
+  - has_concept("output")
+- title: RStudio Addins
+  contents:
+  - has_concept("addins")
+- title: Utilities
+  contents:
+  - has_concept("utils")
+
+authors:
+  Thierry Onkelinx:
+    href: "https://www.muscardinus.be"
+  Research Institute for Nature and Forest:
+    href: "https://www.inbo.be/en"
+    html: "<img src='https://inbomd.netlify.com/reference/figures/logo_en.png' height=24>"

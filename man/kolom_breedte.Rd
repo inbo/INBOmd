@@ -16,3 +16,9 @@ kolom_breedte(aantal = 3, marge = 20, witrand = 10)
 \description{
 Bereken de breedte van een A0 kolom
 }
+\seealso{
+Other utils: \code{\link{check_dependencies}},
+  \code{\link{inbo_rapport_css}},
+  \code{\link{kolom_start}}, \code{\link{render_natbib}}
+}
+\concept{utils}

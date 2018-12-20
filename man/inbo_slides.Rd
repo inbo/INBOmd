@@ -57,3 +57,9 @@ or \code{biblatex}. Use \code{none} if neither package is to be used.}
 \description{
 Use slides with the INBO theme
 }
+\seealso{
+Other output: \code{\link{inbo_handouts}},
+  \code{\link{inbo_poster}}, \code{\link{inbo_rapport}},
+  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+}
+\concept{output}
