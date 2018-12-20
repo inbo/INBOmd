@@ -56,7 +56,9 @@ RUN mkdir ~/.fonts \
 
 ## Install dependencies for INBOmd examples
 RUN  apt-get update \
-  && apt-get install -y --no-install-recommends bzip2 \
+  && apt-get install -y --no-install-recommends
+    bzip2 \
+    curl \
   && Rscript -e 'install.packages(c("DT", "leaflet")'
 
 ## Install LaTeX packages

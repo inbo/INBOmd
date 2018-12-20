@@ -18,6 +18,11 @@ deploy:
   steps:
     - script:
         code: |
+          zip -r pkgdown.zip docs
+          curl -H "Content-Type: application/zip" \
+               -H "Authorization: Bearer $NETLIFY_KEY_PKG" \
+               --data-binary "@pkgdown.zip" \
+               https://api.netlify.com/api/v1/sites/$NETLIFY_SITEID_PKG/deploys
           zip -r website.zip inbomd_examples/docs
           curl -H "Content-Type: application/zip" \
                -H "Authorization: Bearer $NETLIFY_KEY" \
