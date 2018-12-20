@@ -51,20 +51,15 @@ All templates are based on [`bookdown`](https://bookdown.org/home/about.html), w
 
 INBOmd requires a working installation of XeLaTeX. We highly recommend to use the TinyTeX. Close all open R sessions and start a fresh R session. Execute the commands below. This will install TinyTeX on your machine. No admin rights are required. Although TinyTeX is a lightweight installation, it still is several 100 MB large.
 
-```R
+```{r eval = FALSE}
 install.packages("tinytex")
 tinytex::install_tinytex()
 ```
 
-Once TinyTeX you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
+Once TinyTeX is installed, you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
 
-```R
-install.packages("webshot")
-# install.packages("devtools")
-devtools::install_github("rstudio/bookdown")
-devtools::install_github("thierryo/qrcode")
-devtools::install_github("inbo/INBOtheme")
-devtools::install_github("inbo/INBOmd")
+```{r eval = FALSE}
+remotes::install_github("inbo/INBOmd")
 tinytex::tlmgr_install(c(
   'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
 ))
@@ -73,6 +68,20 @@ tinytex::tlmgr_conf(
 )
 ```
 
-# Examples of `INBOmd`
+# Using `INBOmd`
+
+## Starting a new document
+
+`INBOmd` contains several templates which are available in RStudio. Go in the menu to `File > New File > R Markdown`. A new window will open were you select `From template`. This will show a list of all available templates. Select the template `INBOmd` you want, set the name of the new document and the base location. This will create a new directory with the specified name in the base location. Each report will reside in its own directory.
+
+This new directory contains `_bookdown.yml` and an `.Rmd` file with the same base name as the directory. We highly recommened to rename the `.Rmd` file to `index.Rmd`, see usage section in the [bookdown](https://bookdown.org/yihui/bookdown/usage.html) book for more details. Next you need to open `_bookdown.yml` in RStudio. Here you can configure the render settings of the report. `book_filename` defines the filename of the output. `output_dir` is the relative path for the output.
+
+Finally, you need to activate the `Build` pane in RStudio. By far the easiest way to do this, is the create a new project. Go in the menu to `File > New Project` and choose in the popup window `Existing directory`. Note that this only works if there is an `index.Rmd` file at the root of the project.
+
+## Rendering a document
+
+Go the `Build` pane and click on the `Build book` button. This button doubles as a dropdown menu. In this menu you can select which output format will be rendered. By default all output formats will be rendered. The report templates define three output formats: pdf, html and e-pub. Rendering all three output formats can take some time. Therefore it is best to select one output format while working on the content of the document.
+
+## Examples of `INBOmd`
 
 We maintain a separate collection of examples based on `INBOmd`. The rendered versions are available through http://inbomd-examples.netlify.com/. Visit https://github.com/inbo/inbomd_examples if you are looking for the source code of these examples. Please note that the main intention of these examples is to show what is available with `INBOmd` and how to code it. We will add links to real documents based on `INBOmd` as well.
