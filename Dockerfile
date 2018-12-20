@@ -26,31 +26,38 @@ RUN useradd docker \
   && addgroup docker staff
 
 ## Install INBOmd depedencies
-RUN  Rscript -e 'devtools::install_github("inbo/INBOtheme")' \
-  && Rscript -e 'devtools::install_github("rstudio/bookdown")' \
-  && Rscript -e 'devtools::install_github("thierryo/qrcode")'
+RUN  Rscript -e '
+    install.packages(c("bookdown", "webshot"))
+    webshot::install_phantomjs()
+    remotes::install_github("inbo/INBOtheme")
+'
 
 ## Install tools to check code coverage and coding style
-RUN  Rscript -e 'devtools::install_github("r-lib/covr")' \
-  && Rscript -e 'devtools::install_github("jimhester/lintr")'
+RUN  Rscript -e '
+    remotes::install_github("r-lib/covr")
+    remotes::install_github("jimhester/lintr")
+'
 
 ## Install current version of INBOmd
-RUN Rscript -e 'devtools::install_github("inbo/INBOmd")' \
- && export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
+RUN Rscript -e '
+    remotes::install_github("inbo/INBOmd")
+    tinytex::tlmgr_install(c(
+      "inconsolata", "times", "tex", "helvetic", "dvips"
+    ))
+    tinytex::tlmgr_conf(
+      c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
+    )
+'
 
 ## Install fonts
 RUN mkdir ~/.fonts \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
-  && unzip calibri.zip -d ~/.fonts \
-  && wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
-  && wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
+  && unzip calibri.zip -d ~/.fonts
 
 ## Install dependencies for INBOmd examples
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends bzip2 \
-  && Rscript -e 'install.packages(c("DT", "leaflet", "webshot"))' \
-  && Rscript -e 'webshot::install_phantomjs()'
-
+  && Rscript -e 'install.packages(c("DT", "leaflet")'
 
 ## Install LaTeX packages
 RUN  apt-get update \
