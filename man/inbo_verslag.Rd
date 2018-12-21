@@ -48,3 +48,9 @@ Available extra parameters:
 \item hyphenation: the correct hyphenation for certain words
 }
 }
+\seealso{
+Other output: \code{\link{inbo_handouts}},
+  \code{\link{inbo_poster}}, \code{\link{inbo_rapport}},
+  \code{\link{inbo_slides}}, \code{\link{inbo_zending}}
+}
+\concept{output}

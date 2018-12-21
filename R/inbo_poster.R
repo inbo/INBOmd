@@ -21,6 +21,7 @@
 #' @importFrom grDevices pdf dev.off
 #' @importFrom graphics par image
 #' @importFrom qrcode qrcode_gen
+#' @family output
 inbo_poster <- function(
   subtitle,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),

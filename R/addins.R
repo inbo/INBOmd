@@ -2,6 +2,7 @@
 #' These functions will add template chunks into your Rmd file. A markdown block will be display as a frame with a title in a different background. There are 3 types of blocks: "block", "exampleblock" and "alertblock".
 #' @export
 #' @rdname blocks
+#' @family addins
 insert_block <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
 #nolint start
@@ -16,6 +17,7 @@ Enter your Markdown here. Last line should be blank.
 
 #' @export
 #' @rdname blocks
+#' @family addins
 insert_exampleblock <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
   rstudioapi::insertText('
@@ -28,6 +30,7 @@ Enter your Markdown here. Last line should be blank.
 
 #' @export
 #' @rdname blocks
+#' @family addins
 insert_alertblock <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
 #nolint start

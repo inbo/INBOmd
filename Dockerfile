@@ -20,54 +20,57 @@ ENV DEBCONF_NONINTERACTIVE_SEEN true
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly).
-RUN useradd docker \
+RUN  useradd docker \
   && mkdir /home/docker \
   && chown docker:docker /home/docker \
   && addgroup docker staff
 
 ## Install INBOmd depedencies
-RUN  Rscript -e 'devtools::install_github("inbo/INBOtheme")' \
-  && Rscript -e 'devtools::install_github("rstudio/bookdown")' \
-  && Rscript -e 'devtools::install_github("thierryo/qrcode")'
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
+      bzip2 \
+      curl \
+  && Rscript -e 'install.packages(c("bookdown", "webshot"))' \
+  && Rscript -e 'webshot::install_phantomjs()' \
+  && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
 
 ## Install tools to check code coverage and coding style
-RUN  Rscript -e 'devtools::install_github("r-lib/covr")' \
-  && Rscript -e 'devtools::install_github("jimhester/lintr")'
+RUN  Rscript -e 'install.packages(c("covr", "lintr"))'
 
 ## Install current version of INBOmd
-RUN Rscript -e 'devtools::install_github("inbo/INBOmd")' \
- && export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
+RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
+  && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
 
 ## Install fonts
-RUN mkdir ~/.fonts \
+RUN  mkdir ~/.fonts \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
   && unzip calibri.zip -d ~/.fonts \
   && wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
   && wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
 
-## Install dependencies for INBOmd examples
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends bzip2 \
-  && Rscript -e 'install.packages(c("DT", "leaflet", "webshot"))' \
-  && Rscript -e 'webshot::install_phantomjs()'
 
+## Install dependencies for INBOmd examples
+RUN  Rscript -e 'install.packages(c("DT", "leaflet"))'
 
 ## Install LaTeX packages
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends gpg \
   && tlmgr install \
+      babel-dutch \
+      babel-english \
+      babel-french \
       beamer \
       carlisle \
       datetime \
-      babel-english \
-      babel-french \
-      babel-dutch \
+      dvips \
       emptypage \
       eurosym \
       extsizes \
       fancyhdr \
       fmtcount \
       footmisc \
+      helvetic \
+      inconsolata \
       lastpage \
       lipsum \
       marginnote \
@@ -76,8 +79,14 @@ RUN  apt-get update \
       multirow \
       placeins \
       needspace \
+      tex \
       textpos \
+      times \
       tocloft \
       translator \
       ulem \
       xcolor
+
+## Install pkgdown
+RUN  Rscript -e 'install.packages("pkgdown")'
+

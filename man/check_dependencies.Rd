@@ -11,3 +11,9 @@ check_dependencies()
 Check if the required dependencies of INBOmd are installed
 Missing dependencies will be installed automatically
 }
+\seealso{
+Other utils: \code{\link{inbo_rapport_css}},
+  \code{\link{kolom_breedte}}, \code{\link{kolom_start}},
+  \code{\link{render_natbib}}
+}
+\concept{utils}

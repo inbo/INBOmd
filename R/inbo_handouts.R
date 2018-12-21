@@ -6,6 +6,7 @@
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @importFrom assertthat assert_that is.string is.flag noNA
+#' @family output
 inbo_handouts <- function(
   subtitle,
   location,

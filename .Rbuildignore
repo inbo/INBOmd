@@ -6,3 +6,6 @@ CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 appveyor.yml
 Dockerfile
+_pkgdown.yml
+pkgdown
+docs

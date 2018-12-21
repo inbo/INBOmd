@@ -2,6 +2,7 @@
 #' Missing dependencies will be installed automatically
 #' @export
 #' @importFrom utils install.packages
+#' @family utils
 check_dependencies <- function(){
   dependencies <- c("bookdown", "webshot")
   available <- basename(find.package(dependencies, quiet = TRUE))

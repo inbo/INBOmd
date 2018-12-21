@@ -51,3 +51,9 @@ Available extra parameters:
 \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
 }
 }
+\seealso{
+Other output: \code{\link{inbo_handouts}},
+  \code{\link{inbo_poster}}, \code{\link{inbo_slides}},
+  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+}
+\concept{output}

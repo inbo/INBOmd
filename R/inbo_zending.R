@@ -18,6 +18,7 @@
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_version
 #' @importFrom utils compareVersion
+#' @family output
 inbo_zending <- function(
   conference,
   conferencedate,

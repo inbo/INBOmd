@@ -10,6 +10,7 @@
 #' @param display open the pdf in a reader. Defaults to TRUE
 #' @param keep keep intermediate files after succesful compilation. Defaults to "none"
 #' @param clean TRUE to clean intermediate files created during rendering of the R markdown into tex
+#' @family utils
 render_natbib <- function(
   file,
   path = ".",

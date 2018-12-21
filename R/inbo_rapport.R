@@ -22,6 +22,7 @@
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
+#' @family output
 inbo_rapport <- function(
   subtitle,
   reportnr,
