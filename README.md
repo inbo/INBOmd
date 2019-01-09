@@ -14,4 +14,14 @@ INBOmd contains templates to generate several types of documents with the corpor
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.com/articles/introduction.html)
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.com/articles/introduction.html).
+
+## In the wild
+
+Below are some documents created with INBOmd
+
+1. https://inbomd-examples.netlify.com
+1. https://doi.org/10.21436/inbor.14030462
+1. https://doi.org/10.21436/inbop.14901626
+1. https://pureportal.inbo.be/portal/files/12819590/rbelgium_20170307.pdf
+1. https://doi.org/10.21436/inbor.12304086

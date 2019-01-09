@@ -9,6 +9,8 @@ navbar:
       href: articles/introduction.html
   - text: Functions
     href: reference/index.html
+  - text: Examples
+    href: https://inbomd-examples.netlify.com
   - text: Contributing
     href: CONTRIBUTING.html
   right:
