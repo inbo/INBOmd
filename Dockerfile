@@ -70,6 +70,8 @@ RUN  apt-get update \
       fmtcount \
       footmisc \
       helvetic \
+      hyphen-dutch \
+      hyphen-french \
       inconsolata \
       lastpage \
       lipsum \

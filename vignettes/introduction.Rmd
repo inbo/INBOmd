@@ -71,6 +71,7 @@ tinytex::tlmgr_install(c(
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
 )
+tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
 ```
 
 # Using `INBOmd`
