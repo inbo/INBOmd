@@ -189,7 +189,7 @@
 \setlength{\fontsizechapterinter}{21.6pt}
 
 \setlength{\fontsizeintro}{14pt}
-\setlength{\fontsizeintrointer}{30pt}
+\setlength{\fontsizeintrointer}{16.1pt}
 
 \setlength{\fontsizesection}{16pt}
 \setlength{\fontsizesectioninter}{20pt}
@@ -238,165 +238,129 @@
 \RequirePackage{inbogeneric_2015}
 
 \RequirePackage[bottom]{footmisc}
-\RequirePackage{ragged2e}
 
-% define style for parts (heading 0)
-\def\@part[#1]#2{%
-  \ifnum \c@secnumdepth >-2\relax
-    \refstepcounter{part}%
-    \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
-  \else
-    \addcontentsline{toc}{part}{#1}%
-  \fi
-  \vfill
-  {\color{main.colour}
-    \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont \bfseries \partname \hspace{2pt} \thepart
 
-    \fontsize{\fontsizepart}{\fontsizepartinter} \selectfont \raggedright \bfseries \textsc{#1}
+% add figure and table prefix to list of figures and list of tables
+\RequirePackage{tocloft}
 
-  }
-  \vfill
-  \clearpage
-}
+\setlength{\cftfigindent}{0mm}
+\setlength{\cfttabindent}{0mm}
 
-% define style for chapters (heading 1)
-\RequirePackage{tabularx}
-\newcolumntype{L}{>{\RaggedRight} X}
-\def\@makechapterhead#1{%
-   {
-    \color{main.colour} \bfseries \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont
-    \begin{tabularx}{\textwidth}{@{}lL@{}}
-      \thechapter &  \expandafter\MakeUppercase\expandafter{#1} \\
-      \rule{7.6mm}{0pt} & \\[-\fontsizechapter]
-      \vspace{24pt}
-   \end{tabularx}
+\setlength{\cftfignumwidth}{20mm}
+\setlength{\cfttabnumwidth}{20mm}
+\renewcommand{\cftfigpresnum}{\figurename\ }
+\renewcommand{\cfttabpresnum}{\tablename\ }
 
-   }
-  \nopagebreak
-  }
-\def\@makeschapterhead#1{%
-   {%
-    \color{main.colour}
-    \fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries \raggedright #1 %
-    \vspace{14pt}
-    }
-    \nopagebreak
-  }
+\renewcommand{\cfttoctitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftloftitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftlottitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
+\renewcommand{\cftaftertoctitle}{\vspace{14pt}\nopagebreak}
+\renewcommand{\cftafterloftitle}{\vspace{14pt}\nopagebreak}
+\renewcommand{\cftafterlottitle}{\vspace{14pt}\nopagebreak}
 
+\RequirePackage[explicit]{titlesec}
 \RequirePackage[normalem]{ulem}
-
-% define style for sections (heading 2)
-\renewcommand{\section}{\secdef\@section\@ssection}
-\def\@section[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \refstepcounter{section}%
-    \addcontentsline{toc}{section}%
-      {\protect\numberline{\thesection}#1}%
-  \else
-    \addcontentsline{toc}{section}#1%
-  \fi
-  \@makesectionhead{#2}%
-}
-\def\@ssection#1{
-  \@makessectionhead{#1}
-}
-\def\@makesectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesection & \uppercase{\dotuline{#1}} \\ \rule{15mm}{0pt} & \\[-\fontsizesection]  \vspace{12pt} \end{tabularx}}   \nopagebreak
-}
-\def\@makessectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont \noindent \uppercase{\dotuline{#1} \vspace{12pt}}
-   }\nopagebreak
-}
-
-% define style for subsections (heading 3)
-\renewcommand{\subsection}{\secdef\@subsection\@ssubsection}
-\def\@subsection[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \refstepcounter{subsection}%
-    \addcontentsline{toc}{subsection}%
-      {\protect\numberline{\thesubsection}#1}%
-  \else
-    \addcontentsline{toc}{subsection}#1%
-  \fi
-  \@makesubsectionhead{#2}%
-}
-\def\@ssubsection#1{
-  \@makessubsectionhead{#1}
-}
-\def\@makesubsectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubsection & #1 \\ \rule{15mm}{0pt} & \\\\[-\fontsizesubsection] \end{tabularx}}\nopagebreak
-}
-\def\@makessubsectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont \bfseries \noindent \raggedright #1 }\nopagebreak
-}
+\setcounter{secnumdepth}{6}
 
 
-% define style for subsubsections (heading 4)
-\renewcommand{\subsubsection}{\secdef\@subsubsection\@ssubsubsection}
-\def\@subsubsection[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \refstepcounter{subsubsection}%
-  \fi
-  \@makesubsubsectionhead{#2}%
-}
-\def\@ssubsubsection#1{
-  \@makessubsubsectionhead{#1}
-}
-\def\@makesubsubsectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubsubsection & \uline{#1} \\ \rule{15mm}{0pt} & \\[-\fontsizesubsubsection] \end{tabularx}} \nopagebreak
-}
-\def\@makessubsubsectionhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont \bfseries \noindent \raggedright \uline{#1}} \nopagebreak
-}
+% define style for part (heading 0)
+\titleformat
+  {\part}[display]
+  {
+    \color{main.colour}
+    \fontsize{\fontsizepart}{\fontsizepartinter} \selectfont
+    \bfseries
+  }
+  {\partname\quad\thepart}
+  {1.5em}
+  {\textsc{#1}}
 
+
+% define style for chapter (heading 1)
+\titleformat
+  {\chapter}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont
+    \bfseries
+  }
+  {\thechapter}
+  {1.5em}
+  {\uppercase{#1}}
+\titlespacing{\chapter}{0mm}{24pt}{24pt}
+\titleformat
+  {name = \chapter, numberless}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont
+    \bfseries
+  }
+  {}
+  {0em}
+  {#1}
+\titlespacing{name = \chapter, numberless}{0mm}{0pt}{14pt}
+
+% define style for subsection (heading 2)
+\titleformat
+  {\section}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont
+  }
+  {\thesection}
+  {1.5em}
+  {\uppercase{\dotuline{#1}}}
+\titlespacing{\section}{0mm}{10pt}{12pt}
+
+% define style for subsection (heading 3)
+\titleformat
+  {\subsection}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont
+    \bfseries
+  }
+  {\thesubsection}
+  {1.5em}
+  {#1}
+\titlespacing{\subsection}{0mm}{10pt}{6pt}
+
+% define style for subsubsection (heading 4)
+\titleformat
+  {\subsubsection}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont
+    \bfseries
+  }
+  {\thesubsubsection}
+  {1.5em}
+  {\uline{#1}}
+\titlespacing{\subsubsection}{0mm}{10pt}{9pt}
 
 % define style for paragraph (heading 5)
-\renewcommand{\paragraph}{\secdef\@paragraph\@sparagraph}
-\def\@paragraph[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \refstepcounter{paragraph}%
-  \fi
-  \@makeparagraphhead{#2}%
-}
-\def\@sparagraph#1{
-  \@makesparagraphhead{#1}
-}
-\def\@makeparagraphhead#1{%
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\theparagraph & #1 \\ \rule{17.8mm}{0pt} & \\[-\fontsizeparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}\nopagebreak
-}
-\def\@makesparagraphhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}\nopagebreak
-}
+\titleformat
+  {\paragraph}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont
+  }
+  {\theparagraph}
+  {1.5em}
+  {#1}
+\titlespacing{\paragraph}{0mm}{10pt}{9pt}
 
-% define style for subparagraph (heading 6)
-\renewcommand{\subparagraph}{\secdef\@subparagraph\@ssubparagraph}
-\def\@subparagraph[#1]#2{
-  \ifnum \c@secnumdepth >\m@ne
-    \refstepcounter{subparagraph}%
-  \fi
-  \@makesubparagraphhead{#2}%
-}
-\def\@ssubparagraph#1{
-  \@makessubparagraphhead{#1}
-}
-\def\@makesubparagraphhead#1{%
-   {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \begin{tabularx}{\textwidth}{@{}lL@{}}\thesubparagraph & #1 \\ \rule{20.3mm}{0pt} & \\[-\fontsizesubparagraph] \end{tabularx}} \nopagebreak
-  \vspace{9pt}\nopagebreak
-}
-\def\@makessubparagraphhead#1{%
-  \vspace{10pt}
-   {\color{main.colour}\fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont \bfseries \noindent \raggedright #1} \nopagebreak
-   \vspace{9pt}\nopagebreak
-}
+% define style for paragraph (heading 6)
+\titleformat
+  {\subparagraph}
+  {
+    \color{main.colour}
+    \fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont
+  }
+  {\thesubparagraph}
+  {1.5em}
+  {#1}
+\titlespacing{\paragraph}{0mm}{10pt}{9pt}
 
 % define headers and footers
 \RequirePackage{lastpage}
@@ -506,27 +470,6 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}
 \RequirePackage{parskip}
 \setlength{\parskip}{9pt plus4pt minus4pt}
 
-% add figure and table prefix to list of figures and list of tables
-\RequirePackage{tocloft}
-
-\setlength{\cftfigindent}{0mm}
-\setlength{\cfttabindent}{0mm}
-
-\setlength{\cftfignumwidth}{20mm}
-\setlength{\cfttabnumwidth}{20mm}
-\renewcommand{\cftfigpresnum}{\figurename\ }
-\renewcommand{\cfttabpresnum}{\tablename\ }
-
-% \setlength{\cftbeforetoctitleskip}{-14pt}
-% \setlength{\cftbeforeloftitleskip}{\cftbeforetoctitleskip}
-% \setlength{\cftbeforelottitleskip}{\cftbeforetoctitleskip}
-\renewcommand{\cfttoctitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
-\renewcommand{\cftloftitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
-\renewcommand{\cftlottitlefont}{\color{main.colour}\fontsize{\fontsizeintro}{\fontsizeintrointer} \selectfont \bfseries}
-\renewcommand{\cftaftertoctitle}{\vspace{14pt}\nopagebreak}
-\renewcommand{\cftafterloftitle}{\vspace{14pt}\nopagebreak}
-\renewcommand{\cftafterlottitle}{\vspace{14pt}\nopagebreak}
-
 % changing style in table of contents
 \renewcommand*\l@part{\vspace{6pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\bfseries\@dottedtocline{0}{0mm}{0mm}}
 \renewcommand*\l@chapter{\vspace{3pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\normalfont\@dottedtocline{1}{0mm}{15mm}}
@@ -557,3 +500,5 @@ to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}
 \def\fps@table{htbp}
 
 \setlength{\skip\footins}{1cm}
+
+\RequirePackage{needspace}
