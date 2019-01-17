@@ -50,7 +50,8 @@ RUN  mkdir ~/.fonts \
 
 
 ## Install dependencies for INBOmd examples
-RUN  Rscript -e 'install.packages(c("DT", "leaflet"))'
+RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
+  && Rscript -e 'remotes::install_github("inbo/lipsum")'
 
 ## Install LaTeX packages
 RUN  apt-get update \
@@ -70,6 +71,8 @@ RUN  apt-get update \
       fmtcount \
       footmisc \
       helvetic \
+      hyphen-dutch \
+      hyphen-french \
       inconsolata \
       lastpage \
       lipsum \
