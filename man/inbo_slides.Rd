@@ -9,8 +9,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset,
   codesize = c("footnotesize", "scriptsize", "tiny", "small",
   "normalsize"), citation_package = c("natbib", "none"), natbib_title,
   lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE,
-  website = "www.INBO.be", theme = c("inbo", "vlaanderen"),
-  flandersfont = FALSE, ...)
+  website = "www.INBO.be", theme = c("inbo", "vlaanderen",
+  "inboenglish"), flandersfont = FALSE, ...)
 }
 \arguments{
 \item{subtitle}{The date and place of the event}

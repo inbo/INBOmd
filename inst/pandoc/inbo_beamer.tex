@@ -94,6 +94,7 @@ $endif$
 $body$
 
 
+$if(bibliography)$
 $if(natbib)$
 \begin{frame}[allowframebreaks]
 $if(natbibtitle)$
@@ -104,6 +105,7 @@ $endif$
 \bibliographystyle{inbo}
 \bibliography{$bibliography$}
 \end{frame}
+$endif$
 $endif$
 
 $for(include-after)$
