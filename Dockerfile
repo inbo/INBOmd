@@ -30,7 +30,7 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
       bzip2 \
       curl \
-  && Rscript -e 'install.packages(c("bookdown", "webshot"))' \
+  && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot"))' \
   && Rscript -e 'webshot::install_phantomjs()' \
   && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
 
@@ -56,6 +56,8 @@ RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
 ## Install LaTeX packages
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends gpg \
+  && tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
+  && tlmgr update --self --all \
   && tlmgr install \
       babel-dutch \
       babel-english \
@@ -84,6 +86,7 @@ RUN  apt-get update \
       needspace \
       tex \
       textpos \
+      titlesec \
       times \
       tocloft \
       translator \

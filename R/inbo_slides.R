@@ -42,7 +42,7 @@ inbo_slides <- function(
   keep_tex = FALSE,
   toc = TRUE,
   website = "www.INBO.be",
-  theme = c("inbo", "vlaanderen"),
+  theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   ...
 ){

@@ -7,12 +7,12 @@
 %
 % See the file doc/licenses/LICENSE for more details.
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{beamerthemeinbo}
+\ProvidesPackage{beamerthemeinboenglish}
 
 \RequirePackage{beamerthemevlaanderengeneric}
 %\setbeamertemplate{background}{\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{tussenslide.pdf}}
 
-\lang{dutch}
+\lang{english}
 
 \cover{labo.jpg}
 \coverhorizontal{TRUE}
@@ -30,38 +30,39 @@
 
 \RequirePackage{beamerthemevlaanderenlayout}
 
+\definecolor{logobackground}{RGB}{244, 244, 239}
+
+
 \newcommand{\titlelogo}{
-  \begin{textblock}{29.2}(96.5, 4.4)
-    \begin{center}
-      \includegraphics[width = 29.55mm]{vlaanderen_nl_vol}
-    \end{center}
+  \begin{textblock}{13.5}(96.5, 4.4)
+  \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal}
   \end{textblock}
 
 
-  \begin{textblock}{30}(96.5, 20.8)
-    \textblockcolour{white}
+  \begin{textblock}{30}(67.3, 4.4)
+    \textblockcolour{logobackground}
     \vspace{0.75mm}
-    \hspace{1mm}\includegraphics[width = 27.55mm]{logo_nl_kleur}
+    \hspace{1mm}\includegraphics[width = 27.55mm]{logo_en_kleur}
     \vspace{0.75mm}
   \end{textblock}
 }
 
 \newcommand{\sectionlogo}{
-  \begin{textblock}{29.2}(7.5, 8.45)
+  \begin{textblock}{13.5}(7.5, 8.45)
     \textblockcolour{main.colour}
-    \includegraphics[width = 25mm]{vlaanderen_nl_vol2}
+    \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal}
   \end{textblock}
 
-  \begin{textblock}{29.2}(7.5, 22.3)
+  \begin{textblock}{26}(21, 8.45)
     \textblockcolour{main.colour}
-    \includegraphics[width = 25mm]{logo_nl_wit}
+    \includegraphics[width = 25mm]{logo_en_wit}
   \end{textblock}
 }
 
 \newcommand{\sidebarlogo}{
   \vspace{81.9mm}
   \hspace{9.2mm}
-  \includegraphics[height = 9.9mm]{vlaanderen_nl_naakt}
+  \includegraphics[height = 9.9mm]{vlaanderen_en_naakt}
 }
 
 \RequirePackage{beamerthemevlaanderenlayout}

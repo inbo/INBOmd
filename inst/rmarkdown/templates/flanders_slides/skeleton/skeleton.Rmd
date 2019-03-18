@@ -1,4 +1,4 @@
--- 
+--- 
 title: "Example presentation using INBOmd"
 author: "Thierry Onkelinx"
 site: bookdown::bookdown_site
@@ -6,7 +6,6 @@ output:
   bookdown::pdf_book:
     base_format: INBOmd::inbo_slides
     theme: vlaanderen
-    lang: english
     subtitle: "Here comes the optional subtitle"
     location: "Here comes the optional location"
     institute: "Here comes the optional affilitation"
@@ -15,20 +14,31 @@ output:
     font_flanders: FALSE
 ---
 
-```{r include = FALSE}
+```{r setup, include = FALSE}
 library(knitr)
 opts_chunk$set(
   dev = "cairo_pdf"
 )
-library(ggplot2)
+library(tidyverse)
 library(INBOtheme)
-theme_set(
-  theme_vlaanderen2015(
-    base_family = "Calibri", # "Flanders Art Sans",
-    base_size = 6, 
-    transparent = "plot"
+if (interactive()) {
+  theme_set(
+    theme_vlaanderen2015(
+      base_family = "Calibri", # "Flanders Art Sans",
+      base_size = 12, 
+      transparent = "plot"
+    )
   )
-)
+} else {
+  theme_set(
+    theme_vlaanderen2015(
+      base_family = "Calibri", # "Flanders Art Sans",
+      base_size = 6, 
+      transparent = "plot"
+    )
+  )
+  update_geom_defaults("text", list(size = 3))
+}
 ```
 
 # Slides in RMarkdown with Bookdown extension

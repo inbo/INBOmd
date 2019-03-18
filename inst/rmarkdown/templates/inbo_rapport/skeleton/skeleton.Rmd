@@ -28,7 +28,7 @@ output:
 
 Een concreet voorbeeld van de broncode van dergelijk rapport vind je op https://github.com/inbo/inbomd_examples onder het mapje source/inbo_rapport. Hoe zo een rapport er finaal uit kan zien, vind je op https://inbomd-examples.netlify.com/
 
-```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
+```{r setup, include = FALSE}
 library(knitr)
 opts_chunk$set(
   echo = FALSE, 
@@ -41,7 +41,7 @@ opts_chunk$set(
   error = TRUE,
   message = TRUE
 )
-library(ggplot2)
+library(tidyverse)
 library(INBOtheme)
 theme_set(
   theme_inbo(
