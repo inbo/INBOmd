@@ -91,7 +91,11 @@ $endfor$
 \clearpage
 
 \phantomsection
+$if(tocdepth)$
+\setcounter{tocdepth}{$tocdepth$}
+$else$
 \setcounter{tocdepth}{3}
+$endif$
 \tableofcontents
 \addcontentsline{toc}{chapter}{\contentsname}
 

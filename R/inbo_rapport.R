@@ -18,6 +18,7 @@
 #'   \item lot: display a list of tables. Defaults to TRUE
 #'   \item hyphenation: the correct hyphenation for certain words
 #'   \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
+#'   \item tocdepth: which level headers to display. 0: upto chapters (`#`), 1: upto section (`##`), 2: upto subsection (`###`), 3: upto subsubsection (`####`). Defaults to 3.
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version

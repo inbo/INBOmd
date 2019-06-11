@@ -49,6 +49,7 @@ Available extra parameters:
 \item lot: display a list of tables. Defaults to TRUE
 \item hyphenation: the correct hyphenation for certain words
 \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
+\item tocdepth: which level headers to display. 0: upto chapters (\code{#}), 1: upto section (\code{##}), 2: upto subsection (\code{###}), 3: upto subsubsection (\code{####}). Defaults to 3.
 }
 }
 \seealso{
