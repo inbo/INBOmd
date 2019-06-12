@@ -54,8 +54,8 @@ INBOmd requires a working installation of XeLaTeX. We highly recommend to use th
 ```{r eval = FALSE}
 if (!"tinytex" %in% rownames(installed.packages())) {
   install.packages("tinytex")
+  tinytex::install_tinytex()
 }
-tinytex::install_tinytex()
 ```
 
 Once TinyTeX is installed, you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.

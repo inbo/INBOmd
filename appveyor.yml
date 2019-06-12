@@ -11,13 +11,12 @@ install:
   ps: Bootstrap
 
 cache:
-  - C:\RLibrary
+  - C:\RLibrary -> appveyor.yml, DESCRIPTION
 
 # Adapt as necessary starting from here
 
 build_script:
-  - Rscript -e "install.packages(c('backports', 'colorspace', 'digest', 'htmltools', 'lazyeval', 'plyr', 'Rcpp', 'rlang', 'remotes', 'scales', 'stringi', 'tibble'), repos = 'https://cloud.r-project.org/', type = 'binary')"
-  - Rscript -e "remotes::install_github('rstudio/bookdown')"
+  - Rscript -e "install.packages(c('backports', 'bookdown', 'colorspace', 'digest', 'htmltools', 'lazyeval', 'plyr', 'Rcpp', 'rlang', 'remotes', 'scales', 'stringi', 'tibble'), repos = 'https://cloud.r-project.org/', type = 'binary')"
   - travis-tool.sh install_deps
 
 test_script:
@@ -49,7 +48,7 @@ artifacts:
 environment:
   access_token:
     secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
-  PKGTYPE: source
+  PKGTYPE: win.binary
 
 deploy:
   - provider: GitHub
