@@ -42,11 +42,15 @@ RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
   && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
 
 ## Install fonts
-RUN  mkdir ~/.fonts \
+RUN  mkdir /usr/local/lib/R/site-library/INBOmd/local_tex/fonts/truetype/calibri \
+  && mkdir /usr/local/lib/R/site-library/INBOmd/local_tex/fonts/truetype/inconsolata \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
-  && unzip calibri.zip -d ~/.fonts \
-  && wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
-  && wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
+  && unzip calibri.zip -d /usr/local/lib/R/site-library/INBOmd/local_tex/fonts/truetype/calibri \
+  && rm calibri.zip \
+  && wget -O /usr/local/lib/R/site-library/INBOmd/local_tex/fonts/truetype/inconsolata/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
+  && wget -O /usr/local/lib/R/site-library/INBOmd/local_tex/fonts/truetype/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
+  && fc-cache -fv \
+  && updmap-sys
 
 
 ## Install dependencies for INBOmd examples
