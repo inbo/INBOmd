@@ -18,6 +18,11 @@ output:
     template: !expr INBOmd::inbo_rapport_css("html")
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
+    style: INBO
+    tocdepth: 2
+    lof: TRUE
+    lot: TRUE
+    floatbarrier: subsection
   bookdown::epub_book:
     stylesheet: "css/inbo_rapport.css"
     template: !expr INBOmd::inbo_rapport_css("epub")
