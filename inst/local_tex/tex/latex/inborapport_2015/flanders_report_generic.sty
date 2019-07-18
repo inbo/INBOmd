@@ -145,7 +145,7 @@
       BoldFont = FlandersArtSans-Medium,
       BoldItalicFont = FlandersArtSans-Medium,
       BoldItalicFeatures = {FakeSlant = 0.15}
-    ]{FlandersArtSans-Regular}
+    ]{FlandersArtSans-Regular.ttf}
   \setmonofont[Mapping=tex-ansi]{inconsolata}
 \else
   \RequirePackage[T1]{fontenc}
@@ -385,21 +385,6 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
-\newcommand{\choosefont}[1]{%
-  \edef\custom{{#1}}%
-  \expandafter\ifstrequal\custom{TRUE}{
-    \fontspec{FlandersArtSans-Regular}[
-      Ligatures = TeX,
-      ItalicFont = FlandersArtSans-Light,
-      ItalicFeatures = {FakeSlant = 0.15},
-      BoldFont = FlandersArtSans-Medium,
-      BoldItalicFont = FlandersArtSans-Medium,
-      BoldItalicFeatures = {FakeSlant = 0.15}
-    ]
-  }{
-  }
-}
-
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
@@ -411,7 +396,6 @@
     \color{main.colour}
     \hspace{10mm}\parbox[t]{140mm}{
       \addfontfeature{LetterSpace=0.014}
-      \choosefont{\@flandersfont}
       \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \bfseries \expandafter\MakeUppercase\expandafter{\uline{\@title}}
       \addfontfeature{LetterSpace=0.0}
     }

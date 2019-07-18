@@ -61,8 +61,6 @@ Available extra parameters:
 \item 3: upto subsubsection (\code{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
-\item \code{flandersfont}: Use the Flanders Art Sans font on title page?
-Defaults to TRUE.
 }
 }
 \seealso{

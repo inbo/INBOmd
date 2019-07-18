@@ -27,8 +27,6 @@
 #'     - 2: upto subsection (`###`)
 #'     - 3: upto subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
-#' - `flandersfont`: Use the Flanders Art Sans font on title page?
-#'   Defaults to TRUE.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -107,9 +105,6 @@ inbo_rapport <- function(
   if (!"lot" %in% names(extra)) {
     extra$lot <- TRUE
   }
-  if (!"flandersfont" %in% names(extra)) {
-    extra$flandersfont <- TRUE
-  }
   if (extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -119,10 +114,7 @@ inbo_rapport <- function(
   if (extra$lof || extra$lot) {
     args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
-  if (extra$flandersfont) {
-    args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
-  }
-  extra <- extra[!names(extra) %in% c("lof", "lot", "flandersfont")]
+  extra <- extra[!names(extra) %in% c("lof", "lot")]
   if (length(extra) > 0) {
     args <- c(
       args,
