@@ -49,26 +49,3 @@ environment:
   access_token:
     secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
   PKGTYPE: win.binary
-
-deploy:
-  - provider: GitHub
-    on:
-      appveyor_repo_tag: true
-    artifact: '.*\.(tar\.gz|zip)'
-    force_update: true
-    auth_token:
-      secure: yysQI1zM7yUTewFfHSAPixDMQPH2/Zik3AxI/WSOSM3eHOttl5ZzXbxrb6PjUn5y
-
-before_deploy:
-  - Rscript -e "install.packages('drat', repos = 'https://cloud.r-project.org')"
-  - git config --global credential.helper store
-  - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-  - git config --global user.email "bmk@inbo.be"
-  - git config --global user.name "INBO CI"
-  - git clone --depth 1 https://github.com/inbo/drat.git drat --branch=gh-pages
-  - Rscript -e "drat::insertPackage(list.files(pattern = 'tar.gz'), 'drat')"
-  - Rscript -e "drat::insertPackage(list.files(pattern = 'zip'), 'drat')"
-  - cd drat
-  - git add --all
-  - git commit -m "INBOmd from appveyor"
-  - git push origin
