@@ -5,7 +5,7 @@
 \title{Use slides with the INBO theme}
 \usage{
 inbo_slides(subtitle, location, institute, cover, cover_offset,
-  cover_hoffset, cover_horizontal = TRUE, toc_name, fontsize,
+  cover_hoffset, cover_horizontal = TRUE, slide_logo, toc_name, fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small",
   "normalsize"), citation_package = c("natbib", "none"), natbib_title,
   lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE,
@@ -26,6 +26,8 @@ inbo_slides(subtitle, location, institute, cover, cover_offset,
 \item{cover_hoffset}{An optional horizontal offset for the cover image}
 
 \item{cover_horizontal}{Scale the cover horizontal (TRUE) or vertical (FALSE)}
+
+\item{slide_logo}{the path to an optional logo displayed on each slide}
 
 \item{toc_name}{Name of the table of contents. Defaults to "Overzicht".}
 

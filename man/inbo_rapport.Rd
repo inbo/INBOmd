@@ -2,32 +2,38 @@
 % Please edit documentation in R/inbo_rapport.R
 \name{inbo_rapport}
 \alias{inbo_rapport}
-\title{Create a report with the INBO theme version 2015}
+\title{Create a report with the Flemish corporate identity}
 \usage{
 inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
   "subsection", "subsubsection"), codesize = c("footnotesize",
-  "scriptsize", "tiny", "small", "normalsize"),
-  lang = "english, french, dutch", keep_tex = FALSE, fig_crop = TRUE,
+  "scriptsize", "tiny", "small", "normalsize"), style = c("INBO",
+  "Vlaanderen", "Flanders"), keep_tex = FALSE, fig_crop = TRUE,
   citation_package = c("natbib", "none"), includes = NULL,
   pandoc_args = NULL, ...)
 }
 \arguments{
-\item{subtitle}{An optional subtitle}
+\item{subtitle}{An optional subtitle.}
 
-\item{reportnr}{The report number}
+\item{reportnr}{The report number.
+Defaults to the date and time of compilation.}
 
-\item{ordernr}{The order number}
+\item{ordernr}{The optional order number.}
 
-\item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
+\item{floatbarrier}{Should float barriers be placed?
+Defaults to NA (only float barriers before starting a new chapter \code{#}).
+Options are "section" (\code{##}), "subsection" (\code{###}) and "subsubsection" (\code{####}).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
 
-\item{lang}{The language of the document. Defaults to "english, french, dutch". The last language is the main language.}
+\item{style}{What template to use.
+Use "INBO" for an INBO report in Dutch.
+Use "Vlaanderen" for a report in Dutch written by more than one Flemish government agency.
+Use "Flanders" for a report in English.}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
-(if available) to pdf figures}
+(if available) to pdf figures.}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
@@ -40,16 +46,21 @@ document (typically created using the \code{\link{includes}} function).}
 \item{...}{extra parameters: see details}
 }
 \description{
-Create a report with the INBO theme version 2015
+Create a report with the Flemish corporate identity
 }
 \details{
 Available extra parameters:
 \itemize{
-\item lof: display a list of figures. Defaults to TRUE
-\item lot: display a list of tables. Defaults to TRUE
-\item hyphenation: the correct hyphenation for certain words
-\item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
-\item tocdepth: which level headers to display. 0: upto chapters (\code{#}), 1: upto section (\code{##}), 2: upto subsection (\code{###}), 3: upto subsubsection (\code{####}). Defaults to 3.
+\item \code{lof}: display a list of figures. Defaults to TRUE
+\item \code{lot}: display a list of tables. Defaults to TRUE
+\item \code{tocdepth}: which level headers to display.
+\itemize{
+\item 0: upto chapters (\code{#})
+\item 1: upto section (\code{##})
+\item 2: upto subsection (\code{###})
+\item 3: upto subsubsection (\code{####}) default
+}
+\item \code{hyphenation}: the correct hyphenation for certain words.
 }
 }
 \seealso{

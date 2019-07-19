@@ -18,7 +18,9 @@ inbo_verslag(present = "", absent = "", chair = "",
 
 \item{chair}{chair of the meeting}
 
-\item{floatbarrier}{Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".}
+\item{floatbarrier}{Should float barriers be placed?
+Defaults to NA (only float barriers before starting a new chapter \code{#}).
+Options are "section" (\code{##}), "subsection" (\code{###}) and "subsubsection" (\code{####}).}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
@@ -33,7 +35,7 @@ document (typically created using the \code{\link{includes}} function).}
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
-(if available) to pdf figures}
+(if available) to pdf figures.}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
