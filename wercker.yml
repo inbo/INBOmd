@@ -1,4 +1,6 @@
 box: inbobmk/inbomd
+no-response-timeout: 10
+command-timeout: 45
 build:
   steps:
     - script:

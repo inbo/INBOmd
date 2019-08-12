@@ -17,6 +17,8 @@
 \def\website#1{\def\@website{#1}}
 \def\flandersfont#1{\def\@flandersfont{#1}}
 \flandersfont{FALSE}
+\def\slidelogo#1{\def\@slidelogo{#1}}
+\slidelogo{}
 
 \RequirePackage[absolute, overlay]{textpos}
 \setlength{\TPHorizModule}{1mm}
@@ -34,6 +36,24 @@
   }{
     \pgfdeclareimage[height = 96mm, interpolate = true]{afbeelding}{#2}
   }%
+}
+
+\newcommand{\showslidelogo}[1]{%
+  \protected@edef\@tempa{#1}%
+  \expandafter\notblank\expandafter{\@tempa}
+  {%
+    \pgfdeclareimage[height = 9.9mm, interpolate = true]{customlogo}{#1}
+    \pgfuseimage{customlogo}
+  }{}%
+}
+
+\newcommand{\showtitlelogo}[1]{%
+  \protected@edef\@tempa{#1}%
+  \expandafter\notblank\expandafter{\@tempa}
+  {%
+    \pgfdeclareimage[height = 20mm, interpolate = true]{customtitlelogo}{#1}
+    \pgfuseimage{customtitlelogo}
+  }{}
 }
 
 \RequirePackage{inboimage_2015}

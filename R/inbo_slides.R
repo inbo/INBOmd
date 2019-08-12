@@ -17,6 +17,7 @@
 #' @param website An optional URL to display on the left sidebar. Defaults to www.INBO.be.
 #' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
 #' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.
+#' @param slide_logo the path to an optional logo displayed on each slide
 #' @param ... extra parameters
 #' @inheritParams rmarkdown::pdf_document
 #' @export
@@ -32,6 +33,7 @@ inbo_slides <- function(
   cover_offset,
   cover_hoffset,
   cover_horizontal = TRUE,
+  slide_logo,
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
@@ -42,7 +44,7 @@ inbo_slides <- function(
   keep_tex = FALSE,
   toc = TRUE,
   website = "www.INBO.be",
-  theme = c("inbo", "vlaanderen"),
+  theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   ...
 ){
@@ -120,6 +122,10 @@ inbo_slides <- function(
       assert_that(noNA(cover_horizontal)) #nolint
       args <- c(args, pandoc_variable_arg("coverhorizontal", cover_horizontal))
     }
+  }
+  if (!missing(slide_logo)) {
+    assert_that(is.string(slide_logo))
+    args <- c(args, pandoc_variable_arg("slidelogo", slide_logo))
   }
   output_format(
     knitr = knitr_options(

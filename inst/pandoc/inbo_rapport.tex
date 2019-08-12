@@ -1,7 +1,7 @@
 $if(mylanguage)$\PassOptionsToPackage{$mylanguage$}{babel}$endif$
 \documentclass[twoside]{extreport}
 
-\usepackage{inborapport_2015}
+\usepackage{$style$}
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
@@ -51,8 +51,6 @@ $if(subtitle)$\subtitle{$subtitle$}$endif$
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 $if(reportnr)$\reportnumber{$reportnr$}$endif$
 
-$if(flandersfont)$\flandersfont{$flandersfont$}$endif$
-
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
 $for(header-includes)$
@@ -91,7 +89,11 @@ $endfor$
 \clearpage
 
 \phantomsection
+$if(tocdepth)$
+\setcounter{tocdepth}{$tocdepth$}
+$else$
 \setcounter{tocdepth}{3}
+$endif$
 \tableofcontents
 \addcontentsline{toc}{chapter}{\contentsname}
 

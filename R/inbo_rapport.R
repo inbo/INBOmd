@@ -1,11 +1,17 @@
-#' Create a report with the INBO theme version 2015
-#' @param subtitle An optional subtitle
-#' @param reportnr The report number
-#' @param ordernr The order number
-#' @param floatbarrier Should float barriers be placed? Defaults to NA (no extra float barriers). Options are "section", "subsection" and "subsubsection".
-#' @param lang The language of the document. Defaults to "english, french, dutch". The last language is the main language.
+#' Create a report with the Flemish corporate identity
+#' @param subtitle An optional subtitle.
+#' @param reportnr The report number.
+#'   Defaults to the date and time of compilation.
+#' @param ordernr The optional order number.
+#' @param floatbarrier Should float barriers be placed?
+#'   Defaults to NA (only float barriers before starting a new chapter `#`).
+#'   Options are "section" (`##`), "subsection" (`###`) and "subsubsection" (`####`).
+#' @param style What template to use.
+#'   Use "INBO" for an INBO report in Dutch.
+#'   Use "Vlaanderen" for a report in Dutch written by more than one Flemish government agency.
+#'   Use "Flanders" for a report in English.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
-#'   (if available) to pdf figures
+#'   (if available) to pdf figures.
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
@@ -13,12 +19,14 @@
 #'
 #' @details
 #' Available extra parameters:
-#' \itemize{
-#'   \item lof: display a list of figures. Defaults to TRUE
-#'   \item lot: display a list of tables. Defaults to TRUE
-#'   \item hyphenation: the correct hyphenation for certain words
-#'   \item flandersfont: Use the Flanders Art Sans font on title page? Defaults to FALSE. Note that this requires the font to be present on the system.
-#' }
+#' - `lof`: display a list of figures. Defaults to TRUE
+#' - `lot`: display a list of tables. Defaults to TRUE
+#' - `tocdepth`: which level headers to display.
+#'     - 0: upto chapters (`#`)
+#'     - 1: upto section (`##`)
+#'     - 2: upto subsection (`###`)
+#'     - 3: upto subsubsection (`####`) default
+#' - `hyphenation`: the correct hyphenation for certain words.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -29,7 +37,7 @@ inbo_rapport <- function(
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "english, french, dutch",
+  style = c("INBO", "Vlaanderen", "Flanders"),
   keep_tex = FALSE,
   fig_crop = TRUE,
   citation_package = c("natbib", "none"),
@@ -39,6 +47,7 @@ inbo_rapport <- function(
 ){
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
+  style <- match.arg(style)
   extra <- list(...)
   codesize <- match.arg(codesize)
 
@@ -49,7 +58,21 @@ inbo_rapport <- function(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("mylanguage", lang)
+    switch(
+      style,
+      Flanders = c(
+        pandoc_variable_arg("style", "flanders_report"),
+        pandoc_variable_arg("mylanguage", "french,dutch,english")
+      ),
+      Vlaanderen = c(
+        pandoc_variable_arg("style", "vlaanderen_report"),
+        pandoc_variable_arg("mylanguage", "french,english,dutch")
+      ),
+      INBO = c(
+        pandoc_variable_arg("style", "inbo_report"),
+        pandoc_variable_arg("mylanguage", "french,english,dutch")
+      )
+    )
   )
   if (compareVersion(as.character(pandoc_version()), "2") < 0) {
     args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
@@ -82,9 +105,6 @@ inbo_rapport <- function(
   if (!"lot" %in% names(extra)) {
     extra$lot <- TRUE
   }
-  if (!"flandersfont" %in% names(extra)) {
-    extra$flandersfont <- FALSE
-  }
   if (extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -94,10 +114,7 @@ inbo_rapport <- function(
   if (extra$lof || extra$lot) {
     args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
-  if (extra$flandersfont) {
-    args <- c(args, pandoc_variable_arg("flandersfont", TRUE))
-  }
-  extra <- extra[!names(extra) %in% c("lof", "lot", "flandersfont")]
+  extra <- extra[!names(extra) %in% c("lof", "lot")]
   if (length(extra) > 0) {
     args <- c(
       args,

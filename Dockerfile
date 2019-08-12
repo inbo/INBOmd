@@ -30,7 +30,7 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
       bzip2 \
       curl \
-  && Rscript -e 'install.packages(c("bookdown", "webshot"))' \
+  && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot"))' \
   && Rscript -e 'webshot::install_phantomjs()' \
   && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
 
@@ -42,11 +42,14 @@ RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
   && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
 
 ## Install fonts
-RUN  mkdir ~/.fonts \
+RUN  mkdir /root/.fonts \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
-  && unzip calibri.zip -d ~/.fonts \
-  && wget -O ~/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
-  && wget -O ~/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf
+  && unzip calibri.zip -d /root/.fonts \
+  && rm calibri.zip \
+  && wget -O /root/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
+  && wget -O /root/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
+  && fc-cache -fv \
+  && updmap-sys
 
 
 ## Install dependencies for INBOmd examples
@@ -56,6 +59,8 @@ RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
 ## Install LaTeX packages
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends gpg \
+  && tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
+  && tlmgr update --self --all \
   && tlmgr install \
       babel-dutch \
       babel-english \
@@ -84,6 +89,7 @@ RUN  apt-get update \
       needspace \
       tex \
       textpos \
+      titlesec \
       times \
       tocloft \
       translator \

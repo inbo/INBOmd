@@ -1,0 +1,39 @@
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{flanders_report}
+
+\RequirePackage{flanders_report_generic}
+\alertlogo{alert_black.png}
+
+% definition of colour scheme
+\RequirePackage{flanderscolours}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[LE, RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont Page \textbf{\thepage} of \textbf{\pageref*{LastPage}}}}
+\fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont \@reportnumber}}
+\renewcommand{\footrule}{\vbox to 8pt{\hbox
+to\headwidth{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont\leaders\hbox{/}\hfill}\vss}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{%
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyfoot[CE, CO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont \@reportnumber}}
+  \fancyfoot[LE, RO]{{\color{main.colour}\fontsize{\fontsizefooter}{\fontsizefooterinter}\selectfont Page \textbf{\thepage} of \textbf{\pageref*{LastPage}}}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+\fancypagestyle{cover}{%
+  \fancyhead{}
+  \fancyfoot{}
+  \fancyfoot[L]{\includegraphics[height = 10mm, keepaspectratio]{vlaanderen_en_naakt}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\footrule}{\vbox to 0pt{\hbox
+  to\headwidth{\hbox{}\hfill}\vss}}
+  \setlength{\footskip}{30pt}
+}
