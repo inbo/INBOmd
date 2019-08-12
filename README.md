@@ -5,7 +5,7 @@
 
 # INBOmd
 
-INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The current package as following Rmarkdown templates:
+INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The current package has following Rmarkdown templates:
 
 - INBO report: reports rendered to pdf, html (gitbook style) and epub
 - INBO slides: presentations rendered to pdf

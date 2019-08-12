@@ -18,9 +18,11 @@ knitr::opts_chunk$set(
 
 # Goal
 
-The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files. The styles are based on the corporate identity of the Research Instutite for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](https://www.inbo.be)). The styles itself are not intended for use by parties external to INBO. We still provide them as an inspiration and example for other on how to create there own corporate identity styles for `rmarkdown` files. 
+The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files. The styles are based on the corporate identity of the Research Instutite for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](https://www.inbo.be)). The styles itself are not intended for use by parties external to INBO.
+We still provide them to other users as an inspiration and example on how to create their own corporate identity styles for `rmarkdown` files. 
 
-All templates are based on [`bookdown`](https://bookdown.org/home/about.html), which is an extension of `rmarkdown`. It is taylored towards writing books and technical documentation.
+All templates are based on [`bookdown`](https://bookdown.org/home/about.html), which is an extension of `rmarkdown`.
+It is tailored towards writing books and technical documentation.
 
 ## Benefits of writing with `bookdown`
 
