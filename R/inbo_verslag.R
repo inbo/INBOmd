@@ -37,7 +37,8 @@ inbo_verslag <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file("pandoc/inbo_verslag.tex", package = "INBOmd")
-  csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- system.file("research-institute-for-nature-and-forest.csl",
+                     package = "INBOmd")
   args <- c(
     "--template", template,
     pandoc_variable_arg("present", present),

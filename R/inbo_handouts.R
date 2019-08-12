@@ -42,7 +42,8 @@ inbo_handouts <- function(
 
   extra <- list(...)
   codesize <- match.arg(codesize)
-  csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- system.file("research-institute-for-nature-and-forest.csl",
+                     package = "INBOmd")
   template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
   args <- c(
     "--slide-level", as.character(slide_level),
