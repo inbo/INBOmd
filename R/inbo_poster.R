@@ -48,7 +48,8 @@ inbo_poster <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file("pandoc/inbo_poster.tex", package = "INBOmd")
-  csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- system.file("research-institute-for-nature-and-forest.csl",
+                     package = "INBOmd")
 
   args <- c(
     "--template", template,

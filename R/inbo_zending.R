@@ -43,7 +43,8 @@ inbo_zending <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file("pandoc/inbo_zending.tex", package = "INBOmd")
-  csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- system.file("research-institute-for-nature-and-forest.csl",
+                     package = "INBOmd")
   args <- c(
     "--template", template,
     pandoc_variable_arg("conference", conference),
