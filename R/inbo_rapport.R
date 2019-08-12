@@ -57,7 +57,8 @@ inbo_rapport <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
-  csl <- system.file("inbo.csl", package = "INBOmd")
+  csl <- system.file("research-institute-for-nature-and-forest.csl",
+                     package = "INBOmd")
   citation_package <- match.arg(citation_package)
 
   args <- c(

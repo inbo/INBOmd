@@ -9,3 +9,4 @@ Dockerfile
 _pkgdown.yml
 pkgdown
 docs
+^data-raw$
