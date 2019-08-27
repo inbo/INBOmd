@@ -14,13 +14,16 @@ BugReports: https://github.com/inbo/inbomd/issues
 VignetteBuilder: knitr
 Suggests:
     bookdown (>= 0.7.13),
+    DT,
     ggplot2,
     INBOtheme (>= 0.5.4),
-    knitr,
+    pander,
     rstudioapi,
     webshot
 Imports:
     assertthat,
+    dplyr,
+    knitr,
     qrcode (>= 0.1.2),
     rmarkdown,
     utils
