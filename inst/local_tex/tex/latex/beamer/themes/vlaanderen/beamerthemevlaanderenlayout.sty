@@ -158,8 +158,11 @@
   \begin{textblock}{66}(36, 32)
     \textblockcolour{}
     \begin{minipage}[b][29mm][b]{65mm}
-      \noindent
-      \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
+      \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \raggedright{
+        \noindent
+        \insertsection
+      }%
     \end{minipage}
   \end{textblock}
 
