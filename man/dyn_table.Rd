@@ -4,8 +4,8 @@
 \alias{dyn_table}
 \title{Use a different table style depending on the output format}
 \usage{
-dyn_table(x, caption = NULL, rownames = FALSE, escape = TRUE,
-  justify, ...)
+dyn_table(x, caption = NULL, rownames = FALSE, escape = TRUE, align,
+  ...)
 }
 \arguments{
 \item{x}{the dataframe}
@@ -24,14 +24,19 @@ indicate which columns to escape, e.g. \code{1:5} (the first 5 columns),
 \code{c(1, 3, 4)}, or \code{c(-1, -3)} (all columns except the first and
 third), or \code{c('Species', 'Sepal.Length')}}
 
-\item{justify}{defines alignment in cells passed to \code{format}. Can be \code{left}, \code{right} or \code{centre}, which latter can be also spelled as \code{center}. Defaults to \code{centre}. Can be abbreviated to a string consisting of the letters \code{l}, \code{c} and \code{r} (e.g. 'lcr' instead of c('left', 'centre', 'right').}
+\item{align}{Column alignment: a character vector consisting of \code{'l'}
+(left), \code{'c'} (center) and/or \code{'r'} (right). By default or if
+\code{align = NULL}, numeric columns are right-aligned, and other columns
+are left-aligned. If \code{length(align) == 1L}, the string will be
+expanded to a vector of individual letters, e.g. \code{'clc'} becomes
+\code{c('c', 'l', 'c')}, unless the output format is LaTeX.}
 
-\item{...}{unsupported extra arguments directly placed into \code{/dev/null}}
+\item{...}{Other arguments (see Examples).}
 }
 \description{
 \itemize{
 \item \strong{interactive session}: \code{\link[DT]{datatable}}
 \item \strong{html}: \code{\link[DT]{datatable}}
-\item \strong{other}: \code{\link[pander]{pandoc.table}}
+\item \strong{other}: \code{\link[knitr]{kable}}
 }
 }
