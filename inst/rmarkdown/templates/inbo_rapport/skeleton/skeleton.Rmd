@@ -51,10 +51,10 @@ library(INBOtheme)
 theme_set(
   theme_inbo(
     base_family = "Calibri", # "Flanders Art Sans",
-    base_size = 12
+    base_size = 10
   )
 )
-if (!interactive() && opts_knit$get("rmarkdown.pandoc.to") != "html") {
+if (!interactive() && opts_knit$get("rmarkdown.pandoc.to") == "latex") {
   opts_chunk$set(dev = "cairo_pdf")
   theme_set(
     theme_inbo(
@@ -64,3 +64,5 @@ if (!interactive() && opts_knit$get("rmarkdown.pandoc.to") != "html") {
   )
 }
 ```
+
+`r if (knitr::is_html_output()) {'# References {-}'}`
