@@ -22,7 +22,9 @@ to escape the whole table, and \code{FALSE} means not to escape it;
 alternatively, you can specify numeric column indices or column names to
 indicate which columns to escape, e.g. \code{1:5} (the first 5 columns),
 \code{c(1, 3, 4)}, or \code{c(-1, -3)} (all columns except the first and
-third), or \code{c('Species', 'Sepal.Length')}}
+third), or \code{c('Species', 'Sepal.Length')}; since the row names take
+the first column to display, you should add the numeric column indices
+by one when using \code{rownames}}
 
 \item{align}{Column alignment: a character vector consisting of \code{'l'}
 (left), \code{'c'} (center) and/or \code{'r'} (right). By default or if

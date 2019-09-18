@@ -7,7 +7,7 @@
 #' @param x the dataframe
 #' @inheritParams DT::datatable
 #' @inheritParams knitr::kable
-#' @importFrom knitr opts_knit kable
+#' @importFrom knitr opts_knit kable opts_current
 #' @importFrom dplyr %>% mutate_all
 #' @export
 dyn_table <- function(
@@ -21,7 +21,7 @@ dyn_table <- function(
     assert_that(is.string(caption))
   }
   if (interactive() || opts_knit$get("rmarkdown.pandoc.to") == "html") {
-    if (opts_current$get()$results != "asis") {
+    if (!interactive() && opts_current$get()$results != "asis") {
       stop("results = 'asis' is required for chunk ", opts_current$get()$label)
     }
     if (length(find.package("DT", quiet = TRUE)) == 0) {
@@ -35,7 +35,7 @@ Please install it with install.packages('DT')")
         ) %>%
         mutate_all(gsub, pattern = "_(.*)_", replacement = "<i>\\1</i>") -> x
     }
-    if (!is.null(caption)) {
+    if (!interactive() && !is.null(caption)) {
       sprintf(
         "<table>\n    <caption>(\\#tab:%s) %s</caption>\n</table>",
         opts_current$get()$label, caption
