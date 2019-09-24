@@ -387,7 +387,7 @@
 % define title page
 \def\maketitle{%
   \thispagestyle{cover}{%
-    \@titlelogo
+    \@titlelogo \phantom{qk}
 
     \vfill
 
@@ -470,3 +470,5 @@
 \setlength{\skip\footins}{1cm}
 
 \RequirePackage{needspace}
+
+\RequirePackage{pdfpages}

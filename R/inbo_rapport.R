@@ -27,6 +27,7 @@
 #'     - 2: upto subsection (`###`)
 #'     - 3: upto subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
+#' - `cover`: an optional pdf file. The first two pages will be prepended to the report.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
