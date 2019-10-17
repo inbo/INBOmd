@@ -5743,7 +5743,7 @@ table {
 @media all and (min-width: 768px) {
   table td {
     /* min-width for smaller screensizes so content isn"t squished together */
-    min-width: 125px;
+    min-width: 25px;
   }
 }
 table caption {
