@@ -64,5 +64,3 @@ if (!interactive() && opts_knit$get("rmarkdown.pandoc.to") == "latex") {
   )
 }
 ```
-
-`r if (knitr::is_html_output()) {'# References {-}'}`
