@@ -57,6 +57,8 @@ INBOmd requires a working installation of XeLaTeX. We highly recommend to use th
 update.packages(ask = FALSE, checkBuilt = TRUE)
 if (!"tinytex" %in% rownames(installed.packages())) {
   install.packages("tinytex")
+}
+if (!tinytex:::is_tinytex()) {
   tinytex::install_tinytex()
 }
 ```
