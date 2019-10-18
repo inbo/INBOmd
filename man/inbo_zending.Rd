@@ -26,7 +26,8 @@ inbo_zending(conference, conferencedate, conferenceplace, website = "",
 
 \item{floatbarrier}{Should float barriers be placed?
 Defaults to NA (only float barriers before starting a new chapter \code{#}).
-Options are "section" (\code{##}), "subsection" (\code{###}) and "subsubsection" (\code{####}).}
+Options are "section" (\code{##}), "subsection" (\code{###}) and
+"subsubsection" (\code{####}).}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
@@ -34,7 +35,10 @@ or \code{biblatex}. Use \code{none} if neither package is to be used.}
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link{includes}} function).}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
+\item{codesize}{The fontsize of the code, relative to the fontsize of the
+text (= normal size).
+Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
+"tiny". Defaults to "footnotesize".}
 
 \item{lang}{The language of the document. Defaults to "dutch"}
 

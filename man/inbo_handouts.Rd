@@ -3,7 +3,9 @@
 \name{inbo_handouts}
 \alias{inbo_handouts}
 \title{Use the handout version of slides with the INBO theme
-The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.}
+The only difference between inbo_slides() and inbo_handouts() is that
+inbo_slides() can have progressive slides whereas inbo_handouts() only
+displays the final slide.}
 \usage{
 inbo_handouts(subtitle, location, institute, cover, cover_offset,
   cover_hoffset, cover_horizontal = TRUE, toc_name, fontsize,
@@ -14,25 +16,29 @@ inbo_handouts(subtitle, location, institute, cover, cover_offset,
   flandersfont = FALSE, ...)
 }
 \arguments{
-\item{subtitle}{The date and place of the event}
+\item{subtitle}{The subtitle.}
 
-\item{location}{The date and place of the event}
+\item{location}{The date and place of the event.}
 
-\item{institute}{The aviliation of the authors}
+\item{institute}{The affiliation of the authors.}
 
-\item{cover}{The filename of the cover image}
+\item{cover}{The filename of the cover image.}
 
-\item{cover_offset}{An optional vertical offset for the cover image}
+\item{cover_offset}{An optional vertical offset for the cover image.}
 
-\item{cover_hoffset}{An optional horizontal offset for the cover image}
+\item{cover_hoffset}{An optional horizontal offset for the cover image.}
 
-\item{cover_horizontal}{Scale the cover horizontal (TRUE) or vertical (FALSE)}
+\item{cover_horizontal}{Scale the cover horizontal (\code{TRUE}) or vertical
+(\code{FALSE}).}
 
 \item{toc_name}{Name of the table of contents. Defaults to "Overzicht".}
 
 \item{fontsize}{The fontsite of the document. Defaults to 10pt.}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
+\item{codesize}{The fontsize of the code, relative to the fontsize of the
+text (= normal size).
+Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
+"tiny". Defaults to "footnotesize".}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
@@ -47,17 +53,21 @@ or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{toc}{display a table of content after the title slide}
 
-\item{website}{An optional URL to display on the left sidebar. Defaults to www.INBO.be.}
+\item{website}{An optional URL to display on the left sidebar.
+Defaults to www.INBO.be.}
 
-\item{theme}{The theme to use. Available options are "inbo" and "vlaanderen"}
+\item{theme}{The theme to use. Available options are "inbo" and "vlaanderen".}
 
-\item{flandersfont}{If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.}
+\item{flandersfont}{If TRUE use the Flanders Art font. If FALSE use Calibri.
+Defaults to FALSE.}
 
 \item{...}{extra parameters}
 }
 \description{
 Use the handout version of slides with the INBO theme
-The only difference between inbo_slides() and inbo_handouts() is that inbo_slides() can have progressive slides whereas inbo_handouts() only displays the final slide.
+The only difference between inbo_slides() and inbo_handouts() is that
+inbo_slides() can have progressive slides whereas inbo_handouts() only
+displays the final slide.
 }
 \seealso{
 Other output: \code{\link{inbo_poster}},

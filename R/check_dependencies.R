@@ -3,7 +3,7 @@
 #' @export
 #' @importFrom utils install.packages
 #' @family utils
-check_dependencies <- function(){
+check_dependencies <- function() {
   dependencies <- c("bookdown", "webshot")
   available <- basename(find.package(dependencies, quiet = TRUE))
   to_install <- dependencies[!dependencies %in% available]
