@@ -16,7 +16,8 @@
 #'   \item hyphenation: the correct hyphenation for certain words
 #' }
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_version
+#' @importFrom rmarkdown output_format knitr_options pandoc_options
+#' pandoc_variable_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 inbo_zending <- function(
@@ -35,7 +36,7 @@ inbo_zending <- function(
   fig_crop = TRUE,
   pandoc_args = NULL,
   ...
-){
+) {
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   extra <- list(...)
@@ -74,7 +75,7 @@ inbo_zending <- function(
       args,
       sapply(
         names(extra),
-        function(x){
+        function(x) {
           pandoc_variable_arg(x, extra[[x]])
         }
       )

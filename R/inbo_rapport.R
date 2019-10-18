@@ -5,10 +5,12 @@
 #' @param ordernr The optional order number.
 #' @param floatbarrier Should float barriers be placed?
 #'   Defaults to NA (only float barriers before starting a new chapter `#`).
-#'   Options are "section" (`##`), "subsection" (`###`) and "subsubsection" (`####`).
+#'   Options are "section" (`##`), "subsection" (`###`) and
+#'   "subsubsection" (`####`).
 #' @param style What template to use.
 #'   Use "INBO" for an INBO report in Dutch.
-#'   Use "Vlaanderen" for a report in Dutch written by more than one Flemish government agency.
+#'   Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+#'   government agency.
 #'   Use "Flanders" for a report in English.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures.
@@ -27,9 +29,11 @@
 #'     - 2: upto subsection (`###`)
 #'     - 3: upto subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
-#' - `cover`: an optional pdf file. The first two pages will be prepended to the report.
+#' - `cover`: an optional pdf file. The first two pages will be prepended to the
+#' report.
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
+#' @importFrom rmarkdown output_format knitr_options pandoc_options
+#' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 inbo_rapport <- function(
@@ -45,7 +49,7 @@ inbo_rapport <- function(
   includes = NULL,
   pandoc_args = NULL,
   ...
-){
+) {
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   style <- match.arg(style)
@@ -54,6 +58,7 @@ inbo_rapport <- function(
 
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
   csl <- system.file("inbo.csl", package = "INBOmd")
+  citation_package <- match.arg(citation_package)
 
   args <- c(
     "--template", template,
@@ -73,33 +78,26 @@ inbo_rapport <- function(
         pandoc_variable_arg("style", "inbo_report"),
         pandoc_variable_arg("mylanguage", "french,english,dutch")
       )
-    )
+    ),
+    ifelse(
+      compareVersion(as.character(pandoc_version()), "2") < 0,
+      "--latex-engine",
+      "--pdf-engine"
+    ),
+    "xelatex", pandoc_args,
+    # citations
+    ifelse(
+      citation_package == "none",
+      c("--csl", pandoc_path_arg(csl)),
+      paste0("--", citation_package)
+    ),
+    # content includes
+    includes_to_pandoc_args(includes),
+    ifelse(missing(reportnr), "", pandoc_variable_arg("reportnr", reportnr)),
+    ifelse(missing(ordernr), "", pandoc_variable_arg("reportnr", ordernr)),
+    ifelse(missing(subtitle), "", pandoc_variable_arg("subtitle", subtitle))
   )
-  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
-    args <- c(args, "--latex-engine", "xelatex", pandoc_args) #nocov
-  } else {
-    args <- c(args, "--pdf-engine", "xelatex", pandoc_args)
-  }
 
-  # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "none") {
-    args <- c(args, "--csl", pandoc_path_arg(csl))
-  } else {
-    args <- c(args, paste0("--", citation_package))
-  }
-  # content includes
-  args <- c(args, includes_to_pandoc_args(includes))
-
-  if (!missing(reportnr)) {
-    args <- c(args, pandoc_variable_arg("reportnr", reportnr))
-  }
-  if (!missing(ordernr)) {
-    args <- c(args, pandoc_variable_arg("ordernr", ordernr))
-  }
-  if (!missing(subtitle)) {
-    args <- c(args, pandoc_variable_arg("subtitle", subtitle))
-  }
   if (!"lof" %in% names(extra)) {
     extra$lof <- TRUE
   }
@@ -116,31 +114,27 @@ inbo_rapport <- function(
     args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
   extra <- extra[!names(extra) %in% c("lof", "lot")]
-  if (length(extra) > 0) {
-    args <- c(
-      args,
-      sapply(
-        names(extra),
-        function(x){
-          pandoc_variable_arg(x, extra[[x]])
-        }
-      )
+  args <- c(
+    args,
+    sapply(
+      names(extra),
+      function(x) {
+        pandoc_variable_arg(x, extra[[x]])
+      }
     )
-  }
-  if (!is.na(floatbarrier)) {
-    vars <- switch(
-      floatbarrier,
-      section = "",
-      subsection = c("", "sub"),
-      subsubsection = c("", "sub", "subsub")
-    )
-    floating <- lapply(
-      sprintf("floatbarrier%ssection", vars),
-      pandoc_variable_arg,
-      value = TRUE
-    )
-    args <- c(args, unlist(floating))
-  }
+  )
+  vars <- switch(
+    floatbarrier,
+    section = "",
+    subsection = c("", "sub"),
+    subsubsection = c("", "sub", "subsub")
+  )
+  floating <- lapply(
+    sprintf("floatbarrier%ssection", vars),
+    pandoc_variable_arg,
+    value = TRUE
+  )
+  args <- c(args, unlist(floating))
   opts_chunk <- list(
     latex.options = "{}",
     dev = "pdf",
@@ -149,14 +143,13 @@ inbo_rapport <- function(
     fig.width = 4.5,
     fig.height = 2.9
   )
+  knit_hooks <- NULL
   crop <- fig_crop &&
     !identical(.Platform$OS.type, "windows") &&
     nzchar(Sys.which("pdfcrop"))
   if (crop) {
     knit_hooks <- list(crop = knitr::hook_pdfcrop)
     opts_chunk$crop <- TRUE
-  } else {
-    knit_hooks <- NULL
   }
 
   post_processor <- function(metadata, input, output, clean, verbose) {

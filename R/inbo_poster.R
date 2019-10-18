@@ -1,6 +1,7 @@
 #' Create a poster with the INBO theme version 2015
 #' @param subtitle An optional subtitle
-#' @param email The email address to display at the bottom. Defaults to info@inbo.be
+#' @param email The email address to display at the bottom.
+#' Defaults to info@inbo.be
 #' @param lang The language of the document. Defaults to "english".
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
@@ -12,11 +13,19 @@
 #' @details
 #' Available extra parameters:
 #'    - hyphenation: the correct hyphenation for certain words
-#'    - flandersfont: Use the Flanders Art Sans font. Defaults to FALSE. Note that this requires the font to be present on the system.
-#'    - ORCID: a list of authors. For each author there must a `name` and an `ID`. The `ID` is the author's ORCID ID , ee https://orcid.org. This information will be displayed with QR code at the bottom of the poster
-#'    - DOI: a list of documents. For each documentr there must a `name` and an `ID`. The `ID` is the documents's DOI, see https://doi.org. This information will be displayed with QR code at the bottom of the poster
+#'    - flandersfont: Use the Flanders Art Sans font. Defaults to FALSE.
+#'    Note that this requires the font to be present on the system.
+#'    - ORCID: a list of authors. For each author there must a `name` and an
+#'    `ID`. The `ID` is the author's ORCID ID , ee https://orcid.org.
+#'    This information will be displayed with QR code at the bottom of the
+#'    poster.
+#'    - DOI: a list of documents. For each documentr there must a `name` and an
+#'    `ID`. The `ID` is the documents's DOI, see https://doi.org.
+#'    This information will be displayed with QR code at the bottom of the
+#'    poster.
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg includes_to_pandoc_args pandoc_version
+#' @importFrom rmarkdown output_format knitr_options pandoc_options
+#' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @importFrom grDevices pdf dev.off
 #' @importFrom graphics par image
@@ -33,7 +42,7 @@ inbo_poster <- function(
   includes = NULL,
   pandoc_args = NULL,
   ...
-){
+) {
   check_dependencies()
   extra <- list(...)
   codesize <- match.arg(codesize)
@@ -134,7 +143,7 @@ inbo_poster <- function(
       args,
       sapply(
         names(extra),
-        function(x){
+        function(x) {
           pandoc_variable_arg(x, extra[[x]])
         }
       )

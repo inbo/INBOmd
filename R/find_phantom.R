@@ -1,4 +1,5 @@
-# taken from https://github.com/wch/webshot because webshot:::find_phantom() is not exported
+# taken from https://github.com/wch/webshot because webshot:::find_phantom() is
+# not exported
 
 # Find PhantomJS from PATH, APPDATA, system.file("webshot"), ~/bin, etc
 find_phantom <- function() {

@@ -13,15 +13,18 @@ render_natbib(file, path = ".", encoding = "UTF-8",
 
 \item{path}{the path of the Rmd file}
 
-\item{encoding}{the encoding of the Rmd file. Default to 'UTF-8'}
+\item{encoding}{the encoding of the Rmd file. Default to 'UTF-8'.}
 
-\item{engine}{the LaTeX engine the compile the document. Defaults to "xelatex".}
+\item{engine}{the LaTeX engine the compile the document.
+Defaults to "xelatex".}
 
-\item{display}{open the pdf in a reader. Defaults to TRUE}
+\item{display}{open the pdf in a reader. Defaults to TRUE.}
 
-\item{keep}{keep intermediate files after succesful compilation. Defaults to "none"}
+\item{keep}{keep intermediate files after succesful compilation.
+Defaults to "none".}
 
-\item{clean}{TRUE to clean intermediate files created during rendering of the R markdown into tex}
+\item{clean}{TRUE to clean intermediate files created during rendering of the
+R markdown into tex.}
 }
 \description{
 Render a Markdown file with natbib bibliography

@@ -5,11 +5,14 @@
 #' @importFrom utils file_test
 #' @param file the name of the Rmd file
 #' @param path the path of the Rmd file
-#' @param encoding the encoding of the Rmd file. Default to 'UTF-8'
-#' @param engine the LaTeX engine the compile the document. Defaults to "xelatex".
-#' @param display open the pdf in a reader. Defaults to TRUE
-#' @param keep keep intermediate files after succesful compilation. Defaults to "none"
-#' @param clean TRUE to clean intermediate files created during rendering of the R markdown into tex
+#' @param encoding the encoding of the Rmd file. Default to 'UTF-8'.
+#' @param engine the LaTeX engine the compile the document.
+#' Defaults to "xelatex".
+#' @param display open the pdf in a reader. Defaults to TRUE.
+#' @param keep keep intermediate files after succesful compilation.
+#' Defaults to "none".
+#' @param clean TRUE to clean intermediate files created during rendering of the
+#' R markdown into tex.
 #' @family utils
 render_natbib <- function(
   file,
@@ -19,7 +22,7 @@ render_natbib <- function(
   display = TRUE,
   keep = c("none", "all", "tex"),
   clean = TRUE
-){
+) {
   engine <- match.arg(engine)
   keep <- match.arg(keep)
   assert_that(is.string(file))
