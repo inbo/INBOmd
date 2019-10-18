@@ -8,7 +8,7 @@ build:
         code: |
           export TEXMFHOME=/usr/local/lib/R/site-library/INBOmd/local_tex
     - inbobmk/r-check
-    - inbobmk/r-lint
+    - jimhester/r-lint
     - script:
         name: generate pkgdown
         code: |
