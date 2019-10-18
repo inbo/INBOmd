@@ -1,27 +1,34 @@
 #' Use slides with the INBO theme
-#' @param subtitle The date and place of the event
-#' @param location The date and place of the event
-#' @param institute The aviliation of the authors
-#' @param cover The filename of the cover image
-#' @param cover_offset An optional vertical offset for the cover image
-#' @param cover_hoffset An optional horizontal offset for the cover image
-#' @param cover_horizontal Scale the cover horizontal (TRUE) or vertical (FALSE)
+#' @param subtitle The subtitle.
+#' @param location The date and place of the event.
+#' @param institute The affiliation of the authors.
+#' @param cover The filename of the cover image.
+#' @param cover_offset An optional vertical offset for the cover image.
+#' @param cover_hoffset An optional horizontal offset for the cover image.
+#' @param cover_horizontal Scale the cover horizontal (`TRUE`) or vertical
+#' (`FALSE`).
 #' @param toc_name Name of the table of contents. Defaults to "Overzicht".
 #' @param fontsize The fontsite of the document. Defaults to 10pt.
-#' @param codesize The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".
+#' @param codesize The fontsize of the code, relative to the fontsize of the
+#' text (= normal size).
+#' Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
+#' "tiny". Defaults to "footnotesize".
 #' @param natbib_title The title of the bibliography
 #' @param lang The language of the document. Defaults to "dutch"
 #' @param slide_level Indicate which heading level is used for the frame titles
 #' @param keep_tex Keep the tex file. Defaults to FALSE.
 #' @param toc display a table of content after the title slide
-#' @param website An optional URL to display on the left sidebar. Defaults to www.INBO.be.
-#' @param theme The theme to use. Available options are "inbo" and "vlaanderen"
-#' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri. Defaults to FALSE.
+#' @param website An optional URL to display on the left sidebar.
+#' Defaults to www.INBO.be.
+#' @param theme The theme to use. Available options are "inbo" and "vlaanderen".
+#' @param flandersfont If TRUE use the Flanders Art font. If FALSE use Calibri.
+#' Defaults to FALSE.
 #' @param slide_logo the path to an optional logo displayed on each slide
 #' @param ... extra parameters
 #' @inheritParams rmarkdown::pdf_document
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options pandoc_variable_arg pandoc_path_arg pandoc_version
+#' @importFrom rmarkdown output_format knitr_options pandoc_options
+#' pandoc_variable_arg pandoc_path_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @importFrom assertthat assert_that is.string is.flag noNA
 #' @family output
@@ -47,7 +54,7 @@ inbo_slides <- function(
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   ...
-){
+) {
   check_dependencies()
   assert_that(is.flag(toc))
   assert_that(noNA(toc)) #nolint

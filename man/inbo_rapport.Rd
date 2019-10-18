@@ -21,13 +21,18 @@ Defaults to the date and time of compilation.}
 
 \item{floatbarrier}{Should float barriers be placed?
 Defaults to NA (only float barriers before starting a new chapter \code{#}).
-Options are "section" (\code{##}), "subsection" (\code{###}) and "subsubsection" (\code{####}).}
+Options are "section" (\code{##}), "subsection" (\code{###}) and
+"subsubsection" (\code{####}).}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the text (= normal size). Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and  "tiny". Defaults to "footnotesize".}
+\item{codesize}{The fontsize of the code, relative to the fontsize of the
+text (= normal size).
+Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
+"tiny". Defaults to "footnotesize".}
 
 \item{style}{What template to use.
 Use "INBO" for an INBO report in Dutch.
-Use "Vlaanderen" for a report in Dutch written by more than one Flemish government agency.
+Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+government agency.
 Use "Flanders" for a report in English.}
 
 \item{keep_tex}{Keep the tex file. Defaults to FALSE.}
@@ -61,7 +66,8 @@ Available extra parameters:
 \item 3: upto subsubsection (\code{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
-\item \code{cover}: an optional pdf file. The first two pages will be prepended to the report.
+\item \code{cover}: an optional pdf file. The first two pages will be prepended to the
+report.
 }
 }
 \seealso{

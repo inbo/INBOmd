@@ -17,17 +17,19 @@ dyn_table <- function(
   assert_that(is.flag(rownames))
   assert_that(noNA(rownames))
   assert_that(noNA(escape))
-  if (!is.null(caption)) {
-    assert_that(is.string(caption))
-  }
+  assert_that(is.null(caption) || is.string(caption))
   if (interactive() || opts_knit$get("rmarkdown.pandoc.to") == "html") {
-    if (!interactive() && opts_current$get()$results != "asis") {
-      stop("results = 'asis' is required for chunk ", opts_current$get()$label)
-    }
-    if (length(find.package("DT", quiet = TRUE)) == 0) {
-      stop("The 'DT' is not available.
-Please install it with install.packages('DT')")
-    }
+    assert_that(
+      opts_current$get()$results == "asis",
+      msg = paste(
+        "results = 'asis' is required for chunk", opts_current$get()$label
+      )
+    )
+    assert_that(
+      length(find.package("DT", quiet = TRUE)) == 1,
+      msg = "The 'DT' is not available.
+Please install it with install.packages('DT')"
+    )
     if (!escape) {
       x %>%
         mutate_all(
