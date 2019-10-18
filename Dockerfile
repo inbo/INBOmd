@@ -30,7 +30,7 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
       bzip2 \
       curl \
-  && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot"))' \
+  && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot", "pander"))' \
   && Rscript -e 'webshot::install_phantomjs()' \
   && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
 
