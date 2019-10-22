@@ -39,28 +39,52 @@ opts_chunk$set(
   echo = FALSE, 
   eval = TRUE,
   cache = FALSE,
-  dpi = 300,
   fig.width = 150 / 25.4,
   fig.height = 100 / 25.4,
   warning = TRUE,
-  error = TRUE,
+  error = FALSE,
   message = TRUE
 )
 library(tidyverse)
 library(INBOtheme)
-theme_set(
-  theme_inbo(
-    base_family = "Calibri", # "Flanders Art Sans",
-    base_size = 10
-  )
-)
-if (!interactive() && opts_knit$get("rmarkdown.pandoc.to") == "latex") {
-  opts_chunk$set(dev = "cairo_pdf")
+if (interactive()) {
   theme_set(
     theme_inbo(
-      base_family = "Calibri", # "Flanders Art Sans",
-      base_size = 8
+      base_family = "Calibri", # "FlandersArtSans-Regular",
+      base_size = 10
     )
+  )
+} else {
+  switch(
+    opts_knit$get("rmarkdown.pandoc.to"),
+    html = {
+      opts_chunk$set(dev = "png", dpi = 72)
+      theme_set(
+        theme_inbo(
+          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_size = 12
+        )
+      )
+    },
+    latex = {
+      opts_chunk$set(dev = "cairo_pdf", dpi = 300)
+      theme_set(
+        theme_inbo(
+          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_size = 9
+        )
+      )
+      update_geom_defaults("point", list(size = 1.5))
+    },
+    epub3 = {
+      opts_chunk$set(dev = "png", dpi = 300)
+      theme_set(
+        theme_inbo(
+          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_size = 12
+        )
+      )
+    }
   )
 }
 ```
