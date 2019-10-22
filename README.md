@@ -55,3 +55,13 @@ tinytex::tlmgr_conf(
 )
 tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
 ```
+
+Make your system fonts available in R
+
+```{r, eval = FALSE}
+if (!"extrafont" %in% rownames(installed.packages())) {
+  install.packages("extrafont")
+}
+extrafont::font_import()
+```
+
