@@ -88,8 +88,13 @@ inbo_rapport <- function(
     # citations
     ifelse(
       citation_package == "none",
-      c("--csl", pandoc_path_arg(csl)),
+      "--csl",
       paste0("--", citation_package)
+    ),
+    ifelse(
+      citation_package == "none",
+      pandoc_path_arg(csl),
+      ""
     ),
     # content includes
     includes_to_pandoc_args(includes),
@@ -97,6 +102,7 @@ inbo_rapport <- function(
     ifelse(missing(ordernr), "", pandoc_variable_arg("reportnr", ordernr)),
     ifelse(missing(subtitle), "", pandoc_variable_arg("subtitle", subtitle))
   )
+  args <- args[args != ""]
 
   if (!"lof" %in% names(extra)) {
     extra$lof <- TRUE
