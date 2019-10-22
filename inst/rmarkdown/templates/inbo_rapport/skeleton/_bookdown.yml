@@ -1,5 +1,6 @@
 book_filename: "mijn-rapport.Rmd"
 output_dir: "../output"
+delete_merged_file: FALSE
 language:
   label:
     fig:    'Figuur '
