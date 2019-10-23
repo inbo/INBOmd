@@ -87,37 +87,29 @@ inbo_rapport <- function(
     "xelatex", pandoc_args,
     # citations
     ifelse(
-      citation_package == "none",
-      "--csl",
-      paste0("--", citation_package)
-    ),
-    ifelse(
-      citation_package == "none",
-      pandoc_path_arg(csl),
-      ""
+      rep(citation_package == "none", 2),
+      c("--csl", pandoc_path_arg(csl)),
+      c(paste0("--", citation_package), "")
     ),
     # content includes
     includes_to_pandoc_args(includes),
-    ifelse(missing(reportnr), "", pandoc_variable_arg("reportnr", reportnr)),
-    ifelse(missing(ordernr), "", pandoc_variable_arg("reportnr", ordernr)),
-    ifelse(missing(subtitle), "", pandoc_variable_arg("subtitle", subtitle))
+    ifelse(
+      rep(missing(reportnr), 2), "", pandoc_variable_arg("reportnr", reportnr)
+    ),
+    ifelse(
+      rep(missing(ordernr), 2), "", pandoc_variable_arg("reportnr", ordernr)
+    ),
+    ifelse(
+      rep(missing(subtitle), 2), "", pandoc_variable_arg("subtitle", subtitle)
+    )
   )
   args <- args[args != ""]
 
-  if (!"lof" %in% names(extra)) {
-    extra$lof <- TRUE
-  }
-  if (!"lot" %in% names(extra)) {
-    extra$lot <- TRUE
-  }
-  if (extra$lof) {
+  if ("lof" %in% names(extra) && extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
-  if (extra$lot) {
+  if ("lot" %in% names(extra) && extra$lot) {
     args <- c(args, pandoc_variable_arg("lot", TRUE))
-  }
-  if (extra$lof || extra$lot) {
-    args <- c(args, pandoc_variable_arg("loft", TRUE))
   }
   extra <- extra[!names(extra) %in% c("lof", "lot")]
   args <- c(
@@ -143,7 +135,7 @@ inbo_rapport <- function(
   args <- c(args, unlist(floating))
   opts_chunk <- list(
     latex.options = "{}",
-    dev = "pdf",
+    dev = "cairo_pdf",
     fig.align = "center",
     dpi = 300,
     fig.width = 4.5,
