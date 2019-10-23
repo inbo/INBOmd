@@ -75,6 +75,7 @@ RUN  apt-get update \
       dvips \
       emptypage \
       eurosym \
+      eso-pic \
       extsizes \
       fancyhdr \
       fmtcount \
