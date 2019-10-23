@@ -1,3 +1,8 @@
+# INBOmd 0.4.7 (2018-10-23)
+
+- new `dyn_table()` function
+- some tweaks to the report styles
+
 # INBOmd 0.4.6 (2018-07-19)
 
 - slides gains a logo argument

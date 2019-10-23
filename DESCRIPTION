@@ -1,8 +1,8 @@
 Package: INBOmd
 Type: Package
 Title: Markdown Templates for INBO
-Version: 0.4.6
-Date: 2019-07-19
+Version: 0.4.7
+Date: 2019-10-23
 Authors@R: c(
   person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8804-4216")), 
   person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb"), comment = c(ORCID = "0000-0002-6378-6229")), 
