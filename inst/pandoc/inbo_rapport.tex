@@ -100,8 +100,12 @@ $endif$
 \tableofcontents
 \addcontentsline{toc}{chapter}{\contentsname}
 
-$if(loft)$
+$if(lof)$
 \clearpage
+$else$
+  $if(lot)$
+\clearpage
+  $endif$
 $endif$
 
 $if(lof)$
