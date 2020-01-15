@@ -30,7 +30,9 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
       bzip2 \
       curl \
+      gpg \
   && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot", "pander"))' \
+  && Rscript -e 'tinytex::reinstall_tinytex(repository = "http://mirror.ox.ac.uk/sites/ctan.org/")' \
   && Rscript -e 'webshot::install_phantomjs()' \
   && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
 
@@ -55,17 +57,12 @@ RUN  mkdir /root/.fonts \
   && fc-cache -fv \
   && updmap-sys
 
-
 ## Install dependencies for INBOmd examples
 RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
   && Rscript -e 'remotes::install_github("inbo/lipsum")'
 
 ## Install LaTeX packages
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends gpg \
-  && tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet \
-  && tlmgr update --self --all \
-  && tlmgr install \
+RUN  tlmgr install \
       babel-dutch \
       babel-english \
       babel-french \
