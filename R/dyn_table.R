@@ -17,10 +17,17 @@ dyn_table <- function(
   assert_that(is.flag(rownames))
   assert_that(noNA(rownames))
   assert_that(noNA(escape))
-  assert_that(is.null(caption) || is.string(caption))
+  assert_that(
+    is.null(caption) || is.string(caption),
+    msg = "caption is not a string"
+  )
   if (interactive() || opts_knit$get("rmarkdown.pandoc.to") == "html") {
     assert_that(
-      opts_current$get()$results == "asis",
+      interactive() ||
+        (
+          !is.null(opts_current$get()$results) &&
+          opts_current$get()$results == "asis"
+        ),
       msg = paste(
         "results = 'asis' is required for chunk", opts_current$get()$label
       )
