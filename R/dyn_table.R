@@ -51,11 +51,12 @@ Please install it with install.packages('DT')"
       ) %>%
         cat()
     }
-    return(
-      DT::datatable(
-        data = x, rownames = rownames, escape = escape, ...
-      )
-    )
+    dots <- list(...)
+    dots <- dots[names(dots) %in% names(formals(DT::datatable))]
+    dots$rownames <- rownames
+    dots$escape <- escape
+    dots$data <- x
+    return(do.call(DT::datatable, dots))
   }
   if (escape) {
     return(knitr::kable(x, caption = caption, ...))
