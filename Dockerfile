@@ -63,11 +63,13 @@ RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
 
 ## Install LaTeX packages
 RUN  tlmgr install \
+      array \
       babel-dutch \
       babel-english \
       babel-french \
       beamer \
       carlisle \
+      colortbl \
       datetime \
       dvips \
       emptypage \
@@ -76,6 +78,7 @@ RUN  tlmgr install \
       extsizes \
       fancyhdr \
       fmtcount \
+      float \
       footmisc \
       helvetic \
       hyphen-dutch \
@@ -90,13 +93,17 @@ RUN  tlmgr install \
       pdfpages \
       placeins \
       needspace \
+      tabu \
       tex \
       textpos \
+      threeparttable \
+      threeparttablex \
       titlesec \
       times \
       tocloft \
       translator \
       ulem \
+      wrapfig \
       xcolor
 
 ## Install pkgdown
