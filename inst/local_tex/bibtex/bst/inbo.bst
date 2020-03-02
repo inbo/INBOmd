@@ -482,13 +482,15 @@ FUNCTION {format.book.pages}
   if$
 }
 FUNCTION {format.isbn}
-{ isbn "isbn" bibinfo.check
-  duplicate$ empty$ 'skip$
-    {
-      new.block
-      "ISBN " swap$ *
-    }
-  if$
+{
+""
+% isbn "isbn" bibinfo.check
+%   duplicate$ empty$ 'skip$
+%    {
+%      new.block
+%      "ISBN " swap$ *
+%    }
+%  if$
 }
 
 FUNCTION {format.issn}
