@@ -352,10 +352,16 @@ FUNCTION {bibinfo.warn}
 }
 FUNCTION {format.url}
 {
-  url
-  duplicate$ empty$
-    { pop$ "" }
-    { "\urlprefix\url{" swap$ * "}" * }
+  doi duplicate$ empty$
+  {
+    pop$
+    url
+    duplicate$ empty$
+      { pop$ "" }
+      { "\urlprefix\url{" swap$ * "}" * }
+    if$
+  }
+  { pop$ ""}
   if$
 }
 
@@ -508,7 +514,7 @@ FUNCTION {format.doi}
     { "" }
     {
       new.block
-      "\doi{" doi * "}" *
+      "DOI: \url{https://doi.org/" doi * "}" *
     }
   if$
 }
@@ -1560,7 +1566,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-  "\providecommand{\urlprefix}{URL }"
+  "\providecommand{\urlprefix}{}"
   write$ newline$
   "\expandafter\ifx\csname urlstyle\endcsname\relax"
   write$ newline$
