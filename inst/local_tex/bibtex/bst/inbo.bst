@@ -841,23 +841,25 @@ FUNCTION {format.vol.num.pages}
 }
 
 FUNCTION {format.chapter.pages}
-{ chapter empty$
-    'format.pages
-    { type empty$
-        { bbl.chapter }
-        { type "l" change.case$
-          "type" bibinfo.check
-        }
-      if$
-      chapter tie.or.space.prefix
-      "chapter" bibinfo.check
-      * *
-      pages empty$
-        'skip$
-        { ", " * format.pages * }
-      if$
-    }
-  if$
+{
+%  chapter empty$
+%    'format.pages
+%    { type empty$
+%        { bbl.chapter }
+%        { type "l" change.case$
+%          "type" bibinfo.check
+%        }
+%      if$
+%      chapter tie.or.space.prefix
+%      "chapter" bibinfo.check
+%      * *
+%      pages empty$
+%        'skip$
+%        { ", " * format.pages * }
+%      if$
+%    }
+%  if$
+  format.pages
 }
 
 FUNCTION {format.booktitle}
