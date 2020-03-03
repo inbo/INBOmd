@@ -203,7 +203,7 @@ FUNCTION {bbl.and}
 { "en"}
 
 FUNCTION {bbl.etal}
-{ "et al"}
+{ "\textit{et al.}"}
 
 FUNCTION {bbl.editors}
 { "eds." }
