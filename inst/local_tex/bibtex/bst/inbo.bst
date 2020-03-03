@@ -200,7 +200,7 @@ FUNCTION {space.word}
 { " " swap$ * " " * }
  % Here are the language-specific definitions for explicit words.
 FUNCTION {bbl.and}
-{ "en"}
+{ "&"}
 
 FUNCTION {bbl.etal}
 { "\textit{et al.}"}
@@ -215,40 +215,40 @@ FUNCTION {bbl.edby}
 { "geredigeerd door" }
 
 FUNCTION {bbl.edition}
-{ "editie" }
+{ "ed." }
 
 FUNCTION {bbl.volume}
-{ "volume" }
+{ "vol." }
 
 FUNCTION {bbl.of}
 { "van" }
 
 FUNCTION {bbl.number}
-{ "nummer" }
+{ "nr." }
 
 FUNCTION {bbl.nr}
-{ "nr" }
+{ "nr." }
 
 FUNCTION {bbl.in}
 { "in" }
 
 FUNCTION {bbl.pages}
-{ "paginas" }
+{ "p." }
 
 FUNCTION {bbl.page}
-{ "pagina" }
+{ "p." }
 
 FUNCTION {bbl.chapter}
 { "hoofdstuk" }
 
 FUNCTION {bbl.techrep}
-{ "technisch rapport" }
+{ "" }
 
 FUNCTION {bbl.mthesis}
-{ "thesis" }
+{ "(Master's thesis)" }
 
 FUNCTION {bbl.phdthesis}
-{ "proefschrift" }
+{ "(PhD thesis)" }
 
 MACRO {jan} {"januari"}
 
