@@ -500,13 +500,15 @@ FUNCTION {format.isbn}
 }
 
 FUNCTION {format.issn}
-{ issn "issn" bibinfo.check
-  duplicate$ empty$ 'skip$
-    {
-      new.block
-      "ISSN " swap$ *
-    }
-  if$
+{
+""
+%  issn "issn" bibinfo.check
+%  duplicate$ empty$ 'skip$
+%    {
+%      new.block
+%      "ISSN " swap$ *
+%    }
+%  if$
 }
 
 FUNCTION {format.doi}
