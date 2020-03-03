@@ -215,7 +215,7 @@ FUNCTION {bbl.edby}
 { "geredigeerd door" }
 
 FUNCTION {bbl.edition}
-{ "ed." }
+{ "ed" }
 
 FUNCTION {bbl.volume}
 { "vol." }
@@ -997,19 +997,21 @@ FUNCTION {book}
   format.date "year" output.check
   date.block
   format.btitle "title" output.check
+  format.edition output
   crossref missing$
-    { format.bvolume output
-      new.block
+    {
+      new.sentence
+      format.bvolume output
       format.number.series output
       new.sentence
       format.publisher.address output
+      new.sentence
     }
     {
       new.block
       format.book.crossref output.nonnull
     }
   if$
-  format.edition output
   format.isbn output
   format.book.pages output
   format.doi output
