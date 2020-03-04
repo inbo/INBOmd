@@ -97,7 +97,7 @@ inbo_rapport <- function(
       rep(missing(reportnr), 2), "", pandoc_variable_arg("reportnr", reportnr)
     ),
     ifelse(
-      rep(missing(ordernr), 2), "", pandoc_variable_arg("reportnr", ordernr)
+      rep(missing(ordernr), 2), "", pandoc_variable_arg("ordernr", ordernr)
     ),
     ifelse(
       rep(missing(subtitle), 2), "", pandoc_variable_arg("subtitle", subtitle)
