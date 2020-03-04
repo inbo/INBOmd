@@ -1161,11 +1161,11 @@ FUNCTION {inbook}
   crossref missing$
     {
       format.bvolume output
-      format.chapter.pages "chapter and pages" output.check
       new.block
       format.number.series output
       new.sentence
       format.publisher.address output
+      format.chapter.pages "chapter and pages" output.check
     }
     {
       format.chapter.pages "chapter and pages" output.check
