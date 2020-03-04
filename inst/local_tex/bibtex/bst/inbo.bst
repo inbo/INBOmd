@@ -218,16 +218,16 @@ FUNCTION {bbl.edition}
 { "ed" }
 
 FUNCTION {bbl.volume}
-{ "vol." }
+{ "Vol." }
 
 FUNCTION {bbl.of}
 { "van" }
 
 FUNCTION {bbl.number}
-{ "nr." }
+{ "No." }
 
 FUNCTION {bbl.nr}
-{ "nr." }
+{ "No." }
 
 FUNCTION {bbl.in}
 { "in" }
@@ -1156,10 +1156,14 @@ FUNCTION {manual}
   format.date "year" output.check
   date.block
   format.btitle "title" output.check
+  format.edition output
+  new.sentence
+  format.bvolume output
+  format.number.series output
+  new.sentence
   organization address new.block.checkb
   organization "organization" bibinfo.check output
-  address "address" bibinfo.check output
-  format.edition output
+  format.publisher.address output
   format.doi output
   new.block
   format.url output
