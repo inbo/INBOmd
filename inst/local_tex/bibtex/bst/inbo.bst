@@ -1057,14 +1057,17 @@ FUNCTION {inbook}
   format.date "year" output.check
   date.block
   format.btitle "title" output.check
+  new.sentence
+  format.edition output
+  new.sentence
   crossref missing$
     {
-      format.publisher.address output
       format.bvolume output
       format.chapter.pages "chapter and pages" output.check
       new.block
       format.number.series output
       new.sentence
+      format.publisher.address output
     }
     {
       format.chapter.pages "chapter and pages" output.check
@@ -1072,7 +1075,6 @@ FUNCTION {inbook}
       format.book.crossref output.nonnull
     }
   if$
-  format.edition output
   crossref missing$
     { format.isbn output }
     'skip$
