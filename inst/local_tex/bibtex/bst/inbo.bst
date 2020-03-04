@@ -1095,14 +1095,16 @@ FUNCTION {incollection}
   date.block
   format.title "title" output.check
   new.block
+  new.sentence
+  format.edition output
+  new.sentence
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
-      format.publisher.address output
       format.bvolume output
       format.number.series output
       format.chapter.pages output
       new.sentence
-      format.edition output
+      format.publisher.address output
       format.isbn output
     }
     { format.incoll.inproc.crossref output.nonnull
