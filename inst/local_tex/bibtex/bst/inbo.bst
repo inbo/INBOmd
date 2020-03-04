@@ -242,7 +242,7 @@ FUNCTION {bbl.chapter}
 { "hoofdstuk" }
 
 FUNCTION {bbl.techrep}
-{ "" }
+{ "technical report" }
 
 FUNCTION {bbl.mthesis}
 { "(Master's thesis)" }
@@ -991,16 +991,16 @@ FUNCTION {format.thesis.type}
   if$
 }
 FUNCTION {format.tr.number}
-{ number "number" bibinfo.check
-  type duplicate$ empty$
-    { pop$ bbl.techrep }
-    'skip$
-  if$
-  "type" bibinfo.check
-  swap$ duplicate$ empty$
-    { pop$ "t" change.case$ }
-    { tie.or.space.prefix * * }
-  if$
+{
+  "(" bbl.techrep *
+  number "number" bibinfo.check duplicate$ empty$ 'skip$
+    {
+      "~" swap$ *
+      bbl.nr swap$ *
+      "~" swap$ *
+    }
+  if$ *
+  ")" *
 }
 FUNCTION {format.article.crossref}
 {
