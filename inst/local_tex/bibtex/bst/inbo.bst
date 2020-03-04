@@ -424,7 +424,7 @@ FUNCTION {format.names.ed}
   numnames 'namesleft :=
     { namesleft #0 > }
     { s nameptr
-      "{f{.}.~}{vv~}{ll}{ jj}"
+      "{vv~}{ll~}{f{.}.}{~jj}"
       format.name$
       bibinfo bibinfo.check
       't :=
