@@ -17,6 +17,7 @@ output:
   bookdown::gitbook:
     split_by: "chapter+number"
     template: !expr INBOmd::inbo_rapport_css("html")
+    pandoc_args: !expr c("--csl", system.file("inbo.csl", package = "INBOmd"))
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
     style: INBO
@@ -27,6 +28,7 @@ output:
   bookdown::epub_book:
     stylesheet: "css/inbo_rapport.css"
     template: !expr INBOmd::inbo_rapport_css("epub")
+    pandoc_args: !expr c("--csl", system.file("inbo.csl", package = "INBOmd"))
 ---
 
 
