@@ -25,45 +25,38 @@ RUN  useradd docker \
   && chown docker:docker /home/docker \
   && addgroup docker staff
 
-## Install INBOmd depedencies
+## Install bookdown
+RUN  Rscript -e 'install.packages("bookdown")'
+
+## Install pander
+RUN  Rscript -e 'install.packages("pander")'
+
+## Install webshot
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
       bzip2 \
+  && Rscript -e 'install.packages("webshot")' \
+  && Rscript -e 'webshot::install_phantomjs()'
+
+## Install INBOtheme
+RUN  Rscript -e 'remotes::install_github("inbo/INBOtheme")'
+
+## Install tools to check code coverage
+RUN  Rscript -e 'install.packages("covr")'
+
+## Install tools to check coding style
+RUN  Rscript -e 'install.packages("lintr")'
+
+## Install tinytex
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
       curl \
       gpg \
-  && Rscript -e 'install.packages(c("bookdown", "tinytex", "webshot", "pander"))' \
-  && Rscript -e 'tinytex::reinstall_tinytex(repository = "http://mirror.ox.ac.uk/sites/ctan.org/")' \
-  && Rscript -e 'webshot::install_phantomjs()' \
-  && Rscript -e 'remotes::install_github("inbo/INBOtheme")'
-
-## Install tools to check code coverage and coding style
-RUN  Rscript -e 'install.packages(c("covr", "lintr"))'
-
-## Install current version of INBOmd
-RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
-  && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
-
-## Install fonts
-RUN  mkdir /root/.fonts \
-  && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
-  && unzip calibri.zip -d /root/.fonts \
-  && rm calibri.zip \
-  && wget -O /root/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
-  && wget -O /root/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
-  && wget -O /root/.fonts/FlandersArtSans-Regular.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Light.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Medium.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Bold.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.ttf \
-  && fc-cache -fv \
-  && updmap-sys
-
-## Install dependencies for INBOmd examples
-RUN  Rscript -e 'install.packages(c("DT", "leaflet"))' \
-  && Rscript -e 'remotes::install_github("inbo/lipsum")'
+  && Rscript -e 'install.packages("tinytex")' \
+  && Rscript -e 'tinytex::reinstall_tinytex(repository = "http://ftp.snt.utwente.nl/pub/software/tex/")'
 
 ## Install LaTeX packages
 RUN  tlmgr install \
-      array \
       babel-dutch \
       babel-english \
       babel-french \
@@ -106,9 +99,36 @@ RUN  tlmgr install \
       wrapfig \
       xcolor
 
+## Install fonts
+RUN  mkdir /root/.fonts \
+  && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
+  && unzip calibri.zip -d /root/.fonts \
+  && rm calibri.zip \
+  && wget -O /root/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
+  && wget -O /root/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
+  && wget -O /root/.fonts/FlandersArtSans-Regular.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.ttf \
+  && wget -O /root/.fonts/FlandersArtSans-Light.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.ttf \
+  && wget -O /root/.fonts/FlandersArtSans-Medium.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.ttf \
+  && wget -O /root/.fonts/FlandersArtSans-Bold.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.ttf \
+  && fc-cache -fv \
+  && updmap-sys
+
+## Install dependencies for INBOmd examples: DT
+RUN  Rscript -e 'install.packages("DT")'
+
+## Install dependencies for INBOmd examples: leaflet
+RUN  Rscript -e 'install.packages("leaflet")'
+
+## Install dependencies for INBOmd examples: lipsum
+RUN  Rscript -e 'remotes::install_github("inbo/lipsum")'
+
 ## Install pkgdown
 RUN  Rscript -e 'install.packages("pkgdown")'
 
 ## Install ImageMagick
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends imagemagick
+
+## Install current version of INBOmd
+RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
+  && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
