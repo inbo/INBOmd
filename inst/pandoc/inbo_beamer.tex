@@ -1,5 +1,10 @@
 % de presentatie
-\documentclass[$if(fontsize)$$fontsize$$else$10pt$endif$, $if(handout)$handout,$endif$ xetex, noamsthm]{beamer}
+\documentclass[
+  hyperref={colorlinks=true,citecolor=link.colour,linkcolor=link.colour,urlcolor=link.colour},
+  $if(fontsize)$$fontsize$$else$10pt$endif$,
+  xetex,
+  noamsthm$if(handout)$, handout$endif$
+]{beamer}
 
 \usetheme{$theme$}
 \usepackage{inbogeneric_2015}
