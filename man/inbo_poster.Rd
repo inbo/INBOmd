@@ -4,10 +4,18 @@
 \alias{inbo_poster}
 \title{Create a poster with the INBO theme version 2015}
 \usage{
-inbo_poster(subtitle, codesize = c("footnotesize", "scriptsize", "tiny",
-  "small", "normalsize"), lang = "english", email = "info@inbo.be",
-  keep_tex = FALSE, fig_crop = TRUE, citation_package = c("natbib",
-  "none"), includes = NULL, pandoc_args = NULL, ...)
+inbo_poster(
+  subtitle,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "english",
+  email = "info@inbo.be",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  citation_package = c("natbib", "none"),
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
+)
 }
 \arguments{
 \item{subtitle}{An optional subtitle}
@@ -31,7 +39,7 @@ Defaults to info@inbo.be}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
-document (typically created using the \code{\link{includes}} function).}
+document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
@@ -57,8 +65,11 @@ poster.
 }
 }
 \seealso{
-Other output: \code{\link{inbo_handouts}},
-  \code{\link{inbo_rapport}}, \code{\link{inbo_slides}},
-  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+Other output: 
+\code{\link{inbo_handouts}()},
+\code{\link{inbo_rapport}()},
+\code{\link{inbo_slides}()},
+\code{\link{inbo_verslag}()},
+\code{\link{inbo_zending}()}
 }
 \concept{output}

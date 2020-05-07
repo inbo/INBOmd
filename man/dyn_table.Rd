@@ -4,8 +4,7 @@
 \alias{dyn_table}
 \title{Use a different table style depending on the output format}
 \usage{
-dyn_table(x, caption = NULL, rownames = FALSE, escape = TRUE, align,
-  ...)
+dyn_table(x, caption = NULL, rownames = FALSE, escape = TRUE, align, ...)
 }
 \arguments{
 \item{x}{the dataframe}

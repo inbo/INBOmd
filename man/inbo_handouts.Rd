@@ -7,13 +7,28 @@ The only difference between inbo_slides() and inbo_handouts() is that
 inbo_slides() can have progressive slides whereas inbo_handouts() only
 displays the final slide.}
 \usage{
-inbo_handouts(subtitle, location, institute, cover, cover_offset,
-  cover_hoffset, cover_horizontal = TRUE, toc_name, fontsize,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small",
-  "normalsize"), citation_package = c("natbib", "none"), natbib_title,
-  lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE,
-  website = "www.INBO.be", theme = c("inbo", "vlaanderen"),
-  flandersfont = FALSE, ...)
+inbo_handouts(
+  subtitle,
+  location,
+  institute,
+  cover,
+  cover_offset,
+  cover_hoffset,
+  cover_horizontal = TRUE,
+  toc_name,
+  fontsize,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  citation_package = c("natbib", "none"),
+  natbib_title,
+  lang = "dutch",
+  slide_level = 2,
+  keep_tex = FALSE,
+  toc = TRUE,
+  website = "www.INBO.be",
+  theme = c("inbo", "vlaanderen"),
+  flandersfont = FALSE,
+  ...
+)
 }
 \arguments{
 \item{subtitle}{The subtitle.}
@@ -70,8 +85,11 @@ inbo_slides() can have progressive slides whereas inbo_handouts() only
 displays the final slide.
 }
 \seealso{
-Other output: \code{\link{inbo_poster}},
-  \code{\link{inbo_rapport}}, \code{\link{inbo_slides}},
-  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+Other output: 
+\code{\link{inbo_poster}()},
+\code{\link{inbo_rapport}()},
+\code{\link{inbo_slides}()},
+\code{\link{inbo_verslag}()},
+\code{\link{inbo_zending}()}
 }
 \concept{output}

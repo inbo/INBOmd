@@ -4,12 +4,20 @@
 \alias{inbo_verslag}
 \title{Create a meeting report with the INBO corporate identity}
 \usage{
-inbo_verslag(present = "", absent = "", chair = "",
+inbo_verslag(
+  present = "",
+  absent = "",
+  chair = "",
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  citation_package = c("natbib", "none"), includes = NULL,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small",
-  "normalsize"), lang = "dutch", keep_tex = FALSE, fig_crop = TRUE,
-  pandoc_args = NULL, ...)
+  citation_package = c("natbib", "none"),
+  includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "dutch",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  pandoc_args = NULL,
+  ...
+)
 }
 \arguments{
 \item{present}{names of all persons who attended the meeting}
@@ -19,15 +27,15 @@ inbo_verslag(present = "", absent = "", chair = "",
 \item{chair}{chair of the meeting}
 
 \item{floatbarrier}{Should float barriers be placed?
-Defaults to NA (only float barriers before starting a new chapter \code{#}).
-Options are "section" (\code{##}), "subsection" (\code{###}) and
-"subsubsection" (\code{####}).}
+Defaults to NA (only float barriers before starting a new chapter \verb{#}).
+Options are "section" (\verb{##}), "subsection" (\verb{###}) and
+"subsubsection" (\verb{####}).}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
-document (typically created using the \code{\link{includes}} function).}
+document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
@@ -55,8 +63,11 @@ Available extra parameters:
 }
 }
 \seealso{
-Other output: \code{\link{inbo_handouts}},
-  \code{\link{inbo_poster}}, \code{\link{inbo_rapport}},
-  \code{\link{inbo_slides}}, \code{\link{inbo_zending}}
+Other output: 
+\code{\link{inbo_handouts}()},
+\code{\link{inbo_poster}()},
+\code{\link{inbo_rapport}()},
+\code{\link{inbo_slides}()},
+\code{\link{inbo_zending}()}
 }
 \concept{output}

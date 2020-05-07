@@ -4,12 +4,20 @@
 \alias{inbo_rapport}
 \title{Create a report with the Flemish corporate identity}
 \usage{
-inbo_rapport(subtitle, reportnr, ordernr, floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), codesize = c("footnotesize",
-  "scriptsize", "tiny", "small", "normalsize"), style = c("INBO",
-  "Vlaanderen", "Flanders"), keep_tex = FALSE, fig_crop = TRUE,
-  citation_package = c("natbib", "none"), includes = NULL,
-  pandoc_args = NULL, ...)
+inbo_rapport(
+  subtitle,
+  reportnr,
+  ordernr,
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  style = c("INBO", "Vlaanderen", "Flanders"),
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  citation_package = c("natbib", "none"),
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
+)
 }
 \arguments{
 \item{subtitle}{An optional subtitle.}
@@ -20,9 +28,9 @@ Defaults to the date and time of compilation.}
 \item{ordernr}{The optional order number.}
 
 \item{floatbarrier}{Should float barriers be placed?
-Defaults to NA (only float barriers before starting a new chapter \code{#}).
-Options are "section" (\code{##}), "subsection" (\code{###}) and
-"subsubsection" (\code{####}).}
+Defaults to NA (only float barriers before starting a new chapter \verb{#}).
+Options are "section" (\verb{##}), "subsection" (\verb{###}) and
+"subsubsection" (\verb{####}).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
@@ -44,7 +52,7 @@ Use "Flanders" for a report in English.}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
-document (typically created using the \code{\link{includes}} function).}
+document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
@@ -60,10 +68,10 @@ Available extra parameters:
 \item \code{lot}: display a list of tables. Defaults to TRUE
 \item \code{tocdepth}: which level headers to display.
 \itemize{
-\item 0: upto chapters (\code{#})
-\item 1: upto section (\code{##})
-\item 2: upto subsection (\code{###})
-\item 3: upto subsubsection (\code{####}) default
+\item 0: upto chapters (\verb{#})
+\item 1: upto section (\verb{##})
+\item 2: upto subsection (\verb{###})
+\item 3: upto subsubsection (\verb{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
 \item \code{cover}: an optional pdf file. The first two pages will be prepended to the
@@ -71,8 +79,11 @@ report.
 }
 }
 \seealso{
-Other output: \code{\link{inbo_handouts}},
-  \code{\link{inbo_poster}}, \code{\link{inbo_slides}},
-  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+Other output: 
+\code{\link{inbo_handouts}()},
+\code{\link{inbo_poster}()},
+\code{\link{inbo_slides}()},
+\code{\link{inbo_verslag}()},
+\code{\link{inbo_zending}()}
 }
 \concept{output}
