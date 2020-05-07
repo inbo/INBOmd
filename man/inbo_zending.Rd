@@ -4,12 +4,23 @@
 \alias{inbo_zending}
 \title{Create a mission report with the INBO corporate identity}
 \usage{
-inbo_zending(conference, conferencedate, conferenceplace, website = "",
-  reportdate, colleagues = "", floatbarrier = c(NA, "section",
-  "subsection", "subsubsection"), citation_package = c("natbib", "none"),
-  includes = NULL, codesize = c("footnotesize", "scriptsize", "tiny",
-  "small", "normalsize"), lang = "dutch", keep_tex = FALSE,
-  fig_crop = TRUE, pandoc_args = NULL, ...)
+inbo_zending(
+  conference,
+  conferencedate,
+  conferenceplace,
+  website = "",
+  reportdate,
+  colleagues = "",
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  citation_package = c("natbib", "none"),
+  includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "dutch",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  pandoc_args = NULL,
+  ...
+)
 }
 \arguments{
 \item{conference}{the name of the conference or workshop}
@@ -25,15 +36,15 @@ inbo_zending(conference, conferencedate, conferenceplace, website = "",
 \item{colleagues}{name of other colleagues attending the same conference}
 
 \item{floatbarrier}{Should float barriers be placed?
-Defaults to NA (only float barriers before starting a new chapter \code{#}).
-Options are "section" (\code{##}), "subsection" (\code{###}) and
-"subsubsection" (\code{####}).}
+Defaults to NA (only float barriers before starting a new chapter \verb{#}).
+Options are "section" (\verb{##}), "subsection" (\verb{###}) and
+"subsubsection" (\verb{####}).}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
-document (typically created using the \code{\link{includes}} function).}
+document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
@@ -61,8 +72,11 @@ Available extra parameters:
 }
 }
 \seealso{
-Other output: \code{\link{inbo_handouts}},
-  \code{\link{inbo_poster}}, \code{\link{inbo_rapport}},
-  \code{\link{inbo_slides}}, \code{\link{inbo_verslag}}
+Other output: 
+\code{\link{inbo_handouts}()},
+\code{\link{inbo_poster}()},
+\code{\link{inbo_rapport}()},
+\code{\link{inbo_slides}()},
+\code{\link{inbo_verslag}()}
 }
 \concept{output}

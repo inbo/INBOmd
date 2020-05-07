@@ -4,13 +4,29 @@
 \alias{inbo_slides}
 \title{Use slides with the INBO theme}
 \usage{
-inbo_slides(subtitle, location, institute, cover, cover_offset,
-  cover_hoffset, cover_horizontal = TRUE, slide_logo, toc_name, fontsize,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small",
-  "normalsize"), citation_package = c("natbib", "none"), natbib_title,
-  lang = "dutch", slide_level = 2, keep_tex = FALSE, toc = TRUE,
-  website = "www.INBO.be", theme = c("inbo", "vlaanderen",
-  "inboenglish"), flandersfont = FALSE, ...)
+inbo_slides(
+  subtitle,
+  location,
+  institute,
+  cover,
+  cover_offset,
+  cover_hoffset,
+  cover_horizontal = TRUE,
+  slide_logo,
+  toc_name,
+  fontsize,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  citation_package = c("natbib", "none"),
+  natbib_title,
+  lang = "dutch",
+  slide_level = 2,
+  keep_tex = FALSE,
+  toc = TRUE,
+  website = "www.INBO.be",
+  theme = c("inbo", "vlaanderen", "inboenglish"),
+  flandersfont = FALSE,
+  ...
+)
 }
 \arguments{
 \item{subtitle}{The subtitle.}
@@ -66,8 +82,11 @@ Defaults to FALSE.}
 Use slides with the INBO theme
 }
 \seealso{
-Other output: \code{\link{inbo_handouts}},
-  \code{\link{inbo_poster}}, \code{\link{inbo_rapport}},
-  \code{\link{inbo_verslag}}, \code{\link{inbo_zending}}
+Other output: 
+\code{\link{inbo_handouts}()},
+\code{\link{inbo_poster}()},
+\code{\link{inbo_rapport}()},
+\code{\link{inbo_verslag}()},
+\code{\link{inbo_zending}()}
 }
 \concept{output}
