@@ -92,39 +92,43 @@ $endfor$
 <!--bookdown:title:start-->
 $if(title)$
 <div id="$idprefix$header">
-<h1 class="title">$title$</h1>
-$if(subtitle)$
-<h2 class="subtitle">$subtitle$</h2>
-$endif$
-$for(author)$
-  $if(author.name)$
-    <h3 class="author">$author.name$</h3>
-    $if(author.affiliation)$
-      <address class="author_afil">
-      $author.affiliation$
-      $if(author.email)$
-        <br><a class="author_email" href="mailto:#">$author.email$</a>
-      $endif$
-      </address>
-    $else$
-      $if(author.email)$
-        <address class="author_afil">
-        <a class="author_email" href="mailto:#">$author.email$</a>
-        </address>
-      $endif$
-    $endif$
-  $else$
-    <h3 class="author">$author$</h3>
+$if(cover-image)$
+  <img src="$url$$cover-image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
+$else$
+  <h1 class="title">$title$</h1>
+  $if(subtitle)$
+  <h2 class="subtitle">$subtitle$</h2>
   $endif$
-$endfor$
-$if(date)$
-<p class="date"><em>$date$</em></p>
-$endif$
-$if(reportnr)$
-<h4 class ="reportnr">$reportnr$</h4>
-$endif$
-$if(ordernr)$
-<h4 class ="ordernr">$ordernr$</h4>
+  $for(author)$
+    $if(author.name)$
+      <h3 class="author">$author.name$</h3>
+      $if(author.affiliation)$
+        <address class="author_afil">
+        $author.affiliation$
+        $if(author.email)$
+          <br><a class="author_email" href="mailto:#">$author.email$</a>
+        $endif$
+        </address>
+      $else$
+        $if(author.email)$
+          <address class="author_afil">
+          <a class="author_email" href="mailto:#">$author.email$</a>
+          </address>
+        $endif$
+      $endif$
+    $else$
+      <h3 class="author">$author$</h3>
+    $endif$
+  $endfor$
+  $if(date)$
+  <p class="date"><em>$date$</em></p>
+  $endif$
+  $if(reportnr)$
+  <h4 class ="reportnr">$reportnr$</h4>
+  $endif$
+  $if(ordernr)$
+  <h4 class ="ordernr">$ordernr$</h4>
+  $endif$
 $endif$
 $if(abstract)$
 <div class="abstract">
