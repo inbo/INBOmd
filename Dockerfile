@@ -84,6 +84,7 @@ RUN  tlmgr install \
       ms \
       multirow \
       pdfpages \
+      pdftexcmds \
       placeins \
       needspace \
       tabu \
@@ -106,10 +107,6 @@ RUN  mkdir /root/.fonts \
   && rm calibri.zip \
   && wget -O /root/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
   && wget -O /root/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
-  && wget -O /root/.fonts/FlandersArtSans-Regular.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Regular.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Light.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Light.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Medium.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Medium.ttf \
-  && wget -O /root/.fonts/FlandersArtSans-Bold.ttf https://www.inbo.be/sites/all/themes/bootstrap_inbo/fonts/FlandersArtSans-Bold.ttf \
   && fc-cache -fv \
   && updmap-sys
 
@@ -130,5 +127,6 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends imagemagick
 
 ## Install current version of INBOmd
-RUN  Rscript -e 'remotes::install_github("inbo/INBOmd")' \
+COPY . inbomd
+RUN  Rscript -e 'remotes::install_local("inbomd")' \
   && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
