@@ -16,7 +16,6 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-
 ## Set a default user. Available via runtime flag `--user docker`
 ## Add user to 'staff' group, granting them write privileges to /usr/local/lib/R/site.library
 ## User should also have & own a home directory (for rstudio or linked volumes to work properly).
@@ -53,7 +52,10 @@ RUN  apt-get update \
       curl \
       gpg \
   && Rscript -e 'install.packages("tinytex")' \
-  && Rscript -e 'tinytex::reinstall_tinytex(repository = "http://ftp.snt.utwente.nl/pub/software/tex/")'
+  && Rscript -e 'if (tinytex:::is_tinytex()) {tinytex::reinstall_tinytex(repository = "http://ftp.snt.utwente.nl/pub/software/tex/")} else {tinytex::install_tinytex()}'
+
+## add TinyTeX to path
+ENV PATH="/root/bin:${PATH}"
 
 ## Install LaTeX packages
 RUN  tlmgr install \
