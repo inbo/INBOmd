@@ -25,22 +25,12 @@
   <locale xml:lang="en">
     <terms>
       <term name="in">In</term>
-      <term name="editor" form="short">
-        <single>ed.</single>
-        <multiple>eds.</multiple>
-      </term>
-      <term name="no date" form="short">s.d.</term>
     </terms>
   </locale>
   <locale xml:lang="nl">
     <terms>
       <term name="in">In</term>
       <term name="et-al">et al.</term>
-      <term name="editor" form="short">
-        <single>ed.</single>
-        <multiple>eds.</multiple>
-      </term>
-      <term name="no date" form="short">s.d.</term>
     </terms>
   </locale>
   <macro name="container">
@@ -48,8 +38,8 @@
       <if type="chapter paper-conference" match="any">
         <text term="in" prefix=". " suffix=": "/>
         <names variable="editor translator" delimiter=", " suffix=". ">
-          <name and="symbol" delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
-          <label text-case="lowercase" form="short" prefix=" (" suffix=")"/>
+          <name delimiter-precedes-last="always" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
+          <label text-case="lowercase" prefix=" (" suffix=")"/>
         </names>
         <group delimiter=", ">
           <text variable="container-title"/>
@@ -73,11 +63,7 @@
   <macro name="author">
     <names variable="author">
       <name and="symbol" delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
-<<<<<<< HEAD
-      <label form="short" prefix=" (" suffix=")"/>
-=======
       <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
->>>>>>> 572807d... Update of inbo.csl to its state at the CSL repository *
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
@@ -107,7 +93,7 @@
     <choose>
       <if type="webpage">
         <group delimiter=" ">
-          <text value="URL" suffix=":"/>
+          <text value="URL"/>
           <text variable="URL"/>
           <group prefix="(" suffix=").">
             <text term="accessed" suffix=" "/>
@@ -224,7 +210,7 @@
   </macro>
   <macro name="url">
     <choose>
-      <if type="webpage" variable="DOI" match="none">
+      <if type="webpage" match="none">
         <choose>
           <if match="any" variable="URL">
             <text value="URL" suffix=": "/>
