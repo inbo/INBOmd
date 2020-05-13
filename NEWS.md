@@ -1,3 +1,13 @@
+# INBOmd 0.4.8 (2020-05-12)
+
+- bugfix in `dyn_table()` function
+- bugfix in `inbo_rapport()` function
+- overhaul of the csl and bst citation styles
+- minor tweaks in gitbook, epub and LaTeX styles for reports
+- upgrade to Roxygen 7.1.0
+- upgrade Docker image
+- bugfix in CI
+
 # INBOmd 0.4.7 (2018-10-23)
 
 - new `dyn_table()` function
