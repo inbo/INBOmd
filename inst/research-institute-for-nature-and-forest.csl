@@ -7,11 +7,11 @@
     <link href="http://www.zotero.org/styles/research-institute-for-nature-and-forest" rel="self"/>
     <author>
       <name>Maarten Stevens</name>
-      <uri>http://www.mendeley.com/profiles/maarten-stevens/</uri>
+      <uri>https://www.mendeley.com/profiles/maarten-stevens/</uri>
     </author>
     <contributor>
       <name>Thierry Onkelinx</name>
-      <uri>http://www.mendeley.com/profiles/thierry-onkelinx/</uri>
+      <uri>https://www.mendeley.com/profiles/thierry-onkelinx/</uri>
     </contributor>
     <contributor>
       <name>Floris Vanderhaeghe</name>
@@ -19,18 +19,28 @@
     </contributor>
     <category citation-format="author-date"/>
     <category field="biology"/>
-    <updated>2019-08-08T03:58:17+00:00</updated>
+    <updated>2019-08-01T00:00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
     <terms>
       <term name="in">In</term>
+      <term name="editor" form="short">
+        <single>ed.</single>
+        <multiple>eds.</multiple>
+      </term>
+      <term name="no date" form="short">s.d.</term>
     </terms>
   </locale>
   <locale xml:lang="nl">
     <terms>
       <term name="in">In</term>
       <term name="et-al">et al.</term>
+      <term name="editor" form="short">
+        <single>ed.</single>
+        <multiple>eds.</multiple>
+      </term>
+      <term name="no date" form="short">s.d.</term>
     </terms>
   </locale>
   <macro name="container">
@@ -38,8 +48,8 @@
       <if type="chapter paper-conference" match="any">
         <text term="in" prefix=". " suffix=": "/>
         <names variable="editor translator" delimiter=", " suffix=". ">
-          <name delimiter-precedes-last="always" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
-          <label text-case="lowercase" prefix=" (" suffix=")"/>
+          <name and="symbol" delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
+          <label text-case="lowercase" form="short" prefix=" (" suffix=")"/>
         </names>
         <group delimiter=", ">
           <text variable="container-title"/>
@@ -63,7 +73,7 @@
   <macro name="author">
     <names variable="author">
       <name and="symbol" delimiter-precedes-last="never" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
-      <label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
+      <label form="short" prefix=" (" suffix=")"/>
       <substitute>
         <names variable="editor"/>
         <names variable="translator"/>
@@ -93,7 +103,7 @@
     <choose>
       <if type="webpage">
         <group delimiter=" ">
-          <text value="URL"/>
+          <text value="URL" suffix=":"/>
           <text variable="URL"/>
           <group prefix="(" suffix=").">
             <text term="accessed" suffix=" "/>
@@ -210,7 +220,7 @@
   </macro>
   <macro name="url">
     <choose>
-      <if type="webpage" match="none">
+      <if type="webpage" variable="DOI" match="none">
         <choose>
           <if match="any" variable="URL">
             <text value="URL" suffix=": "/>
