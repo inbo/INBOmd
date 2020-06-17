@@ -25,6 +25,7 @@ inbo_slides(
   website = "www.INBO.be",
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
+  aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
   ...
 )
 }
@@ -46,40 +47,68 @@ inbo_slides(
 
 \item{slide_logo}{the path to an optional logo displayed on each slide}
 
-\item{toc_name}{Name of the table of contents. Defaults to "Overzicht".}
+\item{toc_name}{Name of the table of contents.
+Defaults to \code{"Overzicht"}.}
 
-\item{fontsize}{The fontsite of the document. Defaults to 10pt.}
+\item{fontsize}{The fontsize of the document.
+Defaults to \code{"10pt"}.
+See the section on aspect ratio.}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
-Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
-"tiny". Defaults to "footnotesize".}
+Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
+\code{"scriptsize"} and \code{"tiny"}.
+Defaults to \code{"footnotesize"}.}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{natbib_title}{The title of the bibliography}
 
-\item{lang}{The language of the document. Defaults to "dutch"}
+\item{lang}{The language of the document.
+Defaults to \code{"dutch"}}
 
 \item{slide_level}{Indicate which heading level is used for the frame titles}
 
-\item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+\item{keep_tex}{Keep the tex file.
+Defaults to \code{FALSE}.}
 
 \item{toc}{display a table of content after the title slide}
 
 \item{website}{An optional URL to display on the left sidebar.
-Defaults to www.INBO.be.}
+Defaults to \code{"www.INBO.be"}.}
 
-\item{theme}{The theme to use. Available options are "inbo" and "vlaanderen".}
+\item{theme}{The theme to use.
+Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
 
-\item{flandersfont}{If TRUE use the Flanders Art font. If FALSE use Calibri.
-Defaults to FALSE.}
+\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
+If \code{FALSE} use Calibri.
+Defaults to \code{FALSE}.}
+
+\item{aspect}{Defines the aspect ratio and the format of the slides.
+Defaults to \code{"16:9"}.
+See the section.}
 
 \item{...}{extra parameters}
 }
 \description{
 Use slides with the INBO theme
+}
+\details{
+Aspect ratio
+
+The table below lists the available aspect ratios and their "paper size".
+The main advantage of using a small “paper size” is that you can use all your
+normal fonts at their natural sizes.\tabular{crrr}{
+   aspect \tab ratio \tab width \tab height \cr
+   16:9 \tab 1.78 \tab 160.0 mm \tab 90 mm \cr
+   16:10 \tab 1.60 \tab 160.0 mm \tab 100 mm \cr
+   14:9 \tab 1.56 \tab 140.0 mm \tab 90 mm \cr
+   3:2 \tab 1.50 \tab 135.0 mm \tab 90 mm \cr
+   1.4:1 \tab 1.41 \tab 148.5 mm \tab 105 mm \cr
+   4:3 \tab 1.33 \tab 128.0 mm \tab 96 mm \cr
+   5:4 \tab 1.25 \tab 125.0 mm \tab 100 mm \cr
+}
 }
 \seealso{
 Other output: 

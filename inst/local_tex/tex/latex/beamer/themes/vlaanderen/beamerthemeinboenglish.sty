@@ -35,17 +35,17 @@
 
 
 \newcommand{\titlelogo}{
-  \begin{textblock}{13.5}(96.5, 4.4)
+  \begin{textblock*}{13.5mm}(\dimexpr\paperwidth-31.5mm\relax, 4.4mm)
   \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal}
-  \end{textblock}
+  \end{textblock*}
 
 
-  \begin{textblock}{30}(67.3, 4.4)
+  \begin{textblock*}{30mm}(\dimexpr\paperwidth-60.7mm\relax, 4.4mm)
     \textblockcolour{logobackground}
     \vspace{0.75mm}
     \hspace{1mm}\includegraphics[width = 27.55mm]{logo_en_kleur}
     \vspace{0.75mm}
-  \end{textblock}
+  \end{textblock*}
 }
 
 \newcommand{\sectionlogo}{
@@ -61,7 +61,8 @@
 }
 
 \newcommand{\sidebarlogo}{
-  \vspace{81.9mm}
+  \vspace{\pdfpageheight}
+  \vspace{-14.1mm}
   \hspace{9.2mm}
   \includegraphics[height = 9.9mm]{vlaanderen_en_naakt}
 }

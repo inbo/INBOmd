@@ -46,35 +46,43 @@ inbo_handouts(
 \item{cover_horizontal}{Scale the cover horizontal (\code{TRUE}) or vertical
 (\code{FALSE}).}
 
-\item{toc_name}{Name of the table of contents. Defaults to "Overzicht".}
+\item{toc_name}{Name of the table of contents.
+Defaults to \code{"Overzicht"}.}
 
-\item{fontsize}{The fontsite of the document. Defaults to 10pt.}
+\item{fontsize}{The fontsize of the document.
+Defaults to \code{"10pt"}.
+See the section on aspect ratio.}
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
-Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
-"tiny". Defaults to "footnotesize".}
+Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
+\code{"scriptsize"} and \code{"tiny"}.
+Defaults to \code{"footnotesize"}.}
 
 \item{citation_package}{The LaTeX package to process citations, \code{natbib}
 or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{natbib_title}{The title of the bibliography}
 
-\item{lang}{The language of the document. Defaults to "dutch"}
+\item{lang}{The language of the document.
+Defaults to \code{"dutch"}}
 
 \item{slide_level}{Indicate which heading level is used for the frame titles}
 
-\item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+\item{keep_tex}{Keep the tex file.
+Defaults to \code{FALSE}.}
 
 \item{toc}{display a table of content after the title slide}
 
 \item{website}{An optional URL to display on the left sidebar.
-Defaults to www.INBO.be.}
+Defaults to \code{"www.INBO.be"}.}
 
-\item{theme}{The theme to use. Available options are "inbo" and "vlaanderen".}
+\item{theme}{The theme to use.
+Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
 
-\item{flandersfont}{If TRUE use the Flanders Art font. If FALSE use Calibri.
-Defaults to FALSE.}
+\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
+If \code{FALSE} use Calibri.
+Defaults to \code{FALSE}.}
 
 \item{...}{extra parameters}
 }

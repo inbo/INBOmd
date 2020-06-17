@@ -32,9 +32,9 @@
 \newcommand{\readcover}[2]{%
   \edef\coverhorizontal{{#1}}%
   \expandafter\ifstrequal\coverhorizontal{TRUE}{
-    \pgfdeclareimage[width = 124.5mm, interpolate = true]{afbeelding}{#2}
+    \pgfdeclareimage[width = \pdfpagewidth, interpolate = true]{afbeelding}{#2}
   }{
-    \pgfdeclareimage[height = 96mm, interpolate = true]{afbeelding}{#2}
+    \pgfdeclareimage[height = \pdfpageheight, interpolate = true]{afbeelding}{#2}
   }%
 }
 
