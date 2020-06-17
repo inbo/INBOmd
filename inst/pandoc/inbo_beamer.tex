@@ -3,7 +3,7 @@
   hyperref={colorlinks=true,citecolor=link.colour,linkcolor=white,urlcolor=link.colour},
   $if(fontsize)$$fontsize$$else$10pt$endif$,
   xetex,
-  noamsthm$if(handout)$, handout$endif$
+  noamsthm$if(handout)$, handout$endif$$if(aspect)$, aspectratio=$aspect$ $endif$
 ]{beamer}
 
 \usetheme{$theme$}
