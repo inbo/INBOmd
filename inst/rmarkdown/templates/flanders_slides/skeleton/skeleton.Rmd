@@ -37,6 +37,7 @@ if (interactive()) {
       transparent = "plot"
     )
   )
+  switchColour(vl.darkyellow)
   update_geom_defaults("text", list(size = 3))
 }
 ```
