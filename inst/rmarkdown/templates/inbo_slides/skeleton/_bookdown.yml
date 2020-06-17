@@ -1,2 +1,3 @@
 book_filename: "mijn_slides"
-output_dir: "."
+output_dir: "../output"
+delete_merged_file: FALSE
