@@ -30,7 +30,7 @@ Below are some documents created with INBOmd
 
 INBOmd requires a working installation of XeLaTeX. We highly recommend to use the TinyTeX. Close all open R sessions and start a fresh R session. Execute the commands below. This will install TinyTeX on your machine. No admin rights are required. Although TinyTeX is a lightweight installation, it still is several 100 MB large.
 
-```{r eval = FALSE}
+```
 update.packages(ask = FALSE, checkBuilt = TRUE)
 if (!"tinytex" %in% rownames(installed.packages())) {
   install.packages("tinytex")
@@ -42,11 +42,11 @@ if (!tinytex:::is_tinytex()) {
 
 Once TinyTeX is installed, you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
 
-```{r eval = FALSE}
+```
 if (!"remotes" %in% rownames(installed.packages())) {
   install.packages("remotes")
 }
-remotes::install_github("inbo/INBOmd", dependencies = TRUE, upgrade = FALSE)
+remotes::install_github("inbo/INBOmd", dependencies = TRUE)
 tinytex::tlmgr_install(c(
   'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
 ))
@@ -58,10 +58,9 @@ tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
 
 Make your system fonts available in R
 
-```{r, eval = FALSE}
+```
 if (!"extrafont" %in% rownames(installed.packages())) {
   install.packages("extrafont")
 }
 extrafont::font_import()
 ```
-

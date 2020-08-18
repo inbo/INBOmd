@@ -48,15 +48,16 @@
 \RequirePackage[\@lang]{babel}
 
 \newcommand{\titlelogo}{
-  \begin{textblock}{14}(109.9, -.2)
+  \begin{textblock*}{14mm}(\dimexpr\paperwidth-18.1mm\relax, -0.2mm)
     \begin{center}
       \includegraphics[width = 12.7mm]{vlaanderen_en_verticaal}
     \end{center}
-  \end{textblock}
+  \end{textblock*}
 }
 
 \newcommand{\sidebarlogo}{
-  \vspace{81.9mm}
+  \vspace{\pdfpageheight}
+  \vspace{-14.1mm}
   \hspace{9.2mm}
   \includegraphics[width = 24.5mm]{vlaanderen_en_naakt}
 }

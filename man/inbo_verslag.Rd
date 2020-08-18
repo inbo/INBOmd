@@ -39,12 +39,15 @@ document (typically created using the \code{\link[rmarkdown]{includes}} function
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
-Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
-"tiny". Defaults to "footnotesize".}
+Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
+\code{"scriptsize"} and \code{"tiny"}.
+Defaults to \code{"footnotesize"}.}
 
-\item{lang}{The language of the document. Defaults to "dutch"}
+\item{lang}{The language of the document.
+Defaults to \code{"dutch"}}
 
-\item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+\item{keep_tex}{Keep the tex file.
+Defaults to \code{FALSE}.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}

@@ -34,8 +34,9 @@ Options are "section" (\verb{##}), "subsection" (\verb{###}) and
 
 \item{codesize}{The fontsize of the code, relative to the fontsize of the
 text (= normal size).
-Allowed values are "normalsize", "small", "footnotesize", "scriptsize" and
-"tiny". Defaults to "footnotesize".}
+Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
+\code{"scriptsize"} and \code{"tiny"}.
+Defaults to \code{"footnotesize"}.}
 
 \item{style}{What template to use.
 Use "INBO" for an INBO report in Dutch.
@@ -43,7 +44,8 @@ Use "Vlaanderen" for a report in Dutch written by more than one Flemish
 government agency.
 Use "Flanders" for a report in English.}
 
-\item{keep_tex}{Keep the tex file. Defaults to FALSE.}
+\item{keep_tex}{Keep the tex file.
+Defaults to \code{FALSE}.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}

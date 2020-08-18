@@ -67,21 +67,21 @@
 
 % define title page
 \setbeamertemplate{title page}{
-  \begin{textblock}{124.5}(3.5, 0)
+  \begin{textblock*}{\dimexpr\paperwidth-3.5mm\relax}(3.5mm, 0mm)
     \readcover{\@coverhorizontal}{\@cover}
     \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
       \pgfuseimage{afbeelding}
     \end{pgftranslate}
-  \end{textblock}
+  \end{textblock*}
 
-  \begin{textblock}{114.5}(3.5, 66)
+  \begin{textblock*}{\dimexpr\paperwidth-13.5mm\relax}(3.5mm, \dimexpr0.74\paperheight\relax)
     \hfill \showtitlelogo{\@slidelogo}%
-  \end{textblock}
+  \end{textblock*}
 
  \begin{textblock}{3.5}(0, 0)
-    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
+    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{\pdfpageheight}
       \color{main.colour}
-      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{3.5mm}{96mm}}
+      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{3.5mm}{\pdfpageheight}}
     \end{pgfpicture}
   \end{textblock}
 
@@ -123,9 +123,9 @@
   \showslidelogo{\@slidelogo}
 
   \begin{textblock}{4}(0, 0)
-    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{96mm}
+    \begin{pgfpicture}{0cm}{0cm}{3.5mm}{\pdfpageheight}
       \color{main.colour}
-      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{4.1mm}{96mm}}
+      \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{4.1mm}{\pdfpageheight}}
     \end{pgfpicture}
   \end{textblock}
 
@@ -136,28 +136,36 @@
 
 }
 
-% define section
 
-\setbeamertemplate{section page}{
-  \begin{textblock}{150}(4, 1.6)
-    \begin{pgfpicture}{0cm}{0cm}{120mm}{90mm}
+% define section
+\newlength{\trapeziumwidth}
+\setlength{\trapeziumwidth}{\dimexpr\paperwidth-8mm\relax}
+\newlength{\trapeziumheight}
+\setlength{\trapeziumheight}{\dimexpr\paperheight-8mm\relax}
+\newlength{\trapeziumtopwidth}
+\setlength{\trapeziumtopwidth}{\dimexpr\trapeziumwidth - 0.285\trapeziumheight\relax}
+
+\newcommand{\trapezium}{
+  \begin{textblock*}{\trapeziumwidth}(4mm, 4mm)
+    \begin{pgfpicture}{0cm}{0cm}{\trapeziumwidth}{\trapeziumheight}
       \pgfmoveto{\pgfpoint{0mm}{0mm}}
-      \pgflineto{\pgfpoint{0mm}{87.5mm}}
-      \pgflineto{\pgfpoint{94.8mm}{87.5mm}}
-      \pgflineto{\pgfpoint{119.7mm}{0mm}}
+      \pgflineto{\pgfpoint{0mm}{\trapeziumheight}}
+      \pgflineto{\pgfpoint{\trapeziumtopwidth}{\trapeziumheight}}
+      \pgflineto{\pgfpoint{\trapeziumwidth}{0mm}}
       \pgfclip
       \color{main.colour}
-      % \color{magenta}
-     \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
-      % \pgfgrid[stepx = 1mm, stepy = 1mm]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
+     \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{\trapeziumwidth}{\trapeziumheight}}
     \end{pgfpicture}
-  \end{textblock}
+  \end{textblock*}
+}
 
+\setbeamertemplate{section page}{
+  \trapezium
   \sectionlogo
 
   \begin{textblock}{66}(36, 32)
     \textblockcolour{}
-    \begin{minipage}[b][29mm][b]{65mm}
+    \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
       \usebeamerfont{section title}\usebeamercolor[fg]{section title}
       \raggedright{
         \noindent
@@ -175,34 +183,25 @@
 % define subsection
 
 \setbeamertemplate{subsection page}{
-  \begin{textblock}{150}(4, 1.6)
-    \begin{pgfpicture}{0cm}{0cm}{120mm}{90mm}
-      \pgfmoveto{\pgfpoint{0mm}{0mm}}
-      \pgflineto{\pgfpoint{0mm}{87.5mm}}
-      \pgflineto{\pgfpoint{94.8mm}{87.5mm}}
-      \pgflineto{\pgfpoint{119.7mm}{0mm}}
-      \pgfclip
-      \color{main.colour}
-      % \color{magenta}
-     \pgfrect[fill]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
-      % \pgfgrid[stepx = 1mm, stepy = 1mm]{\pgfpoint{0mm}{0mm}}{\pgfpoint{119.7mm}{87.5mm}}
-    \end{pgfpicture}
-  \end{textblock}
+  \trapezium
 
   \sectionlogo
 
   \begin{textblock}{66}(36, 32)
     \textblockcolour{}
-    \begin{minipage}[b][29mm][b]{65mm}
-      \noindent
-      \raggedright{\usebeamerfont{section title}\usebeamercolor[fg]{section title}\insertsection}
+    \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
+      \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \raggedright{
+        \noindent
+        \insertsection
+      }%
     \end{minipage}
   \end{textblock}
 
-  \begin{textblock}{78}(36, 63)
+  \begin{textblock*}{\dimexpr\paperwidth-50mm\relax}(36mm, 63mm)
     \textblockcolour{}
     {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
-  \end{textblock}
+  \end{textblock*}
 
   \begin{textblock}{2.9}(1.2, 78)
     \textblockcolour{}
