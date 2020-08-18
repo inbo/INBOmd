@@ -91,11 +91,11 @@ inbo_slides <- function(
   assert_that(is.flag(flandersfont))
   assert_that(noNA(flandersfont)) #nolint
   aspect <- match.arg(aspect)
-  paperwidth <- c(
+  current_paperwidth <- c(
     "16:9" = 160, "16:10" = 160, "14:9" = 140, "1.4:1" = 148.5, "5:4" = 125,
     "4:3" = 128, "3:2" = 135
   )[aspect]
-  paperheight <- c(
+  current_paperheight <- c(
     "16:9" = 90, "16:10" = 100, "14:9" = 90, "1.4:1" = 105, "5:4" = 100,
     "4:3" = 96, "3:2" = 90
   )[aspect]
@@ -184,8 +184,8 @@ inbo_slides <- function(
         dev = "pdf",
         dev.args = list(bg = "transparent"),
         dpi = 300,
-        fig.width = (paperwidth - 13) / 25.4,
-        fig.height = (paperheight - 28) / 25.4
+        fig.width = (current_paperwidth - 13) / 25.4,
+        fig.height = (current_paperheight - 28) / 25.4
       )
     ),
     pandoc = pandoc_options(
