@@ -39,7 +39,7 @@ Een concreet voorbeeld van de broncode van dergelijk rapport vind je op https://
 ```{r setup, include = FALSE}
 library(knitr)
 opts_chunk$set(
-  echo = FALSE, 
+  echo = FALSE,
   eval = TRUE,
   cache = FALSE,
   fig.width = 150 / 25.4,
@@ -64,7 +64,7 @@ if (interactive()) {
       opts_chunk$set(dev = "png", dpi = 72)
       theme_set(
         theme_inbo(
-          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_family = "Calibri", # "FlandersArtSans-Regular",
           base_size = 12
         )
       )
@@ -73,7 +73,7 @@ if (interactive()) {
       opts_chunk$set(dev = "cairo_pdf", dpi = 300)
       theme_set(
         theme_inbo(
-          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_family = "Calibri", # "FlandersArtSans-Regular",
           base_size = 9
         )
       )
@@ -83,7 +83,7 @@ if (interactive()) {
       opts_chunk$set(dev = "png", dpi = 300)
       theme_set(
         theme_inbo(
-          base_family = "Calibri", # "FlandersArtSans-Regular", 
+          base_family = "Calibri", # "FlandersArtSans-Regular",
           base_size = 12
         )
       )

@@ -25,7 +25,7 @@ if (interactive()) {
   theme_set(
     theme_vlaanderen2015(
       base_family = "Calibri", # "Flanders Art Sans",
-      base_size = 12, 
+      base_size = 12,
       transparent = "plot"
     )
   )
@@ -33,7 +33,7 @@ if (interactive()) {
   theme_set(
     theme_vlaanderen2015(
       base_family = "Calibri", # "Flanders Art Sans",
-      base_size = 6, 
+      base_size = 6,
       transparent = "plot"
     )
   )
