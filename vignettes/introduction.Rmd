@@ -69,9 +69,9 @@ Once TinyTeX is installed, you need to restart RStudio. Then you can proceed wit
 if (!"remotes" %in% rownames(installed.packages())) {
   install.packages("remotes")
 }
-remotes::install_github("inbo/INBOmd", dependencies = TRUE, upgrade = FALSE)
+remotes::install_github("inbo/INBOmd", dependencies = TRUE)
 tinytex::tlmgr_install(c(
-  'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
+  "inconsolata", "times", "tex", "helvetic", "dvips"
 ))
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
