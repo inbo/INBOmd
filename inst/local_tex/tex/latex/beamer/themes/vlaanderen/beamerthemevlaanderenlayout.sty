@@ -67,12 +67,12 @@
 
 % define title page
 \setbeamertemplate{title page}{
-  \begin{textblock}{124.5}(3.5, 0)
+  \begin{textblock*}{\dimexpr\paperwidth-3.5mm\relax}(3.5mm, 0mm)
     \readcover{\@coverhorizontal}{\@cover}
     \begin{pgftranslate}{\pgfpoint{\@coverhoffset}{\@coveroffset}}
       \pgfuseimage{afbeelding}
     \end{pgftranslate}
-  \end{textblock}
+  \end{textblock*}
 
   \begin{textblock*}{\dimexpr\paperwidth-13.5mm\relax}(3.5mm, \dimexpr0.74\paperheight\relax)
     \hfill \showtitlelogo{\@slidelogo}%
