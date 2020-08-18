@@ -11,7 +11,7 @@ output:
 ```{r results ='hide', echo = FALSE, message = FALSE, cache = FALSE, purl = FALSE}
 library(knitr)
 opts_chunk$set(
-  results = 'markup',
+  results = "markup",
   eval = TRUE,
   echo = TRUE,
   cache = FALSE,
