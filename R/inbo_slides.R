@@ -17,7 +17,6 @@
 #' Allowed values are `"normalsize"`, `"small"`, `"footnotesize"`,
 #' `"scriptsize"` and `"tiny"`.
 #' Defaults to `"footnotesize"`.
-#' @param natbib_title The title of the bibliography
 #' @param lang The language of the document.
 #' Defaults to `"dutch"`
 #' @param slide_level Indicate which heading level is used for the frame titles
@@ -52,7 +51,6 @@
 #' | 1.4:1 | 1.41| 148.5 mm |105 mm |
 #' | 4:3 | 1.33 | 128.0 mm | 96 mm |
 #' | 5:4 | 1.25 | 125.0 mm | 100 mm |
-#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg pandoc_path_arg pandoc_version
@@ -71,8 +69,6 @@ inbo_slides <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  citation_package = c("natbib", "none"),
-  natbib_title,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -127,16 +123,7 @@ inbo_slides <- function(
     }
   }
   # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "none") {
-    args <- c(args, "--csl", pandoc_path_arg(csl))
-  } else {
-    args <- c(args, paste0("--", citation_package))
-  }
-  if (!missing(natbib_title)) {
-    assert_that(is.string(natbib_title))
-    args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
+  args <- c(args, "--csl", pandoc_path_arg(csl))
   if (!missing(subtitle)) {
     assert_that(is.string(subtitle))
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))

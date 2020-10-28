@@ -45,7 +45,6 @@ inbo_rapport <- function(
   style = c("INBO", "Vlaanderen", "Flanders"),
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
   ...
@@ -59,7 +58,6 @@ inbo_rapport <- function(
   template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
-  citation_package <- match.arg(citation_package)
 
   args <- c(
     "--template", template,
@@ -87,11 +85,7 @@ inbo_rapport <- function(
     ),
     "xelatex", pandoc_args,
     # citations
-    ifelse(
-      rep(citation_package == "none", 2),
-      c("--csl", pandoc_path_arg(csl)),
-      c(paste0("--", citation_package), "")
-    ),
+    c("--csl", pandoc_path_arg(csl)),
     # content includes
     includes_to_pandoc_args(includes),
     ifelse(
