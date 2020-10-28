@@ -15,6 +15,10 @@
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures.
 #' @param pandoc_args Additional command line options to pass to pandoc
+#' @param babel What language(s) to use in the document.
+#' Only used with `style = "Flanders"`.
+#' If you specify multiple languages, the main language is the last one.
+#' Defaults to `"french,dutch,english"`.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
@@ -43,6 +47,7 @@ inbo_rapport <- function(
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
+  babel = "french,dutch,english",
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
@@ -67,15 +72,18 @@ inbo_rapport <- function(
       style,
       Flanders = c(
         pandoc_variable_arg("style", "flanders_report"),
-        pandoc_variable_arg("mylanguage", "french,dutch,english")
+        pandoc_variable_arg("babel", babel),
+        pandoc_variable_arg("lang", "en")
       ),
       Vlaanderen = c(
         pandoc_variable_arg("style", "vlaanderen_report"),
-        pandoc_variable_arg("mylanguage", "french,english,dutch")
+        pandoc_variable_arg("babel", "french,english,dutch"),
+        pandoc_variable_arg("lang", "nl")
       ),
       INBO = c(
         pandoc_variable_arg("style", "inbo_report"),
-        pandoc_variable_arg("mylanguage", "french,english,dutch")
+        pandoc_variable_arg("babel", "french,english,dutch"),
+        pandoc_variable_arg("lang", "nl")
       )
     ),
     ifelse(

@@ -11,6 +11,7 @@ inbo_rapport(
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
+  babel = "french,dutch,english",
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
@@ -42,6 +43,11 @@ Use "INBO" for an INBO report in Dutch.
 Use "Vlaanderen" for a report in Dutch written by more than one Flemish
 government agency.
 Use "Flanders" for a report in English.}
+
+\item{babel}{What language(s) to use in the document.
+Only used with \code{style = "Flanders"}.
+If you specify multiple languages, the main language is the last one.
+Defaults to \code{"french,dutch,english"}.}
 
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
