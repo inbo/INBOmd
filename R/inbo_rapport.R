@@ -110,13 +110,6 @@ inbo_rapport <- function(
   )
   args <- args[args != ""]
 
-  if ("ref_title" %in% names(extra)) {
-    ref_title <- extra[["ref_title"]]
-    extra <- extra[names(extra) != "ref_title"]
-  } else {
-    ref_title <- "References"
-  }
-
   if ("lof" %in% names(extra) && extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -183,26 +176,27 @@ inbo_rapport <- function(
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text) #nolint
     startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text)
-    endbib <- grep("\\\\end\\{CSLReferences\\}", text)
-    if (style == "Flanders") {
+    if (length(appendix) & length(startbib)) {
+      settings <- metadata[["output"]][["bookdown::pdf_book"]]
+      ref_title <- ifelse(
+        "style" %in% names(settings) && settings[["style"]] == "Flanders",
+        ifelse(
+          "ref_title" %in% names(settings),
+          settings[["ref_title"]],
+          "References"
+        ),
+        "Referenties"
+      )
       ref_title <- sprintf(
         "\\chapter*{%1$s}\n\\addcontentsline{toc}{chapter}{%1$s}\n",
         ref_title
       )
-    } else {
-      ref_title <- c(
-        "\\chapter*{Referenties}",
-        "\\addcontentsline{toc}{chapter}{Referenties}",
-        ""
-      )
-    }
-    if (length(appendix) & length(startbib)) {
       text <- c(
         text[1:(appendix - 1)],              # mainmatter
         ref_title,
-        text[startbib:endbib],               # bibliography
+        text[startbib:(length(text) - 1)],   # bibliography
         text[(appendix):(startbib - 1)],     # appendix
-        text[(endbib + 1):length(text)]      # backmatter
+        text[length(text)]                   # backmatter
       )
     }
 
