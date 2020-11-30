@@ -78,8 +78,10 @@ Available extra parameters:
 \item 3: upto subsubsection (\verb{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
-\item \code{cover}: an optional pdf file. The first two pages will be prepended to the
-report.
+\item \code{cover}: an optional pdf file.
+The first two pages will be prepended to the report.
+\item \code{ref_title}: the title of the reference section.
+Only used when \code{style = "Flanders"}.
 }
 }
 \seealso{

@@ -33,8 +33,10 @@
 #'     - 2: upto subsection (`###`)
 #'     - 3: upto subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
-#' - `cover`: an optional pdf file. The first two pages will be prepended to the
-#' report.
+#' - `cover`: an optional pdf file.
+#' The first two pages will be prepended to the report.
+#' - `ref_title`: the title of the reference section.
+#' Only used when `style = "Flanders"`.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
@@ -108,6 +110,13 @@ inbo_rapport <- function(
   )
   args <- args[args != ""]
 
+  if ("ref_title" %in% names(extra)) {
+    ref_title <- extra[["ref_title"]]
+    extra <- extra[names(extra) != "ref_title"]
+  } else {
+    ref_title <- "References"
+  }
+
   if ("lof" %in% names(extra) && extra$lof) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
@@ -173,17 +182,28 @@ inbo_rapport <- function(
 
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text) #nolint
-    startbib <- grep("%startbib", text)
-    endbib <- grep("%endbib", text)
+    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text)
+    endbib <- grep("\\\\end\\{CSLReferences\\}", text)
+    if (style == "Flanders") {
+      ref_title <- sprintf(
+        "\\chapter*{%1$s}\n\\addcontentsline{toc}{chapter}{%1$s}\n",
+        ref_title
+      )
+    } else {
+      ref_title <- c(
+        "\\chapter*{Referenties}",
+        "\\addcontentsline{toc}{chapter}{Referenties}",
+        ""
+      )
+    }
     if (length(appendix) & length(startbib)) {
-      text <- text[
-        c(
-          1:(appendix - 1),              # mainmatter
-          (startbib + 1):(endbib - 1),   # bibliography
-          (appendix):(startbib - 1),     # appendix
-          (endbib + 1):length(text)      # backmatter
-        )
-      ]
+      text <- c(
+        text[1:(appendix - 1)],              # mainmatter
+        ref_title,
+        text[startbib:endbib],               # bibliography
+        text[(appendix):(startbib - 1)],     # appendix
+        text[(endbib + 1):length(text)]      # backmatter
+      )
     }
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
