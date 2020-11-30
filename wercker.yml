@@ -1,4 +1,7 @@
-box: inbobmk/inbomd
+box:
+  id: inbobmk/inbomd
+  username: $DOCKER_USER
+  password: $DOCKER_PWD
 no-response-timeout: 10
 command-timeout: 45
 build:
