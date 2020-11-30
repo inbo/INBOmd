@@ -1,3 +1,16 @@
+# INBOmd 0.4.10 (2020-12-01)
+
+- Use pandoc to render citations with `inbo_rapport()` on pdf instead of natbib
+  (#63, @ThierryO).
+- `inbo_rapport()` support custom languages when using `style = "Flanders"`
+  (#64, @ThierryO).
+- Update CLS style to most recent version (#63, @florisvdh).
+
+# INBOmd 0.4.9 (2020-08-18)
+
+- Update CLS style to most recent version (#61, @thierryo).
+- Slides template allows different aspect ratios (#60, @thierryo).
+
 # INBOmd 0.4.8 (2020-05-12)
 
 - bugfix in `dyn_table()` function
