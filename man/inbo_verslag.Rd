@@ -9,7 +9,6 @@ inbo_verslag(
   absent = "",
   chair = "",
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  citation_package = c("natbib", "none"),
   includes = NULL,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
@@ -30,9 +29,6 @@ inbo_verslag(
 Defaults to NA (only float barriers before starting a new chapter \verb{#}).
 Options are "section" (\verb{##}), "subsection" (\verb{###}) and
 "subsubsection" (\verb{####}).}
-
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}

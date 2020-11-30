@@ -1,8 +1,7 @@
 Package: INBOmd
 Type: Package
 Title: Markdown Templates for INBO
-Version: 0.4.9
-Date: 2020-08-18
+Version: 0.4.10
 Authors@R: c(
   person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8804-4216")), 
   person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb"), comment = c(ORCID = "0000-0002-6378-6229")), 
@@ -30,7 +29,7 @@ Imports:
 Remotes:
     inbo/INBOtheme,
     thierryo/qrcode
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 LazyData: true

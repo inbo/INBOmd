@@ -1,4 +1,4 @@
-$if(mylanguage)$\PassOptionsToPackage{$mylanguage$}{babel}$endif$
+$if(babel)$\PassOptionsToPackage{$babel$}{babel}$endif$
 \documentclass[twoside]{extreport}
 
 \usepackage{$style$}
@@ -126,15 +126,6 @@ $endif$
 %endtoc
 
 $body$
-
-$if(natbib)$
-%startbib
-\cleardoublepage
-\bibliographystyle{inbo}
-\bibliography{$bibliography$}
-\addcontentsline{toc}{chapter}{\bibname}
-%endbib
-$endif$
 
 $for(include-after)$
 $include-after$

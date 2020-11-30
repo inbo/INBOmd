@@ -11,9 +11,9 @@ inbo_rapport(
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
+  babel = "french,dutch,english",
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
   ...
@@ -44,14 +44,16 @@ Use "Vlaanderen" for a report in Dutch written by more than one Flemish
 government agency.
 Use "Flanders" for a report in English.}
 
+\item{babel}{What language(s) to use in the document.
+Only used with \code{style = "Flanders"}.
+If you specify multiple languages, the main language is the last one.
+Defaults to \code{"french,dutch,english"}.}
+
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}
-
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
@@ -76,8 +78,10 @@ Available extra parameters:
 \item 3: upto subsubsection (\verb{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
-\item \code{cover}: an optional pdf file. The first two pages will be prepended to the
-report.
+\item \code{cover}: an optional pdf file.
+The first two pages will be prepended to the report.
+\item \code{ref_title}: the title of the reference section.
+Only used when \code{style = "Flanders"}.
 }
 }
 \seealso{

@@ -11,7 +11,6 @@ inbo_poster(
   email = "info@inbo.be",
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
   ...
@@ -36,9 +35,6 @@ Defaults to \code{FALSE}.}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures}
-
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}

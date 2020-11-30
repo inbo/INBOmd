@@ -38,7 +38,6 @@ inbo_poster <- function(
   email = "info@inbo.be",
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
   ...
@@ -65,12 +64,7 @@ inbo_poster <- function(
   }
 
   # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "none") {
-    args <- c(args, "--csl", pandoc_path_arg(csl))
-  } else {
-    args <- c(args, paste0("--", citation_package))
-  }
+  args <- c(args, "--csl", pandoc_path_arg(csl))
   # content includes
   args <- c(args, includes_to_pandoc_args(includes))
 

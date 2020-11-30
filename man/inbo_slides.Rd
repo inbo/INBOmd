@@ -16,8 +16,6 @@ inbo_slides(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  citation_package = c("natbib", "none"),
-  natbib_title,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
@@ -59,11 +57,6 @@ text (= normal size).
 Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
 \code{"scriptsize"} and \code{"tiny"}.
 Defaults to \code{"footnotesize"}.}
-
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
-
-\item{natbib_title}{The title of the bibliography}
 
 \item{lang}{The language of the document.
 Defaults to \code{"dutch"}}
