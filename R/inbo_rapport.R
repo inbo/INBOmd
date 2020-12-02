@@ -8,47 +8,59 @@
 #'   Options are "section" (`##`), "subsection" (`###`) and
 #'   "subsubsection" (`####`).
 #' @param style What template to use.
-#'   Use "INBO" for an INBO report in Dutch.
-#'   Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+#'   Use `"INBO"` for an INBO report in Dutch.
+#'   Use `"Vlaanderen"` for a report in Dutch written by more than one Flemish
 #'   government agency.
-#'   Use "Flanders" for a report in English.
+#'   Use `"Flanders"` for a report in another language.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures.
 #' @param pandoc_args Additional command line options to pass to pandoc
 #' @param main_language The main language of the document.
-#' Only used with `style = "Flanders"`.
 #' Defaults to `"english"`.
-#' Note that `style = "INBO"` and `style = "Vlaanderen"` will always use
-#' `"dutch"` as the main language.
+#' See the details for more information.
 #' @param other_languages A vector of other languages you want to use within the
 #' document.
-#' Only used with `style = "Flanders"`.
 #' Defaults to `c("dutch", "french")`.
-#' Allowed languages are `"dutch"`, `"french"` and `"english"`.
-#' Note that `style = "INBO"` and `style = "Vlaanderen"` will always use
-#' `c("english", "french")` as the other languages.
-#' Use `\bdutch` before and `\edutch` after the text in Dutch.
-#' Use `\benglish` before and `\eenglish` after the text in English.
-#' Use `\bfrench` before and `\efrench` after the text in French.
-#' You don't need to set this for the main language.
+#' See the details for more information.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
 #' Available extra parameters:
-#' - `lof`: display a list of figures. Defaults to TRUE
-#' - `lot`: display a list of tables. Defaults to TRUE
+#' - `lof`: display a list of figures.
+#' Defaults to `FALSE`.
+#' - `lot`: display a list of tables.
+#' Defaults to `FALSE`.
 #' - `tocdepth`: which level headers to display.
-#'     - 0: upto chapters (`#`)
-#'     - 1: upto section (`##`)
-#'     - 2: upto subsection (`###`)
-#'     - 3: upto subsubsection (`####`) default
+#'     - 0: up to chapters (`#`)
+#'     - 1: up to section (`##`)
+#'     - 2: up to subsection (`###`)
+#'     - 3: up to subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
 #' - `cover`: an optional pdf file.
 #' The first two pages will be prepended to the report.
-#' - `ref_title`: the title of the reference section.
-#' Only used when `style = "Flanders"`.
+#'
+#' # Language
+#'
+#' The main language is hard-coded to Dutch for the styles `INBO` and
+#' `Vlaanderen`.
+#' It is set by default to English for the style `Flanders` and can be set to
+#' another language by setting `main_language` in the YAML header.
+#'
+#' You can define some parts of the text to be in different language than the
+#' main language (e.g. an abstract in a different language).
+#' This is currently limited to Dutch, English and French.
+#' Use `\bdutch` before and `\edutch` after the text in Dutch.
+#' Use `\benglish` before and `\eenglish` after the text in English.
+#' Use `\bfrench` before and `\efrench` after the text in French.
+#' The styles `INBO` and `Vlaanderen` have French and English as optional
+#' languages.
+#' The `Flanders` has by default Dutch and French as optional languages.
+#'
+#' Setting the language affects the hyphenation pattern and the names of items
+#' like figures, tables, table of contents, list of figures, list of tables,
+#' references, page numbers, ...
 #' @export
 #' @importFrom assertthat assert_that is.string
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
@@ -199,23 +211,10 @@ inbo_rapport <- function(
     appendix <- grep("\\\\appendix", text) #nolint
     startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text)
     if (length(appendix) & length(startbib)) {
-      settings <- metadata[["output"]][["bookdown::pdf_book"]]
-      ref_title <- ifelse(
-        "style" %in% names(settings) && settings[["style"]] == "Flanders",
-        ifelse(
-          "ref_title" %in% names(settings),
-          settings[["ref_title"]],
-          "References"
-        ),
-        "Referenties"
-      )
-      ref_title <- sprintf(
-        "\\chapter*{%1$s}\n\\addcontentsline{toc}{chapter}{%1$s}\n",
-        ref_title
-      )
       text <- c(
         text[1:(appendix - 1)],              # mainmatter
-        ref_title,
+        "\\chapter*{\\bibname}",
+        "\\addcontentsline{toc}{chapter}{\\bibname}",
         text[startbib:(length(text) - 1)],   # bibliography
         text[(appendix):(startbib - 1)],     # appendix
         text[length(text)]                   # backmatter

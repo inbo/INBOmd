@@ -40,28 +40,19 @@ Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
 Defaults to \code{"footnotesize"}.}
 
 \item{style}{What template to use.
-Use "INBO" for an INBO report in Dutch.
-Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+Use \code{"INBO"} for an INBO report in Dutch.
+Use \code{"Vlaanderen"} for a report in Dutch written by more than one Flemish
 government agency.
-Use "Flanders" for a report in English.}
+Use \code{"Flanders"} for a report in another language.}
 
 \item{main_language}{The main language of the document.
-Only used with \code{style = "Flanders"}.
 Defaults to \code{"english"}.
-Note that \code{style = "INBO"} and \code{style = "Vlaanderen"} will always use
-\code{"dutch"} as the main language.}
+See the details for more information.}
 
 \item{other_languages}{A vector of other languages you want to use within the
 document.
-Only used with \code{style = "Flanders"}.
 Defaults to \code{c("dutch", "french")}.
-Allowed languages are \code{"dutch"}, \code{"french"} and \code{"english"}.
-Note that \code{style = "INBO"} and \code{style = "Vlaanderen"} will always use
-\code{c("english", "french")} as the other languages.
-Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
-Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
-Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
-You don't need to set this for the main language.}
+See the details for more information.}
 
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
@@ -82,22 +73,43 @@ Create a report with the Flemish corporate identity
 \details{
 Available extra parameters:
 \itemize{
-\item \code{lof}: display a list of figures. Defaults to TRUE
-\item \code{lot}: display a list of tables. Defaults to TRUE
+\item \code{lof}: display a list of figures.
+Defaults to \code{FALSE}.
+\item \code{lot}: display a list of tables.
+Defaults to \code{FALSE}.
 \item \code{tocdepth}: which level headers to display.
 \itemize{
-\item 0: upto chapters (\verb{#})
-\item 1: upto section (\verb{##})
-\item 2: upto subsection (\verb{###})
-\item 3: upto subsubsection (\verb{####}) default
+\item 0: up to chapters (\verb{#})
+\item 1: up to section (\verb{##})
+\item 2: up to subsection (\verb{###})
+\item 3: up to subsubsection (\verb{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
 \item \code{cover}: an optional pdf file.
 The first two pages will be prepended to the report.
-\item \code{ref_title}: the title of the reference section.
-Only used when \code{style = "Flanders"}.
 }
 }
+\section{Language}{
+The main language is hard-coded to Dutch for the styles \code{INBO} and
+\code{Vlaanderen}.
+It is set by default to English for the style \code{Flanders} and can be set to
+another language by setting \code{main_language} in the YAML header.
+
+You can define some parts of the text to be in different language than the
+main language (e.g. an abstract in a different language).
+This is currently limited to Dutch, English and French.
+Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
+Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
+Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
+The styles \code{INBO} and \code{Vlaanderen} have French and English as optional
+languages.
+The \code{Flanders} has by default Dutch and French as optional languages.
+
+Setting the language affects the hyphenation pattern and the names of items
+like figures, tables, table of contents, list of figures, list of tables,
+references, page numbers, ...
+}
+
 \seealso{
 Other output: 
 \code{\link{inbo_handouts}()},
