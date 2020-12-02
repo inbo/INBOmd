@@ -4,11 +4,11 @@
   (#63, @ThierryO).
 - `inbo_rapport()` support custom languages when using `style = "Flanders"`
   (#64, @ThierryO).
-- Update CLS style to most recent version (#63, @florisvdh).
+- Update CSL style to most recent version (#63, @florisvdh).
 
 # INBOmd 0.4.9 (2020-08-18)
 
-- Update CLS style to most recent version (#61, @thierryo).
+- Update CSL style to most recent version (#61, @thierryo).
 - Slides template allows different aspect ratios (#60, @thierryo).
 
 # INBOmd 0.4.8 (2020-05-12)
