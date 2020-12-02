@@ -15,10 +15,22 @@
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures.
 #' @param pandoc_args Additional command line options to pass to pandoc
-#' @param babel What language(s) to use in the document.
+#' @param main_language The main language of the document.
 #' Only used with `style = "Flanders"`.
-#' If you specify multiple languages, the main language is the last one.
-#' Defaults to `"french,dutch,english"`.
+#' Defaults to `"english"`.
+#' Note that `style = "INBO"` and `style = "Vlaanderen"` will always use
+#' `"dutch"` as the main language.
+#' @param other_languages A vector of other languages you want to use within the
+#' document.
+#' Only used with `style = "Flanders"`.
+#' Defaults to `c("dutch", "french")`.
+#' Allowed languages are `"dutch"`, `"french"` and `"english"`.
+#' Note that `style = "INBO"` and `style = "Vlaanderen"` will always use
+#' `c("english", "french")` as the other languages.
+#' Use `\bdutch` before and `\edutch` after the text in Dutch.
+#' Use `\benglish` before and `\eenglish` after the text in English.
+#' Use `\bfrench` before and `\efrench` after the text in French.
+#' You don't need to set this for the main language.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
@@ -38,6 +50,7 @@
 #' - `ref_title`: the title of the reference section.
 #' Only used when `style = "Flanders"`.
 #' @export
+#' @importFrom assertthat assert_that is.string
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -49,13 +62,20 @@ inbo_rapport <- function(
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
-  babel = "french,dutch,english",
+  main_language = "english",
+  other_languages = c("french", "dutch"),
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
   pandoc_args = NULL,
   ...
 ) {
+  assert_that(is.string(main_language))
+  assert_that(is.character(other_languages))
+  assert_that(
+    all(other_languages %in% c("french", "dutch", "english")),
+    msg = "other_languages can only contain french, dutch and english"
+  )
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   style <- match.arg(style)
@@ -74,7 +94,9 @@ inbo_rapport <- function(
       style,
       Flanders = c(
         pandoc_variable_arg("style", "flanders_report"),
-        pandoc_variable_arg("babel", babel),
+        pandoc_variable_arg(
+          "babel", paste(c(other_languages, main_language), collapse = ",")
+        ),
         pandoc_variable_arg("lang", "en")
       ),
       Vlaanderen = c(

@@ -11,7 +11,8 @@ inbo_rapport(
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
-  babel = "french,dutch,english",
+  main_language = "english",
+  other_languages = c("french", "dutch"),
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
@@ -44,10 +45,23 @@ Use "Vlaanderen" for a report in Dutch written by more than one Flemish
 government agency.
 Use "Flanders" for a report in English.}
 
-\item{babel}{What language(s) to use in the document.
+\item{main_language}{The main language of the document.
 Only used with \code{style = "Flanders"}.
-If you specify multiple languages, the main language is the last one.
-Defaults to \code{"french,dutch,english"}.}
+Defaults to \code{"english"}.
+Note that \code{style = "INBO"} and \code{style = "Vlaanderen"} will always use
+\code{"dutch"} as the main language.}
+
+\item{other_languages}{A vector of other languages you want to use within the
+document.
+Only used with \code{style = "Flanders"}.
+Defaults to \code{c("dutch", "french")}.
+Allowed languages are \code{"dutch"}, \code{"french"} and \code{"english"}.
+Note that \code{style = "INBO"} and \code{style = "Vlaanderen"} will always use
+\code{c("english", "french")} as the other languages.
+Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
+Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
+Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
+You don't need to set this for the main language.}
 
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
