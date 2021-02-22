@@ -25,7 +25,7 @@ inbo_handouts <- function(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.INBO.be",
+  website = "www.vlaanderen.be/inbo",
   theme = c("inbo", "vlaanderen"),
   flandersfont = FALSE,
   ...

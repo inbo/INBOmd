@@ -24,7 +24,7 @@
 #' Defaults to `FALSE`.
 #' @param toc display a table of content after the title slide
 #' @param website An optional URL to display on the left sidebar.
-#' Defaults to `"www.INBO.be"`.
+#' Defaults to `"www.vlaanderen.be/inbo"`.
 #' @param theme The theme to use.
 #' Available options are `"inbo"`, `"inboenglish"` and `"vlaanderen"`.
 #' @param flandersfont If `TRUE` use the Flanders Art font.
@@ -73,7 +73,7 @@ inbo_slides <- function(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.INBO.be",
+  website = "www.vlaanderen.be/inbo",
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),

@@ -20,7 +20,7 @@ inbo_slides(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.INBO.be",
+  website = "www.vlaanderen.be/inbo",
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
@@ -69,7 +69,7 @@ Defaults to \code{FALSE}.}
 \item{toc}{display a table of content after the title slide}
 
 \item{website}{An optional URL to display on the left sidebar.
-Defaults to \code{"www.INBO.be"}.}
+Defaults to \code{"www.vlaanderen.be/inbo"}.}
 
 \item{theme}{The theme to use.
 Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
