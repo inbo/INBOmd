@@ -32,7 +32,7 @@ are left-aligned. If \code{length(align) == 1L}, the string will be
 expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 \code{c('c', 'l', 'c')}, unless the output format is LaTeX.}
 
-\item{...}{Other arguments (see Examples).}
+\item{...}{Other arguments (see Examples and References).}
 }
 \description{
 \itemize{

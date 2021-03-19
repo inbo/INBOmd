@@ -80,6 +80,7 @@ inbo_rapport <- function(
   fig_crop = TRUE,
   includes = NULL,
   pandoc_args = NULL,
+  flandersfont = FALSE,
   ...
 ) {
   assert_that(is.string(main_language))
@@ -102,6 +103,7 @@ inbo_rapport <- function(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
+    pandoc_variable_arg("flandersfont", flandersfont),
     switch(
       style,
       Flanders = c(

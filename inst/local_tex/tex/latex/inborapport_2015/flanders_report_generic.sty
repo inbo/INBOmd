@@ -133,24 +133,6 @@
   \end{mdframed}
 }
 
-% definition of fonts
-\RequirePackage{ifxetex}
-
-\ifxetex
-  \RequirePackage[no-math]{fontspec}
-    \setmainfont[
-      Ligatures = TeX,
-      ItalicFont = FlandersArtSans-Italic,
-      BoldFont = FlandersArtSans-Bold,
-      BoldItalicFont = FlandersArtSans-BoldItalic,
-    ]{FlandersArtSans-Regular.otf}
-  \setmonofont[Mapping=tex-ansi]{inconsolata}
-\else
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage{inconsolata}
-\fi
-
 % Set scaling of fonts
 \RequirePackage{calc}
 

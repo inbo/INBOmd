@@ -1,10 +1,12 @@
 $if(babel)$\PassOptionsToPackage{$babel$}{babel}$endif$
 \documentclass[twoside]{extreport}
-
 \usepackage{$style$}
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
+
+\flandersfont{$flandersfont$}
+\usepackage{reportfont}
 
 $if(floatbarriersection)$
 \makeatletter

@@ -17,6 +17,7 @@ inbo_rapport(
   fig_crop = TRUE,
   includes = NULL,
   pandoc_args = NULL,
+  flandersfont = FALSE,
   ...
 )
 }
@@ -64,6 +65,10 @@ Defaults to \code{FALSE}.}
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
+
+\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
+If \code{FALSE} use Calibri.
+Defaults to \code{FALSE}.}
 
 \item{...}{extra parameters: see details}
 }
