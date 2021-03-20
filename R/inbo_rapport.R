@@ -1,7 +1,5 @@
 #' Create a report with the Flemish corporate identity
 #' @param subtitle An optional subtitle.
-#' @param reportnr The report number.
-#'   Defaults to the date and time of compilation.
 #' @param ordernr The optional order number.
 #' @param floatbarrier Should float barriers be placed?
 #'   Defaults to NA (only float barriers before starting a new chapter `#`).
@@ -69,7 +67,6 @@
 #' @family output
 inbo_rapport <- function(
   subtitle,
-  reportnr,
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
@@ -134,9 +131,6 @@ inbo_rapport <- function(
     c("--csl", pandoc_path_arg(csl)),
     # content includes
     includes_to_pandoc_args(includes),
-    ifelse(
-      rep(missing(reportnr), 2), "", pandoc_variable_arg("reportnr", reportnr)
-    ),
     ifelse(
       rep(missing(ordernr), 2), "", pandoc_variable_arg("ordernr", ordernr)
     ),

@@ -23,12 +23,36 @@
 \def\subtitle#1{\def\@subtitle{#1}}
 \subtitle{}
 
-\def\reportnumber#1{\def\@reportnumber{#1}}
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-\reportnumber{\today\space\currenttime}
+\def\doi#1{\def\@doi{#1}}
+\doi{!!!! ONTBREKEND: doi !!!!}
 
 \def\ordernumber#1{\def\@ordernumber{#1}}
 \ordernumber{}
+
+\def\year#1{\def\@year{#1}}
+\year{!!!! ONTBREKEND: year !!!!}
+
+\def\vestiging#1{\def\@vestiging{#1}}
+\vestiging{}
+
+\def\reviewer#1{\def\@reviewer{#1}}
+\reviewer{!!!! ONTBREKEND: reviewer !!!!}
+
+\def\corresponding#1{\def\@corresponding{#1}}
+\corresponding{info@inbo.be}
+
+\def\depotnr#1{\def\@depotnr{#1}}
+\depotnr{!!!! ONTBREKEND: depotnr !!!!}
+
+\def\shortauthor#1{\def\@shortauthor{#1}}
+\shortauthor{!!!! ONTBREKEND: shortauthor !!!!}
+
+\def\reportnr#1{\def\@reportnr{#1}}
+\reportnr{!!!! ONTBREKEND: reportnr !!!!}
+
+\def\coverdescription#1{\def\@coverdescription{#1}}
+\coverdescription{!!!! ONTBREKEND: coverdescription !!!!}
+
 
 \def\flandersfont#1{\def\@flandersfont{#1}}
 \flandersfont{FALSE}
@@ -365,9 +389,46 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
+\newcommand{\choosevestiging}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{Geraardsbergen}{
+    Geraardsbergen \\
+    Gaverstraat 4, 9500 Geraardsbergen
+  }{
+    Brussel \\
+    VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  }
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
+  \thispagestyle{empty}{%
+    \textbf{Auteurs:} \\ \@author
+
+    \textbf{Reviewers:} \\ \@reviewer
+
+    Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.
+
+    \textbf{Vestiging:} \\ INBO \choosevestiging{\@vestiging} \\ \url{https://www.vlaanderen.be/inbo}
+
+    \textbf{e-mail:} \\ \@corresponding
+
+    \textbf{Wijze van citeren:} \\ \@shortauthor (\@year). \@title. \@subtitle. Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year (\@reportnr). Instituut voor Natuur- en Bosonderzoek, Brussel. DOI: \@doi
+
+    \textbf{\@depotnr} \\
+    \textbf{Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year (\@reportnr)} \\
+    \textbf{ISSN: 1782-9054}
+
+    \textbf{Verantwoordelijke uitgever:} \\ Maurice Hoffmann
+
+    \textbf{Foto cover:} \\ \@coverdescription
+
+    \vfill
+    \includegraphics[height=\fontsizebase]{cc-by-sa.eps} Dit rapport is in licentie gegeven volgens een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.
+
+    \clearpage
+  }
   \thispagestyle{cover}{%
     \@titlelogo \phantom{qk}
 
@@ -394,7 +455,7 @@
       \vspace{144pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
-      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@reportnumber \\ \@ordernumber
+      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@doi \\ \@ordernumber
   }
 
   \vfill

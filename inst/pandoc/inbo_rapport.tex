@@ -4,7 +4,33 @@ $if(babel)$\PassOptionsToPackage{$babel$}{babel}$endif$
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
+$if(depotnr)$
+\depotnr{$depotnr$}
+$endif$
+$if(year)$
+\year{$year$}
+$endif$
+$if(reviewer)$
+\reviewer{$reviewer$}
+$endif$
+$if(reportnr)$
+\reportnr{$reportnr$}
+$endif$
+$if(corresponding)$
+\corresponding{$corresponding$}
+$endif$
+$if(doi)$
+\doi{$doi$}
+$endif$
+$if(coverdescription)$
+\coverdescription{$coverdescription$}
+$endif$
+$if(shortauthor)$
+\shortauthor{$shortauthor$}
+$endif$
 
+
+\vestiging{$vestiging$}
 \flandersfont{$flandersfont$}
 \usepackage{reportfont}
 
@@ -49,9 +75,8 @@ $endif$
 
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
-\author{$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$sep$, $endfor$}
+\author{$for(author)$$if(author.name)$$author.firstname$ $author.name$$else$$author$$endif$$sep$, $endfor$}
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
-$if(reportnr)$\reportnumber{$reportnr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 

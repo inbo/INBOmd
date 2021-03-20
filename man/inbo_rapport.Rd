@@ -6,7 +6,6 @@
 \usage{
 inbo_rapport(
   subtitle,
-  reportnr,
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
@@ -23,9 +22,6 @@ inbo_rapport(
 }
 \arguments{
 \item{subtitle}{An optional subtitle.}
-
-\item{reportnr}{The report number.
-Defaults to the date and time of compilation.}
 
 \item{ordernr}{The optional order number.}
 
