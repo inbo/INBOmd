@@ -408,6 +408,10 @@
   }
 }
 
+\newcommand{\mainColourURL}[1]{%
+  {\hypersetup{urlcolor=main.colour} #1}
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
@@ -432,9 +436,10 @@
 
     \textbf{Foto cover:} \\ \@coverdescription
 
+    \@client
+
     \@cooperation
 
-    \@client
 
     \vfill
     \includegraphics[height=\fontsizebase]{cc-by-sa.eps} Dit rapport is in licentie gegeven volgens een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.
@@ -467,7 +472,7 @@
       \vspace{144pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
-      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@doi \\ \@ordernumber
+      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \mainColourURL{\@doi} \\ \@ordernumber
   }
 
   \vfill
@@ -475,6 +480,7 @@
   \clearpage
   }
 }
+
 
 \RequirePackage{etoolbox}
 \preto{\chapter}{\def\leveltitle{\chaptertitle}}
