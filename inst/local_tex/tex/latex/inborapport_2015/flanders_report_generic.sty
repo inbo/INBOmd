@@ -32,8 +32,8 @@
 \def\year#1{\def\@year{#1}}
 \year{!!!! ONTBREKEND: year !!!!}
 
-\def\vestiging#1{\def\@vestiging{#1}}
-\vestiging{}
+\def\establishment#1{\def\@establishment{#1}}
+\establishment{}
 
 \def\reviewer#1{\def\@reviewer{#1}}
 \reviewer{!!!! ONTBREKEND: reviewer !!!!}
@@ -53,9 +53,14 @@
 \def\coverdescription#1{\def\@coverdescription{#1}}
 \coverdescription{!!!! ONTBREKEND: coverdescription !!!!}
 
-
 \def\flandersfont#1{\def\@flandersfont{#1}}
 \flandersfont{FALSE}
+
+\def\cooperation#1{\def\@cooperation{#1}}
+\cooperation{}
+
+\def\client#1{\def\@client{#1}}
+\client{}
 
 \def\titlelogo#1{\def\@titlelogo{#1}}
 \titlelogo{}
@@ -389,7 +394,7 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
-\newcommand{\choosevestiging}[1]{%
+\newcommand{\chooseestablishment}[1]{%
   \edef\custom{{#1}}%
   \expandafter\ifstrequal\custom{Geraardsbergen}{
     Geraardsbergen \\
@@ -410,19 +415,23 @@
 
     Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.
 
-    \textbf{Vestiging:} \\ INBO \choosevestiging{\@vestiging} \\ \url{https://www.vlaanderen.be/inbo}
+    \textbf{Vestiging:} \\ INBO \chooseestablishment{\@establishment} \\ \url{https://www.vlaanderen.be/inbo}
 
     \textbf{e-mail:} \\ \@corresponding
 
-    \textbf{Wijze van citeren:} \\ \@shortauthor (\@year). \@title. \@subtitle. Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year (\@reportnr). Instituut voor Natuur- en Bosonderzoek, Brussel. DOI: \@doi
+    \textbf{Wijze van citeren:} \\ \@shortauthor~(\@year). \@title. \@subtitle. Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year~(\@reportnr). Instituut voor Natuur- en Bosonderzoek, Brussel. DOI: \@doi
 
     \textbf{\@depotnr} \\
-    \textbf{Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year (\@reportnr)} \\
+    \textbf{Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year~(\@reportnr)} \\
     \textbf{ISSN: 1782-9054}
 
     \textbf{Verantwoordelijke uitgever:} \\ Maurice Hoffmann
 
     \textbf{Foto cover:} \\ \@coverdescription
+
+    \@cooperation
+
+    \@client
 
     \vfill
     \includegraphics[height=\fontsizebase]{cc-by-sa.eps} Dit rapport is in licentie gegeven volgens een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.

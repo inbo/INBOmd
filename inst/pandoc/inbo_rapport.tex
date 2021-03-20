@@ -11,7 +11,9 @@ $if(year)$
 \year{$year$}
 $endif$
 $if(reviewer)$
-\reviewer{$reviewer$}
+\reviewer{
+$for(reviewer)$$if(reviewer.name)$$reviewer.name$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$reviewer$$endif$$sep$, $endfor$
+}
 $endif$
 $if(reportnr)$
 \reportnr{$reportnr$}
@@ -28,9 +30,32 @@ $endif$
 $if(shortauthor)$
 \shortauthor{$shortauthor$}
 $endif$
+$if(cooperation)$
+\cooperation{
+\textbf{Dit onderzoek werd uitgevoerd in samenwerking met:}\\
+   $for(cooperation)$
+      $cooperation$
+   $sep$ \\
+   $endfor$
+   $if(cooperationlogo)$
+   \\ \includegraphics[height = 15mm, keepaspectratio]{$cooperationlogo$}
+   $endif$
+}
+$endif$
+$if(client)$
+\client{
+\textbf{Dit onderzoek werd uitgevoerd in opdracht van:}\\
+   $for(client)$
+      $client$
+   $sep$ \\
+   $endfor$
+   $if(clientlogo)$
+   \\ \includegraphics[height = 15mm, keepaspectratio]{$clientlogo$}
+   $endif$
+}
+$endif$
 
-
-\vestiging{$vestiging$}
+\establishment{$establishment$}
 \flandersfont{$flandersfont$}
 \usepackage{reportfont}
 
@@ -76,17 +101,8 @@ $endif$
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
 \author{
-$for(author)$
-   $if(author.name)$
-      $author.firstname$ $author.name$
-      $if(author.orcid)$
-         \href{https://orcid.org/$author.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}
-      $endif$
-   $else$
-      $author$
-   $endif$
-$sep$,
-$endfor$}
+$for(author)$$if(author.name)$$author.name$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
+}
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
