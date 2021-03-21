@@ -18,7 +18,7 @@
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="$pagetitle$" />
-  $if(twitter-handle)$<meta name="twitter:site" content="@$twitter-handle$" />$endif$
+  $if(twitter_handle)$<meta name="twitter:site" content="@$twitter_handle$" />$endif$
   $if(description)$<meta name="twitter:description" content="$description$" />$endif$
   $if(cover_image)$<meta name="twitter:image" content="$url$$cover_image$" />$endif$
 
@@ -91,17 +91,24 @@ $endfor$
 
 <!--bookdown:title:start-->
 $if(title)$
-<div id="$idprefix$header">
-$if(cover_image)$
-  <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
-$else$
+  <div id="$idprefix$header">
+  $if(cover_image)$
+    <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
+  $endif$
   <h1 class="title">$title$</h1>
   $if(subtitle)$
   <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
     $if(author.name)$
-      <h3 class="author">$author.name$</h3>
+      <h3 class="author">$author.name$
+      $if(author.orcid)$
+        <a href="https://orcid.org/$author.orcid$">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        https://orcid.org/$author.orcid$
+        </a>
+      $endif$
+      </h3>
       $if(author.affiliation)$
         <address class="author_afil">
         $author.affiliation$
@@ -123,20 +130,124 @@ $else$
   $if(date)$
   <p class="date"><em>$date$</em></p>
   $endif$
-  $if(reportnr)$
-  <h4 class ="reportnr">$reportnr$</h4>
+  $if(doi)$
+  <h4 class ="doi">$doi$</h4>
   $endif$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-$endif$
-$if(abstract)$
-<div class="abstract">
-<p class="abstract">Abstract</p>
-$abstract$
-</div>
-$endif$
-</div>
+  <h1>Colofon</h1>
+  $if(reviewer)$
+    <p><b>Reviewers:</b><br>
+    $for(reviewer)$
+      $if(reviewer.name)$
+        $reviewer.name$
+        $if(reviewer.orcid)$
+          <a href="https://orcid.org/$reviewer.orcid$">
+          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+          https://orcid.org/$reviewer.orcid$
+          </a>
+        $endif$
+        $if(reviewer.email)$
+          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+        $endif$<br>
+      $else$
+        $reviewer$<br>
+      $endif$
+    $endfor$
+  $else$
+  <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
+  $endif$
+
+  <p>Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data‐ en kennisontsluiting het biodiversiteitsbeleid en ‐beheer onderbouwt en evalueert.
+
+  <p><b>Vestiging:</b><br>
+  $if(geraardsbergen)$
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+  $else$
+  INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  $endif$
+  <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
+
+  $if(corresponding)$
+  <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$corresponding$</a>
+  $else$
+  <h1 class = "missing">!!!! ONTBREKEND: corresponding !!!!</h1>
+  $endif$
+
+  <p><b>Wijze van citeren:</b><br>
+  $if(shortauthor)$
+    $shortauthor$
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: shortauthor !!!!</h1>
+  $endif$
+  $if(year)$
+    ($year$).
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
+  $endif$
+  $title$$if(subtitle)$. $substitle$$endif$. Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  $if(year)$
+    $year$
+  $endif$
+  $if(reportnr)$
+    ($reportnr$).
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
+  $endif$
+  Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
+  $if(doi)$
+    <a href="$doi$">$doi$</a>
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+  $endif$
+
+  $if(depotnr)$
+    <p><b>$depotnr$</b><br>
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+  $endif$
+  <b>Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  $if(year)$
+    $year$
+  $endif$
+  $if(reportnr)$
+    ($reportnr$)
+  $endif$
+  </b><br>
+  <b>ISSN: 1782‐9054</b>
+
+  <p><b>Verantwoodelijke uitgever:</b><br>Maurice Hoffmann
+
+  $if(cover_description)$
+    <p><b>Foto cover:</b><br>$cover_description$
+  $else$
+    <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
+  $endif$
+
+  $if(client)$
+  <p><b>Dit onderzoek werd uitgevoerd in opdracht van:</b><br>
+     $for(client)$
+        $client$
+     $sep$ <br>
+     $endfor$
+     $if(client_logo)$
+       <br><img src="$url$$client_logo$" class = "client">
+     $endif$
+  $endif$
+
+  $if(cooperation)$
+  <p><b>Dit onderzoek werd uitgevoerd in samenwerking met:</b><br>
+     $for(cooperation)$
+        $cooperation$
+     $sep$ <br>
+     $endfor$
+     $if(cooperation_logo)$
+       <br><img src="$url$$cooperation_logo$" class = "client">
+     $endif$
+  $endif$
+
+  </div>
 $endif$
 <!--bookdown:title:end-->
 
@@ -144,6 +255,9 @@ $endif$
   <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
 
     <div class="book-summary">
+$if(cover_image)$
+<img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
+$endif$
       <nav role="navigation">
 <!--bookdown:toc2:start-->
 $if(toc)$

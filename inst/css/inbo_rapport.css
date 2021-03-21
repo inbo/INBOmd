@@ -234,6 +234,9 @@ a:focus{
 img{
     vertical-align:middle
 }
+img.client{
+    height: 100px !important;
+}
 .img-responsive{
     display:block;
     height:auto;
@@ -5197,6 +5200,9 @@ body #admin-menu .dropdown li {
     margin-right: 0;
     padding-left: 0;
   }
+}
+.book .book-summary ul.summary{
+  position: relative;
 }
 ul.secondary {
   float: left;
