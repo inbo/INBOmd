@@ -131,7 +131,7 @@ $if(title)$
   <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4 class ="doi">$doi$</h4>
+  <h4><a class="doi" href="#">$doi$</a></h4>
   $endif$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
@@ -197,7 +197,7 @@ $if(title)$
   $endif$
   Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
   $if(doi)$
-    <a href="$doi$">$doi$</a>
+    <a class="doi" href="#">$doi$</a>
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
