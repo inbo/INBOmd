@@ -1,10 +1,11 @@
-# INBOmd 0.4.10 (2020-12-01)
+# INBOmd 0.4.10 (2021-03-21)
 
 - Use pandoc to render citations with `inbo_rapport()` on pdf instead of natbib
   (#63, @ThierryO).
 - `inbo_rapport()` support custom languages when using `style = "Flanders"`
   (#64, @ThierryO).
 - Update CSL style to most recent version (#63, @florisvdh).
+- Add colofon to INBO reports in pdf and gitbook formats.
 
 # INBOmd 0.4.9 (2020-08-18)
 
