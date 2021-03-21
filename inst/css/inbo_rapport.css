@@ -237,6 +237,9 @@ img{
 img.client{
     height: 100px !important;
 }
+img.cc{
+    height: 30px !important;
+}
 .img-responsive{
     display:block;
     height:auto;
