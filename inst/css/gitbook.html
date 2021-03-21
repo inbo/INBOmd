@@ -12,7 +12,7 @@
   <meta property="og:title" content="$pagetitle$" />
   <meta property="og:type" content="book" />
   $if(url)$<meta property="og:url" content="$url$" />$endif$
-  $if(cover-image)$<meta property="og:image" content="$url$$cover-image$" />$endif$
+  $if(cover_image)$<meta property="og:image" content="$url$$cover_image$" />$endif$
   $if(description)$<meta property="og:description" content="$description$" />$endif$
   $if(github-repo)$<meta name="github-repo" content="$github-repo$" />$endif$
 
@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="$pagetitle$" />
   $if(twitter-handle)$<meta name="twitter:site" content="@$twitter-handle$" />$endif$
   $if(description)$<meta name="twitter:description" content="$description$" />$endif$
-  $if(cover-image)$<meta name="twitter:image" content="$url$$cover-image$" />$endif$
+  $if(cover_image)$<meta name="twitter:image" content="$url$$cover_image$" />$endif$
 
 $for(author-meta)$
 <meta name="author" content="$author-meta$">
@@ -92,8 +92,8 @@ $endfor$
 <!--bookdown:title:start-->
 $if(title)$
 <div id="$idprefix$header">
-$if(cover-image)$
-  <img src="$url$$cover-image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
+$if(cover_image)$
+  <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
 $else$
   <h1 class="title">$title$</h1>
   $if(subtitle)$

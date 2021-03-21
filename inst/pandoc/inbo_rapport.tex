@@ -24,8 +24,8 @@ $endif$
 $if(doi)$
 \doi{$doi$}
 $endif$
-$if(coverdescription)$
-\coverdescription{$coverdescription$}
+$if(cover_description)$
+\coverdescription{$cover_description$}
 $endif$
 $if(shortauthor)$
 \shortauthor{$shortauthor$}
@@ -37,8 +37,8 @@ $if(cooperation)$
       $cooperation$
    $sep$ \\
    $endfor$
-   $if(cooperationlogo)$
-   \\ \includegraphics[height = 15mm, keepaspectratio]{$cooperationlogo$}
+   $if(cooperation_logo)$
+   \\ \includegraphics[height = 15mm, keepaspectratio]{$cooperation_logo$}
    $endif$
 }
 $endif$
@@ -49,8 +49,8 @@ $if(client)$
       $client$
    $sep$ \\
    $endfor$
-   $if(clientlogo)$
-   \\ \includegraphics[height = 15mm, keepaspectratio]{$clientlogo$}
+   $if(client_logo)$
+   \\ \includegraphics[height = 15mm, keepaspectratio]{$client_logo$}
    $endif$
 }
 $endif$
