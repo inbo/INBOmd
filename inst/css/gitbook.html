@@ -101,11 +101,11 @@ $if(title)$
   $endif$
   $for(author)$
     $if(author.name)$
-      <h3 class="author">$author.name$
+      <h3 class="author">$if(author.firstname)$$author.firstname$ $endif$$author.name$
       $if(author.orcid)$
         <a href="https://orcid.org/$author.orcid$">
         <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-        https://orcid.org/$author.orcid$
+        $author.orcid$
         </a>
       $endif$
       </h3>
@@ -145,7 +145,7 @@ $if(title)$
         $if(reviewer.orcid)$
           <a href="https://orcid.org/$reviewer.orcid$">
           <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-          https://orcid.org/$reviewer.orcid$
+          $reviewer.orcid$
           </a>
         $endif$
         $if(reviewer.email)$
@@ -201,6 +201,35 @@ $if(title)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
+
+<h4>BibTex</h4>
+
+<pre>
+@TechReport{
+  author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
+  title = {$title$$if(subtitle)$. $subtitle$$endif$},
+  institution = {Instituut voor Natuur- en Bosonderzoek},
+  adress = {Brussel, België},
+  year = {$year$},
+  number = {$year$ ($reportnr$)},
+  doi = {$doi$},
+  type = {techreport}
+}
+</pre>
+
+<h4>RIS</h4>
+<pre>
+TY  - RPRT
+$for(author)$AU  -$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
+TI  - $title$$if(subtitle)$. $subtitle$$endif$
+DO  - $doi$
+PB  - Instituut voor Natuur- en Bosonderzoek
+PP  - Brussel, België
+PY  - $year$
+SN  - 1782-9054
+ER  -
+</pre>
+
 
   $if(depotnr)$
     <p><b>$depotnr$</b><br>
