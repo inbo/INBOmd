@@ -257,9 +257,10 @@ $endif$
 
     <div class="book-summary">
 $if(cover_image)$
-<img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$"><br>
+<img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$"><p>
 $endif$
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="css/img/cc-by-sa.png" class = "cc"/>
+$if(doi)$<a class="doi" href="#">$doi$</a>$endif$
+<p></p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="css/img/cc-by-sa.png" class = "cc"/>
       <nav role="navigation">
 <!--bookdown:toc2:start-->
 $if(toc)$
