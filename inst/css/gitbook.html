@@ -141,6 +141,9 @@ $if(title)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
       $if(reviewer.name)$
+        $if(reviewer.firstname)$
+          $reviewer.firstname$
+        $endif$
         $reviewer.name$
         $if(reviewer.orcid)$
           <a href="https://orcid.org/$reviewer.orcid$">
@@ -169,11 +172,7 @@ $if(title)$
   $endif$
   <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
 
-  $if(corresponding)$
-  <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$corresponding$</a>
-  $else$
-  <h1 class = "missing">!!!! ONTBREKEND: corresponding !!!!</h1>
-  $endif$
+  <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
   <p><b>Wijze van citeren:</b><br>
   $if(shortauthor)$
