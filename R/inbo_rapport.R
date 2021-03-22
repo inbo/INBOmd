@@ -206,15 +206,24 @@ inbo_rapport <- function(
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text) #nolint
     startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text)
-    if (length(appendix) & length(startbib)) {
-      text <- c(
-        text[1:(appendix - 1)],              # mainmatter
-        "\\chapter*{\\bibname}",
-        "\\addcontentsline{toc}{chapter}{\\bibname}",
-        text[startbib:(length(text) - 1)],   # bibliography
-        text[(appendix):(startbib - 1)],     # appendix
-        text[length(text)]                   # backmatter
-      )
+    if (length(startbib)) {
+      if (length(appendix)) {
+        text <- c(
+          text[1:(appendix - 1)],              # mainmatter
+          "\\chapter*{\\bibname}",
+          "\\addcontentsline{toc}{chapter}{\\bibname}",
+          text[startbib:(length(text) - 1)],   # bibliography
+          text[(appendix):(startbib - 1)],     # appendix
+          text[length(text)]                   # backmatter
+        )
+      } else {
+        text <- c(
+          text[1:(startbib - 1)],              # mainmatter
+          "\\chapter*{\\bibname}",
+          "\\addcontentsline{toc}{chapter}{\\bibname}",
+          text[startbib:length(text)]         # bibliography
+        )
+      }
     }
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
