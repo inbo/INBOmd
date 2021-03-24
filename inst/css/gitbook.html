@@ -219,7 +219,7 @@ $if(title)$
 <h4>RIS</h4>
 <pre>
 TY  - RPRT
-$for(author)$AU  -$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
+$for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
 DO  - $doi$
 PB  - Instituut voor Natuur- en Bosonderzoek
