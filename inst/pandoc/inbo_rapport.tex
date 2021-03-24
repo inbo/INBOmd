@@ -38,7 +38,8 @@ $if(cooperation)$
    $sep$ \\
    $endfor$
    $if(cooperation_logo)$
-   \\ \includegraphics[height = 15mm, keepaspectratio]{$cooperation_logo$}
+   \\ \vspace \fontsizebase
+   \includegraphics[height = 15mm, keepaspectratio]{$cooperation_logo$}
    $endif$
 }
 $endif$
@@ -50,7 +51,7 @@ $if(client)$
    $sep$ \\
    $endfor$
    $if(client_logo)$
-   \\ \includegraphics[height = 15mm, keepaspectratio]{$client_logo$}
+   \\ \vspace{\fontsizebase} \includegraphics[height = 15mm, keepaspectratio]{$client_logo$}
    $endif$
 }
 $endif$
