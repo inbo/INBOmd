@@ -200,10 +200,21 @@ $if(title)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
+  <br>Exporteer referentie naar <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
+  <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
 
-<h4>BibTex</h4>
+<script>
+function display_export(id) {
+  var x = document.getElementById(id);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 
-<pre>
+<pre id = "bibtex" style ="display: none;">
 @TechReport{
   author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
   title = {$title$$if(subtitle)$. $subtitle$$endif$},
@@ -216,8 +227,7 @@ $if(title)$
 }
 </pre>
 
-<h4>RIS</h4>
-<pre>
+<pre id = "RIS" style ="display: none;">
 TY  - RPRT
 $for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
