@@ -5204,6 +5204,12 @@ body #admin-menu .dropdown li {
     padding-left: 0;
   }
 }
+.book .book-body, .book .book-body .body-inner{
+  overflow-y: visible;
+}
+.book .book-summary{
+    bottom: auto;
+}
 .book .book-summary ul.summary{
   position: relative;
 }
