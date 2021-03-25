@@ -285,9 +285,10 @@ $endif$
 
     <div class="book-summary">
 $if(cover_image)$
-<img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$"><p>
+<a href="index.html">
+<img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$"></a><p>
 $endif$
-$if(doi)$<a class="doi" href="#">$doi$</a>$endif$
+$if(doi)$<a class="chapter" href="#">$doi$</a>$endif$
 <p></p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="css/img/cc-by-sa.png" class = "cc"/>
       <nav role="navigation">
 <!--bookdown:toc2:start-->
@@ -316,6 +317,11 @@ $endfor$
 <!--bookdown:toc:end-->
 <!--bookdown:body:start-->
 $body$
+
+<p>&nbsp;</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="css/img/cc-by-sa.png" class = "cc"/></a>
+$shortauthor$ ($year$). $doi$
+
 <!--bookdown:body:end-->
 $for(include-after)$
 $include-after$
