@@ -202,6 +202,7 @@ $if(title)$
   $endif$
   <br>Exporteer referentie naar <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
   <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
+  <button onclick="display_export('csl')" style = "color: #4183c4; background: #fff; border-width: 0px;">CSL-JSON</button>
 
 <script>
 function display_export(id) {
@@ -219,7 +220,7 @@ function display_export(id) {
   author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
   title = {$title$$if(subtitle)$. $subtitle$$endif$},
   institution = {Instituut voor Natuur- en Bosonderzoek},
-  adress = {Brussel, België},
+  adress = {$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België},
   year = {$year$},
   number = {$year$ ($reportnr$)},
   doi = {$doi$},
@@ -233,12 +234,30 @@ $for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
 DO  - $doi$
 PB  - Instituut voor Natuur- en Bosonderzoek
-PP  - Brussel, België
+PP  - $if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België
 PY  - $year$
 SN  - 1782-9054
 ER  -
 </pre>
 
+<pre id = "csl" style ="display: none;">
+{
+  "id":"$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$endfor$$year$",
+  "type":"report",
+  "title":"$title$$if(subtitle)$. $subtitle$$endif$",
+  "author":[
+    $for(author)${
+      "family":"$if(author.name)$$author.name$$if(author.firstname)$",
+      "given":"$author.firstname$$endif$$else$$author$$endif$"
+    $sep$},
+    $endfor$
+    }
+  ],
+  "issued":{"date-parts":[[$year$]]},
+  "publisher":"Instituut voor Natuur- en Bosonderzoek",
+  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België",
+}
+</pre>
 
   $if(depotnr)$
     <p><b>$depotnr$</b><br>
