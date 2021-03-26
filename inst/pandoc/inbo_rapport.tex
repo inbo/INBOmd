@@ -108,6 +108,9 @@ $endif$
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
 \author{
+$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
+}
+\colofonauthor{
 $for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
 }
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
