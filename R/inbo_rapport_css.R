@@ -9,8 +9,8 @@ inbo_rapport_css <- function(format = "html") {
   )
   file.copy(source_dir, getwd(), recursive = TRUE, overwrite = TRUE)
   if (format == "epub") {
-    "css/inbo.epub3"
+    file.path("css", "inbo.epub3")
   } else {
-    "css/gitbook.html"
+    file.path("css", "gitbook.html")
   }
 }

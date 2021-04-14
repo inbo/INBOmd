@@ -92,7 +92,9 @@ inbo_rapport <- function(
   extra <- list(...)
   codesize <- match.arg(codesize)
 
-  template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
+  )
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
 
@@ -204,8 +206,8 @@ inbo_rapport <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text) #nolint
-    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text)
+    appendix <- grep("\\\\appendix", text) # nolint
+    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(

@@ -25,7 +25,7 @@ inbo_handouts <- function(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.vlaanderen.be/inbo",
+  website = "www.vlaanderen.be/inbo", # nolint
   theme = c("inbo", "vlaanderen"),
   flandersfont = FALSE,
   ...
@@ -42,7 +42,9 @@ inbo_handouts <- function(
   codesize <- match.arg(codesize)
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
-  template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_beamer.tex"), package = "INBOmd"
+  )
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,

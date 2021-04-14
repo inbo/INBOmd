@@ -73,7 +73,7 @@ inbo_slides <- function(
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.vlaanderen.be/inbo",
+  website = "www.vlaanderen.be/inbo", # nolint
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
@@ -81,11 +81,11 @@ inbo_slides <- function(
 ) {
   check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc)) #nolint
+  assert_that(noNA(toc))
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont)) #nolint
+  assert_that(noNA(flandersfont))
   aspect <- match.arg(aspect)
   current_paperwidth <- c(
     "16:9" = 160, "16:10" = 160, "14:9" = 140, "1.4:1" = 148.5, "5:4" = 125,
@@ -100,7 +100,9 @@ inbo_slides <- function(
   codesize <- match.arg(codesize)
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
-  template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_beamer.tex"), package = "INBOmd"
+  )
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,

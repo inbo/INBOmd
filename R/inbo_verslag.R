@@ -35,7 +35,9 @@ inbo_verslag <- function(
   extra <- list(...)
   codesize <- match.arg(codesize)
 
-  template <- system.file("pandoc/inbo_verslag.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_verslag.tex"), package = "INBOmd"
+  )
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
   args <- c(
