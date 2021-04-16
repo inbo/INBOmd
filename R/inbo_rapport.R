@@ -214,7 +214,11 @@ inbo_rapport <- function(
           text[1:(appendix - 1)],              # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
-          text[startbib:(length(text) - 1)],   # bibliography
+          text[startbib],                      # bibliography
+          "",
+          text[startbib + 1],
+          "",
+          text[(startbib + 2):(length(text) - 1)],
           text[(appendix):(startbib - 1)],     # appendix
           text[length(text)]                   # backmatter
         )
@@ -223,7 +227,11 @@ inbo_rapport <- function(
           text[1:(startbib - 1)],              # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
-          text[startbib:length(text)]         # bibliography
+          text[startbib],                      # bibliography
+          "",
+          text[startbib + 1],
+          "",
+          text[(startbib + 2):length(text)]
         )
       }
     }
