@@ -156,13 +156,13 @@ $endfor$
 \clearpage
 
 \phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
 $if(tocdepth)$
 \setcounter{tocdepth}{$tocdepth$}
 $else$
 \setcounter{tocdepth}{3}
 $endif$
 \tableofcontents
-\addcontentsline{toc}{chapter}{\contentsname}
 
 $if(lof)$
 \clearpage
@@ -174,15 +174,15 @@ $endif$
 
 $if(lof)$
 \phantomsection
-\listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
 \vspace{34pt}
 $endif$
 
 $if(lot)$
 \phantomsection
-\listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
 $endif$
 
 \clearpage
