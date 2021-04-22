@@ -189,6 +189,7 @@ inbo_rapport <- function(
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
+    cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
     mainmatter <- grep("\\\\mainmatter", text) #nolint
@@ -239,7 +240,6 @@ inbo_rapport <- function(
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
-
   output_format(
     knitr = knitr_options(
       opts_knit = list(
