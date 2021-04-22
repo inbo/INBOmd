@@ -12,7 +12,7 @@ $if(year)$
 $endif$
 $if(reviewer)$
 \reviewer{
-$for(reviewer)$$if(reviewer.name)$$if(reviewer.firstname)$$reviewer.firstname$ $endif$$reviewer.name$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$reviewer$$endif$$sep$, $endfor$
+$for(reviewer)$$if(reviewer.name)$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{$endif$$if(reviewer.firstname)$$reviewer.firstname$ $endif$$reviewer.name$$if(reviewer.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$reviewer$$endif$$sep$, $endfor$
 }
 $endif$
 $if(reportnr)$
@@ -111,7 +111,8 @@ $if(subtitle)$\subtitle{$subtitle$}$endif$
 $for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
 }
 \colofonauthor{
-$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
+$for(author)$
+$if(author.name)$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{$endif$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
 }
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 
