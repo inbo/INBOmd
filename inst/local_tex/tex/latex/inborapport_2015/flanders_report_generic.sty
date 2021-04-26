@@ -186,6 +186,7 @@
 \newlength{\fontsizeauthor}
 \newlength{\fontsizeordernr}
 \newlength{\fontsizetoc}
+\newlength{\fontsizelicense}
 
 \newlength{\fontsizebaseinter}
 \newlength{\fontsizepartinter}
@@ -202,10 +203,16 @@
 \newlength{\fontsizeauthorinter}
 \newlength{\fontsizeordernrinter}
 \newlength{\fontsizetocinter}
+\newlength{\fontsizelicenseinter}
 
 % base font
 \setlength{\fontsizebase}{11pt}
 \setlength{\fontsizebaseinter}{12.65pt}
+
+
+% license font
+\setlength{\fontsizelicense}{9pt}
+\setlength{\fontsizelicenseinter}{10.35pt}
 
 % fontsize for headings
 % heading 0
@@ -446,7 +453,8 @@
 
 
     \vfill
-    \includegraphics[height=\fontsizebase]{cc-by-sa.eps} Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.
+    \fontsize{\fontsizelicense}{\fontsizelicenseinter} \selectfont
+    \includegraphics[height=\fontsizelicense]{cc-by-sa.eps} Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.
     \end{flushleft}
 
     \clearpage
