@@ -1,15 +1,47 @@
 ---
-title: "Titel van het rapport"
+title: Titel van het rapport
+subtitle: # Hier komt de optionele ondertitel. Wis dit als je geen ondertitel wenst.
 author: 
-  - 
-    name: "Voornaam1 Achternaam1"
+  - firstnaam: Voornaam1
+    name: Achternaam1
     email: "voornaam1.achternaam1@inbo.be"
-  - 
-    name: "Voornaam2 Achternaam2"
+    orcid: 0000-0002-1825-0097
+  - firstnaam: Voornaam2
+    name: Achternaam2
     email: "voornaam2.achternaam2@inbo.be"
-subtitle: "Hier komt de optionele ondertitel"
-reportnr: "Hier komt de DOI van het rapport"
-ordernr: "Het optionele nummer van de opdrachtgever"
+    orcid: 0000-0002-1825-0097
+shortauthor: #Korte lijst van de auteurs voor de colofon. Formaat Achternaam, V. of Achternaam1, V. & Achternaam2, V. or Achternaam, V. _etal._
+corresponding: # Emailadres van de corresponderende auteur. Staat ook in voor de communaties met publicaties@inbo.be
+reviewer:
+  - firstnaam: Voornaam
+    name: Achternaam
+    email: "voornaam.achternaam@inbo.be"
+    orcid: 0000-0002-1825-0097
+github-repo: # github repo met de bron code. formaat zoals inbo/inbomd-examples
+year: # publicatiejaar van het rapport
+cover_photo: # link naar gewenste foto voor de cover.
+cover_description: # beschrijving van de coverfoto. Vermeldt de auteur en licentie van de foto.
+cover: # link naar de pdf met de cover. Aan te vragen via publicaties@inbo.be. Zet dit bestand in dezelfde map als de index.Rmd.
+cover_image: # link naar cover in jpeg. Aan te vragen via publicaties@inbo.be
+doi: # Hier komt de DOI van het rapport. Dit vraag je aan via publicaties@inbo.be.
+depotnr: # Deportnummer. Dit vraag je aan via publicaties@inbo.be.
+reportnr: # Hier komt rapportnummer. Dit vraag je aan via publicaties@inbo.be.
+ordernr: # Het optionele nummer van de opdrachtgever. Wis dit als je geen opdrachtnummer hebt.
+geraardsbergen: # Zet op TRUE wanneer je INBO Geraardsbergen als vestiging wenst. FALSE of ontbrekend geeft INBO Brussel.
+client: # wis dit onderdeel wanneer je geen klant ("in opdracht van") wenst te vermelden.
+  - klant regel 1
+  - klant regel 2 # je kan tot vier regels weergeven
+client_logo: # optioneel logo van de klant (eps, pdf, png of jpg)
+cooperation: # wis dit onderdeel wanneer je geen samenwerking ("in samenwerking met") wenst te vermelden
+  - samenwerking regel 1
+  - samenwerking regel 2 # je kan tot vier regels weergeven
+cooperation_logo: # optioneel logo van de medewerker (eps, pdf, png of jpg)
+embargo: 2050-12-31 # datum waarop het rapport op de website mag gepubliceerd worden
+print:
+  copies: 0 # gewenst aantal exemplaren indien gedrukt (0 = geen druk)
+  motivation: # waarom moet het rapport gedrukt worden? Enkel vereist bij druk.
+  pages: # aantal bladzijden van het afgewerkte rapport. Enkel vereist bij druk.
+
 bibliography: references.bib
 link-citations: TRUE
 site: bookdown::bookdown_site
