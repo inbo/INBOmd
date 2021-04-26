@@ -422,6 +422,15 @@
   {\hypersetup{urlcolor=main.colour} #1}
 }
 
+\newcommand{\mainTitle}[1]{% 1 input argument - main title
+  \hspace{10mm}\parbox[t]{140mm}{%
+    \addfontfeature{LetterSpace=0.014}%
+    \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \MakeUppercase{\uline{#1}}%
+    \addfontfeature{LetterSpace=0.0}%
+  }%
+  \relax%
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
@@ -465,13 +474,9 @@
     \vfill
 
     \color{main.colour}
-    \hspace{10mm}\parbox[t]{140mm}{
-      \addfontfeature{LetterSpace=0.014}
-      \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \bfseries \expandafter\MakeUppercase\expandafter{\@title}
-      \addfontfeature{LetterSpace=0.0}
-    }
+    \mainTitle{\@title}
 
-      \vspace{26pt}
+    \vspace{26pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
       \fontsize{\fontsizesubtitle}{\fontsizesubtitleinter}\selectfont \raggedright \bfseries \@subtitle
