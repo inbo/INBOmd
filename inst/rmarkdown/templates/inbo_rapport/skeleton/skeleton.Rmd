@@ -63,8 +63,33 @@ output:
     pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
 ---
 
+# Dankwoord {-}
 
-# INBO rapport met RMarkdown met Bookdown extensie
+De tekst voor het optionele dankwoord.
+
+# Voorwoord {-}
+
+De tekst voor het optionele voorwoord.
+
+# Samenvatting {-}
+
+De tekst voor de verplichte samenvatting.
+Hou het [Heerlijk Helder](https://overheid.vlaanderen.be/communicatie/heerlijk-helder).
+
+# Aanbevelingen voor beheer en/of beleid {-}
+
+Verplicht wanneer relevant.
+
+# English abstract {-}
+
+\benglish
+Add a translation of the Dutch summary.
+\eenglish
+
+<!-- hier komt de inhoudstafel bij pdf -->
+\mainmatter
+
+# Inleiding
 
 Een concreet voorbeeld van de broncode van dergelijk rapport vind je op https://github.com/inbo/inbomd_examples onder het mapje source/inbo_rapport. Hoe zo een rapport er finaal uit kan zien, vind je op https://inbomd-examples.netlify.com/
 

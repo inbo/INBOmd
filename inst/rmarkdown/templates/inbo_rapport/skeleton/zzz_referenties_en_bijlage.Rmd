@@ -1,0 +1,9 @@
+```{r references, results = "asis", echo = FALSE}
+# hier komen de referenties
+# indien je geen hoofdstukken in bijlage hebt, zet je appendix = FALSE
+INBOmd::references(appendix = TRUE)
+```
+
+# Eerste hoofdstuk van de bijlage
+
+Tekst van de bijlage
