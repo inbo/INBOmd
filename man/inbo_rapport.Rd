@@ -96,7 +96,7 @@ The main language is hard-coded to Dutch for the styles \code{INBO} and
 It is set by default to English for the style \code{Flanders} and can be set to
 another language by setting \code{main_language} in the YAML header.
 
-You can define some parts of the text to be in different language than the
+You can define some parts of the text to be in a different language than the
 main language (e.g. an abstract in a different language).
 This is currently limited to Dutch, English and French.
 Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
@@ -104,7 +104,7 @@ Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
 Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
 The styles \code{INBO} and \code{Vlaanderen} have French and English as optional
 languages.
-The \code{Flanders} has by default Dutch and French as optional languages.
+The \code{Flanders} style has by default Dutch and French as optional languages.
 
 Setting the language affects the hyphenation pattern and the names of items
 like figures, tables, table of contents, list of figures, list of tables,

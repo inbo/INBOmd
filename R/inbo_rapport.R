@@ -46,7 +46,7 @@
 #' It is set by default to English for the style `Flanders` and can be set to
 #' another language by setting `main_language` in the YAML header.
 #'
-#' You can define some parts of the text to be in different language than the
+#' You can define some parts of the text to be in a different language than the
 #' main language (e.g. an abstract in a different language).
 #' This is currently limited to Dutch, English and French.
 #' Use `\bdutch` before and `\edutch` after the text in Dutch.
@@ -54,7 +54,7 @@
 #' Use `\bfrench` before and `\efrench` after the text in French.
 #' The styles `INBO` and `Vlaanderen` have French and English as optional
 #' languages.
-#' The `Flanders` has by default Dutch and French as optional languages.
+#' The `Flanders` style has by default Dutch and French as optional languages.
 #'
 #' Setting the language affects the hyphenation pattern and the names of items
 #' like figures, tables, table of contents, list of figures, list of tables,
