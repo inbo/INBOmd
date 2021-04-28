@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="https://www.idpf.org/2007/ops"$if(lang)$ xml:lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title>$pagetitle$</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+$if(quotes)$
+      q { quotes: "“" "”" "‘" "’"; }
+$endif$
+  </style>
+$if(highlighting-css)$
+  <style type="text/css">
+$highlighting-css$
+  </style>
+$endif$
+$for(css)$
+  <link rel="stylesheet" type="text/css" href="$css$" />
+$endfor$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body$if(coverpage)$ id="cover"$endif$>
+$if(titlepage)$
+<section epub:type="titlepage">
+  <div id="$idprefix$header">
+  $if(cover_image)$
+    <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
+  $endif$
+  <h1 class="title">$title$</h1>
+  $if(subtitle)$
+  <h2 class="subtitle">$subtitle$</h2>
+  $endif$
+  $for(author)$
+    $if(author.name)$
+      <h3 class="author">$if(author.firstname)$$author.firstname$ $endif$$author.name$
+      $if(author.orcid)$
+        <a href="https://orcid.org/$author.orcid$">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        $author.orcid$
+        </a>
+      $endif$
+      </h3>
+      $if(author.affiliation)$
+        <address class="author_afil">
+        $author.affiliation$
+        $if(author.email)$
+          <br><a class="author_email" href="mailto:#">$author.email$</a>
+        $endif$
+        </address>
+      $else$
+        $if(author.email)$
+          <address class="author_afil">
+          <a class="author_email" href="mailto:#">$author.email$</a>
+          </address>
+        $endif$
+      $endif$
+    $else$
+      <h3 class="author">$author$</h3>
+    $endif$
+  $endfor$
+  $if(date)$
+  <p class="date"><em>$date$</em></p>
+  $endif$
+  $if(doi)$
+  <h4><a class="doi" href="#">$doi$</a></h4>
+  $endif$
+  $if(ordernr)$
+  <h4 class ="ordernr">$ordernr$</h4>
+  $endif$
+  <h1>Colophon</h1>
+  $if(reviewer)$
+    <p><b>Reviewers:</b><br>
+    $for(reviewer)$
+      $if(reviewer.name)$
+        $if(reviewer.firstname)$
+          $reviewer.firstname$
+        $endif$
+        $reviewer.name$
+        $if(reviewer.orcid)$
+          <a href="https://orcid.org/$reviewer.orcid$">
+          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+          $reviewer.orcid$
+          </a>
+        $endif$
+        $if(reviewer.email)$
+          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+        $endif$<br>
+      $else$
+        $reviewer$<br>
+      $endif$
+    $endfor$
+  $else$
+  <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
+  $endif$
+
+  <p>The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.
+
+  <p><b>Location:</b><br>
+  $if(geraardsbergen)$
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+  $else$
+  INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  $endif$
+  <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
+
+  <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
+
+  <p><b>Way of quoting:</b><br>
+  $if(shortauthor)$
+    $shortauthor$
+  $else$
+    <h1 class = "missing">!!!! MISSING: shortauthor !!!!</h1>
+  $endif$
+  $if(year)$
+    ($year$).
+  $else$
+    <h1 class = "missing">!!!! MISSING: year !!!!</h1>
+  $endif$
+  $title$$if(subtitle)$. $substitle$$endif$. Reports of the Research Institute for Nature and Forest
+  $if(year)$
+    $year$
+  $endif$
+  $if(reportnr)$
+    ($reportnr$).
+  $else$
+    <h1 class = "missing">!!!! MISSING: reportnr !!!!</h1>
+  $endif$
+  Research Institute for Nature and Forest, Brussels. DOI:
+  $if(doi)$
+    <a class="doi" href="#">$doi$</a>
+  $else$
+    <h1 class = "missing">!!!! MISSING: doi !!!!</h1>
+  $endif$
+
+  $if(depotnr)$
+    <p><b>$depotnr$</b><br>
+  $else$
+    <h1 class = "missing">!!!! MISSING: depotnr !!!!</h1>
+  $endif$
+  <b>Reports of the Research Institute for Nature and Forest
+  $if(year)$
+    $year$
+  $endif$
+  $if(reportnr)$
+    ($reportnr$)
+  $endif$
+  </b><br>
+  <b>ISSN: 1782‐9054</b>
+
+  <p><b>Responsible publisher:</b><br>Maurice Hoffmann
+
+  $if(cover_description)$
+    <p><b>Cover photo:</b><br>$cover_description$
+  $else$
+    <h1 class = "missing">!!!! MISSING: cover_description !!!!</h1>
+  $endif$
+
+  $if(client)$
+  <p><b>This study was commissioned by:</b><br>
+     $for(client)$
+        $client$
+     $sep$ <br>
+     $endfor$
+  $endif$
+
+  $if(cooperation)$
+  <p><b>This study was conducted in collaboration with:</b><br>
+     $for(cooperation)$
+        $cooperation$
+     $sep$ <br>
+     $endfor$
+  $endif$
+
+  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" class = "cc"/></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie</a>.
+  </div>
+</section>
+$else$
+$for(include-before)$
+$include-before$
+$endfor$
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+$endif$
+</body>
+</html>
