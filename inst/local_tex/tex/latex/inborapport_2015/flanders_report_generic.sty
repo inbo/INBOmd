@@ -434,39 +434,118 @@
   \relax%
 }
 
+\addto\extrasdutch{%
+  \def\cfauthor{Auteurs:}%
+}
+\addto\extrasenglish{%
+  \def\cfauthor{Authors:}%
+}
+\addto\extrasdutch{%
+  \def\cfmission{Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.}%
+}
+\addto\extrasenglish{%
+  \def\cfmission{The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.}%
+}
+\addto\extrasdutch{%
+  \def\cflocation{Vestiging:}%
+}
+\addto\extrasenglish{%
+  \def\cflocation{Location:}%
+}
+\addto\extrasdutch{%
+  \def\cflocation{Vestiging:}%
+}
+\addto\extrasenglish{%
+  \def\cflocation{Location:}%
+}
+\addto\extrasdutch{%
+  \def\cfinbo{Instituut voor Natuur- en Bosonderzoek}%
+}
+\addto\extrasenglish{%
+  \def\cfinbo{Research Institute for Nature and Forest}%
+}
+\addto\extrasdutch{%
+  \def\cfseries{Rapporten van het \cfinbo}%
+}
+\addto\extrasenglish{%
+  \def\cfseries{Reports of the \cfinbo}%
+}
+\addto\extrasdutch{%
+  \def\cfcity{Brussel}%
+}
+\addto\extrasenglish{%
+  \def\cfcity{Brussels}%
+}
+\addto\extrasdutch{%
+  \def\cfcitation{Wijze van citeren:}%
+}
+\addto\extrasenglish{%
+  \def\cfcitation{Way of quoting:}%
+}
+\addto\extrasdutch{%
+  \def\cfvu{Verantwoordelijke uitgever:}%
+}
+\addto\extrasenglish{%
+  \def\cfvu{Responsible publisher:}%
+}
+\addto\extrasdutch{%
+  \def\cfcover{Foto cover:}%
+}
+\addto\extrasenglish{%
+  \def\cfcover{Cover photograph:}%
+}
+\addto\extrasdutch{%
+  \def\ccbysa{Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.}%
+}
+\addto\extrasenglish{%
+  \def\ccbysa{This work is licensed under a \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 Generic License}.}%
+}
+\addto\extrasdutch{%
+  \def\cfclient{Dit onderzoek werd uitgevoerd in opdracht van:}%
+}
+\addto\extrasenglish{%
+  \def\cfclient{This study was commissioned by:}%
+}
+\addto\extrasdutch{%
+  \def\cfcoop{Dit onderzoek werd uitgevoerd in samenwerking met:}%
+}
+\addto\extrasenglish{%
+  \def\cfcoop{This study was conducted in collaboration with:}%
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
   \thispagestyle{empty}{%
     \begin{flushleft}
-    \textbf{Auteurs:} \\ \@colofonauthor
+
+    \textbf{\cfauthor} \\ \@colofonauthor
 
     \textbf{Reviewers:} \\ \@reviewer
 
-    Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.
+    \cfmission
 
-    \textbf{Vestiging:} \\ INBO \chooseestablishment{\@establishment} \\ \url{https://www.vlaanderen.be/inbo}
+    \textbf{\cflocation} \\ INBO \chooseestablishment{\@establishment} \\ \url{https://www.vlaanderen.be/inbo}
 
     \textbf{e-mail:} \\ \@corresponding
 
-    \textbf{Wijze van citeren:} \\ \@shortauthor~(\@year). \@citetitle. Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year~(\@reportnr). Instituut voor Natuur- en Bosonderzoek, Brussel. DOI: \@doi
+    \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfseries~\@year~(\@reportnr). \cfinbo, \cfcity. DOI: \@doi
 
     \textbf{\@depotnr} \\
-    \textbf{Rapporten van het Instituut voor Natuur- en Bosonderzoek \@year~(\@reportnr)} \\
+    \textbf{\cfseries~\@year~(\@reportnr)} \\
     \textbf{ISSN: 1782-9054}
 
-    \textbf{Verantwoordelijke uitgever:} \\ Maurice Hoffmann
+    \textbf{\cfvu} \\ Maurice Hoffmann
 
-    \textbf{Foto cover:} \\ \@coverdescription
+    \textbf{\cfcover} \\ \@coverdescription
 
     \@client
 
     \@cooperation
 
-
     \vfill
     \fontsize{\fontsizelicense}{\fontsizelicenseinter} \selectfont
-    \includegraphics[height=\fontsizelicense]{cc-by-sa.eps} Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.
+    \includegraphics[height=\fontsizelicense]{cc-by-sa.eps} \ccbysa
     \end{flushleft}
 
     \clearpage
