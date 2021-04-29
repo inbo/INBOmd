@@ -50,9 +50,10 @@ output:
     split_by: "chapter+number"
     template: !expr INBOmd::inbo_rapport_css("html")
     pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
+    lang: nl
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
-    style: INBO
+    style: INBO # Gebruik "Vlaanderen" voor de overkoepelende Vlaamse huisstijl
     tocdepth: 2
     lof: TRUE
     lot: TRUE
@@ -61,6 +62,7 @@ output:
     stylesheet: "css/inbo_rapport.css"
     template: !expr INBOmd::inbo_rapport_css("epub")
     pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
+    lang: nl
 ---
 
 # Dankwoord {-}
@@ -80,11 +82,20 @@ Hou het [Heerlijk Helder](https://overheid.vlaanderen.be/communicatie/heerlijk-h
 
 Verplicht wanneer relevant.
 
+\benglish
+
 # English abstract {-}
 
-\benglish
-Add a translation of the Dutch summary.
+Insert a translation of the summary here.
 \eenglish
+
+\bfrench
+
+# Résumé français {- #resume-francais}
+
+Ajoutez éventuellement une traduction du résumé ici.
+
+\efrench
 
 <!-- hier komt de inhoudstafel bij pdf -->
 \mainmatter

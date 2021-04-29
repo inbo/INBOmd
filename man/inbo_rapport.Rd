@@ -11,7 +11,6 @@ inbo_rapport(
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
   main_language = "english",
-  other_languages = c("french", "dutch"),
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
@@ -44,11 +43,6 @@ Use \code{"Flanders"} for a report in another language.}
 
 \item{main_language}{The main language of the document.
 Defaults to \code{"english"}.
-See the details for more information.}
-
-\item{other_languages}{A vector of other languages you want to use within the
-document.
-Defaults to \code{c("dutch", "french")}.
 See the details for more information.}
 
 \item{keep_tex}{Keep the tex file.

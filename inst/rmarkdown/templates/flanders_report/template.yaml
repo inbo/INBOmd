@@ -1,0 +1,4 @@
+name: Non-Dutch report with Flemish corporate identity
+create_dir: TRUE
+description: >
+  Template for a report with Flemish corporate identity based on bookdown. A full example is available at https://github.com/inbo/inbomd_examples/tree/master/source/flanders_report

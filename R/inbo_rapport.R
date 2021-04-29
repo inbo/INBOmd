@@ -16,10 +16,6 @@
 #' @param main_language The main language of the document.
 #' Defaults to `"english"`.
 #' See the details for more information.
-#' @param other_languages A vector of other languages you want to use within the
-#' document.
-#' Defaults to `c("dutch", "french")`.
-#' See the details for more information.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
@@ -72,7 +68,6 @@ inbo_rapport <- function(
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
   main_language = "english",
-  other_languages = c("french", "dutch"),
   keep_tex = FALSE,
   fig_crop = TRUE,
   includes = NULL,
@@ -81,14 +76,15 @@ inbo_rapport <- function(
   ...
 ) {
   assert_that(is.string(main_language))
-  assert_that(is.character(other_languages))
-  assert_that(
-    all(other_languages %in% c("french", "dutch", "english")),
-    msg = "other_languages can only contain french, dutch and english"
-  )
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   style <- match.arg(style)
+  assert_that(
+    style != "Flanders" || main_language != "dutch",
+    msg = "Use style: Vlaanderen when the main language is Dutch"
+  )
+  other_languages <- c("english", "french", "dutch")
+  other_languages <- other_languages[other_languages != main_language]
   extra <- list(...)
   codesize <- match.arg(codesize)
 
