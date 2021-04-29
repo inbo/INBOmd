@@ -44,13 +44,14 @@ print:
 
 bibliography: references.bib
 link-citations: TRUE
+lang: nl
 site: bookdown::bookdown_site
+
 output:
   bookdown::gitbook:
     split_by: "chapter+number"
     template: !expr INBOmd::inbo_rapport_css("html")
     pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
-    lang: nl
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
     style: INBO # Gebruik "Vlaanderen" voor de overkoepelende Vlaamse huisstijl
@@ -62,7 +63,6 @@ output:
     stylesheet: "css/inbo_rapport.css"
     template: !expr INBOmd::inbo_rapport_css("epub")
     pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
-    lang: nl
 ---
 
 # Dankwoord {-}
