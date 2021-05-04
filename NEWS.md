@@ -1,11 +1,30 @@
 # INBOmd 0.4.10
 
+## User visible changes
+
 * Use pandoc to render citations with `inbo_rapport()` on pdf instead of natbib
   (#63, @ThierryO).
-* `inbo_rapport()` support custom languages when using `style = "Flanders"`
+* `inbo_rapport()` supports custom languages when using `style = "Flanders"`
   (#64, @ThierryO).
 * Update CSL style to most recent version (#63, @florisvdh).
-* Add colofon to INBO reports in pdf and gitbook formats.
+* Add colophon to INBO reports in pdf, gitbook and epub formats.
+* Rendering the pdf reports generates a `cover.txt`.
+  This files contains the required information to create the cover page.
+* New function `references()` allows to define the location where to insert
+  the bibliography.
+  The optional appendix starts after the bibliography.
+* `inbo_slides()` generates a visible table of content (#66).
+* Update the `inbo_rapport` RMarkdown [template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
+  It contains all available options in the YAML header.
+* Add a new template for a non-Dutch report with English as default language.
+* Reports use Calibri as default font.
+* Gitbook reports gains a thumbnail of the report on top of the table of content
+  when the user provides a cover image.
+* Gitbook and epub formats gain an English variant.
+
+## Internal changes
+
+* Setup quality assurrance using [checklist](https://inbo.github.io/checklist).
 
 # INBOmd 0.4.9
 
