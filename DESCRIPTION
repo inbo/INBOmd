@@ -23,6 +23,7 @@ URL: https://doi.org/10.5281/zenodo.842223, https://github.com/inbo/inbomd
 BugReports: https://github.com/inbo/inbomd/issues
 Imports:
     assertthat,
+    bookdown (>= 0.7.13),
     dplyr,
     knitr,
     qrcode (>= 0.1.2),
@@ -31,7 +32,6 @@ Imports:
 Suggests:
     DT,
     INBOtheme (>= 0.5.4),
-    bookdown (>= 0.7.13),
     ggplot2,
     pander,
     rstudioapi,

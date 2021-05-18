@@ -6,6 +6,8 @@
   (#63, @ThierryO).
 * `inbo_rapport()` supports custom languages when using `style = "Flanders"`
   (#64, @ThierryO).
+* For HTML reports, use the new function `inbo_gitbook()` instead of
+  `bookdown::gitbook()`.
 * Update CSL style to most recent version (#63, @florisvdh).
 * Add colophon to INBO reports in pdf, gitbook and epub formats.
 * Rendering the pdf reports generates a `cover.txt`.

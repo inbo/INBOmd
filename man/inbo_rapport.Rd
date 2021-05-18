@@ -107,6 +107,7 @@ references, page numbers, ...
 
 \seealso{
 Other output: 
+\code{\link{inbo_gitbook}()},
 \code{\link{inbo_handouts}()},
 \code{\link{inbo_poster}()},
 \code{\link{inbo_slides}()},

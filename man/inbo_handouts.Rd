@@ -87,6 +87,7 @@ displays the final slide.
 }
 \seealso{
 Other output: 
+\code{\link{inbo_gitbook}()},
 \code{\link{inbo_poster}()},
 \code{\link{inbo_rapport}()},
 \code{\link{inbo_slides}()},
