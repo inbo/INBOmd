@@ -22,7 +22,6 @@ year: # publicatiejaar van het rapport
 cover_photo: # link naar gewenste foto voor de cover.
 cover_description: # beschrijving van de coverfoto. Vermeldt de auteur en licentie van de foto.
 cover: # link naar de pdf met de cover. Aan te vragen via publicaties@inbo.be. Zet dit bestand in dezelfde map als de index.Rmd.
-cover_image: # link naar cover in jpeg. Aan te vragen via publicaties@inbo.be
 doi: # Hier komt de DOI van het rapport. Dit vraag je aan via publicaties@inbo.be.
 depotnr: # Deportnummer. Dit vraag je aan via publicaties@inbo.be.
 reportnr: # Hier komt rapportnummer. Dit vraag je aan via publicaties@inbo.be.

@@ -26,6 +26,7 @@ Imports:
     bookdown (>= 0.7.13),
     dplyr,
     knitr,
+    pdftools,
     qrcode (>= 0.1.2),
     rmarkdown,
     utils

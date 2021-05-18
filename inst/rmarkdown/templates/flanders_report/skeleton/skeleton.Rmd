@@ -22,7 +22,6 @@ year: # publicationyear of the report
 cover_photo: # link to the picture you want on the cover.
 cover_description: # description of the picture on the cover. Mention the author of the picture and the license.
 cover: # link to a pdf containing the cover. Ask at publicaties@inbo.be. Put this file in the same folder as index.Rmd.
-cover_image: # link to cover in jpeg. Ask at publicaties@inbo.be
 doi: # the doi of the report. Ask at publicaties@inbo.be.
 depotnr: # Deportnummer. Ask at publicaties@inbo.be
 reportnr: # report number. Ask at publicaties@inbo.be
