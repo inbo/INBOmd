@@ -14,10 +14,10 @@
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
 inbo_gitbook <- function(
-  split_by = c("chapter+number", "section+number"), language = c("nl", "en")
+  split_by = c("chapter+number", "section+number"), lang = c("nl", "en")
 ) {
   split_by <- match.arg(split_by)
-  language <- match.arg(language)
+  lang <- match.arg(lang)
   pandoc_args = c(
     "--csl",
     system.file(
@@ -43,12 +43,17 @@ inbo_gitbook <- function(
       pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
     )
   }
-
+  lang <- ifelse(
+    has_name(fm$output$`INBOmd::inbo_gitbook`, "lang"),
+    fm$output$`INBOmd::inbo_gitbook`$lang,
+    ifelse(has_name(fm, "lang"), fm$lang, lang)
+  )
+  lang <- ifelse(lang != "nl", "en", "nl")
   config <- gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = inbo_rapport_css(format = "html", language = language)
+    template = inbo_rapport_css(format = "html", lang = lang)
   )
   config$clean_supporting <- TRUE
   return(config)

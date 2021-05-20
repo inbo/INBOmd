@@ -4,12 +4,12 @@
 \alias{inbo_rapport_css}
 \title{set correct css file and bookdown template}
 \usage{
-inbo_rapport_css(format = c("html", "epub"), language = c("nl", "en"))
+inbo_rapport_css(format = c("html", "epub"), lang = c("nl", "en"))
 }
 \arguments{
 \item{format}{the required output format. Either "html" or "epub".}
 
-\item{language}{the language used in the colophon.}
+\item{lang}{the language used in the colophon.}
 }
 \description{
 set correct css file and bookdown template

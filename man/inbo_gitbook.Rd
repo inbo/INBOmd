@@ -6,7 +6,7 @@
 \usage{
 inbo_gitbook(
   split_by = c("chapter+number", "section+number"),
-  language = c("nl", "en")
+  lang = c("nl", "en")
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ be determined by the header ID's, e.g. the filename for the first chapter
 with a chapter title \code{# Introduction} will be
 \file{1-introduction.html}.}
 
-\item{language}{the language used in the colophon.}
+\item{lang}{the language used in the colophon.}
 }
 \description{
 INBO version of bookdown::gitbook

@@ -47,10 +47,8 @@ lang: en
 site: bookdown::bookdown_site
 
 output:
-  bookdown::gitbook:
+  INBOmd::inbo_gitbook:
     split_by: "chapter+number"
-    template: !expr INBOmd::inbo_rapport_css("html", "en")
-    pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
     style: Flanders
