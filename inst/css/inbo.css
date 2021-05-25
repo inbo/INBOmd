@@ -857,6 +857,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
   text-decoration: underline;
   color: #c04384;
 }
+.book .book-summary ul.summary li ul {
+  margin: 2px 0 2px 10px;
+}
 .book .book-summary ul.summary li a, .book .book-summary ul.summary li {
   border: 0;
   text-decoration: underline;

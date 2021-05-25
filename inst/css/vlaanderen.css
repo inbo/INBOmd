@@ -221,12 +221,12 @@ img.scale {
 }
 /*selection color*/
 ::selection {
-  background: #c04384;
-  color: #fff;
+  background: #FFEB00;
+  color: #3C3D00;
 }
 ::-moz-selection {
-  background: #c04384;
-  color: #fff;
+  background: #FFEB00;
+  color: #3C3D00;
 }
 /*enable touch if possible*/
 canvas {
@@ -324,14 +324,14 @@ h1 {
   font-family: 'flanders_art_sansmedium', sans-serif;
   font-size: 45px;
   line-height: 51px;
-  color: #356196; /* ALTERED: color: #fff*/
+  color: #3C3D00; /* ALTERED: color: #fff*/
   text-transform: uppercase;
   margin-bottom: 15px;
 }
 h2 {
   font-size: 43px;
   line-height: 49px;
-  color: #356196;
+  color: #3C3D00;
   font-family: 'flanders_art_sansregular', sans-serif;
 }
 p {
@@ -342,11 +342,11 @@ p:last-of-type {
 }
 a {
   border: 0;
-  text-decoration: underline;
-  color: #c04384;
+  text-decoration: none;
+  color: #05C;
 }
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
 a:focus {
   outline: #c04384 auto 1px;
@@ -401,9 +401,9 @@ ol li {
 }
 .btn {
   display: inline-block;
-  background-color: #356196;
+  background-color: #FFEB00;
   text-transform: uppercase;
-  color: #fff;
+  color: #3C3D00;
   font-family: 'flanders_art_sansmedium', sans-serif;
   font-size: 17px;
   line-height: 23px;
@@ -449,7 +449,7 @@ ol li {
   background-color: #9fa133;
 }
 .btn.project {
-  background-color: #356196;
+  background-color: #FFEB00;
 }
 .btn.project:hover {
   background-color: #284970;
@@ -635,7 +635,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
   margin-bottom: 15px;
 }
 .mobile-nav .close:hover {
-  color: #356196;
+  color: #FFEB00;
 }
 .mobile-nav nav {
   text-align: left;
@@ -670,7 +670,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
 }
 .mobile-nav nav ul li a {
   display: block;
-  color: #595959;
+  color: #05C;
   font-family: 'flanders_art_sansmedium', sans-serif;
   padding: 5px 0;
   text-decoration: none;
@@ -688,7 +688,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
 }
 .mobile-nav nav ul li a:hover,
 .mobile-nav nav ul li a.active {
-  color: #356196;
+  color: #05C;
 }
 .mobile-nav nav ul li a.open i:before {
   -webkit-transform: rotate(180deg);
@@ -854,24 +854,27 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
 }
 .book .book-body .page-wrapper .page-inner section.normal a {
   border: 0;
-  text-decoration: underline;
-  color: #c04384;
+  text-decoration: none;
+  color: #05C;
+}
+.book .book-summary ul.summary li ul {
+  margin: 2px 0 2px 10px;
 }
 .book .book-summary ul.summary li a, .book .book-summary ul.summary li {
   border: 0;
-  text-decoration: underline;
-  color: #356196;
+  text-decoration: none;
+  color: #3C3D00;
   white-space: normal;
   padding: 1px;
 }
 .book .book-summary ul.summary li a:hover, .book .book-summary ul.summary li.active>a {
-  color: #c04384;
+  color: #05C;
 }
 .book .book-summary ul.summary {
   top: 510px;
 }
 .book .book-header .btn {
-  color: #fff;
+  color: #3C3D00;
 }
 .book .book-header h1 {
   opacity: 100%;
@@ -906,7 +909,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th.dtr-control:before
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border: 2px;
-  border-color: #c04384;
+  border-color: #FFEB00;
   border-style: solid;
   background: #eee;
   background-image: url(img/alert.png);
@@ -922,21 +925,21 @@ img.cc{
 }
 h3, .h3, .book .book-body .page-wrapper .page-inner section.normal h3 {
   font-size: 30px;
-  color: #356196;
+  color: #3C3D00;
   font-family: 'flanders_art_sansregular', sans-serif;
 }
 h4, .h4,  .book .book-body .page-wrapper .page-inner section.normal h4{
   font-size: 22px;
-  color: #356196;
+  color: #3C3D00;
   font-family: 'flanders_art_sansregular', sans-serif;
 }
 h5, .h5,  .book .book-body .page-wrapper .page-inner section.normal h5{
   font-size: 18px;
-  color: #356196;
+  color: #3C3D00;
   font-family: 'flanders_art_sansregular', sans-serif;
 }
 h6, .h6,  .book .book-body .page-wrapper .page-inner section.normal h6{
   font-size: 16px;
-  color: #356196;
+  color: #3C3D00;
   font-family: 'flanders_art_sansregular', sans-serif;
 }
