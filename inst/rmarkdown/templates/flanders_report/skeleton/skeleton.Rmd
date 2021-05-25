@@ -49,6 +49,7 @@ site: bookdown::bookdown_site
 output:
   INBOmd::inbo_gitbook:
     split_by: "chapter+number"
+    style: Flanders
   bookdown::pdf_book:
     base_format: INBOmd::inbo_rapport
     style: Flanders

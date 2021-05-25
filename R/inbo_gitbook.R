@@ -6,7 +6,8 @@
 #' be determined by the header ID's, e.g. the filename for the first chapter
 #' with a chapter title \code{# Introduction} will be
 #' \file{1-introduction.html}.
-#' @inheritParams inbo_rapport_css
+#' @inheritParams inbo_rapport_template
+#' @inheritParams inbo_rapport
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
@@ -14,10 +15,15 @@
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
 inbo_gitbook <- function(
-  split_by = c("chapter+number", "section+number"), lang = c("nl", "en")
+  split_by = c("chapter+number", "section+number"), lang = c("nl", "en"),
+  style = c("INBO", "Vlaanderen", "Flanders")
 ) {
   split_by <- match.arg(split_by)
   lang <- match.arg(lang)
+  style <- match.arg(style)
+  source_dir <- system.file("css", package = "INBOmd")
+  target_dir <- file.path(getwd(), "css")
+  dir.create(target_dir, showWarnings = FALSE)
   pandoc_args = c(
     "--csl",
     system.file(
@@ -49,11 +55,21 @@ inbo_gitbook <- function(
     ifelse(has_name(fm, "lang"), fm$lang, lang)
   )
   lang <- ifelse(lang != "nl", "en", "nl")
+  assert_that(
+    style != "Flanders" || lang != "nl",
+    msg = "Use style: Vlaanderen when the language is nl"
+  )
+  css <- ifelse(style == "INBO", "inbo.css", "vlaanderen.css")
+  file.copy(file.path(source_dir, css), target_dir, overwrite = TRUE)
+  pandoc_args <- c(
+    pandoc_args,
+    pandoc_variable_arg("css", file.path("css", css, fsep = "/"))
+  )
   config <- gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = inbo_rapport_css(format = "html", lang = lang)
+    template = inbo_rapport_template(format = "html", lang = lang)
   )
   config$clean_supporting <- TRUE
   return(config)

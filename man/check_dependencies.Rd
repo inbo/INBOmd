@@ -13,7 +13,7 @@ Missing dependencies will be installed automatically
 }
 \seealso{
 Other utils: 
-\code{\link{inbo_rapport_css}()},
+\code{\link{inbo_rapport_template}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
 \code{\link{render_natbib}()}
