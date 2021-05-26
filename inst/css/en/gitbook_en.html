@@ -164,11 +164,11 @@ $if(title)$
 
   <p><b>Location:</b><br>
   $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen, Belgium
   $else$
-  INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  INBO Brussels<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussels, Belgium
   $endif$
-  <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
+  <br><a href="https://www.vlaanderen.be/inbo/en-gb">https://www.vlaanderen.be/inbo/en-gb</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
@@ -218,7 +218,7 @@ function display_export(id) {
   author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
   title = {$title$$if(subtitle)$. $subtitle$$endif$},
   institution = {Research Institute for Nature and Forest},
-  adress = {$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België},
+  adress = {$if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium},
   year = {$year$},
   number = {$year$ ($reportnr$)},
   doi = {$doi$},
@@ -232,7 +232,7 @@ $for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
 DO  - $doi$
 PB  - Research Institute for Nature and Forest
-PP  - $if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België
+PP  - $if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium
 PY  - $year$
 SN  - 1782-9054
 ER  -
@@ -253,7 +253,7 @@ ER  -
   ],
   "issued":{"date-parts":[[$year$]]},
   "publisher":"Research Institute for Nature and Forest",
-  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België",
+  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium",
 }
 </pre>
 
