@@ -59,6 +59,10 @@ inbo_gitbook <- function(
     style != "Flanders" || lang != "nl",
     msg = "Use style: Vlaanderen when the language is nl"
   )
+  assert_that(
+    style == "Flanders" || lang != "en",
+    msg = "Use style: Flanders when the language is not nl"
+  )
   css <- ifelse(style == "INBO", "inbo.css", "vlaanderen.css")
   file.copy(file.path(source_dir, css), target_dir, overwrite = TRUE)
   pandoc_args <- c(
