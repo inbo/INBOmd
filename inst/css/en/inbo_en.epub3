@@ -26,13 +26,9 @@ $for(header-includes)$
   $header-includes$
 $endfor$
 </head>
-<body$if(coverpage)$ id="cover"$endif$>
+<body$if(coverpage)$ id="cover"$endif$$if(body-type)$ epub:type="$body-type$"$endif$>
 $if(titlepage)$
-<section epub:type="titlepage">
-  <div id="$idprefix$header">
-  $if(cover_image)$
-    <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
-  $endif$
+<section epub:type="titlepage" class="titlepage">
   <h1 class="title">$title$</h1>
   $if(subtitle)$
   <h2 class="subtitle">$subtitle$</h2>
@@ -104,11 +100,11 @@ $if(titlepage)$
 
   <p><b>Location:</b><br>
   $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen, Belgium
   $else$
-  INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  INBO Brussels<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussels, Belgium
   $endif$
-  <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
+  <br><a href="https://www.vlaanderen.be/inbo/en-gb">https://www.vlaanderen.be/inbo/en-gb</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
@@ -157,7 +153,7 @@ $if(titlepage)$
   <p><b>Responsible publisher:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Cover photo:</b><br>$cover_description$
+    <p><b>Foto cover:</b><br>$cover_description$
   $else$
     <h1 class = "missing">!!!! MISSING: cover_description !!!!</h1>
   $endif$
@@ -178,9 +174,15 @@ $if(titlepage)$
      $endfor$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" class = "cc"/></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie</a>.
-  </div>
+  <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by-sa.png" class = "cc"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 Generic License</a>.
 </section>
+$else$
+$if(coverpage)$
+<div id="cover-image">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
+<image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
+</svg>
+</div>
 $else$
 $for(include-before)$
 $include-before$
@@ -189,6 +191,7 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
+$endif$
 $endif$
 </body>
 </html>

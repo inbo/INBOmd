@@ -58,10 +58,8 @@ output:
     lof: TRUE
     lot: TRUE
     floatbarrier: subsection
-  bookdown::epub_book:
-    stylesheet: "css/inbo_rapport.css"
-    template: !expr INBOmd::inbo_rapport_css("epub", "en")
-    pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
+  INBOmd::inbo_gitbook:
+    style: Flanders
 ---
 
 # Acknowledgment {-}

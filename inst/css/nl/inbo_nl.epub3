@@ -26,13 +26,9 @@ $for(header-includes)$
   $header-includes$
 $endfor$
 </head>
-<body$if(coverpage)$ id="cover"$endif$>
+<body$if(coverpage)$ id="cover"$endif$$if(body-type)$ epub:type="$body-type$"$endif$>
 $if(titlepage)$
-<section epub:type="titlepage">
-  <div id="$idprefix$header">
-  $if(cover_image)$
-    <img src="$url$$cover_image$" alt = "$for(author)$$if(author.name)$$author.name$ $else$$author$ $endif$$endfor$$title$">
-  $endif$
+<section epub:type="titlepage" class="titlepage">
   <h1 class="title">$title$</h1>
   $if(subtitle)$
   <h2 class="subtitle">$subtitle$</h2>
@@ -180,6 +176,13 @@ $if(titlepage)$
   <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" class = "cc"/></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie</a>.
   </div>
 </section>
+$else$
+$if(coverpage)$
+<div id="cover-image">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
+<image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
+</svg>
+</div>
 $else$
 $for(include-before)$
 $include-before$

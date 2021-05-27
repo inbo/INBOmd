@@ -57,10 +57,8 @@ output:
     lof: TRUE
     lot: TRUE
     floatbarrier: subsection
-  bookdown::epub_book:
-    stylesheet: "css/inbo_rapport.css"
-    template: !expr INBOmd::inbo_rapport_css("epub")
-    pandoc_args: !expr c("--csl", system.file("research-institute-for-nature-and-forest.csl", package = "INBOmd"))
+  INBOmd::inbo_ebook:
+    style: INBO # Gebruik "Vlaanderen" voor de overkoepelende Vlaamse huisstijl
 ---
 
 # Dankwoord {-}

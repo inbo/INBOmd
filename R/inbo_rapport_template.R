@@ -10,23 +10,14 @@ inbo_rapport_template <- function(
   format <- match.arg(format)
   source_dir <- system.file("css", package = "INBOmd")
   target_dir <- file.path(getwd(), "css")
+  dir.create(target_dir, recursive = TRUE, showWarnings = FALSE)
   source_files <- list.files(
-    file.path(source_dir, c("fonts", "img")),
+    file.path(source_dir, c("fonts", "img", lang)),
     full.names = TRUE, recursive = TRUE
   )
-  new_dirs <- gsub(source_dir, target_dir, unique(dirname(source_files)))
-  vapply(
-    new_dirs, dir.create, logical(1), showWarnings = FALSE, recursive = TRUE
-  )
   file.copy(
-    source_files, gsub(source_dir, target_dir, source_files), overwrite = TRUE
-  )
-  source_files <- list.files(
-    file.path(source_dir, lang), full.names = TRUE, recursive = TRUE
-  )
-  file.copy(
-    source_files, overwrite = TRUE,
-    gsub(file.path(source_dir, lang), target_dir, source_files)
+    source_files, file.path(target_dir, basename(source_files)),
+    overwrite = TRUE
   )
   file.path(
     "css",

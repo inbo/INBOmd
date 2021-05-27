@@ -32,6 +32,7 @@ INBO version of bookdown::gitbook
 }
 \seealso{
 Other output: 
+\code{\link{inbo_ebook}()},
 \code{\link{inbo_handouts}()},
 \code{\link{inbo_poster}()},
 \code{\link{inbo_rapport}()},
