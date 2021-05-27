@@ -15,7 +15,7 @@ inbo_ebook <- function(
   source_dir <- system.file("css", package = "INBOmd")
   target_dir <- file.path(getwd(), "css")
   dir.create(target_dir, showWarnings = FALSE)
-  pandoc_args = c(
+  pandoc_args <- c(
     "--csl",
     system.file(
       "research-institute-for-nature-and-forest.csl", package = "INBOmd"

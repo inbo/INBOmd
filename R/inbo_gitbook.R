@@ -24,7 +24,7 @@ inbo_gitbook <- function(
   source_dir <- system.file("css", package = "INBOmd")
   target_dir <- file.path(getwd(), "css")
   dir.create(target_dir, showWarnings = FALSE)
-  pandoc_args = c(
+  pandoc_args <- c(
     "--csl",
     system.file(
       "research-institute-for-nature-and-forest.csl", package = "INBOmd"
@@ -44,7 +44,7 @@ inbo_gitbook <- function(
         dpi = 770 * 25.4 / 210, filenames = file.path(getwd(), "cover.jpeg")
       )
     }
-    pandoc_args = c(
+    pandoc_args <- c(
       pandoc_args,
       pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
     )
