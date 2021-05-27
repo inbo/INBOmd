@@ -26,7 +26,7 @@
 
 ## Internal changes
 
-* Setup quality assurrance using [checklist](https://inbo.github.io/checklist).
+* Setup quality assurrance using [checklist](https://inbo.github.io/checklist/).
 
 # INBOmd 0.4.9
 

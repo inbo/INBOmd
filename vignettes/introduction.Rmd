@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 
 # Goal
 
-The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files. The styles are based on the corporate identity of the Research Instutite for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](https://www.inbo.be)). The styles itself are not intended for use by parties external to INBO.
+The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files.
+The styles are based on the corporate identity of the Research Institute for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](https://www.vlaanderen.be/inbo/en-gb/)).
+The styles itself are not intended for use by parties external to INBO.
 We still provide them to other users as an inspiration and example on how to create their own corporate identity styles for `rmarkdown` files. 
 
 All templates are based on [`bookdown`](https://bookdown.org/home/about/), which is an extension of `rmarkdown`.
@@ -33,7 +35,9 @@ It is tailored towards writing books and technical documentation.
     - `rmarkdown` will first execute the `R` code in the document and paste its output in a plain `markdown` file. This is then rendered into the requested output format.
     - This saves a lot of work and avoid copy/paste errors.
 1. Storing the `R` code within the report makes it easy to rerun the report when the data is updated. 
-1. The plain text source code is lightweight. The source code of a report is seldom larger than a few hunderd kilobyte. Yes, kilobyte.
+1. The plain text source code is lightweight.
+  The source code of a report is seldom larger than a few hundred kilobyte.
+  Yes, kilobyte.
 1. Plain text files work great in combination with [version control systems](https://en.wikipedia.org/wiki/Version_control) like [Git](https://en.wikipedia.org/wiki/Git).
 1. `bookdown` is a useful tool for conducting [open research](https://en.wikipedia.org/wiki/Open_research) and [open science](https://en.wikipedia.org/wiki/Open_science).
 1. You can get multiple output formats from the same source. The report template can yield a pdf, an e-book and a website.
@@ -46,12 +50,22 @@ It is tailored towards writing books and technical documentation.
     1. "presentation": each time point of the presentation is one page in a pdf. Incremental slides will result in several pages, one for each increment.
     1. "handout": a single page for each slide. In case of incremental slides, only the last slide will be shown. Useful when handouts are required in combination with incremental slides.
     1. "report": mostly relevant when the slides are used for teaching code. The output may not fit on a single single slide, resulting is a substantial number of slides. Using a "report" like style makes handouts more compact and readable.
-- `flanders_slides` is a similar template as `inbo_slides`. It uses the corporate identity of [Flanders](http://www.ditisvlaanderen.be/). Only the presenation and handout versions are available.
+- `flanders_slides` is a similar template as `inbo_slides`.
+  It uses the corporate identity of [Flanders](https://www.ditisvlaanderen.be/).
+  Only the presentation and handout versions are available.
 - `inbo_poster` is a template for A0 posters in pdf format.
 
 # Installation
 
-INBOmd requires a working installation of XeLaTeX. We highly recommend to use the TinyTeX. Close all open R sessions and start a fresh R session. Execute the commands below. This will install TinyTeX on your machine. No admin rights are required. Although TinyTeX is a lightweight installation, it still is several 100 MB large. Please note that TinyTex is not compatible with MikTex. Remove MikTex before installing TinyTex
+INBOmd requires a working installation of XeLaTeX.
+We highly recommend to use the TinyTeX.
+Close all open R sessions and start a fresh R session.
+Execute the commands below.
+This will install TinyTeX on your machine.
+No admin rights are required.
+Although TinyTeX is a lightweight installation, it still is several 100 MB large.
+Please note that TinyTex is not compatible with MikTex.
+Remove MikTex before installing TinyTex.
 
 ```{r eval = FALSE}
 update.packages(ask = FALSE, checkBuilt = TRUE)
@@ -95,4 +109,8 @@ Go the `Build` pane and click on the `Build book` button. This button doubles as
 
 ## Examples of `INBOmd`
 
-We maintain a separate collection of examples based on `INBOmd`. The rendered versions are available through http://inbomd-examples.netlify.com/. Visit https://github.com/inbo/inbomd_examples if you are looking for the source code of these examples. Please note that the main intention of these examples is to show what is available with `INBOmd` and how to code it. We will add links to real documents based on `INBOmd` as well.
+We maintain a separate collection of examples based on `INBOmd`.
+The rendered versions are available through https://inbomd-examples.netlify.app/.
+Visit https://github.com/inbo/inbomd_examples if you are looking for the source code of these examples.
+Please note that the main intention of these examples is to show what is available with `INBOmd` and how to code it.
+We will add links to real documents based on `INBOmd` as well.

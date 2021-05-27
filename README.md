@@ -1,7 +1,7 @@
 # INBOmd <img src="man/figures/logo.svg" align="right" alt="A hexagon with the word INBOmd and the Markdown logo" width="120" />
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![License](https://img.shields.io/github/license/inbo/INBOmd)
 [![R build status](https://github.com/inbo/inbomd/workflows/check%20package%20on%20main/badge.svg)](https://github.com/inbo/inbomd/actions)
 [![Codecov test coverage](https://codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://codecov.io/gh/inbo/inbomd?branch=main)
@@ -18,7 +18,7 @@ INBOmd contains templates to generate several types of documents with the corpor
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.com/articles/introduction.html).
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.app/articles/introduction.html).
 
 ## In the wild
 
