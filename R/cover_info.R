@@ -31,6 +31,14 @@ Embargo tot: %s\n%s",
     yaml_header$title, yaml_header$author, yaml_header$corresponding,
     yaml_header$cover_photo, yaml_header$embargo, yaml_header$print
   )
+  if (has_name(yaml_header, "client_logo")) {
+    cover_txt <- c(cover_txt, paste("Logo klant:", yaml_header$client_logo))
+  }
+  if (has_name(yaml_header, "cooperation_logo")) {
+    cover_txt <- c(
+      cover_txt, paste("Logo samenwerking:", yaml_header$cooperation_logo)
+    )
+  }
   writeLines(cover_txt, file.path(dirname(path), "cover.txt"))
   return(invisible(NULL))
 }
