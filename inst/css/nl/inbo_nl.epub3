@@ -31,7 +31,7 @@ $if(titlepage)$
 <section epub:type="titlepage" class="titlepage">
   <h1 class="title">$title$</h1>
   $if(subtitle)$
-  <h2 class="subtitle">$subtitle$</h2>
+    <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
     $if(author.name)$
@@ -62,13 +62,13 @@ $if(titlepage)$
     $endif$
   $endfor$
   $if(date)$
-  <p class="date"><em>$date$</em></p>
+    <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4><a class="doi" href="#">$doi$</a></h4>
+    <h4><a class="doi" href="#">$doi$</a></h4>
   $endif$
   $if(ordernr)$
-  <h4 class ="ordernr">$ordernr$</h4>
+    <h4 class ="ordernr">$ordernr$</h4>
   $endif$
   <h1>Colofon</h1>
   $if(reviewer)$
@@ -93,16 +93,16 @@ $if(titlepage)$
       $endif$
     $endfor$
   $else$
-  <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
   $endif$
 
   <p>Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data‐ en kennisontsluiting het biodiversiteitsbeleid en ‐beheer onderbouwt en evalueert.
 
   <p><b>Vestiging:</b><br>
   $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+    INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
   $else$
-  INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+    INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
   $endif$
   <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
 
@@ -177,20 +177,21 @@ $if(titlepage)$
   </div>
 </section>
 $else$
-$if(coverpage)$
-<div id="cover-image">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
-<image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
-</svg>
-</div>
-$else$
-$for(include-before)$
-$include-before$
-$endfor$
-$body$
-$for(include-after)$
-$include-after$
-$endfor$
+  $if(coverpage)$
+    <div id="cover-image">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
+    <image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
+    </svg>
+    </div>
+  $else$
+    $for(include-before)$
+      $include-before$
+    $endfor$
+    $body$
+    $for(include-after)$
+      $include-after$
+    $endfor$
+  $endif$
 $endif$
 </body>
 </html>
