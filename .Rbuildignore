@@ -9,6 +9,7 @@
 ^data-raw$
 ^docs$
 ^LICENSE.md$
+^man-roxygen$
 ^pkgdown$
 ^README\.Rmd$
 ^wercker\.yml$
