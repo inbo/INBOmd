@@ -12,7 +12,6 @@ inbo_ebook <- function(
 ) {
   lang <- match.arg(lang)
   style <- match.arg(style)
-  source_dir <- system.file("css", package = "INBOmd")
   target_dir <- file.path(getwd(), "css")
   dir.create(target_dir, showWarnings = FALSE)
   pandoc_args <- c(
