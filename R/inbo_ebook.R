@@ -101,8 +101,7 @@ inbo_ebook <- function(
     style == "Flanders" || lang != "en",
     msg = "Use style: Flanders when the language is not nl"
   )
-  css <- ifelse(style == "INBO", "inbo.css", "vlaanderen.css")
-  css <- readLines(file.path(source_dir, css))
+  css <- define_css(style = style)
   css <- gsub("(url\\(\"?)(fonts|img)", "\\1../fonts", css)
   writeLines(css, file.path(target_dir, "epub.css"))
   config <- epub_book(

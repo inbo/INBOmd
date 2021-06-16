@@ -63,11 +63,12 @@ inbo_gitbook <- function(
     style == "Flanders" || lang != "en",
     msg = "Use style: Flanders when the language is not nl"
   )
-  css <- ifelse(style == "INBO", "inbo.css", "vlaanderen.css")
-  file.copy(file.path(source_dir, css), target_dir, overwrite = TRUE)
+
+  css <- define_css(style = style)
+  writeLines(css, file.path(target_dir, "report.css"))
   pandoc_args <- c(
     pandoc_args,
-    pandoc_variable_arg("css", file.path("css", css, fsep = "/"))
+    pandoc_variable_arg("css", file.path(target_dir, "report.css"))
   )
   config <- gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
@@ -77,4 +78,25 @@ inbo_gitbook <- function(
   )
   config$clean_supporting <- TRUE
   return(config)
+}
+
+define_css <- function(style) {
+  style_colors <- list(
+    INBO = c(
+      `heading-color` = "#356196", `link-color` = "#C04384",
+      `link-toc-color` = "#356196", `link-toc-hover-color` = "#C04384",
+      `header-color` = "#356196", `header-background-color` = "#FFFFFF",
+      `alert-block-color` = "#C04384"
+    ),
+    level1 = c(
+      `heading-color` = "#3C3D00", `link-color` = "#05C",
+      `link-toc-color` = "#3C3D00", `link-toc-hover-color` = "#05C",
+      `header-color` = "#3C3D00", `header-background-color` = "#FFEB00",
+      `alert-block-color` = "#FFEB00"
+    )
+  )
+  style_colors <- style_colors[[ifelse(style == "INBO", "INBO", "level1")]]
+  style_colors <- sprintf("  --%s: %s;", names(style_colors), style_colors)
+  css <- system.file(file.path("css", "report.css"), package = "INBOmd")
+  c(readLines(css), ":root {", style_colors, "}")
 }
