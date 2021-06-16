@@ -74,6 +74,9 @@
 \def\alertlogo#1{\def\@alertlogo{#1}}
 \alertlogo{}
 
+\def\examplelogo#1{\def\@examplelogo{#1}}
+\examplelogo{}
+
 % define page geometry
 \RequirePackage[a4paper, top = 20mm, bottom = 25mm, outer = 30mm, inner = 30mm, footskip=10mm]{geometry}
 
@@ -157,6 +160,7 @@
 }
 
 \newenvironment{exampleblock}[2][]{%
+  \marginnote{\includegraphics[width=10mm]{\@examplelogo}}[1mm]
   \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]
   \getStringLength{#2}\length
   \ifnum\length>0
