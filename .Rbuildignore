@@ -18,3 +18,4 @@ CONTRIBUTING.md
 create_docker.sh
 Dockerfile
 docs
+entrypoint.sh
