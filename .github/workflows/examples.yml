@@ -1,0 +1,15 @@
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+name: test-inbomd-examples
+jobs:
+  test-examples:
+    runs-on: ubuntu-latest
+    name: "test Rmd"
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: inbo/actions/render_inbomd@master
