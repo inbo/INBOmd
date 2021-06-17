@@ -6,6 +6,8 @@ if [ $GITHUB_REPOSITORY = "inbo/inbomd" ] ; then
   Rscript -e 'remotes::install_local("workspace")'
   git clone --single-branch --branch=master --depth=1 https://github.com/inbo/inbomd_examples /examples
   cd /examples
+else
+  ln -s $GITHUB_WORKSPACE /examples
 fi
 Rscript source/render_all.R
 if [ $? -ne 0 ]; then
