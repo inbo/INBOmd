@@ -1,83 +1,122 @@
 #' Create a report with the Flemish corporate identity
 #' @param subtitle An optional subtitle.
-#' @param reportnr The report number.
-#'   Defaults to the date and time of compilation.
 #' @param ordernr The optional order number.
 #' @param floatbarrier Should float barriers be placed?
 #'   Defaults to NA (only float barriers before starting a new chapter `#`).
 #'   Options are "section" (`##`), "subsection" (`###`) and
 #'   "subsubsection" (`####`).
 #' @param style What template to use.
-#'   Use "INBO" for an INBO report in Dutch.
-#'   Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+#'   Use `"INBO"` for an INBO report in Dutch.
+#'   Use `"Vlaanderen"` for a report in Dutch written by more than one Flemish
 #'   government agency.
-#'   Use "Flanders" for a report in English.
+#'   Use `"Flanders"` for a report in another language.
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures.
 #' @param pandoc_args Additional command line options to pass to pandoc
+#' @param main_language The main language of the document.
+#' Defaults to `"english"`.
+#' See the details for more information.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
 #' Available extra parameters:
-#' - `lof`: display a list of figures. Defaults to TRUE
-#' - `lot`: display a list of tables. Defaults to TRUE
+#' - `lof`: display a list of figures.
+#' Defaults to `FALSE`.
+#' - `lot`: display a list of tables.
+#' Defaults to `FALSE`.
 #' - `tocdepth`: which level headers to display.
-#'     - 0: upto chapters (`#`)
-#'     - 1: upto section (`##`)
-#'     - 2: upto subsection (`###`)
-#'     - 3: upto subsubsection (`####`) default
+#'     - 0: up to chapters (`#`)
+#'     - 1: up to section (`##`)
+#'     - 2: up to subsection (`###`)
+#'     - 3: up to subsubsection (`####`) default
 #' - `hyphenation`: the correct hyphenation for certain words.
-#' - `cover`: an optional pdf file. The first two pages will be prepended to the
-#' report.
+#' - `cover`: an optional pdf file.
+#' The first two pages will be prepended to the report.
+#'
+#' # Language
+#'
+#' The main language is hard-coded to Dutch for the styles `INBO` and
+#' `Vlaanderen`.
+#' It is set by default to English for the style `Flanders` and can be set to
+#' another language by setting `main_language` in the YAML header.
+#'
+#' You can define some parts of the text to be in a different language than the
+#' main language (e.g. an abstract in a different language).
+#' This is currently limited to Dutch, English and French.
+#' Use `\bdutch` before and `\edutch` after the text in Dutch.
+#' Use `\benglish` before and `\eenglish` after the text in English.
+#' Use `\bfrench` before and `\efrench` after the text in French.
+#' The styles `INBO` and `Vlaanderen` have French and English as optional
+#' languages.
+#' The `Flanders` style has by default Dutch and French as optional languages.
+#'
+#' Setting the language affects the hyphenation pattern and the names of items
+#' like figures, tables, table of contents, list of figures, list of tables,
+#' references, page numbers, ...
 #' @export
+#' @importFrom assertthat assert_that is.string
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 inbo_rapport <- function(
   subtitle,
-  reportnr,
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
+  main_language = "english",
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
+  flandersfont = FALSE,
   ...
 ) {
+  assert_that(is.string(main_language))
   check_dependencies()
   floatbarrier <- match.arg(floatbarrier)
   style <- match.arg(style)
+  assert_that(
+    style != "Flanders" || main_language != "dutch",
+    msg = "Use style: Vlaanderen when the main language is Dutch"
+  )
+  other_languages <- c("english", "french", "dutch")
+  other_languages <- other_languages[other_languages != main_language]
   extra <- list(...)
   codesize <- match.arg(codesize)
 
-  template <- system.file("pandoc/inbo_rapport.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
+  )
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
-  citation_package <- match.arg(citation_package)
 
   args <- c(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
+    pandoc_variable_arg("flandersfont", flandersfont),
     switch(
       style,
       Flanders = c(
         pandoc_variable_arg("style", "flanders_report"),
-        pandoc_variable_arg("mylanguage", "french,dutch,english")
+        pandoc_variable_arg(
+          "babel", paste(c(other_languages, main_language), collapse = ",")
+        ),
+        pandoc_variable_arg("lang", "en")
       ),
       Vlaanderen = c(
         pandoc_variable_arg("style", "vlaanderen_report"),
-        pandoc_variable_arg("mylanguage", "french,english,dutch")
+        pandoc_variable_arg("babel", "french,english,dutch"),
+        pandoc_variable_arg("lang", "nl")
       ),
       INBO = c(
         pandoc_variable_arg("style", "inbo_report"),
-        pandoc_variable_arg("mylanguage", "french,english,dutch")
+        pandoc_variable_arg("babel", "french,english,dutch"),
+        pandoc_variable_arg("lang", "nl")
       )
     ),
     ifelse(
@@ -87,16 +126,9 @@ inbo_rapport <- function(
     ),
     "xelatex", pandoc_args,
     # citations
-    ifelse(
-      rep(citation_package == "none", 2),
-      c("--csl", pandoc_path_arg(csl)),
-      c(paste0("--", citation_package), "")
-    ),
+    c("--csl", pandoc_path_arg(csl)),
     # content includes
     includes_to_pandoc_args(includes),
-    ifelse(
-      rep(missing(reportnr), 2), "", pandoc_variable_arg("reportnr", reportnr)
-    ),
     ifelse(
       rep(missing(ordernr), 2), "", pandoc_variable_arg("ordernr", ordernr)
     ),
@@ -153,6 +185,7 @@ inbo_rapport <- function(
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
+    cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
     mainmatter <- grep("\\\\mainmatter", text) #nolint
@@ -170,24 +203,39 @@ inbo_rapport <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text) #nolint
-    startbib <- grep("%startbib", text)
-    endbib <- grep("%endbib", text)
-    if (length(appendix) & length(startbib)) {
-      text <- text[
-        c(
-          1:(appendix - 1),              # mainmatter
-          (startbib + 1):(endbib - 1),   # bibliography
-          (appendix):(startbib - 1),     # appendix
-          (endbib + 1):length(text)      # backmatter
+    appendix <- grep("\\\\appendix", text) # nolint
+    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint
+    if (length(startbib)) {
+      if (length(appendix)) {
+        text <- c(
+          text[1:(appendix - 1)],              # mainmatter
+          "\\chapter*{\\bibname}",
+          "\\addcontentsline{toc}{chapter}{\\bibname}",
+          text[startbib],                      # bibliography
+          "",
+          text[startbib + 1],
+          "",
+          text[(startbib + 2):(length(text) - 1)],
+          text[(appendix):(startbib - 1)],     # appendix
+          text[length(text)]                   # backmatter
         )
-      ]
+      } else {
+        text <- c(
+          text[1:(startbib - 1)],              # mainmatter
+          "\\chapter*{\\bibname}",
+          "\\addcontentsline{toc}{chapter}{\\bibname}",
+          text[startbib],                      # bibliography
+          "",
+          text[startbib + 1],
+          "",
+          text[(startbib + 2):length(text)]
+        )
+      }
     }
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
-
   output_format(
     knitr = knitr_options(
       opts_knit = list(

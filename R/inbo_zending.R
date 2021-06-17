@@ -28,7 +28,6 @@ inbo_zending <- function(
   reportdate,
   colleagues = "",
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  citation_package = c("natbib", "none"),
   includes = NULL,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "dutch",
@@ -42,7 +41,9 @@ inbo_zending <- function(
   extra <- list(...)
   codesize <- match.arg(codesize)
 
-  template <- system.file("pandoc/inbo_zending.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_zending.tex"), package = "INBOmd"
+  )
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
   args <- c(
@@ -62,12 +63,7 @@ inbo_zending <- function(
     args <- c(args, "--pdf-engine", "xelatex", pandoc_args)
   }
   # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "none") {
-    args <- c(args, "--csl", pandoc_path_arg(csl))
-  } else {
-    args <- c(args, paste0("--", citation_package))
-  }
+  args <- c(args, "--csl", pandoc_path_arg(csl))
   # content includes
   args <- c(args, includes_to_pandoc_args(includes))
 

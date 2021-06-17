@@ -16,13 +16,11 @@ inbo_slides(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  citation_package = c("natbib", "none"),
-  natbib_title,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.INBO.be",
+  website = "www.vlaanderen.be/inbo",
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
@@ -60,11 +58,6 @@ Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
 \code{"scriptsize"} and \code{"tiny"}.
 Defaults to \code{"footnotesize"}.}
 
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
-
-\item{natbib_title}{The title of the bibliography}
-
 \item{lang}{The language of the document.
 Defaults to \code{"dutch"}}
 
@@ -76,7 +69,7 @@ Defaults to \code{FALSE}.}
 \item{toc}{display a table of content after the title slide}
 
 \item{website}{An optional URL to display on the left sidebar.
-Defaults to \code{"www.INBO.be"}.}
+Defaults to \code{"www.vlaanderen.be/inbo"}.}
 
 \item{theme}{The theme to use.
 Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
@@ -112,6 +105,8 @@ normal fonts at their natural sizes.\tabular{crrr}{
 }
 \seealso{
 Other output: 
+\code{\link{inbo_ebook}()},
+\code{\link{inbo_gitbook}()},
 \code{\link{inbo_handouts}()},
 \code{\link{inbo_poster}()},
 \code{\link{inbo_rapport}()},

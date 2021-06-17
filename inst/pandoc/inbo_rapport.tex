@@ -1,10 +1,70 @@
-$if(mylanguage)$\PassOptionsToPackage{$mylanguage$}{babel}$endif$
+$if(babel)$\PassOptionsToPackage{$babel$}{babel}$endif$
 \documentclass[twoside]{extreport}
-
 \usepackage{$style$}
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$
+$if(depotnr)$
+\depotnr{$depotnr$}
+$endif$
+$if(year)$
+\year{$year$}
+$endif$
+$if(reviewer)$
+\reviewer{
+$for(reviewer)$$if(reviewer.name)$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{$endif$$if(reviewer.firstname)$$reviewer.firstname$ $endif$$reviewer.name$$if(reviewer.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$reviewer$$endif$$sep$, $endfor$
+}
+$endif$
+$if(reportnr)$
+\reportnr{$reportnr$}
+$endif$
+$if(corresponding)$
+\corresponding{$corresponding$}
+$endif$
+$if(doi)$
+\doi{$doi$}
+$endif$
+$if(cover_description)$
+\coverdescription{$cover_description$}
+$endif$
+$if(shortauthor)$
+\shortauthor{$shortauthor$}
+$endif$
+$if(cooperation)$
+\cooperation{
+\textbf{\cfcoop}\\
+   $for(cooperation)$
+      $cooperation$
+   $sep$ \\
+   $endfor$
+   $if(cooperation_logo)$
+   \\ \vspace \fontsizebase
+   \includegraphics[height = 15mm, keepaspectratio]{$cooperation_logo$}
+   $endif$
+}
+$endif$
+$if(client)$
+\client{
+\textbf{\cfclient}\\
+   $for(client)$
+      $client$
+   $sep$ \\
+   $endfor$
+   $if(client_logo)$
+   \\ \vspace{\fontsizebase} \includegraphics[height = 15mm, keepaspectratio]{$client_logo$}
+   $endif$
+}
+$endif$
+\citetitle{$title$$if(subtitle)$. $subtitle$$endif$}
+
+$if(geraardsbergen)$
+\establishment{Geraardsbergen}
+$else$
+\establishment{Brussel}
+$endif$
+
+\flandersfont{$flandersfont$}
+\usepackage{reportfont}
 
 $if(floatbarriersection)$
 \makeatletter
@@ -47,9 +107,14 @@ $endif$
 
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
-\author{$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$sep$, $endfor$}
+\author{
+$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
+}
+\colofonauthor{
+$for(author)$
+$if(author.name)$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{$endif$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
+}
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
-$if(reportnr)$\reportnumber{$reportnr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 
@@ -77,7 +142,7 @@ $endfor$
 
 \begin{document}
 $if(cover)$
-\includepdf[pages=1-2]{$cover$}
+\includepdf[pages=1]{$cover$}
 $endif$
 \maketitle
 \pagenumbering{arabic}
@@ -92,13 +157,13 @@ $endfor$
 \clearpage
 
 \phantomsection
+\addcontentsline{toc}{chapter}{\contentsname}
 $if(tocdepth)$
 \setcounter{tocdepth}{$tocdepth$}
 $else$
 \setcounter{tocdepth}{3}
 $endif$
 \tableofcontents
-\addcontentsline{toc}{chapter}{\contentsname}
 
 $if(lof)$
 \clearpage
@@ -110,15 +175,15 @@ $endif$
 
 $if(lof)$
 \phantomsection
-\listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
 \vspace{34pt}
 $endif$
 
 $if(lot)$
 \phantomsection
-\listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
 $endif$
 
 \clearpage
@@ -126,15 +191,6 @@ $endif$
 %endtoc
 
 $body$
-
-$if(natbib)$
-%startbib
-\cleardoublepage
-\bibliographystyle{inbo}
-\bibliography{$bibliography$}
-\addcontentsline{toc}{chapter}{\bibname}
-%endbib
-$endif$
 
 $for(include-after)$
 $include-after$

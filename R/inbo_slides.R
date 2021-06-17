@@ -17,7 +17,6 @@
 #' Allowed values are `"normalsize"`, `"small"`, `"footnotesize"`,
 #' `"scriptsize"` and `"tiny"`.
 #' Defaults to `"footnotesize"`.
-#' @param natbib_title The title of the bibliography
 #' @param lang The language of the document.
 #' Defaults to `"dutch"`
 #' @param slide_level Indicate which heading level is used for the frame titles
@@ -25,7 +24,7 @@
 #' Defaults to `FALSE`.
 #' @param toc display a table of content after the title slide
 #' @param website An optional URL to display on the left sidebar.
-#' Defaults to `"www.INBO.be"`.
+#' Defaults to `"www.vlaanderen.be/inbo"`.
 #' @param theme The theme to use.
 #' Available options are `"inbo"`, `"inboenglish"` and `"vlaanderen"`.
 #' @param flandersfont If `TRUE` use the Flanders Art font.
@@ -52,7 +51,6 @@
 #' | 1.4:1 | 1.41| 148.5 mm |105 mm |
 #' | 4:3 | 1.33 | 128.0 mm | 96 mm |
 #' | 5:4 | 1.25 | 125.0 mm | 100 mm |
-#' @inheritParams rmarkdown::pdf_document
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg pandoc_path_arg pandoc_version
@@ -71,13 +69,11 @@ inbo_slides <- function(
   toc_name,
   fontsize,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  citation_package = c("natbib", "none"),
-  natbib_title,
   lang = "dutch",
   slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.INBO.be",
+  website = "www.vlaanderen.be/inbo", # nolint
   theme = c("inbo", "vlaanderen", "inboenglish"),
   flandersfont = FALSE,
   aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
@@ -85,11 +81,11 @@ inbo_slides <- function(
 ) {
   check_dependencies()
   assert_that(is.flag(toc))
-  assert_that(noNA(toc)) #nolint
+  assert_that(noNA(toc))
   assert_that(is.string(website))
   theme <- match.arg(theme)
   assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont)) #nolint
+  assert_that(noNA(flandersfont))
   aspect <- match.arg(aspect)
   current_paperwidth <- c(
     "16:9" = 160, "16:10" = 160, "14:9" = 140, "1.4:1" = 148.5, "5:4" = 125,
@@ -104,7 +100,9 @@ inbo_slides <- function(
   codesize <- match.arg(codesize)
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
-  template <- system.file("pandoc/inbo_beamer.tex", package = "INBOmd")
+  template <- system.file(
+    file.path("pandoc", "inbo_beamer.tex"), package = "INBOmd"
+  )
   args <- c(
     "--slide-level", as.character(slide_level),
     "--template", template,
@@ -127,16 +125,7 @@ inbo_slides <- function(
     }
   }
   # citations
-  citation_package <- match.arg(citation_package)
-  if (citation_package == "none") {
-    args <- c(args, "--csl", pandoc_path_arg(csl))
-  } else {
-    args <- c(args, paste0("--", citation_package))
-  }
-  if (!missing(natbib_title)) {
-    assert_that(is.string(natbib_title))
-    args <- c(args, pandoc_variable_arg("natbibtitle", natbib_title))
-  }
+  args <- c(args, "--csl", pandoc_path_arg(csl))
   if (!missing(subtitle)) {
     assert_that(is.string(subtitle))
     args <- c(args, pandoc_variable_arg("subtitle", subtitle))

@@ -41,11 +41,11 @@
 \setbeamercolor{subsection title}{fg = sectiontitle.colour, bg = }
 
 \setbeamerfont{section in toc}{size = \normalsize, series = \normalfont}
-\setbeamercolor{section in toc}{fg = frametitle.colour}
+\setbeamercolor{section in toc}{fg = link.colour}
 \setbeamertemplate{section in toc}[square]
 
 \setbeamerfont{subsection in toc}{size = \small, series = \normalfont}
-\setbeamercolor{subsection in toc}{fg = frametitle.colour}
+\setbeamercolor{subsection in toc}{fg = link.colour}
 \setbeamertemplate{subsection in toc}[square]
 
 \setbeamertemplate{itemize items}[triangle]
@@ -167,6 +167,7 @@
     \textblockcolour{}
     \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
       \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \hypersetup{hidelinks}%
       \raggedright{
         \noindent
         \insertsection
@@ -191,6 +192,7 @@
     \textblockcolour{}
     \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
       \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \hypersetup{hidelinks}%
       \raggedright{
         \noindent
         \insertsection
@@ -200,6 +202,7 @@
 
   \begin{textblock*}{\dimexpr\paperwidth-50mm\relax}(36mm, 63mm)
     \textblockcolour{}
+    \hypersetup{hidelinks}%
     {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
   \end{textblock*}
 

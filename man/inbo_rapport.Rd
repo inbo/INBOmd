@@ -6,24 +6,21 @@
 \usage{
 inbo_rapport(
   subtitle,
-  reportnr,
   ordernr,
   floatbarrier = c(NA, "section", "subsection", "subsubsection"),
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   style = c("INBO", "Vlaanderen", "Flanders"),
+  main_language = "english",
   keep_tex = FALSE,
   fig_crop = TRUE,
-  citation_package = c("natbib", "none"),
   includes = NULL,
   pandoc_args = NULL,
+  flandersfont = FALSE,
   ...
 )
 }
 \arguments{
 \item{subtitle}{An optional subtitle.}
-
-\item{reportnr}{The report number.
-Defaults to the date and time of compilation.}
 
 \item{ordernr}{The optional order number.}
 
@@ -39,10 +36,14 @@ Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
 Defaults to \code{"footnotesize"}.}
 
 \item{style}{What template to use.
-Use "INBO" for an INBO report in Dutch.
-Use "Vlaanderen" for a report in Dutch written by more than one Flemish
+Use \code{"INBO"} for an INBO report in Dutch.
+Use \code{"Vlaanderen"} for a report in Dutch written by more than one Flemish
 government agency.
-Use "Flanders" for a report in English.}
+Use \code{"Flanders"} for a report in another language.}
+
+\item{main_language}{The main language of the document.
+Defaults to \code{"english"}.
+See the details for more information.}
 
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
@@ -50,13 +51,14 @@ Defaults to \code{FALSE}.}
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}
 
-\item{citation_package}{The LaTeX package to process citations, \code{natbib}
-or \code{biblatex}. Use \code{none} if neither package is to be used.}
-
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
+
+\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
+If \code{FALSE} use Calibri.
+Defaults to \code{FALSE}.}
 
 \item{...}{extra parameters: see details}
 }
@@ -66,22 +68,47 @@ Create a report with the Flemish corporate identity
 \details{
 Available extra parameters:
 \itemize{
-\item \code{lof}: display a list of figures. Defaults to TRUE
-\item \code{lot}: display a list of tables. Defaults to TRUE
+\item \code{lof}: display a list of figures.
+Defaults to \code{FALSE}.
+\item \code{lot}: display a list of tables.
+Defaults to \code{FALSE}.
 \item \code{tocdepth}: which level headers to display.
 \itemize{
-\item 0: upto chapters (\verb{#})
-\item 1: upto section (\verb{##})
-\item 2: upto subsection (\verb{###})
-\item 3: upto subsubsection (\verb{####}) default
+\item 0: up to chapters (\verb{#})
+\item 1: up to section (\verb{##})
+\item 2: up to subsection (\verb{###})
+\item 3: up to subsubsection (\verb{####}) default
 }
 \item \code{hyphenation}: the correct hyphenation for certain words.
-\item \code{cover}: an optional pdf file. The first two pages will be prepended to the
-report.
+\item \code{cover}: an optional pdf file.
+The first two pages will be prepended to the report.
 }
 }
+\section{Language}{
+The main language is hard-coded to Dutch for the styles \code{INBO} and
+\code{Vlaanderen}.
+It is set by default to English for the style \code{Flanders} and can be set to
+another language by setting \code{main_language} in the YAML header.
+
+You can define some parts of the text to be in a different language than the
+main language (e.g. an abstract in a different language).
+This is currently limited to Dutch, English and French.
+Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
+Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
+Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
+The styles \code{INBO} and \code{Vlaanderen} have French and English as optional
+languages.
+The \code{Flanders} style has by default Dutch and French as optional languages.
+
+Setting the language affects the hyphenation pattern and the names of items
+like figures, tables, table of contents, list of figures, list of tables,
+references, page numbers, ...
+}
+
 \seealso{
 Other output: 
+\code{\link{inbo_ebook}()},
+\code{\link{inbo_gitbook}()},
 \code{\link{inbo_handouts}()},
 \code{\link{inbo_poster}()},
 \code{\link{inbo_slides}()},

@@ -38,7 +38,7 @@ Render a Markdown file with natbib bibliography
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
-\code{\link{inbo_rapport_css}()},
+\code{\link{inbo_rapport_template}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()}
 }

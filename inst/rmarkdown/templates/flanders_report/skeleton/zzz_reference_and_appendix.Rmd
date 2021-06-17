@@ -1,0 +1,9 @@
+```{r references, results = "asis", echo = FALSE}
+# references start here
+# set appendix = FALSE, if you don't have an appendix
+INBOmd::references(appendix = TRUE)
+```
+
+# First chapter of the appendix
+
+Text of the appendix
