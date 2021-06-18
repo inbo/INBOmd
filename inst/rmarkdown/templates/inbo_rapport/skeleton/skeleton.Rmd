@@ -28,15 +28,19 @@ reportnr: # Hier komt rapportnummer. Dit vraag je aan via publicaties@inbo.be.
 ordernr: # Het optionele nummer van de opdrachtgever. Wis dit als je geen opdrachtnummer hebt.
 geraardsbergen: # Zet op TRUE wanneer je INBO Geraardsbergen als vestiging wenst. FALSE of ontbrekend geeft INBO Brussel.
 client: # wis dit onderdeel wanneer je geen klant ("in opdracht van") wenst te vermelden.
-  - klant regel 1
-  - klant regel 2 # je kan tot vier regels weergeven
-client_logo: # optioneel logo van de klant (eps, pdf, png of jpg)
+  - Naam
+  - Straat huisnummer
+  - Postcode gemeente
+  - https://www.naam.be
+client_logo: # optioneel logo van de klant (png of jpg, eps of pdf kan bij pdf output)
 cooperation: # wis dit onderdeel wanneer je geen samenwerking ("in samenwerking met") wenst te vermelden
-  - samenwerking regel 1
-  - samenwerking regel 2 # je kan tot vier regels weergeven
-cooperation_logo: # optioneel logo van de medewerker (eps, pdf, png of jpg)
+  - Naam
+  - Straat huisnummer
+  - Postcode gemeente
+  - https://www.naam.be
+cooperation_logo: # optioneel logo van de medewerker (png of jpg, eps of pdf kan bij pdf output)
 embargo: 2050-12-31 # datum waarop het rapport op de website mag gepubliceerd worden
-print:
+print: # je mag dit onderdeel wissen als je geen gedrukt rapport nodig hebt.
   copies: 0 # gewenst aantal exemplaren indien gedrukt (0 = geen druk)
   motivation: # waarom moet het rapport gedrukt worden? Enkel vereist bij druk.
   pages: # aantal bladzijden van het afgewerkte rapport. Enkel vereist bij druk.
