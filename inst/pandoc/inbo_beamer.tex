@@ -10,25 +10,34 @@
 \usepackage{inbogeneric_2015}
 $if(codesize)$
 \codesize{\$codesize$}
+$else$
+\codesize{\footnotesize}
 $endif$
+$if(website)$
 \website{$website$}
-\flandersfont{$flandersfont$}
+$else$
+\website{www.vlaanderen.be/inbo}
+$endif$
+$if(flandersfont)$
+\flandersfont{TRUE}
+$endif$
 \usetheme{vlaanderenfont}
 
 $if(mylanguage)$
 \lang{$mylanguage$}
 $endif$
-$if(cover)$
-\cover{$cover$}
+$if(cover_photo)$
+\cover{$cover_photo$}
 $endif$
-$if(coveroffset)$
-\coveroffset{$coveroffset$}
+$if(cover_horizontal)$
+\coverhorizontal{$cover_horizontal$}
 $endif$
-$if(coverhoffset)$
-\coverhoffset{$coverhoffset$}
+
+$if(cover_offset)$
+\coveroffset{$cover_offset$}
 $endif$
-$if(coverhorizontal)$
-\coverhorizontal{$coverhorizontal$}
+$if(cover_hoffset)$
+\coverhoffset{$cover_hoffset$}
 $endif$
 %title verschijnt op de eerste slide. subject verschijnt enkel in de
 % eigenschappen van de pdf
@@ -52,8 +61,8 @@ $else$
 \date{}
 $endif$
 
-$if(slidelogo)$
-\slidelogo{$slidelogo$}
+$if(slide_logo)$
+\slidelogo{$slide_logo$}
 $endif$
 
 \AtBeginSection[]
@@ -69,9 +78,8 @@ $endif$
   \end{frame}
 }
 
-
 \makeatletter
-\renewcommand{\verbatim@font}{\ttfamily\$codesize$}
+\renewcommand{\verbatim@font}{\ttfamily\$if(codesize)$$codesize$$else$footnotesize$endif$}
 \makeatother
 
 $for(header-includes)$

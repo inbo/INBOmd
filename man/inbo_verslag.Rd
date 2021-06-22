@@ -33,15 +33,6 @@ Options are "section" (\verb{##}), "subsection" (\verb{###}) and
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the
-text (= normal size).
-Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
-\code{"scriptsize"} and \code{"tiny"}.
-Defaults to \code{"footnotesize"}.}
-
-\item{lang}{The language of the document.
-Defaults to \code{"dutch"}}
-
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
 

@@ -19,12 +19,6 @@ inbo_poster(
 \arguments{
 \item{subtitle}{An optional subtitle}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the
-text (= normal size).
-Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
-\code{"scriptsize"} and \code{"tiny"}.
-Defaults to \code{"footnotesize"}.}
-
 \item{lang}{The language of the document. Defaults to "english".}
 
 \item{email}{The email address to display at the bottom.

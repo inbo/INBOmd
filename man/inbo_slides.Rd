@@ -2,97 +2,101 @@
 % Please edit documentation in R/inbo_slides.R
 \name{inbo_slides}
 \alias{inbo_slides}
-\title{Use slides with the INBO theme}
+\title{pdf slides with an INBO or Flanders theme}
 \usage{
-inbo_slides(
-  subtitle,
-  location,
-  institute,
-  cover,
-  cover_offset,
-  cover_hoffset,
-  cover_horizontal = TRUE,
-  slide_logo,
-  toc_name,
-  fontsize,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch",
-  slide_level = 2,
-  keep_tex = FALSE,
-  toc = TRUE,
-  website = "www.vlaanderen.be/inbo",
-  theme = c("inbo", "vlaanderen", "inboenglish"),
-  flandersfont = FALSE,
-  aspect = c("16:9", "16:10", "14:9", "1.4:1", "5:4", "4:3", "3:2"),
-  ...
-)
+inbo_slides(toc = TRUE, keep_tex = FALSE, ...)
 }
 \arguments{
-\item{subtitle}{The subtitle.}
-
-\item{location}{The date and place of the event.}
-
-\item{institute}{The affiliation of the authors.}
-
-\item{cover}{The filename of the cover image.}
-
-\item{cover_offset}{An optional vertical offset for the cover image.}
-
-\item{cover_hoffset}{An optional horizontal offset for the cover image.}
-
-\item{cover_horizontal}{Scale the cover horizontal (\code{TRUE}) or vertical
-(\code{FALSE}).}
-
-\item{slide_logo}{the path to an optional logo displayed on each slide}
-
-\item{toc_name}{Name of the table of contents.
-Defaults to \code{"Overzicht"}.}
-
-\item{fontsize}{The fontsize of the document.
-Defaults to \code{"10pt"}.
-See the section on aspect ratio.}
-
-\item{codesize}{The fontsize of the code, relative to the fontsize of the
-text (= normal size).
-Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
-\code{"scriptsize"} and \code{"tiny"}.
-Defaults to \code{"footnotesize"}.}
-
-\item{lang}{The language of the document.
-Defaults to \code{"dutch"}}
-
-\item{slide_level}{Indicate which heading level is used for the frame titles}
+\item{toc}{display a table of content after the title slide}
 
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
 
-\item{toc}{display a table of content after the title slide}
-
-\item{website}{An optional URL to display on the left sidebar.
-Defaults to \code{"www.vlaanderen.be/inbo"}.}
-
-\item{theme}{The theme to use.
-Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
-
-\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
-If \code{FALSE} use Calibri.
-Defaults to \code{FALSE}.}
-
-\item{aspect}{Defines the aspect ratio and the format of the slides.
-Defaults to \code{"16:9"}.
-See the section.}
-
-\item{...}{extra parameters}
+\item{...}{currently ignored}
 }
 \description{
-Use slides with the INBO theme
+Returns an output format for \code{\link[bookdown:render_book]{bookdown::render_book()}}.
 }
-\details{
-Aspect ratio
+\section{Available YAML headers options shared among output formats}{
+
+\itemize{
+\item \code{title}: the main title
+\item \code{subtitle}: the optional subtitle
+\item \code{author}: the authors formatted as indicated in the section below.
+\item \code{cover_photo}: the relative path to the image you want on the cover.
+\item \code{flandersfont}: if set to \code{TRUE}, use the Flanders Art Sans font.
+When not set, or set to \code{FALSE} or empty, use the Calibri font.
+\item \code{style}
+\itemize{
+\item 'INBO' for the INBO style.
+\item 'Vlaanderen' for the generic style of the Flemish Goverment in Dutch.
+\item 'Flanders' for the generic style of the Flemish Goverment in a language
+other than Dutch.
+}
+\item \code{lang}: the main language of the document as \href{https://datatracker.ietf.org/doc/html/rfc5646}{RFC 5646} tags.
+\itemize{
+\item \code{nl} for Dutch
+\item \code{en} for English
+\item \code{fr} for French
+}
+}
+}
+
+\section{Formatting author information}{
+
+
+Quotes are required when a part contains spaces.
+If the author doesn't have an ORCID, you can omit that line.
+However, note that the INBO policy is that all scientific personnel is
+required to obtain an ORCID from https://orcid.org.\preformatted{  - firstname: "Authors first name"
+    name: "Authors last name"
+    email: "local-part@domain.com"
+    orcid: 0000-0002-1825-0097
+}
+}
+
+\section{Available YAML headers options specific for slides}{
+
+\itemize{
+\item \code{location}: optional text placed on the title slide below the (sub)title.
+\item \code{toc}: add a slide with the table of content.
+Defaults to \code{TRUE}.
+\item \code{toc_name}: slide title for the table of content.
+Defaults to "Overzicht" when missing.
+\item \code{cover_horizontal}: When omitted, scale the \code{cover_photo} so that it covers
+the full page vertically.
+When set to any value but \code{FALSE} or empty, scale the \code{cover_photo} so that
+it covers the full page horizontally.
+\item \code{cover_offset}: A measurement like \verb{8mm} or \verb{-1.5cm}.
+Positive values move the \code{cover_photo} upwards on the title slide.
+Negative values move the \code{cover_photo} downwards.
+\item \code{cover_hoffset}: Similar as \code{cover_offset} but moves \code{cover_photo}
+horizontally.
+Positive values move it to the right, negative values to the left.
+\item \code{aspect}: the required aspect ratio for the slides.
+Defaults to "16:9".
+See the section below for a list of the available aspect ratios.
+\item \code{fontsize}: Size of the normal text on the slides.
+Other elements are scaled accordingly.
+Defaults to "11pt".
+See the section \emph{Aspect_ratio} for more details.
+\item \code{codesize}: Relative size of R code compared to normal text.
+Defaults to "footnotesize".
+All options going from large to small are: "normalsize", "small",
+"footnotesize", "scriptsize", "tiny".
+"normalsize" implies \code{fontsize}.
+\item \code{website}: URL in the sidebar.
+Defaults to \code{www.vlaanderen.be/inbo}.
+}
+}
+
+\section{Aspect ratio}{
+
 
 The table below lists the available aspect ratios and their "paper size".
 The main advantage of using a small “paper size” is that you can use all your
-normal fonts at their natural sizes.\tabular{crrr}{
+normal fonts at their natural sizes.
+E.g. an 11pt font on a slide is as readable as an 11pt font on a A4 paper.\tabular{crrr}{
    aspect \tab ratio \tab width \tab height \cr
    16:9 \tab 1.78 \tab 160.0 mm \tab 90 mm \cr
    16:10 \tab 1.60 \tab 160.0 mm \tab 100 mm \cr
@@ -103,6 +107,7 @@ normal fonts at their natural sizes.\tabular{crrr}{
    5:4 \tab 1.25 \tab 125.0 mm \tab 100 mm \cr
 }
 }
+
 \seealso{
 Other output: 
 \code{\link{inbo_ebook}()},

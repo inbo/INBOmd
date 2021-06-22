@@ -13,6 +13,9 @@
 \usetheme{Pittsburgh}
 \usecolortheme[named=support.colour]{structure}
 
+\newlength{\websiteoffset}
+\setlength{\websiteoffset}{4mm}
+
 \setbeamercolor{title}{fg=white}
 \setbeamerfont{title}{size = \titlefontsize, series = \bfseries}
 
@@ -88,7 +91,7 @@
   \begin{textblock}{2.9}(1.2, 0)
     \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
       {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
-      \vspace{2mm}
+      \vspace{\websiteoffset}
     \end{minipage}
   \end{textblock}
 
@@ -136,7 +139,7 @@
     \textblockcolour{}
     \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
       {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
-      \vspace{2mm}
+      \vspace{\websiteoffset}
     \end{minipage}
   \end{textblock}
 
@@ -185,7 +188,7 @@
     \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
-      \vspace{2mm}
+      \vspace{\websiteoffset}
     \end{minipage}
   \end{textblock}
 }
@@ -219,7 +222,7 @@
     \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
-      \vspace{2mm}
+      \vspace{\websiteoffset}
     \end{minipage}
   \end{textblock}
 }

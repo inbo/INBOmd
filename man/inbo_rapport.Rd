@@ -29,12 +29,6 @@ Defaults to NA (only float barriers before starting a new chapter \verb{#}).
 Options are "section" (\verb{##}), "subsection" (\verb{###}) and
 "subsubsection" (\verb{####}).}
 
-\item{codesize}{The fontsize of the code, relative to the fontsize of the
-text (= normal size).
-Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
-\code{"scriptsize"} and \code{"tiny"}.
-Defaults to \code{"footnotesize"}.}
-
 \item{style}{What template to use.
 Use \code{"INBO"} for an INBO report in Dutch.
 Use \code{"Vlaanderen"} for a report in Dutch written by more than one Flemish
@@ -55,10 +49,6 @@ Defaults to \code{FALSE}.}
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
-
-\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
-If \code{FALSE} use Calibri.
-Defaults to \code{FALSE}.}
 
 \item{...}{extra parameters: see details}
 }

@@ -29,55 +29,12 @@ inbo_handouts(
 )
 }
 \arguments{
-\item{subtitle}{The subtitle.}
-
-\item{location}{The date and place of the event.}
-
-\item{institute}{The affiliation of the authors.}
-
-\item{cover}{The filename of the cover image.}
-
-\item{cover_offset}{An optional vertical offset for the cover image.}
-
-\item{cover_hoffset}{An optional horizontal offset for the cover image.}
-
-\item{cover_horizontal}{Scale the cover horizontal (\code{TRUE}) or vertical
-(\code{FALSE}).}
-
-\item{toc_name}{Name of the table of contents.
-Defaults to \code{"Overzicht"}.}
-
-\item{fontsize}{The fontsize of the document.
-Defaults to \code{"10pt"}.
-See the section on aspect ratio.}
-
-\item{codesize}{The fontsize of the code, relative to the fontsize of the
-text (= normal size).
-Allowed values are \code{"normalsize"}, \code{"small"}, \code{"footnotesize"},
-\code{"scriptsize"} and \code{"tiny"}.
-Defaults to \code{"footnotesize"}.}
-
-\item{lang}{The language of the document.
-Defaults to \code{"dutch"}}
-
-\item{slide_level}{Indicate which heading level is used for the frame titles}
-
 \item{keep_tex}{Keep the tex file.
 Defaults to \code{FALSE}.}
 
 \item{toc}{display a table of content after the title slide}
 
-\item{website}{An optional URL to display on the left sidebar.
-Defaults to \code{"www.vlaanderen.be/inbo"}.}
-
-\item{theme}{The theme to use.
-Available options are \code{"inbo"}, \code{"inboenglish"} and \code{"vlaanderen"}.}
-
-\item{flandersfont}{If \code{TRUE} use the Flanders Art font.
-If \code{FALSE} use Calibri.
-Defaults to \code{FALSE}.}
-
-\item{...}{extra parameters}
+\item{...}{currently ignored}
 }
 \description{
 Use the handout version of slides with the INBO theme
