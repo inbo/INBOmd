@@ -38,7 +38,9 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 
-\author{$author$}
+\author{
+$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
+}
 
 $if(institute)$
 \institute{$institute$}
