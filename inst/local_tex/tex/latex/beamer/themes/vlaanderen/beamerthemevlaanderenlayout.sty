@@ -85,8 +85,11 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
+      {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+      \vspace{2mm}
+    \end{minipage}
   \end{textblock}
 
   \begin{textblock}{84}(18.1, 6)
@@ -129,9 +132,12 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
     \textblockcolour{}
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
+      {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+      \vspace{2mm}
+    \end{minipage}
   \end{textblock}
 
 }
@@ -175,9 +181,12 @@
     \end{minipage}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+      \vspace{2mm}
+    \end{minipage}
   \end{textblock}
 }
 
@@ -206,9 +215,12 @@
     {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
   \end{textblock*}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+      \vspace{2mm}
+    \end{minipage}
   \end{textblock}
 }
 
