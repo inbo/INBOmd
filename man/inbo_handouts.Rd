@@ -2,29 +2,12 @@
 % Please edit documentation in R/inbo_handouts.R
 \name{inbo_handouts}
 \alias{inbo_handouts}
-\title{Use the handout version of slides with the INBO theme
-The only difference between inbo_slides() and inbo_handouts() is that
-inbo_slides() can have progressive slides whereas inbo_handouts() only
-displays the final slide.}
+\title{Use the handout version of slides with the INBO theme}
 \usage{
 inbo_handouts(
-  subtitle,
-  location,
-  institute,
-  cover,
-  cover_offset,
-  cover_hoffset,
-  cover_horizontal = TRUE,
-  toc_name,
-  fontsize,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch",
-  slide_level = 2,
   keep_tex = FALSE,
   toc = TRUE,
-  website = "www.vlaanderen.be/inbo",
-  theme = c("inbo", "vlaanderen"),
-  flandersfont = FALSE,
+  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"),
   ...
 )
 }
@@ -34,14 +17,111 @@ Defaults to \code{FALSE}.}
 
 \item{toc}{display a table of content after the title slide}
 
+\item{nup}{Number of slides on a page.
+Defaults to \code{8}.
+The 'plus' layouts leave blank space for recipients to make handwritten notes
+next to each slide.
+Note that the \code{2}, \verb{3plus}, \code{4} and \code{6} layouts are intended for slides in
+the 4:3 aspect ratio, while the \code{3}, \verb{4plus} and \code{8} layouts are intended for
+widescreen slides like the 16:10 aspect ratio.}
+
 \item{...}{currently ignored}
 }
 \description{
-Use the handout version of slides with the INBO theme
-The only difference between inbo_slides() and inbo_handouts() is that
-inbo_slides() can have progressive slides whereas inbo_handouts() only
-displays the final slide.
+Similar to \code{\link[=inbo_slides]{inbo_slides()}} except that you can't have progressive slides.
+And you can place multiple slides on a single page.
 }
+\section{Available YAML headers options shared among output formats}{
+
+\itemize{
+\item \code{title}: the main title
+\item \code{subtitle}: the optional subtitle
+\item \code{author}: the authors formatted as indicated in the section below.
+\item \code{cover_photo}: the relative path to the image you want on the cover.
+\item \code{flandersfont}: if set to \code{TRUE}, use the Flanders Art Sans font.
+When not set, or set to \code{FALSE} or empty, use the Calibri font.
+\item \code{style}
+\itemize{
+\item 'INBO' for the INBO style.
+\item 'Vlaanderen' for the generic style of the Flemish Goverment in Dutch.
+\item 'Flanders' for the generic style of the Flemish Goverment in a language
+other than Dutch.
+}
+\item \code{lang}: the main language of the document as \href{https://datatracker.ietf.org/doc/html/rfc5646}{RFC 5646} tags.
+\itemize{
+\item \code{nl} for Dutch
+\item \code{en} for English
+\item \code{fr} for French
+}
+}
+}
+
+\section{Formatting author information}{
+
+
+Quotes are required when a part contains spaces.
+If the author doesn't have an ORCID, you can omit that line.
+However, note that the INBO policy is that all scientific personnel is
+required to obtain an ORCID from https://orcid.org.\preformatted{  - firstname: "Authors first name"
+    name: "Authors last name"
+    email: "local-part@domain.com"
+    orcid: 0000-0002-1825-0097
+}
+}
+
+\section{Available YAML headers options specific for slides}{
+
+\itemize{
+\item \code{location}: optional text placed on the title slide below the (sub)title.
+\item \code{toc}: add a slide with the table of content.
+Defaults to \code{TRUE}.
+\item \code{toc_name}: slide title for the table of content.
+Defaults to "Overzicht" when missing.
+\item \code{cover_horizontal}: When omitted, scale the \code{cover_photo} so that it covers
+the full page vertically.
+When set to any value but \code{FALSE} or empty, scale the \code{cover_photo} so that
+it covers the full page horizontally.
+\item \code{cover_offset}: A measurement like \verb{8mm} or \verb{-1.5cm}.
+Positive values move the \code{cover_photo} upwards on the title slide.
+Negative values move the \code{cover_photo} downwards.
+\item \code{cover_hoffset}: Similar as \code{cover_offset} but moves \code{cover_photo}
+horizontally.
+Positive values move it to the right, negative values to the left.
+\item \code{aspect}: the required aspect ratio for the slides.
+Defaults to "16:9".
+See the section below for a list of the available aspect ratios.
+\item \code{fontsize}: Size of the normal text on the slides.
+Other elements are scaled accordingly.
+Defaults to "11pt".
+See the section \emph{Aspect_ratio} for more details.
+\item \code{codesize}: Relative size of R code compared to normal text.
+Defaults to "footnotesize".
+All options going from large to small are: "normalsize", "small",
+"footnotesize", "scriptsize", "tiny".
+"normalsize" implies \code{fontsize}.
+\item \code{website}: URL in the sidebar.
+Defaults to \code{www.vlaanderen.be/inbo}.
+}
+}
+
+\section{Aspect ratio}{
+
+
+The table below lists the available aspect ratios and their "paper size".
+The main advantage of using a small “paper size” is that you can use all your
+normal fonts at their natural sizes.
+E.g. an 11pt font on a slide is as readable as an 11pt font on a A4 paper.\tabular{crrr}{
+   aspect \tab ratio \tab width \tab height \cr
+   16:9 \tab 1.78 \tab 160.0 mm \tab 90 mm \cr
+   16:10 \tab 1.60 \tab 160.0 mm \tab 100 mm \cr
+   14:9 \tab 1.56 \tab 140.0 mm \tab 90 mm \cr
+   3:2 \tab 1.50 \tab 135.0 mm \tab 90 mm \cr
+   1.4:1 \tab 1.41 \tab 148.5 mm \tab 105 mm \cr
+   4:3 \tab 1.33 \tab 128.0 mm \tab 96 mm \cr
+   5:4 \tab 1.25 \tab 125.0 mm \tab 100 mm \cr
+}
+}
+
 \seealso{
 Other output: 
 \code{\link{inbo_ebook}()},

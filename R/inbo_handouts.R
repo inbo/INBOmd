@@ -1,116 +1,29 @@
 #' Use the handout version of slides with the INBO theme
-#' The only difference between inbo_slides() and inbo_handouts() is that
-#' inbo_slides() can have progressive slides whereas inbo_handouts() only
-#' displays the final slide.
+#'
+#' Similar to [inbo_slides()] except that you can't have progressive slides.
+#' And you can place multiple slides on a single page.
 #' @inheritParams inbo_slides
-#' @inheritParams rmarkdown::pdf_document
+#' @param nup Number of slides on a page.
+#' Defaults to `8`.
+#' The 'plus' layouts leave blank space for recipients to make handwritten notes
+#' next to each slide.
+#' Note that the `2`, `3plus`, `4` and `6` layouts are intended for slides in
+#' the 4:3 aspect ratio, while the `3`, `4plus` and `8` layouts are intended for
+#' widescreen slides like the 16:10 aspect ratio.
+#' @template yaml_generic
+#' @template yaml_slide
 #' @export
-#' @importFrom rmarkdown output_format knitr_options pandoc_options
-#' pandoc_variable_arg pandoc_path_arg pandoc_version
-#' @importFrom utils compareVersion
-#' @importFrom assertthat assert_that is.string is.flag noNA
 #' @family output
 inbo_handouts <- function(
-  subtitle,
-  location,
-  institute,
-  cover,
-  cover_offset,
-  cover_hoffset,
-  cover_horizontal = TRUE,
-  toc_name,
-  fontsize,
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  lang = "dutch",
-  slide_level = 2,
-  keep_tex = FALSE,
-  toc = TRUE,
-  website = "www.vlaanderen.be/inbo", # nolint
-  theme = c("inbo", "vlaanderen"),
-  flandersfont = FALSE,
-  ...
+  keep_tex = FALSE, toc = TRUE,
+  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
 ) {
-  check_dependencies()
-  assert_that(is.flag(toc))
-  assert_that(noNA(toc)) #nolint
-  assert_that(is.string(website))
-  theme <- match.arg(theme)
-  assert_that(is.flag(flandersfont))
-  assert_that(noNA(flandersfont)) #nolint
-
-  extra <- list(...)
-  codesize <- match.arg(codesize)
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
-  template <- system.file(
-    file.path("pandoc", "inbo_beamer.tex"), package = "INBOmd"
+  config <- inbo_slides(keep_tex = keep_tex, toc = toc, ...)
+  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  nup <- ifelse(has_name(fm, "nup"), as.character(fm$nup), nup)
+  nup <- match.arg(nup)
+  config$pandoc$args <- c(config$pandoc$args,
+    pandoc_variable_arg("handout", nup)
   )
-  args <- c(
-    "--slide-level", as.character(slide_level),
-    "--template", template,
-    pandoc_variable_arg("mylanguage", lang),
-    pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("website", website),
-    pandoc_variable_arg("flandersfont", flandersfont),
-    pandoc_variable_arg("theme", theme),
-    pandoc_variable_arg("handout", 1)
-  )
-  if (compareVersion(as.character(pandoc_version()), "2") < 0) {
-    args <- c(args, "--latex-engine", "xelatex") #nocov
-  } else {
-    args <- c(args, "--pdf-engine", "xelatex")
-  }
-  if ("usepackage" %in% names(extra)) {
-    tmp <- sapply(
-      extra$usepackage,
-      pandoc_variable_arg,
-      name = "usepackage"
-    )
-    args <- c(args, tmp)
-  }
-  if (!missing(toc_name)) {
-    args <- c(args, pandoc_variable_arg("tocname", toc_name))
-  }
-  # citations
-  args <- c(args, "--csl", pandoc_path_arg(csl))
-  if (!missing(subtitle)) {
-    args <- c(args, pandoc_variable_arg("subtitle", subtitle))
-  }
-  if (!missing(location)) {
-    args <- c(args, pandoc_variable_arg("location", location))
-  }
-  if (!missing(fontsize)) {
-    args <- c(args, pandoc_variable_arg("fontsize", fontsize))
-  }
-  if (!missing(institute)) {
-    args <- c(args, pandoc_variable_arg("institute", institute))
-  }
-  if (!missing(cover)) {
-    args <- c(args, pandoc_variable_arg("cover", cover))
-  }
-  if (!missing(cover_offset)) {
-    args <- c(args, pandoc_variable_arg("coveroffset", cover_offset))
-  }
-  output_format(
-    knitr = knitr_options(
-      opts_knit = list(
-        width = 80,
-        concordance = TRUE
-      ),
-      opts_chunk = list(
-        dev = "pdf",
-        dev.args = list(bg = "transparent"),
-        dpi = 300,
-        fig.width = 4.5,
-        fig.height = 2.9
-      )
-    ),
-    pandoc = pandoc_options(
-      to = "beamer",
-      latex_engine = "xelatex",
-      args = args,
-      keep_tex = keep_tex
-    ),
-    clean_supporting = !keep_tex
-  )
+  return(config)
 }

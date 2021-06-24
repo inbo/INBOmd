@@ -1,13 +1,22 @@
 % de presentatie
 \documentclass[
-  hyperref={colorlinks=true,citecolor=link.colour,linkcolor=link.colour,urlcolor=link.colour},
+  $if(handout)$handout, beameroptions={$endif$ hyperref={colorlinks=true,citecolor=link.colour,linkcolor=link.colour,urlcolor=link.colour},
   $if(fontsize)$$fontsize$$else$10pt$endif$,
   xetex,
-  noamsthm$if(handout)$, handout$endif$$if(aspect)$, aspectratio=$aspect$ $endif$
-]{beamer}
-
+  noamsthm$if(aspect)$, aspectratio=$aspect$ $endif$$if(handout)$}$endif$
+]{beamer$if(handout)$switch$endif$}
+$if(handout)$
+\handoutlayout{paper=a4paper,nup=$handout$,align}
+$endif$
+$if(handout)$
+\mode<presentation>{ %
+$endif$
 \usetheme{$theme$}
 \usepackage{inbogeneric_2015}
+\usetheme{vlaanderenfont}
+$if(handout)$
+}
+$endif$
 $if(codesize)$
 \codesize{\$codesize$}
 $else$
@@ -21,7 +30,6 @@ $endif$
 $if(flandersfont)$
 \flandersfont{TRUE}
 $endif$
-\usetheme{vlaanderenfont}
 
 $if(mylanguage)$
 \lang{$mylanguage$}
