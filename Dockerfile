@@ -1,4 +1,4 @@
-FROM rocker/r-ubuntu:20.04
+FROM rocker/verse
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -15,17 +15,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 ## for apt to be noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 ENV DEBCONF_NONINTERACTIVE_SEEN true
-
-## Install pandoc
-RUN wget https://github.com/jgm/pandoc/releases/download/2.7.3/pandoc-2.7.3-1-amd64.deb \
-  && dpkg -i pandoc-2.7.3-1-amd64.deb \
-  && rm pandoc-2.7.3-1-amd64.deb
-
-## Install git
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    git \
-    openssh-client
+RUN mkdir -p /github/home
+ENV HOME /github/home
 
 ## Install nano
 RUN apt-get update \
@@ -36,34 +27,22 @@ RUN apt-get update \
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends imagemagick
 
-## Install remotes
-RUN  Rscript -e 'install.packages("remotes")'
-
-## Install tinytex
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends \
-      curl \
-      gpg \
-      qpdf \
-  && Rscript -e 'remotes::install_cran("tinytex")' \
-  && Rscript -e 'if (tinytex:::is_tinytex()) {tinytex::reinstall_tinytex(repository = "http://ftp.snt.utwente.nl/pub/software/tex/")} else {tinytex::install_tinytex()}'
-
-## add TinyTeX to path
-ENV PATH="/root/bin:${PATH}"
-
 ## Install LaTeX packages
 RUN  tlmgr install \
       babel-dutch \
       babel-english \
       babel-french \
       beamer \
+      beamerswitch \
       carlisle \
       colortbl \
       datetime \
       dvips \
       emptypage \
-      eurosym \
+      environ \
+      epstopdf \
       eso-pic \
+      eurosym \
       extsizes \
       fancyhdr \
       fmtcount \
@@ -75,10 +54,13 @@ RUN  tlmgr install \
       inconsolata \
       lastpage \
       lipsum \
+      makecell \
       marginnote \
       mdframed \
       ms \
       multirow \
+      parskip \
+      pdflscape \
       pdfpages \
       pdftexcmds \
       placeins \
@@ -92,25 +74,22 @@ RUN  tlmgr install \
       times \
       tocloft \
       translator \
+      trimspaces \
       ulem \
+      upquote \
       wrapfig \
-      xcolor
+      xcolor \
+      zref
 
 ## Install fonts
-RUN  mkdir /root/.fonts \
+RUN  mkdir ${HOME}/.fonts \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
-  && unzip calibri.zip -d /root/.fonts \
+  && unzip calibri.zip -d ${HOME}/.fonts \
   && rm calibri.zip \
-  && wget -O /root/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
-  && wget -O /root/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
+  && wget -O ${HOME}/.fonts/Inconsolatazi4-Regular.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Regular.otf \
+  && wget -O ${HOME}/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
   && fc-cache -fv \
   && updmap-sys
-
-## Install bookdown
-RUN  Rscript -e 'remotes::install_cran("bookdown")'
-
-## Install pander
-RUN  Rscript -e 'remotes::install_cran("dplyr")'
 
 ## Install pander
 RUN  Rscript -e 'remotes::install_cran("pander")'
@@ -122,15 +101,13 @@ RUN  apt-get update \
   && Rscript -e 'remotes::install_cran("webshot")' \
   && Rscript -e 'webshot::install_phantomjs()'
 
-## Install curl
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends libcurl4-openssl-dev \
-  && Rscript -e 'remotes::install_cran("curl")'
-
 ## Install sysfonts
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends libfreetype6-dev \
   && Rscript -e 'remotes::install_cran("sysfonts")'
+
+## Install qrcode
+RUN  Rscript -e 'remotes::install_github("thierryo/qrcode")'
 
 ## Install INBOtheme
 RUN  Rscript -e 'remotes::install_github("inbo/INBOtheme")'
@@ -148,19 +125,6 @@ RUN  Rscript -e 'remotes::install_github("inbo/lipsum")'
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends libpoppler-cpp-dev \
   && Rscript -e 'remotes::install_cran("pdftools")'
-
-## Install dependencies for INBOmd examples: openssl
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends libssl-dev \
-  && Rscript -e 'remotes::install_cran("openssl")'
-
-## Install dependencies for INBOmd examples: xml2
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends libxml2-dev \
-  && Rscript -e 'remotes::install_cran("xml2")'
-
-## Install dependencies for INBOmd examples: tidyverse
-RUN  Rscript -e 'remotes::install_cran("tidyverse")'
 
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore
