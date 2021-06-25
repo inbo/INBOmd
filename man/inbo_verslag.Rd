@@ -33,8 +33,7 @@ Options are "section" (\verb{##}), "subsection" (\verb{###}) and
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
-\item{keep_tex}{Keep the tex file.
-Defaults to \code{FALSE}.}
+\item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}

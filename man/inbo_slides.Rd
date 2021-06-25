@@ -4,13 +4,10 @@
 \alias{inbo_slides}
 \title{pdf slides with an INBO or Flanders theme}
 \usage{
-inbo_slides(toc = TRUE, keep_tex = FALSE, ...)
+inbo_slides(toc = TRUE, ...)
 }
 \arguments{
 \item{toc}{display a table of content after the title slide}
-
-\item{keep_tex}{Keep the tex file.
-Defaults to \code{FALSE}.}
 
 \item{...}{currently ignored}
 }

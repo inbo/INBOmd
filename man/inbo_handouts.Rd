@@ -5,16 +5,12 @@
 \title{Use the handout version of slides with the INBO theme}
 \usage{
 inbo_handouts(
-  keep_tex = FALSE,
   toc = TRUE,
   nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"),
   ...
 )
 }
 \arguments{
-\item{keep_tex}{Keep the tex file.
-Defaults to \code{FALSE}.}
-
 \item{toc}{display a table of content after the title slide}
 
 \item{nup}{Number of slides on a page.

@@ -2,8 +2,6 @@
 #'
 #' Returns an output format for [bookdown::render_book()].
 #'
-#' @param keep_tex Keep the tex file.
-#' Defaults to `FALSE`.
 #' @param toc display a table of content after the title slide
 #' @param ... currently ignored
 #' @template yaml_generic
@@ -15,7 +13,7 @@
 #' @importFrom utils compareVersion
 #' @importFrom assertthat assert_that is.string is.flag noNA
 #' @family output
-inbo_slides <- function(toc = TRUE, keep_tex = FALSE, ...) {
+inbo_slides <- function(toc = TRUE, ...) {
   check_dependencies()
   dots <- list(...)
   assert_that(
@@ -106,9 +104,9 @@ inbo_slides <- function(toc = TRUE, keep_tex = FALSE, ...) {
       to = "beamer",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex
+      keep_tex = FALSE
     ),
-    clean_supporting = !keep_tex
+    clean_supporting = TRUE
   )
   config <- pdf_book(
     toc = toc, number_sections = TRUE, fig_caption = TRUE,
@@ -116,6 +114,5 @@ inbo_slides <- function(toc = TRUE, keep_tex = FALSE, ...) {
       of
     }
   )
-  config$clean_supporting <- !keep_tex
   return(config)
 }

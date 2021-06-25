@@ -39,8 +39,7 @@ Use \code{"Flanders"} for a report in another language.}
 Defaults to \code{"english"}.
 See the details for more information.}
 
-\item{keep_tex}{Keep the tex file.
-Defaults to \code{FALSE}.}
+\item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures.}

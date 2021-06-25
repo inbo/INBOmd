@@ -15,7 +15,7 @@
 #' @export
 #' @family output
 inbo_handouts <- function(
-  keep_tex = FALSE, toc = TRUE,
+  toc = TRUE,
   nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
 ) {
   config <- inbo_slides(keep_tex = keep_tex, toc = toc, ...)

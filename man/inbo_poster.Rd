@@ -24,8 +24,7 @@ inbo_poster(
 \item{email}{The email address to display at the bottom.
 Defaults to info@inbo.be}
 
-\item{keep_tex}{Keep the tex file.
-Defaults to \code{FALSE}.}
+\item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
 (if available) to pdf figures}
