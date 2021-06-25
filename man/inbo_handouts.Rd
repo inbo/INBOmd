@@ -30,25 +30,32 @@ And you can place multiple slides on a single page.
 \section{Available YAML headers options shared among output formats}{
 
 \itemize{
-\item \code{title}: the main title
+\item \strong{\code{title}}: the main title
 \item \code{subtitle}: the optional subtitle
-\item \code{author}: the authors formatted as indicated in the section below.
-\item \code{cover_photo}: the relative path to the image you want on the cover.
+\item \strong{\code{author}}: the authors formatted as indicated in the section below.
 \item \code{flandersfont}: if set to \code{TRUE}, use the Flanders Art Sans font.
 When not set, or set to \code{FALSE} or empty, use the Calibri font.
-\item \code{style}
+\item \code{style}: Defaults to "INBO" when missing.
 \itemize{
-\item 'INBO' for the INBO style.
-\item 'Vlaanderen' for the generic style of the Flemish Goverment in Dutch.
-\item 'Flanders' for the generic style of the Flemish Goverment in a language
+\item "INBO" for the INBO style.
+\item "Vlaanderen" for the generic style of the Flemish Goverment in Dutch.
+\item "Flanders" for the generic style of the Flemish Goverment in a language
 other than Dutch.
 }
 \item \code{lang}: the main language of the document as \href{https://datatracker.ietf.org/doc/html/rfc5646}{RFC 5646} tags.
+\code{style} "INBO" and "Vlaanderen" require "nl" as \code{lang}.
+\code{style} "Flanders" uses "en" as default and can use other languages (but
+not "nl").
 \itemize{
-\item \code{nl} for Dutch
-\item \code{en} for English
-\item \code{fr} for French
+\item "nl" for Dutch
+\item "en" for English
+\item "fr" for French
 }
+\item \code{codesize}: Relative size of R code compared to normal text.
+Defaults to "footnotesize".
+All options going from large to small are: "normalsize", "small",
+"footnotesize", "scriptsize", "tiny".
+"normalsize" implies the same size as normal text.
 }
 }
 
@@ -73,6 +80,8 @@ required to obtain an ORCID from https://orcid.org.\preformatted{  - firstname: 
 Defaults to \code{TRUE}.
 \item \code{toc_name}: slide title for the table of content.
 Defaults to "Overzicht" when missing.
+\item \code{cover_photo}: the relative path to the image you want on the cover.
+When missing, you get a default picture.
 \item \code{cover_horizontal}: When omitted, scale the \code{cover_photo} so that it covers
 the full page vertically.
 When set to any value but \code{FALSE} or empty, scale the \code{cover_photo} so that
@@ -90,11 +99,6 @@ See the section below for a list of the available aspect ratios.
 Other elements are scaled accordingly.
 Defaults to "11pt".
 See the section \emph{Aspect_ratio} for more details.
-\item \code{codesize}: Relative size of R code compared to normal text.
-Defaults to "footnotesize".
-All options going from large to small are: "normalsize", "small",
-"footnotesize", "scriptsize", "tiny".
-"normalsize" implies \code{fontsize}.
 \item \code{website}: URL in the sidebar.
 Defaults to \code{www.vlaanderen.be/inbo}.
 }

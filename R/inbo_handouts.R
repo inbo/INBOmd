@@ -18,7 +18,7 @@ inbo_handouts <- function(
   toc = TRUE,
   nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
 ) {
-  config <- inbo_slides(keep_tex = keep_tex, toc = toc, ...)
+  config <- inbo_slides(toc = toc, ...)
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   nup <- ifelse(has_name(fm, "nup"), as.character(fm$nup), nup)
   nup <- match.arg(nup)

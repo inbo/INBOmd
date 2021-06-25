@@ -1,92 +1,67 @@
 #' Create a report with the Flemish corporate identity
-#' @param subtitle An optional subtitle.
-#' @param ordernr The optional order number.
-#' @param floatbarrier Should float barriers be placed?
-#'   Defaults to NA (only float barriers before starting a new chapter `#`).
-#'   Options are "section" (`##`), "subsection" (`###`) and
-#'   "subsubsection" (`####`).
-#' @param style What template to use.
-#'   Use `"INBO"` for an INBO report in Dutch.
-#'   Use `"Vlaanderen"` for a report in Dutch written by more than one Flemish
-#'   government agency.
-#'   Use `"Flanders"` for a report in another language.
-#' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
-#'   (if available) to pdf figures.
-#' @param pandoc_args Additional command line options to pass to pandoc
-#' @param main_language The main language of the document.
-#' Defaults to `"english"`.
-#' See the details for more information.
 #' @inheritParams inbo_slides
 #' @inheritParams rmarkdown::pdf_document
-#' @param ... extra parameters: see details
-#'
-#' @details
-#' Available extra parameters:
-#' - `lof`: display a list of figures.
-#' Defaults to `FALSE`.
-#' - `lot`: display a list of tables.
-#' Defaults to `FALSE`.
-#' - `tocdepth`: which level headers to display.
-#'     - 0: up to chapters (`#`)
-#'     - 1: up to section (`##`)
-#'     - 2: up to subsection (`###`)
-#'     - 3: up to subsubsection (`####`) default
-#' - `hyphenation`: the correct hyphenation for certain words.
-#' - `cover`: an optional pdf file.
-#' The first two pages will be prepended to the report.
-#'
-#' # Language
-#'
-#' The main language is hard-coded to Dutch for the styles `INBO` and
-#' `Vlaanderen`.
-#' It is set by default to English for the style `Flanders` and can be set to
-#' another language by setting `main_language` in the YAML header.
-#'
-#' You can define some parts of the text to be in a different language than the
-#' main language (e.g. an abstract in a different language).
-#' This is currently limited to Dutch, English and French.
-#' Use `\bdutch` before and `\edutch` after the text in Dutch.
-#' Use `\benglish` before and `\eenglish` after the text in English.
-#' Use `\bfrench` before and `\efrench` after the text in French.
-#' The styles `INBO` and `Vlaanderen` have French and English as optional
-#' languages.
-#' The `Flanders` style has by default Dutch and French as optional languages.
-#'
-#' Setting the language affects the hyphenation pattern and the names of items
-#' like figures, tables, table of contents, list of figures, list of tables,
-#' references, page numbers, ...
+#' @template yaml_generic
+#' @template yaml_report
 #' @export
-#' @importFrom assertthat assert_that is.string
+#' @importFrom assertthat assert_that has_name is.string
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 inbo_rapport <- function(
-  subtitle,
-  ordernr,
-  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
-  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
-  style = c("INBO", "Vlaanderen", "Flanders"),
-  main_language = "english",
-  keep_tex = FALSE,
-  fig_crop = TRUE,
-  includes = NULL,
-  pandoc_args = NULL,
-  flandersfont = FALSE,
-  ...
+  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
-  assert_that(is.string(main_language))
-  check_dependencies()
-  floatbarrier <- match.arg(floatbarrier)
-  style <- match.arg(style)
+  dots <- list(...)
   assert_that(
-    style != "Flanders" || main_language != "dutch",
+    !has_name(dots, "number_sections"), msg =
+      "`number_sections` detected. Are you still using 'INBOmd::inbo_rapport' as
+`output_format` of `bookdown::pdf_book`?"
+  )
+  check_dependencies()
+  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
+  assert_that(length(floatbarrier) == 1)
+  assert_that(
+    floatbarrier %in% c(NA, "section", "subsection", "subsubsection"),
+    msg =
+"Allowed options for `floatbarrier` are missing, 'section', 'subsection' and
+'subsubsection'"
+  )
+  style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
+  assert_that(length(style) == 1)
+  assert_that(
+    style %in% c("INBO", "Vlaanderen", "Flanders"),
+    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  )
+  lang <- ifelse(
+    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+  )
+  assert_that(length(lang) == 1)
+  languages <- c(nl = "dutch", en = "english", fr = "french")
+  assert_that(
+    lang %in% names(languages),
+    msg = paste(
+      "`lang` must be one of:",
+      paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
+    )
+  )
+  assert_that(
+    style != "Flanders" || lang != "nl",
     msg = "Use style: Vlaanderen when the main language is Dutch"
   )
-  other_languages <- c("english", "french", "dutch")
-  other_languages <- other_languages[other_languages != main_language]
-  extra <- list(...)
-  codesize <- match.arg(codesize)
+  other_lang <- fm$other_lang
+  if (is.null(other_lang)) {
+    other_lang <- names(languages)
+  }
+  other_lang <- other_lang[other_lang != lang]
+  assert_that(
+    all(other_lang %in% names(languages)),
+    msg = paste(
+      "all `other_lang` must be in this list:",
+      paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
+    )
+  )
 
   template <- system.file(
     file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
@@ -97,27 +72,14 @@ inbo_rapport <- function(
   args <- c(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
-    pandoc_variable_arg("codesize", codesize),
-    pandoc_variable_arg("flandersfont", flandersfont),
     switch(
       style,
-      Flanders = c(
-        pandoc_variable_arg("style", "flanders_report"),
-        pandoc_variable_arg(
-          "babel", paste(c(other_languages, main_language), collapse = ",")
-        ),
-        pandoc_variable_arg("lang", "en")
-      ),
-      Vlaanderen = c(
-        pandoc_variable_arg("style", "vlaanderen_report"),
-        pandoc_variable_arg("babel", "french,english,dutch"),
-        pandoc_variable_arg("lang", "nl")
-      ),
-      INBO = c(
-        pandoc_variable_arg("style", "inbo_report"),
-        pandoc_variable_arg("babel", "french,english,dutch"),
-        pandoc_variable_arg("lang", "nl")
-      )
+      Flanders = pandoc_variable_arg("style", "flanders_report"),
+      Vlaanderen = pandoc_variable_arg("style", "vlaanderen_report"),
+      INBO = pandoc_variable_arg("style", "inbo_report")
+    ),
+    pandoc_variable_arg(
+      "babel", paste(languages[c(other_lang, lang)], collapse = ",")
     ),
     ifelse(
       compareVersion(as.character(pandoc_version()), "2") < 0,
@@ -128,32 +90,16 @@ inbo_rapport <- function(
     # citations
     c("--csl", pandoc_path_arg(csl)),
     # content includes
-    includes_to_pandoc_args(includes),
-    ifelse(
-      rep(missing(ordernr), 2), "", pandoc_variable_arg("ordernr", ordernr)
-    ),
-    ifelse(
-      rep(missing(subtitle), 2), "", pandoc_variable_arg("subtitle", subtitle)
-    )
+    includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
 
-  if ("lof" %in% names(extra) && extra$lof) {
+  if (has_name(fm, "lof") && isTRUE(fm$lof)) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
   }
-  if ("lot" %in% names(extra) && extra$lot) {
+  if (has_name(fm, "lot") && isTRUE(fm$lot)) {
     args <- c(args, pandoc_variable_arg("lot", TRUE))
   }
-  extra <- extra[!names(extra) %in% c("lof", "lot")]
-  args <- c(
-    args,
-    sapply(
-      names(extra),
-      function(x) {
-        pandoc_variable_arg(x, extra[[x]])
-      }
-    )
-  )
   vars <- switch(
     floatbarrier,
     section = "",
@@ -175,13 +121,6 @@ inbo_rapport <- function(
     fig.height = 2.9
   )
   knit_hooks <- NULL
-  crop <- fig_crop &&
-    !identical(.Platform$OS.type, "windows") &&
-    nzchar(Sys.which("pdfcrop"))
-  if (crop) {
-    knit_hooks <- list(crop = knitr::hook_pdfcrop)
-    opts_chunk$crop <- TRUE
-  }
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
@@ -236,7 +175,7 @@ inbo_rapport <- function(
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
-  output_format(
+  of <- output_format(
     knitr = knitr_options(
       opts_knit = list(
         width = 96,
@@ -249,9 +188,16 @@ inbo_rapport <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = keep_tex
+      keep_tex = FALSE
     ),
     post_processor = post_processor,
-    clean_supporting = !keep_tex
+    clean_supporting = TRUE
   )
+  config <- pdf_book(
+    toc = TRUE, number_sections = TRUE, fig_caption = TRUE, fig_crop = fig_crop,
+    base_format = function(...) {
+      of
+    }
+  )
+  return(config)
 }

@@ -45,6 +45,15 @@ inbo_slides <- function(toc = TRUE, ...) {
   current_paperheight <- paper_dimensions[aspect, 2]
   aspect <- gsub("(:|\\.)", "", aspect)
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
+  assert_that(length(style) == 1)
+  assert_that(
+    style %in% c("INBO", "Vlaanderen", "Flanders"),
+    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  )
+  if (style == "Vlaanderen") {
+    warning("Currently we have only the English logo's values for this style.
+Please contact the maintainer when you require Dutch logo's.")
+  }
   lang <- ifelse(
     has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
   )

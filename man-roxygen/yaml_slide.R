@@ -5,6 +5,8 @@
 #'   Defaults to `TRUE`.
 #' - `toc_name`: slide title for the table of content.
 #'   Defaults to "Overzicht" when missing.
+#' - `cover_photo`: the relative path to the image you want on the cover.
+#'   When missing, you get a default picture.
 #' - `cover_horizontal`: When omitted, scale the `cover_photo` so that it covers
 #'   the full page vertically.
 #'   When set to any value but `FALSE` or empty, scale the `cover_photo` so that
@@ -22,11 +24,6 @@
 #'   Other elements are scaled accordingly.
 #'   Defaults to "11pt".
 #'   See the section _Aspect_ratio_ for more details.
-#' - `codesize`: Relative size of R code compared to normal text.
-#'   Defaults to "footnotesize".
-#'   All options going from large to small are: "normalsize", "small",
-#'   "footnotesize", "scriptsize", "tiny".
-#'   "normalsize" implies `fontsize`.
 #' - `website`: URL in the sidebar.
 #'   Defaults to `www.vlaanderen.be/inbo`.
 #'

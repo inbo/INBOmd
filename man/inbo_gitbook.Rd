@@ -20,12 +20,6 @@ with a chapter title \code{# Introduction} will be
 \file{1-introduction.html}.}
 
 \item{lang}{the language used in the colophon.}
-
-\item{style}{What template to use.
-Use \code{"INBO"} for an INBO report in Dutch.
-Use \code{"Vlaanderen"} for a report in Dutch written by more than one Flemish
-government agency.
-Use \code{"Flanders"} for a report in another language.}
 }
 \description{
 INBO version of bookdown::gitbook

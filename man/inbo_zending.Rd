@@ -34,18 +34,13 @@ inbo_zending(
 
 \item{colleagues}{name of other colleagues attending the same conference}
 
-\item{floatbarrier}{Should float barriers be placed?
-Defaults to NA (only float barriers before starting a new chapter \verb{#}).
-Options are "section" (\verb{##}), "subsection" (\verb{###}) and
-"subsubsection" (\verb{####}).}
-
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
 \item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
 \item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
-(if available) to pdf figures.}
+(if available) to pdf figures}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
