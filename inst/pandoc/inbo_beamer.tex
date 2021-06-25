@@ -55,8 +55,14 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 
+\newlength{\orcidsize}
+\makeatletter
+  \setlength{\orcidsize}{\f@size pt}
+\makeatother
+
 \author{
-$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
+$for(author)$
+$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\includegraphics[height=\orcidsize]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
 }
 
 $if(institute)$
