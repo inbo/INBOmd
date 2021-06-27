@@ -1,26 +1,50 @@
-#' INBO version of bookdown::gitbook
-#' @param split_by How to name the HTML output files from the book:
-#' \code{chapter+number} means split the file by the first-level headers;
-#' \code{section+number} means the second-level headers.
-#' For \code{chapter+number} and \code{section+number}, the HTML filenames will
-#' be determined by the header ID's, e.g. the filename for the first chapter
-#' with a chapter title \code{# Introduction} will be
-#' \file{1-introduction.html}.
-#' @inheritParams inbo_rapport_template
-#' @inheritParams inbo_rapport
+#' Output format for a web version of the report
+#'
+#' A version of [bookdown::gitbook()] with a different styling.
+#' @template yaml_generic
+#' @template yaml_report
+#' @template yaml_gitbook
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
-inbo_gitbook <- function(
-  split_by = c("chapter+number", "section+number"), lang = c("nl", "en"),
-  style = c("INBO", "Vlaanderen", "Flanders")
-) {
-  split_by <- match.arg(split_by)
-  lang <- match.arg(lang)
-  style <- match.arg(style)
+inbo_gitbook <- function() {
+  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
+  assert_that(length(style) == 1)
+  assert_that(
+    style %in% c("INBO", "Vlaanderen", "Flanders"),
+    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  )
+  lang <- ifelse(
+    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+  )
+  assert_that(length(lang) == 1)
+  languages <- c(nl = "dutch", en = "english")
+  assert_that(
+    lang %in% names(languages),
+    msg = paste(
+      "`lang` must be one of:",
+      paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
+    )
+  )
+  assert_that(
+    style != "Flanders" || lang != "nl",
+    msg = "Use style: Vlaanderen when the language is nl"
+  )
+  assert_that(
+    style == "Flanders" || lang != "en",
+    msg = "Use style: Flanders when the language is not nl"
+  )
+  split_by <- ifelse(has_name(fm, "split_by"), fm$split_by, "chapter+number")
+  assert_that(length(split_by) == 1)
+  assert_that(
+    split_by %in% c("chapter+number", "section+number"),
+    msg = "`split_by` must be either 'chapter+number' or `section+number`"
+  )
+
   target_dir <- file.path(getwd(), "css")
   dir.create(target_dir, showWarnings = FALSE)
   pandoc_args <- c(
@@ -33,10 +57,7 @@ inbo_gitbook <- function(
     file.exists(file.path(getwd(), "index.Rmd")),
     msg = "You need to render an inbo_gitbook() from it's working directory"
   )
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
-  if (
-    has_name(fm, "cover") & !has_name(fm, "cover_image")
-  ) {
+  if (has_name(fm, "cover")) {
     if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
       pdf_convert(
         pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
@@ -48,20 +69,6 @@ inbo_gitbook <- function(
       pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
     )
   }
-  lang <- ifelse(
-    has_name(fm$output$`INBOmd::inbo_gitbook`, "lang"),
-    fm$output$`INBOmd::inbo_gitbook`$lang,
-    ifelse(has_name(fm, "lang"), fm$lang, lang)
-  )
-  lang <- ifelse(lang != "nl", "en", "nl")
-  assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
-  )
-  assert_that(
-    style == "Flanders" || lang != "en",
-    msg = "Use style: Flanders when the language is not nl"
-  )
 
   css <- define_css(style = style)
   writeLines(css, file.path(target_dir, "report.css"))
