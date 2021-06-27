@@ -3,6 +3,7 @@
 #' @inheritParams rmarkdown::pdf_document
 #' @template yaml_generic
 #' @template yaml_report
+#' @template yaml_pdf
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
 #' @importFrom rmarkdown output_format knitr_options pandoc_options

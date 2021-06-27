@@ -83,7 +83,7 @@ Required for the colophon.
 \item \strong{\code{reviewer}}: names of the reviewers.
 Use the same syntax as for the authors.
 \item \strong{\code{year}}: year of publication.
-Used in the same places as \code{shortauthor}
+Used in the same places as \code{shortauthor}.
 \item \strong{\code{cover_photo}}: the relative path to the image you want on the cover.
 \item \strong{\code{cover_description}}: Description of the cover photo, including information
 on the author of the picture and license information.
@@ -99,16 +99,6 @@ Used in conjunction with \code{shortauthor} and \code{year}.
 \item \strong{\code{reportnr}}: Report number assigned by the INBO library.
 \item \code{ordernr}: Optional reference number specified by the client.
 \item \strong{\code{depotnr}}: Report number assigned by the INBO library.
-\item \strong{\code{embargo}}: The date at which the report is made public on the INBO
-website.
-\item \code{print}: section only required in case you need a number of printed copies.
-When set it requires the following sub items:
-\itemize{
-\item \code{copies}: the number of copies
-\item \code{motivation}: motivate why you need printed copies as the INBO policy
-is to use only digital publications.
-\item \code{pages}: the number of pages in the full document.
-}
 \item \code{client}: Optionally the name, address and website of the client.
 \item \code{client_logo}: Optionally the logo of the client.
 Only used when \code{client} is set.
@@ -119,6 +109,29 @@ Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
 If not set or set to \code{FALSE} add the address of INBO Brussels.
+}
+}
+
+\section{Available YAML headers options specific for reports in pdf format}{
+
+
+Bold items are required.
+Omitting them results in an ugly warning in the rendered document.
+This is deliberate done so you can prepare the document without adding the
+information.
+But the ugly warnings nudges you to add the required information before
+publication.
+\itemize{
+\item \strong{\code{embargo}}: The date at which the report is made public on the INBO
+website.
+\item \code{print}: section only required in case you need a number of printed copies.
+When set it requires the following sub items:
+\itemize{
+\item \code{copies}: the number of copies
+\item \code{motivation}: motivate why you need printed copies as the INBO policy
+is to use only digital publications.
+\item \code{pages}: the number of pages in the full document.
+}
 \item \code{tocdepth}: which level headers to display.
 \itemize{
 \item 0: up to chapters (\verb{#})
@@ -148,17 +161,10 @@ and \verb{###}) and "subsubsection" (before \verb{#}, \verb{##}, \verb{###} and 
 \item \code{other_lang}: the other languages you want to use in the pdf version.
 Available options are 'nl', 'en' and 'fr'.
 Defaults to all available languages except the main language.
-\item \code{github-repo}: You can optionally set the github repo in
-\code{organisation/repository} format (e.g. \code{inbo/INBOmd}).
-This will add an 'edit' button to the source file on GitHub.
-Note that only people with write access can edit the files directly in the
-repository.
-Others can only edit the source code in a fork of the repository and
-suggest the changes through a pull request.
 }
 }
 
-\section{Multiple languages}{
+\section{Multiple languages in pdf}{
 
 
 You can define some parts of the text to be in a different language than the
