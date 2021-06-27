@@ -1,17 +1,42 @@
-#' INBO version of bookdown::epub_book
-#' @inheritParams inbo_rapport_template
-#' @inheritParams inbo_rapport
+#' Style for e-book
+#'
+#' A version of [bookdown::epub_book()] with a different styling.
+#' @template yaml_generic
+#' @template yaml_report
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown epub_book
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
-inbo_ebook <- function(
-  lang = c("nl", "en"), style = c("INBO", "Vlaanderen", "Flanders")
-) {
-  lang <- match.arg(lang)
-  style <- match.arg(style)
+inbo_ebook <- function() {
+  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
+  assert_that(length(style) == 1)
+  assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
+    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  )
+  lang <- ifelse(
+    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+  )
+  assert_that(length(lang) == 1)
+  languages <- c(nl = "dutch", en = "english", fr = "french")
+  assert_that(
+    lang %in% names(languages),
+    msg = paste(
+      "`lang` must be one of:",
+      paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
+    )
+  )
+  assert_that(
+    style != "Flanders" || lang != "nl",
+    msg = "Use style: Vlaanderen when the language is nl"
+  )
+  assert_that(
+    style == "Flanders" || lang != "en",
+    msg = "Use style: Flanders when the language is not nl"
+  )
+
   target_dir <- file.path(getwd(), "css")
   dir.create(target_dir, showWarnings = FALSE)
   pandoc_args <- c(
@@ -29,10 +54,8 @@ inbo_ebook <- function(
     file.exists(file.path(getwd(), "index.Rmd")),
     msg = "You need to render an inbo_ebook() from it's working directory"
   )
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
-  if (
-    has_name(fm, "cover") & !has_name(fm, "cover_image")
-  ) {
+  cover_image <- NULL
+  if (has_name(fm, "cover")) {
     if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
       pdf_convert(
         pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
@@ -40,14 +63,7 @@ inbo_ebook <- function(
       )
     }
     cover_image <- "cover.jpeg"
-  } else {
-    cover_image <- NULL
   }
-  lang <- ifelse(
-    has_name(fm$output$`INBOmd::inbo_ebook`, "lang"),
-    fm$output$`INBOmd::inbo_ebook`$lang,
-    ifelse(has_name(fm, "lang"), fm$lang, lang)
-  )
   meta_author <- vapply(
     fm$author,
     function(current_author) {
@@ -75,8 +91,12 @@ inbo_ebook <- function(
       lang != "nl", "Research Institute for Nature and Forest (INBO)",
       "Instituut voor Natuur- en Bosonderzoek"
     ),
+    series = ifelse(
+      lang != "nl", "Reports of the Research Institute for Nature and Forest",
+      "Rapporten van het Instituut voor Natuur- en Bosonderzoek"
+    ),
     identifier = fm$doi,
-    rights = "Creative Commons Attribution-ShareAlike 4.0 Generic License",
+    rights = "Creative Commons Attribution 4.0 Generic License",
     language = lang
   )
   metadata_file <- tempfile(fileext = ".xml")
@@ -87,19 +107,8 @@ inbo_ebook <- function(
     ),
     metadata_file
   )
-  pandoc_args <- c(
-    pandoc_args, sprintf("--epub-metadata=%s", metadata_file)
-  )
+  pandoc_args <- c(pandoc_args, sprintf("--epub-metadata=%s", metadata_file))
 
-  lang <- ifelse(lang != "nl", "en", "nl")
-  assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
-  )
-  assert_that(
-    style == "Flanders" || lang != "en",
-    msg = "Use style: Flanders when the language is not nl"
-  )
   css <- define_css(style = style)
   css <- gsub("(url\\(\"?)(fonts|img)", "\\1../fonts", css)
   writeLines(css, file.path(target_dir, "epub.css"))
