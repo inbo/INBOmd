@@ -16,3 +16,14 @@ Add the information to the YAML header of the report.
 Then run this function to covert the information into a \code{cover.txt} and
 send that file along the other files to the review process.
 }
+\seealso{
+Other utils: 
+\code{\link{check_dependencies}()},
+\code{\link{dyn_table}()},
+\code{\link{inbo_rapport_template}()},
+\code{\link{kolom_breedte}()},
+\code{\link{kolom_start}()},
+\code{\link{references}()},
+\code{\link{render_natbib}()}
+}
+\concept{utils}

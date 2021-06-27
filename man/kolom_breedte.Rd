@@ -19,8 +19,11 @@ Bereken de breedte van een A0 kolom
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
 \code{\link{inbo_rapport_template}()},
 \code{\link{kolom_start}()},
+\code{\link{references}()},
 \code{\link{render_natbib}()}
 }
 \concept{utils}

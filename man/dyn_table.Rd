@@ -41,3 +41,14 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 \item \strong{other}: \code{\link[knitr]{kable}}
 }
 }
+\seealso{
+Other utils: 
+\code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{inbo_rapport_template}()},
+\code{\link{kolom_breedte}()},
+\code{\link{kolom_start}()},
+\code{\link{references}()},
+\code{\link{render_natbib}()}
+}
+\concept{utils}

@@ -38,8 +38,11 @@ Render a Markdown file with natbib bibliography
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
 \code{\link{inbo_rapport_template}()},
 \code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()}
+\code{\link{kolom_start}()},
+\code{\link{references}()}
 }
 \concept{utils}

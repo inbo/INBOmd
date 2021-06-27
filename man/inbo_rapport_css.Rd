@@ -12,3 +12,4 @@ inbo_rapport_css(format = "html")
 \description{
 Use \code{inbo_rapport_template()} instead.
 }
+\concept{deprecated}

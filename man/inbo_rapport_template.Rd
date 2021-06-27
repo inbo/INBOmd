@@ -17,8 +17,11 @@ set correct css file and bookdown template
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
+\code{\link{references}()},
 \code{\link{render_natbib}()}
 }
 \concept{utils}

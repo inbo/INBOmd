@@ -6,6 +6,7 @@
 #' Then run this function to covert the information into a `cover.txt` and
 #' send that file along the other files to the review process.
 #' @param path The path to the main Rmd file
+#' @family utils
 #' @export
 #' @importFrom assertthat assert_that has_name is.count is.number
 #' @importFrom rmarkdown yaml_front_matter

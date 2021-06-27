@@ -50,6 +50,7 @@ inbo_rapport_template <- function(
 #' Deprecated
 #'
 #' Use `inbo_rapport_template()` instead.
+#' @family deprecated
 #' @export
 #' @inheritParams inbo_rapport_template
 inbo_rapport_css <- function(format = "html") {
