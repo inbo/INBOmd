@@ -2,8 +2,7 @@
 #' @param present names of all persons who attended the meeting
 #' @param absent names of all persons who couldn't make it
 #' @param chair chair of the meeting
-#' @inheritParams inbo_slides
-#' @inheritParams inbo_rapport
+#' @inheritParams inbo_zending
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'

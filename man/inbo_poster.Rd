@@ -19,6 +19,8 @@ inbo_poster(
 \arguments{
 \item{subtitle}{An optional subtitle}
 
+\item{codesize}{relative font size for code}
+
 \item{lang}{The language of the document. Defaults to "english".}
 
 \item{email}{The email address to display at the bottom.

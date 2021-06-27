@@ -5,8 +5,9 @@
 #' @param website the website of the conference
 #' @param reportdate the date of this report
 #' @param colleagues name of other colleagues attending the same conference
-#' @inheritParams inbo_slides
-#' @inheritParams inbo_rapport
+#' @param codesize relative font size for code
+#' @param floatbarrier where to place automatic floatbarriers
+#' @param lang main language
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'

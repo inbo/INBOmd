@@ -6,7 +6,7 @@
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
-#' @inheritParams inbo_slides
+#' @inheritParams inbo_zending
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'

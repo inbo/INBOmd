@@ -25,8 +25,14 @@ inbo_verslag(
 
 \item{chair}{chair of the meeting}
 
+\item{floatbarrier}{where to place automatic floatbarriers}
+
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
+
+\item{codesize}{relative font size for code}
+
+\item{lang}{main language}
 
 \item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
