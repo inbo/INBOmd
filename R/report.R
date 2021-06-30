@@ -1,5 +1,5 @@
 #' Create a report with the Flemish corporate identity
-#' @inheritParams inbo_slides
+#' @inheritParams slides
 #' @inheritParams rmarkdown::pdf_document
 #' @template yaml_generic
 #' @template yaml_report
@@ -10,7 +10,7 @@
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
-inbo_rapport <- function(
+report <- function(
   fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
   dots <- list(...)
@@ -201,4 +201,20 @@ inbo_rapport <- function(
     }
   )
   return(config)
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams slides
+#' @inheritParams rmarkdown::pdf_document
+#' @export
+inbo_rapport <- function(
+  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+) {
+  .Deprecated(
+    report(
+      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args, ...
+    ),
+    msg = "`inbo_rapport` is deprecated. Use `report` instead."
+  )
 }

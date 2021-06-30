@@ -10,7 +10,7 @@
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
-inbo_gitbook <- function() {
+gitbook <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
@@ -55,7 +55,7 @@ inbo_gitbook <- function() {
   )
   assert_that(
     file.exists(file.path(getwd(), "index.Rmd")),
-    msg = "You need to render an inbo_gitbook() from it's working directory"
+    msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
     if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
@@ -76,11 +76,11 @@ inbo_gitbook <- function() {
     pandoc_args,
     pandoc_variable_arg("css", file.path(target_dir, "report.css"))
   )
-  config <- gitbook(
+  config <- bookdown::gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = inbo_rapport_template(format = "html", lang = lang)
+    template = report_template(format = "html", lang = lang)
   )
   config$clean_supporting <- TRUE
   return(config)

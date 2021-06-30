@@ -13,12 +13,12 @@
 #' @importFrom utils compareVersion
 #' @importFrom assertthat assert_that is.string is.flag noNA
 #' @family output
-inbo_slides <- function(toc = TRUE, ...) {
+slides <- function(toc = TRUE, ...) {
   check_dependencies()
   dots <- list(...)
   assert_that(
     !has_name(dots, "number_sections"), msg =
-"`number_sections` detected. Are you still using 'INBOmd::inbo_slides' as
+"`number_sections` detected. Are you still using 'INBOmd::slides' as
 `output_format` of `bookdown::pdf_book`?"
   )
   csl <- system.file("research-institute-for-nature-and-forest.csl",
@@ -124,4 +124,15 @@ Please contact the maintainer when you require Dutch logo's.")
     }
   )
   return(config)
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams slides
+#' @export
+inbo_slides <- function(toc = TRUE, ...) {
+  .Deprecated(
+    slides(toc = toc, ...),
+    msg = "`inbo_slides` is deprecated. Use `slides` instead."
+  )
 }

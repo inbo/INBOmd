@@ -3,7 +3,7 @@
 #' @param lang the language used in the colophon.
 #' @export
 #' @family utils
-inbo_rapport_template <- function(
+report_template <- function(
   format = c("html", "epub"), lang = c("nl", "en")
 ) {
   lang <- match.arg(lang)
@@ -47,16 +47,24 @@ inbo_rapport_template <- function(
   )
 }
 
-#' Deprecated
+#' Deprecated functions
 #'
-#' Use `inbo_rapport_template()` instead.
+#' | old function | new function |
+#' | ------------------- | ------------------- |
+#' | `ìnbo_handouts()` | `handouts()` |
+#' | `ìnbo_poster()` | `poster()` |
+#' | `ìnbo_rapport()` | `report()` |
+#' | `inbo_rapport_css()` | `report_template()` |
+#' | `ìnbo_slides()` | `slides()` |
+#' | `ìnbo_verslag()` | `minutes()` |
+#' @rdname deprecated
 #' @family deprecated
 #' @export
-#' @inheritParams inbo_rapport_template
+#' @inheritParams report_template
 inbo_rapport_css <- function(format = "html") {
   .Deprecated(
-    inbo_rapport_template(format = format),
+    report_template(format = format),
     msg = "`inbo_rapport_css` is deprecated.
-Use `inbo_rapport_template()` instead."
+Use `report_template()` instead."
   )
 }

@@ -1,8 +1,8 @@
-#' Create a meeting report with the INBO corporate identity
+#' Create a minutes of a meeting with the INBO corporate identity
 #' @param present names of all persons who attended the meeting
 #' @param absent names of all persons who couldn't make it
 #' @param chair chair of the meeting
-#' @inheritParams inbo_zending
+#' @inheritParams mission
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
@@ -16,7 +16,7 @@
 #' pandoc_variable_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
-inbo_verslag <- function(
+minutes <- function(
   present = "",
   absent = "",
   chair = "",
@@ -112,5 +112,34 @@ inbo_verslag <- function(
       keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
+  )
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams minutes
+#' @inheritParams mission
+#' @inheritParams rmarkdown::pdf_document
+#' @export
+inbo_verslag <- function(
+  present = "",
+  absent = "",
+  chair = "",
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "dutch",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  pandoc_args = NULL,
+  ...
+) {
+  .Deprecated(
+    minutes(
+      present = present, absent = absent, chair = chair, keep_tex = keep_tex,
+      floatbarrier = floatbarrier, fig_crop = fig_crop, includes = includes,
+      pandoc_args = pandoc_args, codesize = codesize, lang = lang, ...
+    ),
+    msg = "`inbo_verslag` is deprecated. Use `minutes` instead."
   )
 }

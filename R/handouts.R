@@ -1,8 +1,8 @@
 #' Use the handout version of slides with the INBO theme
 #'
-#' Similar to [inbo_slides()] except that you can't have progressive slides.
+#' Similar to [slides()] except that you can't have progressive slides.
 #' And you can place multiple slides on a single page.
-#' @inheritParams inbo_slides
+#' @inheritParams slides
 #' @param nup Number of slides on a page.
 #' Defaults to `8`.
 #' The 'plus' layouts leave blank space for recipients to make handwritten notes
@@ -14,11 +14,11 @@
 #' @template yaml_slide
 #' @export
 #' @family output
-inbo_handouts <- function(
+handouts <- function(
   toc = TRUE,
   nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
 ) {
-  config <- inbo_slides(toc = toc, ...)
+  config <- slides(toc = toc, ...)
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   nup <- ifelse(has_name(fm, "nup"), as.character(fm$nup), nup)
   nup <- match.arg(nup)
@@ -26,4 +26,19 @@ inbo_handouts <- function(
     pandoc_variable_arg("handout", nup)
   )
   return(config)
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams slides
+#' @inheritParams handouts
+#' @export
+inbo_handouts <- function(
+  toc = TRUE,
+  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
+) {
+  .Deprecated(
+    handouts(toc = toc, nup = nup, ...),
+    msg = "`inbo_handouts` is deprecated. Use `handouts` instead."
+  )
 }

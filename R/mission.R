@@ -21,7 +21,7 @@
 #' pandoc_variable_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
-inbo_zending <- function(
+mission <- function(
   conference,
   conferencedate,
   conferenceplace,
@@ -124,5 +124,37 @@ inbo_zending <- function(
       keep_tex = keep_tex
     ),
     clean_supporting = !keep_tex
+  )
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams rmarkdown::pdf_document
+#' @export
+inbo_zending <- function(
+  conference,
+  conferencedate,
+  conferenceplace,
+  website = "",
+  reportdate,
+  colleagues = "",
+  floatbarrier = c(NA, "section", "subsection", "subsubsection"),
+  includes = NULL,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "dutch",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  pandoc_args = NULL,
+  ...
+) {
+  .Deprecated(
+    mission(
+      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args,
+      conference = conference, conferencedate = conferencedate, lang = lang,
+      conferenceplace = conferenceplace, website = website, keep_tex = keep_tex,
+      reportdate = reportdate, colleagues = colleagues,
+      floatbarrier = floatbarrier, ...
+    ),
+    msg = "`inbo_zending` is deprecated. Use `mission` instead."
   )
 }

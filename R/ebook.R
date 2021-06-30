@@ -9,7 +9,7 @@
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
-inbo_ebook <- function() {
+ebook <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
@@ -115,7 +115,7 @@ inbo_ebook <- function() {
   config <- epub_book(
     fig_caption = TRUE, number_sections = TRUE, toc = TRUE,
     stylesheet = file.path(target_dir, "epub.css"), epub_version = "epub3",
-    template = inbo_rapport_template(format = "epub", lang = lang),
+    template = report_template(format = "epub", lang = lang),
     pandoc_args = pandoc_args, cover_image = cover_image
   )
   config$clean_supporting <- TRUE

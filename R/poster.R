@@ -6,7 +6,7 @@
 #' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
 #'   (if available) to pdf figures
 #' @param pandoc_args Additional command line options to pass to pandoc
-#' @inheritParams inbo_zending
+#' @inheritParams mission
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
@@ -31,7 +31,7 @@
 #' @importFrom graphics par image
 #' @importFrom qrcode qrcode_gen
 #' @family output
-inbo_poster <- function(
+poster <- function(
   subtitle,
   codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
   lang = "english",
@@ -195,5 +195,32 @@ inbo_poster <- function(
     ),
     post_processor = post_processor,
     clean_supporting = !keep_tex
+  )
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams poster
+#' @inheritParams mission
+#' @inheritParams rmarkdown::pdf_document
+#' @export
+inbo_poster <- function(
+  subtitle,
+  codesize = c("footnotesize", "scriptsize", "tiny", "small", "normalsize"),
+  lang = "english",
+  email = "info@inbo.be",
+  keep_tex = FALSE,
+  fig_crop = TRUE,
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
+) {
+  .Deprecated(
+    poster(
+      subtitle = subtitle, codesize = codesize, lang = lang, email = email,
+      keep_tex = keep_tex, fig_crop = fig_crop, includes = includes,
+      pandoc_args = pandoc_args, ...
+    ),
+    msg = "`inbo_poster` is deprecated. Use `poster` instead."
   )
 }
