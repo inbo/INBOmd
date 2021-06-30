@@ -1,0 +1,53 @@
+--- 
+# generic options. See ?INBOmd::slides() for full list and more details.
+title:
+subtitle:
+author: 
+  - firstname: Firstname1
+    name: "Last name1"
+    email: "firstname1.lastname1@inbo.be"
+    orcid: 0000-0002-1825-0097
+  - firstname: Voornaam2
+    name: Achternaam2
+    email: "voornaam2.achternaam2@inbo.be"
+    orcid: 0000-0002-1825-0097
+style: INBO
+lang: nl
+
+# slide specific options. See ?INBOmd::slides() for full list and more details.
+location:
+institute:
+toc:
+toc_name:
+cover_photo:
+cover_horizontal:
+
+site: bookdown::bookdown_site
+output:
+  INBOmd::inbo_slides: default
+  INBOmd::inbo_handouts: default
+---
+
+```{r setup, include = FALSE}
+library(knitr)
+opts_chunk$set(
+  dev = "cairo_pdf"
+)
+library(tidyverse)
+library(INBOtheme)
+if (interactive()) {
+  theme_set(theme_inbo(base_size = 12, transparent = "plot"))
+} else {
+  theme_set(theme_inbo(base_size = 6, transparent = "plot"))
+  update_geom_defaults("text", list(size = 3))
+}
+```
+
+# Slides met RMarkdown en Bookdown extensie
+
+- uitgebreider voorbeeld beschikbaar
+- broncode
+    - https://github.com/inbo/inbomd_examples/
+    - in map `source/inbo_slides`
+- afgewerkte pdf
+    - https://inbo.github.io/inbomd-examples/

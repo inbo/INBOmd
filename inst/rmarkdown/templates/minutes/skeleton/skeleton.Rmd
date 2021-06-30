@@ -3,7 +3,7 @@ author: "Voornaam Achternaam"
 title: "Onderwerp van de vergadering"
 date: "01/01/2016"
 output: 
-  INBOmd::inbo_verslag:
+  INBOmd::minutes:
     present: "Voornaam2 Achternaam2 \\& Voornaam3 Achternaam3"
     absent: "Voornaam3 Achternaam4 \\& Voornaam5 Achternaam5"
     chair: "Voornaam Achternaam"

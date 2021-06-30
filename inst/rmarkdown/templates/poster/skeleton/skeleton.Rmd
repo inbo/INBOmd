@@ -10,7 +10,7 @@ link-citations: TRUE
 site: bookdown::bookdown_site
 output:
   bookdown::pdf_book:
-    base_format: INBOmd::inbo_poster
+    base_format: INBOmd::poster
     lang: "english"
     email: info@inbo.be
     ORCID: 
@@ -36,18 +36,7 @@ opts_chunk$set(
 )
 library(ggplot2)
 library(INBOtheme)
-theme_set(
-  theme_inbo(
-    base_family = "Calibri", # "Flanders Art Sans",
-    base_size = 24
-  )
-)
-```
-
-```{r ggplot-theme, include = FALSE}
-theme_set(
-  theme_inbo(base_size = 20)
-)
+theme_set(theme_inbo(base_size = 20))
 update_geom_defaults("text", list(size = 8))
 ```
 

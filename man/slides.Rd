@@ -63,10 +63,11 @@ required to obtain an ORCID from https://orcid.org.\preformatted{  - firstname: 
 
 \itemize{
 \item \code{location}: optional text placed on the title slide below the (sub)title.
+\item \code{institute}: optional text placed on the title slide below the author.
 \item \code{toc}: add a slide with the table of content.
 Defaults to \code{TRUE}.
 \item \code{toc_name}: slide title for the table of content.
-Defaults to "Overzicht" when missing.
+Defaults to \code{Overzicht} when missing.
 \item \code{cover_photo}: the relative path to the image you want on the cover.
 When missing, you get a default picture.
 \item \code{cover_horizontal}: When omitted, scale the \code{cover_photo} so that it covers

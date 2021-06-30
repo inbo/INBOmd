@@ -1,4 +1,4 @@
-book_filename: "mijn-rapport.Rmd"
+book_filename: "my-report.Rmd"
 output_dir: "../output"
 delete_merged_file: FALSE
 language:

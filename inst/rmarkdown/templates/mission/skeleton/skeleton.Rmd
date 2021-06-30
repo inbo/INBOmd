@@ -1,7 +1,7 @@
 ---
 author: "Voornaam Achternaam"
 output: 
-  INBOmd::inbo_zending:
+  INBOmd::mission:
     conference: "De titel van de conferentie of workshop"
     conferencedate: "01/01/2016"
     conferenceplace: "Anderlecht, België"
@@ -16,15 +16,13 @@ opts_chunk$set(
   echo = TRUE,
   cache = FALSE,
   dpi = 300,
-  fig.width = 150 / 25.4,
-  fig.height = 100 / 25.4,
   warning = TRUE,
   error = TRUE,
   message = TRUE
 )
 library(ggplot2)
 library(INBOtheme)
-theme_set(theme_inbo2015())
+theme_set(theme_inbo())
 ```
 
 # Inleiding
