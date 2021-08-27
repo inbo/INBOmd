@@ -19,7 +19,7 @@ Authors@R:
 Description: Several templates to generate reports, presentations and
     posters.
 License: GPL-3
-URL: https://doi.org/10.5281/zenodo.842223, https://github.com/inbo/inbomd
+URL: https://github.com/inbo/inbomd, https://doi.org/10.5281/zenodo.842223
 BugReports: https://github.com/inbo/inbomd/issues
 Imports:
     assertthat,
