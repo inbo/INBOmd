@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.4.10
+Version: 0.5.0
 Authors@R: 
     c(person(given = "Thierry",
              family = "Onkelinx",

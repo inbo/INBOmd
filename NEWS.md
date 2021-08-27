@@ -1,22 +1,36 @@
-# INBOmd 0.4.10
+# INBOmd 0.5.0
+
+## Breaking changes
+
+* Every output format has now its dedicated function using the English name.
+  We no longer use prefixes.
+  The YAML options are now uniform across the output formats.
+  Please have a look at the documentation of the output format to find a list
+  with the available options.
+  Below is the list of the old output formats and their new name.
+* `bookdown::pdf_book` with `INBOmd::inbo_rapport` -> `INBOmd::report`
+* `bookdown::gitbook` -> `INBOmd::gitbook`
+* `bookdown::epub_book` -> `INBOmd::ebook`
+* `bookdown::pdf_book` with `INBOmd::inbo_slides` ->
+  `INBOmd::slides` for the presentation, `INBOmd::handouts` for handouts,
+  `INBOmd::report` for handouts with lots of R code and output (useful for
+  R tutorials and courses)
 
 ## User visible changes
 
-* Use pandoc to render citations with `inbo_rapport()` on pdf instead of natbib
+* Use pandoc to render citations with `report()` on pdf instead of natbib
   (#63, @ThierryO).
-* `inbo_rapport()` supports custom languages when using `style = "Flanders"`
+* `report()` supports custom languages when using `style = "Flanders"`
   (#64, @ThierryO).
-* For HTML reports, use the new function `inbo_gitbook()` instead of
-  `bookdown::gitbook()`.
 * Update CSL style to most recent version (#63, @florisvdh).
-* Add colophon to INBO reports in pdf, gitbook and epub formats.
+* Add colophon to reports in pdf, gitbook and epub formats.
 * Rendering the pdf reports generates a `cover.txt`.
   This files contains the required information to create the cover page.
 * New function `references()` allows to define the location where to insert
   the bibliography.
   The optional appendix starts after the bibliography.
-* `inbo_slides()` generates a visible table of content (#66).
-* Update the `inbo_rapport` RMarkdown [template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
+* `slides()` generates a visible table of content (#66).
+* Update the `report()` RMarkdown [template](https://rstudio.github.io/rstudio-extensions/rmarkdown_templates.html).
   It contains all available options in the YAML header.
 * Add a new template for a non-Dutch report with English as default language.
 * Reports use Calibri as default font.
