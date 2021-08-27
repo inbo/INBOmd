@@ -12,10 +12,9 @@
 ^man-roxygen$
 ^pkgdown$
 ^README\.Rmd$
-^wercker\.yml$
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 create_docker.sh
 Dockerfile
+docker
 docs
-entrypoint.sh

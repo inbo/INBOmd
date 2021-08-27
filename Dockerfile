@@ -18,6 +18,8 @@ ENV DEBCONF_NONINTERACTIVE_SEEN true
 RUN mkdir -p /github/home
 ENV HOME /github/home
 
+COPY docker/.Rprofile $R_HOME/etc/Rprofile.site
+
 ## Install nano
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -91,8 +93,54 @@ RUN  mkdir ${HOME}/.fonts \
   && fc-cache -fv \
   && updmap-sys
 
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("assertthat")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("bookdown")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("dplyr")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("DT")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("ggplot2")'
+
+## Install INBOtheme
+RUN  Rscript -e 'remotes::install_cran("INBOtheme")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("knitr")'
+
+## Install dependencies for INBOmd examples: leaflet
+RUN  Rscript -e 'remotes::install_cran("leaflet")'
+
+## Install dependencies for INBOmd examples: lipsum
+RUN  Rscript -e 'remotes::install_cran("lipsum")'
+
 ## Install pander
 RUN  Rscript -e 'remotes::install_cran("pander")'
+
+## Install pdftools
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends libpoppler-cpp-dev \
+  && Rscript -e 'remotes::install_cran("pdftools")'
+
+## Install qrcode
+RUN  Rscript -e 'remotes::install_cran("qrcode")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("rmarkdown")'
+
+## Install dependencies for INBOmd
+RUN  Rscript -e 'remotes::install_cran("rstudioapi")'
+
+## Install sysfonts
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends libfreetype6-dev \
+  && Rscript -e 'remotes::install_cran("sysfonts")'
 
 ## Install webshot
 RUN  apt-get update \
@@ -100,31 +148,6 @@ RUN  apt-get update \
       bzip2 \
   && Rscript -e 'remotes::install_cran("webshot")' \
   && Rscript -e 'webshot::install_phantomjs()'
-
-## Install sysfonts
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends libfreetype6-dev \
-  && Rscript -e 'remotes::install_cran("sysfonts")'
-
-## Install qrcode
-RUN  Rscript -e 'remotes::install_github("thierryo/qrcode")'
-
-## Install INBOtheme
-RUN  Rscript -e 'remotes::install_github("inbo/INBOtheme")'
-
-## Install dependencies for INBOmd examples: DT
-RUN  Rscript -e 'remotes::install_cran("DT")'
-
-## Install dependencies for INBOmd examples: leaflet
-RUN  Rscript -e 'remotes::install_cran("leaflet")'
-
-## Install dependencies for INBOmd examples: lipsum
-RUN  Rscript -e 'remotes::install_github("inbo/lipsum")'
-
-## Install pdftools
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends libpoppler-cpp-dev \
-  && Rscript -e 'remotes::install_cran("pdftools")'
 
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore
@@ -140,6 +163,6 @@ COPY vignettes inbomd/vignettes
 RUN  Rscript -e 'remotes::install_local("inbomd")' \
   && Rscript -e 'tinytex::tlmgr_conf(c("auxtrees", "add", system.file("local_tex", package = "INBOmd")))'
 
-COPY entrypoint.sh /entrypoint.sh
+COPY docker/entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
