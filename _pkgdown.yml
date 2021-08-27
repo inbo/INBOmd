@@ -2,6 +2,8 @@ navbar:
   title: ~
   type: default
   left:
+  - text: NEWS
+    href: news/index.html
   - text: Tutorials
     href: articles/index.html
     menu:
