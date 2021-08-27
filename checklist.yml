@@ -3,15 +3,18 @@ package: yes
 allowed:
   warnings: []
   notes:
-  - motivation: Package not intended for CRAN
+  - motivation: Package not intended for CRAN. Additional repositories required for
+      INBO specific dependencies.
     value: |-
       checking CRAN incoming feasibility ... NOTE
-      Maintainer: ‘Thierry Onkelinx <thierry.onkelinx@inbo.be>’
+      Maintainer: 'Thierry Onkelinx <thierry.onkelinx@inbo.be>'
 
       New submission
 
-      Unknown, possibly mis-spelled, fields in DESCRIPTION:
-        ‘Remotes’
-
       Suggests or Enhances not in mainstream repositories:
         INBOtheme
+      Availability using Additional_repositories specification:
+        INBOtheme   yes   https://inbo.r-universe.dev
+citation_roles:
+- aut
+- cre

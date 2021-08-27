@@ -39,9 +39,7 @@ Suggests:
     webshot
 VignetteBuilder: 
     knitr
-Remotes:
-    inbo/INBOtheme,
-    thierryo/qrcode
+Additional_repositories: https://inbo.r-universe.dev
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
