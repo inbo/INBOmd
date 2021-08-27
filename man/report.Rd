@@ -7,8 +7,10 @@
 report(fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...)
 }
 \arguments{
-\item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
-(if available) to pdf figures}
+\item{fig_crop}{Whether to crop PDF figures with the command
+\command{pdfcrop}. This requires the tools \command{pdfcrop} and
+\command{ghostscript} to be installed. By default, \code{fig_crop = TRUE}
+if these two tools are available.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}

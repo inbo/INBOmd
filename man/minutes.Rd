@@ -36,8 +36,10 @@ document (typically created using the \code{\link[rmarkdown]{includes}} function
 
 \item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
-\item{fig_crop}{\code{TRUE} to automatically apply the \code{pdfcrop} utility
-(if available) to pdf figures}
+\item{fig_crop}{Whether to crop PDF figures with the command
+\command{pdfcrop}. This requires the tools \command{pdfcrop} and
+\command{ghostscript} to be installed. By default, \code{fig_crop = TRUE}
+if these two tools are available.}
 
 \item{pandoc_args}{Additional command line options to pass to pandoc}
 
