@@ -23,7 +23,7 @@ URL: https://github.com/inbo/inbomd, https://doi.org/10.5281/zenodo.842223
 BugReports: https://github.com/inbo/inbomd/issues
 Imports:
     assertthat,
-    bookdown (>= 0.7.13),
+    bookdown (>= 0.23.4),
     dplyr,
     htmltools,
     knitr,
@@ -40,6 +40,8 @@ Suggests:
     webshot
 VignetteBuilder: 
     knitr
+Remotes:
+    rstudio/bookdown#1249
 Additional_repositories: https://inbo.r-universe.dev
 Encoding: UTF-8
 LazyData: true
