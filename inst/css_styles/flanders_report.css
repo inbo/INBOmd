@@ -2558,3 +2558,12 @@ img.thumbnail {
   background-size: 30px;
   background-position: 2px 0.85em;
 }
+:root {
+  --heading-color: #3C3D00;
+  --link-color: #05C;
+  --link-toc-color: #3C3D00;
+  --link-toc-hover-color: #05C;
+  --header-color: #3C3D00;
+  --header-background-color: #FFEB00;
+  --alert-block-color: #FFEB00;
+}

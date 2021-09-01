@@ -7,8 +7,10 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
+#' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
+#' @importFrom utils packageVersion
 #' @family output
 gitbook <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
@@ -45,8 +47,6 @@ gitbook <- function() {
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
 
-  target_dir <- file.path(getwd(), "css")
-  dir.create(target_dir, showWarnings = FALSE)
   pandoc_args <- c(
     "--csl",
     system.file(
@@ -69,40 +69,29 @@ gitbook <- function() {
       pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
     )
   }
+  resource_dir <- system.file("css_styles", package = "INBOmd")
+  inbomd_dep <- htmlDependency(
+    name = "INBOmd", version = packageVersion("INBOmd"), src = resource_dir,
+    stylesheet = sprintf(
+      "%s_report.css", ifelse(style == "INBO", "inbo", "flanders")
+    )
+  )
 
-  css <- define_css(style = style)
-  writeLines(css, file.path(target_dir, "report.css"))
   pandoc_args <- c(
     pandoc_args,
-    pandoc_variable_arg("css", file.path(target_dir, "report.css"))
+    pandoc_variable_arg(
+      "csspath", paste0("libs/INBOmd-", packageVersion("INBOmd"))
+    )
+  )
+  template <- system.file(
+    file.path("template", sprintf("report_%s.html", lang)), package = "INBOmd"
   )
   config <- bookdown::gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = report_template(format = "html", lang = lang)
+    template = template, extra_dependencies = list(inbomd_dep)
   )
   config$clean_supporting <- TRUE
   return(config)
-}
-
-define_css <- function(style) {
-  style_colors <- list(
-    INBO = c(
-      `heading-color` = "#356196", `link-color` = "#C04384",
-      `link-toc-color` = "#356196", `link-toc-hover-color` = "#C04384",
-      `header-color` = "#356196", `header-background-color` = "#FFFFFF",
-      `alert-block-color` = "#C04384"
-    ),
-    level1 = c(
-      `heading-color` = "#3C3D00", `link-color` = "#05C",
-      `link-toc-color` = "#3C3D00", `link-toc-hover-color` = "#05C",
-      `header-color` = "#3C3D00", `header-background-color` = "#FFEB00",
-      `alert-block-color` = "#FFEB00"
-    )
-  )
-  style_colors <- style_colors[[ifelse(style == "INBO", "INBO", "level1")]]
-  style_colors <- sprintf("  --%s: %s;", names(style_colors), style_colors)
-  css <- system.file(file.path("css", "report.css"), package = "INBOmd")
-  c(readLines(css), ":root {", style_colors, "}")
 }

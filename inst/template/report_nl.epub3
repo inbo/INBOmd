@@ -173,7 +173,7 @@ $if(titlepage)$
      $endfor$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="css/img/cc-by.svg" /></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Naamsvermelding 4.0 Internationaal-licentie</a>.
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Naamsvermelding 4.0 Internationaal-licentie</a>.
   </div>
 </section>
 $else$

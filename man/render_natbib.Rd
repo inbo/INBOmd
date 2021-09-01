@@ -42,7 +42,6 @@ Other utils:
 \code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
-\code{\link{references}()},
-\code{\link{report_template}()}
+\code{\link{references}()}
 }
 \concept{utils}

@@ -23,7 +23,6 @@ Other utils:
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()},
-\code{\link{report_template}()}
+\code{\link{render_natbib}()}
 }
 \concept{utils}

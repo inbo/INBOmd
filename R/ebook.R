@@ -37,8 +37,6 @@ ebook <- function() {
     msg = "Use style: Flanders when the language is not nl"
   )
 
-  target_dir <- file.path(getwd(), "css")
-  dir.create(target_dir, showWarnings = FALSE)
   pandoc_args <- c(
     "--csl",
     system.file(
@@ -109,14 +107,17 @@ ebook <- function() {
   )
   pandoc_args <- c(pandoc_args, sprintf("--epub-metadata=%s", metadata_file))
 
-  css <- define_css(style = style)
-  css <- gsub("(url\\(\"?)(fonts|img)", "\\1../fonts", css)
-  writeLines(css, file.path(target_dir, "epub.css"))
+  resource_dir <- system.file(file.path("css_styles"), package = "INBOmd")
+  template <- system.file(
+    file.path("template", sprintf("report_%s.epub3", lang)), package = "INBOmd"
+  )
   config <- epub_book(
     fig_caption = TRUE, number_sections = TRUE, toc = TRUE,
-    stylesheet = file.path(target_dir, "epub.css"), epub_version = "epub3",
-    template = report_template(format = "epub", lang = lang),
-    pandoc_args = pandoc_args, cover_image = cover_image
+    stylesheet = file.path(
+      resource_dir,
+      sprintf("%s_epub.css", ifelse(style == "INBO", "inbo", "flanders"))
+    ), epub_version = "epub3", template = template, pandoc_args = pandoc_args,
+    cover_image = cover_image
   )
   config$clean_supporting <- TRUE
   return(config)
