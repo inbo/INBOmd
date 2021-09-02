@@ -13,3 +13,5 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: inbo/actions/render_inbomd@master
+        with:
+          token: ${{ secrets.pat }}
