@@ -12,8 +12,8 @@ cd $GITHUB_WORKSPACE
 if [ $GITHUB_REPOSITORY = "inbo/inbomd" ] ; then
   echo 'Test new version of INBOmd'
   apt-get update
-  apt-get upgrade -Y
-  Rscript -e 'remotes::install_local(".")'
+  apt-get upgrade -y
+  Rscript -e 'remotes::install_local(".", force = TRUE)'
   cd /examples
 else
   echo 'Test changes in inbomd_examples'
