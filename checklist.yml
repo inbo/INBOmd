@@ -3,15 +3,12 @@ package: yes
 allowed:
   warnings: []
   notes:
-  - motivation: Package not intended for CRAN.
+  - motivation: package not intended for CRAN
     value: |-
       checking CRAN incoming feasibility ... NOTE
       Maintainer: 'Thierry Onkelinx <thierry.onkelinx@inbo.be>'
 
       New submission
-
-      Unknown, possibly mis-spelled, fields in DESCRIPTION:
-        'Remotes'
 
       Suggests or Enhances not in mainstream repositories:
         INBOtheme
