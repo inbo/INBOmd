@@ -25,28 +25,6 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 echo '\nAll Rmarkdown files rendered successfully\n'
-
-if [ $GITHUB_EVENT_NAME != "push" ]; then
-  echo 'Done.\n'
-  exit 0
-fi
-
-echo 'Publishing the rendered files...\n'
-git clone --branch=gh-pages https://$1@github.com/inbo/inbomd_examples/ /gh-pages
-git config --global user.email "info@inbo.be"
-git config --global user.name "INBO"
-cd /gh-pages
-git rm -r .
 if [ $GITHUB_REPOSITORY = "inbo/inbomd" ] ; then
-  cp -R /examples/docs/. .
-else
-  cp -R $GITHUB_WORKSPACE/docs/. .
-fi
-if ! git diff-index --quiet HEAD --; then
-    git add --all
-    git commit --amend --message="Voorbeelden voor INBOmd"
-    git push -f
-    echo '\nNew version published...'
-else
-  echo '\nNothing to update...'
+  cp -R /examples/docs/. $GITHUB_WORKSPACE/docs/.
 fi

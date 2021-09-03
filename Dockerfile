@@ -173,6 +173,6 @@ RUN  Rscript -e 'remotes::install_local("inbomd")' \
 
 COPY docker/entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
-
 ENV PATH $PATH:/root/bin:/github/home/bin
+
+ENTRYPOINT ["/entrypoint.sh"]
