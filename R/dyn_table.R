@@ -7,6 +7,7 @@
 #' @param x the dataframe
 #' @inheritParams DT::datatable
 #' @inheritParams knitr::kable
+#' @family utils
 #' @importFrom knitr opts_knit kable opts_current
 #' @importFrom dplyr %>% mutate_all
 #' @export

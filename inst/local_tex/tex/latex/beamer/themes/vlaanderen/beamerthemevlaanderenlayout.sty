@@ -13,6 +13,9 @@
 \usetheme{Pittsburgh}
 \usecolortheme[named=support.colour]{structure}
 
+\newlength{\websiteoffset}
+\setlength{\websiteoffset}{4mm}
+
 \setbeamercolor{title}{fg=white}
 \setbeamerfont{title}{size = \titlefontsize, series = \bfseries}
 
@@ -41,11 +44,11 @@
 \setbeamercolor{subsection title}{fg = sectiontitle.colour, bg = }
 
 \setbeamerfont{section in toc}{size = \normalsize, series = \normalfont}
-\setbeamercolor{section in toc}{fg = frametitle.colour}
+\setbeamercolor{section in toc}{fg = link.colour}
 \setbeamertemplate{section in toc}[square]
 
 \setbeamerfont{subsection in toc}{size = \small, series = \normalfont}
-\setbeamercolor{subsection in toc}{fg = frametitle.colour}
+\setbeamercolor{subsection in toc}{fg = link.colour}
 \setbeamertemplate{subsection in toc}[square]
 
 \setbeamertemplate{itemize items}[triangle]
@@ -85,8 +88,11 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
+      {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+      \vspace{\websiteoffset}
+    \end{minipage}
   \end{textblock}
 
   \begin{textblock}{84}(18.1, 6)
@@ -129,9 +135,12 @@
     \end{pgfpicture}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
     \textblockcolour{}
-    {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
+      {\usebeamerfont{sidebar}\usebeamercolor[fg]{sidebar}\rotatebox{90}{\@website}}
+      \vspace{\websiteoffset}
+    \end{minipage}
   \end{textblock}
 
 }
@@ -167,6 +176,7 @@
     \textblockcolour{}
     \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
       \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \hypersetup{hidelinks}%
       \raggedright{
         \noindent
         \insertsection
@@ -174,9 +184,12 @@
     \end{minipage}
   \end{textblock}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+      \vspace{\websiteoffset}
+    \end{minipage}
   \end{textblock}
 }
 
@@ -191,6 +204,7 @@
     \textblockcolour{}
     \begin{minipage}[b][29mm][b]{\dimexpr\paperwidth-65mm\relax}
       \usebeamerfont{section title}\usebeamercolor[fg]{section title}
+      \hypersetup{hidelinks}%
       \raggedright{
         \noindent
         \insertsection
@@ -200,12 +214,16 @@
 
   \begin{textblock*}{\dimexpr\paperwidth-50mm\relax}(36mm, 63mm)
     \textblockcolour{}
+    \hypersetup{hidelinks}%
     {\usebeamerfont{subsection title}\usebeamercolor[fg]{subsection title}\insertsubsection}
   \end{textblock*}
 
-  \begin{textblock}{2.9}(1.2, 78)
+  \begin{textblock}{2.9}(1.2, 0)
+    \begin{minipage}[t][\pdfpageheight][b]{2.9mm}
     \textblockcolour{}
     {\usebeamerfont{sidebar}\usebeamercolor[fg]{frametitle}\rotatebox{90}{\@website}}
+      \vspace{\websiteoffset}
+    \end{minipage}
   \end{textblock}
 }
 

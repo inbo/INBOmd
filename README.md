@@ -1,11 +1,15 @@
+# INBOmd <img src="man/figures/logo.svg" align="right" alt="A hexagon with the word INBOmd and the Markdown logo" width="120" />
+
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![License](https://img.shields.io/badge/license-GPL--3-blue.svg?style=flat)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+![License](https://img.shields.io/github/license/inbo/INBOmd)
+[![R build status](https://github.com/inbo/inbomd/workflows/check%20package%20on%20main/badge.svg)](https://github.com/inbo/inbomd/actions)
+[![Codecov test coverage](https://codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://codecov.io/gh/inbo/inbomd?branch=main)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/inbo/inbomd.svg)
+![GitHub repo size](https://img.shields.io/github/repo-size/inbo/inbomd.svg)
 [![DOI](https://zenodo.org/badge/66824259.svg)](https://zenodo.org/badge/latestdoi/66824259)
-[![wercker status](https://app.wercker.com/status/9088599e5217a85e3ed003956a05e2ee/s/master "wercker status")](https://app.wercker.com/project/byKey/9088599e5217a85e3ed003956a05e2ee)
 
-# INBOmd
-
-INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish goverment. The current package has following Rmarkdown templates:
+INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish government. The current package has following Rmarkdown templates:
 
 - INBO report: reports rendered to pdf, html (gitbook style) and epub
 - INBO slides: presentations rendered to pdf
@@ -14,7 +18,7 @@ INBOmd contains templates to generate several types of documents with the corpor
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.com/articles/introduction.html).
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbomd.netlify.app/articles/introduction.html).
 
 ## In the wild
 

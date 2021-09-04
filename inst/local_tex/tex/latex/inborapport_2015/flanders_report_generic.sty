@@ -23,21 +23,59 @@
 \def\subtitle#1{\def\@subtitle{#1}}
 \subtitle{}
 
-\def\reportnumber#1{\def\@reportnumber{#1}}
-\RequirePackage[yyyymmdd,hhmmss]{datetime}
-\reportnumber{\today\space\currenttime}
+\def\colofonauthor#1{\def\@colofonauthor{#1}}
+\colofonauthor{}
+
+\def\doi#1{\def\@doi{#1}}
+\doi{!!!! ONTBREKEND: doi !!!!}
 
 \def\ordernumber#1{\def\@ordernumber{#1}}
 \ordernumber{}
 
+\def\year#1{\def\@year{#1}}
+\year{!!!! ONTBREKEND: year !!!!}
+
+\def\establishment#1{\def\@establishment{#1}}
+\establishment{}
+
+\def\reviewer#1{\def\@reviewer{#1}}
+\reviewer{!!!! ONTBREKEND: reviewer !!!!}
+
+\def\corresponding#1{\def\@corresponding{#1}}
+\corresponding{info@inbo.be}
+
+\def\depotnr#1{\def\@depotnr{#1}}
+\depotnr{!!!! ONTBREKEND: depotnr !!!!}
+
+\def\shortauthor#1{\def\@shortauthor{#1}}
+\shortauthor{!!!! ONTBREKEND: shortauthor !!!!}
+
+\def\reportnr#1{\def\@reportnr{#1}}
+\reportnr{!!!! ONTBREKEND: reportnr !!!!}
+
+\def\coverdescription#1{\def\@coverdescription{#1}}
+\coverdescription{!!!! ONTBREKEND: coverdescription !!!!}
+
 \def\flandersfont#1{\def\@flandersfont{#1}}
 \flandersfont{FALSE}
+
+\def\cooperation#1{\def\@cooperation{#1}}
+\cooperation{}
+
+\def\client#1{\def\@client{#1}}
+\client{}
+
+\def\citetitle#1{\def\@citetitle{#1}}
+\citetitle{!!!! ONTBREKEND: citetitle !!!!}
 
 \def\titlelogo#1{\def\@titlelogo{#1}}
 \titlelogo{}
 
 \def\alertlogo#1{\def\@alertlogo{#1}}
 \alertlogo{}
+
+\def\examplelogo#1{\def\@examplelogo{#1}}
+\examplelogo{}
 
 % define page geometry
 \RequirePackage[a4paper, top = 20mm, bottom = 25mm, outer = 30mm, inner = 30mm, footskip=10mm]{geometry}
@@ -122,6 +160,7 @@
 }
 
 \newenvironment{exampleblock}[2][]{%
+  \marginnote{\includegraphics[width=10mm]{\@examplelogo}}[1mm]
   \begin{mdframed}[backgroundcolor=box.colour.body, linewidth=1pt]
   \getStringLength{#2}\length
   \ifnum\length>0
@@ -132,24 +171,6 @@
 {
   \end{mdframed}
 }
-
-% definition of fonts
-\RequirePackage{ifxetex}
-
-\ifxetex
-  \RequirePackage[no-math]{fontspec}
-    \setmainfont[
-      Ligatures = TeX,
-      ItalicFont = FlandersArtSans-Italic,
-      BoldFont = FlandersArtSans-Bold,
-      BoldItalicFont = FlandersArtSans-BoldItalic,
-    ]{FlandersArtSans-Regular.otf}
-  \setmonofont[Mapping=tex-ansi]{inconsolata}
-\else
-  \RequirePackage[T1]{fontenc}
-  \RequirePackage[utf8]{inputenc}
-  \RequirePackage{inconsolata}
-\fi
 
 % Set scaling of fonts
 \RequirePackage{calc}
@@ -169,6 +190,7 @@
 \newlength{\fontsizeauthor}
 \newlength{\fontsizeordernr}
 \newlength{\fontsizetoc}
+\newlength{\fontsizelicense}
 
 \newlength{\fontsizebaseinter}
 \newlength{\fontsizepartinter}
@@ -185,10 +207,16 @@
 \newlength{\fontsizeauthorinter}
 \newlength{\fontsizeordernrinter}
 \newlength{\fontsizetocinter}
+\newlength{\fontsizelicenseinter}
 
 % base font
 \setlength{\fontsizebase}{11pt}
 \setlength{\fontsizebaseinter}{12.65pt}
+
+
+% license font
+\setlength{\fontsizelicense}{9pt}
+\setlength{\fontsizelicenseinter}{10.35pt}
 
 % fontsize for headings
 % heading 0
@@ -229,10 +257,10 @@
 
 % fontsize for title page
 \setlength{\fontsizetitle}{18pt}
-\setlength{\fontsizetitleinter}{60pt}
+\setlength{\fontsizetitleinter}{20.7pt}
 
 \setlength{\fontsizesubtitle}{18pt}
-\setlength{\fontsizesubtitleinter}{30pt}
+\setlength{\fontsizesubtitleinter}{20.7pt}
 
 \setlength{\fontsizeauthor}{12pt}
 \setlength{\fontsizeauthorinter}{13.8pt}
@@ -286,7 +314,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizepart}{\fontsizepartinter} \selectfont
-    \bfseries
+    \bfseries\raggedright
   }
   {\partname\quad\thepart}
   {1.5em}
@@ -299,7 +327,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizechapter}{\fontsizechapterinter} \selectfont
-    \bfseries
+    \bfseries\raggedright
   }
   {\thechapter}
   {1.5em}
@@ -323,6 +351,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizesection}{\fontsizesectioninter} \selectfont
+    \raggedright
   }
   {\thesection}
   {1.5em}
@@ -335,7 +364,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizesubsection}{\fontsizesubsectioninter} \selectfont
-    \bfseries
+    \bfseries\raggedright
   }
   {\thesubsection}
   {1.5em}
@@ -348,7 +377,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizesubsubsection}{\fontsizesubsubsectioninter} \selectfont
-    \bfseries
+    \bfseries\raggedright
   }
   {\thesubsubsection}
   {1.5em}
@@ -361,6 +390,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizeparagraph}{\fontsizeparagraphinter} \selectfont
+    \raggedright
   }
   {\theparagraph}
   {1.5em}
@@ -373,6 +403,7 @@
   {
     \color{main.colour}
     \fontsize{\fontsizesubparagraph}{\fontsizesubparagraphinter} \selectfont
+    \raggedright
   }
   {\thesubparagraph}
   {1.5em}
@@ -383,22 +414,161 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
+\newcommand{\chooseestablishment}[1]{%
+  \edef\custom{{#1}}%
+  \expandafter\ifstrequal\custom{Geraardsbergen}{
+    Geraardsbergen \\
+    Gaverstraat 4, 9500 Geraardsbergen
+  }{
+    Brussel \\
+    VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+  }
+}
+
+\newcommand{\mainColourURL}[1]{%
+  {\hypersetup{urlcolor=main.colour} #1}
+}
+
+\newcommand{\mainTitle}[1]{% 1 input argument - main title
+  \hspace{10mm}\parbox[t]{140mm}{%
+    \addfontfeature{LetterSpace=0.014}%
+    \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \MakeUppercase{\uline{#1}}%
+    \addfontfeature{LetterSpace=0.0}%
+  }%
+  \relax%
+}
+
+\addto\extrasdutch{%
+  \def\cfauthor{Auteurs:}%
+}
+\addto\extrasenglish{%
+  \def\cfauthor{Authors:}%
+}
+\addto\extrasdutch{%
+  \def\cfmission{Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.}%
+}
+\addto\extrasenglish{%
+  \def\cfmission{The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.}%
+}
+\addto\extrasdutch{%
+  \def\cflocation{Vestiging:}%
+}
+\addto\extrasenglish{%
+  \def\cflocation{Location:}%
+}
+\addto\extrasdutch{%
+  \def\cflocation{Vestiging:}%
+}
+\addto\extrasenglish{%
+  \def\cflocation{Location:}%
+}
+\addto\extrasdutch{%
+  \def\cfinbo{Instituut voor Natuur- en Bosonderzoek}%
+}
+\addto\extrasenglish{%
+  \def\cfinbo{Research Institute for Nature and Forest}%
+}
+\addto\extrasdutch{%
+  \def\cfseries{Rapporten van het \cfinbo}%
+}
+\addto\extrasenglish{%
+  \def\cfseries{Reports of the \cfinbo}%
+}
+\addto\extrasdutch{%
+  \def\cfcity{Brussel}%
+}
+\addto\extrasenglish{%
+  \def\cfcity{Brussels}%
+}
+\addto\extrasdutch{%
+  \def\cfcitation{Wijze van citeren:}%
+}
+\addto\extrasenglish{%
+  \def\cfcitation{Way of quoting:}%
+}
+\addto\extrasdutch{%
+  \def\cfvu{Verantwoordelijke uitgever:}%
+}
+\addto\extrasenglish{%
+  \def\cfvu{Responsible publisher:}%
+}
+\addto\extrasdutch{%
+  \def\cfcover{Foto cover:}%
+}
+\addto\extrasenglish{%
+  \def\cfcover{Cover photograph:}%
+}
+\addto\extrasdutch{%
+  \def\ccby{Dit werk valt onder een \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Naamsvermelding 4.0 Internationaal-licentie}.}%
+}
+\addto\extrasenglish{%
+  \def\ccby{This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 Generic License}.}%
+}
+\addto\extrasdutch{%
+  \def\ccbysa{Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.}%
+}
+\addto\extrasenglish{%
+  \def\ccbysa{This work is licensed under a \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 Generic License}.}%
+}
+\addto\extrasdutch{%
+  \def\cfclient{Dit onderzoek werd uitgevoerd in opdracht van:}%
+}
+\addto\extrasenglish{%
+  \def\cfclient{This study was commissioned by:}%
+}
+\addto\extrasdutch{%
+  \def\cfcoop{Dit onderzoek werd uitgevoerd in samenwerking met:}%
+}
+\addto\extrasenglish{%
+  \def\cfcoop{This study was conducted in collaboration with:}%
+}
+
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
+  \thispagestyle{empty}{%
+    \begin{flushleft}
+
+    \textbf{\cfauthor} \\ \@colofonauthor
+
+    \textbf{Reviewers:} \\ \@reviewer
+
+    \cfmission
+
+    \textbf{\cflocation} \\ INBO \chooseestablishment{\@establishment} \\ \url{https://www.vlaanderen.be/inbo}
+
+    \textbf{e-mail:} \\ \@corresponding
+
+    \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfseries~\@year~(\@reportnr). \cfinbo, \cfcity. DOI: \@doi
+
+    \textbf{\@depotnr} \\
+    \textbf{\cfseries~\@year~(\@reportnr)} \\
+    \textbf{ISSN: 1782-9054}
+
+    \textbf{\cfvu} \\ Maurice Hoffmann
+
+    \textbf{\cfcover} \\ \@coverdescription
+
+    \@client
+
+    \@cooperation
+
+    \vfill
+    \fontsize{\fontsizelicense}{\fontsizelicenseinter} \selectfont
+    \includegraphics[height=\fontsizelicense]{cc-by.eps} \ccby
+    \end{flushleft}
+
+    \clearpage
+  }
   \thispagestyle{cover}{%
     \@titlelogo \phantom{qk}
 
     \vfill
 
     \color{main.colour}
-    \hspace{10mm}\parbox[t]{140mm}{
-      \addfontfeature{LetterSpace=0.014}
-      \fontsize{\fontsizetitle}{\fontsizetitleinter} \selectfont \raggedright \bfseries \expandafter\MakeUppercase\expandafter{\@title}
-      \addfontfeature{LetterSpace=0.0}
-    }
+    \mainTitle{\@title}
 
-      \vspace{26pt}
+    \vspace{26pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
       \fontsize{\fontsizesubtitle}{\fontsizesubtitleinter}\selectfont \raggedright \bfseries \@subtitle
@@ -412,7 +582,7 @@
       \vspace{144pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
-      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \@reportnumber \\ \@ordernumber
+      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \mainColourURL{\@doi} \\ \@ordernumber
   }
 
   \vfill
@@ -420,6 +590,7 @@
   \clearpage
   }
 }
+
 
 \RequirePackage{etoolbox}
 \preto{\chapter}{\def\leveltitle{\chaptertitle}}

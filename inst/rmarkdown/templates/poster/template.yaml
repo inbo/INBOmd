@@ -1,0 +1,5 @@
+name: INBOmd poster
+create_dir: TRUE
+description: >
+  Template for an INBO poster based on bookdown.
+  A full example is available at https://github.com/inbo/inbomd_examples/tree/master/source/inbo_poster

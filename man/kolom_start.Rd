@@ -21,8 +21,10 @@ Bereken de startpositie van een A0 kolom
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
-\code{\link{inbo_rapport_css}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
+\code{\link{references}()},
 \code{\link{render_natbib}()}
 }
 \concept{utils}

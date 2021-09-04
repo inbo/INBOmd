@@ -1,36 +1,47 @@
-Package: INBOmd
 Type: Package
+Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.4.9
-Date: 2020-08-18
-Authors@R: c(
-  person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-8804-4216")), 
-  person("Floris", "Vanderhaeghe", email = "floris.vanderhaeghe@inbo.be", role = c("ctb"), comment = c(ORCID = "0000-0002-6378-6229")), 
-  person("Research Institute for Nature and Forest", email = "info@inbo.be", role = c("cph", "fnd")))
-Description: Several templates to generate reports, presentations and posters.
-License: GPL-3 | file LICENSE
-URL: https://doi.org/10.5281/zenodo.842223, https://github.com/inbo/inbomd
+Version: 0.5.0
+Authors@R: 
+    c(person(given = "Thierry",
+             family = "Onkelinx",
+             role = c("aut", "cre"),
+             email = "thierry.onkelinx@inbo.be",
+             comment = c(ORCID = "0000-0001-8804-4216")),
+      person(given = "Floris",
+             family = "Vanderhaeghe",
+             role = "ctb",
+             email = "floris.vanderhaeghe@inbo.be",
+             comment = c(ORCID = "0000-0002-6378-6229")),
+      person(given = "Research Institute for Nature and Forest",
+             role = c("cph", "fnd"),
+             email = "info@inbo.be"))
+Description: Several templates to generate reports, presentations and
+    posters.
+License: GPL-3
+URL: https://github.com/inbo/inbomd, https://doi.org/10.5281/zenodo.842223
 BugReports: https://github.com/inbo/inbomd/issues
-VignetteBuilder: knitr
-Suggests:
-    bookdown (>= 0.7.13),
-    DT,
-    ggplot2,
-    INBOtheme (>= 0.5.4),
-    pander,
-    rstudioapi,
-    webshot
 Imports:
     assertthat,
+    bookdown (>= 0.23.4),
     dplyr,
+    htmltools,
     knitr,
+    pdftools,
     qrcode (>= 0.1.2),
     rmarkdown,
     utils
-Remotes:
-    inbo/INBOtheme,
-    thierryo/qrcode
-RoxygenNote: 7.1.0
-Roxygen: list(markdown = TRUE)
+Suggests:
+    DT,
+    INBOtheme (>= 0.5.4),
+    ggplot2,
+    pander,
+    rstudioapi,
+    webshot
+VignetteBuilder: 
+    knitr
+Additional_repositories: https://inbo.r-universe.dev
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
