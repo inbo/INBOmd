@@ -9,7 +9,7 @@ export HOME=/root
 
 cd $GITHUB_WORKSPACE
 
-if [ $GITHUB_REPOSITORY = "inbo/inbomd" ] ; then
+if [ $GITHUB_REPOSITORY = 'inbo/INBOmd' ] ; then
   echo 'Test new version of INBOmd'
   apt-get update
   apt-get upgrade -y
@@ -19,7 +19,6 @@ else
   echo 'Test changes in inbomd_examples'
 fi
 Rscript source/render_all.R
-echo 'Path:           ' $PATH
 if [ $? -ne 0 ]; then
   echo "\nRendering failed. Please check the error message above.\n";
   exit 1
