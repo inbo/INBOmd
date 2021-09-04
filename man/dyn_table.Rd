@@ -22,8 +22,8 @@ alternatively, you can specify numeric column indices or column names to
 indicate which columns to escape, e.g. \code{1:5} (the first 5 columns),
 \code{c(1, 3, 4)}, or \code{c(-1, -3)} (all columns except the first and
 third), or \code{c('Species', 'Sepal.Length')}; since the row names take
-the first column to display, you should add the numeric column indices
-by one when using \code{rownames}}
+the first column to display, you should add the numeric column indices by
+one when using \code{rownames}}
 
 \item{align}{Column alignment: a character vector consisting of \code{'l'}
 (left), \code{'c'} (center) and/or \code{'r'} (right). By default or if
@@ -32,7 +32,7 @@ are left-aligned. If \code{length(align) == 1L}, the string will be
 expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 \code{c('c', 'l', 'c')}, unless the output format is LaTeX.}
 
-\item{...}{Other arguments (see Examples).}
+\item{...}{Other arguments (see Examples and References).}
 }
 \description{
 \itemize{
@@ -41,3 +41,13 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 \item \strong{other}: \code{\link[knitr]{kable}}
 }
 }
+\seealso{
+Other utils: 
+\code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{kolom_breedte}()},
+\code{\link{kolom_start}()},
+\code{\link{references}()},
+\code{\link{render_natbib}()}
+}
+\concept{utils}

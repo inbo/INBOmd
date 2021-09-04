@@ -13,9 +13,11 @@ Missing dependencies will be installed automatically
 }
 \seealso{
 Other utils: 
-\code{\link{inbo_rapport_css}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
+\code{\link{references}()},
 \code{\link{render_natbib}()}
 }
 \concept{utils}

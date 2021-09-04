@@ -49,18 +49,18 @@
 \newcommand{\inbologo}[1]{%
   \edef\lang{{#1}}%
   \expandafter\ifstrequal\lang{dutch}{
-    \includegraphics[height = 35mm, keepaspectratio]{logo_nl_wit}
+    \includegraphics[height = 35mm, keepaspectratio]{logo-nl-wit}
   }{
-    \includegraphics[height = 35mm, keepaspectratio]{logo_en_wit}
+    \includegraphics[height = 35mm, keepaspectratio]{logo-en-wit}
   }%
 }
 
 \newcommand{\vlaanderenlogo}[1]{%
   \edef\lang{{#1}}%
   \expandafter\ifstrequal\lang{dutch}{
-    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen_nl_vol}
+    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen-nl-vol}
   }{
-    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen_en_vol}
+    \includegraphics[height = 80mm, keepaspectratio]{vlaanderen-en-vol}
   }%
 }
 
@@ -95,7 +95,7 @@
 \ifxetex
   \RequirePackage[no-math]{fontspec}
   \choosefont{\@flandersfont}
-  \setmonofont[Mapping=tex-ansi]{Inconsolatazi4}
+  \setmonofont[Mapping=tex-ansi]{inconsolata}
 \else
   \RequirePackage[T1]{fontenc}
   \RequirePackage[utf8]{inputenc}
@@ -281,7 +281,7 @@
     \begin{minipage}[b][30mm][b]{250mm}
       \begin{flushright}
         \usebeamerfont{email}\usebeamercolor[fg]{footline}\@email\\
-        \usebeamerfont{footline}\usebeamercolor[fg]{footline}www.inbo.be
+        \usebeamerfont{footline}\usebeamercolor[fg]{footline}www.vlaanderen.be/inbo
       \end{flushright}
     \end{minipage}
     }

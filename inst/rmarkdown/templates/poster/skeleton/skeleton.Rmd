@@ -1,0 +1,103 @@
+---
+title: "Title of the poster"
+author:
+  - 
+    name: "Voornaam1 Achternaam1"
+  - 
+    name: "Voornaam2 Achternaam2"
+subtitle: "This is the optional subtitle"
+link-citations: TRUE
+site: bookdown::bookdown_site
+output:
+  bookdown::pdf_book:
+    base_format: INBOmd::poster
+    lang: "english"
+    email: info@inbo.be
+    ORCID: 
+      -
+        name: "Voornaam1 Achternaam1"
+        ID: "0000-0001-8804-4216"
+      -
+        name: "Voornaam2 Achternaam2"
+        ID: "0000-0003-1306-8672"
+    DOI: 
+      -
+        name: "paper"
+        ID: "10.1126/science.aap8826"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE,
+  dev = "cairo_pdf",
+  fig.width = INBOmd::kolom_breedte(3) / 25.4,
+  fig.height = 6
+)
+library(ggplot2)
+library(INBOtheme)
+theme_set(theme_inbo(base_size = 20))
+update_geom_defaults("text", list(size = 8))
+```
+
+<!-- start of first column -->
+\btextblock{`r INBOmd::kolom_breedte(3)`}(`r INBOmd::kolom_start(3, 1)`, 0)
+
+```{block2 chunk-name, type="block", latex.options="{title of a standard block}", echo = TRUE}
+You can use any markdown code in a box
+
+- a list of items
+    - which can be nested
+- the height of the box is sized to contain the text
+- the width of the box depends on the width of the column
+
+```
+
+```{block2 columns, type="exampleblock", latex.options="{Defining columns}", echo = TRUE}
+- start a column by adding `\btextblock{w}(x, y)`
+    - `w` is the width of the column in mm
+    - `x` is the horizontal position in mm
+        - start from the left margin
+    - `y` is the vertical position in mm
+        - starts below the footer
+- end a column by placing `\etextblock`
+- `INBOmd::kolom_breedte(n)` returns the width in case you want `n` equal sized columns
+- `INBOmd::kolom_start(n, i)` returns the horizontal position for column `i` of `n` equal sized columns
+
+```
+
+
+\etextblock
+
+<!-- start of second column -->
+\btextblock{`r 2 * INBOmd::kolom_breedte(3)`}(`r INBOmd::kolom_start(3, 2)`, 0)
+
+```{block2 warnings, type="alertblock", latex.options="{Warnings}", echo = TRUE}
+- The block chunks look like `r` chunks but start with `block2`
+- use `echo = TRUE` otherwise they won't appear on the poster
+- end these chunks with a blank line, otherwise you'll get an error
+
+```
+
+
+```{block2 the-name, type="exampleblock", latex.options="{title}", echo = TRUE}
+- `r` chunks cannot be nested in `block2` chunks
+- surround the `r` chunks with `\bblock{title}` and `\eblock`
+
+```
+
+Text and figure outside of box
+
+```{r no-box}
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+```
+
+\bblock{Figure in box}
+
+```{r in-box}
+ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point()
+```
+
+\eblock
+
+\etextblock

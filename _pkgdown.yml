@@ -2,6 +2,8 @@ navbar:
   title: ~
   type: default
   left:
+  - text: NEWS
+    href: news/index.html
   - text: Tutorials
     href: articles/index.html
     menu:
@@ -14,10 +16,12 @@ navbar:
   - text: Contributing
     href: CONTRIBUTING.html
   right:
-  - icon: fa-twitter fa-lg
-    href: https://twitter.com/INBOVlaanderen
-  - icon: fa-github fa-lg
+  - icon: "fa fa-github"
     href: https://github.com/inbo/inbomd
+  - icon: "fa fa-twitter"
+    href: https://twitter.com/INBOVlaanderen
+  - icon: "fa fa-facebook"
+    href: https://www.facebook.com/pg/INBOVlaanderen
 
 reference:
 - title: Output formats
@@ -29,10 +33,13 @@ reference:
 - title: Utilities
   contents:
   - has_concept("utils")
+- title: Deprecated functions
+  contents:
+  - has_concept("deprecated")
 
 authors:
   Thierry Onkelinx:
     href: "https://www.muscardinus.be"
   Research Institute for Nature and Forest:
-    href: "https://www.inbo.be/en"
-    html: "<img src='https://inbomd.netlify.com/reference/figures/logo_en.png' height=24>"
+    href: "https://www.vlaanderen.be/inbo/en-gb"
+    html: "<img src='reference/figures/logo-en.png' height=24>"

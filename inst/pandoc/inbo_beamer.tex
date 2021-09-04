@@ -1,34 +1,51 @@
 % de presentatie
 \documentclass[
-  hyperref={colorlinks=true,citecolor=link.colour,linkcolor=white,urlcolor=link.colour},
+  $if(handout)$handout, beameroptions={$endif$ hyperref={colorlinks=true,citecolor=link.colour,linkcolor=link.colour,urlcolor=link.colour},
   $if(fontsize)$$fontsize$$else$10pt$endif$,
   xetex,
-  noamsthm$if(handout)$, handout$endif$$if(aspect)$, aspectratio=$aspect$ $endif$
-]{beamer}
-
+  noamsthm$if(aspect)$, aspectratio=$aspect$ $endif$$if(handout)$}$endif$
+]{beamer$if(handout)$switch$endif$}
+$if(handout)$
+\handoutlayout{paper=a4paper,nup=$handout$,align}
+$endif$
+$if(handout)$
+\mode<presentation>{ %
+$endif$
 \usetheme{$theme$}
 \usepackage{inbogeneric_2015}
+\usetheme{vlaanderenfont}
+$if(handout)$
+}
+$endif$
 $if(codesize)$
 \codesize{\$codesize$}
+$else$
+\codesize{\footnotesize}
 $endif$
+$if(website)$
 \website{$website$}
-\flandersfont{$flandersfont$}
-\usetheme{vlaanderenfont}
+$else$
+\website{www.vlaanderen.be/inbo}
+$endif$
+$if(flandersfont)$
+\flandersfont{TRUE}
+$endif$
 
 $if(mylanguage)$
 \lang{$mylanguage$}
 $endif$
-$if(cover)$
-\cover{$cover$}
+$if(cover_photo)$
+\cover{$cover_photo$}
 $endif$
-$if(coveroffset)$
-\coveroffset{$coveroffset$}
+$if(cover_horizontal)$
+\coverhorizontal{$cover_horizontal$}
 $endif$
-$if(coverhoffset)$
-\coverhoffset{$coverhoffset$}
+
+$if(cover_offset)$
+\coveroffset{$cover_offset$}
 $endif$
-$if(coverhorizontal)$
-\coverhorizontal{$coverhorizontal$}
+$if(cover_hoffset)$
+\coverhoffset{$cover_hoffset$}
 $endif$
 %title verschijnt op de eerste slide. subject verschijnt enkel in de
 % eigenschappen van de pdf
@@ -38,7 +55,15 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 
-\author{$author$}
+\newlength{\orcidsize}
+\makeatletter
+  \setlength{\orcidsize}{\f@size pt}
+\makeatother
+
+\author{
+$for(author)$
+$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{\includegraphics[height=\orcidsize]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
+}
 
 $if(institute)$
 \institute{$institute$}
@@ -50,8 +75,8 @@ $else$
 \date{}
 $endif$
 
-$if(slidelogo)$
-\slidelogo{$slidelogo$}
+$if(slide_logo)$
+\slidelogo{$slide_logo$}
 $endif$
 
 \AtBeginSection[]
@@ -67,9 +92,8 @@ $endif$
   \end{frame}
 }
 
-
 \makeatletter
-\renewcommand{\verbatim@font}{\ttfamily\$codesize$}
+\renewcommand{\verbatim@font}{\ttfamily\$if(codesize)$$codesize$$else$footnotesize$endif$}
 \makeatother
 
 $for(header-includes)$
@@ -101,21 +125,6 @@ $endif$
 $endif$
 
 $body$
-
-
-$if(bibliography)$
-$if(natbib)$
-\begin{frame}[allowframebreaks]
-$if(natbibtitle)$
-\frametitle{$natbibtitle$}
-$else$
-\frametitle{Referenties}
-$endif$
-\bibliographystyle{inbo}
-\bibliography{$bibliography$}
-\end{frame}
-$endif$
-$endif$
 
 $for(include-after)$
 $include-after$
