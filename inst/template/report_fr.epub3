@@ -96,19 +96,19 @@ $if(titlepage)$
   <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
   $endif$
 
-  <p>The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.
+  <p> l'Institut de Recherche des Forêts et de la Nature ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand. Grâce à la recherche scientifique appliquée, aux données ouvertes et connaissances, à l'intégration et à la divulgation, elle étaye et évalue la politique et la gestion de la biodiversité.
 
-  <p><b>Location:</b><br>
+  <p><b>Emplacement:</b><br>
   $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen, Belgium
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen (Grammont), Belgique
   $else$
-  INBO Brussels<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussels, Belgium
+  INBO Bruxelles<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Bruxelles, Belgique
   $endif$
   <br><a href="https://www.vlaanderen.be/inbo/en-gb">https://www.vlaanderen.be/inbo/en-gb</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>Way of quoting:</b><br>
+  <p><b>Citation recommandée:</b><br>
   $if(shortauthor)$
     $shortauthor$
   $else$
@@ -119,7 +119,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! MISSING: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Reports of the Research Institute for Nature and Forest
+  $title$$if(subtitle)$. $substitle$$endif$. Rapports de l'Institut de Recherche des Forêts et de la Nature
   $if(year)$
     $year$
   $endif$
@@ -128,7 +128,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! MISSING: reportnr !!!!</h1>
   $endif$
-  Research Institute for Nature and Forest, Brussels. DOI:
+  l'Institut de Recherche des Forêts et de la Nature, Bruxelles. DOI:
   $if(doi)$
     <a class="doi" href="#">$doi$</a>
   $else$
@@ -150,16 +150,16 @@ $if(titlepage)$
   </b><br>
   <b>ISSN: 1782‐9054</b>
 
-  <p><b>Responsible publisher:</b><br>Maurice Hoffmann
+  <p><b>Éditeur responsable:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Foto cover:</b><br>$cover_description$
+    <p><b>Photo de couverture:</b><br>$cover_description$
   $else$
     <h1 class = "missing">!!!! MISSING: cover_description !!!!</h1>
   $endif$
 
   $if(client)$
-  <p><b>This study was commissioned by:</b><br>
+  <p><b>Cette étude a été commandée par:</b><br>
      $for(client)$
         $client$
      $sep$ <br>
@@ -167,14 +167,14 @@ $if(titlepage)$
   $endif$
 
   $if(cooperation)$
-  <p><b>This study was conducted in collaboration with:</b><br>
+  <p><b>Cette étude a été menée en collaboration avec:</b><br>
      $for(cooperation)$
         $cooperation$
      $sep$ <br>
      $endfor$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />Ce rapport est sous license <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 </section>
 $else$
 $if(coverpage)$
