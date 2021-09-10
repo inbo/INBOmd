@@ -70,12 +70,15 @@ report <- function(
   csl <- system.file("research-institute-for-nature-and-forest.csl",
                      package = "INBOmd")
 
+  style <- ifelse(style == "Flanders" & lang == "fr", "Flandre", style)
+
   args <- c(
     "--template", template,
     pandoc_variable_arg("documentclass", "report"),
     switch(
       style,
       Flanders = pandoc_variable_arg("style", "flanders_report"),
+      Flandre = pandoc_variable_arg("style", "flandre_report"),
       Vlaanderen = pandoc_variable_arg("style", "vlaanderen_report"),
       INBO = pandoc_variable_arg("style", "inbo_report")
     ),
