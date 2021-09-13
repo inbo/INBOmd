@@ -37,7 +37,7 @@ gitbook <- function() {
     msg = "Use style: Vlaanderen when the language is nl"
   )
   assert_that(
-    style == "Flanders" || lang %in% c("en", "fr"),
+    style == "Flanders" || !lang %in% c("en", "fr"),
     msg = "Use style: Flanders when the language is not nl"
   )
   split_by <- ifelse(has_name(fm, "split_by"), fm$split_by, "chapter+number")
