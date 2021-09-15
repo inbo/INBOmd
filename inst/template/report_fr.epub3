@@ -98,7 +98,7 @@ $if(titlepage)$
 
   <p> l'Institut de Recherche des Forêts et de la Nature ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand. Grâce à la recherche scientifique appliquée, aux données ouvertes et connaissances, à l'intégration et à la divulgation, elle étaye et évalue la politique et la gestion de la biodiversité.
 
-  <p><b>Emplacement:</b><br>
+  <p><b>Adresse:</b><br>
   $if(geraardsbergen)$
   INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen (Grammont), Belgique
   $else$
