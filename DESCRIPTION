@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: 
     c(person(given = "Thierry",
              family = "Onkelinx",
@@ -13,6 +13,11 @@ Authors@R:
              role = "ctb",
              email = "floris.vanderhaeghe@inbo.be",
              comment = c(ORCID = "0000-0002-6378-6229")),
+      person(given = "Els",
+             family = "Lommelen",
+             role = "ctb",
+             email = "els.lommelen@inbo.be",
+             comment = c(ORCID = "0000-0002-3481-5684")),
       person(given = "Research Institute for Nature and Forest",
              role = c("cph", "fnd"),
              email = "info@inbo.be"))

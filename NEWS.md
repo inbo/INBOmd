@@ -1,5 +1,9 @@
 # INBOmd 0.5.0
 
+- Add language french for style Flanders
+
+# INBOmd 0.5.0
+
 ## Breaking changes
 
 * Every output format has now its dedicated function using the English name.
