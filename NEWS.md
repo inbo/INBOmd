@@ -1,6 +1,6 @@
-# INBOmd 0.5.0
+# INBOmd 0.5.1
 
-- Add language french for style Flanders
+* Add language french for style Flanders
 
 # INBOmd 0.5.0
 
