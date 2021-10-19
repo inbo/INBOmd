@@ -414,6 +414,15 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
+\addto\extrasdutch{%
+  \def\cfcountry{}%
+}
+\addto\extrasenglish{%
+  \def\cfcountry{, Belgium}%
+}
+\addto\extrasfrench{%
+  \def\cfcountry{, Belgique}%
+}
 \newcommand{\chooseestablishment}[1]{%
   \edef\custom{{#1}}%
   \expandafter\ifstrequal\custom{Geraardsbergen}{
