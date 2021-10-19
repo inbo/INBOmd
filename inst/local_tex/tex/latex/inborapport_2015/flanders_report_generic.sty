@@ -414,41 +414,14 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
-\addto\extrasdutch{%
-  \def\cftown{Geraardsbergen}%
-}
-\addto\extrasenglish{%
-  \def\cftown{Geraardsbergen}%
-}
-\addto\extrasfrench{%
-  \def\cftown{Geraardsbergen (Grammont)}%
-}
-\addto\extrasdutch{%
-  \def\cfcity{Brussel}%
-}
-\addto\extrasenglish{%
-  \def\cfcity{Brussels}%
-}
-\addto\extrasfrench{%
-  \def\cfcity{Bruxelles}%
-}
-\addto\extrasdutch{%
-  \def\cfcountry{}%
-}
-\addto\extrasenglish{%
-  \def\cfcountry{, Belgium}%
-}
-\addto\extrasfrench{%
-  \def\cfcountry{, Belgique}%
-}
 \newcommand{\chooseestablishment}[1]{%
   \edef\custom{{#1}}%
   \expandafter\ifstrequal\custom{Geraardsbergen}{
-    \cftown \\
-    Gaverstraat 4, 9500 \cftown\cfcountry
+    Geraardsbergen \\
+    Gaverstraat 4, 9500 Geraardsbergen \cfcountry
   }{
-    \cfcity \\
-    VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 \cfcity\cfcountry
+    Brussel \\
+    VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel \cfcountry
   }
 }
 
