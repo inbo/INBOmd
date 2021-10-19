@@ -96,7 +96,7 @@ $if(titlepage)$
   <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
   $endif$
 
-  <p> l'Institut de Recherche sur la Nature et des Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand, qui étaye et évalue la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.
+  <p> l'Institut de Recherche sur la Nature et les Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand, qui étaye et évalue la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.
 
   <p><b>Adresse:</b><br>
   $if(geraardsbergen)$
@@ -119,7 +119,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! MISSING: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Rapports de l'Institut de Recherche sur la Nature et des Forêts
+  $title$$if(subtitle)$. $substitle$$endif$. Rapports de l'Institut de Recherche sur la Nature et les Forêts
   $if(year)$
     $year$
   $endif$
@@ -128,7 +128,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! MISSING: reportnr !!!!</h1>
   $endif$
-  l'Institut de Recherche sur la Nature et des Forêts, Bruxelles. DOI:
+  l'Institut de Recherche sur la Nature et les Forêts, Bruxelles. DOI:
   $if(doi)$
     <a class="doi" href="#">$doi$</a>
   $else$
