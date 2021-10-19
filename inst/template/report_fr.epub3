@@ -96,7 +96,7 @@ $if(titlepage)$
   <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
   $endif$
 
-  <p> l'Institut de Recherche sur la Nature et des Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche du gouvernement flamand. Il oeuvre de manière indépendante à étayer et évaluer la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.
+  <p> l'Institut de Recherche sur la Nature et des Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand, qui étaye et évalue la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.
 
   <p><b>Adresse:</b><br>
   $if(geraardsbergen)$
