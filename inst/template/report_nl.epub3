@@ -102,7 +102,7 @@ $if(titlepage)$
   $if(geraardsbergen)$
     INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
   $else$
-    INBO Brussel<br>VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+    INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel
   $endif$
   <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
 
