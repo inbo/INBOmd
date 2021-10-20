@@ -97,7 +97,7 @@ you collaborated with.
 Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
-If not set or set to \code{FALSE} add the address of INBO Brussels.
+If not set or set to \code{FALSE} add the address of INBO Brussel.
 }
 }
 
