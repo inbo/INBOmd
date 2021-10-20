@@ -51,7 +51,7 @@ It is tailored towards writing books and technical documentation.
     1. "handout": a single page for each slide. In case of incremental slides, only the last slide will be shown. Useful when handouts are required in combination with incremental slides.
     1. "report": mostly relevant when the slides are used for teaching code. The output may not fit on a single single slide, resulting is a substantial number of slides. Using a "report" like style makes handouts more compact and readable.
 - `flanders_slides` is a similar template as `inbo_slides`.
-  It uses the corporate identity of [Flanders](https://www.ditisvlaanderen.be/).
+  It uses the corporate identity of [Flanders](https://www.vlaanderen.be/).
   Only the presentation and handout versions are available.
 - `inbo_poster` is a template for A0 posters in pdf format.
 
