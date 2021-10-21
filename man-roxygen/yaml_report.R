@@ -40,4 +40,4 @@
 #'   Only used when `cooperation` is set.
 #' - `geraardsbergen`: Set this to `TRUE` to add the address of INBO
 #'   Geraardsbergen to the colophon.
-#'   If not set or set to `FALSE` add the address of INBO Brussels.
+#'   If not set or set to `FALSE` add the address of INBO Brussel.

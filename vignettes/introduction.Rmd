@@ -46,12 +46,15 @@ It is tailored towards writing books and technical documentation.
 # Available templates in `INBOmd`
 
 - The most important template is `inbo_rapport`, a template for creating technical reports. The available output formats are pdf, epub and html.
+- `vlaanderen_rapport` and `flanders_report` are similar templates as `inbo_rapport`.
+  They use the corporate identity of [Flanders](https://www.vlaanderen.be/).
+  `flanders_report` is available in English and French.
 - `inbo_slides` is a template for presentations. It has three different pdf output formats
     1. "presentation": each time point of the presentation is one page in a pdf. Incremental slides will result in several pages, one for each increment.
     1. "handout": a single page for each slide. In case of incremental slides, only the last slide will be shown. Useful when handouts are required in combination with incremental slides.
     1. "report": mostly relevant when the slides are used for teaching code. The output may not fit on a single single slide, resulting is a substantial number of slides. Using a "report" like style makes handouts more compact and readable.
 - `flanders_slides` is a similar template as `inbo_slides`.
-  It uses the corporate identity of [Flanders](https://www.ditisvlaanderen.be/).
+  It uses the corporate identity of [Flanders](https://www.vlaanderen.be/).
   Only the presentation and handout versions are available.
 - `inbo_poster` is a template for A0 posters in pdf format.
 

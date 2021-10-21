@@ -33,7 +33,7 @@ ebook <- function() {
     msg = "Use style: Vlaanderen when the language is nl"
   )
   assert_that(
-    style == "Flanders" || lang != "en",
+    style == "Flanders" || lang == "nl",
     msg = "Use style: Flanders when the language is not nl"
   )
 

@@ -1,21 +1,16 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.0
-Authors@R: 
-    c(person(given = "Thierry",
-             family = "Onkelinx",
-             role = c("aut", "cre"),
-             email = "thierry.onkelinx@inbo.be",
-             comment = c(ORCID = "0000-0001-8804-4216")),
-      person(given = "Floris",
-             family = "Vanderhaeghe",
-             role = "ctb",
-             email = "floris.vanderhaeghe@inbo.be",
-             comment = c(ORCID = "0000-0002-6378-6229")),
-      person(given = "Research Institute for Nature and Forest",
-             role = c("cph", "fnd"),
-             email = "info@inbo.be"))
+Version: 0.5.1
+Authors@R: c(
+    person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-8804-4216")),
+    person("Floris", "Vanderhaeghe", , "floris.vanderhaeghe@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-6378-6229")),
+    person("Els", "Lommelen", , "els.lommelen@inbo.be", role = "ctb",
+           comment = c(ORCID = "0000-0002-3481-5684")),
+    person("Research Institute for Nature and Forest", , , "info@inbo.be", role = c("cph", "fnd"))
+  )
 Description: Several templates to generate reports, presentations and
     posters.
 License: GPL-3
@@ -44,4 +39,4 @@ Additional_repositories: https://inbo.r-universe.dev
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

@@ -31,7 +31,7 @@ $if(titlepage)$
 <section epub:type="titlepage" class="titlepage">
   <h1 class="title">$title$</h1>
   $if(subtitle)$
-    <h2 class="subtitle">$subtitle$</h2>
+  <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
     $if(author.name)$
@@ -62,15 +62,15 @@ $if(titlepage)$
     $endif$
   $endfor$
   $if(date)$
-    <p class="date"><em>$date$</em></p>
+  <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-    <h4><a class="doi" href="#">$doi$</a></h4>
+  <h4><a class="doi" href="#">$doi$</a></h4>
   $endif$
   $if(ordernr)$
-    <h4 class ="ordernr">$ordernr$</h4>
+  <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-  <h1>Colofon</h1>
+  <h1>Colophon</h1>
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
@@ -93,53 +93,54 @@ $if(titlepage)$
       $endif$
     $endfor$
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
+  <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
   $endif$
 
-  <p>Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data‐ en kennisontsluiting het biodiversiteitsbeleid en ‐beheer onderbouwt en evalueert.
+  <p> l'Institut de Recherche sur la Nature et les Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand, qui étaye et évalue la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.
 
-  <p><b>Vestiging:</b><br>
+  <p><b>Adresse:</b><br>
   $if(geraardsbergen)$
-    INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
+  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen, Belgique
   $else$
-    INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel
+  INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel, Belgique
   $endif$
-  <br><a href="https://www.vlaanderen.be/inbo">https://www.vlaanderen.be/inbo</a>
+  <br><a href="https://www.vlaanderen.be/inbo/en-gb">https://www.vlaanderen.be/inbo/en-gb</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>Wijze van citeren:</b><br>
+  <p><b>Citation recommandée:</b><br>
   $if(shortauthor)$
     $shortauthor$
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: shortauthor !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: shortauthor !!!!</h1>
   $endif$
   $if(year)$
     ($year$).
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  $title$$if(subtitle)$. $substitle$$endif$. Rapports de l'Institut de Recherche sur la Nature et les Forêts
   $if(year)$
     $year$
   $endif$
   $if(reportnr)$
     ($reportnr$).
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: reportnr !!!!</h1>
   $endif$
-  Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
+  l'Institut de Recherche sur la Nature et les Forêts, Bruxelles. DOI:
   $if(doi)$
     <a class="doi" href="#">$doi$</a>
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: doi !!!!</h1>
   $endif$
+
   $if(depotnr)$
     <p><b>$depotnr$</b><br>
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: depotnr !!!!</h1>
   $endif$
-  <b>Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  <b>Reports of the Research Institute for Nature and Forest
   $if(year)$
     $year$
   $endif$
@@ -149,16 +150,16 @@ $if(titlepage)$
   </b><br>
   <b>ISSN: 1782‐9054</b>
 
-  <p><b>Verantwoodelijke uitgever:</b><br>Maurice Hoffmann
+  <p><b>Éditeur responsable:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Foto cover:</b><br>$cover_description$
+    <p><b>Photo de couverture:</b><br>$cover_description$
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
+    <h1 class = "missing">!!!! MISSING: cover_description !!!!</h1>
   $endif$
 
   $if(client)$
-  <p><b>Dit onderzoek werd uitgevoerd in opdracht van:</b><br>
+  <p><b>Cette étude a été commandée par:</b><br>
      $for(client)$
         $client$
      $sep$ <br>
@@ -166,32 +167,31 @@ $if(titlepage)$
   $endif$
 
   $if(cooperation)$
-  <p><b>Dit onderzoek werd uitgevoerd in samenwerking met:</b><br>
+  <p><b>Cette étude a été menée en collaboration avec:</b><br>
      $for(cooperation)$
         $cooperation$
      $sep$ <br>
      $endfor$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Naamsvermelding 4.0 Internationaal-licentie</a>.
-  </div>
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.fr"><img alt="Creative Commons License" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />Ce rapport est sous licence <a rel="license" href="http://creativecommons.org/licenses/by/4.0/deed.fr">Creative Commons Attribution 4.0 International Licence</a>.
 </section>
 $else$
-  $if(coverpage)$
-    <div id="cover-image">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
-    <image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
-    </svg>
-    </div>
-  $else$
-    $for(include-before)$
-      $include-before$
-    $endfor$
-    $body$
-    $for(include-after)$
-      $include-after$
-    $endfor$
-  $endif$
+$if(coverpage)$
+<div id="cover-image">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="100%" height="100%" viewBox="0 0 $cover-image-width$ $cover-image-height$" preserveAspectRatio="xMidYMid">
+<image width="$cover-image-width$" height="$cover-image-height$" xlink:href="../media/$cover-image$" />
+</svg>
+</div>
+$else$
+$for(include-before)$
+$include-before$
+$endfor$
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+$endif$
 $endif$
 </body>
 </html>

@@ -414,14 +414,23 @@
 \RequirePackage{lastpage}
 \RequirePackage{fancyhdr}
 
+\addto\extrasdutch{%
+  \def\cfcountry{}%
+}
+\addto\extrasenglish{%
+  \def\cfcountry{, Belgium}%
+}
+\addto\extrasfrench{%
+  \def\cfcountry{, Belgique}%
+}
 \newcommand{\chooseestablishment}[1]{%
   \edef\custom{{#1}}%
   \expandafter\ifstrequal\custom{Geraardsbergen}{
     Geraardsbergen \\
-    Gaverstraat 4, 9500 Geraardsbergen
+    Gaverstraat 4, 9500 Geraardsbergen \cfcountry
   }{
     Brussel \\
-    VAC Brussel - Herman Teirlinck, Havenlaan 88 bus 73, 1000 Brussel
+    Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel \cfcountry
   }
 }
 
@@ -444,17 +453,26 @@
 \addto\extrasenglish{%
   \def\cfauthor{Authors:}%
 }
+\addto\extrasfrench{%
+  \def\cfauthor{Auteurs:}%
+}
 \addto\extrasdutch{%
   \def\cfmission{Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data- en kennisontsluiting het biodiversiteitsbeleid en -beheer onderbouwt en evalueert.}%
 }
 \addto\extrasenglish{%
   \def\cfmission{The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.}%
 }
+\addto\extrasfrench{%
+  \def\cfmission{l'Institut de Recherche sur la Nature et les Forêts ('Instituut voor Natuur- en Bosonderzoek', INBO) est un institut de recherche indépendant du gouvernement flamand, qui étaye et évalue la politique et la gestion en matière de biodiversité par la recherche scientifique appliquée, l'intégration et la dissémination publique de données et de connaissances.}%
+}
 \addto\extrasdutch{%
   \def\cflocation{Vestiging:}%
 }
 \addto\extrasenglish{%
   \def\cflocation{Location:}%
+}
+\addto\extrasfrench{%
+  \def\cflocation{Adresse:}%
 }
 \addto\extrasdutch{%
   \def\cflocation{Vestiging:}%
@@ -468,11 +486,17 @@
 \addto\extrasenglish{%
   \def\cfinbo{Research Institute for Nature and Forest}%
 }
+\addto\extrasfrench{%
+  \def\cfinbo{l'Institut de Recherche sur la Nature et les Forêts}%
+}
 \addto\extrasdutch{%
   \def\cfseries{Rapporten van het \cfinbo}%
 }
 \addto\extrasenglish{%
   \def\cfseries{Reports of the \cfinbo}%
+}
+\addto\extrasfrench{%
+  \def\cfseries{Rapports de \cfinbo}%
 }
 \addto\extrasdutch{%
   \def\cfcity{Brussel}%
@@ -480,11 +504,17 @@
 \addto\extrasenglish{%
   \def\cfcity{Brussels}%
 }
+\addto\extrasfrench{%
+  \def\cfcity{Bruxelles}%
+}
 \addto\extrasdutch{%
   \def\cfcitation{Wijze van citeren:}%
 }
 \addto\extrasenglish{%
   \def\cfcitation{Way of quoting:}%
+}
+\addto\extrasfrench{%
+  \def\cfcitation{Citation recommandée:}%
 }
 \addto\extrasdutch{%
   \def\cfvu{Verantwoordelijke uitgever:}%
@@ -492,11 +522,17 @@
 \addto\extrasenglish{%
   \def\cfvu{Responsible publisher:}%
 }
+\addto\extrasfrench{%
+  \def\cfvu{Éditeur responsable:}%
+}
 \addto\extrasdutch{%
   \def\cfcover{Foto cover:}%
 }
 \addto\extrasenglish{%
   \def\cfcover{Cover photograph:}%
+}
+\addto\extrasfrench{%
+  \def\cfcover{Photo de couverture:}%
 }
 \addto\extrasdutch{%
   \def\ccby{Dit werk valt onder een \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Naamsvermelding 4.0 Internationaal-licentie}.}%
@@ -504,11 +540,17 @@
 \addto\extrasenglish{%
   \def\ccby{This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 Generic License}.}%
 }
+\addto\extrasfrench{%
+  \def\ccby{Ce rapport est sous licence \href{https://creativecommons.org/licenses/by/4.0/deed.fr}{Creative Commons Attribution 4.0 International}.}%
+}
 \addto\extrasdutch{%
   \def\ccbysa{Dit werk valt onder een \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Naamsvermelding-GelijkDelen 4.0 Internationaal-licentie}.}%
 }
 \addto\extrasenglish{%
   \def\ccbysa{This work is licensed under a \href{https://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons Attribution-ShareAlike 4.0 Generic License}.}%
+}
+\addto\extrasfrench{%
+  \def\ccbysa{Ce rapport est sous licence \href{https://creativecommons.org/licenses/by-sa/4.0/deed.fr}{Creative Commons Attribution-Partage dans les Mêmes Conditions 4.0 International}.}%
 }
 \addto\extrasdutch{%
   \def\cfclient{Dit onderzoek werd uitgevoerd in opdracht van:}%
@@ -516,11 +558,17 @@
 \addto\extrasenglish{%
   \def\cfclient{This study was commissioned by:}%
 }
+\addto\extrasfrench{%
+  \def\cfclient{Cette étude a été commandée par:}%
+}
 \addto\extrasdutch{%
   \def\cfcoop{Dit onderzoek werd uitgevoerd in samenwerking met:}%
 }
 \addto\extrasenglish{%
   \def\cfcoop{This study was conducted in collaboration with:}%
+}
+\addto\extrasfrench{%
+  \def\cfcoop{Cette étude a été menée en collaboration avec:}%
 }
 
 \RequirePackage{emptypage}

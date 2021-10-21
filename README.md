@@ -4,7 +4,7 @@
 [![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![License](https://img.shields.io/github/license/inbo/INBOmd)
 [![R build status](https://github.com/inbo/inbomd/workflows/check%20package%20on%20main/badge.svg)](https://github.com/inbo/inbomd/actions)
-[![Codecov test coverage](https://codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://codecov.io/gh/inbo/inbomd?branch=main)
+[![Codecov test coverage](https://app.codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://app.codecov.io/gh/inbo/inbomd?branch=main)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/inbo/inbomd.svg)
 ![GitHub repo size](https://img.shields.io/github/repo-size/inbo/inbomd.svg)
 [![DOI](https://zenodo.org/badge/66824259.svg)](https://zenodo.org/badge/latestdoi/66824259)
