@@ -1,3 +1,8 @@
+# INBOmd 0.5.2
+
+* Colofon of reports now mention website 'www.inbo.be' instead of
+  'https://www.vlaanderen.be/inbo', conform with Word template.
+
 # INBOmd 0.5.1
 
 * Add language french for style Flanders
