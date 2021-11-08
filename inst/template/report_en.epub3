@@ -104,7 +104,7 @@ $if(titlepage)$
   $else$
   INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel, Belgium
   $endif$
-  <br><a href="https://www.vlaanderen.be/inbo/en-gb">https://www.vlaanderen.be/inbo/en-gb</a>
+  <br><a href="https://www.inbo.be/en">www.inbo.be/en</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
