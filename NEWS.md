@@ -1,3 +1,8 @@
+# INBOmd 0.5.2
+
+* Templates now mention url 'vlaanderen.be/inbo' instead of
+  'https://www.vlaanderen.be/inbo' or 'www.vlaanderen.be/inbo'.
+
 # INBOmd 0.5.1
 
 * Add language french for style Flanders
