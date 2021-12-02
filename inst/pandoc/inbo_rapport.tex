@@ -117,6 +117,7 @@ $if(author.name)$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{$endi
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
+$if(nocolophon)$\colophon{0}$else$\colophon{1}$endif$
 
 $for(header-includes)$
 $header-includes$
