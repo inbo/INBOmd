@@ -2,6 +2,7 @@
 
 * Templates now mention url 'vlaanderen.be/inbo' instead of
   'https://www.vlaanderen.be/inbo' or 'www.vlaanderen.be/inbo'.
+* Bug fix website 'inbomd_examples'.
 
 # INBOmd 0.5.1
 
