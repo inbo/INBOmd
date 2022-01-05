@@ -10,7 +10,7 @@
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
-#' @importFrom utils packageVersion
+#' @importFrom utils head packageVersion tail
 #' @family output
 gitbook <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
@@ -90,8 +90,17 @@ gitbook <- function() {
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = template, extra_dependencies = list(inbomd_dep)
+    template = template, extra_dependencies = list(inbomd_dep),
+    post_processor = post_processor
   )
+  post <- config$post_processor  # in case a post processor have been defined
+  config$post_processor = function(metadata, input, output, clean, verbose) {
+    x <- readLines(output, encoding = "UTF-8")
+    i <- grep('^<div id="refs" class="references[^"]*"[^>]*>$', x)
+    x <- c(head(x, i - 1), "", tail(x, -i + 1))
+    writeLines(x, output)
+    post(metadata, input, output, clean, verbose)
+  }
   config$clean_supporting <- TRUE
   return(config)
 }
