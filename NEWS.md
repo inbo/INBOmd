@@ -3,6 +3,10 @@
 * Templates now mention url 'vlaanderen.be/inbo' instead of
   'https://www.vlaanderen.be/inbo' or 'www.vlaanderen.be/inbo'.
 * Bug fix website 'inbomd_examples'.
+* `gitbook()` uses the same reference title for chapter bibliografies as the
+  main bibliography.
+* `references()` takes `lang` into account for HTML formats.
+* Bugfix in Dockerfile.
 
 # INBOmd 0.5.1
 
