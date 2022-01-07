@@ -58,15 +58,15 @@ gitbook <- function() {
     msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
-    if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
+    cover_path <- file.path(getwd(), "cover.jpeg")
+    if (!file.exists(cover_path)) {
       pdf_convert(
         pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
-        dpi = 770 * 25.4 / 210, filenames = file.path(getwd(), "cover.jpeg")
+        dpi = 770 * 25.4 / 210, filenames = cover_path
       )
     }
     pandoc_args <- c(
-      pandoc_args,
-      pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
+      pandoc_args, pandoc_variable_arg("cover_image", cover_path)
     )
   }
   resource_dir <- system.file("css_styles", package = "INBOmd")

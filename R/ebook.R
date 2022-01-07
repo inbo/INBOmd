@@ -54,10 +54,11 @@ ebook <- function() {
   )
   cover_image <- NULL
   if (has_name(fm, "cover")) {
-    if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
+    cover_path <- file.path(getwd(), "cover.jpeg")
+    if (!file.exists(cover_path)) {
       pdf_convert(
         pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
-        dpi = 770 * 25.4 / 210, filenames = file.path(getwd(), "cover.jpeg")
+        dpi = 770 * 25.4 / 210, filenames = cover_path
       )
     }
     cover_image <- "cover.jpeg"
