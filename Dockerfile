@@ -129,8 +129,11 @@ RUN  apt-get update \
     r-cran-R.utils \
   && Rscript -e 'remotes::install_cran("qrcode")'
 
-## Install qrcode
+## Install lipsum
 RUN  Rscript -e 'remotes::install_cran("lipsum")'
+
+## Install here
+RUN  Rscript -e 'remotes::install_cran("here")'
 
 ## Install webshot dependency
 RUN  Rscript -e 'webshot::install_phantomjs()'
