@@ -10,7 +10,7 @@
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
-#' @importFrom utils packageVersion
+#' @importFrom utils head packageVersion tail
 #' @family output
 gitbook <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
@@ -58,15 +58,15 @@ gitbook <- function() {
     msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
-    if (!file.exists(file.path(getwd(), "cover.jpeg"))) {
+    cover_path <- file.path(getwd(), "cover.jpeg")
+    if (!file.exists(cover_path)) {
       pdf_convert(
         pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
-        dpi = 770 * 25.4 / 210, filenames = file.path(getwd(), "cover.jpeg")
+        dpi = 770 * 25.4 / 210, filenames = cover_path
       )
     }
     pandoc_args <- c(
-      pandoc_args,
-      pandoc_variable_arg("cover_image", file.path(getwd(), "cover.jpeg"))
+      pandoc_args, pandoc_variable_arg("cover_image", cover_path)
     )
   }
   resource_dir <- system.file("css_styles", package = "INBOmd")
@@ -80,7 +80,7 @@ gitbook <- function() {
   pandoc_args <- c(
     pandoc_args,
     pandoc_variable_arg(
-      "csspath", paste0("libs/INBOmd-", packageVersion("INBOmd"))
+      "csspath", file.path("libs", paste0("INBOmd-", packageVersion("INBOmd")))
     )
   )
   template <- system.file(
@@ -92,6 +92,16 @@ gitbook <- function() {
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
     template = template, extra_dependencies = list(inbomd_dep)
   )
+  post <- config$post_processor  # in case a post processor have been defined
+  config$post_processor <- function(metadata, input, output, clean, verbose) {
+    x <- readLines(output, encoding = "UTF-8")
+    i <- head(grep('^<div id="refs" class="references[^"]*"[^>]*>$', x), 1)
+    if (length(i) > 0) {
+      x <- c(head(x, i - 1), "", tail(x, -i + 1))
+    }
+    writeLines(x, output)
+    post(metadata, input, output, clean, verbose)
+  }
   config$clean_supporting <- TRUE
   return(config)
 }

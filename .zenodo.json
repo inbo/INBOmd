@@ -1,21 +1,27 @@
 {
- "creators": [
-      {
-        "name": "Thierry Onkelinx",
-        "affiliation": "Research Instute for Nature and Forest"
-      },
-      {
-        "name": "Floris Vanderhaeghe",
-        "affiliation": "Research Instute for Nature and Forest"
-      }
-    ],
-  "description": "INBOmd provides several templates to be used with RMarkdown",
-  "keywords": [
-    "R",
-    "LaTeX",
-    "reproducibility",
-    "Markdown"
+  "title": "INBOmd: Markdown Templates for INBO",
+  "version": "0.5.2",
+  "description": "Several templates to generate reports, presentations and posters.",
+  "creators": [
+    {
+      "name": "Onkelinx, Thierry",
+      "orcid": "https://orcid.org/0000-0001-8804-4216"
+    }
   ],
-  "license": "GPL-3",
-  "title": "INBOmd: RMarkdown Templates for INBO"
+  "upload_type": "software",
+  "access_rights": "open",
+  "license": "GPL-3.0",
+  "communities": {
+    "identifier": "inbo"
+  },
+  "contributors": [
+    {
+      "name": "Vanderhaeghe, Floris",
+      "orcid": "https://orcid.org/0000-0002-6378-6229"
+    },
+    {
+      "name": "Lommelen, Els",
+      "orcid": "https://orcid.org/0000-0002-3481-5684"
+    }
+  ]
 }

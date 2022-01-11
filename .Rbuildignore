@@ -5,6 +5,7 @@
 ^\.Rproj\.user$
 ^\.zenodo\.json$
 ^checklist.yml$
+^CITATION\.cff$
 ^codecov\.yml$
 ^data-raw$
 ^docs$
@@ -15,6 +16,6 @@
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 create_docker.sh
-Dockerfile
 docker
+Dockerfile
 docs

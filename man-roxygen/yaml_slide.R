@@ -26,7 +26,7 @@
 #'   Defaults to "11pt".
 #'   See the section _Aspect_ratio_ for more details.
 #' - `website`: URL in the sidebar.
-#'   Defaults to `www.vlaanderen.be/inbo`.
+#'   Defaults to `vlaanderen.be/inbo`.
 #'
 #' @section Aspect ratio:
 #'

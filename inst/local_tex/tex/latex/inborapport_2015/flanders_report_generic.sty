@@ -23,6 +23,9 @@
 \def\subtitle#1{\def\@subtitle{#1}}
 \subtitle{}
 
+\def\colophon#1{\def\@colophon{#1}}
+\colophon{1}
+
 \def\colofonauthor#1{\def\@colofonauthor{#1}}
 \colofonauthor{}
 
@@ -574,40 +577,42 @@
 \RequirePackage{emptypage}
 % define title page
 \def\maketitle{%
-  \thispagestyle{empty}{%
-    \begin{flushleft}
+  \ifnum \@colophon > 0
+    \thispagestyle{empty}{%
+      \begin{flushleft}
 
-    \textbf{\cfauthor} \\ \@colofonauthor
+      \textbf{\cfauthor} \\ \@colofonauthor
 
-    \textbf{Reviewers:} \\ \@reviewer
+      \textbf{Reviewers:} \\ \@reviewer
 
-    \cfmission
+      \cfmission
 
-    \textbf{\cflocation} \\ INBO \chooseestablishment{\@establishment} \\ \url{https://www.vlaanderen.be/inbo}
+      \textbf{\cflocation} \\ INBO \chooseestablishment{\@establishment} \\ \url{vlaanderen.be/inbo}
 
-    \textbf{e-mail:} \\ \@corresponding
+      \textbf{e-mail:} \\ \@corresponding
 
-    \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfseries~\@year~(\@reportnr). \cfinbo, \cfcity. DOI: \@doi
+      \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfseries~\@year~(\@reportnr). \cfinbo, \cfcity. DOI: \@doi
 
-    \textbf{\@depotnr} \\
-    \textbf{\cfseries~\@year~(\@reportnr)} \\
-    \textbf{ISSN: 1782-9054}
+      \textbf{\@depotnr} \\
+      \textbf{\cfseries~\@year~(\@reportnr)} \\
+      \textbf{ISSN: 1782-9054}
 
-    \textbf{\cfvu} \\ Maurice Hoffmann
+      \textbf{\cfvu} \\ Maurice Hoffmann
 
-    \textbf{\cfcover} \\ \@coverdescription
+      \textbf{\cfcover} \\ \@coverdescription
 
-    \@client
+      \@client
 
-    \@cooperation
+      \@cooperation
 
-    \vfill
-    \fontsize{\fontsizelicense}{\fontsizelicenseinter} \selectfont
-    \includegraphics[height=\fontsizelicense]{cc-by.eps} \ccby
-    \end{flushleft}
+      \vfill
+      \fontsize{\fontsizelicense}{\fontsizelicenseinter} \selectfont
+      \includegraphics[height=\fontsizelicense]{cc-by.eps} \ccby
+      \end{flushleft}
 
-    \clearpage
-  }
+      \clearpage
+    }
+  \fi
   \thispagestyle{cover}{%
     \@titlelogo \phantom{qk}
 

@@ -101,7 +101,7 @@ Other elements are scaled accordingly.
 Defaults to "11pt".
 See the section \emph{Aspect_ratio} for more details.
 \item \code{website}: URL in the sidebar.
-Defaults to \code{www.vlaanderen.be/inbo}.
+Defaults to \code{vlaanderen.be/inbo}.
 }
 }
 
