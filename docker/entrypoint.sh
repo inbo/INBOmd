@@ -30,7 +30,7 @@ if [ $GITHUB_EVENT_NAME = "push" ] ; then
   git rm -rf --quiet .
   cp -R $GITHUB_WORKSPACE/docs/. /inbomd_examples/.
   git add --all
-  git config --global user.email "bwk@inbo.be"
+  git config --global user.email "bmk@inbo.be"
   git config --global user.name "INBO BMK"
   git commit --amend -m "Automated update of gh-pages with inbomd_examples"
   git push --force --set-upstream origin gh-pages
