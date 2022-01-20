@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.2
+Version: 0.5.3
 Authors@R: c(
     person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8804-4216")),
