@@ -26,6 +26,7 @@ site: bookdown::bookdown_site
 output:
   INBOmd::inbo_slides: default
   INBOmd::inbo_handouts: default
+  bookdown::dontrun: default
 ---
 
 ```{r setup, include = FALSE}

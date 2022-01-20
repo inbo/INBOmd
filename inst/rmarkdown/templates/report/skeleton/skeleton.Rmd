@@ -61,6 +61,7 @@ output:
   INBOmd::gitbook: default
   INBOmd::report: default
   INBOmd::ebook: default
+  bookdown::dontrun: default
 ---
 
 # Dankwoord {-}
