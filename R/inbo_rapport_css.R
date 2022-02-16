@@ -4,10 +4,11 @@
 #' | ------------------- | ------------------- |
 #' | `ìnbo_handouts()` | `handouts()` |
 #' | `ìnbo_poster()` | `poster()` |
-#' | `ìnbo_rapport()` | `report()` |
+#' | `ìnbo_rapport()` | `pdf_report()` |
 #' | `inbo_rapport_css()` | `report_template()` |
 #' | `ìnbo_slides()` | `slides()` |
 #' | `ìnbo_verslag()` | `minutes()` |
+#' | `report()` | `pdf_report()` |
 #' @rdname deprecated
 #' @family deprecated
 #' @param format defunct

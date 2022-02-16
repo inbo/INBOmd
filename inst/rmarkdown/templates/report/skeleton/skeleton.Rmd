@@ -1,5 +1,5 @@
 ---
-# generic options. See ?INBOmd::report() for full list and more details.
+# generic options. See ?INBOmd::pdf_report() for full list and more details.
 title:
 subtitle:
 author: 
@@ -14,7 +14,7 @@ author:
 style: INBO
 lang: nl
 
-# report specific options. See ?INBOmd::report() for full list and more details.
+# report specific options. See ?INBOmd::pdf_report() for full list and more details.
 shortauthor: 
 corresponding: 
 reviewer:
@@ -43,7 +43,7 @@ cooperation:
   - https://www.website.com
 cooperation_logo:
 
-# pdf report specific options. See ?INBOmd::report() for full list and more details.
+# pdf report specific options. See ?INBOmd::pdf_report() for full list and more details.
 embargo:
 print:
   copies: 0
@@ -59,7 +59,7 @@ site: bookdown::bookdown_site
 
 output:
   INBOmd::gitbook: default
-  INBOmd::report: default
+  INBOmd::pdf_report: default
   INBOmd::ebook: default
   bookdown::dontrun: default
 ---

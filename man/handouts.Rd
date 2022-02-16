@@ -129,8 +129,8 @@ Other output:
 \code{\link{gitbook}()},
 \code{\link{minutes}()},
 \code{\link{mission}()},
+\code{\link{pdf_report}()},
 \code{\link{poster}()},
-\code{\link{report}()},
 \code{\link{slides}()}
 }
 \concept{output}

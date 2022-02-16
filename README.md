@@ -12,7 +12,7 @@
 INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish government.
 The current package has following Rmarkdown templates:
 
-- INBO report: reports rendered to pdf, html (gitbook style) and epub
+- INBO pdf_report: reports rendered to pdf, html (gitbook style) and epub
 - INBO slides: presentations rendered to pdf
 - INBO poster: poster rendered to a A0 pdf
 - Flanders slides: presentations using the Flemish corporate identity, rendered to pdf
