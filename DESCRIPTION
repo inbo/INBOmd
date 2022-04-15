@@ -20,6 +20,7 @@ Imports:
     assertthat,
     bookdown (>= 0.23.4),
     dplyr,
+    gert,
     htmltools,
     knitr,
     pdftools,

@@ -50,9 +50,6 @@ print:
   motivation:
   pages:
 
-# HTML report specific options. See ?INBOmd::gitbook() for full list and more details.
-github-repo:
-
 bibliography: references.bib
 link-citations: TRUE
 site: bookdown::bookdown_site
