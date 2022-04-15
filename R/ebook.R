@@ -112,7 +112,7 @@ epub_book <- function() {
   template <- system.file(
     file.path("template", sprintf("report_%s.epub3", lang)), package = "INBOmd"
   )
-  config <- epub_book(
+  config <- bookdown::epub_book(
     fig_caption = TRUE, number_sections = TRUE, toc = TRUE,
     stylesheet = file.path(
       resource_dir,
