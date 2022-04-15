@@ -125,7 +125,7 @@ E.g. an 11pt font on a slide is as readable as an 11pt font on a A4 paper.\tabul
 
 \seealso{
 Other output: 
-\code{\link{ebook}()},
+\code{\link{epub_book}()},
 \code{\link{gitbook}()},
 \code{\link{minutes}()},
 \code{\link{mission}()},

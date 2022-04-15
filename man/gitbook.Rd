@@ -127,7 +127,7 @@ Otherwise you don't get an \code{index.html} file.
 
 \seealso{
 Other output: 
-\code{\link{ebook}()},
+\code{\link{epub_book}()},
 \code{\link{handouts}()},
 \code{\link{minutes}()},
 \code{\link{mission}()},

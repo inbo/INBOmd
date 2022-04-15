@@ -9,7 +9,7 @@
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
-ebook <- function() {
+epub_book <- function() {
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
@@ -122,4 +122,14 @@ ebook <- function() {
   )
   config$clean_supporting <- TRUE
   return(config)
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @export
+ebook <- function() {
+  .Deprecated(
+    epub_book(),
+    msg = "`INBOmd::ebook` is deprecated. Use `INBOmd::epub_book` instead."
+  )
 }

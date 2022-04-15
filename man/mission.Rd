@@ -65,7 +65,7 @@ Available extra parameters:
 }
 \seealso{
 Other output: 
-\code{\link{ebook}()},
+\code{\link{epub_book}()},
 \code{\link{gitbook}()},
 \code{\link{handouts}()},
 \code{\link{minutes}()},
