@@ -59,10 +59,10 @@ gitbook <- function() {
     msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
-    cover_path <- file.path(getwd(), "cover.jpeg")
+    cover_path <- file.path(getwd(), "cover.png")
     if (!file.exists(cover_path)) {
       pdf_convert(
-        pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
+        pdf = file.path(getwd(), fm$cover), format = "png", pages = 1,
         dpi = 770 * 25.4 / 210, filenames = cover_path
       )
     }
