@@ -24,7 +24,7 @@ cover_horizontal:
 
 site: bookdown::bookdown_site
 output:
-  INBOmd::inbo_slides: default
+  INBOmd::slides: default
   INBOmd::inbo_handouts: default
   bookdown::dontrun: default
 ---
