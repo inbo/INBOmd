@@ -1,8 +1,10 @@
+.DS_Store
 .httr-oauth
 .RData
 .Rhistory
 .Rproj.user
 .Ruserdata
+*.html
 *.log
 *.synctex.gz
 *.toc
