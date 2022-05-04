@@ -18,3 +18,4 @@ type: software
 doi: 10.5281/zenodo.842223
 repository-code: https://github.com/inbo/inbomd
 identifiers: []
+keywords: R package
