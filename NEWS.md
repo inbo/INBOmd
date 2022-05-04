@@ -1,6 +1,11 @@
 # INBOmd 0.5.3
 
-* To do.
+* Rename `report()` to `pdf_report()` and `epub()` to `epub_book()`.
+  `bookdown` requires the name of the generic output format to be in the name.
+* Convert covers to png instead of jpg to avoid the typical artefacts around
+  text.
+* Automatically add an "Edit" to gitbooks when the report is available in a git
+  repository.
 
 # INBOmd 0.5.2
 

@@ -133,3 +133,13 @@ ebook <- function() {
     msg = "`INBOmd::ebook` is deprecated. Use `INBOmd::epub_book` instead."
   )
 }
+
+#' @rdname deprecated
+#' @family deprecated
+#' @export
+inbo_ebook <- function() {
+  .Deprecated(
+    epub_book(),
+    msg = "`INBOmd::inbo_ebook` is deprecated. Use `INBOmd::epub_book` instead."
+  )
+}

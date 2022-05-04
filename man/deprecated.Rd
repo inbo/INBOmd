@@ -3,6 +3,7 @@
 %   R/minutes.R, R/mission.R, R/pdf_report.R, R/poster.R, R/slides.R
 \name{ebook}
 \alias{ebook}
+\alias{inbo_ebook}
 \alias{inbo_handouts}
 \alias{inbo_rapport_css}
 \alias{inbo_verslag}
@@ -14,6 +15,8 @@
 \title{Deprecated functions}
 \usage{
 ebook()
+
+inbo_ebook()
 
 inbo_handouts(
   toc = TRUE,
@@ -131,6 +134,7 @@ Defaults to info@inbo.be}
 \description{
 \tabular{ll}{
    old function \tab new function \cr
+   \code{ìnbo_ebook()} \tab \code{epub_book()} \cr
    \code{ìnbo_handouts()} \tab \code{handouts()} \cr
    \code{ìnbo_poster()} \tab \code{poster()} \cr
    \code{ìnbo_rapport()} \tab \code{pdf_report()} \cr

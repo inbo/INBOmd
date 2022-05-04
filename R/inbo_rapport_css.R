@@ -2,6 +2,7 @@
 #'
 #' | old function | new function |
 #' | ------------------- | ------------------- |
+#' | `ìnbo_ebook()` | `epub_book()` |
 #' | `ìnbo_handouts()` | `handouts()` |
 #' | `ìnbo_poster()` | `poster()` |
 #' | `ìnbo_rapport()` | `pdf_report()` |
