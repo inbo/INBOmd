@@ -10,7 +10,7 @@
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
-report <- function(
+pdf_report <- function(
   fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
   dots <- list(...)
@@ -218,6 +218,22 @@ inbo_rapport <- function(
     report(
       fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args, ...
     ),
-    msg = "`inbo_rapport` is deprecated. Use `report` instead."
+    msg = "`inbo_rapport` is deprecated. Use `pdf_report` instead."
+  )
+}
+
+#' @rdname deprecated
+#' @family deprecated
+#' @inheritParams slides
+#' @inheritParams rmarkdown::pdf_document
+#' @export
+report <- function(
+    fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+) {
+  .Deprecated(
+    pdf_report(
+      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args, ...
+    ),
+    msg = "`report` is deprecated. Use `pdf_report` instead."
   )
 }

@@ -56,12 +56,12 @@ Available extra parameters:
 }
 \seealso{
 Other output: 
-\code{\link{ebook}()},
+\code{\link{epub_book}()},
 \code{\link{gitbook}()},
 \code{\link{handouts}()},
 \code{\link{mission}()},
+\code{\link{pdf_report}()},
 \code{\link{poster}()},
-\code{\link{report}()},
 \code{\link{slides}()}
 }
 \concept{output}

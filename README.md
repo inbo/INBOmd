@@ -12,7 +12,7 @@
 INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish government.
 The current package has following Rmarkdown templates:
 
-- INBO report: reports rendered to pdf, html (gitbook style) and epub
+- INBO pdf_report: reports rendered to pdf, html (gitbook style) and epub
 - INBO slides: presentations rendered to pdf
 - INBO poster: poster rendered to a A0 pdf
 - Flanders slides: presentations using the Flemish corporate identity, rendered to pdf
@@ -33,11 +33,14 @@ Below are some documents created with INBOmd
 
 ## Installation
 
-INBOmd requires a working installation of XeLaTeX.
-We highly recommend to use the TinyTeX.
+INBOmd requires a working LaTeX distribution (for conversion of markdown
+to pdf).
+We highly recommend to use the LaTeX distribution provided by R
+package TinyTeX.
 Close all open R sessions and start a fresh R session.
 Execute the commands below.
-This will install TinyTeX on your machine.
+This will install the R package TinyTeX and the TinyTex LaTeX distribution
+on your machine.
 No admin rights are required.
 Although TinyTeX is a lightweight installation, it still is several 100 MB large.
 
@@ -46,6 +49,7 @@ update.packages(ask = FALSE, checkBuilt = TRUE)
 if (!"tinytex" %in% rownames(installed.packages())) {
   install.packages("tinytex")
 }
+# install the TinyTeX LaTeX distribution
 if (!tinytex:::is_tinytex()) {
   tinytex::install_tinytex()
 }
@@ -55,15 +59,23 @@ Once TinyTeX is installed, you need to restart RStudio.
 Then you can proceed with the installation of `INBOmd`.
 
 ```
-if (!"remotes" %in% rownames(installed.packages())) {
-  install.packages("remotes")
-}
-remotes::install_github("inbo/INBOmd", dependencies = TRUE)
-tinytex::tlmgr_install(c(
-  'inconsolata', 'times', 'tex', 'helvetic', 'dvips'
-))
+# installation from inbo.r-universe
+install.packages("INBOmd", repos = "https://inbo.r-universe.dev")
+
+## alternative: installation from github
+#if (!"remotes" %in% rownames(installed.packages())) {
+#  install.packages("remotes")
+#}
+#remotes::install_github("inbo/INBOmd", dependencies = TRUE)
+
+# add the local latex package contained in INBOmd to the TinyTeX install 
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
 )
-tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
+
+# install some other needed latex packages 
+tinytex::tlmgr_install(c(
+  "inconsolata", "times", "tex", "helvetic", "dvips", "hyphen-dutch",
+  "hyphen-french"
+))
 ```

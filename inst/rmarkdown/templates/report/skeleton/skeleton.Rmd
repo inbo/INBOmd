@@ -1,57 +1,54 @@
 ---
-# generic options. See ?INBOmd::report() for full list and more details.
+# generic options. See ?INBOmd::pdf_report() for full list and more details.
 title:
-subtitle:
+# subtitle:
 author: 
   - firstname: Firstname1
     name: "Last name1"
     email: "firstname1.lastname1@inbo.be"
     orcid: 0000-0002-1825-0097
-  - firstname: Voornaam2
-    name: Achternaam2
+  - firstname: Firstname2
+    name: Lastname2
     email: "voornaam2.achternaam2@inbo.be"
     orcid: 0000-0002-1825-0097
 style: INBO
 lang: nl
 
-# report specific options. See ?INBOmd::report() for full list and more details.
-shortauthor: 
+# report specific options. See ?INBOmd::pdf_report() for full list and more details.
+# shortauthor: 
 corresponding: 
 reviewer:
   - firstnaam: Firstname
     name: Lastname
     email: "firstname.lastname@inbo.be"
     orcid: 0000-0002-1825-0097
-year:
+# year:
 cover_photo:
-cover_description:
-cover:
-doi:
-reportnr:
-ordernr:
-depotnr:
+# cover_description:
+# cover:
+# doi:
+# reportnr:
+# ordernr:
+# depotnr: 
 client:
-  - Organisation
+  - Organisation (remove client section when not needed)
   - Street number
   - Postal code city
   - https://www.website.com
-client_logo:
+# client_logo: uncomment and replace with path to logo or remove line
 cooperation:
-  - Organisation
+  - Organisation (remove cooperation section when not needed)
   - Street number
   - Postal code city
   - https://www.website.com
-cooperation_logo:
+# cooperation_logo: uncomment and replace with path to logo or remove line
 
-# pdf report specific options. See ?INBOmd::report() for full list and more details.
+# pdf report specific options. See ?INBOmd::pdf_report() for full list and more details.
 embargo:
 print:
   copies: 0
   motivation:
   pages:
-
-# HTML report specific options. See ?INBOmd::gitbook() for full list and more details.
-github-repo:
 
 bibliography: references.bib
 link-citations: TRUE
@@ -59,8 +56,12 @@ site: bookdown::bookdown_site
 
 output:
   INBOmd::gitbook: default
-  INBOmd::report: default
-  INBOmd::ebook: default
+  INBOmd::pdf_report: default
+  INBOmd::epub_book: default
+  # Don't run the format below.
+  # Only required for RStudio to recognise the project as a bookdown project.
+  # Hence don't use "Build all formats".
+  bookdown::dontrun: default
 ---
 
 # Dankwoord {-}

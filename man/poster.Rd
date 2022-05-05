@@ -59,12 +59,12 @@ poster.
 }
 \seealso{
 Other output: 
-\code{\link{ebook}()},
+\code{\link{epub_book}()},
 \code{\link{gitbook}()},
 \code{\link{handouts}()},
 \code{\link{minutes}()},
 \code{\link{mission}()},
-\code{\link{report}()},
+\code{\link{pdf_report}()},
 \code{\link{slides}()}
 }
 \concept{output}

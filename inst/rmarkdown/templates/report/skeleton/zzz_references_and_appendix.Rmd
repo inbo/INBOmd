@@ -4,6 +4,6 @@
 INBOmd::references(appendix = TRUE)
 ```
 
-# Eerste hoofdstuk van de appendix
+# Eerste hoofdstuk van de bijlage
 
-Inhoud van de eerste appendix
+Inhoud van de eerste bijlage

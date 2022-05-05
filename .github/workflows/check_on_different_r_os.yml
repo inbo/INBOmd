@@ -56,6 +56,11 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
+      - name: Install MacOS system dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew install xquartz
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -64,6 +69,7 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          sudo apt-get install -y libcurl4-openssl-dev
 
       - name: Install dependencies
         run: |
@@ -95,3 +101,4 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+          retention-days: 5

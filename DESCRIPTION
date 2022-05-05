@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.2
+Version: 0.5.3
 Authors@R: c(
     person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8804-4216")),
@@ -20,6 +20,7 @@ Imports:
     assertthat,
     bookdown (>= 0.23.4),
     dplyr,
+    gert,
     htmltools,
     knitr,
     pdftools,
@@ -37,6 +38,7 @@ VignetteBuilder:
     knitr
 Additional_repositories: https://inbo.r-universe.dev
 Encoding: UTF-8
+Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2

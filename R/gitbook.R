@@ -13,6 +13,7 @@
 #' @importFrom utils head packageVersion tail
 #' @family output
 gitbook <- function() {
+  gitbook_edit_button(getwd())
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
@@ -58,10 +59,10 @@ gitbook <- function() {
     msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
-    cover_path <- file.path(getwd(), "cover.jpeg")
+    cover_path <- file.path(getwd(), "cover.png")
     if (!file.exists(cover_path)) {
       pdf_convert(
-        pdf = file.path(getwd(), fm$cover), format = "jpeg", pages = 1,
+        pdf = file.path(getwd(), fm$cover), format = "png", pages = 1,
         dpi = 770 * 25.4 / 210, filenames = cover_path
       )
     }
@@ -104,4 +105,34 @@ gitbook <- function() {
   }
   config$clean_supporting <- TRUE
   return(config)
+}
+
+#' @importFrom assertthat assert_that is.string
+#' @importFrom gert git_branch_exists git_find git_remote_info
+#' @importFrom utils file_test
+gitbook_edit_button <- function(path) {
+  root <- try(git_find(path), silent = TRUE)
+  if (
+    inherits(root, "try-error") ||
+    !file_test("-f", file.path(path, "_bookdown.yml"))
+  ) {
+    return(invisible(FALSE))
+  }
+  url <- git_remote_info(repo = root)$url
+  url <- gsub("^.*@", "https://", url)
+  url <- paste("edit:", gsub("\\.git$", "", url))
+  url <- file.path(
+    fsep = "/", url, "edit",
+    ifelse(git_branch_exists("main", repo = path), "main", "master")
+  )
+  rel_path <- gsub(root, "", path)
+  url <- ifelse(
+    rel_path == "", file.path(url, "%s", fsep = "/"),
+    file.path(url, gsub("^.", "", rel_path), "%s", fsep = "/")
+  )
+  yaml <- readLines(file.path(path, "_bookdown.yml"))
+  writeLines(
+    c(yaml[!grepl("^edit: ", yaml)], url), file.path(path, "_bookdown.yml")
+  )
+  return(invisible(TRUE))
 }
