@@ -135,6 +135,9 @@ RUN  Rscript -e 'remotes::install_cran("lipsum")'
 ## Install here
 RUN  Rscript -e 'remotes::install_cran("here")'
 
+## Install gert
+RUN  Rscript -e 'remotes::install_cran("gert")'
+
 ## Install webshot dependency
 RUN  Rscript -e 'webshot::install_phantomjs()'
 
@@ -158,7 +161,7 @@ RUN  mkdir ${HOME}/.fonts \
   && Rscript -e 'tinytex:::updmap()'
 
 ## Get current version of the INBOmd examples
-RUN git clone --single-branch --branch=master --depth=1 https://github.com/inbo/inbomd_examples /examples
+RUN git clone --single-branch --branch=main --depth=1 https://github.com/inbo/inbomd_examples /examples
 
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore

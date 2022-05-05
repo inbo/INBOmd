@@ -118,12 +118,9 @@ gitbook_edit_button <- function(path) {
   ) {
     return(invisible(FALSE))
   }
-  url <- git_remote_info(repo = path)$url
-  url <- ifelse(
-    grepl("^git@", url),
-    gsub("^git@(.*):(.*)\\.git$", "edit: https://\\1/\\2", url),
-    gsub("(.*)\\.git$", "edit: \\1", url)
-  )
+  url <- git_remote_info(repo = root)$url
+  url <- gsub("^.*@", "https://", url)
+  url <- paste("edit:", gsub("\\.git$", "", url))
   url <- file.path(
     fsep = "/", url, "edit",
     ifelse(git_branch_exists("main", repo = path), "main", "master")
