@@ -47,6 +47,7 @@ gitbook <- function() {
     split_by %in% c("chapter+number", "section+number"),
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",

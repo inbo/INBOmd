@@ -63,6 +63,7 @@ pdf_report <- function(
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
     )
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   template <- system.file(
     file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"

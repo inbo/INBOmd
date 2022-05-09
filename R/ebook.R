@@ -36,6 +36,7 @@ epub_book <- function() {
     style == "Flanders" || lang == "nl",
     msg = "Use style: Flanders when the language is not nl"
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
