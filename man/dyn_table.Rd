@@ -48,6 +48,7 @@ Other utils:
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()}
+\code{\link{render_natbib}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}

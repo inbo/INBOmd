@@ -11,6 +11,7 @@
 #' The part afther the forward slash consists either of only digits or of
 #' two sets of any character separated by a dot.
 #' @param doi a string containing the DOI.
+#' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
 validate_doi <- function(doi) {

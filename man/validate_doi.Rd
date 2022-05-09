@@ -21,3 +21,14 @@ E.g. \code{10.21436} or \verb{10.21436.1}.
 The part afther the forward slash consists either of only digits or of
 two sets of any character separated by a dot.
 }
+\seealso{
+Other utils: 
+\code{\link{check_dependencies}()},
+\code{\link{cover_info}()},
+\code{\link{dyn_table}()},
+\code{\link{kolom_breedte}()},
+\code{\link{kolom_start}()},
+\code{\link{references}()},
+\code{\link{render_natbib}()}
+}
+\concept{utils}

@@ -25,6 +25,7 @@ Other utils:
 \code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()}
+\code{\link{render_natbib}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}

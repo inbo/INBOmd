@@ -42,6 +42,7 @@ Other utils:
 \code{\link{dyn_table}()},
 \code{\link{kolom_breedte}()},
 \code{\link{kolom_start}()},
-\code{\link{references}()}
+\code{\link{references}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}
