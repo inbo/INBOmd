@@ -1,3 +1,9 @@
+# INBOmd 0.5.4
+
+* Add `validate_doi()` to validate a DOI.
+  `pdf_report()`, `gitbook()` and `epub_book()` use this function to validate
+  the optional DOI when set.
+
 # INBOmd 0.5.3
 
 * Rename `report()` to `pdf_report()` and `epub()` to `epub_book()`.
