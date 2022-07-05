@@ -65,7 +65,7 @@ $if(titlepage)$
   <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4><a class="doi" href="#">$doi$</a></h4>
+  <h4><a class="doi" href="https://doi.org/$doi$">$doi$</a></h4>
   $endif$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
@@ -130,7 +130,7 @@ $if(titlepage)$
   $endif$
   l'Institut de Recherche sur la Nature et les Forêts, Bruxelles. DOI:
   $if(doi)$
-    <a class="doi" href="#">$doi$</a>
+    <a class="doi" href="https://doi.org/$doi$">$doi$</a>
   $else$
     <h1 class = "missing">!!!! MISSING: doi !!!!</h1>
   $endif$

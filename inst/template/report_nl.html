@@ -129,7 +129,7 @@ $if(title)$
   <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4><a class="doi" href="#">$doi$</a></h4>
+  <h4><a class="doi" href="https://doi.org/$doi$">$doi$</a></h4>
   $endif$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
@@ -194,7 +194,7 @@ $if(title)$
   $endif$
   Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
   $if(doi)$
-    <a class="doi" href="#">$doi$</a>
+    <a class="doi" href="https://doi.org/$doi$">$doi$</a>
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
@@ -315,7 +315,7 @@ $if(cover_image)$
 <a href=".">
 <img src="$url$$cover_image$" alt = "$shortauthor$ ($year$) $title$" class = "thumbnail"></a><br>
 $endif$
-$if(doi)$<a class="chapter" href="#">$doi$</a>$endif$
+$if(doi)$<a class="chapter" href="https://doi.org/$doi$">$doi$</a>$endif$
 <br><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/>
       <nav role="navigation">
 <!--bookdown:toc2:start-->
@@ -351,7 +351,7 @@ $include-after$
 $endfor$
 <p>&nbsp;</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/></a>
-$shortauthor$ ($year$). $doi$
+$shortauthor$ ($year$). <a href="https://doi.org/$doi$">$doi$</a>
             </section>
         </div>
       </div>
