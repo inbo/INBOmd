@@ -52,11 +52,13 @@ All options going from large to small are: "normalsize", "small",
 Quotes are required when a part contains spaces.
 If the author doesn't have an ORCID, you can omit that line.
 However, note that the INBO policy is that all scientific personnel is
-required to obtain an ORCID from https://orcid.org.\preformatted{  - firstname: "Authors first name"
+required to obtain an ORCID from https://orcid.org.
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{  - firstname: "Authors first name"
     name: "Authors last name"
     email: "local-part@domain.com"
     orcid: 0000-0002-1825-0097
-}
+}\if{html}{\out{</div>}}
 }
 
 \section{Available YAML headers options specific for slides}{
