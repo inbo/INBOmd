@@ -120,7 +120,7 @@ gitbook_edit_button <- function(path) {
     return(invisible(FALSE))
   }
   url <- git_remote_info(repo = root)$url
-  url <- gsub("^.*@", "https://", url)
+  url <- gsub("^.*@(.*?):", "https://\\1/", url)
   url <- paste("edit:", gsub("\\.git$", "", url))
   url <- file.path(
     fsep = "/", url, "edit",
