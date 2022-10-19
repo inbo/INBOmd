@@ -81,28 +81,6 @@ Hou het [Heerlijk Helder](https://overheid.vlaanderen.be/communicatie/heerlijk-h
 
 Verplicht wanneer relevant.
 
-\benglish
-
-# English abstract {-}
-
-Insert a translation of the summary here.
-\eenglish
-
-\bfrench
-
-# Résumé français {- #resume-francais}
-
-Ajoutez éventuellement une traduction du résumé ici.
-
-\efrench
-
-<!-- hier komt de inhoudstafel bij pdf -->
-\mainmatter
-
-# Inleiding
-
-Een concreet voorbeeld van de broncode van dergelijk rapport vind je op https://github.com/inbo/inbomd_examples onder het mapje source/inbo_rapport. Hoe zo een rapport er finaal uit kan zien, vind je op https://inbomd-examples.netlify.com/
-
 ```{r setup, include = FALSE}
 library(knitr)
 opts_chunk$set(
