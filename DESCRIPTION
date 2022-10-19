@@ -20,6 +20,7 @@ Imports:
     assertthat,
     bookdown (>= 0.23.4),
     dplyr,
+    fs,
     gert,
     htmltools,
     knitr,
@@ -41,4 +42,4 @@ Encoding: UTF-8
 Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
