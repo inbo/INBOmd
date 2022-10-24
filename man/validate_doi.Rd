@@ -24,10 +24,10 @@ two sets of any character separated by a dot.
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
 \code{\link{cover_info}()},
 \code{\link{dyn_table}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()}
 }

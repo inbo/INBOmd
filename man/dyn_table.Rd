@@ -44,9 +44,9 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
 \code{\link{cover_info}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()},
 \code{\link{validate_doi}()}

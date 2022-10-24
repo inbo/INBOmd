@@ -31,7 +31,7 @@ library(knitr)
 opts_chunk$set(
   echo = FALSE,
   dev = "cairo_pdf",
-  fig.width = INBOmd::kolom_breedte(3) / 25.4,
+  fig.width = INBOmd::column_width(3) / 25.4,
   fig.height = 6
 )
 library(ggplot2)
@@ -41,7 +41,7 @@ update_geom_defaults("text", list(size = 8))
 ```
 
 <!-- start of first column -->
-\btextblock{`r INBOmd::kolom_breedte(3)`}(`r INBOmd::kolom_start(3, 1)`, 0)
+\btextblock{`r INBOmd::column_width(3)`}(`r INBOmd::column_start(3, 1)`, 0)
 
 ```{block2 chunk-name, type="block", latex.options="{title of a standard block}", echo = TRUE}
 You can use any markdown code in a box
@@ -61,8 +61,8 @@ You can use any markdown code in a box
     - `y` is the vertical position in mm
         - starts below the footer
 - end a column by placing `\etextblock`
-- `INBOmd::kolom_breedte(n)` returns the width in case you want `n` equal sized columns
-- `INBOmd::kolom_start(n, i)` returns the horizontal position for column `i` of `n` equal sized columns
+- `INBOmd::column_width(n)` returns the width in case you want `n` equal sized columns
+- `INBOmd::column_start(n, i)` returns the horizontal position for column `i` of `n` equal sized columns
 
 ```
 
@@ -70,7 +70,7 @@ You can use any markdown code in a box
 \etextblock
 
 <!-- start of second column -->
-\btextblock{`r 2 * INBOmd::kolom_breedte(3)`}(`r INBOmd::kolom_start(3, 2)`, 0)
+\btextblock{`r 2 * INBOmd::column_width(3)`}(`r INBOmd::column_start(3, 2)`, 0)
 
 ```{block2 warnings, type="alertblock", latex.options="{Warnings}", echo = TRUE}
 - The block chunks look like `r` chunks but start with `block2`
