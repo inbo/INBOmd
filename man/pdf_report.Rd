@@ -32,25 +32,26 @@ Create a report with the Flemish corporate identity
 When not set, or set to \code{FALSE} or empty, use the Calibri font.
 \item \code{style}: Defaults to "INBO" when missing.
 \itemize{
-\item "INBO" for the INBO style.
-\item "Vlaanderen" for the generic style of the Flemish Goverment in Dutch.
-\item "Flanders" for the generic style of the Flemish Goverment in a language
-other than Dutch.
+\item \code{"INBO"} for the INBO style.
+\item \code{"Vlaanderen"} for the generic style of the Flemish Government in
+Dutch.
+\item \code{"Flanders"} for the generic style of the Flemish Government in a
+language other than Dutch.
 }
 \item \code{lang}: the main language of the document as \href{https://datatracker.ietf.org/doc/html/rfc5646}{RFC 5646} tags.
-\code{style} "INBO" and "Vlaanderen" require "nl" as \code{lang}.
-\code{style} "Flanders" uses "en" as default and can use other languages (but
-not "nl").
+\code{style} \code{"INBO"} and \code{"Vlaanderen"} require \code{"nl"} as \code{lang}.
+\code{style} \code{"Flanders"} uses \code{"en"} as default and can use other languages
+(but not \code{"nl"}).
 \itemize{
-\item "nl" for Dutch
-\item "en" for English
-\item "fr" for French
+\item \code{"nl"} for Dutch
+\item \code{"en"} for English
+\item \code{"fr"} for French
 }
 \item \code{codesize}: Relative size of R code compared to normal text.
-Defaults to "footnotesize".
-All options going from large to small are: "normalsize", "small",
-"footnotesize", "scriptsize", "tiny".
-"normalsize" implies the same size as normal text.
+Defaults to \code{"footnotesize"}.
+All options going from large to small are: \code{"normalsize"}, \code{"small"},
+\code{"footnotesize"}, \code{"scriptsize"}, \code{"tiny"}.
+\code{"normalsize"} implies the same size as normal text.
 }
 }
 
@@ -112,7 +113,7 @@ you collaborated with.
 Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
-If not set or set to \code{FALSE} add the address of INBO Brussel.
+If not set or set to \code{FALSE} add the address of INBO Brussels.
 }
 }
 
@@ -139,9 +140,8 @@ is to use only digital publications.
 \item \code{tocdepth}: which level headers to display.
 \itemize{
 \item 0: up to chapters (\verb{#})
-\item 1: up to section (\verb{##})
+\item 1: up to section (\verb{##}) default
 \item 2: up to subsection (\verb{###})
-\item 3: up to subsubsection (\verb{####}) default
 }
 \item \code{lof}: Adds a list of figures to the pdf after the table of content when
 set to \code{TRUE}.
@@ -151,10 +151,10 @@ list of figures when set to \code{TRUE}.
 Omits the list of tables when missing or set to \code{FALSE}.
 \item \code{hyphenation}: An optional list of words with a specified hyphenation
 pattern.
-E.g. \code{hyphenation: "fortran, ergo-no-mic"} forces the word "fortran" to
+E.g. \code{hyphenation: "fortran, ergo-no-mic"} forces the word \code{"fortran"} to
 remain as a single word.
-"ergonomic" can be either the entire word, split into "ergo" and "nomic" or
-split into "ergono" and "mic".
+"ergonomic" can be either the entire word, split into \code{"ergo"} and
+\code{"nomic"} or split into \code{"ergono"} and \code{"mic"}.
 \item \code{floatbarrier}: A float barrier forces to place all floating figures and
 tables before placing the remainder of the document.
 You can place them manually by setting \verb{\\floatbarrier}.
@@ -163,7 +163,7 @@ Defaults to NA (only float barriers before starting a new chapter \verb{#}).
 Options are "section" (before \verb{#} and \verb{##}), "subsection" (before \verb{#}, \verb{##}
 and \verb{###}) and "subsubsection" (before \verb{#}, \verb{##}, \verb{###} and \verb{####}).
 \item \code{other_lang}: the other languages you want to use in the pdf version.
-Available options are 'nl', 'en' and 'fr'.
+Available options are \code{"nl"}, \code{"en"} and \code{"fr"}
 Defaults to all available languages except the main language.
 }
 }
@@ -177,7 +177,7 @@ This is currently limited to Dutch, English and French.
 Use \verb{\\bdutch} before and \verb{\\edutch} after the text in Dutch.
 Use \verb{\\benglish} before and \verb{\\eenglish} after the text in English.
 Use \verb{\\bfrench} before and \verb{\\efrench} after the text in French.
-The styles "INBO" and "Vlaanderen" have French and English as optional
+The styles \code{"INBO"} and \code{"Vlaanderen"} have French and English as optional
 languages.
 The \code{Flanders} style has by default Dutch and French as optional languages.
 

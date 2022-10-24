@@ -7,7 +7,7 @@
 cover_info(path = "index.Rmd")
 }
 \arguments{
-\item{path}{The path to the main Rmd file}
+\item{path}{The path to the main \code{.Rmd} file.}
 }
 \description{
 You need to provide information to create the cover image and (optionally)

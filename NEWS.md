@@ -8,24 +8,24 @@
 
 * Rename `report()` to `pdf_report()` and `epub()` to `epub_book()`.
   `bookdown` requires the name of the generic output format to be in the name.
-* Convert covers to png instead of jpg to avoid the typical artefacts around
+* Convert covers to `png` instead of `jpg` to avoid the typical artefacts around
   text.
-* Automatically add an "Edit" to gitbooks when the report is available in a git
+* Automatically add an "Edit" to gitbook when the report is available in a git
   repository.
 
 # INBOmd 0.5.2
 
-* Templates now mention url 'vlaanderen.be/inbo' instead of
-  'https://www.vlaanderen.be/inbo' or 'www.vlaanderen.be/inbo'.
-* Bug fix website 'inbomd_examples'.
-* `gitbook()` uses the same reference title for chapter bibliografies as the
+* Templates now mention url `vlaanderen.be/inbo` instead of
+  `https://www.vlaanderen.be/inbo` or `www.vlaanderen.be/inbo`.
+* Bug fix website `"inbomd_examples"`.
+* `gitbook()` uses the same reference title for chapter bibliographies as the
   main bibliography.
 * `references()` takes `lang` into account for HTML formats.
-* Bugfix in Dockerfile.
+* Bugfix in `Dockerfile`.
 
 # INBOmd 0.5.1
 
-* Add language french for style Flanders
+* Add language French for style Flanders
 
 # INBOmd 0.5.0
 
@@ -69,7 +69,7 @@
 
 ## Internal changes
 
-* Setup quality assurrance using [checklist](https://inbo.github.io/checklist/).
+* Setup quality assurance using [checklist](https://inbo.github.io/checklist/).
 
 # INBOmd 0.4.9
 
@@ -80,7 +80,7 @@
 
 * bugfix in `dyn_table()` function
 * bugfix in `inbo_rapport()` function
-* overhaul of the csl and bst citation styles
+* overhaul of the `csl` and `bst` citation styles
 * minor tweaks in gitbook, epub and LaTeX styles for reports
 * upgrade to Roxygen 7.1.0
 * upgrade Docker image
@@ -112,16 +112,16 @@
 * add `inbo_report_css()`
 * add report template for gitbook
 * import report template for pdf
-* create addins for RStudio
+* create add-ins for RStudio
 
 # INBOmd 0.4.2
 
 * `inbo_rapport()` gains a `flandersfont` argument
 * natbib citation style is updated
 * hyperlinks have a bluish colour instead of fuchsia
-* LaTeX style for inbo_rapport updated
-* draft of gitbook style for inbo_rapport
-* draft of epub style for inbo_rapport
+* LaTeX style for `inbo_rapport()` updated
+* draft of gitbook style for `inbo_rapport()`
+* draft of epub style for `inbo_rapport()`
 
 # INBOmd 0.4.1.1
 

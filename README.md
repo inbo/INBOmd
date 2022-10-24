@@ -33,16 +33,13 @@ Below are some documents created with INBOmd
 
 ## Installation
 
-INBOmd requires a working LaTeX distribution (for conversion of markdown
-to pdf).
-We highly recommend to use the LaTeX distribution provided by R
-package TinyTeX.
+INBOmd requires a working LaTeX distribution (for conversion of markdown to pdf).
+We highly recommend to use the LaTeX distribution provided by R package `tinytex`.
 Close all open R sessions and start a fresh R session.
 Execute the commands below.
-This will install the R package TinyTeX and the TinyTex LaTeX distribution
-on your machine.
+This will install the R package `tinytex` and the `TinyTex` LaTeX distribution on your machine.
 No admin rights are required.
-Although TinyTeX is a lightweight installation, it still is several 100 MB large.
+Although `TinyTeX` is a lightweight installation, it still is several 100 MB large.
 
 ```
 update.packages(ask = FALSE, checkBuilt = TRUE)
@@ -55,7 +52,7 @@ if (!tinytex:::is_tinytex()) {
 }
 ```
 
-Once TinyTeX is installed, you need to restart RStudio.
+Once `TinyTeX` is installed, you need to restart RStudio.
 Then you can proceed with the installation of `INBOmd`.
 
 ```

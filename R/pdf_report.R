@@ -113,17 +113,12 @@ pdf_report <- function(
   )
   floating <- lapply(
     sprintf("floatbarrier%ssection", vars),
-    pandoc_variable_arg,
-    value = TRUE
+    pandoc_variable_arg, value = TRUE
   )
   args <- c(args, unlist(floating))
   opts_chunk <- list(
-    latex.options = "{}",
-    dev = "cairo_pdf",
-    fig.align = "center",
-    dpi = 300,
-    fig.width = 4.5,
-    fig.height = 2.9
+    latex.options = "{}", dev = "cairo_pdf", fig.align = "center", dpi = 300,
+    fig.width = 4.5, fig.height = 2.9
   )
   knit_hooks <- NULL
 
@@ -132,7 +127,7 @@ pdf_report <- function(
     cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
-    mainmatter <- grep("\\\\mainmatter", text) #nolint
+    mainmatter <- grep("\\\\mainmatter", text)
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
@@ -147,8 +142,8 @@ pdf_report <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text) # nolint
-    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint
+    appendix <- grep("\\\\appendix", text)
+    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(

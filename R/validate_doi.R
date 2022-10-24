@@ -8,7 +8,7 @@
 #' The part before the forward slash consists of two or three sets of digits
 #' separated by a dot.
 #' E.g. `10.21436` or `10.21436.1`.
-#' The part afther the forward slash consists either of only digits or of
+#' The part after the forward slash consists either of only digits or of
 #' two sets of any character separated by a dot.
 #' @param doi a string containing the DOI.
 #' @family utils

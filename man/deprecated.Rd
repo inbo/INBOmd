@@ -111,7 +111,7 @@ widescreen slides like the 16:10 aspect ratio.}
 
 \item{chair}{chair of the meeting}
 
-\item{floatbarrier}{where to place automatic floatbarriers}
+\item{floatbarrier}{where to place automatic float barriers.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
@@ -144,7 +144,7 @@ if these two tools are available.}
 \item{subtitle}{An optional subtitle}
 
 \item{email}{The email address to display at the bottom.
-Defaults to info@inbo.be}
+Defaults to \code{"info@inbo.be"}}
 }
 \description{
 \tabular{ll}{

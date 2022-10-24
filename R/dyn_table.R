@@ -1,8 +1,8 @@
 #' Use a different table style depending on the output format
 #'
-#' - **interactive session**: \code{\link[DT]{datatable}}
-#' - **html**: \code{\link[DT]{datatable}}
-#' - **other**: \code{\link[knitr]{kable}}
+#' - **interactive session**: [DT::datatable()]
+#' - **html**: [DT::datatable()]
+#' - **other**: [knitr::kable()]
 #'
 #' @param x the dataframe
 #' @inheritParams DT::datatable

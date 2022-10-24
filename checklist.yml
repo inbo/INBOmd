@@ -17,4 +17,32 @@ allowed:
 citation_roles:
 - aut
 - cre
+required:
+- .zenodo.json
+- CITATION
+- CITATION.cff
+- DESCRIPTION
+- R CMD check
+- checklist
+- codemeta
+- documentation
+- filename conventions
+- license
+- lintr
+- repository secret
+- spelling
 keywords: R package
+spelling:
+  default: en-GB
+  ignore:
+  - .github
+  - LICENSE.md
+  other:
+    nl-BE:
+    - inst/rmarkdown/templates/minutes/skeleton/skeleton.Rmd
+    - inst/rmarkdown/templates/mission/skeleton/skeleton.Rmd
+    - inst/rmarkdown/templates/report/skeleton/01_inleiding.Rmd
+    - inst/rmarkdown/templates/report/skeleton/skeleton.Rmd
+    - inst/rmarkdown/templates/report/skeleton/zzz_references_and_appendix.Rmd
+    - inst/rmarkdown/templates/slides/skeleton/skeleton.Rmd
+    fr-BE: inst/rmarkdown/templates/report/skeleton/001_resume.Rmd

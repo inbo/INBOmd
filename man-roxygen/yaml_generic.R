@@ -6,22 +6,23 @@
 #' - `flandersfont`: if set to `TRUE`, use the Flanders Art Sans font.
 #'   When not set, or set to `FALSE` or empty, use the Calibri font.
 #' - `style`: Defaults to "INBO" when missing.
-#'     - "INBO" for the INBO style.
-#'     - "Vlaanderen" for the generic style of the Flemish Goverment in Dutch.
-#'     - "Flanders" for the generic style of the Flemish Goverment in a language
-#'        other than Dutch.
+#'     - `"INBO"` for the INBO style.
+#'     - `"Vlaanderen"` for the generic style of the Flemish Government in
+#'        Dutch.
+#'     - `"Flanders"` for the generic style of the Flemish Government in a
+#'        language other than Dutch.
 #' - `lang`: the main language of the document as [RFC 5646](https://datatracker.ietf.org/doc/html/rfc5646) tags.
-#'   `style` "INBO" and "Vlaanderen" require "nl" as `lang`.
-#'   `style` "Flanders" uses "en" as default and can use other languages (but
-#'   not "nl").
-#'     - "nl" for Dutch
-#'     - "en" for English
-#'     - "fr" for French
+#'   `style` `"INBO"` and `"Vlaanderen"` require `"nl"` as `lang`.
+#'   `style` `"Flanders"` uses `"en"` as default and can use other languages
+#'   (but not `"nl"`).
+#'     - `"nl"` for Dutch
+#'     - `"en"` for English
+#'     - `"fr"` for French
 #' - `codesize`: Relative size of R code compared to normal text.
-#'   Defaults to "footnotesize".
-#'   All options going from large to small are: "normalsize", "small",
-#'   "footnotesize", "scriptsize", "tiny".
-#'   "normalsize" implies the same size as normal text.
+#'   Defaults to `"footnotesize"`.
+#'   All options going from large to small are: `"normalsize"`, `"small"`,
+#'   `"footnotesize"`, `"scriptsize"`, `"tiny"`.
+#'   `"normalsize"` implies the same size as normal text.
 #' @section Formatting author information:
 #'
 #' Quotes are required when a part contains spaces.

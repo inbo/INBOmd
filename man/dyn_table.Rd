@@ -36,9 +36,9 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 }
 \description{
 \itemize{
-\item \strong{interactive session}: \code{\link[DT]{datatable}}
-\item \strong{html}: \code{\link[DT]{datatable}}
-\item \strong{other}: \code{\link[knitr]{kable}}
+\item \strong{interactive session}: \code{\link[DT:datatable]{DT::datatable()}}
+\item \strong{html}: \code{\link[DT:datatable]{DT::datatable()}}
+\item \strong{other}: \code{\link[knitr:kable]{knitr::kable()}}
 }
 }
 \seealso{

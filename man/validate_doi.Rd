@@ -18,7 +18,7 @@ An example of a minimal version is \code{10.21436/inbor.70809860}.
 The part before the forward slash consists of two or three sets of digits
 separated by a dot.
 E.g. \code{10.21436} or \verb{10.21436.1}.
-The part afther the forward slash consists either of only digits or of
+The part after the forward slash consists either of only digits or of
 two sets of any character separated by a dot.
 }
 \seealso{

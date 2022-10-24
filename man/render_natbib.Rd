@@ -2,7 +2,7 @@
 % Please edit documentation in R/render_natbib.R
 \name{render_natbib}
 \alias{render_natbib}
-\title{Render a Markdown file with natbib bibliography}
+\title{Render a Markdown file with \code{natbib} bibliography}
 \usage{
 render_natbib(
   file,
@@ -15,33 +15,34 @@ render_natbib(
 )
 }
 \arguments{
-\item{file}{the name of the Rmd file}
+\item{file}{the name of the \code{Rmd} file.}
 
-\item{path}{the path of the Rmd file}
+\item{path}{the path of the \code{Rmd} file.}
 
-\item{encoding}{the encoding of the Rmd file. Default to 'UTF-8'.}
+\item{encoding}{the encoding of the \code{Rmd} file. Default to 'UTF-8'.}
 
 \item{engine}{the LaTeX engine the compile the document.
-Defaults to "xelatex".}
+Defaults to \code{"xelatex"}.}
 
 \item{display}{open the pdf in a reader. Defaults to TRUE.}
 
-\item{keep}{keep intermediate files after succesful compilation.
+\item{keep}{keep intermediate files after successful compilation.
 Defaults to "none".}
 
 \item{clean}{TRUE to clean intermediate files created during rendering of the
-R markdown into tex.}
+R markdown into \code{tex}.}
 }
 \description{
-Render a Markdown file with natbib bibliography
+Render a Markdown file with \code{natbib} bibliography
 }
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
 \code{\link{cover_info}()},
+\code{\link{create_report}()},
 \code{\link{dyn_table}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
 \code{\link{validate_doi}()}
 }

@@ -19,25 +19,26 @@ A version of \code{\link[bookdown:gitbook]{bookdown::gitbook()}} with a differen
 When not set, or set to \code{FALSE} or empty, use the Calibri font.
 \item \code{style}: Defaults to "INBO" when missing.
 \itemize{
-\item "INBO" for the INBO style.
-\item "Vlaanderen" for the generic style of the Flemish Goverment in Dutch.
-\item "Flanders" for the generic style of the Flemish Goverment in a language
-other than Dutch.
+\item \code{"INBO"} for the INBO style.
+\item \code{"Vlaanderen"} for the generic style of the Flemish Government in
+Dutch.
+\item \code{"Flanders"} for the generic style of the Flemish Government in a
+language other than Dutch.
 }
 \item \code{lang}: the main language of the document as \href{https://datatracker.ietf.org/doc/html/rfc5646}{RFC 5646} tags.
-\code{style} "INBO" and "Vlaanderen" require "nl" as \code{lang}.
-\code{style} "Flanders" uses "en" as default and can use other languages (but
-not "nl").
+\code{style} \code{"INBO"} and \code{"Vlaanderen"} require \code{"nl"} as \code{lang}.
+\code{style} \code{"Flanders"} uses \code{"en"} as default and can use other languages
+(but not \code{"nl"}).
 \itemize{
-\item "nl" for Dutch
-\item "en" for English
-\item "fr" for French
+\item \code{"nl"} for Dutch
+\item \code{"en"} for English
+\item \code{"fr"} for French
 }
 \item \code{codesize}: Relative size of R code compared to normal text.
-Defaults to "footnotesize".
-All options going from large to small are: "normalsize", "small",
-"footnotesize", "scriptsize", "tiny".
-"normalsize" implies the same size as normal text.
+Defaults to \code{"footnotesize"}.
+All options going from large to small are: \code{"normalsize"}, \code{"small"},
+\code{"footnotesize"}, \code{"scriptsize"}, \code{"tiny"}.
+\code{"normalsize"} implies the same size as normal text.
 }
 }
 
@@ -99,14 +100,14 @@ you collaborated with.
 Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
-If not set or set to \code{FALSE} add the address of INBO Brussel.
+If not set or set to \code{FALSE} add the address of INBO Brussels.
 }
 }
 
-\section{Available YAML headers options specific for gitbook}{
+\section{Available YAML headers options specific for \code{gitbook}}{
 
 \itemize{
-\item \code{github-repo}: You can optionally set the github repo in
+\item \code{github-repo}: You can optionally set the \code{github} repo in
 \code{organisation/repository} format (e.g. \code{inbo/INBOmd}).
 This will add an 'edit' button to the source file on GitHub.
 Note that only people with write access can edit the files directly in the
