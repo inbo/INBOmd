@@ -19,9 +19,10 @@ send that file along the other files to the review process.
 \seealso{
 Other utils: 
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
+\code{\link{create_report}()},
 \code{\link{dyn_table}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()},
 \code{\link{validate_doi}()}

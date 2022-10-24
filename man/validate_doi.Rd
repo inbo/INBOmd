@@ -27,6 +27,7 @@ Other utils:
 \code{\link{column_start}()},
 \code{\link{column_width}()},
 \code{\link{cover_info}()},
+\code{\link{create_report}()},
 \code{\link{dyn_table}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()}

@@ -1,0 +1,7 @@
+<!-- hier komt de inhoudstafel bij pdf -->
+\mainmatter
+
+# Inleiding
+
+Een concreet voorbeeld van de broncode van dergelijk rapport vind je op https://github.com/inbo/inbomd_examples onder het mapje `source/inbo_rapport`.
+Hoe zo een rapport er finaal uit kan zien, vind je op https://inbo.github.io/inbomd_examples.
