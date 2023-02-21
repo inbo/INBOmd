@@ -1,44 +1,47 @@
 {
   "title": "INBOmd: Markdown Templates for INBO",
   "version": "0.5.4",
-  "description": "Several templates to generate reports, presentations and posters.",
+  "license": "GPL-3.0",
+  "upload_type": "software",
+  "description": "<p>Several templates to generate reports, presentations and posters.<\/p>",
+  "keywords": [
+    "markdown",
+    "bookdown",
+    "corporate identity",
+    "template"
+  ],
+  "language": "eng",
+  "contributors": [
+    {
+      "name": "Onkelinx, Thierry",
+      "orcid": "0000-0001-8804-4216",
+      "type": "ContactPerson"
+    },
+    {
+      "name": "Vanderhaeghe, Floris",
+      "orcid": "0000-0002-6378-6229",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Lommelen, Els",
+      "orcid": "0000-0002-3481-5684",
+      "type": "ProjectMember"
+    },
+    {
+      "name": "Research Institute for Nature and Forest (INBO)",
+      "type": "RightsHolder"
+    }
+  ],
   "creators": [
     {
       "name": "Onkelinx, Thierry",
-      "orcid": "https://orcid.org/0000-0001-8804-4216"
+      "orcid": "0000-0001-8804-4216"
     }
   ],
-  "upload_type": "software",
   "access_right": "open",
-  "license": "GPL-3.0",
   "communities": [
     {
       "identifier": "inbo"
     }
-  ],
-  "contributors": [
-    {
-      "name": "Vanderhaeghe, Floris",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-6378-6229"
-    },
-    {
-      "name": "Lommelen, Els",
-      "type": "ProjectMember",
-      "orcid": "https://orcid.org/0000-0002-3481-5684"
-    },
-    {
-      "name": "Research Institute for Nature and Forest",
-      "type": "RightsHolder"
-    },
-    {
-      "name": "Onkelinx, Thierry",
-      "type": "ContactPerson",
-      "orcid": "https://orcid.org/0000-0001-8804-4216"
-    }
-  ],
-  "language": "eng",
-  "keywords": [
-    "R package"
   ]
 }

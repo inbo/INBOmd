@@ -9,7 +9,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-6378-6229")),
     person("Els", "Lommelen", , "els.lommelen@inbo.be", role = "ctb",
            comment = c(ORCID = "0000-0002-3481-5684")),
-    person("Research Institute for Nature and Forest", , , "info@inbo.be", role = c("cph", "fnd"))
+    person("Research Institute for Nature and Forest (INBO)", , , "info@inbo.be", role = c("cph", "fnd"))
   )
 Description: Several templates to generate reports, presentations and
     posters.
@@ -38,6 +38,8 @@ Suggests:
 VignetteBuilder: 
     knitr
 Additional_repositories: https://inbo.r-universe.dev
+Config/checklist/communities: inbo
+Config/checklist/keywords: markdown; bookdown; corporate identity; template
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)

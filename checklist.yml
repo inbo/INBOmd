@@ -14,13 +14,8 @@ allowed:
         INBOtheme
       Availability using Additional_repositories specification:
         INBOtheme   yes   https://inbo.r-universe.dev
-citation_roles:
-- aut
-- cre
 required:
-- .zenodo.json
 - CITATION
-- CITATION.cff
 - DESCRIPTION
 - R CMD check
 - checklist
@@ -31,7 +26,6 @@ required:
 - lintr
 - repository secret
 - spelling
-keywords: R package
 spelling:
   default: en-GB
   ignore:
