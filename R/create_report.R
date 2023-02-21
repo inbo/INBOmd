@@ -5,6 +5,7 @@
 #' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
+#' @importFrom checklist ask_yes_no menu_first use_author
 #' @importFrom fs dir_create file_copy is_dir path
 create_report <- function(path, shortname) {
   assert_that(is.string(path), noNA(path), is_dir(path))
@@ -17,6 +18,79 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     !is_dir(path(path, shortname)),
     msg = "The report name folder already exists."
   )
+
+  # build new yaml
+  yaml <- paste("title:", readline(prompt = "Enter the title: "))
+  subtitle <- readline(
+    prompt = "Enter the optional subtitle (leave empty to omit): "
+  )
+  yaml <- c(yaml, paste("subtitle:", subtitle)[subtitle != ""])
+  cat("Please select the corresponding author")
+  authors <- use_author()
+  c(yaml, "author:", author2yaml(authors, corresponding = TRUE)) -> yaml
+  while (isTRUE(ask_yes_no("Add another author?", default = FALSE))) {
+    author <- use_author()
+    authors[, c("given", "family", "email")] |>
+      rbind(author[, c("given", "family", "email")]) |>
+      anyDuplicated() -> duplo
+    if (duplo > 0) {
+      cat(
+        paste(author$given, author$family, "is already listed as author")
+      )
+      next
+    }
+    c(yaml, author2yaml(author, corresponding = FALSE)) -> yaml
+    authors <- rbind(authors, author)
+  }
+  gsub("(\\w)\\w* ?", "\\1.", authors$given, perl = TRUE) |>
+    sprintf(fmt = "%2$s, %1$s", authors$family) -> shortauthor
+  head(shortauthor, -1) |>
+    paste(collapse = "; ") -> short_tmp
+  short_tmp[short_tmp != ""] |>
+    c(tail(shortauthor, 1)) |>
+    paste(collapse = " & ") -> shortauthor
+  cat("Please select the reviewer")
+  duplo <- 1
+  while (duplo > 0) {
+    author <- use_author()
+    authors[, c("given", "family", "email")] |>
+      rbind(author[, c("given", "family", "email")]) |>
+      anyDuplicated() -> duplo
+    if (duplo > 0) {
+      cat(
+        paste(author$given, author$family, "is already listed as author")
+      )
+    }
+  }
+  c(yaml, "reviewer:", author2yaml(author, corresponding = FALSE)) -> yaml
+  lang <- c(nl = "Dutch", en = "English", fr = "French")
+  lang <- names(lang)[
+    menu_first(lang, title = "What is the main language of the report?")
+  ]
+  style <- c("INBO", "Vlaanderen")
+  style <- ifelse(
+    lang != "nl", "Flanders",
+    style[menu_first(style, title = "Which style to use?")]
+  )
+  c(
+    yaml, paste("lang:", lang), paste("style:", style), add_address("client"),
+    add_address("cooperation"), "floatbarrier: subsubsection",
+    "geraardsbergen"[
+      ask_yes_no(
+        "Do you want INBO Geraardsbergen as address instead of INBO Brussels?",
+        default = FALSE
+      )
+    ],
+    "lof: TRUE"[ask_yes_no("Do you want a list of figures?", default = FALSE)],
+    "lot: TRUE"[ask_yes_no("Do you want a list of tables?", default = FALSE)],
+    "bibliography: references.bib", "link-citations: TRUE",
+    "site: bookdown::bookdown_site", "output:", "  INBOmd::gitbook: default",
+    "  INBOmd::pdf_report: default", "  INBOmd::epub_book: default",
+    "# Don't run the format below.",
+  "# Only required for RStudio to recognise the project as a bookdown project.",
+    "# Hence don't use 'Build all formats'.", "  bookdown::dontrun: default"
+  ) -> yaml
+
   dir_create(path(path, shortname))
   writeLines(
     text = c(
@@ -79,11 +153,68 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     ),
     path(path, shortname, "zzz_references_and_appendix.Rmd")
   )
+
+  # read index template
+  path(path, shortname, "index.Rmd") |>
+    readLines() -> index
+  # remove existing yaml
+  index <- tail(index, -grep("---", index)[2])
+  # add new yaml
+  index <- c("---", yaml, "---", index)
+  writeLines(index, path(path, shortname, "index.Rmd"))
+
   if (
     !requireNamespace("rstudioapi", quietly = TRUE) ||
-    rstudioapi::isAvailable()
+    !rstudioapi::isAvailable()
   ) {
     return(invisible(NULL))
   }
-  rstudioapi::openProject(path(path, shortname))
+  rstudioapi::openProject(path(path, shortname), newSession = TRUE)
+}
+
+#' @importFrom assertthat assert_that
+author2yaml <- function(author, corresponding = FALSE) {
+  assert_that(is.flag(corresponding), noNA(corresponding))
+  c(
+    "  - name:", paste("      given:", author$given),
+    paste("      family:", author$family)
+  ) -> yaml
+  if (!is.na(author$email) && author$email != "") {
+    yaml <- c(yaml, paste("    email:", author$email))
+  }
+  if (!is.na(author$orcid) && author$orcid != "") {
+    yaml <- c(yaml, paste("    orcid:", author$orcid))
+  }
+  if (!corresponding) {
+    return(paste(yaml, collapse = "\n"))
+  }
+  assert_that(
+    noNA(author$email), author$email != "",
+    msg = "please provide an email for the corresponding author"
+  )
+  paste(c(yaml, "    corresponding: true"), collapse = "\n")
+}
+
+add_address <- function(type = "client") {
+  address <- character(0)
+  while (TRUE) {
+    sprintf(
+      "Add line %i of the %s name and address (leave empty to stop): ",
+      length(address) + 1, type
+    ) |>
+      readline() -> extra
+    if (extra == "") {
+      break
+    }
+    address <- c(address, extra)
+  }
+  if (length(address) == 0) {
+    return(address)
+  }
+  sprintf("optional filename of the %s logo: ", type) |>
+    readline() -> logo
+  c(
+    sprintf("%s:", type), sprintf("  - %s", address),
+    sprintf("%s_logo: %s", type, logo)[logo != ""]
+  )
 }

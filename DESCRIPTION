@@ -19,6 +19,7 @@ BugReports: https://github.com/inbo/inbomd/issues
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
+    checklist,
     dplyr,
     fs,
     gert,
