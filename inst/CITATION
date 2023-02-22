@@ -2,12 +2,12 @@ citHeader("To cite `INBOmd` in publications please use:")
 # begin checklist entry
 citEntry(
   entry = "Manual",
-  title = "INBOmd: Markdown Templates for INBO. Version 0.5.4",
+  title = "INBOmd: Markdown Templates for INBO. Version 0.6.0",
   author = c( author = c(person(given = "Thierry", family = "Onkelinx"))),
   year = 2023,
   url = "https://github.com/inbo/INBOmd/",
   abstract = "Several templates to generate reports, presentations and posters.",
-  textVersion = "Onkelinx, Thierry (2023) INBOmd: Markdown Templates for INBO. Version 0.5.4. https://github.com/inbo/INBOmd/",
+  textVersion = "Onkelinx, Thierry (2023) INBOmd: Markdown Templates for INBO. Version 0.6.0. https://github.com/inbo/INBOmd/",
   keywords = "markdown; bookdown; corporate identity; template",
   doi = "10.5281/zenodo.842223",
 )

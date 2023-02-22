@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.4
+Version: 0.6.0
 Authors@R: c(
     person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8804-4216")),
@@ -40,7 +40,8 @@ VignetteBuilder:
     knitr
 Additional_repositories: https://inbo.r-universe.dev
 Config/checklist/communities: inbo
-Config/checklist/keywords: markdown; bookdown; corporate identity; template
+Config/checklist/keywords: markdown; bookdown; corporate identity;
+    template
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)

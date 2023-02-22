@@ -1,5 +1,6 @@
-# INBOmd 0.5.4
+# INBOmd 0.6.0
 
+* Add `create_report()` to interactively create an empty report.
 * Add `validate_doi()` to validate a DOI.
   `pdf_report()`, `gitbook()` and `epub_book()` use this function to validate
   the optional DOI when set.
