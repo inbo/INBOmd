@@ -7,11 +7,6 @@
 #' But the ugly warnings nudges you to add the required information before
 #' publication.
 #'
-#' - **`shortauthor`**: abbreviated list of authors.
-#'   Required for the citation in the colophon.
-#'   Also displayed at the bottom of each page in the web version of the report.
-#' - **`corresponding`**: e-mail of the corresponding author.
-#'   Required for the colophon.
 #' - **`reviewer`**: names of the reviewers.
 #'   Use the same syntax as for the authors.
 #' - **`year`**: year of publication.

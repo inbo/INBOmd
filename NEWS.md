@@ -1,5 +1,15 @@
 # INBOmd 0.6.0
 
+## Breaking changes
+
+* Author and reviewer information must be given in an explicit format with
+  mandatory `name` with mandatory sub-fields `given` and `family`.
+  `corresponding: true` indicates the corresponding author.
+  `email` is optional, except for the corresponding author.
+  `orcid` is optional for all persons.
+
+## Other changes
+
 * Add `create_report()` to interactively create an empty report.
 * Add `validate_doi()` to validate a DOI.
   `pdf_report()`, `gitbook()` and `epub_book()` use this function to validate

@@ -62,11 +62,14 @@ Quotes are required when a part contains spaces.
 If the author doesn't have an ORCID, you can omit that line.
 However, note that the INBO policy is that all scientific personnel is
 required to obtain an ORCID from https://orcid.org.
+Add \code{corresponding: true} to the corresponding author.
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{  - firstname: "Authors first name"
-    name: "Authors last name"
+\if{html}{\out{<div class="sourceCode">}}\preformatted{  - name:
+     given: "Authors first name"
+     family: "Authors last name"
     email: "local-part@domain.com"
     orcid: 0000-0002-1825-0097
+    corresponding: true
 }\if{html}{\out{</div>}}
 }
 
@@ -80,11 +83,6 @@ information.
 But the ugly warnings nudges you to add the required information before
 publication.
 \itemize{
-\item \strong{\code{shortauthor}}: abbreviated list of authors.
-Required for the citation in the colophon.
-Also displayed at the bottom of each page in the web version of the report.
-\item \strong{\code{corresponding}}: e-mail of the corresponding author.
-Required for the colophon.
 \item \strong{\code{reviewer}}: names of the reviewers.
 Use the same syntax as for the authors.
 \item \strong{\code{year}}: year of publication.

@@ -21,6 +21,7 @@ pdf_report <- function(
   )
   check_dependencies()
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  fm <- validate_persons(fm)
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
   assert_that(
@@ -68,14 +69,14 @@ pdf_report <- function(
   template <- system.file(
     file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl", package = "INBOmd"
+  )
 
   style <- ifelse(style == "Flanders" & lang == "fr", "Flandre", style)
 
   args <- c(
-    "--template", template,
-    pandoc_variable_arg("documentclass", "report"),
+    "--template", template, pandoc_variable_arg("documentclass", "report"),
     switch(
       style,
       Flanders = pandoc_variable_arg("style", "flanders_report"),
@@ -83,18 +84,16 @@ pdf_report <- function(
       Vlaanderen = pandoc_variable_arg("style", "vlaanderen_report"),
       INBO = pandoc_variable_arg("style", "inbo_report")
     ),
+    pandoc_variable_arg("corresponding", fm$corresponding),
+    pandoc_variable_arg("shortauthor", gsub("\\&", "\\\\&", fm$shortauthor)),
     pandoc_variable_arg(
       "babel", paste(languages[c(other_lang, lang)], collapse = ",")
     ),
     ifelse(
       compareVersion(as.character(pandoc_version()), "2") < 0,
-      "--latex-engine",
-      "--pdf-engine"
+      "--latex-engine", "--pdf-engine"
     ),
-    "xelatex", pandoc_args,
-    # citations
-    c("--csl", pandoc_path_arg(csl)),
-    # content includes
+    "xelatex", pandoc_args, c("--csl", pandoc_path_arg(csl)),
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
@@ -106,14 +105,11 @@ pdf_report <- function(
     args <- c(args, pandoc_variable_arg("lot", TRUE))
   }
   vars <- switch(
-    floatbarrier,
-    section = "",
-    subsection = c("", "sub"),
+    floatbarrier, section = "", subsection = c("", "sub"),
     subsubsection = c("", "sub", "subsub")
   )
   floating <- lapply(
-    sprintf("floatbarrier%ssection", vars),
-    pandoc_variable_arg, value = TRUE
+    sprintf("floatbarrier%ssection", vars), pandoc_variable_arg, value = TRUE
   )
   args <- c(args, unlist(floating))
   opts_chunk <- list(
@@ -124,7 +120,6 @@ pdf_report <- function(
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
-    cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
     mainmatter <- grep("\\\\mainmatter", text)
@@ -232,4 +227,56 @@ report <- function(
     ),
     msg = "`report` is deprecated. Use `pdf_report` instead."
   )
+}
+
+#' @importFrom assertthat assert_that
+validate_persons <- function(yaml) {
+  assert_that(length(yaml$author) > 0, msg = "no author information found")
+  shortauthor <- vapply(yaml$author, contact_person, character(1))
+  corresponding <- shortauthor[grep(".*<.*>", shortauthor)]
+  shortauthor <- gsub("<.*>", "", shortauthor)
+  if (length(shortauthor) > 3) {
+    yaml$shortauthor <- paste0(shortauthor[1], ", et. al.")
+  } else {
+    head(shortauthor, -1) |>
+      paste(collapse = "; ") -> short_tmp
+    short_tmp[short_tmp != ""] |>
+      c(tail(shortauthor, 1)) |>
+      paste(collapse = " & ") -> yaml$shortauthor
+  }
+  shortauthor <- paste(shortauthor, "<test.inbo.be>")
+  assert_that(
+    length(corresponding) == 1,
+    msg = "A single corresponding author is required."
+  )
+  yaml$corresponding <- gsub(".*<(.*)>", "\\1", corresponding)
+  assert_that(length(yaml$reviewer) > 0, msg = "no reviewer information found")
+  vapply(yaml$reviewer, contact_person, character(1))
+  return(yaml)
+}
+
+#' @importFrom assertthat assert_that
+contact_person <- function(person) {
+  assert_that(
+    "name" %in% names(person),
+    msg = "person information in yaml header has no `name` field."
+  )
+  assert_that(
+    "given" %in% names(person$name),
+    msg = "person information in yaml header has no `given` field under name."
+  )
+  assert_that(
+    "family" %in% names(person$name),
+    msg = "person information in yaml header has no `family` field under name."
+  )
+  gsub("(\\w)\\w* ?", "\\1.", person$name$given, perl = TRUE) |>
+    sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
+  if (is.null(person$corresponding) || !person$corresponding) {
+    return(shortauthor)
+  }
+  assert_that(
+    "email" %in% names(person),
+    msg = "no `email` provided for the corresponding author."
+  )
+  sprintf("%s<%s>", shortauthor, person$email)
 }

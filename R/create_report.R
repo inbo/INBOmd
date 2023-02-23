@@ -42,13 +42,6 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     c(yaml, author2yaml(author, corresponding = FALSE)) -> yaml
     authors <- rbind(authors, author)
   }
-  gsub("(\\w)\\w* ?", "\\1.", authors$given, perl = TRUE) |>
-    sprintf(fmt = "%2$s, %1$s", authors$family) -> shortauthor
-  head(shortauthor, -1) |>
-    paste(collapse = "; ") -> short_tmp
-  short_tmp[short_tmp != ""] |>
-    c(tail(shortauthor, 1)) |>
-    paste(collapse = " & ") -> shortauthor
   cat("Please select the reviewer")
   duplo <- 1
   while (duplo > 0) {
@@ -62,7 +55,6 @@ msg = "The report name folder may only contain lower case letters, digits and _"
       )
     }
   }
-  c(yaml, "reviewer:", author2yaml(author, corresponding = FALSE)) -> yaml
   lang <- c(nl = "Dutch", en = "English", fr = "French")
   lang <- names(lang)[
     menu_first(lang, title = "What is the main language of the report?")
@@ -73,7 +65,8 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     style[menu_first(style, title = "Which style to use?")]
   )
   c(
-    yaml, paste("lang:", lang), paste("style:", style), add_address("client"),
+    yaml, "reviewer:", author2yaml(author, corresponding = FALSE),
+    paste("lang:", lang), paste("style:", style), add_address("client"),
     add_address("cooperation"), "floatbarrier: subsubsection",
     "geraardsbergen"[
       ask_yes_no(
