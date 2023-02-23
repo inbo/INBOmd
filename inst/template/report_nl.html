@@ -98,31 +98,27 @@ $if(title)$
   <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
-    $if(author.name)$
-      <h3 class="author">$if(author.firstname)$$author.firstname$ $endif$$author.name$
-      $if(author.orcid)$
-        <a href="https://orcid.org/$author.orcid$">
-        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-        $author.orcid$
-        </a>
+    <h3 class="author">$author.name.given$ $author.name.family$
+    $if(author.orcid)$
+      <a href="https://orcid.org/$author.orcid$">
+      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+      $author.orcid$
+      </a>
+    $endif$
+    </h3>
+    $if(author.affiliation)$
+      <address class="author_afil">
+      $author.affiliation$
+      $if(author.email)$
+        <br><a class="author_email" href="mailto:#">$author.email$</a>
       $endif$
-      </h3>
-      $if(author.affiliation)$
-        <address class="author_afil">
-        $author.affiliation$
-        $if(author.email)$
-          <br><a class="author_email" href="mailto:#">$author.email$</a>
-        $endif$
-        </address>
-      $else$
-        $if(author.email)$
-          <address class="author_afil">
-          <a class="author_email" href="mailto:#">$author.email$</a>
-          </address>
-        $endif$
-      $endif$
+      </address>
     $else$
-      <h3 class="author">$author$</h3>
+      $if(author.email)$
+        <address class="author_afil">
+        <a class="author_email" href="mailto:#">$author.email$</a>
+        </address>
+      $endif$
     $endif$
   $endfor$
   $if(date)$
@@ -138,23 +134,16 @@ $if(title)$
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
-      $if(reviewer.name)$
-        $if(reviewer.firstname)$
-          $reviewer.firstname$
-        $endif$
-        $reviewer.name$
-        $if(reviewer.orcid)$
-          <a href="https://orcid.org/$reviewer.orcid$">
-          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-          $reviewer.orcid$
-          </a>
-        $endif$
-        $if(reviewer.email)$
-          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
-        $endif$<br>
-      $else$
-        $reviewer$<br>
+      $reviewer.name.given$ $reviewer.name.family$
+      $if(reviewer.orcid)$
+        <a href="https://orcid.org/$reviewer.orcid$">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        $reviewer.orcid$
+        </a>
       $endif$
+      $if(reviewer.email)$
+        <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+      $endif$<br>
     $endfor$
   $else$
   <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>

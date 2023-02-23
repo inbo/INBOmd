@@ -15,6 +15,7 @@
 gitbook <- function() {
   gitbook_edit_button(getwd())
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  fm <- validate_persons(fm)
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -83,7 +84,9 @@ gitbook <- function() {
     pandoc_args,
     pandoc_variable_arg(
       "csspath", file.path("libs", paste0("INBOmd-", packageVersion("INBOmd")))
-    )
+    ),
+    pandoc_variable_arg("corresponding", fm$corresponding),
+    pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
   template <- system.file(
     file.path("template", sprintf("report_%s.html", lang)), package = "INBOmd"
@@ -109,12 +112,13 @@ gitbook <- function() {
 }
 
 #' @importFrom assertthat assert_that is.string
-#' @importFrom gert git_branch_exists git_find git_remote_info
+#' @importFrom gert git_branch_exists git_find git_remote_info git_remote_list
 #' @importFrom utils file_test
 gitbook_edit_button <- function(path) {
   root <- try(git_find(path), silent = TRUE)
   if (
     inherits(root, "try-error") ||
+    nrow(git_remote_list(root)) == 0 ||
     !file_test("-f", file.path(path, "_bookdown.yml"))
   ) {
     return(invisible(FALSE))
