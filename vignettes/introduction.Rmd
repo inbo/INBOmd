@@ -99,7 +99,19 @@ tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
 
 # Using `INBOmd`
 
-## Starting a new document
+## Recommended way to start a new report
+
+`INBOmd` version 0.6.0 introduces the interactive function `create_report()`.
+This function uses the same template as the legacy way to start a new report.
+`create_report()` has the advantage that it interactively guides the user
+through the set-up.
+It asks the user for the important parts of the meta data and fills that
+information into the yaml header.
+
+Once the report is near completion, use `add_report_numbers()` to append the
+DOI, report number, depot number and other information to the meta data.
+
+## Legacy way to start a new document from RStudio templates
 
 `INBOmd` contains several templates which are available in RStudio. Go in the menu to `File > New File > R Markdown`. A new window will open were you select `From template`. This will show a list of all available templates. Select the template `INBOmd` you want, set the name of the new document and the base location. This will create a new directory with the specified name in the base location. Each report will reside in its own directory.
 
