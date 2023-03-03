@@ -20,6 +20,7 @@ Calculate the starting position of an A0 column
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
 \code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_width}()},

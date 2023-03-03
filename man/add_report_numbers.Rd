@@ -5,7 +5,7 @@
 \title{Add the report numbers to a bookdown report}
 \usage{
 add_report_numbers(
-  path,
+  path = ".",
   doi,
   year,
   reportnr,
@@ -51,6 +51,7 @@ Add the report numbers to a bookdown report
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_start}()},
 \code{\link{column_width}()},

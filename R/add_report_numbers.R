@@ -22,7 +22,7 @@
 #' @importFrom assertthat assert_that is.count is.date is.string noNA
 #' @importFrom fs is_dir is_file path
 add_report_numbers <- function(
-  path, doi, year, reportnr, depotnr, embargo = Sys.Date(), ordernr,
+  path = ".", doi, year, reportnr, depotnr, embargo = Sys.Date(), ordernr,
   copies, motivation, pages
 ) {
   validate_doi(doi)

@@ -23,6 +23,7 @@ two sets of any character separated by a dot.
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
 \code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_start}()},

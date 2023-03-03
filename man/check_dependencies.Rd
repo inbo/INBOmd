@@ -13,6 +13,7 @@ Missing dependencies will be installed automatically
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
 \code{\link{add_report_numbers}()},
 \code{\link{column_start}()},
 \code{\link{column_width}()},
