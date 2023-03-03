@@ -43,6 +43,7 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 }
 \seealso{
 Other utils: 
+\code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_start}()},
 \code{\link{column_width}()},

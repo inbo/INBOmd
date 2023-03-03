@@ -11,6 +11,8 @@
 ## Other changes
 
 * Add `create_report()` to interactively create an empty report.
+* Add `add_report_numbers()` to add doi, report number, etc. to an existing
+  report.
 * Add `validate_doi()` to validate a DOI.
   `pdf_report()`, `gitbook()` and `epub_book()` use this function to validate
   the optional DOI when set.

@@ -37,6 +37,7 @@ Render a Markdown file with \code{natbib} bibliography
 }
 \seealso{
 Other utils: 
+\code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_start}()},
 \code{\link{column_width}()},

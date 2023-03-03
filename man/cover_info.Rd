@@ -18,6 +18,7 @@ send that file along the other files to the review process.
 }
 \seealso{
 Other utils: 
+\code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
 \code{\link{column_start}()},
 \code{\link{column_width}()},
