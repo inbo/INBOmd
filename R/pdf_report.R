@@ -120,6 +120,7 @@ pdf_report <- function(
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
+    cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
     mainmatter <- grep("\\\\mainmatter", text)
