@@ -4,7 +4,14 @@
 \alias{gitbook}
 \title{Output format for a web version of the report}
 \usage{
-gitbook()
+gitbook(code_folding = c("none", "show", "hide"))
+}
+\arguments{
+\item{code_folding}{Enable document readers to toggle the display of R code
+chunks. Specify \code{"none"} to display all code chunks. Specify
+\code{"hide"} or \code{"show"} to hide or show all R code chunks by
+default, and let readers toggle the states on browsers. See the
+\emph{Code folding}}
 }
 \description{
 A version of \code{\link[bookdown:gitbook]{bookdown::gitbook()}} with a different styling.

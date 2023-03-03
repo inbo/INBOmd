@@ -130,7 +130,7 @@ $if(title)$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-  <h1>Colofon</h1>
+  <h1>$translation.colophon$</h1>
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
@@ -149,19 +149,15 @@ $if(title)$
   <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
   $endif$
 
-  <p>Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data‐ en kennisontsluiting het biodiversiteitsbeleid en ‐beheer onderbouwt en evalueert.
+  <p>$translation.mission$
 
-  <p><b>Vestiging:</b><br>
-  $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
-  $else$
-  INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel
-  $endif$
+  <p><b>$translation.location$:</b><br>
+  INBO $if(geraardsbergen)$Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen$else$$translation.brussels$<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 $translation.brussels$$endif$$translation.country$
   <br><a href="vlaanderen.be/inbo">vlaanderen.be/inbo</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>Wijze van citeren:</b><br>
+  <p><b>$translation.citation$:</b><br>
   $if(shortauthor)$
     $shortauthor$
   $else$
@@ -172,7 +168,7 @@ $if(title)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -181,13 +177,13 @@ $if(title)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
   $endif$
-  Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
+  $translation.name$, $translation.brussels$. DOI:
   $if(doi)$
     <a class="doi" href="https://doi.org/$doi$">$doi$</a>
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
-  <br>Exporteer referentie naar <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
+  <br>$translation.export$ <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
   <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
   <button onclick="display_export('csl')" style = "color: #4183c4; background: #fff; border-width: 0px;">CSL-JSON</button>
 
@@ -204,10 +200,10 @@ function display_export(id) {
 
 <pre id = "bibtex" style ="display: none;">
 @TechReport{
-  author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
+  author= {$for(author)$$author.name.family$, $author.name.given$$sep$ and $endfor$},
   title = {$title$$if(subtitle)$. $subtitle$$endif$},
-  institution = {Instituut voor Natuur- en Bosonderzoek},
-  adress = {$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België},
+  institution = {$translation.name$},
+  adress = {$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$},
   year = {$year$},
   number = {$year$ ($reportnr$)},
   doi = {$doi$},
@@ -217,11 +213,11 @@ function display_export(id) {
 
 <pre id = "RIS" style ="display: none;">
 TY  - RPRT
-$for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
+$for(author)$AU  - $author.name.family$, $author.name.given$$sep$ <br>$endfor$
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
 DO  - $doi$
-PB  - Instituut voor Natuur- en Bosonderzoek
-PP  - $if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België
+PB  - $translation.name$
+PP  - $if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$
 PY  - $year$
 SN  - 1782-9054
 ER  -
@@ -229,20 +225,20 @@ ER  -
 
 <pre id = "csl" style ="display: none;">
 {
-  "id":"$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$endfor$$year$",
+  "id":"$for(author)$$author.name.family$$endfor$$year$",
   "type":"report",
   "title":"$title$$if(subtitle)$. $subtitle$$endif$",
   "author":[
     $for(author)${
-      "family":"$if(author.name)$$author.name$$if(author.firstname)$",
-      "given":"$author.firstname$$endif$$else$$author$$endif$"
+      "family":"$author.name.family$",
+      "given":"$author.name.given$"
     $sep$},
     $endfor$
     }
   ],
   "issued":{"date-parts":[[$year$]]},
-  "publisher":"Instituut voor Natuur- en Bosonderzoek",
-  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$Brussel$endif$, België",
+  "publisher":"$translation.name$",
+  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$",
 }
 </pre>
 
@@ -251,7 +247,7 @@ ER  -
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
   $endif$
-  <b>Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  <b>$translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -261,16 +257,16 @@ ER  -
   </b><br>
   <b>ISSN: 1782‐9054</b>
 
-  <p><b>Verantwoodelijke uitgever:</b><br>Maurice Hoffmann
+  <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Foto cover:</b><br>$cover_description$
+    <p><b>$translation.cover$:</b><br>$cover_description$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
   $endif$
 
   $if(client)$
-  <p><b>Dit onderzoek werd uitgevoerd in opdracht van:</b><br>
+  <p><b>$translation.client$:</b><br>
      $for(client)$
         $client$
      $sep$ <br>
@@ -281,7 +277,7 @@ ER  -
   $endif$
 
   $if(cooperation)$
-  <p><b>Dit onderzoek werd uitgevoerd in samenwerking met:</b><br>
+  <p><b>$translation.cooperation$:</b><br>
      $for(cooperation)$
         $cooperation$
      $sep$ <br>
@@ -291,7 +287,7 @@ ER  -
      $endif$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Naamsvermelding 4.0 Internationaal-licentie</a>.
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
   </div>
 $endif$
 <!--bookdown:title:end-->

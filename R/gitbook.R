@@ -4,6 +4,7 @@
 #' @template yaml_generic
 #' @template yaml_report
 #' @template yaml_gitbook
+#' @inheritParams rmarkdown::html_document
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
@@ -12,7 +13,8 @@
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @importFrom utils head packageVersion tail
 #' @family output
-gitbook <- function() {
+gitbook <- function(code_folding = c("none", "show", "hide")) {
+  code_folding <- match.arg(code_folding, c("none", "show", "hide"))
   gitbook_edit_button(getwd())
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   fm <- validate_persons(fm)
@@ -54,7 +56,9 @@ gitbook <- function() {
     "--csl",
     system.file(
       "research-institute-for-nature-and-forest.csl", package = "INBOmd"
-    )
+    ),
+    "--lua-filter",
+    system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
   assert_that(
     file.exists(file.path(getwd(), "index.Rmd")),
@@ -72,9 +76,10 @@ gitbook <- function() {
       pandoc_args, pandoc_variable_arg("cover_image", cover_path)
     )
   }
-  resource_dir <- system.file("css_styles", package = "INBOmd")
   inbomd_dep <- htmlDependency(
-    name = "INBOmd", version = packageVersion("INBOmd"), src = resource_dir,
+    name = "INBOmd", version = packageVersion("INBOmd"),
+    src = system.file("css_styles", package = "INBOmd"),
+    meta = c(creator = "Research Institute for Nature and Forest (INBO)"),
     stylesheet = sprintf(
       "%s_report.css", ifelse(style == "INBO", "inbo", "flanders")
     )
@@ -89,13 +94,14 @@ gitbook <- function() {
     pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
   template <- system.file(
-    file.path("template", sprintf("report_%s.html", lang)), package = "INBOmd"
+    file.path("template", "report.html"), package = "INBOmd"
   )
   config <- bookdown::gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = template, extra_dependencies = list(inbomd_dep)
+    template = template, extra_dependencies = list(inbomd_dep),
+    code_folding = code_folding
   )
   post <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
