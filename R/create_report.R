@@ -178,6 +178,9 @@ author2yaml <- function(author, corresponding = FALSE) {
   if (!is.na(author$orcid) && author$orcid != "") {
     yaml <- c(yaml, paste("    orcid:", author$orcid))
   }
+  if (!is.na(author$affiliation) && author$affiliation != "") {
+    yaml <- c(yaml, paste("    affiliation:", author$affiliation))
+  }
   if (!corresponding) {
     return(paste(yaml, collapse = "\n"))
   }
