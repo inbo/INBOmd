@@ -11,7 +11,7 @@
 ## Other changes
 
 * Add `create_report()` to interactively create an empty report.
-* Add `add_report_numbers()` to add doi, report number, etc. to an existing
+* Add `add_report_numbers()` to add the DOI, report number, ... to an existing
   report.
 * Add `add_author()` to interactively add an author to an existing report.
 * Add `validate_doi()` to validate a DOI.
