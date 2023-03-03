@@ -4,6 +4,8 @@
 #' @param year Publication year
 #' @param reportnr Report number assigned by the INBO library.
 #' @param depotnr Report number assigned by the INBO library.
+#' @param photo Link to an image to used on the cover.
+#' @param description Description of `photo`, including author information.
 #' @param embargo The earliest date at which the report can be made public on
 #' the INBO website.
 #' Defaults to today.
@@ -22,13 +24,14 @@
 #' @importFrom assertthat assert_that is.count is.date is.string noNA
 #' @importFrom fs is_dir is_file path
 add_report_numbers <- function(
-  path = ".", doi, year, reportnr, depotnr, embargo = Sys.Date(), ordernr,
-  copies, motivation, pages
+  path = ".", doi, year, reportnr, depotnr, photo, description,
+  embargo = Sys.Date(), ordernr, copies, motivation, pages
 ) {
   validate_doi(doi)
   assert_that(
-    is.count(year), is.count(reportnr), is.string(depotnr), is.date(embargo),
-    noNA(year), noNA(reportnr), noNA(depotnr), noNA(embargo),
+    is.count(year), is.count(reportnr), is.string(depotnr), is.string(photo),
+    is.string(description), is.date(embargo), noNA(year), noNA(reportnr),
+    noNA(depotnr), noNA(photo), noNA(description), noNA(embargo),
     length(embargo) == 1
   )
   assert_that(
@@ -51,7 +54,14 @@ add_report_numbers <- function(
   content <- tail(index, -grep("---", index)[2])
 
   # remove existing values
-  yaml <- yaml[!grepl("^(depotnr|doi|embargo|ordernr|reportnr|year):", yaml)]
+  c(
+    "depotnr", "cover_photo", "cover_description", "doi", "embargo", "ordernr",
+    "reportnr", "year"
+  ) |>
+    paste(collapse = "|") |>
+    sprintf(fmt = "^(%s):") |>
+    grepl(yaml) -> existing
+  yaml <- yaml[!existing]
   which_print <- grep("^print:", yaml)
   if (length(which_print)) {
     top <- grep("^\\w", yaml) - 1
@@ -60,10 +70,12 @@ add_report_numbers <- function(
   }
 
   # calculate new values
-  sprintf(
-    "year: %i\ndoi: %s\nreportnr: %s\ndepotnr: %s\nembargo: %s", year, doi,
-    reportnr, depotnr, embargo
-  ) -> extra
+  c(
+    "year: %i", "doi: %s", "reportnr: %s", "depotnr: %s", "cover_photo: %s",
+    "cover_description: %s", "embargo: %s"
+  ) |>
+    paste(collapse = "\n") |>
+    sprintf(year, doi, reportnr, depotnr, photo, description, embargo) -> extra
   if (!missing(ordernr)) {
     assert_that(is.string(ordernr), noNA(ordernr))
     extra <- sprintf("%s\nordernr: \"%s\"", extra, ordernr)

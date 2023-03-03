@@ -10,6 +10,8 @@ add_report_numbers(
   year,
   reportnr,
   depotnr,
+  photo,
+  description,
   embargo = Sys.Date(),
   ordernr,
   copies,
@@ -27,6 +29,10 @@ add_report_numbers(
 \item{reportnr}{Report number assigned by the INBO library.}
 
 \item{depotnr}{Report number assigned by the INBO library.}
+
+\item{photo}{Link to an image to used on the cover.}
+
+\item{description}{Description of \code{photo}, including author information.}
 
 \item{embargo}{The earliest date at which the report can be made public on
 the INBO website.
