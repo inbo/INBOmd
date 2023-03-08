@@ -1,19 +1,37 @@
 #' Create a template for an INBOmd bookdown report
 #'
-#' @param path The folder in which to create the folder containing the report
-#' @param shortname The name of the report project
+#' @param path The folder in which to create the folder containing the report.
+#'  Defaults to the current working directory.
+#' @param shortname The name of the report project.
+#' The location of the folder `shortname` depends on the content of `path`.
+#' When `path` is a subfolder of a git repository, it is changed to the root
+#' of that git repository.
+#' When `path` is a `checklist::checklist` project, you will find the new report
+#' at `path/source/shortname`.
+#' When `path` is a `checklist::checklist` package, you will find the new report
+#' at `path/inst/shortname`.
+#' Otherwise you will find the new report at `path/shortname`.
 #' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
-#' @importFrom checklist ask_yes_no menu_first use_author
-#' @importFrom fs dir_create file_copy is_dir path
-create_report <- function(path, shortname) {
+#' @importFrom checklist ask_yes_no menu_first read_checklist use_author
+#' @importFrom fs dir_create file_copy is_dir is_file path
+#' @importFrom gert git_find
+create_report <- function(path = ".", shortname) {
   assert_that(is.string(path), noNA(path), is_dir(path))
   assert_that(is.string(shortname), noNA(shortname))
   assert_that(
     grepl("^[a-z0-9_]+$", shortname),
 msg = "The report name folder may only contain lower case letters, digits and _"
   )
+  root <- try(git_find(path), silent = TRUE)
+  path <- ifelse(inherits(root, "try-error"), path, root)
+  if (is_file(path(path, "checklist.yml"))) {
+    x <- read_checklist(path)
+    path <- path(path, ifelse(x$package, "inst", "source"))
+    dir_create(path)
+  }
+
   assert_that(
     !is_dir(path(path, shortname)),
     msg = "The report name folder already exists."

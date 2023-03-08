@@ -4,12 +4,21 @@
 \alias{create_report}
 \title{Create a template for an INBOmd bookdown report}
 \usage{
-create_report(path, shortname)
+create_report(path = ".", shortname)
 }
 \arguments{
-\item{path}{The folder in which to create the folder containing the report}
+\item{path}{The folder in which to create the folder containing the report.
+Defaults to the current working directory.}
 
-\item{shortname}{The name of the report project}
+\item{shortname}{The name of the report project.
+The location of the folder \code{shortname} depends on the content of \code{path}.
+When \code{path} is a subfolder of a git repository, it is changed to the root
+of that git repository.
+When \code{path} is a \code{checklist::checklist} project, you will find the new report
+at \code{path/source/shortname}.
+When \code{path} is a \code{checklist::checklist} package, you will find the new report
+at \code{path/inst/shortname}.
+Otherwise you will find the new report at \code{path/shortname}.}
 }
 \description{
 Create a template for an INBOmd bookdown report
