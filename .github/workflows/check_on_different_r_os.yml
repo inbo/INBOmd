@@ -55,6 +55,11 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
 
+      - name: Install macOS system dependencies
+        if: runner.os == 'macOS'
+        run: |
+          brew install fribidi
+
       - name: Install system dependencies
         if: runner.os == 'Linux'
         env:
@@ -63,12 +68,20 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-          sudo apt-get install -y libcurl4-openssl-dev
+          sudo apt-get install -y libcurl4-openssl-dev libfribidi-dev libharfbuzz-dev
 
       - name: Install dependencies
         run: |
-          remotes::install_deps(dependencies = TRUE,
-          type = ifelse(.Platform$OS.type=="unix", "source", "binary"))
+          options(
+            repos = c(
+              getOption("repos"), INBO = "https://inbo.r-universe.dev",
+              INLA = "https://inla.r-inla-download.org/R/stable"
+            )
+          )
+          remotes::install_deps(
+            dependencies = TRUE,
+            type = ifelse(.Platform$OS.type=="unix", "source", "binary")
+          )
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
