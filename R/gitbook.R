@@ -105,7 +105,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
   post <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
-    x <- readLines(output, encoding = "UTF-8")
+    file(output, encoding = "UTF-8") |>
+      readLines() -> x
     i <- head(grep('^<div id="refs" class="references[^"]*"[^>]*>$', x), 1)
     if (length(i) > 0) {
       x <- c(head(x, i - 1), "", tail(x, -i + 1))
