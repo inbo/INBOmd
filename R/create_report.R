@@ -174,6 +174,32 @@ msg = "The report name folder may only contain lower case letters, digits and _"
   index <- c("---", yaml, "---", index)
   writeLines(index, path(path, shortname, "index.Rmd"))
 
+  # update _bookdown.yml
+  path(path, shortname, "_bookdown.yml") |>
+    readLines() -> bookdown_yml
+  yaml[grep("^title", yaml)] |>
+    gsub(pattern = "title: \"(.*)\"", replacement = "\\1") |>
+    tolower() |>
+    abbreviate() |>
+    sprintf(
+      fmt = "book_filename: \"%2$s_%1$s.Rmd\"",
+      ifelse(
+        nrow(authors) > 2, sprintf("%s_et_al", authors$family[1]),
+        paste(authors$family, collapse = "_")
+      ) |>
+        tolower()
+  ) |>
+    gsub(pattern = "book_filename: \"(.*)\"", x = bookdown_yml) |>
+    gsub(
+      pattern = "delete_merged_file: FALSE",
+      replacement = "delete_merged_file: TRUE"
+    ) -> bookdown_yml
+    ifelse(basename(path) == "source", "../..", "..") |>
+      path("output", shortname) |>
+      sprintf(fmt = "output_dir: \"%s\"") |>
+      gsub(pattern = "output_dir: \"../output\"", bookdown_yml) |>
+      writeLines(path(path, shortname, "_bookdown.yml"))
+
   if (
     !requireNamespace("rstudioapi", quietly = TRUE) ||
     !rstudioapi::isAvailable()
