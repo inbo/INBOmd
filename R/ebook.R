@@ -6,12 +6,15 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown epub_book
+#' @importFrom fs path
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
 epub_book <- function() {
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
-  fm <- validate_persons(fm)
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
@@ -106,6 +109,8 @@ epub_book <- function() {
     metadata_file
   )
   pandoc_args <- c(pandoc_args, sprintf("--epub-metadata=%s", metadata_file))
+
+  check_license()
 
   resource_dir <- system.file(file.path("css_styles"), package = "INBOmd")
   template <- system.file(

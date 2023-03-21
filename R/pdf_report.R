@@ -6,6 +6,7 @@
 #' @template yaml_pdf
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
+#' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -20,8 +21,10 @@ pdf_report <- function(
 `output_format` of `bookdown::pdf_book`?"
   )
   check_dependencies()
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
-  fm <- validate_persons(fm)
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
   assert_that(
@@ -31,10 +34,11 @@ pdf_report <- function(
 'subsubsection'"
   )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
-  assert_that(length(style) == 1)
-  assert_that(
-    style %in% c("INBO", "Vlaanderen", "Flanders"),
-    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  stopifnot(
+    "`style` is not a string" = is.string(style),
+    "`style` is not a string" = noNA(style),
+    "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'" =
+      style %in% c("INBO", "Vlaanderen", "Flanders")
   )
   lang <- ifelse(
     has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
@@ -117,6 +121,7 @@ pdf_report <- function(
     fig.width = 4.5, fig.height = 2.9
   )
   knit_hooks <- NULL
+  check_license()
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
@@ -272,6 +277,18 @@ contact_person <- function(person) {
   )
   gsub("(\\w)\\w* ?", "\\1.", person$name$given, perl = TRUE) |>
     sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
+  if (!has_name(person, "orcid")) {
+    sprintf(
+      "No `orcid` found for %s %s", person$name$given, person$name$family
+    ) |>
+      warning(call. = FALSE)
+  }
+  if (!has_name(person, "affiliation")) {
+    sprintf(
+      "No `affiliation` found for %s %s", person$name$given, person$name$family
+    ) |>
+      warning(call. = FALSE)
+  }
   if (is.null(person$corresponding) || !person$corresponding) {
     return(shortauthor)
   }
@@ -280,4 +297,47 @@ contact_person <- function(person) {
     msg = "no `email` provided for the corresponding author."
   )
   sprintf("%s<%s>", shortauthor, person$email)
+}
+
+#' @importFrom assertthat assert_that has_name is.string noNA
+validate_rightsholder <- function(yaml) {
+  stopifnot(
+    "no `funder` found" = has_name(yaml, "funder"),
+    "`funder` is not a string" = is.string(yaml$funder),
+    "`funder` is not a string" = noNA(yaml$funder),
+    "no `rightsholder` found" = has_name(yaml, "rightsholder"),
+    "`rightsholder` is not a string" = is.string(yaml$rightsholder),
+    "`rightsholder` is not a string" = noNA(yaml$rightsholder),
+"Research Institute for Nature and Forest (INBO) not defined as rightsholder" =
+      yaml$rightsholder == "Research Institute for Nature and Forest (INBO)",
+    "no `community` found" = has_name(yaml, "community"),
+    "`community` must be a string separated by `; `" =
+      is.string(yaml$community),
+    "`community` must contain `inbo`" =
+      "inbo" %in% strsplit(yaml$community, "; "),
+    "no `keywords` found" = has_name(yaml, "keywords"),
+    "`keywords` must be a string separated by `; `" = is.string(yaml$keywords)
+  )
+  return(yaml)
+}
+
+#' @importFrom fs file_copy path
+check_license <- function() {
+  license_file <- "LICENSE.md"
+  if (!is_file(license_file)) {
+    path("generic_template", "cc_by_4_0.md") |>
+      system.file(package = "checklist") |>
+      file_copy(license_file)
+    return(invisible(NULL))
+  }
+  current <- readLines(license_file)
+  path("generic_template", "cc_by_4_0.md") |>
+    system.file(package = "checklist") |>
+    readLines() -> original
+  if (!identical(current, original)) {
+    path("generic_template", "cc_by_4_0.md") |>
+      system.file(package = "checklist") |>
+      file_copy(license_file, overwrite = TRUE)
+  }
+  return(invisible(NULL))
 }

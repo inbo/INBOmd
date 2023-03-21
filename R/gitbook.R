@@ -8,6 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
+#' @importFrom fs path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
@@ -16,8 +17,10 @@
 gitbook <- function(code_folding = c("none", "show", "hide")) {
   code_folding <- match.arg(code_folding, c("none", "show", "hide"))
   gitbook_edit_button(getwd())
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
-  fm <- validate_persons(fm)
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -84,6 +87,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
       "%s_report.css", ifelse(style == "INBO", "inbo", "flanders")
     )
   )
+
+  check_license()
 
   pandoc_args <- c(
     pandoc_args,
