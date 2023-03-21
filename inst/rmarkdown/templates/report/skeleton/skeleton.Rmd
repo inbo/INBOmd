@@ -75,8 +75,10 @@ De tekst voor het optionele voorwoord.
 
 # Samenvatting {-}
 
+<!-- description: start -->
 De tekst voor de verplichte samenvatting.
 Hou het [Heerlijk Helder](https://overheid.vlaanderen.be/communicatie/heerlijk-helder).
+<!-- description: end -->
 
 # Aanbevelingen voor beheer en/of beleid {-}
 

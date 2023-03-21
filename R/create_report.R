@@ -82,6 +82,13 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     lang != "nl", "Flanders",
     style[menu_first(style, title = "Which style to use?")]
   )
+  readline(prompt = "Enter one or more keywords separated by `;`") |>
+    strsplit(";") |>
+    unlist() |>
+    gsub(pattern = "^\\s+", replacement = "") |>
+    gsub(pattern = "\\s+$", replacement = "") |>
+    paste(collapse = "; ") |>
+    sprintf(fmt = "keywords: \"%s\"") -> keywords
   c(
     yaml, "reviewer:", author2yaml(author, corresponding = FALSE),
     paste("lang:", lang), paste("style:", style), add_address("client"),
@@ -94,6 +101,9 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     ],
     "lof: TRUE"[ask_yes_no("Do you want a list of figures?", default = FALSE)],
     "lot: TRUE"[ask_yes_no("Do you want a list of tables?", default = FALSE)],
+    keywords, "community: \"inbo\"", "publication_type: report",
+    "funder: Research Institute for Nature and Forest (INBO)",
+    "rightsholder: Research Institute for Nature and Forest (INBO)",
     "bibliography: references.bib", "link-citations: TRUE",
     "site: bookdown::bookdown_site", "output:", "  INBOmd::gitbook: default",
     "  INBOmd::pdf_report: default", "  INBOmd::epub_book: default",
@@ -164,6 +174,10 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     ),
     path(path, shortname, "zzz_references_and_appendix.Rmd")
   )
+
+  path("generic_template", "cc_by_4_0.md") |>
+    system.file(package = "checklist") |>
+    file_copy(path(path, shortname, "LICENSE.md"))
 
   # read index template
   path(path, shortname, "index.Rmd") |>
