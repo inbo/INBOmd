@@ -1,15 +1,15 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ARG BUILD_DATE
 ARG VCS_REF
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="RStable" \
-      org.label-schema.description="A docker image with stable versions of R and a bunch of packages used to calculate indicators." \
-      org.label-schema.license="MIT" \
+      org.label-schema.name="INBOmd" \
+      org.label-schema.description="A docker image with examples files for INBOmd." \
+      org.label-schema.license="GPL-3.0" \
       org.label-schema.url="e.g. https://www.inbo.be/" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/inbo/indicactoren" \
-      org.label-schema.vendor="Research Institute for Nature and Forest" \
+      org.label-schema.vcs-url="https://github.com/inbo/INBOmd" \
+      org.label-schema.vendor="Research Institute for Nature and Forest (INBO)" \
       maintainer="Thierry Onkelinx <thierry.onkelinx@inbo.be>"
 
 ## for apt to be noninteractive
@@ -62,18 +62,19 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     pandoc \
     pandoc-citeproc
-#    gdebi-core \
-#  && wget -O ${HOME}/pandoc.deb --no-check-certificate https://github.com/jgm/pandoc/releases/download/2.14.2/pandoc-2.14.2-1-amd64.deb \
-#  && gdebi ${HOME}/pandoc.deb \
-#  && rm ${HOME}/pandoc.deb
+
+## Install gpg
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    gnupg
 
 ## R repo
-RUN apt-get update \
+RUN apt-get update -qq \
   && apt-get install -y  --no-install-recommends \
     software-properties-common \
     dirmngr \
   && wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
-  && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" \
+  && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
   && add-apt-repository ppa:c2d4u.team/c2d4u4.0+
 
 ## R
@@ -159,9 +160,6 @@ RUN  mkdir ${HOME}/.fonts \
   && wget -O ${HOME}/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
   && fc-cache -fv \
   && Rscript -e 'tinytex:::updmap()'
-
-## Get current version of the INBOmd examples
-RUN git clone --single-branch --branch=main --depth=1 https://github.com/inbo/inbomd_examples /examples
 
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore

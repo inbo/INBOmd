@@ -5,6 +5,9 @@ on:
       - master
 
 name: test-inbomd-examples
+permissions:
+  contents: write
+
 jobs:
   test-examples:
     runs-on: ubuntu-latest
@@ -13,7 +16,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       - name: build examples
-        uses: inbo/actions/render_inbomd@master
+        uses: inbo/actions/render_inbomd@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: push gh-pages
         if: ${{ github.event_name == 'push' }}
         run: |
