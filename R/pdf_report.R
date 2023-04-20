@@ -275,7 +275,8 @@ contact_person <- function(person) {
     "family" %in% names(person$name),
     msg = "person information in yaml header has no `family` field under name."
   )
-  gsub("(\\w)\\w* ?", "\\1.", person$name$given, perl = TRUE) |>
+  "(\\w)[\\w'\u00e1\u00e0\u00e9\u00e8\u00eb\u00f6\u00ef]*" |>
+    gsub("\\1.", person$name$given, perl = TRUE) |>
     sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
   if (!has_name(person, "orcid")) {
     sprintf(
