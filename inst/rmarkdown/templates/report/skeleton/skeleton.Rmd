@@ -8,10 +8,11 @@ author:
       family: "Last name1"
     email: "firstname1.lastname1@inbo.be"
     orcid: 0000-0002-1825-0097
+    affiliation: Research Institute for Nature and Forest (INBO)
     corresponding: true
   - name:
       given: Firstname2
-      name: Lastname2
+      family: Lastname2
     email: "voornaam2.achternaam2@inbo.be"
     orcid: 0000-0002-1825-0097
 style: INBO
@@ -19,10 +20,16 @@ lang: nl
 
 # report specific options. See ?INBOmd::pdf_report() for full list and more details.
 reviewer:
-  - firstnaam: Firstname
-    name: Lastname
+  - name:
+      given: Firstname
+      family: Lastname
     email: "firstname.lastname@inbo.be"
     orcid: 0000-0002-1825-0097
+    affiliation: Research Institute for Nature and Forest (INBO)
+funder: Research Institute for Nature and Forest (INBO)
+rightsholder: Research Institute for Nature and Forest (INBO)
+community: inbo
+keywords:
 # year:
 cover_photo:
 # cover_description:

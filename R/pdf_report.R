@@ -70,9 +70,8 @@ pdf_report <- function(
   )
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
-  template <- system.file(
-    file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
-  )
+  path("pandoc", "inbo_rapport.tex") |>
+    system.file(package = "INBOmd") -> template
   csl <- system.file(
     "research-institute-for-nature-and-forest.csl", package = "INBOmd"
   )
