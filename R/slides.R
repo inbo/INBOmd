@@ -7,11 +7,12 @@
 #' @template yaml_generic
 #' @template yaml_slide
 #' @export
+#' @importFrom assertthat assert_that is.string is.flag noNA
 #' @importFrom bookdown pdf_book
+#' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg pandoc_path_arg pandoc_version
 #' @importFrom utils compareVersion
-#' @importFrom assertthat assert_that is.string is.flag noNA
 #' @family output
 slides <- function(toc = TRUE, ...) {
   check_dependencies()
@@ -21,12 +22,16 @@ slides <- function(toc = TRUE, ...) {
 "`number_sections` detected. Are you still using 'INBOmd::slides' as
 `output_format` of `bookdown::pdf_book`?"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
-  template <- system.file(
-    file.path("pandoc", "inbo_beamer.tex"), package = "INBOmd"
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl", package = "INBOmd"
   )
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  path("pandoc", "inbo_beamer.tex") |>
+    system.file(package = "INBOmd") -> template
+  getwd() |>
+    path("index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   aspect <- ifelse(has_name(fm, "aspect"), fm$aspect, "16:9")
   assert_that(is.string(aspect))
   paper_dimensions <- rbind(
