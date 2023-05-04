@@ -1,7 +1,7 @@
 citHeader("To cite `INBOmd` in publications please use:")
 # begin checklist entry
-citEntry(
-  entry = "Manual",
+bibentry(
+  bibtype = "Manual",
   title = "INBOmd: Markdown Templates for INBO. Version 0.6.0",
   author = c( author = c(person(given = "Thierry", family = "Onkelinx"))),
   year = 2023,
