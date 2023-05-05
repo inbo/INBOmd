@@ -12,7 +12,7 @@ navbar:
   - text: Functions
     href: reference/index.html
   - text: Examples
-    href: https://inbomd-examples.netlify.com
+    href: https://inbo.github.io/inbomd-examples
   - text: Contributing
     href: CONTRIBUTING.html
   right:
