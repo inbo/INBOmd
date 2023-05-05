@@ -1,7 +1,17 @@
+*.dbf
+*.doc*
+*.gddoc
+*.gdsheet
+*.gpkg
 *.html
 *.log
+*.mdb
+*.shp*
+*.shx
 *.synctex.gz
 *.toc
+*.xls*
+*_files
 .DS_Store
 .RData
 .Rhistory
@@ -10,3 +20,6 @@
 .httr-oauth
 docs
 inst/doc
+libs
+output
+renv/library
