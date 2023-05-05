@@ -92,6 +92,7 @@ RUN apt-get update \
     r-cran-digest \
     r-cran-dplyr \
     r-cran-fastmap \
+    r-cran-fs \
     r-cran-ggplot2 \
     r-cran-htmltools \
     r-cran-knitr \
@@ -106,6 +107,49 @@ RUN apt-get update \
     r-cran-tidyverse \
     r-cran-tinytex \
     r-cran-webshot
+
+## Install ragg
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libfreetype6-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff5-dev \
+  && Rscript -e 'remotes::install_cran("ragg")'
+
+## Install xml2
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libfreetype6-dev \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff5-dev \
+  && Rscript -e 'remotes::install_cran("xml2")'
+
+## Install checklist
+RUN  apt-get update \
+  && apt-get install -y  --no-install-recommends \
+    r-cran-codetools \
+    r-cran-crul \
+    r-cran-curl \
+    r-cran-desc \
+    r-cran-devtools \
+    r-cran-htmlwidgets \
+    r-cran-hunspell \
+    r-cran-lazyeval \
+    r-cran-pingr \
+    r-cran-pkgdown \
+    r-cran-profvis \
+    r-cran-ragg \
+    r-cran-rcmdcheck \
+    r-cran-renv \
+    r-cran-rex \
+    r-cran-roxygen2 \
+    r-cran-rprojroot \
+    r-cran-shiny \
+    r-cran-xml2 \
+    r-cran-xtable \
+  && Rscript -e 'remotes::install_github("inbo/checklist@0.3.1")'
 
 ## Install DT
 RUN apt-get update \
