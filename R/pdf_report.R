@@ -6,6 +6,7 @@
 #' @template yaml_pdf
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
+#' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
 #' pandoc_variable_arg includes_to_pandoc_args pandoc_version
 #' @importFrom utils compareVersion
@@ -20,7 +21,10 @@ pdf_report <- function(
 `output_format` of `bookdown::pdf_book`?"
   )
   check_dependencies()
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
   assert_that(
@@ -30,10 +34,11 @@ pdf_report <- function(
 'subsubsection'"
   )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
-  assert_that(length(style) == 1)
-  assert_that(
-    style %in% c("INBO", "Vlaanderen", "Flanders"),
-    msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
+  stopifnot(
+    "`style` is not a string" = is.string(style),
+    "`style` is not a string" = noNA(style),
+    "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'" =
+      style %in% c("INBO", "Vlaanderen", "Flanders")
   )
   lang <- ifelse(
     has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
@@ -63,18 +68,18 @@ pdf_report <- function(
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
     )
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
-  template <- system.file(
-    file.path("pandoc", "inbo_rapport.tex"), package = "INBOmd"
+  path("pandoc", "inbo_rapport.tex") |>
+    system.file(package = "INBOmd") -> template
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl", package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
 
   style <- ifelse(style == "Flanders" & lang == "fr", "Flandre", style)
 
   args <- c(
-    "--template", template,
-    pandoc_variable_arg("documentclass", "report"),
+    "--template", template, pandoc_variable_arg("documentclass", "report"),
     switch(
       style,
       Flanders = pandoc_variable_arg("style", "flanders_report"),
@@ -82,18 +87,16 @@ pdf_report <- function(
       Vlaanderen = pandoc_variable_arg("style", "vlaanderen_report"),
       INBO = pandoc_variable_arg("style", "inbo_report")
     ),
+    pandoc_variable_arg("corresponding", fm$corresponding),
+    pandoc_variable_arg("shortauthor", gsub("\\&", "\\\\&", fm$shortauthor)),
     pandoc_variable_arg(
       "babel", paste(languages[c(other_lang, lang)], collapse = ",")
     ),
     ifelse(
       compareVersion(as.character(pandoc_version()), "2") < 0,
-      "--latex-engine",
-      "--pdf-engine"
+      "--latex-engine", "--pdf-engine"
     ),
-    "xelatex", pandoc_args,
-    # citations
-    c("--csl", pandoc_path_arg(csl)),
-    # content includes
+    "xelatex", pandoc_args, c("--csl", pandoc_path_arg(csl)),
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
@@ -105,33 +108,26 @@ pdf_report <- function(
     args <- c(args, pandoc_variable_arg("lot", TRUE))
   }
   vars <- switch(
-    floatbarrier,
-    section = "",
-    subsection = c("", "sub"),
+    floatbarrier, section = "", subsection = c("", "sub"),
     subsubsection = c("", "sub", "subsub")
   )
   floating <- lapply(
-    sprintf("floatbarrier%ssection", vars),
-    pandoc_variable_arg,
-    value = TRUE
+    sprintf("floatbarrier%ssection", vars), pandoc_variable_arg, value = TRUE
   )
   args <- c(args, unlist(floating))
   opts_chunk <- list(
-    latex.options = "{}",
-    dev = "cairo_pdf",
-    fig.align = "center",
-    dpi = 300,
-    fig.width = 4.5,
-    fig.height = 2.9
+    latex.options = "{}", dev = "cairo_pdf", fig.align = "center", dpi = 300,
+    fig.width = 4.5, fig.height = 2.9
   )
   knit_hooks <- NULL
+  check_license()
 
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
     cover_info(gsub("\\.tex$", ".Rmd", output, ignore.case = TRUE))
 
     # move frontmatter before toc
-    mainmatter <- grep("\\\\mainmatter", text) #nolint
+    mainmatter <- grep("\\\\mainmatter", text)
     if (length(mainmatter)) {
       starttoc <- grep("%starttoc", text)
       endtoc <- grep("%endtoc", text)
@@ -146,8 +142,8 @@ pdf_report <- function(
     }
 
     # move appendix after bibliography
-    appendix <- grep("\\\\appendix", text) # nolint
-    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint
+    appendix <- grep("\\\\appendix", text)
+    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(
@@ -236,4 +232,112 @@ report <- function(
     ),
     msg = "`report` is deprecated. Use `pdf_report` instead."
   )
+}
+
+#' @importFrom assertthat assert_that
+validate_persons <- function(yaml) {
+  assert_that(length(yaml$author) > 0, msg = "no author information found")
+  shortauthor <- vapply(yaml$author, contact_person, character(1))
+  corresponding <- shortauthor[grep(".*<.*>", shortauthor)]
+  shortauthor <- gsub("<.*>", "", shortauthor)
+  if (length(shortauthor) > 3) {
+    yaml$shortauthor <- paste0(shortauthor[1], ", et. al.")
+  } else {
+    head(shortauthor, -1) |>
+      paste(collapse = "; ") -> short_tmp
+    short_tmp[short_tmp != ""] |>
+      c(tail(shortauthor, 1)) |>
+      paste(collapse = " & ") -> yaml$shortauthor
+  }
+  shortauthor <- paste(shortauthor, "<test.inbo.be>")
+  assert_that(
+    length(corresponding) == 1,
+    msg = "A single corresponding author is required."
+  )
+  yaml$corresponding <- gsub(".*<(.*)>", "\\1", corresponding)
+  assert_that(length(yaml$reviewer) > 0, msg = "no reviewer information found")
+  vapply(yaml$reviewer, contact_person, character(1))
+  return(yaml)
+}
+
+#' @importFrom assertthat assert_that
+contact_person <- function(person) {
+  assert_that(
+    "name" %in% names(person),
+    msg = "person information in yaml header has no `name` field."
+  )
+  assert_that(
+    "given" %in% names(person$name),
+    msg = "person information in yaml header has no `given` field under name."
+  )
+  assert_that(
+    "family" %in% names(person$name),
+    msg = "person information in yaml header has no `family` field under name."
+  )
+  "(\\w)[\\w'\u00e1\u00e0\u00e9\u00e8\u00eb\u00f6\u00ef]*" |>
+    gsub("\\1.", person$name$given, perl = TRUE) |>
+    sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
+  if (!has_name(person, "orcid")) {
+    sprintf(
+      "No `orcid` found for %s %s", person$name$given, person$name$family
+    ) |>
+      warning(call. = FALSE)
+  }
+  if (!has_name(person, "affiliation")) {
+    sprintf(
+      "No `affiliation` found for %s %s", person$name$given, person$name$family
+    ) |>
+      warning(call. = FALSE)
+  }
+  if (is.null(person$corresponding) || !person$corresponding) {
+    return(shortauthor)
+  }
+  assert_that(
+    "email" %in% names(person),
+    msg = "no `email` provided for the corresponding author."
+  )
+  sprintf("%s<%s>", shortauthor, person$email)
+}
+
+#' @importFrom assertthat assert_that has_name is.string noNA
+validate_rightsholder <- function(yaml) {
+  stopifnot(
+    "no `funder` found" = has_name(yaml, "funder"),
+    "`funder` is not a string" = is.string(yaml$funder),
+    "`funder` is not a string" = noNA(yaml$funder),
+    "no `rightsholder` found" = has_name(yaml, "rightsholder"),
+    "`rightsholder` is not a string" = is.string(yaml$rightsholder),
+    "`rightsholder` is not a string" = noNA(yaml$rightsholder),
+"Research Institute for Nature and Forest (INBO) not defined as rightsholder" =
+      yaml$rightsholder == "Research Institute for Nature and Forest (INBO)",
+    "no `community` found" = has_name(yaml, "community"),
+    "`community` must be a string separated by `; `" =
+      is.string(yaml$community),
+    "`community` must contain `inbo`" =
+      "inbo" %in% strsplit(yaml$community, "; "),
+    "no `keywords` found" = has_name(yaml, "keywords"),
+    "`keywords` must be a string separated by `; `" = is.string(yaml$keywords)
+  )
+  return(yaml)
+}
+
+#' @importFrom fs file_copy path
+check_license <- function() {
+  license_file <- "LICENSE.md"
+  if (!is_file(license_file)) {
+    path("generic_template", "cc_by_4_0.md") |>
+      system.file(package = "checklist") |>
+      file_copy(license_file)
+    return(invisible(NULL))
+  }
+  current <- readLines(license_file)
+  path("generic_template", "cc_by_4_0.md") |>
+    system.file(package = "checklist") |>
+    readLines() -> original
+  if (!identical(current, original)) {
+    path("generic_template", "cc_by_4_0.md") |>
+      system.file(package = "checklist") |>
+      file_copy(license_file, overwrite = TRUE)
+  }
+  return(invisible(NULL))
 }

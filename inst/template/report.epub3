@@ -34,35 +34,31 @@ $if(titlepage)$
     <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
-    $if(author.name)$
-      <h3 class="author">$if(author.firstname)$$author.firstname$ $endif$$author.name$
-      $if(author.orcid)$
-        <a href="https://orcid.org/$author.orcid$">
-        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-        $author.orcid$
-        </a>
+    <h3 class="author">$author.name.given$ $author.name.family$
+    $if(author.orcid)$
+      <a href="https://orcid.org/$author.orcid$">
+      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+      $author.orcid$
+      </a>
+    $endif$
+    </h3>
+    $if(author.affiliation)$
+      <address class="author_afil">
+      $author.affiliation$
+      $if(author.email)$
+        <br><a class="author_email" href="mailto:#">$author.email$</a>
       $endif$
-      </h3>
-      $if(author.affiliation)$
-        <address class="author_afil">
-        $author.affiliation$
-        $if(author.email)$
-          <br><a class="author_email" href="mailto:#">$author.email$</a>
-        $endif$
-        </address>
-      $else$
-        $if(author.email)$
-          <address class="author_afil">
-          <a class="author_email" href="mailto:#">$author.email$</a>
-          </address>
-        $endif$
-      $endif$
+      </address>
     $else$
-      <h3 class="author">$author$</h3>
+      $if(author.email)$
+        <address class="author_afil">
+        <a class="author_email" href="mailto:#">$author.email$</a>
+        </address>
+      $endif$
     $endif$
   $endfor$
-  $if(date)$
-    <p class="date"><em>$date$</em></p>
+  $if(year)$
+    <p class="date"><em>$year$</em></p>
   $endif$
   $if(doi)$
     <h4><a class="doi" href="#">$doi$</a></h4>
@@ -70,45 +66,34 @@ $if(titlepage)$
   $if(ordernr)$
     <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-  <h1>Colofon</h1>
+  <h1>$translation.colophon$</h1>
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
-      $if(reviewer.name)$
-        $if(reviewer.firstname)$
-          $reviewer.firstname$
-        $endif$
-        $reviewer.name$
-        $if(reviewer.orcid)$
-          <a href="https://orcid.org/$reviewer.orcid$">
-          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-          $reviewer.orcid$
-          </a>
-        $endif$
-        $if(reviewer.email)$
-          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
-        $endif$<br>
-      $else$
-        $reviewer$<br>
+      $reviewer.name.given$ $reviewer.name.family$
+      $if(reviewer.orcid)$
+        <a href="https://orcid.org/$reviewer.orcid$">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        $reviewer.orcid$
+        </a>
       $endif$
+      $if(reviewer.email)$
+        <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+      $endif$<br>
     $endfor$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
   $endif$
 
-  <p>Het INBO is het onafhankelijk onderzoeksinstituut van de Vlaamse overheid dat via toegepast wetenschappelijk onderzoek, data‐ en kennisontsluiting het biodiversiteitsbeleid en ‐beheer onderbouwt en evalueert.
+  <p>$translation.mission$
 
-  <p><b>Vestiging:</b><br>
-  $if(geraardsbergen)$
-    INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen
-  $else$
-    INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel
-  $endif$
+  <p><b>$translation.location$:</b><br>
+  INBO $if(geraardsbergen)$Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen$else$$translation.brussels$<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 $translation.brussels$$endif$$translation.country$
   <br><a href="vlaanderen.be/inbo">vlaanderen.be/inbo</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>Wijze van citeren:</b><br>
+  <p><b>$translation.citation$:</b><br>
   $if(shortauthor)$
     $shortauthor$
   $else$
@@ -119,7 +104,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -128,7 +113,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
   $endif$
-  Instituut voor Natuur- en Bosonderzoek, Brussel. DOI:
+  $translation.name$, $translation.brussels$. DOI:
   $if(doi)$
     <a class="doi" href="#">$doi$</a>
   $else$
@@ -139,7 +124,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
   $endif$
-  <b>Rapporten van het Instituut voor Natuur- en Bosonderzoek
+  <b>$translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -149,16 +134,16 @@ $if(titlepage)$
   </b><br>
   <b>ISSN: 1782‐9054</b>
 
-  <p><b>Verantwoodelijke uitgever:</b><br>Maurice Hoffmann
+  <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Foto cover:</b><br>$cover_description$
+    <p><b>$translation.cover$:</b><br>$cover_description$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
   $endif$
 
   $if(client)$
-  <p><b>Dit onderzoek werd uitgevoerd in opdracht van:</b><br>
+  <p><b>$translation.client$:</b><br>
      $for(client)$
         $client$
      $sep$ <br>
@@ -166,14 +151,14 @@ $if(titlepage)$
   $endif$
 
   $if(cooperation)$
-  <p><b>Dit onderzoek werd uitgevoerd in samenwerking met:</b><br>
+  <p><b>$translation.cooperation$:</b><br>
      $for(cooperation)$
         $cooperation$
      $sep$ <br>
      $endfor$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />Dit werk valt onder een <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Naamsvermelding 4.0 Internationaal-licentie</a>.
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
   </div>
 </section>
 $else$

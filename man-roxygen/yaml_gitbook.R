@@ -1,6 +1,6 @@
-#' @section Available YAML headers options specific for gitbook:
+#' @section Available YAML headers options specific for `gitbook`:
 #'
-#' - `github-repo`: You can optionally set the github repo in
+#' - `github-repo`: You can optionally set the `github` repo in
 #'   `organisation/repository` format (e.g. `inbo/INBOmd`).
 #'   This will add an 'edit' button to the source file on GitHub.
 #'   Note that only people with write access can edit the files directly in the

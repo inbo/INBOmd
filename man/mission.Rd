@@ -34,7 +34,7 @@ mission(
 
 \item{colleagues}{name of other colleagues attending the same conference}
 
-\item{floatbarrier}{where to place automatic floatbarriers}
+\item{floatbarrier}{where to place automatic float barriers.}
 
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}

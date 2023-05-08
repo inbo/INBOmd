@@ -1,26 +1,29 @@
 #' Create a poster with the INBO theme version 2015
 #' @param subtitle An optional subtitle
 #' @param email The email address to display at the bottom.
-#' Defaults to info@inbo.be
-#' @param lang The language of the document. Defaults to "english".
-#' @param fig_crop \code{TRUE} to automatically apply the \code{pdfcrop} utility
+#' Defaults to `"info@inbo.be"`
+#' @param lang The language of the document. Defaults to `"english"`.
+#' @param fig_crop \code{TRUE} to automatically apply the `pdfcrop` utility
 #'   (if available) to pdf figures
-#' @param pandoc_args Additional command line options to pass to pandoc
+#' @param pandoc_args Additional command line options to pass to `pandoc`.
 #' @inheritParams mission
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details
 #'
 #' @details
 #' Available extra parameters:
-#'    - hyphenation: the correct hyphenation for certain words
-#'    - flandersfont: Use the Flanders Art Sans font. Defaults to FALSE.
+#'    - `hyphenation`: the correct hyphenation for certain words
+#'    - `flandersfont`: Use the Flanders Art Sans font.
+#'    Defaults to `FALSE`.
 #'    Note that this requires the font to be present on the system.
 #'    - ORCID: a list of authors. For each author there must a `name` and an
-#'    `ID`. The `ID` is the author's ORCID ID , ee https://orcid.org.
+#'    `ID`.
+#'    The `ID` is the author's ORCID ID , see https://orcid.org.
 #'    This information will be displayed with QR code at the bottom of the
 #'    poster.
-#'    - DOI: a list of documents. For each documentr there must a `name` and an
-#'    `ID`. The `ID` is the documents's DOI, see https://doi.org.
+#'    - `DOI`: a list of documents.
+#'    For each document there must a `name` and an `ID`.
+#'    The `ID` is the document's DOI, see https://doi.org.
 #'    This information will be displayed with QR code at the bottom of the
 #'    poster.
 #' @export
@@ -167,12 +170,12 @@ poster <- function(
   post_processor <- function(metadata, input, output, clean, verbose) {
     text <- readLines(output, warn = FALSE)
 
-    #nolint start
+    # nolint start: absolute_path_linter.
     text <- gsub("\\\\b(.*)block", "\\\\begin{\\1block}", text)
     text <- gsub("\\\\e(.*)block", "\\\\end{\\1block}", text)
+    # nolint end
     text <- gsub("\\\\bmulticols", "\\\\begin{multicols}", text)
     text <- gsub("\\\\emulticols", "\\\\end{multicols}", text)
-    #nolint end
 
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output

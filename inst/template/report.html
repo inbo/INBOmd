@@ -98,107 +98,92 @@ $if(title)$
   <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
-    $if(author.name)$
-      <h3 class="author">$if(author.firstname)$$author.firstname$ $endif$$author.name$
-      $if(author.orcid)$
-        <a href="https://orcid.org/$author.orcid$">
-        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-        $author.orcid$
-        </a>
+    <h3 class="author">$author.name.given$ $author.name.family$
+    $if(author.orcid)$
+      <a href="https://orcid.org/$author.orcid$">
+      <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+      $author.orcid$
+      </a>
+    $endif$
+    </h3>
+    $if(author.affiliation)$
+      <address class="author_afil">
+      $author.affiliation$
+      $if(author.email)$
+        <br><a class="author_email" href="mailto:#">$author.email$</a>
       $endif$
-      </h3>
-      $if(author.affiliation)$
-        <address class="author_afil">
-        $author.affiliation$
-        $if(author.email)$
-          <br><a class="author_email" href="mailto:#">$author.email$</a>
-        $endif$
-        </address>
-      $else$
-        $if(author.email)$
-          <address class="author_afil">
-          <a class="author_email" href="mailto:#">$author.email$</a>
-          </address>
-        $endif$
-      $endif$
+      </address>
     $else$
-      <h3 class="author">$author$</h3>
+      $if(author.email)$
+        <address class="author_afil">
+        <a class="author_email" href="mailto:#">$author.email$</a>
+        </address>
+      $endif$
     $endif$
   $endfor$
   $if(date)$
   <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4><a class="doi" href="#">$doi$</a></h4>
+  <h4><a class="doi" href="https://doi.org/$doi$">$doi$</a></h4>
   $endif$
   $if(ordernr)$
   <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-  <h1>Colophon</h1>
+  <h1>$translation.colophon$</h1>
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
     $for(reviewer)$
-      $if(reviewer.name)$
-        $if(reviewer.firstname)$
-          $reviewer.firstname$
-        $endif$
-        $reviewer.name$
-        $if(reviewer.orcid)$
-          <a href="https://orcid.org/$reviewer.orcid$">
-          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-          $reviewer.orcid$
-          </a>
-        $endif$
-        $if(reviewer.email)$
-          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
-        $endif$<br>
-      $else$
-        $reviewer$<br>
+      $reviewer.name.given$ $reviewer.name.family$
+      $if(reviewer.orcid)$
+        <a href="https://orcid.org/$reviewer.orcid$">
+        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+        $reviewer.orcid$
+        </a>
       $endif$
+      $if(reviewer.email)$
+        <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+      $endif$<br>
     $endfor$
   $else$
-  <h1 class = "missing">!!!! MISSING: reviewer !!!!</h1>
+  <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
   $endif$
 
-  <p>The Research Institute for Nature and Forest (INBO) is an independent research institute of the Flemish government. Through applied scientific research, open data and knowledge, integration and disclosure, it underpins and evaluates biodiversity policy and management.
+  <p>$translation.mission$
 
-  <p><b>Location:</b><br>
-  $if(geraardsbergen)$
-  INBO Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen, Belgium
-  $else$
-  INBO Brussel<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel, Belgium
-  $endif$
-  <br><a href="vlaanderen.be/inbo/en">vlaanderen.be/inbo/en</a>
+  <p><b>$translation.location$:</b><br>
+  INBO $if(geraardsbergen)$Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen$else$$translation.brussels$<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 $translation.brussels$$endif$$translation.country$
+  <br><a href="vlaanderen.be/inbo">vlaanderen.be/inbo</a>
 
   <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>Way of quoting:</b><br>
+  <p><b>$translation.citation$:</b><br>
   $if(shortauthor)$
     $shortauthor$
   $else$
-    <h1 class = "missing">!!!! MISSING: shortauthor !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: shortauthor !!!!</h1>
   $endif$
   $if(year)$
     ($year$).
   $else$
-    <h1 class = "missing">!!!! MISSING: year !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. Reports of the Research Institute for Nature and Forest
+  $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
   $if(reportnr)$
     ($reportnr$).
   $else$
-    <h1 class = "missing">!!!! MISSING: reportnr !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
   $endif$
-  Research Institute for Nature and Forest, Brussels. DOI:
+  $translation.name$, $translation.brussels$. DOI:
   $if(doi)$
-    <a class="doi" href="#">$doi$</a>
+    <a class="doi" href="https://doi.org/$doi$">$doi$</a>
   $else$
-    <h1 class = "missing">!!!! MISSING: doi !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
   $endif$
-  <br>Export reference to <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
+  <br>$translation.export$ <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
   <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
   <button onclick="display_export('csl')" style = "color: #4183c4; background: #fff; border-width: 0px;">CSL-JSON</button>
 
@@ -215,10 +200,10 @@ function display_export(id) {
 
 <pre id = "bibtex" style ="display: none;">
 @TechReport{
-  author= {$for(author)$$if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ and $endfor$},
+  author= {$for(author)$$author.name.family$, $author.name.given$$sep$ and $endfor$},
   title = {$title$$if(subtitle)$. $subtitle$$endif$},
-  institution = {Research Institute for Nature and Forest},
-  adress = {$if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium},
+  institution = {$translation.name$},
+  adress = {$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$},
   year = {$year$},
   number = {$year$ ($reportnr$)},
   doi = {$doi$},
@@ -228,11 +213,11 @@ function display_export(id) {
 
 <pre id = "RIS" style ="display: none;">
 TY  - RPRT
-$for(author)$AU  - $if(author.name)$$author.name$$if(author.firstname)$, $author.firstname$$endif$$else$$author$$endif$$sep$ <br>$endfor$
+$for(author)$AU  - $author.name.family$, $author.name.given$$sep$ <br>$endfor$
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
 DO  - $doi$
-PB  - Research Institute for Nature and Forest
-PP  - $if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium
+PB  - $translation.name$
+PP  - $if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$
 PY  - $year$
 SN  - 1782-9054
 ER  -
@@ -240,29 +225,29 @@ ER  -
 
 <pre id = "csl" style ="display: none;">
 {
-  "id":"$for(author)$$if(author.name)$$author.name$$else$$author$$endif$$endfor$$year$",
+  "id":"$for(author)$$author.name.family$$endfor$$year$",
   "type":"report",
   "title":"$title$$if(subtitle)$. $subtitle$$endif$",
   "author":[
     $for(author)${
-      "family":"$if(author.name)$$author.name$$if(author.firstname)$",
-      "given":"$author.firstname$$endif$$else$$author$$endif$"
+      "family":"$author.name.family$",
+      "given":"$author.name.given$"
     $sep$},
     $endfor$
     }
   ],
   "issued":{"date-parts":[[$year$]]},
-  "publisher":"Research Institute for Nature and Forest",
-  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$Brussels$endif$, Belgium",
+  "publisher":"$translation.name$",
+  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$",
 }
 </pre>
 
   $if(depotnr)$
     <p><b>$depotnr$</b><br>
   $else$
-    <h1 class = "missing">!!!! MISSING: depotnr !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
   $endif$
-  <b>Reports of the Research Institute for Nature and Forest
+  <b>$translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -272,16 +257,16 @@ ER  -
   </b><br>
   <b>ISSN: 1782‐9054</b>
 
-  <p><b>Responsible publisher:</b><br>Maurice Hoffmann
+  <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 
   $if(cover_description)$
-    <p><b>Cover photo:</b><br>$cover_description$
+    <p><b>$translation.cover$:</b><br>$cover_description$
   $else$
-    <h1 class = "missing">!!!! MISSING: cover_description !!!!</h1>
+    <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
   $endif$
 
   $if(client)$
-  <p><b>This study was commissioned by:</b><br>
+  <p><b>$translation.client$:</b><br>
      $for(client)$
         $client$
      $sep$ <br>
@@ -292,7 +277,7 @@ ER  -
   $endif$
 
   $if(cooperation)$
-  <p><b>This study was conducted in collaboration with:</b><br>
+  <p><b>$translation.cooperation$:</b><br>
      $for(cooperation)$
         $cooperation$
      $sep$ <br>
@@ -302,7 +287,7 @@ ER  -
      $endif$
   $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
   </div>
 $endif$
 <!--bookdown:title:end-->
@@ -313,11 +298,10 @@ $endif$
     <div class="book-summary">
 $if(cover_image)$
 <a href=".">
-<img src="$url$$cover_image$" class = "thumbnail" alt = "$shortauthor$ ($year$) $title$">
-</a><br>
+<img src="$url$$cover_image$" alt = "$shortauthor$ ($year$) $title$" class = "thumbnail"></a><br>
 $endif$
-$if(doi)$<a class="chapter" href="#">$doi$</a>$endif$
-<br><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-License" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/>
+$if(doi)$<a class="chapter" href="https://doi.org/$doi$">$doi$</a>$endif$
+<br><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/>
       <nav role="navigation">
 <!--bookdown:toc2:start-->
 $if(toc)$
@@ -351,8 +335,8 @@ $for(include-after)$
 $include-after$
 $endfor$
 <p>&nbsp;</p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-License" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/>
-$shortauthor$ ($year$). $doi$
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/></a>
+$shortauthor$ ($year$). <a href="https://doi.org/$doi$">$doi$</a>
             </section>
         </div>
       </div>

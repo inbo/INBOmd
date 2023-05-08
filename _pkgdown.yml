@@ -12,12 +12,12 @@ navbar:
   - text: Functions
     href: reference/index.html
   - text: Examples
-    href: https://inbomd-examples.netlify.com
+    href: https://inbo.github.io/inbomd-examples
   - text: Contributing
     href: CONTRIBUTING.html
   right:
   - icon: "fa fa-github"
-    href: https://github.com/inbo/inbomd
+    href: https://github.com/inbo/INBOmd
   - icon: "fa fa-twitter"
     href: https://twitter.com/INBOVlaanderen
   - icon: "fa fa-facebook"
@@ -40,6 +40,6 @@ reference:
 authors:
   Thierry Onkelinx:
     href: "https://www.muscardinus.be"
-  Research Institute for Nature and Forest:
-    href: "vlaanderen.be/inbo/en"
-    html: "<img src='https://inbo.github.io/INBOmd/reference/figures/logo-en.png' height=24>"
+  Research Institute for Nature and Forest (INBO):
+    href: "https://www.vlaanderen.be/inbo/en-gb"
+    html: "<img src='https://inbo.github.io/checklist/reference/figures/logo-en.png' height=24>"

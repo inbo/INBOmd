@@ -6,11 +6,15 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown epub_book
+#' @importFrom fs path
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
 epub_book <- function() {
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
@@ -36,17 +40,23 @@ epub_book <- function() {
     style == "Flanders" || lang == "nl",
     msg = "Use style: Flanders when the language is not nl"
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
     system.file(
       "research-institute-for-nature-and-forest.csl", package = "INBOmd"
-    )
+    ),
+    "--lua-filter",
+    system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
-  fonts <- system.file(file.path("css", c("fonts", "img")), package = "INBOmd")
-  fonts <- list.files(fonts, full.names = TRUE)
+  file.path("css_styles", c("fonts", "img")) |>
+    system.file(package = "INBOmd") |>
+    list.files(full.names = TRUE) -> fonts
   pandoc_args <- c(
-    pandoc_args, sprintf("--epub-embed-font=%s", fonts)
+    pandoc_args, sprintf("--epub-embed-font=%s", fonts),
+    pandoc_variable_arg("corresponding", fm$corresponding),
+    pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
   assert_that(
     file.exists(file.path(getwd(), "index.Rmd")),
@@ -66,15 +76,7 @@ epub_book <- function() {
   meta_author <- vapply(
     fm$author,
     function(current_author) {
-      ifelse(
-        has_name(current_author, "name"),
-        ifelse(
-          has_name(current_author, "firstname"),
-          sprintf("%s %s", current_author$firstname, current_author$name),
-          current_author$name
-        ),
-        current_author
-      )
+      sprintf("%s %s", current_author$name$given, current_author$name$family)
     },
     character(1)
   )
@@ -108,9 +110,11 @@ epub_book <- function() {
   )
   pandoc_args <- c(pandoc_args, sprintf("--epub-metadata=%s", metadata_file))
 
+  check_license()
+
   resource_dir <- system.file(file.path("css_styles"), package = "INBOmd")
   template <- system.file(
-    file.path("template", sprintf("report_%s.epub3", lang)), package = "INBOmd"
+    file.path("template", "report.epub3"), package = "INBOmd"
   )
   config <- bookdown::epub_book(
     fig_caption = TRUE, number_sections = TRUE, toc = TRUE,

@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.5.3
+Version: 0.6.0
 Authors@R: c(
     person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8804-4216")),
@@ -9,7 +9,7 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-6378-6229")),
     person("Els", "Lommelen", , "els.lommelen@inbo.be", role = "ctb",
            comment = c(ORCID = "0000-0002-3481-5684")),
-    person("Research Institute for Nature and Forest", , , "info@inbo.be", role = c("cph", "fnd"))
+    person("Research Institute for Nature and Forest (INBO)", , , "info@inbo.be", role = c("cph", "fnd"))
   )
 Description: Several templates to generate reports, presentations and
     posters.
@@ -19,7 +19,9 @@ BugReports: https://github.com/inbo/inbomd/issues
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
+    checklist (>= 0.3.2),
     dplyr,
+    fs,
     gert,
     htmltools,
     knitr,
@@ -29,16 +31,18 @@ Imports:
     utils
 Suggests:
     DT,
-    INBOtheme (>= 0.5.4),
     ggplot2,
+    INBOtheme (>= 0.5.4),
     pander,
     rstudioapi,
     webshot
 VignetteBuilder: 
     knitr
 Additional_repositories: https://inbo.r-universe.dev
+Config/checklist/communities: inbo
+Config/checklist/keywords: markdown; bookdown; corporate identity;
+    template
 Encoding: UTF-8
 Language: en-GB
-LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3

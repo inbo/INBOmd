@@ -19,7 +19,8 @@ knitr::opts_chunk$set(
 # Goal
 
 The `INBOmd` package provides several styles for [`rmarkdown`](https://rmarkdown.rstudio.com/) files.
-The styles are based on the corporate identity of the Research Institute for Nature and Forest (Instituut voor Natuur en Bosonderzoek, [INBO](vlaanderen.be/inbo/en/)).
+The styles are based on the corporate identity of the Research Institute for Nature and Forest 
+(Instituut voor Natuur en Bosonderzoek, [INBO](vlaanderen.be/inbo/en/)). <!-- spell-check: ignore -->
 The styles itself are not intended for use by parties external to INBO.
 We still provide them to other users as an inspiration and example on how to create their own corporate identity styles for `rmarkdown` files. 
 
@@ -45,7 +46,7 @@ It is tailored towards writing books and technical documentation.
 
 # Available templates in `INBOmd`
 
-- The most important template is `inbo_rapport`, a template for creating technical reports. The available output formats are pdf, epub and html.
+- The most important template is `inbo_rapport`, a template for creating technical reports. The available output formats are `pdf`, `epub` and `html`.
 - `vlaanderen_rapport` and `flanders_report` are similar templates as `inbo_rapport`.
   They use the corporate identity of [Flanders](https://www.vlaanderen.be/).
   `flanders_report` is available in English and French.
@@ -60,15 +61,15 @@ It is tailored towards writing books and technical documentation.
 
 # Installation
 
-INBOmd requires a working installation of XeLaTeX.
-We highly recommend to use the TinyTeX.
+`INBOmd` requires a working installation of `XeLaTeX`.
+We highly recommend to use the `TinyTeX`.
 Close all open R sessions and start a fresh R session.
 Execute the commands below.
-This will install TinyTeX on your machine.
+This will install `TinyTeX` on your machine.
 No admin rights are required.
-Although TinyTeX is a lightweight installation, it still is several 100 MB large.
-Please note that TinyTex is not compatible with MikTex.
-Remove MikTex before installing TinyTex.
+Although `TinyTeX` is a lightweight installation, it still is several 100 MB large.
+Please note that `TinyTeX` is not compatible with `MikTex`.
+Remove `MikTex` before installing `TinyTeX`.
 
 ```{r eval = FALSE}
 update.packages(ask = FALSE, checkBuilt = TRUE)
@@ -80,13 +81,13 @@ if (!tinytex:::is_tinytex()) {
 }
 ```
 
-Once TinyTeX is installed, you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
+Once `TinyTeX` is installed, you need to restart RStudio. Then you can proceed with the installation of `INBOmd`.
 
 ```{r eval = FALSE}
 if (!"remotes" %in% rownames(installed.packages())) {
   install.packages("remotes")
 }
-remotes::install_github("inbo/INBOmd", dependencies = TRUE) # nolint
+remotes::install_github("inbo/INBOmd", dependencies = TRUE)
 tinytex::tlmgr_install(c(
   "inconsolata", "times", "tex", "helvetic", "dvips"
 ))
@@ -98,17 +99,29 @@ tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
 
 # Using `INBOmd`
 
-## Starting a new document
+## Recommended way to start a new report
+
+`INBOmd` version 0.6.0 introduces the interactive function `create_report()`.
+This function uses the same template as the legacy way to start a new report.
+`create_report()` has the advantage that it interactively guides the user
+through the set-up.
+It asks the user for the important parts of the meta data and fills that
+information into the yaml header.
+
+Once the report is near completion, use `add_report_numbers()` to append the
+DOI, report number, depot number and other information to the meta data.
+
+## Legacy way to start a new document from RStudio templates
 
 `INBOmd` contains several templates which are available in RStudio. Go in the menu to `File > New File > R Markdown`. A new window will open were you select `From template`. This will show a list of all available templates. Select the template `INBOmd` you want, set the name of the new document and the base location. This will create a new directory with the specified name in the base location. Each report will reside in its own directory.
 
-This new directory contains `_bookdown.yml` and an `.Rmd` file with the same base name as the directory. We highly recommened to rename the `.Rmd` file to `index.Rmd`, see usage section in the [bookdown](https://bookdown.org/yihui/bookdown/usage.html) book for more details. Next you need to open `_bookdown.yml` in RStudio. Here you can configure the render settings of the report. `book_filename` defines the filename of the output. `output_dir` is the relative path for the output.
+This new directory contains `_bookdown.yml` and an `.Rmd` file with the same base name as the directory. We highly recommend to rename the `.Rmd` file to `index.Rmd`, see usage section in the [bookdown](https://bookdown.org/yihui/bookdown/usage.html) book for more details. Next you need to open `_bookdown.yml` in RStudio. Here you can configure the render settings of the report. `book_filename` defines the filename of the output. `output_dir` is the relative path for the output.
 
-Finally, you need to activate the `Build` pane in RStudio. By far the easiest way to do this, is the create a new project. Go in the menu to `File > New Project` and choose in the popup window `Existing directory`. Note that this only works if there is an `index.Rmd` file at the root of the project.
+Finally, you need to activate the `Build` pane in RStudio. By far the easiest way to do this, is the create a new project. Go in the menu to `File > New Project` and choose in the pop-up window `Existing directory`. Note that this only works if there is an `index.Rmd` file at the root of the project.
 
 ## Rendering a document
 
-Go the `Build` pane and click on the `Build book` button. This button doubles as a dropdown menu. In this menu you can select which output format will be rendered. By default all output formats will be rendered. The report templates define three output formats: pdf, html and e-pub. Rendering all three output formats can take some time. Therefore it is best to select one output format while working on the content of the document.
+Go the `Build` pane and click on the `Build book` button. This button doubles as a drop-down menu. In this menu you can select which output format will be rendered. By default all output formats will be rendered. The report templates define three output formats: pdf, html and e-pub. Rendering all three output formats can take some time. Therefore it is best to select one output format while working on the content of the document.
 
 ## Examples of `INBOmd`
 

@@ -36,18 +36,22 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 }
 \description{
 \itemize{
-\item \strong{interactive session}: \code{\link[DT]{datatable}}
-\item \strong{html}: \code{\link[DT]{datatable}}
-\item \strong{other}: \code{\link[knitr]{kable}}
+\item \strong{interactive session}: \code{\link[DT:datatable]{DT::datatable()}}
+\item \strong{html}: \code{\link[DT:datatable]{DT::datatable()}}
+\item \strong{other}: \code{\link[knitr:kable]{knitr::kable()}}
 }
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
+\code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
 \code{\link{cover_info}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
+\code{\link{create_report}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()}
+\code{\link{render_natbib}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}

@@ -13,11 +13,15 @@ Missing dependencies will be installed automatically
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
+\code{\link{add_report_numbers}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
 \code{\link{cover_info}()},
+\code{\link{create_report}()},
 \code{\link{dyn_table}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()}
+\code{\link{render_natbib}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}

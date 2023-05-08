@@ -17,9 +17,8 @@
 #'     - `pages`: the number of pages in the full document.
 #' - `tocdepth`: which level headers to display.
 #'     - 0: up to chapters (`#`)
-#'     - 1: up to section (`##`)
+#'     - 1: up to section (`##`) default
 #'     - 2: up to subsection (`###`)
-#'     - 3: up to subsubsection (`####`) default
 #' - `lof`: Adds a list of figures to the pdf after the table of content when
 #'   set to `TRUE`.
 #'   Omits the list of figures when missing or set to `FALSE`.
@@ -28,10 +27,10 @@
 #'   Omits the list of tables when missing or set to `FALSE`.
 #' - `hyphenation`: An optional list of words with a specified hyphenation
 #'   pattern.
-#'   E.g. `hyphenation: "fortran, ergo-no-mic"` forces the word "fortran" to
+#'   E.g. `hyphenation: "fortran, ergo-no-mic"` forces the word `"fortran"` to
 #'   remain as a single word.
-#'   "ergonomic" can be either the entire word, split into "ergo" and "nomic" or
-#'   split into "ergono" and "mic".
+#'   "ergonomic" can be either the entire word, split into `"ergo"` and
+#'   `"nomic"` or split into `"ergono"` and `"mic"`.
 #' - `floatbarrier`: A float barrier forces to place all floating figures and
 #'   tables before placing the remainder of the document.
 #'   You can place them manually by setting `\floatbarrier`.
@@ -40,7 +39,7 @@
 #'   Options are "section" (before `#` and `##`), "subsection" (before `#`, `##`
 #'   and `###`) and "subsubsection" (before `#`, `##`, `###` and `####`).
 #' - `other_lang`: the other languages you want to use in the pdf version.
-#'   Available options are 'nl', 'en' and 'fr'.
+#'   Available options are `"nl"`, `"en"` and `"fr"`
 #'   Defaults to all available languages except the main language.
 #'
 #' @section Multiple languages in pdf:
@@ -51,7 +50,7 @@
 #' Use `\bdutch` before and `\edutch` after the text in Dutch.
 #' Use `\benglish` before and `\eenglish` after the text in English.
 #' Use `\bfrench` before and `\efrench` after the text in French.
-#' The styles "INBO" and "Vlaanderen" have French and English as optional
+#' The styles `"INBO"` and `"Vlaanderen"` have French and English as optional
 #' languages.
 #' The `Flanders` style has by default Dutch and French as optional languages.
 #'

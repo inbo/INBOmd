@@ -4,17 +4,23 @@
 #' @template yaml_generic
 #' @template yaml_report
 #' @template yaml_gitbook
+#' @inheritParams rmarkdown::html_document
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
+#' @importFrom fs path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @importFrom utils head packageVersion tail
 #' @family output
-gitbook <- function() {
+gitbook <- function(code_folding = c("none", "show", "hide")) {
+  code_folding <- match.arg(code_folding, c("none", "show", "hide"))
   gitbook_edit_button(getwd())
-  fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
+  path(getwd(), "index.Rmd") |>
+    yaml_front_matter() |>
+    validate_persons() |>
+    validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -47,12 +53,15 @@ gitbook <- function() {
     split_by %in% c("chapter+number", "section+number"),
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
     system.file(
       "research-institute-for-nature-and-forest.csl", package = "INBOmd"
-    )
+    ),
+    "--lua-filter",
+    system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
   assert_that(
     file.exists(file.path(getwd(), "index.Rmd")),
@@ -70,32 +79,39 @@ gitbook <- function() {
       pandoc_args, pandoc_variable_arg("cover_image", cover_path)
     )
   }
-  resource_dir <- system.file("css_styles", package = "INBOmd")
   inbomd_dep <- htmlDependency(
-    name = "INBOmd", version = packageVersion("INBOmd"), src = resource_dir,
+    name = "INBOmd", version = packageVersion("INBOmd"),
+    src = system.file("css_styles", package = "INBOmd"),
+    meta = c(creator = "Research Institute for Nature and Forest (INBO)"),
     stylesheet = sprintf(
       "%s_report.css", ifelse(style == "INBO", "inbo", "flanders")
     )
   )
 
+  check_license()
+
   pandoc_args <- c(
     pandoc_args,
     pandoc_variable_arg(
       "csspath", file.path("libs", paste0("INBOmd-", packageVersion("INBOmd")))
-    )
+    ),
+    pandoc_variable_arg("corresponding", fm$corresponding),
+    pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
   template <- system.file(
-    file.path("template", sprintf("report_%s.html", lang)), package = "INBOmd"
+    file.path("template", "report.html"), package = "INBOmd"
   )
   config <- bookdown::gitbook(
     fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
     anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
     split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = template, extra_dependencies = list(inbomd_dep)
+    template = template, extra_dependencies = list(inbomd_dep),
+    code_folding = code_folding
   )
   post <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
-    x <- readLines(output, encoding = "UTF-8")
+    file(output, encoding = "UTF-8") |>
+      readLines() -> x
     i <- head(grep('^<div id="refs" class="references[^"]*"[^>]*>$', x), 1)
     if (length(i) > 0) {
       x <- c(head(x, i - 1), "", tail(x, -i + 1))
@@ -108,18 +124,19 @@ gitbook <- function() {
 }
 
 #' @importFrom assertthat assert_that is.string
-#' @importFrom gert git_branch_exists git_find git_remote_info
+#' @importFrom gert git_branch_exists git_find git_remote_info git_remote_list
 #' @importFrom utils file_test
 gitbook_edit_button <- function(path) {
   root <- try(git_find(path), silent = TRUE)
   if (
     inherits(root, "try-error") ||
+    nrow(git_remote_list(root)) == 0 ||
     !file_test("-f", file.path(path, "_bookdown.yml"))
   ) {
     return(invisible(FALSE))
   }
   url <- git_remote_info(repo = root)$url
-  url <- gsub("^.*@", "https://", url)
+  url <- gsub("^.*@(.*?):", "https://\\1/", url)
   url <- paste("edit:", gsub("\\.git$", "", url))
   url <- file.path(
     fsep = "/", url, "edit",

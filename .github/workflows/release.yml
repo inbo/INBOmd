@@ -1,30 +1,31 @@
+name: Releases
+
 on:
   push:
     tags:
-      - 'v*'
-
-name: Create Release
+      - v*
+  workflow_run:
+    workflows: ["check package on main"]
+    types:
+      - completed
 
 jobs:
+
   build:
-    name: Create Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get tag message
         run: |
-          TAG_BODY=$(git tag --contains ${{ github.sha }} -n100 | awk '(NR>1)')
-          echo "::set-output name=TAG_BODY::$TAG_BODY"
+          TAG=$(git tag --contains $(git rev-parse HEAD))
+          TAG_BODY=$(git tag --contains {{ github.sha }} -n100 | awk '(NR>1)')
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
+          echo "TAG_BODY=$TAG_BODY" >> $GITHUB_OUTPUT
         id: tag-body
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          name: Release ${{ steps.tag-body.outputs.TAG }}
+          tag: ${{ steps.tag-body.outputs.TAG }}
           body: ${{ steps.tag-body.outputs.TAG_BODY }}
-          draft: false
-          prerelease: false

@@ -6,7 +6,7 @@
 #' @param reportdate the date of this report
 #' @param colleagues name of other colleagues attending the same conference
 #' @param codesize relative font size for code
-#' @param floatbarrier where to place automatic floatbarriers
+#' @param floatbarrier where to place automatic float barriers.
 #' @param lang main language
 #' @inheritParams rmarkdown::pdf_document
 #' @param ... extra parameters: see details

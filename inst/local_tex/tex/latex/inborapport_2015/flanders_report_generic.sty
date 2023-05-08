@@ -663,10 +663,10 @@
 \setlength{\parskip}{9pt plus4pt minus4pt}
 
 % changing style in table of contents
-\renewcommand*\l@part{\vspace{6pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\bfseries\@dottedtocline{0}{0mm}{0mm}}
-\renewcommand*\l@chapter{\vspace{3pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\normalfont\@dottedtocline{1}{0mm}{15mm}}
-\renewcommand*\l@section{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{2}{0mm}{15mm}}
-\renewcommand*\l@subsection{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{3}{0mm}{15mm}}
+\renewcommand*\l@part{\vspace{6pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\bfseries\@dottedtocline{-1}{0mm}{0mm}}
+\renewcommand*\l@chapter{\vspace{3pt}\fontsize{\fontsizetoc}{\fontsizetocinter}\selectfont\normalfont\@dottedtocline{0}{0mm}{15mm}}
+\renewcommand*\l@section{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{1}{0mm}{15mm}}
+\renewcommand*\l@subsection{\fontsize{\fontsizebase}{\fontsizebaseinter}\selectfont\@dottedtocline{2}{0mm}{15mm}}
 
 
 % Some stuff to force sensible page breaks (no widows etc) and to ensure

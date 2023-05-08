@@ -11,32 +11,28 @@ if [ $GITHUB_REPOSITORY = 'inbo/INBOmd' ] ; then
   apt-get update
   apt-get upgrade -y
   Rscript -e 'remotes::install_local(".", force = TRUE)'
-  cd /examples
+  git clone --single-branch --branch=$EXAMPLE_BRANCH --depth=1 https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
 else
   echo 'Test changes in inbomd_examples'
   if [ $GITHUB_EVENT_NAME = "push" ] ; then
-    git clone --depth 1 -b main https://$INPUT_TOKEN@github.com/inbo/inbomd_examples
+    git clone --depth 1 -b $EXAMPLE_BRANCH https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
   else
-    git clone --depth 1 -b $GITHUB_HEAD_REF https://$INPUT_TOKEN@github.com/inbo/inbomd_examples
+    git clone --depth 1 -b $GITHUB_HEAD_REF https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
   fi
-  cd inbomd_examples
 fi
+cd inbomd_examples
 Rscript source/render_all.R
 if [ $? -ne 0 ]; then
   echo "\nRendering failed. Please check the error message above.\n";
   exit 1
 fi
 echo '\nAll Rmarkdown files rendered successfully\n'
-if [ $GITHUB_REPOSITORY = "inbo/inbomd" ] ; then
-  cp -R /examples/docs/. $GITHUB_WORKSPACE/docs/.
-else
-  mkdir $GITHUB_WORKSPACE/docs
-  cp -R $GITHUB_WORKSPACE/inbomd_examples/. $GITHUB_WORKSPACE/docs/.
-fi
+mkdir $GITHUB_WORKSPACE/docs
+cp -R $GITHUB_WORKSPACE/inbomd_examples/. $GITHUB_WORKSPACE/docs/.
 
 if [ $GITHUB_EVENT_NAME = "push" ] ; then
   cd /
-  git clone --depth 1 -b gh-pages https://$INPUT_TOKEN@github.com/inbo/inbomd_examples
+  git clone --depth 1 -b gh-pages https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
   cd /inbomd_examples
   git rm -rf --quiet .
   cp -R $GITHUB_WORKSPACE/docs/. /inbomd_examples/.

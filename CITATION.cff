@@ -1,21 +1,27 @@
 cff-version: 1.2.0
-message: If you use this software, please cite it as below.
-authors:
-- family-names: Onkelinx
-  given-names: Thierry
-  orcid: https://orcid.org/0000-0001-8804-4216
-contact:
-- email: thierry.onkelinx@inbo.be
-  family-names: Onkelinx
-  given-names: Thierry
-- email: info@inbo.be
-  name: Research Institute for Nature and Forest
+message: If you use this software, please cite it using these metadata.
 title: 'INBOmd: Markdown Templates for INBO'
-version: 0.5.3
-abstract: Several templates to generate reports, presentations and posters.
-license: GPL-3.0
-type: software
+authors:
+- given-names: Thierry
+  family-names: Onkelinx
+  orcid: 0000-0001-8804-4216
+keywords:
+- markdown
+- bookdown
+- corporate identity
+- template
+contact:
+- given-names: Thierry
+  family-names: Onkelinx
+  orcid: 0000-0001-8804-4216
 doi: 10.5281/zenodo.842223
-repository-code: https://github.com/inbo/inbomd
-identifiers: []
-keywords: R package
+license: GPL-3.0
+repository-code: https://github.com/inbo/INBOmd/
+type: software
+abstract: Several templates to generate reports, presentations and posters.
+identifiers:
+- type: doi
+  value: 10.5281/zenodo.842223
+- type: url
+  value: []
+version: 0.6.0

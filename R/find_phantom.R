@@ -29,21 +29,20 @@ find_phantom <- function() {
 }
 
 # Possible locations of the PhantomJS executable
+#' @importFrom fs dir_exists path
 phantom_paths <- function() {
   if (is_windows()) {
     path <- Sys.getenv("APPDATA", "")
     path <- if (dir_exists(path)) file.path(path, "PhantomJS")
   } else if (is_osx()) {
-    path <- "~/Library/Application Support" #nolint
+    path <- path("~", "Library", "Application Support")
     path <- if (dir_exists(path)) file.path(path, "PhantomJS")
   } else {
-    path <- "~/bin" #nolint
+    path <- path("~", "bin")
   }
   path <- c(path, system.file("PhantomJS", package = "webshot"))
   path
 }
-
-dir_exists <- function(path) utils::file_test("-d", path)
 
 is_windows <- function() .Platform$OS.type == "windows"
 is_osx     <- function() Sys.info()[["sysname"]] == "Darwin"

@@ -7,7 +7,7 @@
 cover_info(path = "index.Rmd")
 }
 \arguments{
-\item{path}{The path to the main Rmd file}
+\item{path}{The path to the main \code{.Rmd} file.}
 }
 \description{
 You need to provide information to create the cover image and (optionally)
@@ -18,11 +18,15 @@ send that file along the other files to the review process.
 }
 \seealso{
 Other utils: 
+\code{\link{add_author}()},
+\code{\link{add_report_numbers}()},
 \code{\link{check_dependencies}()},
+\code{\link{column_start}()},
+\code{\link{column_width}()},
+\code{\link{create_report}()},
 \code{\link{dyn_table}()},
-\code{\link{kolom_breedte}()},
-\code{\link{kolom_start}()},
 \code{\link{references}()},
-\code{\link{render_natbib}()}
+\code{\link{render_natbib}()},
+\code{\link{validate_doi}()}
 }
 \concept{utils}

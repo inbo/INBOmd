@@ -12,7 +12,7 @@ $if(year)$
 $endif$
 $if(reviewer)$
 \reviewer{
-$for(reviewer)$$if(reviewer.name)$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{$endif$$if(reviewer.firstname)$$reviewer.firstname$ $endif$$reviewer.name$$if(reviewer.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$reviewer$$endif$$sep$, $endfor$
+$for(reviewer)$$if(reviewer.orcid)$\href{https://orcid.org/$reviewer.orcid$}{$endif$$reviewer.name.given$ $reviewer.name.family$ $if(reviewer.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$sep$, $endfor$
 }
 $endif$
 $if(reportnr)$
@@ -108,11 +108,10 @@ $endif$
 \title{$title$}
 $if(subtitle)$\subtitle{$subtitle$}$endif$
 \author{
-$for(author)$$if(author.name)$$if(author.firstname)$$author.firstname$ $endif$$author.name$$else$$author$$endif$$sep$, $endfor$
+$for(author)$$author.name.given$ $author.name.family$$sep$, $endfor$
 }
 \colofonauthor{
-$for(author)$
-$if(author.name)$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{$endif$$if(author.firstname)$$author.firstname$ $endif$$author.name$$if(author.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$else$$author$$endif$$sep$, $endfor$
+$for(author)$$if(author.orcid)$\href{https://orcid.org/$author.orcid$}{$endif$$author.name.given$ $author.name.family$ $if(author.orcid)$\includegraphics[height=\fontsizebase]{orcid.eps}}$endif$$sep$, $endfor$
 }
 $if(ordernr)$\ordernumber{$ordernr$}$endif$
 
@@ -162,7 +161,7 @@ $endfor$
 $if(tocdepth)$
 \setcounter{tocdepth}{$tocdepth$}
 $else$
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{1}
 $endif$
 \tableofcontents
 

@@ -21,10 +21,10 @@ poster(
 
 \item{codesize}{relative font size for code}
 
-\item{lang}{The language of the document. Defaults to "english".}
+\item{lang}{The language of the document. Defaults to \code{"english"}.}
 
 \item{email}{The email address to display at the bottom.
-Defaults to info@inbo.be}
+Defaults to \code{"info@inbo.be"}}
 
 \item{keep_tex}{Keep the intermediate tex file used in the conversion to PDF}
 
@@ -34,7 +34,7 @@ Defaults to info@inbo.be}
 \item{includes}{Named list of additional content to include within the
 document (typically created using the \code{\link[rmarkdown]{includes}} function).}
 
-\item{pandoc_args}{Additional command line options to pass to pandoc}
+\item{pandoc_args}{Additional command line options to pass to \code{pandoc}.}
 
 \item{...}{extra parameters: see details}
 }
@@ -44,15 +44,18 @@ Create a poster with the INBO theme version 2015
 \details{
 Available extra parameters:
 \itemize{
-\item hyphenation: the correct hyphenation for certain words
-\item flandersfont: Use the Flanders Art Sans font. Defaults to FALSE.
+\item \code{hyphenation}: the correct hyphenation for certain words
+\item \code{flandersfont}: Use the Flanders Art Sans font.
+Defaults to \code{FALSE}.
 Note that this requires the font to be present on the system.
 \item ORCID: a list of authors. For each author there must a \code{name} and an
-\code{ID}. The \code{ID} is the author's ORCID ID , ee https://orcid.org.
+\code{ID}.
+The \code{ID} is the author's ORCID ID , see https://orcid.org.
 This information will be displayed with QR code at the bottom of the
 poster.
-\item DOI: a list of documents. For each documentr there must a \code{name} and an
-\code{ID}. The \code{ID} is the documents's DOI, see https://doi.org.
+\item \code{DOI}: a list of documents.
+For each document there must a \code{name} and an \code{ID}.
+The \code{ID} is the document's DOI, see https://doi.org.
 This information will be displayed with QR code at the bottom of the
 poster.
 }
