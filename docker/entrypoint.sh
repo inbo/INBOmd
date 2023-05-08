@@ -11,7 +11,7 @@ if [ $GITHUB_REPOSITORY = 'inbo/INBOmd' ] ; then
   apt-get update
   apt-get upgrade -y
   Rscript -e 'remotes::install_local(".", force = TRUE)'
-  RUN git clone --single-branch --branch=$EXAMPLE_BRANCH --depth=1 https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
+  git clone --single-branch --branch=$EXAMPLE_BRANCH --depth=1 https://oauth2:$GITHUB_TOKEN@github.com/inbo/inbomd_examples
 else
   echo 'Test changes in inbomd_examples'
   if [ $GITHUB_EVENT_NAME = "push" ] ; then

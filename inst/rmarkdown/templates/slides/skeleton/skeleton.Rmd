@@ -18,8 +18,8 @@ author:
     affiliation: Research Institute fo Nature and Forest (INBO)
 style: INBO
 lang: nl
-funder: Research Institute fo Nature and Forest (INBO)
-rightsholder: Research Institute fo Nature and Forest (INBO)
+funder: Research Institute for Nature and Forest (INBO)
+rightsholder: Research Institute for Nature and Forest (INBO)
 community: inbo
 keywords:
 # slide specific options. See ?INBOmd::slides() for full list and more details.

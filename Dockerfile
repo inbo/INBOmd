@@ -120,10 +120,7 @@ RUN  apt-get update \
 ## Install xml2
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
-    libfreetype6-dev \
-    libjpeg-dev \
-    libpng-dev \
-    libtiff5-dev \
+    libxml2-dev \
   && Rscript -e 'remotes::install_cran("xml2")'
 
 ## Install checklist
@@ -140,16 +137,14 @@ RUN  apt-get update \
     r-cran-pingr \
     r-cran-pkgdown \
     r-cran-profvis \
-    r-cran-ragg \
     r-cran-rcmdcheck \
     r-cran-renv \
     r-cran-rex \
     r-cran-roxygen2 \
     r-cran-rprojroot \
     r-cran-shiny \
-    r-cran-xml2 \
     r-cran-xtable \
-  && Rscript -e 'remotes::install_github("inbo/checklist@0.3.1")'
+  && Rscript -e 'remotes::install_github("inbo/checklist")'
 
 ## Install DT
 RUN apt-get update \
