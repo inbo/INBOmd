@@ -93,8 +93,7 @@ Please contact the maintainer when you require Dutch logo's.")
     "xelatex"
   )
   toc <- ifelse(has_name(fm, "toc"), as.logical(fm$toc), toc)
-  assert_that(is.flag(toc))
-  assert_that(noNA(toc))
+  assert_that(is.flag(toc), noNA(toc))
   if (toc) {
     args <- c(args, pandoc_variable_arg("toc", "true"))
   }
@@ -102,25 +101,18 @@ Please contact the maintainer when you require Dutch logo's.")
   args <- c(args, "--csl", pandoc_path_arg(csl))
   of <- output_format(
     knitr = knitr_options(
-      opts_knit = list(
-        width = 80,
-        concordance = TRUE
-      ),
+      opts_knit = list(width = 80, concordance = TRUE),
       opts_chunk = list(
-        dev = "pdf",
-        dev.args = list(bg = "transparent"),
-        dpi = 300,
+        dev = "pdf", dev.args = list(bg = "transparent"), dpi = 300,
         fig.width = (current_paperwidth - 13) / 25.4,
         fig.height = (current_paperheight - 28) / 25.4
       )
     ),
     pandoc = pandoc_options(
-      to = "beamer",
-      latex_engine = "xelatex",
-      args = args,
-      keep_tex = FALSE
+      to = "beamer", latex_engine = "xelatex", args = args,
+      keep_tex = ifelse(has_name(dots, "keep_tex"), dots$keep_tex, FALSE)
     ),
-    clean_supporting = TRUE
+    clean_supporting = ifelse(has_name(dots, "clean"), dots$clean, TRUE)
   )
   config <- pdf_book(
     toc = toc, number_sections = TRUE, fig_caption = TRUE,

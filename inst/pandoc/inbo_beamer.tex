@@ -13,6 +13,11 @@ $if(handout)$
 $endif$
 \usetheme{$theme$}
 \usepackage{inbogeneric_2015}
+$if(flandersfont)$
+\flandersfont{TRUE}
+$else$
+\flandersfont{FALSE}
+$endif$
 \usetheme{vlaanderenfont}
 $if(handout)$
 }
@@ -26,9 +31,6 @@ $if(website)$
 \website{$website$}
 $else$
 \website{vlaanderen.be/inbo}
-$endif$
-$if(flandersfont)$
-\flandersfont{TRUE}
 $endif$
 
 $if(mylanguage)$
