@@ -93,7 +93,7 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     yaml, "reviewer:", author2yaml(author, corresponding = FALSE),
     paste("lang:", lang), paste("style:", style), add_address("client"),
     add_address("cooperation"), "floatbarrier: subsubsection",
-    "geraardsbergen"[
+    "geraardsbergen: true"[
       ask_yes_no(
         "Do you want INBO Geraardsbergen as address instead of INBO Brussels?",
         default = FALSE
