@@ -1,6 +1,6 @@
 {
   "title": "INBOmd: Markdown Templates for INBO",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "license": "GPL-3.0",
   "upload_type": "software",
   "description": "<p>Several templates to generate reports, presentations and posters.<\/p>",

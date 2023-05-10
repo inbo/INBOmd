@@ -1,3 +1,7 @@
+# INBOmd 0.6.1
+
+* Bugfixes in `create_report()`.
+
 # INBOmd 0.6.0
 
 ## Breaking changes
