@@ -38,10 +38,13 @@ msg = "The report name folder may only contain lower case letters, digits and _"
   )
 
   # build new yaml
-  yaml <- paste("title:", readline(prompt = "Enter the title: "))
-  subtitle <- readline(
+  readline(prompt = "Enter the title: ") |>
+    gsub(pattern = "[\"|']", replacement = "") |>
+    sprintf(fmt = "title: \"%s\"") -> yaml
+  readline(
     prompt = "Enter the optional subtitle (leave empty to omit): "
-  )
+  ) |>
+    gsub(pattern = "[\"|']", replacement = "") -> subtitle
   yaml <- c(yaml, paste("subtitle:", subtitle)[subtitle != ""])
   cat("Please select the corresponding author")
   authors <- use_author()
@@ -83,6 +86,7 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     style[menu_first(style, title = "Which style to use?")]
   )
   readline(prompt = "Enter one or more keywords separated by `;`") |>
+    gsub(pattern = "[\"|']", replacement = "") |>
     strsplit(";") |>
     unlist() |>
     gsub(pattern = "^\\s+", replacement = "") |>
