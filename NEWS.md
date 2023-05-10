@@ -1,5 +1,6 @@
 # INBOmd 0.6.1
 
+* `slides()` no longer requires a reviewer.
 * Bugfixes in `create_report()`.
 
 # INBOmd 0.6.0
