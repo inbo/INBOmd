@@ -23,7 +23,7 @@ pdf_report <- function(
   check_dependencies()
   path(getwd(), "index.Rmd") |>
     yaml_front_matter() |>
-    validate_persons() |>
+    validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
@@ -234,9 +234,10 @@ report <- function(
   )
 }
 
-#' @importFrom assertthat assert_that
-validate_persons <- function(yaml) {
+#' @importFrom assertthat assert_that is.flag noNA
+validate_persons <- function(yaml, reviewer = TRUE) {
   assert_that(length(yaml$author) > 0, msg = "no author information found")
+  assert_that(is.flag(reviewer), noNA(reviewer))
   shortauthor <- vapply(yaml$author, contact_person, character(1))
   corresponding <- shortauthor[grep(".*<.*>", shortauthor)]
   shortauthor <- gsub("<.*>", "", shortauthor)
@@ -255,7 +256,10 @@ validate_persons <- function(yaml) {
     msg = "A single corresponding author is required."
   )
   yaml$corresponding <- gsub(".*<(.*)>", "\\1", corresponding)
-  assert_that(length(yaml$reviewer) > 0, msg = "no reviewer information found")
+  assert_that(
+    !reviewer || length(yaml$reviewer) > 0,
+    msg = "no reviewer information found"
+  )
   vapply(yaml$reviewer, contact_person, character(1))
   return(yaml)
 }

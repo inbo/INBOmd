@@ -30,7 +30,7 @@ slides <- function(toc = TRUE, ...) {
   getwd() |>
     path("index.Rmd") |>
     yaml_front_matter() |>
-    validate_persons() |>
+    validate_persons(reviewer = FALSE) |>
     validate_rightsholder() -> fm
   aspect <- ifelse(has_name(fm, "aspect"), fm$aspect, "16:9")
   assert_that(is.string(aspect))

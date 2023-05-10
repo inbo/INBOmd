@@ -13,7 +13,7 @@
 epub_book <- function() {
   path(getwd(), "index.Rmd") |>
     yaml_front_matter() |>
-    validate_persons() |>
+    validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)

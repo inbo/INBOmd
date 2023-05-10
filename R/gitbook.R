@@ -19,7 +19,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   gitbook_edit_button(getwd())
   path(getwd(), "index.Rmd") |>
     yaml_front_matter() |>
-    validate_persons() |>
+    validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
