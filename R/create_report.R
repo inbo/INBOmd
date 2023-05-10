@@ -235,17 +235,17 @@ msg = "The report name folder may only contain lower case letters, digits and _"
 author2yaml <- function(author, corresponding = FALSE) {
   assert_that(is.flag(corresponding), noNA(corresponding))
   c(
-    "  - name:", paste("      given:", author$given),
-    paste("      family:", author$family)
+    "  - name:", sprintf("      given: \"%s\"", author$given),
+    sprintf("      family: \"%s\"", author$family)
   ) -> yaml
   if (!is.na(author$email) && author$email != "") {
-    yaml <- c(yaml, paste("    email:", author$email))
+    yaml <- c(yaml, sprintf("    email: \"%s\"", author$email))
   }
   if (!is.na(author$orcid) && author$orcid != "") {
-    yaml <- c(yaml, paste("    orcid:", author$orcid))
+    yaml <- c(yaml, sprintf("    orcid: \"%s\"", author$orcid))
   }
   if (!is.na(author$affiliation) && author$affiliation != "") {
-    yaml <- c(yaml, paste("    affiliation:", author$affiliation))
+    yaml <- c(yaml, paste("    affiliation: \"%s\"", author$affiliation))
   }
   if (!corresponding) {
     return(paste(yaml, collapse = "\n"))
