@@ -194,12 +194,16 @@ msg = "The report name folder may only contain lower case letters, digits and _"
   yaml[grep("^title", yaml)] |>
     gsub(pattern = "title: \"(.*)\"", replacement = "\\1") |>
     tolower() |>
-    abbreviate() |>
+    abbreviate(minlength = 20) |>
+    gsub(pattern = " ", replacement = "_") |>
     sprintf(
       fmt = "book_filename: \"%2$s_%1$s.Rmd\"",
       ifelse(
-        nrow(authors) > 2, sprintf("%s_et_al", authors$family[1]),
-        paste(authors$family, collapse = "_")
+        nrow(authors) > 2,
+        gsub("[ -]", "_", authors$family[1]) |>
+          sprintf(fmt = "%s_et_al"),
+        gsub("[ -]", "_", authors$family) |>
+          paste(collapse = "_")
       ) |>
         tolower()
   ) |>
