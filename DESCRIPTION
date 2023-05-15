@@ -28,6 +28,7 @@ Imports:
     pdftools,
     qrcode (>= 0.1.2),
     rmarkdown,
+    tinytex,
     utils
 Suggests:
     DT,
