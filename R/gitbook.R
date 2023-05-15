@@ -8,7 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
-#' @importFrom fs path
+#' @importFrom fs file_exists path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
@@ -64,15 +64,17 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
   assert_that(
-    file.exists(file.path(getwd(), "index.Rmd")),
+    getwd() |>
+      path("index.Rmd") |>
+      file_exists(),
     msg = "You need to render an INBOmd::gitbook() from it's working directory"
   )
   if (has_name(fm, "cover")) {
-    cover_path <- file.path(getwd(), "cover.png")
-    if (!file.exists(cover_path)) {
+    cover_path <- gsub("\\.pdf$", ".png", fm$cover)
+    if (!file_exists(cover_path)) {
       pdf_convert(
-        pdf = file.path(getwd(), fm$cover), format = "png", pages = 1,
-        dpi = 770 * 25.4 / 210, filenames = cover_path
+        pdf = fm$cover, format = "png", pages = 1, dpi = 770 * 25.4 / 210,
+        filenames = cover_path
       )
     }
     pandoc_args <- c(

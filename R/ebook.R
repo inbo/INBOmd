@@ -6,7 +6,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown epub_book
-#' @importFrom fs path
+#' @importFrom fs file_exists path
 #' @importFrom pdftools pdf_convert
 #' @importFrom rmarkdown pandoc_variable_arg yaml_front_matter
 #' @family output
@@ -64,14 +64,13 @@ epub_book <- function() {
   )
   cover_image <- NULL
   if (has_name(fm, "cover")) {
-    cover_path <- file.path(getwd(), "cover.png")
-    if (!file.exists(cover_path)) {
+    cover_image <- gsub("\\.pdf$", ".png", fm$cover)
+    if (!file_exists(cover_image)) {
       pdf_convert(
-        pdf = file.path(getwd(), fm$cover), format = "png", pages = 1,
-        dpi = 770 * 25.4 / 210, filenames = cover_path
+        pdf = fm$cover, format = "png", pages = 1, dpi = 770 * 25.4 / 210,
+        filenames = cover_image
       )
     }
-    cover_image <- basename(cover_path)
   }
   meta_author <- vapply(
     fm$author,
