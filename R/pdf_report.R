@@ -295,11 +295,9 @@ contact_person <- function(person) {
   if (!has_name(person, "affiliation")) {
     if (is_inbo(person)) {
       sprintf(
-        "`affiliation` required for %s %s.\nMust be either `%s` or `%s`",
-        person$name$given,
-        person$name$family,
-        "Research Institute for Nature and Forest (INBO)",
-        "Instituut voor Natuur- en Bosonderzoek (INBO)"
+        "`affiliation` required for %s %s.\nMust be one of %s",
+        person$name$given, person$name$family,
+        paste0("`", inbo_affiliation, "`", collapse = "; ")
       ) |>
         stop(call. = FALSE)
     }
@@ -308,19 +306,10 @@ contact_person <- function(person) {
     ) |>
       warning(call. = FALSE)
   } else {
-    if (
-      is_inbo(person) &&
-        !person$affiliation %in% c(
-          "Research Institute for Nature and Forest (INBO)",
-          "Instituut voor Natuur- en Bosonderzoek (INBO)"
-        )
-    ) {
+    if (is_inbo(person) && !person$affiliation %in% inbo_affiliation) {
       sprintf(
-        "`affiliation` for %s %s must be either `%s` or `%s`",
-        person$name$given,
-        person$name$family,
-        "Research Institute for Nature and Forest (INBO)",
-        "Instituut voor Natuur- en Bosonderzoek (INBO)"
+        "`affiliation` for %s %s must be one of %s", person$name$given,
+        person$name$family, paste0("`", inbo_affiliation, "`", collapse = "; ")
       ) |>
         stop(call. = FALSE)
     }

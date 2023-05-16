@@ -20,6 +20,13 @@ add_author <- function(path = ".") {
 
   path(path, "index.Rmd") |>
     readLines() -> index
+  lang <- grep("^lang:", index)
+  assert_that(length(lang) > 0, msg = "No `lang:` entry found in yaml header")
+  assert_that(
+    length(lang) == 1, msg = "Multiple `lang:` entries found in yaml header"
+  )
+  lang <- gsub("lang: ", "", index[lang])
+
   author <- grep("^author:", index)
   assert_that(
     length(author) > 0, msg = "No `author:` entry found in yaml header"
@@ -27,7 +34,7 @@ add_author <- function(path = ".") {
   assert_that(
     length(author) == 1, msg = "Multiple `author:` entries found in yaml header"
   )
-  use_author() |>
+  check_author(lang = lang) |>
     author2yaml(corresponding = FALSE) -> extra
   top <- grep("^\\w+:", index) - 1
   insert <- head(top[top > author], 1)
