@@ -250,7 +250,6 @@ validate_persons <- function(yaml, reviewer = TRUE) {
       c(tail(shortauthor, 1)) |>
       paste(collapse = " & ") -> yaml$shortauthor
   }
-  shortauthor <- paste(shortauthor, "<test.inbo.be>")
   assert_that(
     length(corresponding) == 1,
     msg = "A single corresponding author is required."
@@ -282,22 +281,55 @@ contact_person <- function(person) {
     gsub("\\1.", person$name$given, perl = TRUE) |>
     sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
   if (!has_name(person, "orcid")) {
+    if (is_inbo(person)) {
+      sprintf(
+        "`orcid` required for %s %s", person$name$given, person$name$family
+      ) |>
+        stop(call. = FALSE)
+    }
     sprintf(
       "No `orcid` found for %s %s", person$name$given, person$name$family
     ) |>
       warning(call. = FALSE)
   }
   if (!has_name(person, "affiliation")) {
+    if (is_inbo(person)) {
+      sprintf(
+        "`affiliation` required for %s %s.\nMust be either `%s` or `%s`",
+        person$name$given,
+        person$name$family,
+        "Research Institute for Nature and Forest (INBO)",
+        "Instituut voor Natuur- en Bosonderzoek (INBO)"
+      ) |>
+        stop(call. = FALSE)
+    }
     sprintf(
       "No `affiliation` found for %s %s", person$name$given, person$name$family
     ) |>
       warning(call. = FALSE)
+  } else {
+    if (
+      is_inbo(person) &&
+        !person$affiliation %in% c(
+          "Research Institute for Nature and Forest (INBO)",
+          "Instituut voor Natuur- en Bosonderzoek (INBO)"
+        )
+    ) {
+      sprintf(
+        "`affiliation` for %s %s must be either `%s` or `%s`",
+        person$name$given,
+        person$name$family,
+        "Research Institute for Nature and Forest (INBO)",
+        "Instituut voor Natuur- en Bosonderzoek (INBO)"
+      ) |>
+        stop(call. = FALSE)
+    }
   }
   if (is.null(person$corresponding) || !person$corresponding) {
     return(shortauthor)
   }
   assert_that(
-    "email" %in% names(person),
+    has_name(person, "email"),
     msg = "no `email` provided for the corresponding author."
   )
   sprintf("%s<%s>", shortauthor, person$email)
@@ -344,4 +376,12 @@ check_license <- function() {
       file_copy(license_file, overwrite = TRUE)
   }
   return(invisible(NULL))
+}
+
+#' @importFrom assertthat has_name
+is_inbo <- function(person) {
+  if (!has_name(person, "email")) {
+    return(FALSE)
+  }
+  grepl("inbo.be$", person$email)
 }
