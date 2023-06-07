@@ -15,16 +15,19 @@
   "contributors": [
     {
       "name": "Onkelinx, Thierry",
+      "affiliation": "Research Institute for Nature and Forest (INBO)",
       "orcid": "0000-0001-8804-4216",
       "type": "ContactPerson"
     },
     {
       "name": "Vanderhaeghe, Floris",
+      "affiliation": "Research Institute for Nature and Forest (INBO)",
       "orcid": "0000-0002-6378-6229",
       "type": "ProjectMember"
     },
     {
       "name": "Lommelen, Els",
+      "affiliation": "Research Institute for Nature and Forest (INBO)",
       "orcid": "0000-0002-3481-5684",
       "type": "ProjectMember"
     },
@@ -36,6 +39,7 @@
   "creators": [
     {
       "name": "Onkelinx, Thierry",
+      "affiliation": "Research Institute for Nature and Forest (INBO)",
       "orcid": "0000-0001-8804-4216"
     }
   ],
