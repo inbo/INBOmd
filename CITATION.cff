@@ -4,6 +4,7 @@ title: 'INBOmd: Markdown Templates for INBO'
 authors:
 - given-names: Thierry
   family-names: Onkelinx
+  affiliation: Research Institute for Nature and Forest (INBO)
   orcid: 0000-0001-8804-4216
 keywords:
 - markdown
@@ -13,6 +14,7 @@ keywords:
 contact:
 - given-names: Thierry
   family-names: Onkelinx
+  affiliation: Research Institute for Nature and Forest (INBO)
   orcid: 0000-0001-8804-4216
 doi: 10.5281/zenodo.842223
 license: GPL-3.0
