@@ -304,7 +304,10 @@ contact_person <- function(person) {
 }
 
 #' @importFrom assertthat assert_that has_name is.string noNA
+#' @importFrom checklist organisation
 validate_rightsholder <- function(yaml) {
+  org <- organisation$new()
+  aff <- org$get_organisation[["inbo.be"]]$affiliation
   stopifnot(
     "no `funder` found" = has_name(yaml, "funder"),
     "`funder` is not a string" = is.string(yaml$funder),
@@ -312,8 +315,6 @@ validate_rightsholder <- function(yaml) {
     "no `rightsholder` found" = has_name(yaml, "rightsholder"),
     "`rightsholder` is not a string" = is.string(yaml$rightsholder),
     "`rightsholder` is not a string" = noNA(yaml$rightsholder),
-"Research Institute for Nature and Forest (INBO) not defined as rightsholder" =
-      yaml$rightsholder == "Research Institute for Nature and Forest (INBO)",
     "no `community` found" = has_name(yaml, "community"),
     "`community` must be a string separated by `; `" =
       is.string(yaml$community),
@@ -321,6 +322,13 @@ validate_rightsholder <- function(yaml) {
       "inbo" %in% strsplit(yaml$community, "; "),
     "no `keywords` found" = has_name(yaml, "keywords"),
     "`keywords` must be a string separated by `; `" = is.string(yaml$keywords)
+  )
+  assert_that(
+    yaml$rightsholder %in% aff,
+    msg = sprintf(
+      "rightsholder must be one of the following\n%s",
+      paste(aff, collapse = "\n")
+    )
   )
   return(yaml)
 }

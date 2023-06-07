@@ -14,7 +14,8 @@
 #' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
-#' @importFrom checklist ask_yes_no menu_first read_checklist use_author
+#' @importFrom checklist ask_yes_no menu_first organisation read_checklist
+#' use_author
 #' @importFrom fs dir_create file_copy is_dir is_file path
 #' @importFrom gert git_find
 create_report <- function(path = ".", shortname) {
@@ -80,6 +81,8 @@ msg = "The report name folder may only contain lower case letters, digits and _"
   lang <- names(lang)[
     menu_first(lang, title = "What is the main language of the report?")
   ]
+  org <- organisation$new()
+  aff <- org$get_organisation[["inbo.be"]]$affiliation[lang]
   style <- c("INBO", "Vlaanderen")
   style <- ifelse(
     lang != "nl", "Flanders",
@@ -106,8 +109,7 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     "lof: TRUE"[ask_yes_no("Do you want a list of figures?", default = FALSE)],
     "lot: TRUE"[ask_yes_no("Do you want a list of tables?", default = FALSE)],
     keywords, "community: \"inbo\"", "publication_type: report",
-    "funder: Research Institute for Nature and Forest (INBO)",
-    "rightsholder: Research Institute for Nature and Forest (INBO)",
+    paste("funder:", aff), paste("rightsholder:", aff),
     "bibliography: references.bib", "link-citations: TRUE",
     "site: bookdown::bookdown_site", "output:", "  INBOmd::gitbook: default",
     "  INBOmd::pdf_report: default", "  INBOmd::epub_book: default",
@@ -245,7 +247,7 @@ author2yaml <- function(author, corresponding = FALSE) {
     yaml <- c(yaml, sprintf("    orcid: \"%s\"", author$orcid))
   }
   if (!is.na(author$affiliation) && author$affiliation != "") {
-    yaml <- c(yaml, paste("    affiliation: \"%s\"", author$affiliation))
+    yaml <- c(yaml, sprintf("    affiliation: \"%s\"", author$affiliation))
   }
   if (!corresponding) {
     return(paste(yaml, collapse = "\n"))
