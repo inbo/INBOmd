@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
-title: 'INBOmd: Markdown Templates for INBO'
+title: "INBOmd: Markdown Templates for INBO"
 authors:
 - given-names: Thierry
   family-names: Onkelinx
@@ -20,10 +20,8 @@ doi: 10.5281/zenodo.842223
 license: GPL-3.0
 repository-code: https://github.com/inbo/INBOmd/
 type: software
-abstract: Several templates to generate reports, presentations and posters.
+abstract: "Several templates to generate reports, presentations and posters."
 identifiers:
 - type: doi
   value: 10.5281/zenodo.842223
-- type: url
-  value: []
 version: 0.6.2
