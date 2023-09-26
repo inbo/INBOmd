@@ -200,6 +200,9 @@ RUN  mkdir ${HOME}/.fonts \
   && fc-cache -fv \
   && Rscript -e 'tinytex:::updmap()'
 
+## Install kableExtra
+RUN  Rscript -e 'remotes::install_cran("kableExtra")'
+
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore
 COPY DESCRIPTION inbomd/DESCRIPTION
