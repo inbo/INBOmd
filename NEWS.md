@@ -1,3 +1,7 @@
+# INBOmd 0.6.2
+
+* Bugfixes
+
 # INBOmd 0.6.1
 
 * `slides()` no longer requires a reviewer.
