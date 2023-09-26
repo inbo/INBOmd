@@ -1,3 +1,7 @@
+# INBOmd 0.6.2
+
+* Bugfixes
+
 # INBOmd 0.6.1
 
 * INBO authors and reviewers now must use their `orcid` and a standardised
