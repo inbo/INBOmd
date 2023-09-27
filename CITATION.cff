@@ -24,4 +24,6 @@ abstract: "Several templates to generate reports, presentations and posters."
 identifiers:
 - type: doi
   value: 10.5281/zenodo.842223
+- type: url
+  value: https://inbo.github.io/INBOmd/
 version: 0.6.2
