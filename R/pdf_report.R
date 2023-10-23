@@ -69,6 +69,14 @@ pdf_report <- function(
     )
   )
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  fm$doi <- ifelse(
+    has_name(fm, "nocolophon"),
+    c(
+      nl = "onuitgeven rapport", en = "unpublished report",
+      fr = "rapport non publié"
+    )[lang],
+    fm$doi
+  )
 
   path("pandoc", "inbo_rapport.tex") |>
     system.file(package = "INBOmd") -> template
