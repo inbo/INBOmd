@@ -73,7 +73,7 @@ pdf_report <- function(
     has_name(fm, "nocolophon"),
     c(
       nl = "onuitgeven rapport", en = "unpublished report",
-      fr = "rapport non publié"
+      fr = "rapport non publi\u00e9"
     )[lang],
     fm$doi
   )
