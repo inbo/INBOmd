@@ -70,7 +70,7 @@ pdf_report <- function(
   )
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
   fm$doi <- ifelse(
-    has_name(fm, "nocolophon"),
+    has_name(fm, "nocolophon") && fm$nocolophon,
     c(
       nl = "onuitgeven rapport", en = "unpublished report",
       fr = "rapport non publi\u00e9"
@@ -97,6 +97,7 @@ pdf_report <- function(
     ),
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", gsub("\\&", "\\\\&", fm$shortauthor)),
+    pandoc_variable_arg("doi", fm$doi),
     pandoc_variable_arg(
       "babel", paste(languages[c(other_lang, lang)], collapse = ",")
     ),
