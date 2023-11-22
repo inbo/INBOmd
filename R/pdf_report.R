@@ -75,7 +75,7 @@ pdf_report <- function(
       nl = "onuitgeven rapport", en = "unpublished report",
       fr = "rapport non publi\u00e9"
     )[lang],
-    fm$doi
+    head(c(fm$doi, "!!! missing DOI !!!"), 1)
   )
 
   path("pandoc", "inbo_rapport.tex") |>
