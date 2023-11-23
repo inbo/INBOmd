@@ -66,6 +66,9 @@ $if(titlepage)$
   $if(ordernr)$
     <h4 class ="ordernr">$ordernr$</h4>
   $endif$
+  $if(nocolophon)$
+    <h4>$translation.unpublished$</h4>
+  $else$
   <h1>$translation.colophon$</h1>
   $if(reviewer)$
     <p><b>Reviewers:</b><br>
@@ -160,6 +163,7 @@ $if(titlepage)$
 
   <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="../fonts/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
   </div>
+  $endif$
 </section>
 $else$
   $if(coverpage)$

@@ -20,6 +20,7 @@ local function translation(lang)
       ordernr = "Opdrachtnummer",
       reviewer = "Nagelezen door",
       series = "Rapporten van het",
+      unpublished = "Onuitgegeven rapport",
       vu = "Verantwoordelijke uitgever",
       year = "Gepubliceerd in"
     }
@@ -43,6 +44,7 @@ local function translation(lang)
       ordernr = "Numéro de commande",
       reviewer = "Examiné par",
       series = "Rapports de",
+      unpublished = "Rapport non publié",
       vu = "Éditeur responsable",
       year = "Publié en"
     }
@@ -66,6 +68,7 @@ local function translation(lang)
       ordernr = "Order number",
       reviewer = "Reviewed by",
       series = "Reports of the",
+      unpublished = "Unpublished report",
       vu = "Responsible publisher",
       year = "Published during"
     }

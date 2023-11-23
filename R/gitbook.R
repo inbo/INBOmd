@@ -21,6 +21,10 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  assert_that(
+    !has_name(fm, "nocolophon"), msg = "Legacy option `nocolophon` detected.
+    Please use the `public_report` option."
+  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -53,7 +57,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     split_by %in% c("chapter+number", "section+number"),
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
@@ -63,6 +66,17 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (has_name(fm, "public_report") && !fm$public_report) {
+    c(
+      nl = "onuitgeven rapport", en = "unpublished report",
+      fr = "rapport non publi\u00e9"
+    )[lang] |>
+      pandoc_variable_arg(name = "doi") |>
+      c(pandoc_variable_arg("nocolophon", "true")) |>
+      c(pandoc_args) -> pandoc_args
+  }
+
   assert_that(
     getwd() |>
       path("index.Rmd") |>
@@ -110,7 +124,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     template = template, extra_dependencies = list(inbomd_dep),
     code_folding = code_folding
   )
-  post <- config$post_processor  # in case a post processor have been defined
+  old_post <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
     file(output, encoding = "UTF-8") |>
       readLines() -> x
@@ -119,7 +133,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
       x <- c(head(x, i - 1), "", tail(x, -i + 1))
     }
     writeLines(x, output)
-    post(metadata, input, output, clean, verbose)
+    old_post(metadata, input, output, clean, verbose)
   }
   config$clean_supporting <- TRUE
   return(config)

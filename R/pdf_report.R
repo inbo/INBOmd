@@ -25,6 +25,10 @@ pdf_report <- function(
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  assert_that(
+    !has_name(fm, "nocolophon"), msg = "Legacy option `nocolophon` detected.
+    Please use the `public_report` option."
+  )
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
   assert_that(
@@ -68,15 +72,6 @@ pdf_report <- function(
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
     )
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
-  fm$doi <- ifelse(
-    has_name(fm, "nocolophon") && fm$nocolophon,
-    c(
-      nl = "onuitgeven rapport", en = "unpublished report",
-      fr = "rapport non publi\u00e9"
-    )[lang],
-    head(c(fm$doi, "!!! missing DOI !!!"), 1)
-  )
 
   path("pandoc", "inbo_rapport.tex") |>
     system.file(package = "INBOmd") -> template
@@ -97,7 +92,6 @@ pdf_report <- function(
     ),
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", gsub("\\&", "\\\\&", fm$shortauthor)),
-    pandoc_variable_arg("doi", fm$doi),
     pandoc_variable_arg(
       "babel", paste(languages[c(other_lang, lang)], collapse = ",")
     ),
@@ -109,6 +103,22 @@ pdf_report <- function(
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (has_name(fm, "public_report") && !fm$public_report) {
+    c(
+      nl = "onuitgeven rapport", en = "unpublished report",
+      fr = "rapport non publi\u00e9"
+    )[lang] |>
+      pandoc_variable_arg(name = "doi") |>
+      c(pandoc_variable_arg("nocolophon", "true")) |>
+      c(args) -> args
+  } else {
+    c(fm$doi, "!!! missing DOI !!!") |>
+      head(1) |>
+      pandoc_variable_arg(name = "doi") |>
+      c(args) -> args
+  }
+
 
   if (has_name(fm, "lof") && isTRUE(fm$lof)) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))

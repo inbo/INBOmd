@@ -95,7 +95,7 @@ $if(title)$
   $endif$
   <h1 class="title">$title$</h1>
   $if(subtitle)$
-  <h2 class="subtitle">$subtitle$</h2>
+    <h2 class="subtitle">$subtitle$</h2>
   $endif$
   $for(author)$
     <h3 class="author">$author.name.given$ $author.name.family$
@@ -122,81 +122,84 @@ $if(title)$
     $endif$
   $endfor$
   $if(date)$
-  <p class="date"><em>$date$</em></p>
+    <p class="date"><em>$date$</em></p>
   $endif$
   $if(doi)$
-  <h4><a class="doi" href="https://doi.org/$doi$">$doi$</a></h4>
+    <h4><a class="doi" href="https://doi.org/$doi$">$doi$</a></h4>
   $endif$
   $if(ordernr)$
-  <h4 class ="ordernr">$ordernr$</h4>
+    <h4 class ="ordernr">$ordernr$</h4>
   $endif$
-  <h1>$translation.colophon$</h1>
-  $if(reviewer)$
-    <p><b>Reviewers:</b><br>
-    $for(reviewer)$
-      $reviewer.name.given$ $reviewer.name.family$
-      $if(reviewer.orcid)$
-        <a href="https://orcid.org/$reviewer.orcid$">
-        <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
-        $reviewer.orcid$
-        </a>
-      $endif$
-      $if(reviewer.email)$
-        <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
-      $endif$<br>
-    $endfor$
+  $if(nocolophon)$
+    <h4>$translation.unpublished$</h4>
   $else$
-  <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
-  $endif$
+    <h1>$translation.colophon$</h1>
+    $if(reviewer)$
+      <p><b>Reviewers:</b><br>
+      $for(reviewer)$
+        $reviewer.name.given$ $reviewer.name.family$
+        $if(reviewer.orcid)$
+          <a href="https://orcid.org/$reviewer.orcid$">
+          <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" />
+          $reviewer.orcid$
+          </a>
+        $endif$
+        $if(reviewer.email)$
+          <a class="reviewer_email" href="mailto:#">$reviewer.email$</a>
+        $endif$<br>
+      $endfor$
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: reviewer !!!!</h1>
+    $endif$
 
-  <p>$translation.mission$
+    <p>$translation.mission$
 
-  <p><b>$translation.location$:</b><br>
-  INBO $if(geraardsbergen)$Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen$else$$translation.brussels$<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 $translation.brussels$$endif$$translation.country$
-  <br><a href="vlaanderen.be/inbo">vlaanderen.be/inbo</a>
+    <p><b>$translation.location$:</b><br>
+    INBO $if(geraardsbergen)$Geraardsbergen<br>Gaverstraat 4, 9500 Geraardsbergen$else$$translation.brussels$<br>Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 $translation.brussels$$endif$$translation.country$
+    <br><a href="vlaanderen.be/inbo">vlaanderen.be/inbo</a>
 
-  <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
+    <p><b>e-mail:</b><br><a class="author_email" href="mailto:#">$if(corresponding)$$corresponding$$else$info@inbo.be$endif$</a>
 
-  <p><b>$translation.citation$:</b><br>
-  $if(shortauthor)$
-    $shortauthor$
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: shortauthor !!!!</h1>
-  $endif$
-  $if(year)$
-    ($year$).
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
-  $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
-  $if(year)$
-    $year$
-  $endif$
-  $if(reportnr)$
-    ($reportnr$).
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
-  $endif$
-  $translation.name$, $translation.brussels$. DOI:
-  $if(doi)$
-    <a class="doi" href="https://doi.org/$doi$">$doi$</a>
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
-  $endif$
-  <br>$translation.export$ <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
-  <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
-  <button onclick="display_export('csl')" style = "color: #4183c4; background: #fff; border-width: 0px;">CSL-JSON</button>
+    <p><b>$translation.citation$:</b><br>
+    $if(shortauthor)$
+      $shortauthor$
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: shortauthor !!!!</h1>
+    $endif$
+    $if(year)$
+      ($year$).
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
+    $endif$
+    $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
+    $if(year)$
+      $year$
+    $endif$
+    $if(reportnr)$
+      ($reportnr$).
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
+    $endif$
+    $translation.name$, $translation.brussels$. DOI:
+    $if(doi)$
+      <a class="doi" href="https://doi.org/$doi$">$doi$</a>
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+    $endif$
+    <br>$translation.export$ <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
+    <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
+    <button onclick="display_export('csl')" style = "color: #4183c4; background: #fff; border-width: 0px;">CSL-JSON</button>
 
-<script>
-function display_export(id) {
-  var x = document.getElementById(id);
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-</script>
+    <script>
+    function display_export(id) {
+      var x = document.getElementById(id);
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    </script>
 
 <pre id = "bibtex" style ="display: none;">
 @TechReport{
@@ -230,66 +233,64 @@ ER  -
   "title":"$title$$if(subtitle)$. $subtitle$$endif$",
   "author":[
     $for(author)${
-      "family":"$author.name.family$",
-      "given":"$author.name.given$"
+    "family":"$author.name.family$",
+    "given":"$author.name.given$"
     $sep$},
     $endfor$
     }
   ],
-  "issued":{"date-parts":[[$year$]]},
-  "publisher":"$translation.name$",
-  "publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$",
+"issued":{"date-parts":[[$year$]]},
+"publisher":"$translation.name$",
+"publisher-place":"$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$",
 }
 </pre>
 
-  $if(depotnr)$
-    <p><b>$depotnr$</b><br>
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
-  $endif$
-  <b>$translation.series$ $translation.name$
-  $if(year)$
-    $year$
-  $endif$
-  $if(reportnr)$
-    ($reportnr$)
-  $endif$
-  </b><br>
-  <b>ISSN: 1782‐9054</b>
+    $if(depotnr)$
+      <p><b>$depotnr$</b><br>
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+    $endif$
+    <b>$translation.series$ $translation.name$
+    $if(year)$$year$$endif$
+    $if(reportnr)$($reportnr$)$endif$
+    </b><br>
+    <b>ISSN: 1782‐9054</b>
 
-  <p><b>$translation.vu$:</b><br>Maurice Hoffmann
+    <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 
-  $if(cover_description)$
-    <p><b>$translation.cover$:</b><br>$cover_description$
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
-  $endif$
+    $if(cover_description)$
+      <p><b>$translation.cover$:</b><br>$cover_description$
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: cover_description !!!!</h1>
+    $endif$
 
-  $if(client)$
-  <p><b>$translation.client$:</b><br>
-     $for(client)$
+    $if(client)$
+      <p><b>$translation.client$:</b><br>
+      $for(client)$
         $client$
-     $sep$ <br>
-     $endfor$
-     $if(client_logo)$
-       <br><img src="$url$$client_logo$" class = "client">
-     $endif$
-  $endif$
+        $sep$ <br>
+      $endfor$
+      $if(client_logo)$
+        <br><img src="$url$$client_logo$" class = "client">
+      $endif$
+    $endif$
 
-  $if(cooperation)$
-  <p><b>$translation.cooperation$:</b><br>
-     $for(cooperation)$
+    $if(cooperation)$
+      <p><b>$translation.cooperation$:</b><br>
+      $for(cooperation)$
         $cooperation$
-     $sep$ <br>
-     $endfor$
-     $if(cooperation_logo)$
-       <br><img src="$url$$cooperation_logo$" class = "client">
-     $endif$
-  $endif$
+        $sep$ <br>
+      $endfor$
+      $if(cooperation_logo)$
+        <br><img src="$url$$cooperation_logo$" class = "client">
+      $endif$
+    $endif$
 
-  <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
-  </div>
+    <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" /></a><br />$translation.license_pre$ <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">$translation.license$</a>.
+    </div>
+  $endif$
 $endif$
+
 <!--bookdown:title:end-->
 
 <!--bookdown:toc:start-->
