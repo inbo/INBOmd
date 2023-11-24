@@ -15,6 +15,7 @@ Dockerfile
 ^data-raw$
 ^docs$
 ^man-roxygen$
+^organisation.yml$
 ^pkgdown$
 create_docker.sh
 docker

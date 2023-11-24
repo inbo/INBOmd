@@ -15,10 +15,6 @@ epub_book <- function() {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
-  assert_that(
-    !has_name(fm, "nocolophon"), msg = "Legacy option `nocolophon` detected.
-    Please use the `public_report` option."
-  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
