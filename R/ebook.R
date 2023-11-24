@@ -15,6 +15,10 @@ epub_book <- function() {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  assert_that(
+    !has_name(fm, "nocolophon"), msg = "Legacy option `nocolophon` detected.
+    Please use the `public_report` option."
+  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
@@ -40,7 +44,6 @@ epub_book <- function() {
     style == "Flanders" || lang == "nl",
     msg = "Use style: Flanders when the language is not nl"
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
@@ -50,6 +53,23 @@ epub_book <- function() {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (
+    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+  ) {
+    Sys.time() |>
+      format("%Y-%m-%d %H:%M:%S") |>
+      c(fm$reportnr) |>
+      tail(1) |>
+      pandoc_variable_arg(name = "pagefootmessage") |>
+      c(pandoc_variable_arg("internal", "true")) |>
+      c(pandoc_args) -> pandoc_args
+  } else {
+    c(fm$doi, "!!! missing DOI !!!") |>
+      head(1) |>
+      pandoc_variable_arg(name = "doi") |>
+      c(pandoc_args) -> pandoc_args
+  }
   file.path("css_styles", c("fonts", "img")) |>
     system.file(package = "INBOmd") |>
     list.files(full.names = TRUE) -> fonts

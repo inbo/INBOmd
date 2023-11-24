@@ -32,7 +32,7 @@
 #' @importFrom utils compareVersion
 #' @importFrom grDevices pdf dev.off
 #' @importFrom graphics par image
-#' @importFrom qrcode qrcode_gen
+#' @importFrom qrcode qr_code
 #' @family output
 poster <- function(
   subtitle,
@@ -91,11 +91,11 @@ poster <- function(
         extra$ORCID,
         function(this_orcid) {
           url <- paste0("https://orcid.org/", this_orcid$ID)
-          qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr <- qr_code(url)
           qr_file <- sprintf("orcid-qr-%s.pdf", gsub(" ", "-", this_orcid$name))
           pdf(qr_file, width = 1.4, height = 1.4)
           par(mai = rep(0, 4), mar = rep(0, 4))
-          image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
+          plot(qr, col = c("#C04384", "#FFFFFF"))
           dev.off()
           c(
             this_orcid$name,
@@ -112,11 +112,11 @@ poster <- function(
         extra$DOI,
         function(this_doi) {
           url <- paste0("https://doi.org/", this_doi$ID)
-          qr <- qrcode_gen(url, plotQRcode = FALSE, dataOutput = TRUE)
+          qr <- qr_code(url)
           qr_file <- sprintf("doi-qr-%s.pdf", gsub(" ", "-", this_doi$name))
           pdf(qr_file, width = 1.4, height = 1.4)
           par(mai = rep(0, 4), mar = rep(0, 4))
-          image(qr, asp = 1, col = c("#C04384", "#FFFFFF"), axes = FALSE)
+          plot(qr, col = c("#C04384", "#FFFFFF"))
           dev.off()
           c(
             this_doi$name,

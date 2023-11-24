@@ -53,7 +53,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     split_by %in% c("chapter+number", "section+number"),
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
@@ -63,6 +62,24 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (
+    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+  ) {
+    Sys.time() |>
+      format("%Y-%m-%d %H:%M:%S") |>
+      c(fm$reportnr) |>
+      tail(1) |>
+      pandoc_variable_arg(name = "pagefootmessage") |>
+      c(pandoc_variable_arg("internal", "true")) |>
+      c(pandoc_args) -> pandoc_args
+  } else {
+    c(fm$doi, "!!! missing DOI !!!") |>
+      head(1) |>
+      pandoc_variable_arg(name = "doi") |>
+      c(pandoc_args) -> pandoc_args
+  }
+
   assert_that(
     getwd() |>
       path("index.Rmd") |>
@@ -110,7 +127,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     template = template, extra_dependencies = list(inbomd_dep),
     code_folding = code_folding
   )
-  post <- config$post_processor  # in case a post processor have been defined
+  op <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
     file(output, encoding = "UTF-8") |>
       readLines() -> x
@@ -119,7 +136,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
       x <- c(head(x, i - 1), "", tail(x, -i + 1))
     }
     writeLines(x, output)
-    post(metadata, input, output, clean, verbose)
+    op(metadata, input, output, clean, verbose)
   }
   config$clean_supporting <- TRUE
   return(config)

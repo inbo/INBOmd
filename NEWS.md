@@ -1,6 +1,16 @@
+# INBOmd 0.6.2
+
+* Bugfixes
+
 # INBOmd 0.6.1
 
+* INBO authors and reviewers now must use their `orcid` and a standardised
+  `affiliation`.
+  We infer INBO membership from the author's email address.
+* `create_report()` and `add_author()` will set the INBO author affiliation in
+  the language of the report.
 * `slides()` no longer requires a reviewer.
+* Install missing `TinyTeX` installation or packages.
 * Bugfixes in `create_report()`.
 
 # INBOmd 0.6.0

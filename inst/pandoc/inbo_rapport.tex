@@ -117,6 +117,8 @@ $if(ordernr)$\ordernumber{$ordernr$}$endif$
 
 $if(hyphentation)$\hyphenation{$hyphentation$}$endif$
 $if(nocolophon)$\colophon{0}$else$\colophon{1}$endif$
+$if(internal)$\public{0}$else$\public{1}$endif$
+$if(pagefootmessage)$\pagefootmessage{$pagefootmessage$}$endif$
 
 $for(header-includes)$
 $header-includes$

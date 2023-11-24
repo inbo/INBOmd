@@ -25,6 +25,11 @@ pdf_report <- function(
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  stopifnot(
+    "`internal` option in yaml is not allowed" = !has_name(fm, "internal"),
+    "`pagefootmessage` option in yaml is not allowed" =
+      !has_name(fm, "pagefootmessage")
+  )
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
   assert_that(
@@ -68,7 +73,6 @@ pdf_report <- function(
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
     )
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   path("pandoc", "inbo_rapport.tex") |>
     system.file(package = "INBOmd") -> template
@@ -100,6 +104,23 @@ pdf_report <- function(
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (
+    has_name(fm, "public_report") && !fm$public_report
+  ) {
+    Sys.time() |>
+      format("%Y-%m-%d %H:%M:%S") |>
+      c(fm$reportnr) |>
+      tail(1) |>
+      pandoc_variable_arg(name = "pagefootmessage") |>
+      c(pandoc_variable_arg("internal", "true")) |>
+      c(args) -> args
+  } else {
+    c(fm$doi, "!!! missing DOI !!!") |>
+      head(1) |>
+      pandoc_variable_arg(name = "doi") |>
+      c(args) -> args
+  }
 
   if (has_name(fm, "lof") && isTRUE(fm$lof)) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
@@ -250,7 +271,6 @@ validate_persons <- function(yaml, reviewer = TRUE) {
       c(tail(shortauthor, 1)) |>
       paste(collapse = " & ") -> yaml$shortauthor
   }
-  shortauthor <- paste(shortauthor, "<test.inbo.be>")
   assert_that(
     length(corresponding) == 1,
     msg = "A single corresponding author is required."
@@ -282,29 +302,54 @@ contact_person <- function(person) {
     gsub("\\1.", person$name$given, perl = TRUE) |>
     sprintf(fmt = "%2$s, %1$s", person$name$family) -> shortauthor
   if (!has_name(person, "orcid")) {
+    if (is_inbo(person)) {
+      sprintf(
+        "`orcid` required for %s %s", person$name$given, person$name$family
+      ) |>
+        stop(call. = FALSE)
+    }
     sprintf(
       "No `orcid` found for %s %s", person$name$given, person$name$family
     ) |>
       warning(call. = FALSE)
   }
   if (!has_name(person, "affiliation")) {
+    if (is_inbo(person)) {
+      sprintf(
+        "`affiliation` required for %s %s.\nMust be one of %s",
+        person$name$given, person$name$family,
+        paste0("`", inbo_affiliation, "`", collapse = "; ")
+      ) |>
+        stop(call. = FALSE)
+    }
     sprintf(
       "No `affiliation` found for %s %s", person$name$given, person$name$family
     ) |>
       warning(call. = FALSE)
+  } else {
+    if (is_inbo(person) && !person$affiliation %in% inbo_affiliation) {
+      sprintf(
+        "`affiliation` for %s %s must be one of %s", person$name$given,
+        person$name$family, paste0("`", inbo_affiliation, "`", collapse = "; ")
+      ) |>
+        stop(call. = FALSE)
+    }
   }
   if (is.null(person$corresponding) || !person$corresponding) {
     return(shortauthor)
   }
   assert_that(
-    "email" %in% names(person),
+    has_name(person, "email"),
     msg = "no `email` provided for the corresponding author."
   )
   sprintf("%s<%s>", shortauthor, person$email)
 }
 
 #' @importFrom assertthat assert_that has_name is.string noNA
+#' @importFrom checklist organisation
 validate_rightsholder <- function(yaml) {
+  org <- organisation$new()
+  aff <- org$get_organisation[["inbo.be"]]$affiliation
   stopifnot(
     "no `funder` found" = has_name(yaml, "funder"),
     "`funder` is not a string" = is.string(yaml$funder),
@@ -312,8 +357,6 @@ validate_rightsholder <- function(yaml) {
     "no `rightsholder` found" = has_name(yaml, "rightsholder"),
     "`rightsholder` is not a string" = is.string(yaml$rightsholder),
     "`rightsholder` is not a string" = noNA(yaml$rightsholder),
-"Research Institute for Nature and Forest (INBO) not defined as rightsholder" =
-      yaml$rightsholder == "Research Institute for Nature and Forest (INBO)",
     "no `community` found" = has_name(yaml, "community"),
     "`community` must be a string separated by `; `" =
       is.string(yaml$community),
@@ -321,6 +364,13 @@ validate_rightsholder <- function(yaml) {
       "inbo" %in% strsplit(yaml$community, "; "),
     "no `keywords` found" = has_name(yaml, "keywords"),
     "`keywords` must be a string separated by `; `" = is.string(yaml$keywords)
+  )
+  assert_that(
+    yaml$rightsholder %in% aff,
+    msg = sprintf(
+      "rightsholder must be one of the following\n%s",
+      paste(aff, collapse = "\n")
+    )
   )
   return(yaml)
 }
@@ -344,4 +394,12 @@ check_license <- function() {
       file_copy(license_file, overwrite = TRUE)
   }
   return(invisible(NULL))
+}
+
+#' @importFrom assertthat has_name
+is_inbo <- function(person) {
+  if (!has_name(person, "email")) {
+    return(FALSE)
+  }
+  grepl("inbo.be$", person$email, ignore.case = TRUE)
 }
