@@ -62,21 +62,26 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
+
+  draft <- !all(c("cover_description", "year") %in% names(fm))
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
   if (
-    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+    has_name(fm, "public_report") && !fm$public_report
   ) {
-    Sys.time() |>
-      format("%Y-%m-%d %H:%M:%S") |>
-      c(fm$reportnr) |>
-      tail(1) |>
-      pandoc_variable_arg(name = "pagefootmessage") |>
-      c(pandoc_variable_arg("internal", "true")) |>
+    c(pandoc_variable_arg("internal", "true")) |>
       c(pandoc_args) -> pandoc_args
   } else {
+    draft <- draft && !all(c("depotnr", "doi", "reportnr") %in% names(fm))
     c(fm$doi, "!!! missing DOI !!!") |>
       head(1) |>
       pandoc_variable_arg(name = "doi") |>
+      c(pandoc_args) -> pandoc_args
+  }
+  if (draft) {
+    c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[lang] |>
+      c(fm$watermark) |>
+      paste(collapse = "<br>") |>
+      pandoc_variable_arg(name = "watermark") |>
       c(pandoc_args) -> pandoc_args
   }
 
@@ -117,6 +122,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
+
   template <- system.file(
     file.path("template", "report.html"), package = "INBOmd"
   )

@@ -1,6 +1,10 @@
 $if(babel)$\PassOptionsToPackage{$babel$}{babel}$endif$
 \documentclass[twoside]{extreport}
 \usepackage{$style$}
+$if(watermark)$
+\usepackage[colorspec=0.9, fontsize=0.1\paperwidth, angle=90, hpos=5mm, anchor=lm]{draftwatermark}
+\DraftwatermarkOptions{text={$watermark$}}
+$endif$
 $if(codesize)$
 \codesize{\$codesize$}
 $endif$

@@ -81,6 +81,21 @@ $endif$
 $for(css)$
 <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
 $endfor$
+
+$if(watermark)$
+<style type="text/css">
+#watermark{
+  position: fixed;
+  top: 50%;
+  left: 200px;
+  z-index: 999;
+  transform: rotate(-90deg);
+  opacity: 0.2;
+  font-size: 5em;
+  text-align: center;
+}
+</style>
+$endif$
 </head>
 
 <body>
@@ -365,6 +380,10 @@ $if(math)$
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
+$endif$
+
+$if(watermark)$
+<div id="watermark">$watermark$</div>
 $endif$
 
 </body>

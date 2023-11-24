@@ -118,6 +118,10 @@ Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
 If not set or set to \code{FALSE} add the address of INBO Brussels.
+\item \code{watermark}: an optional text to display as a watermark on the pdf or html.
+Note that omitting any of the required element will automatically generate
+a watermark with the text \code{"DRAFT"}.
+Fill all required fields to get ride of this automatic watermark.
 }
 }
 

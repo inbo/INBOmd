@@ -15,6 +15,10 @@ epub_book <- function() {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  assert_that(
+    has_name(fm, "reportnr"), has_name(fm, "year"),
+    has_name("cover_description")
+  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
@@ -49,22 +53,15 @@ epub_book <- function() {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
   if (
-    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+    has_name(fm, "public_report") && !fm$public_report
   ) {
-    Sys.time() |>
-      format("%Y-%m-%d %H:%M:%S") |>
-      c(fm$reportnr) |>
-      tail(1) |>
-      pandoc_variable_arg(name = "pagefootmessage") |>
+    pandoc_variable_arg("pagefootmessage", fm$reportnr) |>
       c(pandoc_variable_arg("internal", "true")) |>
       c(pandoc_args) -> pandoc_args
   } else {
-    c(fm$doi, "!!! missing DOI !!!") |>
-      head(1) |>
-      pandoc_variable_arg(name = "doi") |>
-      c(pandoc_args) -> pandoc_args
+    assert_that(has_name(fm, "depotnr"), has_name(fm, "doi"))
+    validate_doi(fm$doi)
   }
   file.path("css_styles", c("fonts", "img")) |>
     system.file(package = "INBOmd") |>

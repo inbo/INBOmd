@@ -30,44 +30,60 @@ pdf_report <- function(
     "`pagefootmessage` option in yaml is not allowed" =
       !has_name(fm, "pagefootmessage")
   )
-  floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
-  assert_that(length(floatbarrier) == 1)
+  style <- list(INBO = "nl", Vlaanderen = "nl", Flanders = c("en", "fr"))
+  languages <- c(nl = "dutch", en = "english", fr = "french")
+  hide_defaults <- list(internal = FALSE, lof = FALSE, lot = FALSE)
+  defaults <- c(
+    hide_defaults, style = names(style)[1], public_report = TRUE,
+# use the first language of the style when set
+# otherwise use the first language of the first style
+    lang = unlist(style[fm$style]) |>
+      c(style[[1]]) |>
+      head(1) |>
+      unname(),
+    floatbarrier = NA, watermark = NULL,
+    other_lang = list(names(languages))
+  )
+  extra <- !names(defaults) %in% names(fm)
+  fm <- c(fm, defaults[extra])
+
+  assert_that(length(fm$floatbarrier) == 1)
   assert_that(
-    floatbarrier %in% c(NA, "section", "subsection", "subsubsection"),
+    fm$floatbarrier %in% c(NA, "section", "subsection", "subsubsection"),
     msg =
 "Allowed options for `floatbarrier` are missing, 'section', 'subsection' and
 'subsubsection'"
   )
-  style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   stopifnot(
-    "`style` is not a string" = is.string(style),
-    "`style` is not a string" = noNA(style),
-    "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'" =
-      style %in% c("INBO", "Vlaanderen", "Flanders")
+    "`style` is not a string" = is.string(fm$style),
+    "`style` is not a string" = noNA(fm$style),
+    "`style` must be one of 'INBO', 'Vlaanderen', 'Flanders'" =
+      fm$style %in% names(style)
   )
-  lang <- ifelse(
-    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
-  )
-  assert_that(length(lang) == 1)
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  assert_that(length(fm$lang) == 1)
   assert_that(
-    lang %in% names(languages),
+    fm$lang %in% names(languages),
     msg = paste(
       "`lang` must be one of:",
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
     )
   )
   assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the main language is Dutch"
+    fm$lang %in% style[[fm$style]],
+    msg = vapply(
+      names(style), FUN.VALUE = character(1), style = style,
+      FUN = function(s, style) {
+        sprintf("`%s`", style[[s]]) |>
+          paste(collapse = ", ") |>
+          sprintf(fmt = "%2$s: %1$s", s)
+      }
+    ) |>
+      paste(collapse = "; ") |>
+      sprintf(fmt = "Available combinations of `style` and `lang`\n%s")
   )
-  other_lang <- fm$other_lang
-  if (is.null(other_lang)) {
-    other_lang <- names(languages)
-  }
-  other_lang <- other_lang[other_lang != lang]
+  fm$other_lang <- fm$other_lang[fm$other_lang != fm$lang]
   assert_that(
-    all(other_lang %in% names(languages)),
+    all(fm$other_lang %in% names(languages)),
     msg = paste(
       "all `other_lang` must be in this list:",
       paste(sprintf("'%s' (%s)", names(languages), languages), collapse = ", ")
@@ -80,22 +96,8 @@ pdf_report <- function(
     "research-institute-for-nature-and-forest.csl", package = "INBOmd"
   )
 
-  style <- ifelse(style == "Flanders" & lang == "fr", "Flandre", style)
-
   args <- c(
-    "--template", template, pandoc_variable_arg("documentclass", "report"),
-    switch(
-      style,
-      Flanders = pandoc_variable_arg("style", "flanders_report"),
-      Flandre = pandoc_variable_arg("style", "flandre_report"),
-      Vlaanderen = pandoc_variable_arg("style", "vlaanderen_report"),
-      INBO = pandoc_variable_arg("style", "inbo_report")
-    ),
-    pandoc_variable_arg("corresponding", fm$corresponding),
-    pandoc_variable_arg("shortauthor", gsub("\\&", "\\\\&", fm$shortauthor)),
-    pandoc_variable_arg(
-      "babel", paste(languages[c(other_lang, lang)], collapse = ",")
-    ),
+    "--template", template,
     ifelse(
       compareVersion(as.character(pandoc_version()), "2") < 0,
       "--latex-engine", "--pdf-engine"
@@ -104,32 +106,52 @@ pdf_report <- function(
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
-  if (
-    has_name(fm, "public_report") && !fm$public_report
-  ) {
+
+  draft <- !all(c("cover_description", "year") %in% names(fm))
+  if (!fm$public_report) {
     Sys.time() |>
       format("%Y-%m-%d %H:%M:%S") |>
       c(fm$reportnr) |>
-      tail(1) |>
-      pandoc_variable_arg(name = "pagefootmessage") |>
-      c(pandoc_variable_arg("internal", "true")) |>
-      c(args) -> args
+      tail(1) -> fm$pagefootmessage
+    fm$internal <- TRUE
   } else {
-    c(fm$doi, "!!! missing DOI !!!") |>
-      head(1) |>
-      pandoc_variable_arg(name = "doi") |>
-      c(args) -> args
+    if (has_name(fm, "doi")) {
+      validate_doi(fm$doi)
+    }
+    draft <- draft && !all(c("depotnr", "doi", "reportnr") %in% names(fm))
+  }
+  if (draft) {
+    c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[fm$lang] |>
+      c(fm$watermark) |>
+      paste(collapse = "\\\\") -> fm$watermark
   }
 
-  if (has_name(fm, "lof") && isTRUE(fm$lof)) {
-    args <- c(args, pandoc_variable_arg("lof", TRUE))
-  }
-  if (has_name(fm, "lot") && isTRUE(fm$lot)) {
-    args <- c(args, pandoc_variable_arg("lot", TRUE))
-  }
+  fm[names(fm) %in% names(hide_defaults)] |>
+    unlist() -> to_hide
+  fm[names(to_hide)[!to_hide]] <- NULL
+  var_arg <- c(
+    documentclass = "report",
+    style = c(
+      Flanders_en = "flanders_report", Flandres_fr = "flandre_report",
+      Vlaanderen_nl = "vlaanderen_report", INBO_nl = "inbo_report"
+    )[paste(fm$style, fm$lang, sep = "_")] |>
+      unname(),
+    fm[c("corresponding", "doi", "internal", "lof", "lot", "watermark")],
+    shortauthor = gsub("\\&", "\\\\&", fm$shortauthor),
+    babel = paste(languages[c(fm$other_lang, fm$lang)], collapse = ",")
+  )
+  var_arg <- var_arg[!vapply(var_arg, is.null, logical(1))]
+  vapply(
+    seq_along(var_arg), FUN.VALUE = character(2), var_arg = var_arg,
+    FUN = function(i, var_arg) {
+      pandoc_variable_arg(names(var_arg)[i], var_arg[i])
+    }
+  ) |>
+    as.vector() |>
+    c(args) -> args
+
   vars <- switch(
-    floatbarrier, section = "", subsection = c("", "sub"),
+    fm$floatbarrier, section = "", subsection = c("", "sub"),
     subsubsection = c("", "sub", "subsub")
   )
   floating <- lapply(
