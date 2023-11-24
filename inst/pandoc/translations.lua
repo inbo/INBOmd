@@ -12,6 +12,7 @@ local function translation(lang)
       cover = "Foto cover",
       depotnr = "Depotnummer",
       export = "Exporteer referentie als",
+      iseries = "Interne rapporten van het",
       license_pre = "Dit werk valt onder een",
       license = "Creative Commons Naamsvermelding 4.0 Internationaal-licentie",
       location = "Vestiging",
@@ -20,7 +21,6 @@ local function translation(lang)
       ordernr = "Opdrachtnummer",
       reviewer = "Nagelezen door",
       series = "Rapporten van het",
-      unpublished = "Onuitgegeven rapport",
       vu = "Verantwoordelijke uitgever",
       year = "Gepubliceerd in"
     }
@@ -35,6 +35,7 @@ local function translation(lang)
       country = ", Belgique",
       cover = "Photo de couverture",
       depotnr = "Numéro de dépôt",
+      iseries = "Rapports internes de",
       export = "Exporter la référence à",
       license_pre = "Ce rapport est sous licence",
       license = "Creative Commons Attribution 4.0 International Licence",
@@ -44,7 +45,6 @@ local function translation(lang)
       ordernr = "Numéro de commande",
       reviewer = "Examiné par",
       series = "Rapports de",
-      unpublished = "Rapport non publié",
       vu = "Éditeur responsable",
       year = "Publié en"
     }
@@ -60,6 +60,7 @@ local function translation(lang)
       country = ", Belgium",
       depotnr = "Deposit number",
       export = "Export reference to",
+      iseries = "Internal reports of the",
       license_pre = "This work is licensed under a",
       license = "Creative Commons Attribution 4.0 International License",
       location = "Location",
@@ -68,7 +69,6 @@ local function translation(lang)
       ordernr = "Order number",
       reviewer = "Reviewed by",
       series = "Reports of the",
-      unpublished = "Unpublished report",
       vu = "Responsible publisher",
       year = "Published during"
     }

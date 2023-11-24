@@ -131,7 +131,6 @@ $if(title)$
     <h4 class ="ordernr">$ordernr$</h4>
   $endif$
   $if(nocolophon)$
-    <h4>$translation.unpublished$</h4>
   $else$
     <h1>$translation.colophon$</h1>
     $if(reviewer)$
@@ -171,7 +170,7 @@ $if(title)$
     $else$
       <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
     $endif$
-    $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
+    $title$$if(subtitle)$. $substitle$$endif$. $if(internal)$$translation.iseries$$else$$translation.series$$endif$ $translation.name$
     $if(year)$
       $year$
     $endif$
@@ -180,11 +179,12 @@ $if(title)$
     $else$
       <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
     $endif$
-    $translation.name$, $translation.brussels$. DOI:
-    $if(doi)$
-      <a class="doi" href="https://doi.org/$doi$">$doi$</a>
-    $else$
-      <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+    $translation.name$, $translation.brussels$. $if(internal)$$else$DOI:
+      $if(doi)$
+        <a class="doi" href="https://doi.org/$doi$">$doi$</a>
+      $else$
+        <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+      $endif$
     $endif$
     <br>$translation.export$ <button onclick="display_export('bibtex')" style = "color: #4183c4; background: #fff; border-width: 0px;">BibTex</button>
     <button onclick="display_export('RIS')" style = "color: #4183c4; background: #fff; border-width: 0px;">RIS</button>
@@ -209,7 +209,7 @@ $if(title)$
   adress = {$if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$},
   year = {$year$},
   number = {$year$ ($reportnr$)},
-  doi = {$doi$},
+$if(doi)$  doi = {$doi$},$endif$
   type = {techreport}
 }
 </pre>
@@ -218,11 +218,11 @@ $if(title)$
 TY  - RPRT
 $for(author)$AU  - $author.name.family$, $author.name.given$$sep$ <br>$endfor$
 TI  - $title$$if(subtitle)$. $subtitle$$endif$
-DO  - $doi$
+$if(doi)$DO  - $doi$$endif$
 PB  - $translation.name$
 PP  - $if(geraardsbergen)$Geraardsbergen$else$$translation.brussels$$endif$$translation.country$
 PY  - $year$
-SN  - 1782-9054
+$if(internal)$$else$SN  - 1782-9054$endif$
 ER  -
 </pre>
 
@@ -245,16 +245,20 @@ ER  -
 }
 </pre>
 
-    $if(depotnr)$
-      <p><b>$depotnr$</b><br>
+    $if(internal)$
+      <p><b>$translation.iseries$ $translation.name$
     $else$
-      <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+      $if(depotnr)$
+        <p><b>$depotnr$</b><br>
+      $else$
+        <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+      $endif$
+      <b>$translation.series$ $translation.name$
     $endif$
-    <b>$translation.series$ $translation.name$
     $if(year)$$year$$endif$
     $if(reportnr)$($reportnr$)$endif$
     </b><br>
-    <b>ISSN: 1782‐9054</b>
+    $if(internal)$$else$<b>ISSN: 1782‐9054</b>$endif$
 
     <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 
@@ -337,7 +341,7 @@ $include-after$
 $endfor$
 <p>&nbsp;</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons-Licentie" style="border-width:0" src="$csspath$/img/cc-by.svg" class = "cc"/></a>
-$shortauthor$ ($year$). <a href="https://doi.org/$doi$">$doi$</a>
+$shortauthor$ ($year$). $if(doi)$<a href="https://doi.org/$doi$">$doi$</a>$endif$
             </section>
         </div>
       </div>

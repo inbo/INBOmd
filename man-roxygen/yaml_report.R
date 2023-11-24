@@ -9,9 +9,10 @@
 #'
 #' - `public_report`: A logical value indicating whether the report will be
 #'    published or not.
-#'    Setting `public_report: FALSE` will remove the colophon and replace the
-#'    DOI with a text indicating the report is unpublished.
+#'    Setting `public_report: FALSE` will alter the colophon.
 #'    Omitting `public_report` is equivalent to `public_report: TRUE`.
+#'    An internal report can't have a DOI.
+#'    Setting a DOI is equivalent to `public_report: TRUE`.
 #' - **`reviewer`**: names of the reviewers.
 #'   Use the same syntax as for the authors.
 #' - **`year`**: year of publication.

@@ -54,13 +54,15 @@ epub_book <- function() {
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
-  if (has_name(fm, "public_report") && !fm$public_report) {
-    c(
-      nl = "onuitgeven rapport", en = "unpublished report",
-      fr = "rapport non publi\u00e9"
-    )[lang] |>
-      pandoc_variable_arg(name = "doi") |>
-      c(pandoc_variable_arg("nocolophon", "true")) |>
+  if (
+    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+  ) {
+    Sys.time() |>
+      format("%Y-%m-%d %H:%M:%S") |>
+      c(fm$reportnr) |>
+      tail(1) |>
+      pandoc_variable_arg(name = "pagefootmessage") |>
+      c(pandoc_variable_arg("internal", "true")) |>
       c(pandoc_args) -> pandoc_args
   } else {
     c(fm$doi, "!!! missing DOI !!!") |>

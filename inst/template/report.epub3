@@ -67,7 +67,6 @@ $if(titlepage)$
     <h4 class ="ordernr">$ordernr$</h4>
   $endif$
   $if(nocolophon)$
-    <h4>$translation.unpublished$</h4>
   $else$
   <h1>$translation.colophon$</h1>
   $if(reviewer)$
@@ -107,7 +106,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. $translation.series$ $translation.name$
+  $title$$if(subtitle)$. $substitle$$endif$. $if(internal)$$translation.iseries$$else$$translation.series$$endif$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -116,18 +115,23 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: reportnr !!!!</h1>
   $endif$
-  $translation.name$, $translation.brussels$. DOI:
-  $if(doi)$
-    <a class="doi" href="#">$doi$</a>
-  $else$
-    <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+  $translation.name$, $translation.brussels$.$if(internal)$$else$ DOI:
+    $if(doi)$
+      <a class="doi" href="#">$doi$</a>
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: doi !!!!</h1>
+    $endif$
   $endif$
-  $if(depotnr)$
-    <p><b>$depotnr$</b><br>
+  $if(internal)$
+    <p><b>$translation.iseries$ $translation.name$
   $else$
-    <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+    $if(depotnr)$
+      <p><b>$depotnr$</b><br>
+    $else$
+      <h1 class = "missing">!!!! ONTBREKEND: depotnr !!!!</h1>
+    $endif$
+    <b>$translation.series$ $translation.name$
   $endif$
-  <b>$translation.series$ $translation.name$
   $if(year)$
     $year$
   $endif$
@@ -135,7 +139,7 @@ $if(titlepage)$
     ($reportnr$)
   $endif$
   </b><br>
-  <b>ISSN: 1782‐9054</b>
+$if(internal)$$else$  <b>ISSN: 1782‐9054</b>$endif$
 
   <p><b>$translation.vu$:</b><br>Maurice Hoffmann
 

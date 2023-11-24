@@ -72,9 +72,10 @@ publication.
 \itemize{
 \item \code{public_report}: A logical value indicating whether the report will be
 published or not.
-Setting \code{public_report: FALSE} will remove the colophon and replace the
-DOI with a text indicating the report is unpublished.
+Setting \code{public_report: FALSE} will alter the colophon.
 Omitting \code{public_report} is equivalent to \code{public_report: TRUE}.
+An internal report can't have a DOI.
+Setting a DOI is equivalent to \code{public_report: TRUE}.
 \item \strong{\code{reviewer}}: names of the reviewers.
 Use the same syntax as for the authors.
 \item \strong{\code{year}}: year of publication.

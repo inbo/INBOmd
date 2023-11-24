@@ -25,9 +25,10 @@ pdf_report <- function(
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
-  assert_that(
-    !has_name(fm, "nocolophon"), msg = "Legacy option `nocolophon` detected.
-    Please use the `public_report` option."
+  stopifnot(
+    "`internal` option in yaml is not allowed" = !has_name(fm, "internal"),
+    "`pagefootmessage` option in yaml is not allowed" =
+      !has_name(fm, "pagefootmessage")
   )
   floatbarrier <- ifelse(has_name(fm, "floatbarrier"), fm$floatbarrier, NA)
   assert_that(length(floatbarrier) == 1)
@@ -104,13 +105,15 @@ pdf_report <- function(
   )
   args <- args[args != ""]
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
-  if (has_name(fm, "public_report") && !fm$public_report) {
-    c(
-      nl = "onuitgeven rapport", en = "unpublished report",
-      fr = "rapport non publi\u00e9"
-    )[lang] |>
-      pandoc_variable_arg(name = "doi") |>
-      c(pandoc_variable_arg("nocolophon", "true")) |>
+  if (
+    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+  ) {
+    Sys.time() |>
+      format("%Y-%m-%d %H:%M:%S") |>
+      c(fm$reportnr) |>
+      tail(1) |>
+      pandoc_variable_arg(name = "pagefootmessage") |>
+      c(pandoc_variable_arg("internal", "true")) |>
       c(args) -> args
   } else {
     c(fm$doi, "!!! missing DOI !!!") |>
@@ -118,7 +121,6 @@ pdf_report <- function(
       pandoc_variable_arg(name = "doi") |>
       c(args) -> args
   }
-
 
   if (has_name(fm, "lof") && isTRUE(fm$lof)) {
     args <- c(args, pandoc_variable_arg("lof", TRUE))
