@@ -106,7 +106,7 @@ pdf_report <- function(
   args <- args[args != ""]
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
   if (
-    !has_name(fm, "doi") && has_name(fm, "public_report") && !fm$public_report
+    has_name(fm, "public_report") && !fm$public_report
   ) {
     Sys.time() |>
       format("%Y-%m-%d %H:%M:%S") |>
