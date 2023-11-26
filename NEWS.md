@@ -1,5 +1,14 @@
 # INBOmd 0.6.2
 
+* `pdf_report()`, `gitbook()` and `epub_book()` gain an option to create 
+  internal reports with a different colophon.
+* `pdf_report()` and `gitbook()` gain a watermark argument.
+  It adds a text watermark in the margin of every page.
+  An automatic watermark appears when one of the required colophon fields is
+  missing.
+  Adding the information for all required colophon fields will remove this
+  automatic watermark.
+* All INBO personnel must display proper affiliation and ORCID.
 * Bugfixes
 
 # INBOmd 0.6.1
