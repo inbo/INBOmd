@@ -117,8 +117,12 @@ pdf_report <- function(
   } else {
     if (has_name(fm, "doi")) {
       validate_doi(fm$doi)
+      draft <- draft && !all(c("depotnr", "doi", "reportnr") %in% names(fm))
+    } else {
+      draft <- TRUE
+      fm$doi <- "!!! missing DOI !!!"
     }
-    draft <- draft && !all(c("depotnr", "doi", "reportnr") %in% names(fm))
+    fm$pagefootmessage <- fm$doi
   }
   if (draft) {
     c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[fm$lang] |>
@@ -132,11 +136,16 @@ pdf_report <- function(
   var_arg <- c(
     documentclass = "report",
     style = c(
-      Flanders_en = "flanders_report", Flandres_fr = "flandre_report",
+      Flanders_en = "flanders_report", Flanders_fr = "flandre_report",
       Vlaanderen_nl = "vlaanderen_report", INBO_nl = "inbo_report"
     )[paste(fm$style, fm$lang, sep = "_")] |>
       unname(),
-    fm[c("corresponding", "doi", "internal", "lof", "lot", "watermark")],
+    fm[
+      c(
+        "corresponding", "doi", "internal", "lof", "lot", "watermark",
+        "pagefootmessage"
+      )
+    ],
     shortauthor = gsub("\\&", "\\\\&", fm$shortauthor),
     babel = paste(languages[c(fm$other_lang, fm$lang)], collapse = ",")
   )

@@ -17,7 +17,7 @@ epub_book <- function() {
     validate_rightsholder() -> fm
   assert_that(
     has_name(fm, "reportnr"), has_name(fm, "year"),
-    has_name("cover_description")
+    has_name(fm, "cover_description")
   )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)

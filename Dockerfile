@@ -108,6 +108,13 @@ RUN apt-get update \
     r-cran-tinytex \
     r-cran-webshot
 
+## Install textshape
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libfribidi-dev \
+    libharfbuzz-dev \
+  && Rscript -e 'remotes::install_cran("textshape")'
+
 ## Install ragg
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -176,7 +183,11 @@ RUN  Rscript -e 'remotes::install_cran("lipsum")'
 RUN  Rscript -e 'remotes::install_cran("here")'
 
 ## Install gert
-RUN  Rscript -e 'remotes::install_cran("gert")'
+RUN  apt-get update \
+  && apt-get install -y  --no-install-recommends \
+    libcurl4-openssl-dev \
+    libssl-dev \
+  && Rscript -e 'remotes::install_cran("gert")'
 
 ## Install webshot dependency
 RUN  Rscript -e 'webshot::install_phantomjs()'
