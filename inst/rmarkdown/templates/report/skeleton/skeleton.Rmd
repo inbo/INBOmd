@@ -5,16 +5,17 @@ title:
 author: 
   - name:
       given: Firstname1
-      family: "Last name1"
+      family: Last name1
     email: "firstname1.lastname1@inbo.be"
     orcid: 0000-0002-1825-0097
-    affiliation: Research Institute for Nature and Forest (INBO)
+    affiliation: Instituut voor Natuur- en Bosonderzoek (INBO)
     corresponding: true
   - name:
       given: Firstname2
       family: Lastname2
     email: "voornaam2.achternaam2@inbo.be"
     orcid: 0000-0002-1825-0097
+    affiliation: Instituut voor Natuur- en Bosonderzoek (INBO)
 style: INBO
 lang: nl
 
@@ -25,9 +26,9 @@ reviewer:
       family: Lastname
     email: "firstname.lastname@inbo.be"
     orcid: 0000-0002-1825-0097
-    affiliation: Research Institute for Nature and Forest (INBO)
-funder: Research Institute for Nature and Forest (INBO)
-rightsholder: Research Institute for Nature and Forest (INBO)
+    affiliation: Instituut voor Natuur- en Bosonderzoek (INBO)
+funder: Instituut voor Natuur- en Bosonderzoek (INBO)
+rightsholder: Instituut voor Natuur- en Bosonderzoek (INBO)
 community: inbo
 keywords:
 # year:

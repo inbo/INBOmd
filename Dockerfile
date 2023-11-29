@@ -108,6 +108,13 @@ RUN apt-get update \
     r-cran-tinytex \
     r-cran-webshot
 
+## Install textshape
+RUN  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libfribidi-dev \
+    libharfbuzz-dev \
+  && Rscript -e 'remotes::install_cran("textshape")'
+
 ## Install ragg
 RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -176,7 +183,11 @@ RUN  Rscript -e 'remotes::install_cran("lipsum")'
 RUN  Rscript -e 'remotes::install_cran("here")'
 
 ## Install gert
-RUN  Rscript -e 'remotes::install_cran("gert")'
+RUN  apt-get update \
+  && apt-get install -y  --no-install-recommends \
+    libcurl4-openssl-dev \
+    libssl-dev \
+  && Rscript -e 'remotes::install_cran("gert")'
 
 ## Install webshot dependency
 RUN  Rscript -e 'webshot::install_phantomjs()'
@@ -199,6 +210,9 @@ RUN  mkdir ${HOME}/.fonts \
   && wget -O ${HOME}/.fonts/Inconsolatazi4-Bold.otf http://mirrors.ctan.org/fonts/inconsolata/opentype/Inconsolatazi4-Bold.otf \
   && fc-cache -fv \
   && Rscript -e 'tinytex:::updmap()'
+
+## Install kableExtra
+RUN  Rscript -e 'remotes::install_cran("kableExtra")'
 
 ## Install current version of INBOmd
 COPY .Rbuildignore inbomd/.Rbuildignore

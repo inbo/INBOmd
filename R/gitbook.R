@@ -53,7 +53,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     split_by %in% c("chapter+number", "section+number"),
     msg = "`split_by` must be either 'chapter+number' or `section+number`"
   )
-  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
 
   pandoc_args <- c(
     "--csl",
@@ -63,6 +62,29 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
+
+  draft <- !all(c("cover_description", "year") %in% names(fm))
+  validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
+  if (
+    has_name(fm, "public_report") && !fm$public_report
+  ) {
+    c(pandoc_variable_arg("internal", "true")) |>
+      c(pandoc_args) -> pandoc_args
+  } else {
+    draft <- draft && !all(c("depotnr", "doi", "reportnr") %in% names(fm))
+    c(fm$doi, "!!! missing DOI !!!") |>
+      head(1) |>
+      pandoc_variable_arg(name = "doi") |>
+      c(pandoc_args) -> pandoc_args
+  }
+  if (draft) {
+    c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[lang] |>
+      c(fm$watermark) |>
+      paste(collapse = "<br>") |>
+      pandoc_variable_arg(name = "watermark") |>
+      c(pandoc_args) -> pandoc_args
+  }
+
   assert_that(
     getwd() |>
       path("index.Rmd") |>
@@ -100,6 +122,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
+
   template <- system.file(
     file.path("template", "report.html"), package = "INBOmd"
   )
@@ -110,7 +133,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     template = template, extra_dependencies = list(inbomd_dep),
     code_folding = code_folding
   )
-  post <- config$post_processor  # in case a post processor have been defined
+  op <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
     file(output, encoding = "UTF-8") |>
       readLines() -> x
@@ -119,7 +142,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
       x <- c(head(x, i - 1), "", tail(x, -i + 1))
     }
     writeLines(x, output)
-    post(metadata, input, output, clean, verbose)
+    op(metadata, input, output, clean, verbose)
   }
   config$clean_supporting <- TRUE
   return(config)

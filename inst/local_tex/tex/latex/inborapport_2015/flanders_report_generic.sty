@@ -23,8 +23,14 @@
 \def\subtitle#1{\def\@subtitle{#1}}
 \subtitle{}
 
+\def\pagefootmessage#1{\def\@pagefootmessage{#1}}
+\pagefootmessage{}
+
 \def\colophon#1{\def\@colophon{#1}}
 \colophon{1}
+
+\def\public#1{\def\@public{#1}}
+\public{1}
 
 \def\colofonauthor#1{\def\@colofonauthor{#1}}
 \colofonauthor{}
@@ -433,7 +439,7 @@
     Gaverstraat 4, 9500 Geraardsbergen \cfcountry
   }{
     Brussel \\
-    Herman Teirlinckgebouw, Havenlaan 88 bus 73, 1000 Brussel \cfcountry
+    Herman Teirlinckgebouw, Havenlaan 88, 1000 Brussel \cfcountry
   }
 }
 
@@ -500,6 +506,15 @@
 }
 \addto\extrasfrench{%
   \def\cfseries{Rapports de \cfinbo}%
+}
+\addto\extrasdutch{%
+  \def\cfiseries{Interne rapporten van het \cfinbo}%
+}
+\addto\extrasenglish{%
+  \def\cfiseries{Internal reports of the \cfinbo}%
+}
+\addto\extrasfrench{%
+  \def\cfiseries{Rapports internes de \cfinbo}%
 }
 \addto\extrasdutch{%
   \def\cfcity{Brussel}%
@@ -591,13 +606,20 @@
 
       \textbf{e-mail:} \\ \@corresponding
 
+    \ifnum \@public = 0
+      \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfiseries~\@year~(\@reportnr). \cfinbo, \cfcity.
+
+      \textbf{\cfiseries~\@year~(\@reportnr)}
+    \else
       \textbf{\cfcitation} \\ \@shortauthor~(\@year). \@citetitle. \cfseries~\@year~(\@reportnr). \cfinbo, \cfcity. DOI: \@doi
 
       \textbf{\@depotnr} \\
       \textbf{\cfseries~\@year~(\@reportnr)} \\
       \textbf{ISSN: 1782-9054}
+    \fi
 
-      \textbf{\cfvu} \\ Maurice Hoffmann
+
+      \textbf{\cfvu} \\ Hilde Eggermont
 
       \textbf{\cfcover} \\ \@coverdescription
 
@@ -635,7 +657,9 @@
       \vspace{144pt}
 
     \hspace{10mm}\parbox[t]{140mm}{
-      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright \mainColourURL{\@doi} \\ \@ordernumber
+      \fontsize{\fontsizeordernr}{\fontsizeordernrinter}\selectfont \raggedright
+      \ifnum \@public > 1 \@doi \\ \fi
+      \@ordernumber
   }
 
   \vfill

@@ -70,20 +70,26 @@ Add \code{corresponding: true} to the corresponding author.
 \section{Available YAML headers options specific for reports}{
 
 
-Bold items are required.
+Bold items are required when creating a public report.
 Omitting them results in an ugly warning in the rendered document.
 This is deliberate done so you can prepare the document without adding the
 information.
 But the ugly warnings nudges you to add the required information before
 publication.
 \itemize{
+\item \code{public_report}: A logical value indicating whether the report will be
+published or not.
+Setting \code{public_report: FALSE} will alter the colophon.
+Omitting \code{public_report} is equivalent to \code{public_report: TRUE}.
+An internal report can't have a DOI.
+Setting a DOI is equivalent to \code{public_report: TRUE}.
 \item \strong{\code{reviewer}}: names of the reviewers.
 Use the same syntax as for the authors.
 \item \strong{\code{year}}: year of publication.
 Used in the same places as \code{shortauthor}.
 \item \strong{\code{cover_photo}}: the relative path to the image you want on the cover.
-\item \strong{\code{cover_description}}: Description of the cover photo, including information
-on the author of the picture and license information.
+\item \strong{\code{cover_description}}: Description of the cover photo, including
+information on the author of the picture and license information.
 \item \code{cover} the relative path to a pdf with the cover provided by the graphical
 designer.
 The first page of this pdf will be prepended to the pdf version of the
@@ -106,6 +112,10 @@ Only used when \code{cooperation} is set.
 \item \code{geraardsbergen}: Set this to \code{TRUE} to add the address of INBO
 Geraardsbergen to the colophon.
 If not set or set to \code{FALSE} add the address of INBO Brussels.
+\item \code{watermark}: an optional text to display as a watermark on the pdf or html.
+Note that omitting any of the required element will automatically generate
+a watermark with the text \code{"DRAFT"}.
+Fill all required fields to get ride of this automatic watermark.
 }
 }
 

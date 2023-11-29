@@ -1,6 +1,25 @@
+# INBOmd 0.6.2
+
+* `pdf_report()`, `gitbook()` and `epub_book()` gain an option to create 
+  internal reports with a different colophon.
+* `pdf_report()` and `gitbook()` gain a watermark argument.
+  It adds a text watermark in the margin of every page.
+  An automatic watermark appears when one of the required colophon fields is
+  missing.
+  Adding the information for all required colophon fields will remove this
+  automatic watermark.
+* All INBO personnel must display proper affiliation and ORCID.
+* Bugfixes
+
 # INBOmd 0.6.1
 
+* INBO authors and reviewers now must use their `orcid` and a standardised
+  `affiliation`.
+  We infer INBO membership from the author's email address.
+* `create_report()` and `add_author()` will set the INBO author affiliation in
+  the language of the report.
 * `slides()` no longer requires a reviewer.
+* Install missing `TinyTeX` installation or packages.
 * Bugfixes in `create_report()`.
 
 # INBOmd 0.6.0
