@@ -26,4 +26,4 @@ identifiers:
   value: 10.5281/zenodo.842223
 - type: url
   value: https://inbo.github.io/INBOmd/
-version: 0.6.2
+version: 0.6.3
