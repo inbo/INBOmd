@@ -310,4 +310,5 @@ check_author <- function(lang = "nl") {
     )
     person <- check_author(lang = "nl")
   }
+  return(person)
 }
