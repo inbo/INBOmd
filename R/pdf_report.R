@@ -191,11 +191,11 @@ pdf_report <- function(
 
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text)
-    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint: absolute_path_linter, line_length_linter.
+    startbib <- grep("\\\\phantomsection\\\\label\\{refs\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(
-          text[1:(appendix - 1)],              # mainmatter
+          head(text, appendix - 1),            # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
           text[startbib],                      # bibliography
@@ -204,18 +204,18 @@ pdf_report <- function(
           "",
           text[(startbib + 2):(length(text) - 1)],
           text[(appendix):(startbib - 1)],     # appendix
-          text[length(text)]                   # backmatter
+          tail(text, 1)                        # backmatter
         )
       } else {
         text <- c(
-          text[1:(startbib - 1)],              # mainmatter
+          head(text, startbib - 1),            # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
           text[startbib],                      # bibliography
           "",
           text[startbib + 1],
           "",
-          text[(startbib + 2):length(text)]
+          tail(text, -startbib - 1)
         )
       }
     }
