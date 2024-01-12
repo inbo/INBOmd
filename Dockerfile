@@ -57,12 +57,6 @@ RUN  apt-get update \
   && apt-get install -y --no-install-recommends \
     git
 
-## Install pandoc
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    pandoc \
-    pandoc-citeproc
-
 ## Install gpg
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -81,6 +75,11 @@ RUN apt-get update -qq \
 RUN apt-get update \
   && apt-get install -y  --no-install-recommends \
     r-base-dev
+
+## Install pandoc
+RUN  wget https://github.com/jgm/pandoc/releases/download/3.1.8/pandoc-3.1.8-1-amd64.deb \
+  && dpkg -i pandoc-3.1.8-1-amd64.deb \
+  && rm pandoc-3.1.8-1-amd64.deb
 
 COPY docker/.Rprofile /usr/lib/R/etc/Rprofile.site
 
