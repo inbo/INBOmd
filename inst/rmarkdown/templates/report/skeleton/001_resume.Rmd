@@ -1,7 +1,0 @@
-\bfrench
-
-# Résumé français {-}
-
-Ajoutez éventuellement une traduction du résumé ici.
-
-\efrench
