@@ -7,13 +7,13 @@
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
 #' @importFrom fs path
-#' @importFrom rmarkdown output_format knitr_options pandoc_options
-#' pandoc_variable_arg includes_to_pandoc_args pandoc_version
-#' @importFrom utils compareVersion
+#' @importFrom rmarkdown output_format knitr_options pandoc_available
+#' pandoc_options pandoc_variable_arg includes_to_pandoc_args
 #' @family output
 pdf_report <- function(
   fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
+  pandoc_available(version = "3.1.8", error = TRUE)
   dots <- list(...)
   assert_that(
     !has_name(dots, "number_sections"), msg =
@@ -97,12 +97,8 @@ pdf_report <- function(
   )
 
   args <- c(
-    "--template", template,
-    ifelse(
-      compareVersion(as.character(pandoc_version()), "2") < 0,
-      "--latex-engine", "--pdf-engine"
-    ),
-    "xelatex", pandoc_args, c("--csl", pandoc_path_arg(csl)),
+    "--template", template, "--pdf-engine",
+    "xelatex", pandoc_args, "--csl", pandoc_path_arg(csl),
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
@@ -195,11 +191,11 @@ pdf_report <- function(
 
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text)
-    startbib <- grep("\\\\hypertarget\\{refs\\}\\{\\}", text) # nolint: absolute_path_linter, line_length_linter.
+    startbib <- grep("\\\\phantomsection\\\\label\\{refs\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(
-          text[1:(appendix - 1)],              # mainmatter
+          head(text, appendix - 1),            # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
           text[startbib],                      # bibliography
@@ -208,18 +204,18 @@ pdf_report <- function(
           "",
           text[(startbib + 2):(length(text) - 1)],
           text[(appendix):(startbib - 1)],     # appendix
-          text[length(text)]                   # backmatter
+          tail(text, 1)                        # backmatter
         )
       } else {
         text <- c(
-          text[1:(startbib - 1)],              # mainmatter
+          head(text, startbib - 1),            # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
           text[startbib],                      # bibliography
           "",
           text[startbib + 1],
           "",
-          text[(startbib + 2):length(text)]
+          tail(text, -startbib - 1)
         )
       }
     }

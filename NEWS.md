@@ -1,3 +1,8 @@
+# INBOmd 0.6.3
+
+* `pdf_report()` enforces pandoc >= 3.1.8
+* `create_report()` fixed (#97)
+
 # INBOmd 0.6.2
 
 * `pdf_report()`, `gitbook()` and `epub_book()` gain an option to create 

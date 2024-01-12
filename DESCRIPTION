@@ -1,7 +1,7 @@
 Type: Package
 Package: INBOmd
 Title: Markdown Templates for INBO
-Version: 0.6.2
+Version: 0.6.3
 Authors@R: c(
     person("Thierry", "Onkelinx", , "thierry.onkelinx@inbo.be", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8804-4216", affiliation = "Research Institute for Nature and Forest (INBO)")),
@@ -49,4 +49,4 @@ Config/checklist/keywords: markdown; bookdown; corporate identity;
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
