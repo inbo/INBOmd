@@ -29,7 +29,7 @@ references <- function(appendix = FALSE, part = FALSE) {
     assert_that(is.flag(part), noNA(part))
     output <- c(
       "\\appendix"[appendix],
-      "\\part*{\\appendixname}"[appendix && part]
+      "\\part*{\\appendicesname}"[appendix && part]
     )
   }
   cat(output, sep = "\n\n")
