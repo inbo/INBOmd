@@ -191,6 +191,9 @@ pdf_report <- function(
 
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text)
+    if (length(appendix) > 1) {
+      appendix <- appendix[1]
+    }
     startbib <- grep("\\\\phantomsection\\\\label\\{refs\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
