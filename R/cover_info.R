@@ -21,7 +21,9 @@ cover_info <- function(path = "index.Rmd") {
     function(x) {
       ifelse(is.null(x$corresponding) || !x$corresponding, "", x$email)
     }
-  ) -> yaml_header$corresponding
+  ) |>
+    paste(collapse = ", ") |>
+    trimws(whitespace = "[ \t\r\n,]") -> yaml_header$corresponding
   vapply(
     yaml_header$author, FUN.VALUE = character(1),
     FUN = function(author) {
