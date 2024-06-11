@@ -1,6 +1,7 @@
 #' Create a report with the Flemish corporate identity
 #' @inheritParams slides
 #' @inheritParams rmarkdown::pdf_document
+#' @inheritParams rmarkdown::output_format
 #' @template yaml_generic
 #' @template yaml_report
 #' @template yaml_pdf
@@ -10,9 +11,12 @@
 #' @importFrom rmarkdown output_format knitr_options pandoc_available
 #' pandoc_options pandoc_variable_arg includes_to_pandoc_args
 #' @family output
-pdf_report <- function(
-  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
-) {
+pdf_report <- function(fig_crop = "auto",
+                       includes = NULL,
+                       keep_tex = FALSE,
+                       clean_supporting = TRUE,
+                       pandoc_args = NULL,
+                       ...) {
   pandoc_available(version = "3.1.8", error = TRUE)
   dots <- list(...)
   assert_that(
@@ -239,10 +243,10 @@ pdf_report <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = FALSE
+      keep_tex = keep_tex
     ),
     post_processor = post_processor,
-    clean_supporting = TRUE
+    clean_supporting = clean_supporting
   )
   config <- pdf_book(
     toc = TRUE, number_sections = TRUE, fig_caption = TRUE, fig_crop = fig_crop,
