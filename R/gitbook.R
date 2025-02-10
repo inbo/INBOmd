@@ -22,10 +22,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
-  stopifnot(
-    "Missing `shorttitle` in YAML header of index.Rmd" =
-      has_name(fm, "shorttitle")
-  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -118,17 +114,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
 
   check_license()
-  cit <- citation_meta$new()
-  no_problem <-
-    (
-      is.null(cit$get_errors) ||
-        all(grepl(".zenodo.json is modified", cit$get_errors))
-    ) &&
-    is.null(cit$get_warnings) && length(cit$get_notes) == 0
-  if (!no_problem) {
-    print(cit)
-    stop("problems in metadata. Please check the YAML header of your index.Rmd")
-  }
+  check_zenodo(fm)
 
   pandoc_args <- c(
     pandoc_args,
@@ -151,8 +137,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
   op <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
-warning("Input: ", input)
-warning("Output: ", output)
     file(output, encoding = "UTF-8") |>
       readLines() -> x
     i <- head(grep('^<div id="refs" class="references[^"]*"[^>]*>$', x), 1)
@@ -195,4 +179,29 @@ gitbook_edit_button <- function(path) {
     c(yaml[!grepl("^edit: ", yaml)], url), file.path(path, "_bookdown.yml")
   )
   return(invisible(TRUE))
+}
+
+#' @importFrom assertthat has_name
+check_zenodo <- function(fm) {
+  stopifnot(
+    "Missing `shorttitle` in YAML header of index.Rmd" =
+      has_name(fm, "shorttitle"),
+    "Multiple `shorttitle` in `index.Rmd`" = length(fm$shorttitle) == 1,
+"`shorttitle` may contain only letters [A-Za-z], digits [0-9] and dashes (-)" =
+      grepl("^[[:alnum:]-]+$", fm$shorttitle),
+    "`shorttitle` contains less than 10 characters" = nchar(fm$shorttitle) > 9,
+    "`shorttitle` contains more than 80 characters" = nchar(fm$shorttitle) <= 80
+  )
+  cit <- citation_meta$new()
+  no_problem <-
+    (
+      is.null(cit$get_errors) ||
+        all(grepl(".zenodo.json is modified", cit$get_errors))
+    ) &&
+    is.null(cit$get_warnings) && length(cit$get_notes) == 0
+  if (!no_problem) {
+    print(cit)
+    stop("problems in metadata. Please check the YAML header of your index.Rmd")
+  }
+  return(TRUE)
 }
