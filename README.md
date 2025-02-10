@@ -52,6 +52,12 @@ if (!tinytex:::is_tinytex()) {
 }
 ```
 
+In case the installation of `TinyTeX` fails on Windows, run the command below and retry to install `TinyTex`.
+
+```
+Sys.setenv(PATH = paste0(old_path, ";C:\\Windows\\system32"))
+```
+
 Once `TinyTeX` is installed, you need to restart RStudio.
 Then you can proceed with the installation of `INBOmd`.
 
