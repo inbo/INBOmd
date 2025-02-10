@@ -8,6 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
+#' @importFrom checklist citation_meta
 #' @importFrom fs file_exists path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
@@ -21,6 +22,10 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     yaml_front_matter() |>
     validate_persons(reviewer = TRUE) |>
     validate_rightsholder() -> fm
+  stopifnot(
+    "Missing `shorttitle` in YAML header of index.Rmd" =
+      has_name(fm, "shorttitle")
+  )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -113,6 +118,17 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
 
   check_license()
+  cit <- citation_meta$new()
+  no_problem <-
+    (
+      is.null(cit$get_errors) ||
+        all(grepl(".zenodo.json is modified", cit$get_errors))
+    ) &&
+    is.null(cit$get_warnings) && length(cit$get_notes) == 0
+  if (!no_problem) {
+    print(cit)
+    stop("problems in metadata. Please check the YAML header of your index.Rmd")
+  }
 
   pandoc_args <- c(
     pandoc_args,
@@ -135,6 +151,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
   op <- config$post_processor  # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
+warning("Input: ", input)
+warning("Output: ", output)
     file(output, encoding = "UTF-8") |>
       readLines() -> x
     i <- head(grep('^<div id="refs" class="references[^"]*"[^>]*>$', x), 1)
