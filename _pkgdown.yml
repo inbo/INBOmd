@@ -14,7 +14,7 @@ navbar:
       href: articles/index.html
       menu:
       - text: Getting started
-        href: articles/INBOmd.html
+        href: articles/inbomd.html
 
 reference:
 - title: Output formats
