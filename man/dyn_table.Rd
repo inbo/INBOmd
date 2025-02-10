@@ -50,6 +50,7 @@ Other utils:
 \code{\link{column_width}()},
 \code{\link{cover_info}()},
 \code{\link{create_report}()},
+\code{\link{inbo_website}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()},
 \code{\link{validate_doi}()}
