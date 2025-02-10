@@ -60,10 +60,10 @@ Then you can proceed with the installation of `INBOmd`.
 install.packages("INBOmd", repos = "https://inbo.r-universe.dev")
 
 ## alternative: installation from github
-#if (!"remotes" %in% rownames(installed.packages())) {
-#  install.packages("remotes")
+#if (!require("pak")) {
+#  install.packages("pak")
 #}
-#remotes::install_github("inbo/INBOmd", dependencies = TRUE)
+#pak::pkg_install("inbo/INBOmd", dependencies = TRUE)
 
 # add the local latex package contained in INBOmd to the TinyTeX install 
 tinytex::tlmgr_conf(
@@ -72,7 +72,7 @@ tinytex::tlmgr_conf(
 
 # install some other needed latex packages 
 tinytex::tlmgr_install(c(
-  "inconsolata", "times", "tex", "helvetic", "dvips", "hyphen-dutch",
-  "hyphen-french"
+  "babel-dutch", "babel-frech", "dvips", "helvetic", "hyphen-dutch",
+  "hyphen-french", "inconsolata", "tex", "times"
 ))
 ```
