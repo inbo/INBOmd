@@ -32,7 +32,8 @@ Imports:
     qrcode (>= 0.1.2),
     rmarkdown,
     tinytex,
-    utils
+    utils,
+    withr
 Suggests:
     DT,
     ggplot2,
