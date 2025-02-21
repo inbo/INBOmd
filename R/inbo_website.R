@@ -10,6 +10,7 @@
 #' @importFrom withr defer
 inbo_website <- function(path = ".") {
   assert_that(is.string(path), noNA(path))
+  path <- normalizePath(path, mustWork = FALSE)
   assert_that(is_dir(path), msg = "`path` is not an existing directory")
   assert_that(
     is_file(path(path, "index.Rmd")), msg = "index.Rmd not found in `path`"
@@ -64,7 +65,14 @@ inbo_website <- function(path = ".") {
 
   # render report
   for (this_format in formats) {
-    render_site(output_format = this_format, encoding = "UTF-8", quiet = TRUE)
+    sprintf("output_format = \"%s\", quiet = FALSE", this_format) |>
+      paste0(", envir = new.env(), encoding = \"UTF-8\"") |>
+      sprintf(fmt = "'rmarkdown::render_site(%s)'") -> arg
+    system2(
+      command = "Rscript", stdout = TRUE, stderr = TRUE, wait = TRUE,
+      args = c("-e", arg)
+    ) -> out
+    cat(out, sep = "\n")
   }
 
   # copy .zenodo.json to output directory
