@@ -42,6 +42,9 @@ inbo_website <- function(path = ".") {
     "At least output `INBOmd::gitbook` must be present" =
       "INBOmd::gitbook" %in% formats
   )
+  formats <- c(
+    formats[formats != "INBOmd::gitbook"], formats[formats == "INBOmd::gitbook"]
+  )
   cit <- citation_meta$new(path)
   if (
     !is.null(cit$get_errors) &&
