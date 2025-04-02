@@ -39,6 +39,7 @@ Suggests:
     ggplot2,
     INBOtheme (>= 0.5.4),
     pander,
+    quarto,
     rstudioapi,
     webshot
 VignetteBuilder: 
