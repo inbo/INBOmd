@@ -147,14 +147,5 @@ inbo_zending <- function(
   pandoc_args = NULL,
   ...
 ) {
-  .Deprecated(
-    mission(
-      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args,
-      conference = conference, conferencedate = conferencedate, lang = lang,
-      conferenceplace = conferenceplace, website = website, keep_tex = keep_tex,
-      reportdate = reportdate, colleagues = colleagues,
-      floatbarrier = floatbarrier, ...
-    ),
-    msg = "`inbo_zending` is deprecated. Use `mission` instead."
-  )
+  .Defunct("mission")
 }

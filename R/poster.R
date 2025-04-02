@@ -218,12 +218,5 @@ inbo_poster <- function(
   pandoc_args = NULL,
   ...
 ) {
-  .Deprecated(
-    poster(
-      subtitle = subtitle, codesize = codesize, lang = lang, email = email,
-      keep_tex = keep_tex, fig_crop = fig_crop, includes = includes,
-      pandoc_args = pandoc_args, ...
-    ),
-    msg = "`inbo_poster` is deprecated. Use `poster` instead."
-  )
+  .Defunct("poster")
 }

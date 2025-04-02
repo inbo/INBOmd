@@ -134,12 +134,5 @@ inbo_verslag <- function(
   pandoc_args = NULL,
   ...
 ) {
-  .Deprecated(
-    minutes(
-      present = present, absent = absent, chair = chair, keep_tex = keep_tex,
-      floatbarrier = floatbarrier, fig_crop = fig_crop, includes = includes,
-      pandoc_args = pandoc_args, codesize = codesize, lang = lang, ...
-    ),
-    msg = "`inbo_verslag` is deprecated. Use `minutes` instead."
-  )
+  .Defunct("minutes")
 }

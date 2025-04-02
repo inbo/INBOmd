@@ -258,12 +258,7 @@ pdf_report <- function(
 inbo_rapport <- function(
   fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
-  .Deprecated(
-    report(
-      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args, ...
-    ),
-    msg = "`inbo_rapport` is deprecated. Use `pdf_report` instead."
-  )
+  .Defunct("pdf_report")
 }
 
 #' @rdname deprecated
@@ -274,12 +269,7 @@ inbo_rapport <- function(
 report <- function(
     fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
-  .Deprecated(
-    pdf_report(
-      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args, ...
-    ),
-    msg = "`report` is deprecated. Use `pdf_report` instead."
-  )
+  .Defunct("pdf_report")
 }
 
 #' @importFrom assertthat assert_that is.flag noNA

@@ -128,8 +128,5 @@ Please contact the maintainer when you require Dutch logo's.")
 #' @inheritParams slides
 #' @export
 inbo_slides <- function(toc = TRUE, ...) {
-  .Deprecated(
-    slides(toc = toc, ...),
-    msg = "`inbo_slides` is deprecated. Use `slides` instead."
-  )
+  .Defunct("slides")
 }

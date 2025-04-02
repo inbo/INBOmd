@@ -37,8 +37,5 @@ inbo_handouts <- function(
   toc = TRUE,
   nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
 ) {
-  .Deprecated(
-    handouts(toc = toc, nup = nup, ...),
-    msg = "`inbo_handouts` is deprecated. Use `handouts` instead."
-  )
+  .Defunct("handouts")
 }
