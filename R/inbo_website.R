@@ -3,23 +3,27 @@
 #' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
+#' @importFrom fs is_dir is_file path
+inbo_website <- function(path = ".") {
+  assert_that(is.string(path), noNA(path))
+  path <- normalizePath(path, mustWork = FALSE)
+  assert_that(is_dir(path), msg = "`path` is not an existing directory")
+  if (is_file(path(path, "_bookdown.yml"))) {
+    return(inbo_website_bookdown(path))
+  }
+  stop("no `_bookdown.yml` found in `path`")
+}
+
+#' @importFrom assertthat assert_that
 #' @importFrom fs dir_create dir_delete dir_ls file_delete is_dir is_file path
 #' path_abs path_ext_remove path_rel
 #' @importFrom rmarkdown clean_site render_site
 #' @importFrom utils zip
 #' @importFrom withr defer
-inbo_website <- function(path = ".") {
-  assert_that(is.string(path), noNA(path))
-  path <- normalizePath(path, mustWork = FALSE)
-  assert_that(is_dir(path), msg = "`path` is not an existing directory")
+inbo_website_bookdown <- function(path) {
   assert_that(
     is_file(path(path, "index.Rmd")), msg = "index.Rmd not found in `path`"
   )
-  assert_that(
-    is_file(path(path, "_bookdown.yml")),
-    msg = "_bookdown.yml not found in `path`"
-  )
-
   path(path, "_bookdown.yml") |>
     file(encoding = "UTF-8") -> con
   bookdown_yml <- readLines(con)
