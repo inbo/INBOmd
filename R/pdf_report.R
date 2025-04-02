@@ -35,8 +35,8 @@ pdf_report <- function(
   hide_defaults <- list(internal = FALSE, lof = FALSE, lot = FALSE)
   defaults <- c(
     hide_defaults, style = names(style)[1], public_report = TRUE,
-# use the first language of the style when set
-# otherwise use the first language of the first style
+    # use the first language of the style when set
+    # otherwise use the first language of the first style
     lang = unlist(style[fm$style]) |>
       c(style[[1]]) |>
       head(1) |>
@@ -50,9 +50,10 @@ pdf_report <- function(
   assert_that(length(fm$floatbarrier) == 1)
   assert_that(
     fm$floatbarrier %in% c(NA, "section", "subsection", "subsubsection"),
-    msg =
-"Allowed options for `floatbarrier` are missing, 'section', 'subsection' and
-'subsubsection'"
+    msg = paste(
+      "Allowed options for `floatbarrier` are missing, 'section', 'subsection'",
+      "and 'subsubsection'"
+    )
   )
   stopifnot(
     "`style` is not a string" = is.string(fm$style),
@@ -267,7 +268,7 @@ inbo_rapport <- function(
 #' @inheritParams rmarkdown::pdf_document
 #' @export
 report <- function(
-    fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
 ) {
   .Defunct("pdf_report")
 }

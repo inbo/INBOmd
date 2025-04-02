@@ -18,9 +18,11 @@ slides <- function(toc = TRUE, ...) {
   check_dependencies()
   dots <- list(...)
   assert_that(
-    !has_name(dots, "number_sections"), msg =
-"`number_sections` detected. Are you still using 'INBOmd::slides' as
-`output_format` of `bookdown::pdf_book`?"
+    !has_name(dots, "number_sections"),
+    msg = paste(
+      "`number_sections` detected. Are you still using 'INBOmd::slides' as",
+      "`output_format` of `bookdown::pdf_book`?"
+    )
   )
   csl <- system.file(
     "research-institute-for-nature-and-forest.csl", package = "INBOmd"

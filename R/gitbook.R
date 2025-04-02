@@ -157,8 +157,8 @@ gitbook_edit_button <- function(path) {
   root <- try(git_find(path), silent = TRUE)
   if (
     inherits(root, "try-error") ||
-    nrow(git_remote_list(root)) == 0 ||
-    !file_test("-f", file.path(path, "_bookdown.yml"))
+      nrow(git_remote_list(root)) == 0 ||
+      !file_test("-f", file.path(path, "_bookdown.yml"))
   ) {
     return(invisible(FALSE))
   }
@@ -183,20 +183,29 @@ gitbook_edit_button <- function(path) {
 
 #' @importFrom assertthat has_name
 check_zenodo <- function(fm) {
-  stopifnot(
-    "Missing `shorttitle` in YAML header of index.Rmd" =
-      has_name(fm, "shorttitle"),
-    "Multiple `shorttitle` in `index.Rmd`" = length(fm$shorttitle) == 1,
-"`shorttitle` may contain only letters [A-Za-z], digits [0-9] and dashes (-)" =
-      grepl("^[[:alnum:]-]+$", fm$shorttitle),
-    "`shorttitle` contains less than 10 characters" = nchar(fm$shorttitle) > 9,
-    "`shorttitle` contains more than 80 characters" = nchar(fm$shorttitle) <= 80
-  )
+  list(
+    has_name(fm, "shorttitle"), length(fm$shorttitle) == 1,
+    grepl("^[[:alnum:]-]+$", fm$shorttitle), nchar(fm$shorttitle) > 9,
+    nchar(fm$shorttitle) <= 80
+  ) |>
+    setNames(
+      c(
+        "Missing `shorttitle` in YAML header of index.Rmd",
+        "Multiple `shorttitle` in `index.Rmd`",
+        paste(
+          "`shorttitle` may contain only letters [A-Za-z], digits [0-9] and",
+          "dashes (-)"
+        ),
+        "`shorttitle` contains less than 10 characters",
+        "`shorttitle` contains more than 80 characters"
+      )
+    ) |>
+    do.call(what = stopifnot)
   cit <- citation_meta$new()
   no_problem <-
     (
       is.null(cit$get_errors) ||
-        all(grepl(".zenodo.json is modified", cit$get_errors))
+      all(grepl(".zenodo.json is modified", cit$get_errors))
     ) &&
     is.null(cit$get_warnings) && length(cit$get_notes) == 0
   if (!no_problem) {

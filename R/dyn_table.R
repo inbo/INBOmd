@@ -27,7 +27,7 @@ dyn_table <- function(
       interactive() ||
         (
           !is.null(opts_current$get()$results) &&
-          opts_current$get()$results == "asis"
+            opts_current$get()$results == "asis"
         ),
       msg = paste(
         "results = 'asis' is required for chunk", opts_current$get()$label

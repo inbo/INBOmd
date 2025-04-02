@@ -27,7 +27,7 @@ inbo_website_quarto <- function(path) {
   cit <- citation_meta$new(path)
   if (
     !is.null(cit$get_errors) &&
-    !all(grepl("\\.zenodo.json is modified", cit$get_errors))
+      !all(grepl("\\.zenodo.json is modified", cit$get_errors))
   ) {
     return(cit)
   }
@@ -48,7 +48,7 @@ inbo_website_quarto <- function(path) {
   list.files(path, pattern = ".zenodo.json", all.files = TRUE) |>
     file.copy(output_dir, overwrite = TRUE)
 
-    # pack report into a zip archive
+  # pack report into a zip archive
   dir_ls(
     output_dir, recurse = TRUE, regexp = "\\.zip", invert = TRUE, all = TRUE
   ) |>
@@ -103,7 +103,7 @@ inbo_website_bookdown <- function(path) {
   cit <- citation_meta$new(path)
   if (
     !is.null(cit$get_errors) &&
-    !all(grepl("\\.zenodo.json is modified", cit$get_errors))
+      !all(grepl("\\.zenodo.json is modified", cit$get_errors))
   ) {
     return(cit)
   }

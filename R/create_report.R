@@ -23,7 +23,8 @@ create_report <- function(path = ".", shortname) {
   assert_that(is.string(shortname), noNA(shortname))
   assert_that(
     grepl("^[a-z0-9_]+$", shortname),
-msg = "The report name folder may only contain lower case letters, digits and _"
+    msg =
+      "The report name folder may only contain lower case letters, digits and _"
   )
   root <- try(git_find(path), silent = TRUE)
   path <- ifelse(inherits(root, "try-error"), path, root)
@@ -124,7 +125,10 @@ msg = "The report name folder may only contain lower case letters, digits and _"
     "site: bookdown::bookdown_site", "output:", "  INBOmd::gitbook: default",
     "  INBOmd::pdf_report: default", "  INBOmd::epub_book: default",
     "# Don't run the format below.",
-  "# Only required for RStudio to recognise the project as a bookdown project.",
+    paste(
+      "# Only required for RStudio to recognise the project as a bookdown",
+      "project."
+    ),
     "# Hence don't use 'Build all formats'.", "  bookdown::dontrun: default"
   ) -> yaml
 
@@ -222,21 +226,21 @@ msg = "The report name folder may only contain lower case letters, digits and _"
           paste(collapse = "_")
       ) |>
         tolower()
-  ) |>
+    ) |>
     gsub(pattern = "book_filename: \"(.*)\"", x = bookdown_yml) |>
     gsub(
       pattern = "delete_merged_file: FALSE",
       replacement = "delete_merged_file: TRUE"
     ) -> bookdown_yml
-    ifelse(basename(path) == "source", "../..", "..") |>
-      path("output", shortname) |>
-      sprintf(fmt = "output_dir: \"%s\"") |>
-      gsub(pattern = "output_dir: \"../output\"", bookdown_yml) |>
-      writeLines(path(path, shortname, "_bookdown.yml"))
+  ifelse(basename(path) == "source", "../..", "..") |>
+    path("output", shortname) |>
+    sprintf(fmt = "output_dir: \"%s\"") |>
+    gsub(pattern = "output_dir: \"../output\"", bookdown_yml) |>
+    writeLines(path(path, shortname, "_bookdown.yml"))
 
   if (
     !requireNamespace("rstudioapi", quietly = TRUE) ||
-    !rstudioapi::isAvailable()
+      !rstudioapi::isAvailable()
   ) {
     return(invisible(NULL))
   }
