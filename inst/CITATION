@@ -3,7 +3,7 @@ citHeader("To cite `INBOmd` in publications please use:")
 bibentry(
   bibtype = "Manual",
   title = "INBOmd: Markdown Templates for INBO. Version 0.6.4",
-  author = c( author = c(person(given = "Thierry", family = "Onkelinx"))),
+  author = c(person(given = "Thierry", family = "Onkelinx")),
   year = 2025,
   url = "https://inbo.github.io/INBOmd/",
   abstract = "Several templates to generate reports, presentations and posters.",
