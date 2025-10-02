@@ -50,7 +50,11 @@ inbo_website_quarto <- function(path) {
 
   # pack report into a zip archive
   dir_ls(
-    output_dir, recurse = TRUE, regexp = "\\.zip", invert = TRUE, all = TRUE
+    output_dir,
+    recurse = TRUE,
+    regexp = "\\.zip",
+    invert = TRUE,
+    all = TRUE
   ) |>
     path_rel(output_dir) -> files
 
@@ -73,7 +77,8 @@ inbo_website_quarto <- function(path) {
 #' @importFrom withr defer
 inbo_website_bookdown <- function(path) {
   assert_that(
-    is_file(path(path, "index.Rmd")), msg = "index.Rmd not found in `path`"
+    is_file(path(path, "index.Rmd")),
+    msg = "index.Rmd not found in `path`"
   )
   path(path, "_bookdown.yml") |>
     file(encoding = "UTF-8") -> con
@@ -94,11 +99,12 @@ inbo_website_bookdown <- function(path) {
   formats <- formats[grepl("INBOmd::", formats)]
   stopifnot(
     "No `INBOmd` formats found" = length(formats) > 0,
-    "At least output `INBOmd::gitbook` must be present" =
-      "INBOmd::gitbook" %in% formats
+    "At least output `INBOmd::gitbook` must be present" = "INBOmd::gitbook" %in%
+      formats
   )
   formats <- c(
-    formats[formats != "INBOmd::gitbook"], formats[formats == "INBOmd::gitbook"]
+    formats[formats != "INBOmd::gitbook"],
+    formats[formats == "INBOmd::gitbook"]
   )
   cit <- citation_meta$new(path)
   if (
@@ -127,7 +133,10 @@ inbo_website_bookdown <- function(path) {
       paste0(", envir = new.env(), encoding = \"UTF-8\"") |>
       sprintf(fmt = "'rmarkdown::render_site(%s)'") -> arg
     system2(
-      command = "Rscript", stdout = TRUE, stderr = TRUE, wait = TRUE,
+      command = "Rscript",
+      stdout = TRUE,
+      stderr = TRUE,
+      wait = TRUE,
       args = c("-e", arg)
     ) -> out
     cat(out, sep = "\n")
@@ -139,7 +148,11 @@ inbo_website_bookdown <- function(path) {
 
   # pack report into a zip archive
   dir_ls(
-    output_dir, recurse = TRUE, regexp = "\\.zip", invert = TRUE, all = TRUE
+    output_dir,
+    recurse = TRUE,
+    regexp = "\\.zip",
+    invert = TRUE,
+    all = TRUE
   ) |>
     path_rel(output_dir) -> files
   setwd(output_dir)

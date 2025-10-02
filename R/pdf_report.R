@@ -11,14 +11,19 @@
 #' pandoc_options pandoc_variable_arg includes_to_pandoc_args
 #' @family output
 pdf_report <- function(
-  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+  fig_crop = "auto",
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
 ) {
   pandoc_available(version = "3.1.8", error = TRUE)
   dots <- list(...)
   assert_that(
-    !has_name(dots, "number_sections"), msg =
-      "`number_sections` detected. Are you still using 'INBOmd::inbo_rapport' as
-`output_format` of `bookdown::pdf_book`?"
+    !has_name(dots, "number_sections"),
+    msg = paste(
+      "`number_sections` detected. Are you still using 'INBOmd::inbo_rapport'",
+      "as `output_format` of `bookdown::pdf_book`?"
+    )
   )
   check_dependencies()
   path(getwd(), "index.Rmd") |>
@@ -27,21 +32,26 @@ pdf_report <- function(
     validate_rightsholder() -> fm
   stopifnot(
     "`internal` option in yaml is not allowed" = !has_name(fm, "internal"),
-    "`pagefootmessage` option in yaml is not allowed" =
-      !has_name(fm, "pagefootmessage")
+    "`pagefootmessage` option in yaml is not allowed" = !has_name(
+      fm,
+      "pagefootmessage"
+    )
   )
   style <- list(INBO = "nl", Vlaanderen = "nl", Flanders = c("en", "fr"))
   languages <- c(nl = "dutch", en = "english", fr = "french")
   hide_defaults <- list(internal = FALSE, lof = FALSE, lot = FALSE)
   defaults <- c(
-    hide_defaults, style = names(style)[1], public_report = TRUE,
+    hide_defaults,
+    style = names(style)[1],
+    public_report = TRUE,
     # use the first language of the style when set
     # otherwise use the first language of the first style
     lang = unlist(style[fm$style]) |>
       c(style[[1]]) |>
       head(1) |>
       unname(),
-    floatbarrier = NA, watermark = NULL,
+    floatbarrier = NA,
+    watermark = NULL,
     other_lang = list(names(languages))
   )
   extra <- !names(defaults) %in% names(fm)
@@ -58,8 +68,8 @@ pdf_report <- function(
   stopifnot(
     "`style` is not a string" = is.string(fm$style),
     "`style` is not a string" = noNA(fm$style),
-    "`style` must be one of 'INBO', 'Vlaanderen', 'Flanders'" =
-      fm$style %in% names(style)
+    "`style` must be one of 'INBO', 'Vlaanderen', 'Flanders'" = fm$style %in%
+      names(style)
   )
   assert_that(length(fm$lang) == 1)
   assert_that(
@@ -72,7 +82,9 @@ pdf_report <- function(
   assert_that(
     fm$lang %in% style[[fm$style]],
     msg = vapply(
-      names(style), FUN.VALUE = character(1), style = style,
+      names(style),
+      FUN.VALUE = character(1),
+      style = style,
       FUN = function(s, style) {
         sprintf("`%s`", style[[s]]) |>
           paste(collapse = ", ") |>
@@ -94,12 +106,18 @@ pdf_report <- function(
   path("pandoc", "inbo_rapport.tex") |>
     system.file(package = "INBOmd") -> template
   csl <- system.file(
-    "research-institute-for-nature-and-forest.csl", package = "INBOmd"
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
   )
 
   args <- c(
-    "--template", template, "--pdf-engine",
-    "xelatex", pandoc_args, "--csl", pandoc_path_arg(csl),
+    "--template",
+    template,
+    "--pdf-engine",
+    "xelatex",
+    pandoc_args,
+    "--csl",
+    pandoc_path_arg(csl),
     includes_to_pandoc_args(includes)
   )
   args <- args[args != ""]
@@ -133,13 +151,20 @@ pdf_report <- function(
   var_arg <- c(
     documentclass = "report",
     style = c(
-      Flanders_en = "flanders_report", Flanders_fr = "flandre_report",
-      Vlaanderen_nl = "vlaanderen_report", INBO_nl = "inbo_report"
+      Flanders_en = "flanders_report",
+      Flanders_fr = "flandre_report",
+      Vlaanderen_nl = "vlaanderen_report",
+      INBO_nl = "inbo_report"
     )[paste(fm$style, fm$lang, sep = "_")] |>
       unname(),
     fm[
       c(
-        "corresponding", "doi", "internal", "lof", "lot", "watermark",
+        "corresponding",
+        "doi",
+        "internal",
+        "lof",
+        "lot",
+        "watermark",
         "pagefootmessage"
       )
     ],
@@ -148,7 +173,9 @@ pdf_report <- function(
   )
   var_arg <- var_arg[!vapply(var_arg, is.null, logical(1))]
   vapply(
-    seq_along(var_arg), FUN.VALUE = character(2), var_arg = var_arg,
+    seq_along(var_arg),
+    FUN.VALUE = character(2),
+    var_arg = var_arg,
     FUN = function(i, var_arg) {
       pandoc_variable_arg(names(var_arg)[i], var_arg[i])
     }
@@ -157,16 +184,24 @@ pdf_report <- function(
     c(args) -> args
 
   vars <- switch(
-    fm$floatbarrier, section = "", subsection = c("", "sub"),
+    fm$floatbarrier,
+    section = "",
+    subsection = c("", "sub"),
     subsubsection = c("", "sub", "subsub")
   )
   floating <- lapply(
-    sprintf("floatbarrier%ssection", vars), pandoc_variable_arg, value = TRUE
+    sprintf("floatbarrier%ssection", vars),
+    pandoc_variable_arg,
+    value = TRUE
   )
   args <- c(args, unlist(floating))
   opts_chunk <- list(
-    latex.options = "{}", dev = "cairo_pdf", fig.align = "center", dpi = 300,
-    fig.width = 4.5, fig.height = 2.9
+    latex.options = "{}",
+    dev = "cairo_pdf",
+    fig.align = "center",
+    dpi = 300,
+    fig.width = 4.5,
+    fig.height = 2.9
   )
   knit_hooks <- NULL
   check_license()
@@ -182,10 +217,10 @@ pdf_report <- function(
       endtoc <- grep("%endtoc", text)
       text <- text[
         c(
-          1:(starttoc - 1),              # preamble
+          1:(starttoc - 1), # preamble
           (endtoc + 1):(mainmatter - 1), # frontmatter
-          (starttoc + 1):(endtoc - 1),   # toc
-          (mainmatter + 1):length(text)  # mainmatter
+          (starttoc + 1):(endtoc - 1), # toc
+          (mainmatter + 1):length(text) # mainmatter
         )
       ]
     }
@@ -196,23 +231,23 @@ pdf_report <- function(
     if (length(startbib)) {
       if (length(appendix)) {
         text <- c(
-          head(text, appendix - 1),            # mainmatter
+          head(text, appendix - 1), # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
-          text[startbib],                      # bibliography
+          text[startbib], # bibliography
           "",
           text[startbib + 1],
           "",
           text[(startbib + 2):(length(text) - 1)],
-          text[(appendix):(startbib - 1)],     # appendix
-          tail(text, 1)                        # backmatter
+          text[(appendix):(startbib - 1)], # appendix
+          tail(text, 1) # backmatter
         )
       } else {
         text <- c(
-          head(text, startbib - 1),            # mainmatter
+          head(text, startbib - 1), # mainmatter
           "\\chapter*{\\bibname}",
           "\\addcontentsline{toc}{chapter}{\\bibname}",
-          text[startbib],                      # bibliography
+          text[startbib], # bibliography
           "",
           text[startbib + 1],
           "",
@@ -243,7 +278,10 @@ pdf_report <- function(
     clean_supporting = TRUE
   )
   config <- pdf_book(
-    toc = TRUE, number_sections = TRUE, fig_caption = TRUE, fig_crop = fig_crop,
+    toc = TRUE,
+    number_sections = TRUE,
+    fig_caption = TRUE,
+    fig_crop = fig_crop,
     base_format = function(...) {
       of
     }
@@ -257,7 +295,10 @@ pdf_report <- function(
 #' @inheritParams rmarkdown::pdf_document
 #' @export
 inbo_rapport <- function(
-  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+  fig_crop = "auto",
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
 ) {
   .Defunct("pdf_report")
 }
@@ -268,7 +309,10 @@ inbo_rapport <- function(
 #' @inheritParams rmarkdown::pdf_document
 #' @export
 report <- function(
-  fig_crop = "auto", includes = NULL, pandoc_args = NULL, ...
+  fig_crop = "auto",
+  includes = NULL,
+  pandoc_args = NULL,
+  ...
 ) {
   .Defunct("pdf_report")
 }
@@ -322,12 +366,16 @@ contact_person <- function(person) {
   if (!has_name(person, "orcid")) {
     if (is_inbo(person)) {
       sprintf(
-        "`orcid` required for %s %s", person$name$given, person$name$family
+        "`orcid` required for %s %s",
+        person$name$given,
+        person$name$family
       ) |>
         stop(call. = FALSE)
     }
     sprintf(
-      "No `orcid` found for %s %s", person$name$given, person$name$family
+      "No `orcid` found for %s %s",
+      person$name$given,
+      person$name$family
     ) |>
       warning(call. = FALSE)
   }
@@ -335,20 +383,25 @@ contact_person <- function(person) {
     if (is_inbo(person)) {
       sprintf(
         "`affiliation` required for %s %s.\nMust be one of %s",
-        person$name$given, person$name$family,
+        person$name$given,
+        person$name$family,
         paste0("`", inbo_affiliation, "`", collapse = "; ")
       ) |>
         stop(call. = FALSE)
     }
     sprintf(
-      "No `affiliation` found for %s %s", person$name$given, person$name$family
+      "No `affiliation` found for %s %s",
+      person$name$given,
+      person$name$family
     ) |>
       warning(call. = FALSE)
   } else {
     if (is_inbo(person) && !person$affiliation %in% inbo_affiliation) {
       sprintf(
-        "`affiliation` for %s %s must be one of %s", person$name$given,
-        person$name$family, paste0("`", inbo_affiliation, "`", collapse = "; ")
+        "`affiliation` for %s %s must be one of %s",
+        person$name$given,
+        person$name$family,
+        paste0("`", inbo_affiliation, "`", collapse = "; ")
       ) |>
         stop(call. = FALSE)
     }
@@ -376,10 +429,11 @@ validate_rightsholder <- function(yaml) {
     "`rightsholder` is not a string" = is.string(yaml$rightsholder),
     "`rightsholder` is not a string" = noNA(yaml$rightsholder),
     "no `community` found" = has_name(yaml, "community"),
-    "`community` must be a string separated by `; `" =
-      is.string(yaml$community),
-    "`community` must contain `inbo`" =
-      "inbo" %in% strsplit(yaml$community, "; "),
+    "`community` must be a string separated by `; `" = is.string(
+      yaml$community
+    ),
+    "`community` must contain `inbo`" = "inbo" %in%
+      strsplit(yaml$community, "; "),
     "no `keywords` found" = has_name(yaml, "keywords"),
     "`keywords` must be a string separated by `; `" = is.string(yaml$keywords)
   )

@@ -50,13 +50,17 @@ poster <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file(
-    file.path("pandoc", "inbo_poster.tex"), package = "INBOmd"
+    file.path("pandoc", "inbo_poster.tex"),
+    package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
+  )
 
   args <- c(
-    "--template", template,
+    "--template",
+    template,
     pandoc_variable_arg("documentclass", "report"),
     pandoc_variable_arg("codesize", codesize),
     pandoc_variable_arg("lang", lang),

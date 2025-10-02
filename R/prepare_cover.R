@@ -13,7 +13,11 @@
 #' @family utils
 prepare_cover <- function(input, path = ".") {
   assert_that(
-    is.string(input), noNA(input), is.string(input), noNA(path), is_file(input),
+    is.string(input),
+    noNA(input),
+    is.string(input),
+    noNA(path),
+    is_file(input),
     is_dir(path)
   )
   stopifnot("`input` must have a `pdf` extension" = grepl("\\.pdf$", input))
@@ -23,8 +27,12 @@ prepare_cover <- function(input, path = ".") {
   pdf_subset(input = input, pages = 1, output = "cover.pdf")
   suppressWarnings(
     pdf_convert(
-      pdf = "cover.pdf", format = "png", pages = 1, dpi = 770 * 25.4 / 210,
-      filenames = "cover.png", verbose = FALSE
+      pdf = "cover.pdf",
+      format = "png",
+      pages = 1,
+      dpi = 770 * 25.4 / 210,
+      filenames = "cover.png",
+      verbose = FALSE
     )
   )
   return(invisible(NULL))

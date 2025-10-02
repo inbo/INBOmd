@@ -47,4 +47,4 @@ phantom_paths <- function() {
 }
 
 is_windows <- function() .Platform$OS.type == "windows"
-is_osx     <- function() Sys.info()[["sysname"]] == "Darwin"
+is_osx <- function() Sys.info()[["sysname"]] == "Darwin"

@@ -8,12 +8,14 @@
 #' @family addins
 insert_block <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
-  rstudioapi::insertText('
+  rstudioapi::insertText(
+    '
 ```{block2 chunk-name, type="block", latex.options="{title}", echo = TRUE}
 Enter your Markdown here. Last line should be blank.
 
 ```
-')
+'
+  )
 }
 
 #' @export
@@ -21,12 +23,14 @@ Enter your Markdown here. Last line should be blank.
 #' @family addins
 insert_exampleblock <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
-  rstudioapi::insertText('
+  rstudioapi::insertText(
+    '
 ```{block2 the-name, type="exampleblock", latex.options="{title}", echo = TRUE}
 Enter your Markdown here. Last line should be blank.
 
 ```
-')
+'
+  )
 }
 
 #' @export
@@ -34,10 +38,12 @@ Enter your Markdown here. Last line should be blank.
 #' @family addins
 insert_alertblock <- function() {
   requireNamespace("rstudioapi", quietly = TRUE)
-  rstudioapi::insertText('
+  rstudioapi::insertText(
+    '
 ```{block2 chunk-name, type="alertblock", latex.options="{title}", echo = TRUE}
 Enter your Markdown here. Last line should be blank.
 
 ```
-')
+'
+  )
 }

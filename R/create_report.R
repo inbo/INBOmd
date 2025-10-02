@@ -23,8 +23,9 @@ create_report <- function(path = ".", shortname) {
   assert_that(is.string(shortname), noNA(shortname))
   assert_that(
     grepl("^[a-z0-9_]+$", shortname),
-    msg =
+    msg = paste(
       "The report name folder may only contain lower case letters, digits and _"
+    )
   )
   root <- try(git_find(path), silent = TRUE)
   path <- ifelse(inherits(root, "try-error"), path, root)
@@ -45,7 +46,8 @@ create_report <- function(path = ".", shortname) {
   ]
   style <- c("INBO", "Vlaanderen")
   style <- ifelse(
-    lang != "nl", "Flanders",
+    lang != "nl",
+    "Flanders",
     style[menu_first(style, title = "Which style to use?")]
   )
 
@@ -96,7 +98,8 @@ create_report <- function(path = ".", shortname) {
   aff <- org$get_organisation[["inbo.be"]]$affiliation[lang]
   style <- c("INBO", "Vlaanderen")
   style <- ifelse(
-    lang != "nl", "Flanders",
+    lang != "nl",
+    "Flanders",
     style[menu_first(style, title = "Which style to use?")]
   )
   readline(prompt = "Enter one or more keywords separated by `;`") |>
@@ -108,9 +111,14 @@ create_report <- function(path = ".", shortname) {
     paste(collapse = "; ") |>
     sprintf(fmt = "keywords: \"%s\"") -> keywords
   c(
-    yaml, "reviewer:", author2yaml(author, corresponding = FALSE),
-    paste("lang:", lang), paste("style:", style), add_address("client"),
-    add_address("cooperation"), "floatbarrier: subsubsection",
+    yaml,
+    "reviewer:",
+    author2yaml(author, corresponding = FALSE),
+    paste("lang:", lang),
+    paste("style:", style),
+    add_address("client"),
+    add_address("cooperation"),
+    "floatbarrier: subsubsection",
     "geraardsbergen: true"[
       ask_yes_no(
         "Do you want INBO Geraardsbergen as address instead of INBO Brussels?",
@@ -119,78 +127,130 @@ create_report <- function(path = ".", shortname) {
     ],
     "lof: TRUE"[ask_yes_no("Do you want a list of figures?", default = FALSE)],
     "lot: TRUE"[ask_yes_no("Do you want a list of tables?", default = FALSE)],
-    keywords, "community: \"inbo\"", "publication_type: report",
-    paste("funder:", aff), paste("rightsholder:", aff),
-    "bibliography: references.bib", "link-citations: TRUE",
-    "site: bookdown::bookdown_site", "output:", "  INBOmd::gitbook: default",
-    "  INBOmd::pdf_report: default", "  INBOmd::epub_book: default",
+    keywords,
+    "community: \"inbo\"",
+    "publication_type: report",
+    paste("funder:", aff),
+    paste("rightsholder:", aff),
+    "bibliography: references.bib",
+    "link-citations: TRUE",
+    "site: bookdown::bookdown_site",
+    "output:",
+    "  INBOmd::gitbook: default",
+    "  INBOmd::pdf_report: default",
+    "  INBOmd::epub_book: default",
     "# Don't run the format below.",
     paste(
       "# Only required for RStudio to recognise the project as a bookdown",
       "project."
     ),
-    "# Hence don't use 'Build all formats'.", "  bookdown::dontrun: default"
+    "# Hence don't use 'Build all formats'.",
+    "  bookdown::dontrun: default"
   ) -> yaml
 
   dir_create(path(path, shortname))
   writeLines(
     text = c(
-      "Version: 1.0", "", "RestoreWorkspace: No", "SaveWorkspace: No",
-      "AlwaysSaveHistory: No", "", "EnableCodeIndexing: Yes",
-      "UseSpacesForTab: Yes", "NumSpacesForTab: 2", "Encoding: UTF-8", "",
-      "RnwWeave: knitr", "LaTeX: XeLaTeX", "", "AutoAppendNewline: Yes",
-      "StripTrailingWhitespace: Yes", "LineEndingConversion: Posix", "",
-      "BuildType: Website", "", "MarkdownWrap: Sentence",
-      "MarkdownReferences: Document", "MarkdownCanonical: Yes"
+      "Version: 1.0",
+      "",
+      "RestoreWorkspace: No",
+      "SaveWorkspace: No",
+      "AlwaysSaveHistory: No",
+      "",
+      "EnableCodeIndexing: Yes",
+      "UseSpacesForTab: Yes",
+      "NumSpacesForTab: 2",
+      "Encoding: UTF-8",
+      "",
+      "RnwWeave: knitr",
+      "LaTeX: XeLaTeX",
+      "",
+      "AutoAppendNewline: Yes",
+      "StripTrailingWhitespace: Yes",
+      "LineEndingConversion: Posix",
+      "",
+      "BuildType: Website",
+      "",
+      "MarkdownWrap: Sentence",
+      "MarkdownReferences: Document",
+      "MarkdownCanonical: Yes"
     ),
     con = path(path, shortname, shortname, ext = "Rproj")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "skeleton.Rmd",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "skeleton.Rmd",
       package = "INBOmd"
     ),
     path(path, shortname, "index.Rmd")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "000_abstract.Rmd",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "000_abstract.Rmd",
       package = "INBOmd"
     ),
     path(path, shortname, "000_abstract.Rmd")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "01_inleiding.Rmd",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "01_inleiding.Rmd",
       package = "INBOmd"
     ),
     path(path, shortname, "01_inleiding.Rmd")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "001_resume.Rmd",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "001_resume.Rmd",
       package = "INBOmd"
     ),
     path(path, shortname, "001_resume.Rmd")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "_bookdown.yml",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "_bookdown.yml",
       package = "INBOmd"
     ),
     path(path, shortname, "_bookdown.yml")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton", "references.bib",
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "references.bib",
       package = "INBOmd"
     ),
     path(path, shortname, "references.bib")
   )
   file_copy(
     system.file(
-      "rmarkdown", "templates", "report", "skeleton",
-      "zzz_references_and_appendix.Rmd", package = "INBOmd"
+      "rmarkdown",
+      "templates",
+      "report",
+      "skeleton",
+      "zzz_references_and_appendix.Rmd",
+      package = "INBOmd"
     ),
     path(path, shortname, "zzz_references_and_appendix.Rmd")
   )
@@ -251,7 +311,8 @@ create_report <- function(path = ".", shortname) {
 author2yaml <- function(author, corresponding = FALSE) {
   assert_that(is.flag(corresponding), noNA(corresponding))
   c(
-    "  - name:", sprintf("      given: \"%s\"", author$given),
+    "  - name:",
+    sprintf("      given: \"%s\"", author$given),
     sprintf("      family: \"%s\"", author$family)
   ) -> yaml
   if (!is.na(author$email) && author$email != "") {
@@ -267,7 +328,8 @@ author2yaml <- function(author, corresponding = FALSE) {
     return(paste(yaml, collapse = "\n"))
   }
   assert_that(
-    noNA(author$email), author$email != "",
+    noNA(author$email),
+    author$email != "",
     msg = "please provide an email for the corresponding author"
   )
   paste(c(yaml, "    corresponding: true"), collapse = "\n")
@@ -278,7 +340,8 @@ add_address <- function(type = "client") {
   while (TRUE) {
     sprintf(
       "Add line %i of the %s name and address (leave empty to stop): ",
-      length(address) + 1, type
+      length(address) + 1,
+      type
     ) |>
       readline() -> extra
     if (extra == "") {
@@ -292,7 +355,8 @@ add_address <- function(type = "client") {
   sprintf("optional filename of the %s logo: ", type) |>
     readline() -> logo
   c(
-    sprintf("%s:", type), sprintf("  - %s", address),
+    sprintf("%s:", type),
+    sprintf("  - %s", address),
     sprintf("%s_logo: %s", type, logo)[logo != ""]
   )
 }
@@ -310,7 +374,9 @@ check_author <- function(lang = "nl") {
   if (is_inbo(person) && is.na(person$orcid)) {
     cat(
       "INBO staff must provide an ORCID.",
-      "Please update the author information.", "\n", sep = " "
+      "Please update the author information.",
+      "\n",
+      sep = " "
     )
     person <- check_author(lang = "nl")
   }

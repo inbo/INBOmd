@@ -43,12 +43,16 @@ mission <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file(
-    file.path("pandoc", "inbo_zending.tex"), package = "INBOmd"
+    file.path("pandoc", "inbo_zending.tex"),
+    package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
+  )
   args <- c(
-    "--template", template,
+    "--template",
+    template,
     pandoc_variable_arg("conference", conference),
     pandoc_variable_arg("conferencedate", conferencedate),
     pandoc_variable_arg("conferenceplace", conferenceplace),

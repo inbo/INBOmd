@@ -27,7 +27,8 @@ add_author_bookdown <- function(path) {
     msg = "No `_bookdown.yml` found in `path`"
   )
   assert_that(
-    is_file(path(path, "index.Rmd")), msg = "No `index.Rmd` found in `path`"
+    is_file(path(path, "index.Rmd")),
+    msg = "No `index.Rmd` found in `path`"
   )
 
   path(path, "index.Rmd") |>
@@ -35,16 +36,19 @@ add_author_bookdown <- function(path) {
   lang <- grep("^lang:", index)
   assert_that(length(lang) > 0, msg = "No `lang:` entry found in yaml header")
   assert_that(
-    length(lang) == 1, msg = "Multiple `lang:` entries found in yaml header"
+    length(lang) == 1,
+    msg = "Multiple `lang:` entries found in yaml header"
   )
   lang <- gsub("lang: ", "", index[lang])
 
   author <- grep("^author:", index)
   assert_that(
-    length(author) > 0, msg = "No `author:` entry found in yaml header"
+    length(author) > 0,
+    msg = "No `author:` entry found in yaml header"
   )
   assert_that(
-    length(author) == 1, msg = "Multiple `author:` entries found in yaml header"
+    length(author) == 1,
+    msg = "Multiple `author:` entries found in yaml header"
   )
   check_author(lang = lang) |>
     author2yaml(corresponding = FALSE) -> extra
@@ -66,10 +70,13 @@ add_author_quarto <- function(path) {
   )
   path(path, "_quarto.yml") |>
     read_yaml() -> yaml
+  # fmt:skip
   stopifnot(
     "No `lang:` entry found in `_quarto.yml`" = has_name(yaml, "lang"),
-    "No `flandersqmd:` entry found in `_quarto.yml`" =
-      has_name(yaml, "flandersqmd"),
+    "No `flandersqmd:` entry found in `_quarto.yml`" = has_name(
+      yaml,
+      "flandersqmd"
+    ),
     "No `author:` entry found in the `flandersqmd` section of `_quarto.yml`" =
       has_name(yaml$flandersqmd, "author")
   )
@@ -80,7 +87,8 @@ add_author_quarto <- function(path) {
     list(
       list(
         name = list(given = extra$given, family = extra$family),
-        email = extra$email, orcid = extra$orcid,
+        email = extra$email,
+        orcid = extra$orcid,
         affiliation = list(extra$affiliation)
       )
     )
@@ -95,7 +103,8 @@ add_author_quarto <- function(path) {
     }
   )
   write_yaml(
-    yaml, file = path(path, "_quarto.yml"),
+    yaml,
+    file = path(path, "_quarto.yml"),
     handlers = c(
       "logical" = function(x) {
         attr(x, "class") <- "verbatim"
