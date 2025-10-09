@@ -202,6 +202,7 @@ gitbook_edit_button <- function(path) {
 }
 
 #' @importFrom assertthat has_name
+#' @importFrom stats setNames
 check_zenodo <- function(fm) {
   list(
     has_name(fm, "shorttitle"),
