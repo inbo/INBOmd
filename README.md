@@ -1,13 +1,15 @@
 # INBOmd <img src="man/figures/logo.svg" align="right" alt="A hexagon with the word INBOmd and the Markdown logo" width="120" />
 
+<!-- badges: start -->
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![License](https://img.shields.io/github/license/inbo/INBOmd)
-[![R build status](https://github.com/inbo/inbomd/workflows/check%20package%20on%20main/badge.svg)](https://github.com/inbo/inbomd/actions)
+[![R build status](https://github.com/inbo/INBOmd/actions/workflows/check_on_main.yml/badge.svg)](https://github.com/inbo/INBOmd/actions)
 [![Codecov test coverage](https://app.codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://app.codecov.io/gh/inbo/inbomd?branch=main)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/inbo/inbomd.svg)
 ![GitHub repo size](https://img.shields.io/github/repo-size/inbo/inbomd.svg)
 [![DOI](https://zenodo.org/badge/66824259.svg)](https://zenodo.org/badge/latestdoi/66824259)
+<!-- badges: end -->
 
 INBOmd contains templates to generate several types of documents with the corporate identity of INBO or the Flemish government.
 The current package has following Rmarkdown templates:
@@ -52,6 +54,12 @@ if (!tinytex:::is_tinytex()) {
 }
 ```
 
+In case the installation of `TinyTeX` fails on Windows, run the command below and retry to install `TinyTex`.
+
+```
+Sys.setenv(PATH = paste0(old_path, ";C:\\Windows\\system32"))
+```
+
 Once `TinyTeX` is installed, you need to restart RStudio.
 Then you can proceed with the installation of `INBOmd`.
 
@@ -60,10 +68,10 @@ Then you can proceed with the installation of `INBOmd`.
 install.packages("INBOmd", repos = "https://inbo.r-universe.dev")
 
 ## alternative: installation from github
-#if (!"remotes" %in% rownames(installed.packages())) {
-#  install.packages("remotes")
+#if (!require("pak")) {
+#  install.packages("pak")
 #}
-#remotes::install_github("inbo/INBOmd", dependencies = TRUE)
+#pak::pkg_install("inbo/INBOmd", dependencies = TRUE)
 
 # add the local latex package contained in INBOmd to the TinyTeX install 
 tinytex::tlmgr_conf(
@@ -72,7 +80,7 @@ tinytex::tlmgr_conf(
 
 # install some other needed latex packages 
 tinytex::tlmgr_install(c(
-  "inconsolata", "times", "tex", "helvetic", "dvips", "hyphen-dutch",
-  "hyphen-french"
+  "babel-dutch", "babel-frech", "dvips", "helvetic", "hyphen-dutch",
+  "hyphen-french", "inconsolata", "tex", "times"
 ))
 ```

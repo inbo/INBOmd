@@ -14,18 +14,27 @@ cover_info <- function(path = "index.Rmd") {
   path <- normalizePath(path)
   yaml_header <- yaml_front_matter(path)
   yaml_header$title <- paste0(
-    yaml_header$title, "\nSubtitel: ", yaml_header$subtitle
+    yaml_header$title,
+    "\nSubtitel: ",
+    yaml_header$subtitle
   )
   vapply(
-    yaml_header$author, FUN.VALUE = character(1),
+    yaml_header$author,
+    FUN.VALUE = character(1),
     function(x) {
       ifelse(is.null(x$corresponding) || !x$corresponding, "", x$email)
     }
   ) |>
     paste(collapse = ", ") |>
-    trimws(whitespace = "[ \t\r\n,]") -> yaml_header$corresponding
+    trimws(whitespace = "[ \t\r\n,]") |>
+    gsub(
+      pattern = "(, )+$",
+      replacement = "",
+      x = _
+    ) -> yaml_header$corresponding
   vapply(
-    yaml_header$author, FUN.VALUE = character(1),
+    yaml_header$author,
+    FUN.VALUE = character(1),
     FUN = function(author) {
       paste(author$name$given, author$name$family)
     }
@@ -35,8 +44,11 @@ cover_info <- function(path = "index.Rmd") {
   cover_txt <- sprintf(
     "Titel: %s\nAuteur(s): %s\nContactpersoon: %s\nAfbeelding voor cover: %s
 Embargo tot: %s\n%s",
-    yaml_header$title, yaml_header$author, yaml_header$corresponding,
-    paste0(yaml_header$cover_photo, ""), paste0(yaml_header$embargo, ""),
+    yaml_header$title,
+    yaml_header$author,
+    yaml_header$corresponding,
+    paste0(yaml_header$cover_photo, ""),
+    paste0(yaml_header$embargo, ""),
     yaml_header$print
   )
   if (has_name(yaml_header, "client_logo")) {
@@ -44,7 +56,8 @@ Embargo tot: %s\n%s",
   }
   if (has_name(yaml_header, "cooperation_logo")) {
     cover_txt <- c(
-      cover_txt, paste("Logo samenwerking:", yaml_header$cooperation_logo)
+      cover_txt,
+      paste("Logo samenwerking:", yaml_header$cooperation_logo)
     )
   }
   writeLines(cover_txt, file.path(dirname(path), "cover.txt"))
@@ -56,7 +69,8 @@ format_print_order <- function(yaml_header) {
     return("Geen druk")
   }
   assert_that(
-    has_name(yaml_header$print, "copies"), is.number(yaml_header$print$copies)
+    has_name(yaml_header$print, "copies"),
+    is.number(yaml_header$print$copies)
   )
   if (yaml_header$print$copies == 0) {
     return("Geen druk")
@@ -68,7 +82,8 @@ format_print_order <- function(yaml_header) {
   )
   sprintf(
     "Aantal gedrukte examplaren: %i\nMotivatie: %s\nAantal bladzijden: %i",
-    yaml_header$print$copies, yaml_header$print$motivation,
+    yaml_header$print$copies,
+    yaml_header$print$motivation,
     yaml_header$print$pages
   )
 }

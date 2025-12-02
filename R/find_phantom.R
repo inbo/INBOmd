@@ -18,11 +18,13 @@ find_phantom <- function() {
     # and may not be capable of installing phantomjs (like on Solaris), and any
     # packages which use webshot in their R CMD check (in examples or vignettes)
     # will get an ERROR. We'll issue a message and return NULL; other
-    message(
-"PhantomJS not found. You can install it with webshot::install_phantomjs(). ",
-"If it is installed, please make sure the phantomjs executable ",
-"can be found via the PATH variable."
-    )
+    paste(
+      "PhantomJS not found.",
+      "You can install it with webshot::install_phantomjs().",
+      "If it is installed, please make sure the phantomjs executable can be",
+      "found via the PATH variable."
+    ) |>
+      message()
     return(NULL)
   }
   path.expand(path)
@@ -45,4 +47,4 @@ phantom_paths <- function() {
 }
 
 is_windows <- function() .Platform$OS.type == "windows"
-is_osx     <- function() Sys.info()[["sysname"]] == "Darwin"
+is_osx <- function() Sys.info()[["sysname"]] == "Darwin"
