@@ -1,6 +1,7 @@
 #' Create a report with the Flemish corporate identity
 #' @inheritParams slides
 #' @inheritParams rmarkdown::pdf_document
+#' @inheritParams rmarkdown::output_format
 #' @template yaml_generic
 #' @template yaml_report
 #' @template yaml_pdf
@@ -13,6 +14,8 @@
 pdf_report <- function(
   fig_crop = "auto",
   includes = NULL,
+  keep_tex = FALSE,
+  clean_supporting = TRUE,
   pandoc_args = NULL,
   ...
 ) {
@@ -227,6 +230,9 @@ pdf_report <- function(
 
     # move appendix after bibliography
     appendix <- grep("\\\\appendix", text)
+    if (length(appendix) > 1) {
+      appendix <- appendix[1]
+    }
     startbib <- grep("\\\\phantomsection\\\\label\\{refs\\}", text) # nolint: absolute_path_linter, line_length_linter.
     if (length(startbib)) {
       if (length(appendix)) {
@@ -272,10 +278,10 @@ pdf_report <- function(
       to = "latex",
       latex_engine = "xelatex",
       args = args,
-      keep_tex = FALSE
+      keep_tex = keep_tex
     ),
     post_processor = post_processor,
-    clean_supporting = TRUE
+    clean_supporting = clean_supporting
   )
   config <- pdf_book(
     toc = TRUE,

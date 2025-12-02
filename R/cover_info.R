@@ -26,6 +26,7 @@ cover_info <- function(path = "index.Rmd") {
     }
   ) |>
     paste(collapse = ", ") |>
+    trimws(whitespace = "[ \t\r\n,]") |>
     gsub(
       pattern = "(, )+$",
       replacement = "",
