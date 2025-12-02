@@ -19,7 +19,7 @@ URL: https://inbo.github.io/INBOmd/, https://github.com/inbo/inbomd,
     https://doi.org/10.5281/zenodo.842223
 BugReports: https://github.com/inbo/inbomd/issues
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.2.0)
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
