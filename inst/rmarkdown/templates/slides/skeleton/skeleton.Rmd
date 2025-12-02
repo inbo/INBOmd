@@ -8,14 +8,14 @@ author:
       family: "Last name1"
     email: "firstname1.lastname1@inbo.be"
     orcid: 0000-0002-1825-0097
-    affiliation: Research Institute fo Nature and Forest (INBO)
+    affiliation: Research Institute for Nature and Forest (INBO)
     corresponding: true
   - name:
       given: Voornaam2
       family: Achternaam2
     email: "voornaam2.achternaam2@inbo.be"
     orcid: 0000-0002-1825-0097
-    affiliation: Research Institute fo Nature and Forest (INBO)
+    affiliation: Research Institute for Nature and Forest (INBO)
 style: INBO
 lang: nl
 funder: Research Institute for Nature and Forest (INBO)
