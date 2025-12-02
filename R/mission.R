@@ -43,12 +43,16 @@ mission <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file(
-    file.path("pandoc", "inbo_zending.tex"), package = "INBOmd"
+    file.path("pandoc", "inbo_zending.tex"),
+    package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
+  )
   args <- c(
-    "--template", template,
+    "--template",
+    template,
     pandoc_variable_arg("conference", conference),
     pandoc_variable_arg("conferencedate", conferencedate),
     pandoc_variable_arg("conferenceplace", conferenceplace),
@@ -147,14 +151,5 @@ inbo_zending <- function(
   pandoc_args = NULL,
   ...
 ) {
-  .Deprecated(
-    mission(
-      fig_crop = fig_crop, includes = includes, pandoc_args = pandoc_args,
-      conference = conference, conferencedate = conferencedate, lang = lang,
-      conferenceplace = conferenceplace, website = website, keep_tex = keep_tex,
-      reportdate = reportdate, colleagues = colleagues,
-      floatbarrier = floatbarrier, ...
-    ),
-    msg = "`inbo_zending` is deprecated. Use `mission` instead."
-  )
+  .Defunct("mission")
 }

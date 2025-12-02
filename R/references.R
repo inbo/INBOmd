@@ -14,7 +14,9 @@ references <- function(appendix = FALSE, part = FALSE) {
     fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
     style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
     lang <- ifelse(
-      has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+      has_name(fm, "lang"),
+      fm$lang,
+      ifelse(style == "Flanders", "en", "nl")
     )
     ref_title <- sprintf(
       "# %s {-}",

@@ -27,6 +27,8 @@ Other utils:
 \code{\link{cover_info}()},
 \code{\link{create_report}()},
 \code{\link{dyn_table}()},
+\code{\link{inbo_website}()},
+\code{\link{prepare_cover}()},
 \code{\link{references}()},
 \code{\link{render_natbib}()},
 \code{\link{validate_doi}()}

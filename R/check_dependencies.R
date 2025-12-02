@@ -8,16 +8,62 @@ check_dependencies <- function() {
   if (!is_tinytex()) {
     install_tinytex(
       extra_packages = c(
-        "babel-dutch", "babel-english", "babel-french", "beamer",
-        "beamerswitch", "booktabs", "carlisle", "colortbl", "datetime", "dvips",
-        "emptypage", "environ", "epstopdf", "eso-pic", "eurosym", "extsizes",
-        "fancyhdr", "fancyvrb", "fmtcount", "float", "fontspec", "footmisc",
-        "framed", "helvetic", "hyphen-dutch", "hyphen-french", "inconsolata",
-        "lastpage", "lipsum", "makecell", "marginnote", "mdframed", "ms",
-        "multirow", "parskip", "pdflscape", "pdfpages", "pdftexcmds",
-        "placeins", "needspace", "tabu", "tex", "textpos", "threeparttable",
-        "threeparttablex", "titlesec", "times", "tocloft", "translator",
-        "trimspaces", "ulem", "upquote", "wrapfig", "xcolor", "xstring", "zref"
+        "babel-dutch",
+        "babel-english",
+        "babel-french",
+        "beamer",
+        "beamerswitch",
+        "booktabs",
+        "carlisle",
+        "colortbl",
+        "datetime",
+        "dvips",
+        "emptypage",
+        "environ",
+        "epstopdf",
+        "eso-pic",
+        "eurosym",
+        "extsizes",
+        "fancyhdr",
+        "fancyvrb",
+        "fmtcount",
+        "float",
+        "fontspec",
+        "footmisc",
+        "framed",
+        "helvetic",
+        "hyphen-dutch",
+        "hyphen-french",
+        "inconsolata",
+        "lastpage",
+        "lipsum",
+        "makecell",
+        "marginnote",
+        "mdframed",
+        "ms",
+        "multirow",
+        "parskip",
+        "pdflscape",
+        "pdfpages",
+        "pdftexcmds",
+        "placeins",
+        "needspace",
+        "tabu",
+        "tex",
+        "textpos",
+        "threeparttable",
+        "threeparttablex",
+        "titlesec",
+        "times",
+        "tocloft",
+        "translator",
+        "trimspaces",
+        "ulem",
+        "upquote",
+        "wrapfig",
+        "xcolor",
+        "xstring",
+        "zref"
       )
     )
   }
@@ -30,7 +76,9 @@ check_dependencies <- function() {
   ) {
     tlmgr_conf(
       c(
-        "auxtrees", "add", system.file("local_tex", package = "INBOmd"),
+        "auxtrees",
+        "add",
+        system.file("local_tex", package = "INBOmd"),
         .quiet = TRUE
       )
     )

@@ -106,7 +106,7 @@ $if(titlepage)$
   $else$
     <h1 class = "missing">!!!! ONTBREKEND: year !!!!</h1>
   $endif$
-  $title$$if(subtitle)$. $substitle$$endif$. $if(internal)$$translation.iseries$$else$$translation.series$$endif$ $translation.name$
+  $title$$if(subtitle)$. $subtitle$$endif$. $if(internal)$$translation.iseries$$else$$translation.series$$endif$ $translation.name$
   $if(year)$
     $year$
   $endif$
