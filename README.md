@@ -80,7 +80,7 @@ tinytex::tlmgr_conf(
 
 # install some other needed latex packages 
 tinytex::tlmgr_install(c(
-  "babel-dutch", "babel-frech", "dvips", "helvetic", "hyphen-dutch",
-  "hyphen-french", "inconsolata", "tex", "times"
+  "babel-dutch", "babel-english", "babel-french", "dvips", "helvetic",
+  "hyphen-dutch", "hyphen-french", "inconsolata", "tex", "times"
 ))
 ```
