@@ -6,7 +6,7 @@ navbar:
   title: ~
   type: default
   structure:
-    left:  [intro, reference, news, tutorials, contributing]
+    left:  [intro, reference, news, tutorials, demo, contributing]
     right: [search, github]
   components:
     tutorials:
@@ -15,6 +15,22 @@ navbar:
       menu:
       - text: Getting started
         href: articles/inbomd.html
+    demo:
+      text: Demo documents
+      href: https://inbo.github.io/inbomd_examples
+      menu:
+      - text: Report in Dutch using the INBO corporate identity
+        href: https://inbo.github.io/inbomd_examples/inbo_rapport/index.html
+      - text: Report in Dutch using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/vlaanderen_rapport/vlaanderen_rapport.pdf
+      - text: Report in English using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/flanders_report/flanders_report.pdf
+      - text: Slides using the INBO corporate identity
+        href: https://inbo.github.io/inbomd_examples/inbo_slides/inbo_slides.pdf
+      - text: Slides using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/flanders_slides/flanders_slides.pdf
+      - text: Examples of bibliographical references in Dutch
+        href: https://inbo.github.io/inbomd_examples/citation_style/nl/citation_style.pdf
 
 reference:
 - title: Output formats
