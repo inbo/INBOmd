@@ -24,14 +24,33 @@
 #' @importFrom assertthat assert_that is.count is.date is.string noNA
 #' @importFrom fs is_dir is_file path
 add_report_numbers <- function(
-  path = ".", doi, year, reportnr, depotnr, photo, description,
-  embargo = Sys.Date(), ordernr, copies, motivation, pages
+  path = ".",
+  doi,
+  year,
+  reportnr,
+  depotnr,
+  photo,
+  description,
+  embargo = Sys.Date(),
+  ordernr,
+  copies,
+  motivation,
+  pages
 ) {
   validate_doi(doi)
   assert_that(
-    is.count(year), is.count(reportnr), is.string(depotnr), is.string(photo),
-    is.string(description), is.date(embargo), noNA(year), noNA(reportnr),
-    noNA(depotnr), noNA(photo), noNA(description), noNA(embargo),
+    is.count(year),
+    is.count(reportnr),
+    is.string(depotnr),
+    is.string(photo),
+    is.string(description),
+    is.date(embargo),
+    noNA(year),
+    noNA(reportnr),
+    noNA(depotnr),
+    noNA(photo),
+    noNA(description),
+    noNA(embargo),
     length(embargo) == 1
   )
   assert_that(
@@ -44,7 +63,8 @@ add_report_numbers <- function(
     msg = "No `_bookdown.yml` found in `path`"
   )
   assert_that(
-    is_file(path(path, "index.Rmd")), msg = "No `index.Rmd` found in `path`"
+    is_file(path(path, "index.Rmd")),
+    msg = "No `index.Rmd` found in `path`"
   )
 
   # read file
@@ -55,8 +75,14 @@ add_report_numbers <- function(
 
   # remove existing values
   c(
-    "depotnr", "cover_photo", "cover_description", "doi", "embargo", "ordernr",
-    "reportnr", "year"
+    "depotnr",
+    "cover_photo",
+    "cover_description",
+    "doi",
+    "embargo",
+    "ordernr",
+    "reportnr",
+    "year"
   ) |>
     paste(collapse = "|") |>
     sprintf(fmt = "^(%s):") |>
@@ -71,8 +97,13 @@ add_report_numbers <- function(
 
   # calculate new values
   c(
-    "year: %i", "doi: %s", "reportnr: %s", "depotnr: %s", "cover_photo: %s",
-    "cover_description: %s", "embargo: %s"
+    "year: %i",
+    "doi: %s",
+    "reportnr: %s",
+    "depotnr: %s",
+    "cover_photo: %s",
+    "cover_description: %s",
+    "embargo: %s"
   ) |>
     paste(collapse = "\n") |>
     sprintf(year, doi, reportnr, depotnr, photo, description, embargo) -> extra
@@ -82,11 +113,17 @@ add_report_numbers <- function(
   }
   if (!missing(copies)) {
     assert_that(
-      is.count(copies), is.string(motivation), noNA(motivation), is.count(pages)
+      is.count(copies),
+      is.string(motivation),
+      noNA(motivation),
+      is.count(pages)
     )
     extra <- sprintf(
       "%s\nprint:\n  copies: %i\n  motivation: \"%s\"\n  pages: %i",
-      extra, copies, motivation, pages
+      extra,
+      copies,
+      motivation,
+      pages
     )
   }
 

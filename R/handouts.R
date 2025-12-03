@@ -16,13 +16,15 @@
 #' @family output
 handouts <- function(
   toc = TRUE,
-  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
+  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"),
+  ...
 ) {
   config <- slides(toc = toc, ...)
   fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
   nup <- ifelse(has_name(fm, "nup"), as.character(fm$nup), nup)
   nup <- match.arg(nup)
-  config$pandoc$args <- c(config$pandoc$args,
+  config$pandoc$args <- c(
+    config$pandoc$args,
     pandoc_variable_arg("handout", nup)
   )
   return(config)
@@ -35,10 +37,8 @@ handouts <- function(
 #' @export
 inbo_handouts <- function(
   toc = TRUE,
-  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"), ...
+  nup = c("8", "1", "1plus", "2", "3", "3plus", "4", "4plus", "6"),
+  ...
 ) {
-  .Deprecated(
-    handouts(toc = toc, nup = nup, ...),
-    msg = "`inbo_handouts` is deprecated. Use `handouts` instead."
-  )
+  .Defunct("handouts")
 }

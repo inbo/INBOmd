@@ -1,3 +1,7 @@
+# INBOmd 0.6.4
+
+* Fix missing subtitle in citation in colophon of gitbook and epub.
+
 # INBOmd 0.6.3
 
 * `pdf_report()` enforces pandoc >= 3.1.8

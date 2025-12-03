@@ -1,27 +1,36 @@
+url: https://inbo.github.io/INBOmd/
+template:
+  bootstrap: 5
+  light-switch: false
 navbar:
   title: ~
   type: default
-  left:
-  - text: NEWS
-    href: news/index.html
-  - text: Tutorials
-    href: articles/index.html
-    menu:
-    - text: Introduction
-      href: articles/introduction.html
-  - text: Functions
-    href: reference/index.html
-  - text: Examples
-    href: https://inbo.github.io/inbomd_examples
-  - text: Contributing
-    href: CONTRIBUTING.html
-  right:
-  - icon: "fa fa-github"
-    href: https://github.com/inbo/INBOmd
-  - icon: "fa fa-twitter"
-    href: https://twitter.com/INBOVlaanderen
-  - icon: "fa fa-facebook"
-    href: https://www.facebook.com/pg/INBOVlaanderen
+  structure:
+    left:  [intro, reference, news, tutorials, demo, contributing]
+    right: [search, github]
+  components:
+    tutorials:
+      text: Tutorials
+      href: articles/index.html
+      menu:
+      - text: Getting started
+        href: articles/inbomd.html
+    demo:
+      text: Demo documents
+      href: https://inbo.github.io/inbomd_examples
+      menu:
+      - text: Report in Dutch using the INBO corporate identity
+        href: https://inbo.github.io/inbomd_examples/inbo_rapport/index.html
+      - text: Report in Dutch using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/vlaanderen_rapport/vlaanderen_rapport.pdf
+      - text: Report in English using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/flanders_report/flanders_report.pdf
+      - text: Slides using the INBO corporate identity
+        href: https://inbo.github.io/inbomd_examples/inbo_slides/inbo_slides.pdf
+      - text: Slides using the Flemish government corporate identity
+        href: https://inbo.github.io/inbomd_examples/flanders_slides/flanders_slides.pdf
+      - text: Examples of bibliographical references in Dutch
+        href: https://inbo.github.io/inbomd_examples/citation_style/nl/citation_style.pdf
 
 reference:
 - title: Output formats
@@ -33,7 +42,7 @@ reference:
 - title: Utilities
   contents:
   - has_concept("utils")
-- title: Deprecated functions
+- title: Defunct functions
   contents:
   - has_concept("deprecated")
 
@@ -42,4 +51,4 @@ authors:
     href: "https://www.muscardinus.be"
   Research Institute for Nature and Forest (INBO):
     href: "https://www.vlaanderen.be/inbo/en-gb"
-    html: "<img src='https://inbo.github.io/checklist/reference/figures/logo-en.png' height=24>"
+    html: "<img src='https://inbo.github.io/checklist/reference/figures/logo-en.png' height=24 alt='logo of the Research Institute for Nature and Forest (INBO)'>"
