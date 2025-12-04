@@ -88,19 +88,11 @@ RUN apt-get update \
   && Rscript --no-save --no-restore -e 'install.packages("pak")'
 
 ## install R packages using pak
-RUN  Rscript --no-save --no-restore -e 'pak::pkg_install("bookdown", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("checklist", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("dplyr", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("DT", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("here", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("INBOtheme", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("kableExtra", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("lipsum", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("pander", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("pdftools", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("qrcode", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install("webshot", dependencies = TRUE)' \
-  && Rscript --no-save --no-restore -e 'if(as.package_version(sessionInfo("checklist")$otherPkgs$checklist$Version) < as.package_version("0.4.1")) {pak::pkg_install("inbo/checklist@0.4.1") }'
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    libpoppler-cpp-dev \
+    libpq-dev \
+  && Rscript --no-save --no-restore -e 'pak::pkg_install(c("bookdown", "checklist", "dplyr", "DT", "here", "INBOtheme", "kableExtra", "lipsum", "pander", "pdftools", "qrcode", "webshot"), dependencies = TRUE)'
 
 ## Install webshot dependency
 RUN  Rscript -e 'webshot::install_phantomjs()'
