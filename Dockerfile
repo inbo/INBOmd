@@ -13,8 +13,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
       maintainer="Thierry Onkelinx <thierry.onkelinx@inbo.be>"
 
 ## for apt to be noninteractive
-ENV DEBIAN_FRONTEND noninteractive
-ENV DEBCONF_NONINTERACTIVE_SEEN true
+ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN=true
 
 WORKDIR /github/workspace
 
@@ -33,8 +33,8 @@ RUN apt-get update \
   && locale-gen nl_BE.utf8 \
   && /usr/sbin/update-locale LANG=nl_BE.UTF-8
 
-ENV LC_ALL nl_BE.UTF-8
-ENV LANG nl_BE.UTF-8
+ENV LC_ALL=nl_BE.UTF-8
+ENV LANG=nl_BE.UTF-8
 
 ## Install wget
 RUN apt-get update \
@@ -132,6 +132,6 @@ RUN Rscript --no-save --no-restore -e 'remotes::install_local("inbomd")' \
 
 COPY docker/entrypoint.sh /entrypoint.sh
 
-ENV PATH $PATH:/root/bin:/github/home/bin
+ENV PATH=$PATH:/root/bin:/github/home/bin
 
 ENTRYPOINT ["/entrypoint.sh"]
