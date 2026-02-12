@@ -19,9 +19,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   code_folding <- match.arg(code_folding, c("none", "show", "hide"))
   gitbook_edit_button(getwd())
   path(getwd(), "index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = TRUE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -31,10 +30,10 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   lang <- ifelse(
     has_name(fm, "lang"),
     fm$lang,
-    ifelse(style == "Flanders", "en", "nl")
+    ifelse(style == "Flanders", "en-GB", "nl-BE")
   )
   assert_that(length(lang) == 1)
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  languages <- c(`nl-BE` = "dutch", `en-GB` = "english", `fr-FR` = "french")
   assert_that(
     lang %in% names(languages),
     msg = paste(
@@ -43,12 +42,12 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     )
   )
   assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
+    style != "Flanders" || lang != "nl-BE",
+    msg = "Use style: Vlaanderen when the language is nl-BE"
   )
   assert_that(
-    style == "Flanders" || lang == "nl",
-    msg = "Use style: Flanders when the language is not nl"
+    style == "Flanders" || lang == "nl-BE",
+    msg = "Use style: Flanders when the language is not nl-BE"
   )
   split_by <- ifelse(has_name(fm, "split_by"), fm$split_by, "chapter+number")
   assert_that(length(split_by) == 1)
@@ -121,7 +120,6 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   )
 
   check_license()
-  check_zenodo(fm)
 
   pandoc_args <- c(
     pandoc_args,
@@ -202,6 +200,7 @@ gitbook_edit_button <- function(path) {
 }
 
 #' @importFrom assertthat has_name
+#' @importFrom checklist citation_meta
 #' @importFrom stats setNames
 check_zenodo <- function(fm) {
   list(

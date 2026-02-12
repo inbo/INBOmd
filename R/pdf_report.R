@@ -7,6 +7,7 @@
 #' @template yaml_pdf
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
+#' @importFrom checklist citation_meta
 #' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_available
 #' pandoc_options pandoc_variable_arg includes_to_pandoc_args
@@ -30,9 +31,8 @@ pdf_report <- function(
   )
   check_dependencies()
   path(getwd(), "index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = TRUE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   stopifnot(
     "`internal` option in yaml is not allowed" = !has_name(fm, "internal"),
     "`pagefootmessage` option in yaml is not allowed" = !has_name(
@@ -40,8 +40,12 @@ pdf_report <- function(
       "pagefootmessage"
     )
   )
-  style <- list(INBO = "nl", Vlaanderen = "nl", Flanders = c("en", "fr"))
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  style <- list(
+    INBO = "nl-BE",
+    Vlaanderen = "nl-BE",
+    Flanders = c("en-GB", "fr-FR")
+  )
+  languages <- c(`nl-BE` = "dutch", `en-GB` = "english", `fr-FR` = "french")
   hide_defaults <- list(internal = FALSE, lof = FALSE, lot = FALSE)
   defaults <- c(
     hide_defaults,
@@ -154,10 +158,10 @@ pdf_report <- function(
   var_arg <- c(
     documentclass = "report",
     style = c(
-      Flanders_en = "flanders_report",
-      Flanders_fr = "flandre_report",
-      Vlaanderen_nl = "vlaanderen_report",
-      INBO_nl = "inbo_report"
+      `Flanders_en-GB` = "flanders_report",
+      `Flanders_fr-FR` = "flandre_report",
+      `Vlaanderen_nl-BE` = "vlaanderen_report",
+      `INBO_nl-BE` = "inbo_report"
     )[paste(fm$style, fm$lang, sep = "_")] |>
       unname(),
     fm[

@@ -23,7 +23,7 @@ Depends:
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
-    checklist (>= 0.4.1),
+    checklist (>= 0.5.2),
     dplyr,
     fs,
     gert,

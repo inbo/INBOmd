@@ -32,9 +32,8 @@ slides <- function(toc = TRUE, ...) {
     system.file(package = "INBOmd") -> template
   getwd() |>
     path("index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = FALSE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   aspect <- ifelse(has_name(fm, "aspect"), fm$aspect, "16:9")
   assert_that(is.string(aspect))
   paper_dimensions <- rbind(
@@ -71,9 +70,13 @@ Please contact the maintainer when you require Dutch logo's."
   lang <- ifelse(
     has_name(fm, "lang"),
     fm$lang,
-    ifelse(style == "Flanders", "en", "nl")
+    ifelse(style == "Flanders", "en-GB", "nl-BL")
   )
-  available_languages <- c(nl = "dutch", en = "english", fr = "french")
+  available_languages <- c(
+    `nl-BE` = "dutch",
+    `en-GB` = "english",
+    `fr-FR` = "french"
+  )
   assert_that(is.string(lang))
   assert_that(
     lang %in% names(available_languages),
@@ -89,7 +92,7 @@ Please contact the maintainer when you require Dutch logo's."
   )
   theme <- ifelse(
     style == "INBO",
-    ifelse(lang == "nl", "inbo", "inboenglish"),
+    ifelse(lang == "nl-BE", "inbo", "inboenglish"),
     "vlaanderen"
   )
   args <- c(

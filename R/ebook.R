@@ -12,9 +12,8 @@
 #' @family output
 epub_book <- function() {
   path(getwd(), "index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = TRUE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   assert_that(
     has_name(fm, "reportnr"),
     has_name(fm, "year"),
@@ -29,10 +28,10 @@ epub_book <- function() {
   lang <- ifelse(
     has_name(fm, "lang"),
     fm$lang,
-    ifelse(style == "Flanders", "en", "nl")
+    ifelse(style == "Flanders", "en-GB", "nl-BE")
   )
   assert_that(length(lang) == 1)
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  languages <- c(`nl-BE` = "dutch", `en-GB` = "english", `fr-FR` = "french")
   assert_that(
     lang %in% names(languages),
     msg = paste(
@@ -41,12 +40,12 @@ epub_book <- function() {
     )
   )
   assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
+    style != "Flanders" || lang != "nl-BE",
+    msg = "Use style: Vlaanderen when the language is nl-BE"
   )
   assert_that(
-    style == "Flanders" || lang == "nl",
-    msg = "Use style: Flanders when the language is not nl"
+    style == "Flanders" || lang == "nl-BE",
+    msg = "Use style: Flanders when the language is not nl-BE"
   )
 
   pandoc_args <- c(
