@@ -12,23 +12,26 @@
 #' @family output
 epub_book <- function() {
   path(getwd(), "index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = TRUE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   assert_that(
-    has_name(fm, "reportnr"), has_name(fm, "year"),
+    has_name(fm, "reportnr"),
+    has_name(fm, "year"),
     has_name(fm, "cover_description")
   )
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
-  assert_that(style %in% c("INBO", "Vlaanderen", "Flanders"),
+  assert_that(
+    style %in% c("INBO", "Vlaanderen", "Flanders"),
     msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
   )
   lang <- ifelse(
-    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+    has_name(fm, "lang"),
+    fm$lang,
+    ifelse(style == "Flanders", "en-GB", "nl-BE")
   )
   assert_that(length(lang) == 1)
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  languages <- c(`nl-BE` = "dutch", `en-GB` = "english", `fr-FR` = "french")
   assert_that(
     lang %in% names(languages),
     msg = paste(
@@ -37,25 +40,24 @@ epub_book <- function() {
     )
   )
   assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
+    style != "Flanders" || lang != "nl-BE",
+    msg = "Use style: Vlaanderen when the language is nl-BE"
   )
   assert_that(
-    style == "Flanders" || lang == "nl",
-    msg = "Use style: Flanders when the language is not nl"
+    style == "Flanders" || lang == "nl-BE",
+    msg = "Use style: Flanders when the language is not nl-BE"
   )
 
   pandoc_args <- c(
     "--csl",
     system.file(
-      "research-institute-for-nature-and-forest.csl", package = "INBOmd"
+      "research-institute-for-nature-and-forest.csl",
+      package = "INBOmd"
     ),
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
   )
-  if (
-    has_name(fm, "public_report") && !fm$public_report
-  ) {
+  if (has_name(fm, "public_report") && !fm$public_report) {
     pandoc_variable_arg("pagefootmessage", fm$reportnr) |>
       c(pandoc_variable_arg("internal", "true")) |>
       c(pandoc_args) -> pandoc_args
@@ -67,7 +69,8 @@ epub_book <- function() {
     system.file(package = "INBOmd") |>
     list.files(full.names = TRUE) -> fonts
   pandoc_args <- c(
-    pandoc_args, sprintf("--epub-embed-font=%s", fonts),
+    pandoc_args,
+    sprintf("--epub-embed-font=%s", fonts),
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
@@ -80,7 +83,10 @@ epub_book <- function() {
     cover_image <- gsub("\\.pdf$", ".png", fm$cover)
     if (!file_exists(cover_image)) {
       pdf_convert(
-        pdf = fm$cover, format = "png", pages = 1, dpi = 770 * 25.4 / 210,
+        pdf = fm$cover,
+        format = "png",
+        pages = 1,
+        dpi = 770 * 25.4 / 210,
         filenames = cover_image
       )
     }
@@ -101,11 +107,13 @@ epub_book <- function() {
     creator = paste(meta_author, collapse = ", "),
     date = fm$year,
     publisher = ifelse(
-      lang != "nl", "Research Institute for Nature and Forest (INBO)",
+      lang != "nl",
+      "Research Institute for Nature and Forest (INBO)",
       "Instituut voor Natuur- en Bosonderzoek"
     ),
     series = ifelse(
-      lang != "nl", "Reports of the Research Institute for Nature and Forest",
+      lang != "nl",
+      "Reports of the Research Institute for Nature and Forest",
       "Rapporten van het Instituut voor Natuur- en Bosonderzoek"
     ),
     identifier = fm$doi,
@@ -126,14 +134,20 @@ epub_book <- function() {
 
   resource_dir <- system.file(file.path("css_styles"), package = "INBOmd")
   template <- system.file(
-    file.path("template", "report.epub3"), package = "INBOmd"
+    file.path("template", "report.epub3"),
+    package = "INBOmd"
   )
   config <- bookdown::epub_book(
-    fig_caption = TRUE, number_sections = TRUE, toc = TRUE,
+    fig_caption = TRUE,
+    number_sections = TRUE,
+    toc = TRUE,
     stylesheet = file.path(
       resource_dir,
       sprintf("%s_epub.css", ifelse(style == "INBO", "inbo", "flanders"))
-    ), epub_version = "epub3", template = template, pandoc_args = pandoc_args,
+    ),
+    epub_version = "epub3",
+    template = template,
+    pandoc_args = pandoc_args,
     cover_image = cover_image
   )
   config$clean_supporting <- TRUE
@@ -144,18 +158,12 @@ epub_book <- function() {
 #' @family deprecated
 #' @export
 ebook <- function() {
-  .Deprecated(
-    epub_book(),
-    msg = "`INBOmd::ebook` is deprecated. Use `INBOmd::epub_book` instead."
-  )
+  .Defunct("epub_book")
 }
 
 #' @rdname deprecated
 #' @family deprecated
 #' @export
 inbo_ebook <- function() {
-  .Deprecated(
-    epub_book(),
-    msg = "`INBOmd::inbo_ebook` is deprecated. Use `INBOmd::epub_book` instead."
-  )
+  .Defunct("epub_book")
 }

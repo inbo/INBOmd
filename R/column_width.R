@@ -25,11 +25,7 @@ column_start <- function(number = 3, start = 1, margin = 20, edge = 10) {
 #' @param witruimte the width of the whitespace edge around the poster in mm.
 #' @export
 kolom_breedte <- function(aantal = 3, marge = 20, witruimte = 10) {
-  .Deprecated(
-    column_width(number = aantal, margin = marge, edge = witruimte),
-    msg =
-    "`INBOmd::kolom_breedte` is deprecated. Use `INBOmd::column_width` instead."
-  )
+  .Defunct("column_width")
 }
 
 #' @rdname deprecated
@@ -38,11 +34,5 @@ kolom_breedte <- function(aantal = 3, marge = 20, witruimte = 10) {
 #' @family deprecated
 #' @export
 kolom_start <- function(aantal = 3, start = 1, marge = 20, witruimte = 10) {
-  .Deprecated(
-    column_start(
-      number = aantal, start = start, margin = marge, edge = witruimte
-    ),
-    msg =
-      "`INBOmd::kolom_start` is deprecated. Use `INBOmd::column_start` instead."
-  )
+  .Defunct("column_start")
 }

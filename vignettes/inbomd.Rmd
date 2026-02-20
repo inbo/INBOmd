@@ -24,7 +24,7 @@ The styles are based on the corporate identity of the Research Institute for Nat
 The styles itself are not intended for use by parties external to INBO.
 We still provide them to other users as an inspiration and example on how to create their own corporate identity styles for `rmarkdown` files. 
 
-All templates are based on [`bookdown`](https://bookdown.org/home/about/), which is an extension of `rmarkdown`.
+All templates are based on [`bookdown`](https://yihui.org/bookdown/), which is an extension of `rmarkdown`.
 It is tailored towards writing books and technical documentation.
 
 ## Benefits of writing with `bookdown`
@@ -89,12 +89,22 @@ if (!"remotes" %in% rownames(installed.packages())) {
 }
 remotes::install_github("inbo/INBOmd", dependencies = TRUE)
 tinytex::tlmgr_install(c(
-  "inconsolata", "times", "tex", "helvetic", "dvips"
+  "inconsolata",
+  "times",
+  "tex",
+  "helvetic",
+  "dvips"
 ))
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
 )
-tinytex::tlmgr_install(c("hyphen-dutch", "hyphen-french"))
+tinytex::tlmgr_install(c(
+  "hyphen-dutch",
+  "hyphen-french",
+  "babel-english",
+  "babel-french",
+  "babel-dutch"
+))
 ```
 
 # Using `INBOmd`
@@ -115,7 +125,7 @@ DOI, report number, depot number and other information to the meta data.
 
 `INBOmd` contains several templates which are available in RStudio. Go in the menu to `File > New File > R Markdown`. A new window will open were you select `From template`. This will show a list of all available templates. Select the template `INBOmd` you want, set the name of the new document and the base location. This will create a new directory with the specified name in the base location. Each report will reside in its own directory.
 
-This new directory contains `_bookdown.yml` and an `.Rmd` file with the same base name as the directory. We highly recommend to rename the `.Rmd` file to `index.Rmd`, see usage section in the [bookdown](https://bookdown.org/yihui/bookdown/usage.html) book for more details. Next you need to open `_bookdown.yml` in RStudio. Here you can configure the render settings of the report. `book_filename` defines the filename of the output. `output_dir` is the relative path for the output.
+This new directory contains `_bookdown.yml` and an `.Rmd` file with the same base name as the directory. We highly recommend to rename the `.Rmd` file to `index.Rmd`, see usage section in the [bookdown](https://yihui.org/bookdown/usage) book for more details. Next you need to open `_bookdown.yml` in RStudio. Here you can configure the render settings of the report. `book_filename` defines the filename of the output. `output_dir` is the relative path for the output.
 
 Finally, you need to activate the `Build` pane in RStudio. By far the easiest way to do this, is the create a new project. Go in the menu to `File > New Project` and choose in the pop-up window `Existing directory`. Note that this only works if there is an `index.Rmd` file at the root of the project.
 

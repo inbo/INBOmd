@@ -18,25 +18,31 @@ slides <- function(toc = TRUE, ...) {
   check_dependencies()
   dots <- list(...)
   assert_that(
-    !has_name(dots, "number_sections"), msg =
-"`number_sections` detected. Are you still using 'INBOmd::slides' as
-`output_format` of `bookdown::pdf_book`?"
+    !has_name(dots, "number_sections"),
+    msg = paste(
+      "`number_sections` detected. Are you still using 'INBOmd::slides' as",
+      "`output_format` of `bookdown::pdf_book`?"
+    )
   )
   csl <- system.file(
-    "research-institute-for-nature-and-forest.csl", package = "INBOmd"
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
   )
   path("pandoc", "inbo_beamer.tex") |>
     system.file(package = "INBOmd") -> template
   getwd() |>
     path("index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = FALSE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   aspect <- ifelse(has_name(fm, "aspect"), fm$aspect, "16:9")
   assert_that(is.string(aspect))
   paper_dimensions <- rbind(
-    "16:9" = c(160, 90), "16:10" = c(160, 100), "14:9" = c(140, 90),
-    "1.4:1" = c(148.5, 105), "5:4" = c(125, 100), "4:3" = c(128, 96),
+    "16:9" = c(160, 90),
+    "16:10" = c(160, 100),
+    "14:9" = c(140, 90),
+    "1.4:1" = c(148.5, 105),
+    "5:4" = c(125, 100),
+    "4:3" = c(128, 96),
     "3:2" = c(135, 90)
   )
   assert_that(
@@ -56,29 +62,44 @@ slides <- function(toc = TRUE, ...) {
     msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
   )
   if (style == "Vlaanderen") {
-    warning("Currently we have only the English logo's values for this style.
-Please contact the maintainer when you require Dutch logo's.")
+    warning(
+      "Currently we have only the English logo's values for this style.
+Please contact the maintainer when you require Dutch logo's."
+    )
   }
   lang <- ifelse(
-    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+    has_name(fm, "lang"),
+    fm$lang,
+    ifelse(style == "Flanders", "en-GB", "nl-BL")
   )
-  available_languages <- c(nl = "dutch", en = "english", fr = "french")
+  available_languages <- c(
+    `nl-BE` = "dutch",
+    `en-GB` = "english",
+    `fr-FR` = "french"
+  )
   assert_that(is.string(lang))
   assert_that(
     lang %in% names(available_languages),
     msg = paste(
-      "lang must be one of:", paste(names(available_languages), collapse = ", ")
+      "lang must be one of:",
+      paste(names(available_languages), collapse = ", ")
     )
   )
   slide_level <- ifelse(
-    has_name(fm, "slide_level"), fm$slide_level, 2
+    has_name(fm, "slide_level"),
+    fm$slide_level,
+    2
   )
   theme <- ifelse(
-    style == "INBO", ifelse(lang == "nl", "inbo", "inboenglish"), "vlaanderen"
+    style == "INBO",
+    ifelse(lang == "nl-BE", "inbo", "inboenglish"),
+    "vlaanderen"
   )
   args <- c(
-    "--slide-level", as.character(slide_level),
-    "--template", template,
+    "--slide-level",
+    as.character(slide_level),
+    "--template",
+    template,
     pandoc_variable_arg("mylanguage", available_languages[lang]),
     pandoc_variable_arg("aspect", aspect),
     pandoc_variable_arg("theme", theme)
@@ -103,19 +124,25 @@ Please contact the maintainer when you require Dutch logo's.")
     knitr = knitr_options(
       opts_knit = list(width = 80, concordance = TRUE),
       opts_chunk = list(
-        dev = "pdf", dev.args = list(bg = "transparent"), dpi = 300,
+        dev = "pdf",
+        dev.args = list(bg = "transparent"),
+        dpi = 300,
         fig.width = (current_paperwidth - 13) / 25.4,
         fig.height = (current_paperheight - 28) / 25.4
       )
     ),
     pandoc = pandoc_options(
-      to = "beamer", latex_engine = "xelatex", args = args,
+      to = "beamer",
+      latex_engine = "xelatex",
+      args = args,
       keep_tex = ifelse(has_name(dots, "keep_tex"), dots$keep_tex, FALSE)
     ),
     clean_supporting = ifelse(has_name(dots, "clean"), dots$clean, TRUE)
   )
   config <- pdf_book(
-    toc = toc, number_sections = TRUE, fig_caption = TRUE,
+    toc = toc,
+    number_sections = TRUE,
+    fig_caption = TRUE,
     base_format = function(...) {
       of
     }
@@ -128,8 +155,5 @@ Please contact the maintainer when you require Dutch logo's.")
 #' @inheritParams slides
 #' @export
 inbo_slides <- function(toc = TRUE, ...) {
-  .Deprecated(
-    slides(toc = toc, ...),
-    msg = "`inbo_slides` is deprecated. Use `slides` instead."
-  )
+  .Defunct("slides")
 }

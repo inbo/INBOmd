@@ -8,6 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
+#' @importFrom checklist citation_meta
 #' @importFrom fs file_exists path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
@@ -18,9 +19,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   code_folding <- match.arg(code_folding, c("none", "show", "hide"))
   gitbook_edit_button(getwd())
   path(getwd(), "index.Rmd") |>
-    yaml_front_matter() |>
-    validate_persons(reviewer = TRUE) |>
-    validate_rightsholder() -> fm
+    yaml_front_matter() -> fm
+  check_zenodo(fm)
   style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
   assert_that(length(style) == 1)
   assert_that(
@@ -28,10 +28,12 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     msg = "`style` must be one of 'INBO', 'Vlaanderen' or 'Flanders'"
   )
   lang <- ifelse(
-    has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+    has_name(fm, "lang"),
+    fm$lang,
+    ifelse(style == "Flanders", "en-GB", "nl-BE")
   )
   assert_that(length(lang) == 1)
-  languages <- c(nl = "dutch", en = "english", fr = "french")
+  languages <- c(`nl-BE` = "dutch", `en-GB` = "english", `fr-FR` = "french")
   assert_that(
     lang %in% names(languages),
     msg = paste(
@@ -40,12 +42,12 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     )
   )
   assert_that(
-    style != "Flanders" || lang != "nl",
-    msg = "Use style: Vlaanderen when the language is nl"
+    style != "Flanders" || lang != "nl-BE",
+    msg = "Use style: Vlaanderen when the language is nl-BE"
   )
   assert_that(
-    style == "Flanders" || lang == "nl",
-    msg = "Use style: Flanders when the language is not nl"
+    style == "Flanders" || lang == "nl-BE",
+    msg = "Use style: Flanders when the language is not nl-BE"
   )
   split_by <- ifelse(has_name(fm, "split_by"), fm$split_by, "chapter+number")
   assert_that(length(split_by) == 1)
@@ -57,7 +59,8 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   pandoc_args <- c(
     "--csl",
     system.file(
-      "research-institute-for-nature-and-forest.csl", package = "INBOmd"
+      "research-institute-for-nature-and-forest.csl",
+      package = "INBOmd"
     ),
     "--lua-filter",
     system.file(file.path("pandoc", "translations.lua"), package = "INBOmd")
@@ -65,9 +68,7 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
 
   draft <- !all(c("cover_description", "year") %in% names(fm))
   validate_doi(ifelse(has_name(fm, "doi"), fm$doi, "1.1/1"))
-  if (
-    has_name(fm, "public_report") && !fm$public_report
-  ) {
+  if (has_name(fm, "public_report") && !fm$public_report) {
     c(pandoc_variable_arg("internal", "true")) |>
       c(pandoc_args) -> pandoc_args
   } else {
@@ -95,20 +96,26 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     cover_path <- gsub("\\.pdf$", ".png", fm$cover)
     if (!file_exists(cover_path)) {
       pdf_convert(
-        pdf = fm$cover, format = "png", pages = 1, dpi = 770 * 25.4 / 210,
+        pdf = fm$cover,
+        format = "png",
+        pages = 1,
+        dpi = 770 * 25.4 / 210,
         filenames = cover_path
       )
     }
     pandoc_args <- c(
-      pandoc_args, pandoc_variable_arg("cover_image", cover_path)
+      pandoc_args,
+      pandoc_variable_arg("cover_image", cover_path)
     )
   }
   inbomd_dep <- htmlDependency(
-    name = "INBOmd", version = packageVersion("INBOmd"),
+    name = "INBOmd",
+    version = packageVersion("INBOmd"),
     src = system.file("css_styles", package = "INBOmd"),
     meta = c(creator = "Research Institute for Nature and Forest (INBO)"),
     stylesheet = sprintf(
-      "%s_report.css", ifelse(style == "INBO", "inbo", "flanders")
+      "%s_report.css",
+      ifelse(style == "INBO", "inbo", "flanders")
     )
   )
 
@@ -117,23 +124,32 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
   pandoc_args <- c(
     pandoc_args,
     pandoc_variable_arg(
-      "csspath", file.path("libs", paste0("INBOmd-", packageVersion("INBOmd")))
+      "csspath",
+      file.path("libs", paste0("INBOmd-", packageVersion("INBOmd")))
     ),
     pandoc_variable_arg("corresponding", fm$corresponding),
     pandoc_variable_arg("shortauthor", fm$shortauthor)
   )
 
   template <- system.file(
-    file.path("template", "report.html"), package = "INBOmd"
+    file.path("template", "report.html"),
+    package = "INBOmd"
   )
   config <- bookdown::gitbook(
-    fig_caption = TRUE, number_sections = TRUE, self_contained = FALSE,
-    anchor_sections = TRUE, lib_dir = "libs", split_by = split_by,
-    split_bib = TRUE, table_css = TRUE, pandoc_args = pandoc_args,
-    template = template, extra_dependencies = list(inbomd_dep),
+    fig_caption = TRUE,
+    number_sections = TRUE,
+    self_contained = FALSE,
+    anchor_sections = TRUE,
+    lib_dir = "libs",
+    split_by = split_by,
+    split_bib = TRUE,
+    table_css = TRUE,
+    pandoc_args = pandoc_args,
+    template = template,
+    extra_dependencies = list(inbomd_dep),
     code_folding = code_folding
   )
-  op <- config$post_processor  # in case a post processor have been defined
+  op <- config$post_processor # in case a post processor have been defined
   config$post_processor <- function(metadata, input, output, clean, verbose) {
     file(output, encoding = "UTF-8") |>
       readLines() -> x
@@ -155,8 +171,8 @@ gitbook_edit_button <- function(path) {
   root <- try(git_find(path), silent = TRUE)
   if (
     inherits(root, "try-error") ||
-    nrow(git_remote_list(root)) == 0 ||
-    !file_test("-f", file.path(path, "_bookdown.yml"))
+      nrow(git_remote_list(root)) == 0 ||
+      !file_test("-f", file.path(path, "_bookdown.yml"))
   ) {
     return(invisible(FALSE))
   }
@@ -164,17 +180,59 @@ gitbook_edit_button <- function(path) {
   url <- gsub("^.*@(.*?):", "https://\\1/", url)
   url <- paste("edit:", gsub("\\.git$", "", url))
   url <- file.path(
-    fsep = "/", url, "edit",
+    fsep = "/",
+    url,
+    "edit",
     ifelse(git_branch_exists("main", repo = path), "main", "master")
   )
   rel_path <- gsub(root, "", path)
   url <- ifelse(
-    rel_path == "", file.path(url, "%s", fsep = "/"),
+    rel_path == "",
+    file.path(url, "%s", fsep = "/"),
     file.path(url, gsub("^.", "", rel_path), "%s", fsep = "/")
   )
   yaml <- readLines(file.path(path, "_bookdown.yml"))
   writeLines(
-    c(yaml[!grepl("^edit: ", yaml)], url), file.path(path, "_bookdown.yml")
+    c(yaml[!grepl("^edit: ", yaml)], url),
+    file.path(path, "_bookdown.yml")
   )
   return(invisible(TRUE))
+}
+
+#' @importFrom assertthat has_name
+#' @importFrom checklist citation_meta
+#' @importFrom stats setNames
+check_zenodo <- function(fm) {
+  list(
+    has_name(fm, "shorttitle"),
+    length(fm$shorttitle) == 1,
+    grepl("^[[:alnum:]-]+$", fm$shorttitle),
+    nchar(fm$shorttitle) > 9,
+    nchar(fm$shorttitle) <= 80
+  ) |>
+    setNames(
+      c(
+        "Missing `shorttitle` in YAML header of index.Rmd",
+        "Multiple `shorttitle` in `index.Rmd`",
+        paste(
+          "`shorttitle` may contain only letters [A-Za-z], digits [0-9] and",
+          "dashes (-)"
+        ),
+        "`shorttitle` contains less than 10 characters",
+        "`shorttitle` contains more than 80 characters"
+      )
+    ) |>
+    do.call(what = stopifnot)
+  cit <- citation_meta$new()
+  # fmt:skip
+  no_problem <-
+    (is.null(cit$get_errors) ||
+     all(grepl(".zenodo.json is modified", cit$get_errors))) &&
+    is.null(cit$get_warnings) &&
+    length(cit$get_notes) == 0
+  if (!no_problem) {
+    print(cit)
+    stop("problems in metadata. Please check the YAML header of your index.Rmd")
+  }
+  return(TRUE)
 }

@@ -14,7 +14,9 @@ references <- function(appendix = FALSE, part = FALSE) {
     fm <- yaml_front_matter(file.path(getwd(), "index.Rmd"))
     style <- ifelse(has_name(fm, "style"), fm$style, "INBO")
     lang <- ifelse(
-      has_name(fm, "lang"), fm$lang, ifelse(style == "Flanders", "en", "nl")
+      has_name(fm, "lang"),
+      fm$lang,
+      ifelse(style == "Flanders", "en", "nl")
     )
     ref_title <- sprintf(
       "# %s {-}",
@@ -22,14 +24,14 @@ references <- function(appendix = FALSE, part = FALSE) {
     )
     app_title <- sprintf(
       "# (APPENDIX) %s {-}",
-      c(nl = "Bijlage", en = "Appendix", fr = "Annexe")[lang]
+      c(nl = "Bijlagen", en = "Appendices", fr = "Annexes")[lang]
     )
     output <- c(ref_title, "<div id='refs'></div>", app_title[appendix])
   } else {
     assert_that(is.flag(part), noNA(part))
     output <- c(
       "\\appendix"[appendix],
-      "\\part{\\appendixname}"[appendix && part]
+      "\\part*{\\appendicesname}"[appendix && part]
     )
   }
   cat(output, sep = "\n\n")

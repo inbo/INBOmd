@@ -35,12 +35,16 @@ minutes <- function(
   codesize <- match.arg(codesize)
 
   template <- system.file(
-    file.path("pandoc", "inbo_verslag.tex"), package = "INBOmd"
+    file.path("pandoc", "inbo_verslag.tex"),
+    package = "INBOmd"
   )
-  csl <- system.file("research-institute-for-nature-and-forest.csl",
-                     package = "INBOmd")
+  csl <- system.file(
+    "research-institute-for-nature-and-forest.csl",
+    package = "INBOmd"
+  )
   args <- c(
-    "--template", template,
+    "--template",
+    template,
     pandoc_variable_arg("present", present),
     pandoc_variable_arg("absent", absent),
     pandoc_variable_arg("chair", chair),
@@ -134,12 +138,5 @@ inbo_verslag <- function(
   pandoc_args = NULL,
   ...
 ) {
-  .Deprecated(
-    minutes(
-      present = present, absent = absent, chair = chair, keep_tex = keep_tex,
-      floatbarrier = floatbarrier, fig_crop = fig_crop, includes = includes,
-      pandoc_args = pandoc_args, codesize = codesize, lang = lang, ...
-    ),
-    msg = "`inbo_verslag` is deprecated. Use `minutes` instead."
-  )
+  .Defunct("minutes")
 }
