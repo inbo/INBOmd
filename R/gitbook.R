@@ -8,7 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom fs file_exists path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
@@ -200,7 +200,7 @@ gitbook_edit_button <- function(path) {
 }
 
 #' @importFrom assertthat has_name
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom stats setNames
 check_zenodo <- function(fm) {
   list(

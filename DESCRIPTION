@@ -23,7 +23,8 @@ Depends:
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
-    checklist (>= 0.5.3),
+    checklist (>= 0.6.0),
+    citeme,
     dplyr,
     fs,
     gert,
@@ -44,13 +45,13 @@ Suggests:
     quarto,
     rstudioapi,
     webshot
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Additional_repositories: https://inbo.r-universe.dev
-Config/checklist/communities: inbo
-Config/checklist/keywords: markdown; bookdown; corporate identity;
-    template
+Config/citeme/communities: inbo
+Config/citeme/keywords: markdown; bookdown; corporate identity;
+    template; inbo_version
+Config/roxygen2/version: 8.0.0
 Encoding: UTF-8
 Language: en-GB
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3

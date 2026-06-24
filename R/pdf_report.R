@@ -7,10 +7,11 @@
 #' @template yaml_pdf
 #' @export
 #' @importFrom assertthat assert_that has_name is.string
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_available
-#' pandoc_options pandoc_variable_arg includes_to_pandoc_args
+#' @importFrom rmarkdown pandoc_options pandoc_variable_arg
+#' @importFrom rmarkdown includes_to_pandoc_args
 #' @family output
 pdf_report <- function(
   fig_crop = "auto",
@@ -427,9 +428,9 @@ contact_person <- function(person) {
 }
 
 #' @importFrom assertthat assert_that has_name is.string noNA
-#' @importFrom checklist organisation
+#' @importFrom citeme inbo_org_list
 validate_rightsholder <- function(yaml) {
-  org <- organisation$new()
+  org <- inbo_org_list()
   aff <- org$get_organisation[["inbo.be"]]$affiliation
   stopifnot(
     "no `funder` found" = has_name(yaml, "funder"),

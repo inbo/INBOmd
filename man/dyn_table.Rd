@@ -42,18 +42,18 @@ expanded to a vector of individual letters, e.g. \code{'clc'} becomes
 }
 }
 \seealso{
-Other utils: 
-\code{\link{add_author}()},
-\code{\link{add_report_numbers}()},
-\code{\link{check_dependencies}()},
-\code{\link{column_start}()},
-\code{\link{column_width}()},
-\code{\link{cover_info}()},
-\code{\link{create_report}()},
-\code{\link{inbo_website}()},
-\code{\link{prepare_cover}()},
-\code{\link{references}()},
-\code{\link{render_natbib}()},
-\code{\link{validate_doi}()}
+Other utils:
+\code{\link[=add_author]{add_author()}},
+\code{\link[=add_report_numbers]{add_report_numbers()}},
+\code{\link[=check_dependencies]{check_dependencies()}},
+\code{\link[=column_start]{column_start()}},
+\code{\link[=column_width]{column_width()}},
+\code{\link[=cover_info]{cover_info()}},
+\code{\link[=create_report]{create_report()}},
+\code{\link[=inbo_website]{inbo_website()}},
+\code{\link[=prepare_cover]{prepare_cover()}},
+\code{\link[=references]{references()}},
+\code{\link[=render_natbib]{render_natbib()}},
+\code{\link[=validate_doi]{validate_doi()}}
 }
 \concept{utils}

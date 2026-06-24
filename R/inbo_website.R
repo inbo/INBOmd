@@ -18,7 +18,7 @@ inbo_website <- function(path = ".") {
 }
 
 
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom fs path
 inbo_website_quarto <- function(path) {
   assert_that(requireNamespace("quarto", quietly = TRUE))
@@ -71,7 +71,7 @@ inbo_website_quarto <- function(path) {
 
 #' @importFrom assertthat assert_that
 #' @importFrom fs dir_create dir_delete dir_ls file_delete is_dir is_file path
-#' path_abs path_ext_remove path_rel
+#' @importFrom fs path_abs path_ext_remove path_rel
 #' @importFrom rmarkdown clean_site render_site
 #' @importFrom utils zip
 #' @importFrom withr defer

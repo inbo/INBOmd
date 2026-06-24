@@ -14,8 +14,8 @@
 #' @family utils
 #' @export
 #' @importFrom assertthat assert_that is.string noNA
-#' @importFrom checklist ask_yes_no menu_first organisation read_checklist
-#' use_author
+#' @importFrom checklist read_checklist
+#' @importFrom citeme ask_yes_no inbo_org_list menu_first
 #' @importFrom fs dir_create file_copy is_dir is_file path
 #' @importFrom gert git_find
 create_report <- function(path = ".", shortname) {
@@ -94,7 +94,7 @@ create_report <- function(path = ".", shortname) {
   lang <- names(lang)[
     menu_first(lang, title = "What is the main language of the report?")
   ]
-  org <- organisation$new()
+  org <- inbo_org_list()
   aff <- org$get_organisation[["inbo.be"]]$affiliation[lang]
   style <- c("INBO", "Vlaanderen")
   style <- ifelse(
@@ -361,9 +361,9 @@ add_address <- function(type = "client") {
   )
 }
 
-#' @importFrom checklist use_author
+#' @importFrom citeme select_individual
 check_author <- function(lang = "nl") {
-  person <- use_author()
+  person <- select_individual(lang = lang)
   if (is_inbo(person) && !person$affiliation %in% inbo_affiliation) {
     paste0("`", inbo_affiliation, "`", collapse = "; ") |>
       sprintf(fmt = "INBO staff must use one of %s as affiliation.") |>
