@@ -2,19 +2,20 @@ description: Configuration file for checklist::check_pkg()
 package: yes
 allowed:
   warnings:
-  - motivation: package not intended for CRAN and requires INBO specific packages.
+  - motivation: Package not intended for CRAN
     value: |-
       checking CRAN incoming feasibility ... WARNING
       Maintainer: 'Thierry Onkelinx <thierry.onkelinx@inbo.be>'
 
       New submission
 
-      Strong dependencies not in mainstream repositories:
-        checklist
+      Strong dependencies not in the CRAN or BioC software repositories:
+        checklist, citeme
       Suggests or Enhances not in mainstream repositories:
         INBOtheme
       Availability using Additional_repositories specification:
         checklist   yes   https://inbo.r-universe.dev
+        citeme      yes   https://inbo.r-universe.dev
         INBOtheme   yes   https://inbo.r-universe.dev
   notes: []
 required:
@@ -22,12 +23,12 @@ required:
 - DESCRIPTION
 - R CMD check
 - checklist
-- codemeta
 - documentation
 - filename conventions
 - folder conventions
 - license
 - lintr
+- organisation
 - repository secret
 - spelling
 spelling:
@@ -45,3 +46,5 @@ spelling:
     - inst/rmarkdown/templates/report/skeleton/zzz_references_and_appendix.Rmd
     - inst/rmarkdown/templates/slides/skeleton/skeleton.Rmd
     fr-BE: inst/rmarkdown/templates/report/skeleton/001_resume.Rmd
+pak: []
+gha_install: []

@@ -21,7 +21,7 @@ The current package has following Rmarkdown templates:
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-More details, including instructions for installation and usage are available at the [INBOmd website](https://inbo.github.io/INBOmd/articles/introduction.html).
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbo.github.io/INBOmd/articles/inbomd.html).
 
 ## In the wild
 
@@ -73,12 +73,12 @@ install.packages("INBOmd", repos = "https://inbo.r-universe.dev")
 #}
 #pak::pkg_install("inbo/INBOmd", dependencies = TRUE)
 
-# add the local latex package contained in INBOmd to the TinyTeX install 
+# add the local latex package contained in INBOmd to the TinyTeX install
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
 )
 
-# install some other needed latex packages 
+# install some other needed latex packages
 tinytex::tlmgr_install(c(
   "babel-dutch", "babel-english", "babel-french", "dvips", "helvetic",
   "hyphen-dutch", "hyphen-french", "inconsolata", "tex", "times"

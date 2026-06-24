@@ -15,7 +15,11 @@ references <- function(appendix = FALSE, part = FALSE) {
     lang <- fm$lang
     ref_title <- sprintf(
       "# %s {-}",
-      c(`nl-BE` = "Referenties", `en-GB` = "Bibliography", `fr-FR` = "Bibliographie")[lang]
+      c(
+        `nl-BE` = "Referenties",
+        `en-GB` = "Bibliography",
+        `fr-FR` = "Bibliographie"
+      )[lang]
     )
     app_title <- sprintf(
       "# (APPENDIX) %s {-}",
