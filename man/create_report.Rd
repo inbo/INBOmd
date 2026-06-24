@@ -21,7 +21,8 @@ at \code{path/inst/shortname}.
 Otherwise you will find the new report at \code{path/shortname}.}
 }
 \description{
-Create a template for an INBOmd bookdown report
+This function is defunct.
+Use \code{flandersqmd::create_report()} instead.
 }
 \seealso{
 Other utils:
