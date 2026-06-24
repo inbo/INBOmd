@@ -1,3 +1,7 @@
+# INBOmd 0.6.5
+
+* Use latest version of `citeme` and `checklist`.
+
 # INBOmd 0.6.4
 
 * Fix missing subtitle in citation in colophon of gitbook and epub.
@@ -9,7 +13,7 @@
 
 # INBOmd 0.6.2
 
-* `pdf_report()`, `gitbook()` and `epub_book()` gain an option to create 
+* `pdf_report()`, `gitbook()` and `epub_book()` gain an option to create
   internal reports with a different colophon.
 * `pdf_report()` and `gitbook()` gain a watermark argument.
   It adds a text watermark in the margin of every page.

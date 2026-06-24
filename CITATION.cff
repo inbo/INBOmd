@@ -11,6 +11,7 @@ keywords:
 - bookdown
 - corporate identity
 - template
+- inbo_version
 contact:
 - given-names: Thierry
   family-names: Onkelinx
@@ -26,4 +27,4 @@ identifiers:
   value: 10.5281/zenodo.842223
 - type: url
   value: https://inbo.github.io/INBOmd/
-version: 0.6.4
+version: 0.6.5
