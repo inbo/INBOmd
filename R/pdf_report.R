@@ -297,6 +297,11 @@ pdf_report <- function(
       of
     }
   )
+  paste(
+    "`INBOmd` is deprecated and will be no longer maintained after 2027.",
+    "Switch to `flandersqmd` for longer support."
+  ) |>
+    warning(call. = FALSE)
   return(config)
 }
 

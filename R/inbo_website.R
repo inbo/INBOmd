@@ -8,6 +8,11 @@ inbo_website <- function(path = ".") {
   assert_that(is.string(path), noNA(path))
   path <- normalizePath(path, mustWork = FALSE)
   assert_that(is_dir(path), msg = "`path` is not an existing directory")
+  paste(
+    "`INBOmd` is deprecated and will be no longer maintained after 2027.",
+    "Switch to `flandersqmd` for longer support."
+  ) |>
+    warning(call. = FALSE)
   if (is_file(path(path, "_bookdown.yml"))) {
     return(inbo_website_bookdown(path))
   }

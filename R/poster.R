@@ -185,6 +185,11 @@ poster <- function(
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
+  paste(
+    "`INBOmd` is deprecated and will be no longer maintained after 2027.",
+    "Switch to `flandersqmd` for longer support."
+  ) |>
+    warning(call. = FALSE)
 
   output_format(
     knitr = knitr_options(
