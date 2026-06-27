@@ -16,62 +16,12 @@ inbo_website <- function(path = ".") {
   if (is_file(path(path, "_bookdown.yml"))) {
     return(inbo_website_bookdown(path))
   }
-  if (is_file(path(path, "_quarto.yml"))) {
-    return(inbo_website_quarto(path))
-  }
-  stop("no `_bookdown.yml` or `_bookdown.yml` found in `path`")
-}
-
-
-#' @importFrom citeme citation_meta
-#' @importFrom fs path
-inbo_website_quarto <- function(path) {
-  assert_that(requireNamespace("quarto", quietly = TRUE))
-  system.file("generic_template/cc_by_4_0.md", package = "checklist") |>
-    file.copy("LICENSE.md", overwrite = FALSE)
-  cit <- citation_meta$new(path)
-  if (
-    !is.null(cit$get_errors) &&
-      !all(grepl("\\.zenodo.json is modified", cit$get_errors))
-  ) {
-    return(cit)
-  }
-  yml <- quarto::quarto_inspect(path)
-  assert_that(
-    has_name(yml$config$project, "output-dir"),
-    has_name(yml$config, "flandersqmd"),
-    has_name(yml$config$flandersqmd, "shorttitle")
+  stopifnot(
+    "Use `flandersqmd` to render quarto reports." = !is_file(
+      path(path, "_quarto.yml")
+    )
   )
-  output_dir <- yml$config$project$`output-dir`
-
-  oldwd <- getwd()
-  on.exit(setwd(oldwd), add = TRUE)
-  setwd(path)
-  quarto::quarto_render(".", as_job = FALSE)
-
-  # copy .zenodo.json to output directory
-  list.files(path, pattern = ".zenodo.json", all.files = TRUE) |>
-    file.copy(output_dir, overwrite = TRUE)
-
-  # pack report into a zip archive
-  dir_ls(
-    output_dir,
-    recurse = TRUE,
-    regexp = "\\.zip",
-    invert = TRUE,
-    all = TRUE
-  ) |>
-    path_rel(output_dir) -> files
-
-  setwd(output_dir)
-  path(output_dir, tolower(yml$config$flandersqmd$shorttitle), ext = "zip") |>
-    zip(files = files, flags = "-r9XqT")
-  # remove output except zip archive
-  dir_ls(output_dir, type = "dir") |>
-    dir_delete()
-  dir_ls(output_dir, type = "file", regexp = "\\.zip", invert = TRUE) |>
-    file_delete()
-  return(invisible(NULL))
+  stop("no `_bookdown.yml` or `_bookdown.yml` found in `path`")
 }
 
 #' @importFrom assertthat assert_that
