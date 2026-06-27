@@ -1,8 +1,8 @@
---- 
+---
 # generic options. See ?INBOmd::slides() for full list and more details.
 title:
 subtitle:
-author: 
+author:
   - name:
       given: Firstname1
       family: "Last name1"
@@ -42,7 +42,6 @@ library(knitr)
 opts_chunk$set(
   dev = "cairo_pdf"
 )
-library(tidyverse)
 library(INBOtheme)
 if (interactive()) {
   theme_set(theme_inbo(base_size = 12, transparent = "plot"))
