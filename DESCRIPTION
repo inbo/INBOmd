@@ -23,7 +23,7 @@ Depends:
 Imports:
     assertthat,
     bookdown (>= 0.23.4),
-    citeme,
+    citeme (>= 0.1.4),
     dplyr,
     fs,
     gert,
