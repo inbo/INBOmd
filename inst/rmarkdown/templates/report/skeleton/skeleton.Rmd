@@ -2,7 +2,7 @@
 # generic options. See ?INBOmd::pdf_report() for full list and more details.
 title:
 # subtitle:
-author: 
+author:
   - name:
       given: Firstname1
       family: Last name1
@@ -38,7 +38,7 @@ cover_photo:
 # doi:
 # reportnr:
 # ordernr:
-# depotnr: 
+# depotnr:
 client:
   - Organisation (remove client section when not needed)
   - Street number
@@ -102,7 +102,6 @@ opts_chunk$set(
   error = FALSE,
   message = TRUE
 )
-library(tidyverse)
 library(INBOtheme)
 if (interactive()) {
   theme_set(theme_inbo(base_size = 10))

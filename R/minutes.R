@@ -13,7 +13,7 @@
 #' }
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
-#' pandoc_variable_arg pandoc_version
+#' @importFrom rmarkdown pandoc_variable_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 minutes <- function(

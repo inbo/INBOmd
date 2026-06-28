@@ -28,7 +28,8 @@
 #'    poster.
 #' @export
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
-#' pandoc_variable_arg includes_to_pandoc_args pandoc_version
+#' @importFrom rmarkdown pandoc_variable_arg includes_to_pandoc_args
+#' @importFrom rmarkdown pandoc_version
 #' @importFrom utils compareVersion
 #' @importFrom grDevices pdf dev.off
 #' @importFrom graphics par image
@@ -184,6 +185,11 @@ poster <- function(
     writeLines(enc2utf8(text), output, useBytes = FALSE)
     output
   }
+  paste(
+    "`INBOmd` is deprecated and will be no longer maintained after 2027.",
+    "Switch to `flandersqmd` for longer support."
+  ) |>
+    warning(call. = FALSE)
 
   output_format(
     knitr = knitr_options(

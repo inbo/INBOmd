@@ -14,18 +14,18 @@ This function will interactively add the information of an author from the
 local authors database.
 }
 \seealso{
-Other utils: 
-\code{\link{add_report_numbers}()},
-\code{\link{check_dependencies}()},
-\code{\link{column_start}()},
-\code{\link{column_width}()},
-\code{\link{cover_info}()},
-\code{\link{create_report}()},
-\code{\link{dyn_table}()},
-\code{\link{inbo_website}()},
-\code{\link{prepare_cover}()},
-\code{\link{references}()},
-\code{\link{render_natbib}()},
-\code{\link{validate_doi}()}
+Other utils:
+\code{\link[=add_report_numbers]{add_report_numbers()}},
+\code{\link[=check_dependencies]{check_dependencies()}},
+\code{\link[=column_start]{column_start()}},
+\code{\link[=column_width]{column_width()}},
+\code{\link[=cover_info]{cover_info()}},
+\code{\link[=create_report]{create_report()}},
+\code{\link[=dyn_table]{dyn_table()}},
+\code{\link[=inbo_website]{inbo_website()}},
+\code{\link[=prepare_cover]{prepare_cover()}},
+\code{\link[=references]{references()}},
+\code{\link[=render_natbib]{render_natbib()}},
+\code{\link[=validate_doi]{validate_doi()}}
 }
 \concept{utils}

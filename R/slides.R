@@ -11,7 +11,7 @@
 #' @importFrom bookdown pdf_book
 #' @importFrom fs path
 #' @importFrom rmarkdown output_format knitr_options pandoc_options
-#' pandoc_variable_arg pandoc_path_arg pandoc_version
+#' @importFrom rmarkdown pandoc_variable_arg pandoc_path_arg pandoc_version
 #' @importFrom utils compareVersion
 #' @family output
 slides <- function(toc = TRUE, ...) {

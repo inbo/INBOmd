@@ -19,7 +19,7 @@ jobs:
         uses: inbo/actions/render_inbomd@devel
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          EXAMPLE_BRANCH: main
+          EXAMPLE_BRANCH: citeme
 
       - name: push gh-pages
         if: ${{ github.event_name == 'push' }}

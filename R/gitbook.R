@@ -8,7 +8,7 @@
 #' @export
 #' @importFrom assertthat assert_that has_name
 #' @importFrom bookdown gitbook
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom fs file_exists path
 #' @importFrom htmltools htmlDependency
 #' @importFrom pdftools pdf_convert
@@ -161,6 +161,11 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
     op(metadata, input, output, clean, verbose)
   }
   config$clean_supporting <- TRUE
+  paste(
+    "`INBOmd` is deprecated and will be no longer maintained after 2027.",
+    "Switch to `flandersqmd` for longer support."
+  ) |>
+    warning(call. = FALSE)
   return(config)
 }
 
@@ -200,7 +205,7 @@ gitbook_edit_button <- function(path) {
 }
 
 #' @importFrom assertthat has_name
-#' @importFrom checklist citation_meta
+#' @importFrom citeme citation_meta
 #' @importFrom stats setNames
 check_zenodo <- function(fm) {
   list(

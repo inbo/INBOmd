@@ -1,6 +1,6 @@
 {
   "title": "INBOmd: Markdown Templates for INBO",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "license": "GPL-3.0",
   "upload_type": "software",
   "description": "<p>Several templates to generate reports, presentations and posters.<\/p>",
@@ -8,7 +8,8 @@
     "markdown",
     "bookdown",
     "corporate identity",
-    "template"
+    "template",
+    "inbo_version"
   ],
   "access_right": "open",
   "language": "eng",
@@ -47,5 +48,6 @@
     {
       "identifier": "inbo"
     }
-  ]
+  ],
+  "publisher": "Research Institute for Nature and Forest (INBO)"
 }

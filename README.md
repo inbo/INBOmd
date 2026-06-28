@@ -4,7 +4,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![Lifecycle: stable](https://lifecycle.r-lib.org/articles/figures/lifecycle-stable.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 ![License](https://img.shields.io/github/license/inbo/INBOmd)
-[![R build status](https://github.com/inbo/INBOmd/actions/workflows/check_on_main.yml/badge.svg)](https://github.com/inbo/INBOmd/actions)
+[![R build status](https://github.com/inbo/INBOmd/actions/workflows/check_package.yml/badge.svg)](https://github.com/inbo/INBOmd/actions)
 [![Codecov test coverage](https://app.codecov.io/gh/inbo/inbomd/branch/main/graph/badge.svg)](https://app.codecov.io/gh/inbo/inbomd?branch=main)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/inbo/inbomd.svg)
 ![GitHub repo size](https://img.shields.io/github/repo-size/inbo/inbomd.svg)
@@ -21,7 +21,7 @@ The current package has following Rmarkdown templates:
 
 The templates are available in RStudio using `File` > `New file` > `R Markdown` > `From template`.
 
-More details, including instructions for installation and usage are available at the [INBOmd website](https://inbo.github.io/INBOmd/articles/introduction.html).
+More details, including instructions for installation and usage are available at the [INBOmd website](https://inbo.github.io/INBOmd/articles/inbomd.html).
 
 ## In the wild
 
@@ -73,12 +73,12 @@ install.packages("INBOmd", repos = "https://inbo.r-universe.dev")
 #}
 #pak::pkg_install("inbo/INBOmd", dependencies = TRUE)
 
-# add the local latex package contained in INBOmd to the TinyTeX install 
+# add the local latex package contained in INBOmd to the TinyTeX install
 tinytex::tlmgr_conf(
   c("auxtrees", "add", system.file("local_tex", package = "INBOmd"))
 )
 
-# install some other needed latex packages 
+# install some other needed latex packages
 tinytex::tlmgr_install(c(
   "babel-dutch", "babel-english", "babel-french", "dvips", "helvetic",
   "hyphen-dutch", "hyphen-french", "inconsolata", "tex", "times"

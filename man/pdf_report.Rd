@@ -211,13 +211,13 @@ references, page numbers, ...
 }
 
 \seealso{
-Other output: 
-\code{\link{epub_book}()},
-\code{\link{gitbook}()},
-\code{\link{handouts}()},
-\code{\link{minutes}()},
-\code{\link{mission}()},
-\code{\link{poster}()},
-\code{\link{slides}()}
+Other output:
+\code{\link[=epub_book]{epub_book()}},
+\code{\link[=gitbook]{gitbook()}},
+\code{\link[=handouts]{handouts()}},
+\code{\link[=minutes]{minutes()}},
+\code{\link[=mission]{mission()}},
+\code{\link[=poster]{poster()}},
+\code{\link[=slides]{slides()}}
 }
 \concept{output}
