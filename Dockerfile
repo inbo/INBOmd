@@ -26,9 +26,20 @@ RUN useradd docker \
   && chown docker:docker /home/docker
 
 ## Configure default locale, see https://github.com/rocker-org/rocker/issues/19
-RUN apt-get update \
+RUN apt-get update -qq \
   && apt-get install -y  --no-install-recommends \
+    dirmngr \
+    git \
+    ghostscript \
+    gnupg \
+    imagemagick \
+    libcurl4-openssl-dev \
+    libpoppler-cpp-dev \
+    libpq-dev \
     locales \
+    software-properties-common \
+    wget \
+  && apt-get clean \
   && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
   && locale-gen nl_BE.utf8 \
   && /usr/sbin/update-locale LANG=nl_BE.UTF-8
@@ -36,78 +47,26 @@ RUN apt-get update \
 ENV LC_ALL=nl_BE.UTF-8
 ENV LANG=nl_BE.UTF-8
 
-## Install wget
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    wget
-
-## Install nano
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    nano
-
-## Install ImageMagick
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends \
-    imagemagick
-
-## Install git
-RUN  apt-get update \
-  && apt-get install -y --no-install-recommends \
-    git
-
-## Install gpg
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    gnupg
-
 ## R repo
-RUN apt-get update -qq \
+RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
+  && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" \
+  && apt-get update \
   && apt-get install -y  --no-install-recommends \
-    software-properties-common \
-    dirmngr \
-  && wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc \
-  && add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
-
-## R
-RUN apt-get update \
-  && apt-get install -y  --no-install-recommends \
-    r-base-dev
-
-## Install pandoc
-RUN  wget https://github.com/jgm/pandoc/releases/download/3.1.8/pandoc-3.1.8-1-amd64.deb \
+    r-base-dev \
+  && apt-get clean \
+  && wget https://github.com/jgm/pandoc/releases/download/3.1.8/pandoc-3.1.8-1-amd64.deb \
   && dpkg -i pandoc-3.1.8-1-amd64.deb \
   && rm pandoc-3.1.8-1-amd64.deb
 
 COPY docker/.Rprofile /usr/lib/R/etc/Rprofile.site
 
 ## install pak
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    libcurl4-openssl-dev \
-  && Rscript --no-save --no-restore -e 'install.packages("pak")'
-
-## install R packages using pak
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-    libpoppler-cpp-dev \
-    libpq-dev \
-  && Rscript --no-save --no-restore -e 'pak::pkg_install(c("bookdown", "checklist", "dplyr", "DT", "here", "INBOtheme", "kableExtra", "lipsum", "pander", "pdftools", "qrcode", "webshot"), dependencies = TRUE)'
-
-## Install webshot dependency
-RUN  Rscript -e 'webshot::install_phantomjs()'
-
-## Install tinytex
-RUN  Rscript -e 'tinytex::install_tinytex()'
-
-## Install LaTeX packages
-RUN apt-get update \
-  && apt-get install -y  --no-install-recommends \
-    ghostscript \
-  && Rscript -e 'tinytex::tlmgr_install(c("babel-dutch", "babel-english", "babel-french", "beamer", "beamerswitch", "booktabs", "carlisle", "colortbl", "datetime", "draftwatermark", "dvips", "emptypage", "environ", "epstopdf", "eso-pic", "eurosym", "extsizes", "fancyhdr", "fancyvrb", "fmtcount", "float", "fontspec", "footmisc", "framed", "helvetic", "hyphen-dutch", "hyphen-french", "inconsolata", "lastpage", "lipsum", "makecell", "marginnote", "mdframed", "ms", "multirow", "parskip", "pdflscape", "pdfpages", "pdftexcmds", "placeins", "needspace", "tabu", "tex", "textpos", "threeparttable", "threeparttablex", "titlesec", "times", "tocloft", "translator", "trimspaces", "ulem", "upquote", "wrapfig", "xcolor", "xstring", "zref"))'
-
-## Install fonts
-RUN  mkdir ${HOME}/.fonts \
+RUN Rscript --no-save --no-restore -e 'install.packages("pak")' \
+  && Rscript --no-save --no-restore -e 'pak::pkg_install(c("bookdown", "checklist", "dplyr", "DT", "here", "INBOtheme", "kableExtra", "lipsum", "pander", "pdftools", "qrcode", "webshot"), dependencies = TRUE)' \
+  && Rscript -e 'webshot::install_phantomjs()' \
+  && Rscript -e 'tinytex::install_tinytex()' \
+  && Rscript -e 'tinytex::tlmgr_install(c("babel-dutch", "babel-english", "babel-french", "beamer", "beamerswitch", "booktabs", "carlisle", "colortbl", "datetime", "draftwatermark", "dvips", "emptypage", "environ", "epstopdf", "eso-pic", "eurosym", "extsizes", "fancyhdr", "fancyvrb", "fmtcount", "float", "fontspec", "footmisc", "framed", "helvetic", "hyphen-dutch", "hyphen-french", "inconsolata", "lastpage", "lipsum", "makecell", "marginnote", "mdframed", "multirow", "parskip", "pdflscape", "pdfpages", "pdftexcmds", "placeins", "needspace", "tabu", "tex", "textpos", "threeparttable", "threeparttablex", "titlesec", "times", "tocloft", "translator", "trimspaces", "ulem", "upquote", "wrapfig", "xcolor", "xstring", "zref"))' \
+  && mkdir ${HOME}/.fonts \
   && wget https://www.wfonts.com/download/data/2014/12/12/calibri/calibri.zip \
   && unzip calibri.zip -d ${HOME}/.fonts \
   && rm calibri.zip \
