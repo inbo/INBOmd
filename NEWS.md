@@ -1,3 +1,8 @@
+# INBOmd 0.6.6
+
+* Fix `NA` watermark issue when required colophon fields are missing.
+  Thanks to @RCinbo to reporting this.
+
 # INBOmd 0.6.5
 
 * Use latest version of `citeme` and `checklist`.
