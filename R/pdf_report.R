@@ -148,7 +148,14 @@ pdf_report <- function(
     fm$pagefootmessage <- fm$doi
   }
   if (draft) {
-    c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[fm$lang] |>
+    c(
+      en = "DRAFT",
+      `en-GB` = "DRAFT",
+      fr = "CONCEPTION",
+      `fr-FR` = "CONCEPTION",
+      nl = "ONTWERP",
+      `nl-BE` = "ONTWERP"
+    )[fm$lang] |>
       c(fm$watermark) |>
       paste(collapse = "\\\\") -> fm$watermark
   }

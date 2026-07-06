@@ -79,7 +79,14 @@ gitbook <- function(code_folding = c("none", "show", "hide")) {
       c(pandoc_args) -> pandoc_args
   }
   if (draft) {
-    c(en = "DRAFT", fr = "CONCEPTION", nl = "ONTWERP")[lang] |>
+    c(
+      en = "DRAFT",
+      `en-GB` = "DRAFT",
+      fr = "CONCEPTION",
+      `fr-FR` = "CONCEPTION",
+      nl = "ONTWERP",
+      `nl-BE` = "ONTWERP"
+    )[lang] |>
       c(fm$watermark) |>
       paste(collapse = "<br>") |>
       pandoc_variable_arg(name = "watermark") |>
