@@ -16,7 +16,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - name: build examples
-        uses: inbo/actions/render_inbomd@55098124f283c4f9b9402d43ec4a9382ee05c105 # devel
+        uses: inbo/actions/render_inbomd@devel
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EXAMPLE_BRANCH: main
